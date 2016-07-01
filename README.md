@@ -1,5 +1,7 @@
-# Gear CMS
-More information will follow soon!
+![Gear CMS Header](http://aaroniker.me/demo/gear/github.png "Github")
+
+## About
+More information will follow soon.
 
 ## System requirements
 
