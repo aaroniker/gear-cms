@@ -11,3 +11,4 @@ More information will follow soon.
 * [http://vuejs.org/](vue.js)
 * [http://lichtner.github.io/fluentpdo/](FluentPDO)
 * [https://github.com/ircmaxell/password_compat](Password compat)
+* [https://github.com/Wixel/GUMP](GUMP)
