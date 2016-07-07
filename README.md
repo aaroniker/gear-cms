@@ -8,8 +8,9 @@ More information will follow soon.
 
 ## External resources
 
-* [http://www.framycss.org/](Framy CSS)
-* [http://vuejs.org/](vue.js)
-* [http://lichtner.github.io/fluentpdo/](FluentPDO)
-* [https://github.com/ircmaxell/password_compat](Password compat)
-* [https://github.com/Wixel/GUMP](GUMP)
+* [Framy CSS](http://www.framycss.org/)
+* [Ionicons](http://ionicons.com/)
+* [Vue.js](http://vuejs.org/)
+* [FluentPDO](http://lichtner.github.io/fluentpdo/)
+* [password_compat](https://github.com/ircmaxell/password_compat)
+* [GUMP](https://github.com/Wixel/GUMP)
