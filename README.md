@@ -8,6 +8,7 @@ More information will follow soon.
 
 ## External resources
 
+* [http://www.framycss.org/](Framy CSS)
 * [http://vuejs.org/](vue.js)
 * [http://lichtner.github.io/fluentpdo/](FluentPDO)
 * [https://github.com/ircmaxell/password_compat](Password compat)
