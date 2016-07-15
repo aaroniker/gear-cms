@@ -1,0 +1,85 @@
+.button-size(@padding-vertical, @padding-horizontal, @font-size, @line-height, @border-radius) {
+	padding: @padding-vertical @padding-horizontal;
+	font-size: @font-size;
+	line-height: @line-height;
+	.round(@border-radius);
+}
+
+.button-style(@background, @color) {
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken(@background, 5%);
+		color: @color;
+	}
+	background: @background;
+	color: @color;
+}
+
+.button {
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken(@primary, 5%);
+		color: #fff;
+	}
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	touch-action: manipulation;
+	position: relative;
+	white-space: nowrap;
+	border: none;
+	.button-style(@primary, #fff);
+	.button-size(@padding-v, @padding-h, @font-size, @line-height, @border-radius);
+	.icon {
+		position: relative;
+		left: -4px;
+	}
+	&.lg {
+		.icon {
+			left: -5px;
+		}
+		.button-size(@padding-lg-v, @padding-lg-h, @font-size-large, @line-height, @border-lg-radius);
+	}
+	&.sm {
+		.icon {
+			left: -2px;
+		}
+		.button-size(@padding-sm-v, @padding-sm-h, @font-size-small, @line-height, @border-sm-radius);
+	}
+	&.block {
+		& + .button.block {
+			margin-top: 5px;
+		}
+		display: block;
+	}
+	&.center {
+		display: table;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	&.success {
+		.button-style(@success, #fff);
+	}
+	&.warning {
+		.button-style(@warning, #fff);
+	}
+	&.error {
+		.button-style(@error, #fff);
+	}
+	&.border {
+		&:before {
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			position: absolute;
+			z-index: 0;
+			content: "";
+			border: 1px solid @border;
+			.round(@border-radius);
+		}
+		.button-style(#fff, @text);
+	}
+}

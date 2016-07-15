@@ -1,0 +1,18 @@
+.message {
+	&.success {
+		background: @success;
+	}
+	&.info {
+		background: @info;
+	}
+	&.warning {
+		background: @warning;
+	}
+	&.error {
+		background: @error;
+	}
+	padding: @input-padding-v @input-padding-h;
+	color: #fff;
+	margin: 0 0 25px 0;
+	.round(@border-radius);
+}

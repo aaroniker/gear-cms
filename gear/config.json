@@ -1,0 +1,16 @@
+{
+	"name": "Gear",
+	"version": "0.1",
+	"cache": false,
+	"dev": true,
+	"url": "",
+	"DB": {
+		"host": "",
+		"user": "",
+		"password": "",
+		"database": "",
+		"prefix": null
+	},
+	"lang": "de",
+	"timezone": "Europe\/Berlin"
+}

@@ -1,0 +1,36 @@
+#login {
+	.form {
+		.logo {
+			img {
+				display: block;
+				width: 110px;
+			}
+			display: table;
+			margin: 0 auto 50px auto;
+		}
+		.message {
+			margin: 0 0 25px 0;
+		}
+		input {
+			&:-webkit-autofill {
+				-webkit-box-shadow: 0 0 0px 1000px white inset;
+			}
+		}
+		background: #fff;
+		padding: 50px 40px;
+		width: 340px;
+		box-shadow: 0 8px 22px fade(@dark, 5%);
+	}
+	.action {
+		button {
+			float: right;
+		}
+		.remember {
+			padding: 9px 0 0 0;
+			float: left;
+			color: @text-light;
+		}
+	}
+	margin: 15% auto 0 auto;
+	display: table;
+}
