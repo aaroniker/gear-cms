@@ -1,38 +1,50 @@
-<section id="user">
-
-	<header>
-    
-    	<h2>{{ checked | json }} {{ 'user' | lang }}</h2>
-    
-    </header>
-
-    <table class="table">
-        <thead>
-            <tr>
+<script type="text/x-template" id="table-template">
+		
+	<table class="table">
+		<thead>
+			<tr>
                 <th>
                 	<div class="checkbox">
                 		<input id="checkAll" type="checkbox" v-model="checkAll">
                         <label for="checkAll"></label>
                     </div>
                	</th>
-                <th>
-                    Name
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="user in users">
+				<th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">
+					<a :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+						{{ key | lang }}
+					</a>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]">
                 <td>
                 	<div class="checkbox">
-                		<input id="user{{ user.id }}" type="checkbox" v-model="checked" :value="user.id" number>
-                        <label for="user{{ user.id }}"></label>
+                		<input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
+                        <label for="entry{{ entry.id }}"></label>
                     </div>
                 </td>
-                <td>
-                    {{ user.email }}
-                </td>
+				<td v-for="key in columns">
+					{{ entry[key] }}
+				</td>
+			</tr>
+			<tr v-if="!filtered.length">
+                <td colspan="{{ columnSpan }}">No Results</td>
             </tr>
-        </tbody>
-    </table>
+		</tbody>
+	</table>
+</script>
+
+<section id="user">
+
+	<header>
+    	
+    	<h2>{{ 'user' | lang }}</h2>
+    	
+    	<input type="text" v-model="searchString">
+    
+    </header>
+    
+	<data-table :data="tableData" :columns="tableColumns" :filter-key="searchString"></data-table>
 
 </section>

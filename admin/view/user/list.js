@@ -1,32 +1,14 @@
 new Vue({
 	el: '#user',
 	data: {
-		users: [],
-        checked: []
+		tableData: [],
+    	tableColumns: ['email'],
+		searchString: ''
 	},
 	ready: function() {
 		this.fetch();	
 	},
-	computed: {
-		checkAll: {
-			get: function () {
-				return this.users ? this.checked.length == this.users.length : false;
-			},
-			set: function (value) {
-				var checked = [];
-				
-				if(value) {
-					this.users.forEach(function(user) {
-						checked.push(user.id);
-					});
-				}
-		
-				this.checked = checked;
-			}
-		}
-	},
 	methods: {
-		
 		fetch: function() {
 			
 			var vue = this;
@@ -36,11 +18,10 @@ new Vue({
 				url: "/admin/user",
 				dataType: "json",
 				data: {}
-			}).done(function(users) {
-				vue.$set('users', users);
+			}).done(function(data) {
+				vue.$set('tableData', data);
 			});
 		
 		}
-		
 	}
 });
