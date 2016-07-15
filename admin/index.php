@@ -24,13 +24,15 @@
 		
 		admin::addMenu(lang::get('plugins'), 'plugins');
 		admin::addMenu(lang::get('system'), 'system');
-		
 	
 		include(dir::view('head.php'));
 			
 		include(dir::view('header.php'));
 	
 		echo config::get('content');
+		
+		// Components
+		include(dir::components('data-table.php'));
 	
 		include(dir::view('footer.php'));
 	

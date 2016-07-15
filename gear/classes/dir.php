@@ -32,6 +32,10 @@ class dir {
 		return self::assets('css'.DIRECTORY_SEPARATOR.$file);
 	}
 	
+	public static function components($file = '') {
+		return self::admin('components'.DIRECTORY_SEPARATOR.$file);
+	}
+	
 	public static function controller($file = '') {
 		return self::admin('controller'.DIRECTORY_SEPARATOR.$file);
 	}

@@ -2,7 +2,7 @@ new Vue({
 	el: '#user',
 	data: {
 		tableData: [],
-    	tableColumns: ['email'],
+		tableColumns: ['email'],
 		searchString: ''
 	},
 	ready: function() {
