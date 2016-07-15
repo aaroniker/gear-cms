@@ -11,6 +11,7 @@
 	"delete": "Löschen",
 	"close": "Schließen",
 	"list": "Liste",
+	"no_results": "Keine Ergebnisse",
 	
 	## Login
 	"email": "E-Mail",
@@ -30,6 +31,7 @@
 	
 	## User
 	"user": "Benutzer",
+	"name": "Name",
 	
 	## Plugins
 	"plugins": "Plugins",
