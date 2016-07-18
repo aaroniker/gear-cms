@@ -9,9 +9,7 @@ class userController extends controller {
     public function index() {
 
         if(ajax::is()) {
-            $array = db()->from('user')->fetchAll();
-
-            ajax::addReturn(json_encode($array));
+            ajax::addReturn(json_encode(UserModel::getAllFromDb()));
         }
 
         admin::vue('user/list.js');
