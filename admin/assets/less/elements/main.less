@@ -1,0 +1,38 @@
+main {
+    header {
+        h2 {
+            font-weight: 300;
+            line-height: 36px;
+            margin: 0;
+            float: left;
+        }
+        .search {
+            &:before {
+                content: @ionicon-var-ios-search;
+                font-family: @ionicons-font-family;
+                line-height: 36px;
+                position: absolute;
+                top: 0;
+                left: 1px;
+                width: 56px;
+                text-align: center;
+                font-size: 2em;
+            }
+            input {
+            	&:focus {
+            		outline: none;
+            	}
+                background: none;
+                border: 0;
+                padding: 0 0 0 56px;
+                line-height: 36px;
+                color: @text;
+            }
+            border-left: 1px solid @border;
+            position: relative;
+            float: left;
+            margin: 0 0 0 30px;
+        }
+        margin-bottom: 25px;
+    }
+}

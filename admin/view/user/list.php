@@ -4,7 +4,11 @@
 
         <h2><?=lang::get('user'); ?></h2>
 
-        <input type="text" v-model="searchString">
+        <div class="search">
+            <input type="text" v-model="searchString">
+        </div>
+
+        <div class="clear"></div>
 
     </header>
 
