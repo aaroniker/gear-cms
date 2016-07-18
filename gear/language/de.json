@@ -28,10 +28,12 @@
 
     ## Content
     "content": "Inhalt",
-    
+
     ## User
     "user": "Benutzer",
     "name": "Name",
+    "rights": "Rechte",
+    "groups": "Gruppen",
 
     ## Plugins
     "plugins": "Plugins",
