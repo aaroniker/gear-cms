@@ -7,7 +7,6 @@
 						<input id="checkAll" type="checkbox" v-model="checkAll">
 						<label for="checkAll"></label>
 					</div>
-			   	</th>
 				<th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">
 					<a :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
 						{{ key | lang }}
