@@ -1,4 +1,4 @@
-<script type="text/x-template" id="table-template">
+<template id="table-template">
 	<table class="table">
 		<thead>
 			<tr>
@@ -32,4 +32,4 @@
 			</tr>
 		</tbody>
 	</table>
-</script>
+</template>
