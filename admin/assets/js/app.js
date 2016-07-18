@@ -13,7 +13,7 @@ Vue.component('data-table', {
 		filterKey: ''
 	},
 	data: function () {
-		var sortOrders = {}
+		var sortOrders = {};
 		this.columns.forEach(function (key) {
 			sortOrders[key] = 1
 		});
@@ -21,7 +21,7 @@ Vue.component('data-table', {
 			checked: [],
 			sortKey: '',
 			sortOrders: sortOrders
-		}
+		};
 	},
 	computed: {
 		checkAll: {
@@ -30,27 +30,27 @@ Vue.component('data-table', {
 			},
 			set: function(value) {
 				var checked = [];
-				
+
 				if(value) {
 					this.data.forEach(function(loop) {
 						checked.push(loop.id);
 					});
 				}
-		
+
 				this.checked = checked;
 			}
 		},
 		columnSpan: function() {
-            return this.columns.length + 1;
-        },
+			return this.columns.length + 1;
+		},
 		filtered: function () {
 			return this.$eval('data | filterBy filterKey');
 		}
 	},
 	methods: {
 		sortBy: function (key) {
-			this.sortKey = key
-			this.sortOrders[key] = this.sortOrders[key] * -1
+			this.sortKey = key;
+			this.sortOrders[key] = this.sortOrders[key] * -1;
 		}
 	}
 });
