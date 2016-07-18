@@ -3,12 +3,12 @@
 	"version": "0.1",
 	"cache": false,
 	"dev": true,
-	"url": "",
+	"url": "http://v2.dynao.de/",
 	"DB": {
-		"host": "",
-		"user": "",
-		"password": "",
-		"database": "",
+		"host": "localhost",
+		"user": "5_dynao",
+		"password": "5Nm8xx",
+		"database": "5_dynaodev",
 		"prefix": null
 	},
 	"lang": "de",

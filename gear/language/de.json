@@ -1,62 +1,62 @@
 {
-	"lang": "Deutsch",
-	
-	## General
-	"yes": "Ja",
-	"no": "Nein",
-	"save": "Speichern",
-	"back": "Zurück",
-	"add": "Hinzufügen",
-	"edit": "Bearbeiten",
-	"delete": "Löschen",
-	"close": "Schließen",
-	"list": "Liste",
-	"no_results": "Keine Ergebnisse",
-	
-	## Login
-	"email": "E-Mail",
-	"password": "Passwort",
-	"login": "Anmelden",
-	"logout": "Abmelden",
-	"remember": "Login merken",
-	"wrong_pw": "Falsches Passwort",
-	"logged_out": "Erfolgreich ausgeloggt",
-	"email_not_found": "E-Mail nicht gefunden",
-	
-	## Dashboard
-	"dashboard": "Dashboard",
-	
-	## Content
-	"content": "Inhalt",
-	
-	## User
-	"user": "Benutzer",
-	"name": "Name",
-	
-	## Plugins
-	"plugins": "Plugins",
-	
-	## System
-	"system": "System",
-	
-	## Validate
-	"validate_required": "<strong>%s</strong> ist ein Pflichtfeld",
-	"validate_valid_email": "Das Feld <strong>%s</strong> ist nicht korrekt",
-	"validate_min_len": "Das Feld <strong>%s</strong> muss min. %u Zeichen haben",
-	"validate_max_len": "Das Feld <strong>%s</strong> darf max. %u Zeichen haben",
-	"validate_exact_len": "Das Feld <strong>%s</strong> muss exakt %u Zeichen haben",
-	"validate_numeric": "Das Feld <strong>%s</strong> darf nur Zahlen enthalten",
-	"validate_alpha": "Das Feld <strong>%s</strong> darf nur Buchstaben (a-z) enthalten",
-	"validate_valid_url": "Das Feld <strong>%s</strong> muss eine gültige URL enthalten",
-	"validate_url_exists": "Das Feld <strong>%s</strong> enthält keine existierende URL",
-	"validate_min_numeric": "Das Feld <strong>%s</strong> muss entweder gleich, oder höher als %u sein",
-	"validate_max_numeric": "Das Feld <strong>%s</strong> muss entweder gleich, oder niedriger als %u sein",
-	"validate_equalsfield": "Das Feld <strong>%s</strong> entspricht nicht dem Feld <strong>%s</strong>",
-	"validate_valid_ip": "Das Feld <strong>%s</strong> ist keine gültige IP-Adresse",
-	"validate_contains_list": "Das Feld <strong>%s</strong> muss einen Wert von der Liste enthalten",
-	"validate_date": "Das Feld <strong>%s</strong> enthält kein gültiges Datum",
-	
-	## Extension
-	"extension_callable_func": "%s::add erwartet als 2. Parameter eine vorhandene Funktion"
-	
+    "lang": "Deutsch",
+
+    ## General
+    "yes": "Ja",
+    "no": "Nein",
+    "save": "Speichern",
+    "back": "Zurück",
+    "add": "Hinzufügen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "list": "Liste",
+    "no_results": "Keine Ergebnisse",
+
+    ## Login
+    "email": "E-Mail",
+    "password": "Passwort",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "remember": "Login merken",
+    "wrong_pw": "Falsches Passwort",
+    "logged_out": "Erfolgreich ausgeloggt",
+    "email_not_found": "E-Mail nicht gefunden",
+
+    ## Dashboard
+    "dashboard": "Dashboard",
+
+    ## Content
+    "content": "Inhalt",
+    
+    ## User
+    "user": "Benutzer",
+    "name": "Name",
+
+    ## Plugins
+    "plugins": "Plugins",
+
+    ## System
+    "system": "System",
+
+    ## Validate
+    "validate_required": "<strong>%s</strong> ist ein Pflichtfeld",
+    "validate_valid_email": "Das Feld <strong>%s</strong> ist nicht korrekt",
+    "validate_min_len": "Das Feld <strong>%s</strong> muss min. %u Zeichen haben",
+    "validate_max_len": "Das Feld <strong>%s</strong> darf max. %u Zeichen haben",
+    "validate_exact_len": "Das Feld <strong>%s</strong> muss exakt %u Zeichen haben",
+    "validate_numeric": "Das Feld <strong>%s</strong> darf nur Zahlen enthalten",
+    "validate_alpha": "Das Feld <strong>%s</strong> darf nur Buchstaben (a-z) enthalten",
+    "validate_valid_url": "Das Feld <strong>%s</strong> muss eine gültige URL enthalten",
+    "validate_url_exists": "Das Feld <strong>%s</strong> enthält keine existierende URL",
+    "validate_min_numeric": "Das Feld <strong>%s</strong> muss entweder gleich, oder höher als %u sein",
+    "validate_max_numeric": "Das Feld <strong>%s</strong> muss entweder gleich, oder niedriger als %u sein",
+    "validate_equalsfield": "Das Feld <strong>%s</strong> entspricht nicht dem Feld <strong>%s</strong>",
+    "validate_valid_ip": "Das Feld <strong>%s</strong> ist keine gültige IP-Adresse",
+    "validate_contains_list": "Das Feld <strong>%s</strong> muss einen Wert von der Liste enthalten",
+    "validate_date": "Das Feld <strong>%s</strong> enthält kein gültiges Datum",
+
+    ## Extension
+    "extension_callable_func": "%s::add erwartet als 2. Parameter eine vorhandene Funktion"
+
 }
