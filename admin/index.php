@@ -32,7 +32,7 @@
 		echo config::get('content');
 
 		// Components
-		include(dir::components('data-table.php'));
+		include(dir::components('data-table.html'));
 
 		include(dir::view('footer.php'));
 
