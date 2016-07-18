@@ -2,7 +2,7 @@
 	<table class="table">
 		<thead>
 			<tr>
-                <th>
+				<th>
                 	<div class="checkbox">
                 		<input id="checkAll" type="checkbox" v-model="checkAll">
                         <label for="checkAll"></label>
@@ -28,7 +28,7 @@
 				</td>
 			</tr>
 			<tr v-if="!filtered.length">
-                <td colspan="{{ columnSpan }}">{{ 'no_results' | lang }}</td>
+                <td class="empty" colspan="{{ columnSpan }}">{{ 'no_results' | lang }}</td>
             </tr>
 		</tbody>
 	</table>
