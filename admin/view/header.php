@@ -83,21 +83,21 @@
 		<div class="container">
 			<nav>
 				<ul>
-				<?php
+					<?php
 
-				  foreach($submenu as $url => $array) {
+					  foreach($submenu as $url => $array) {
 
-						$class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+							$class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
 
-						echo '
-							<li'.$class.'>
-								<a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
-							</li>
-						';
+							echo '
+								<li'.$class.'>
+									<a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+								</li>
+							';
 
-					}
+						}
 
-				?>
+					?>
 			  </ul>
 		  </nav>
 	  </div>
