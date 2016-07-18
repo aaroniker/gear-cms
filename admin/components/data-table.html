@@ -2,7 +2,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+                <th class="check">
                     <div class="checkbox">
                         <input id="checkAll" type="checkbox" v-model="checkAll">
                         <label for="checkAll"></label>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]">
-                <td>
+                <td class="check">
                     <div class="checkbox">
                         <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
                         <label for="entry{{ entry.id }}"></label>

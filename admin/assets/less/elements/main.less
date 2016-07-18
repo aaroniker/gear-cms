@@ -33,6 +33,38 @@ main {
             float: left;
             margin: 0 0 0 30px;
         }
+        nav {
+            ul {
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+                li {
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    float: left;
+                    margin-right: 15px;
+                }
+            }
+            float: right;
+        }
         margin-bottom: 25px;
     }
+}
+
+.table {
+    .check {
+        .checkbox {
+                label {
+                    &:before {
+                        background: none;
+                    }
+                }
+            margin-bottom: 0;
+        }
+        width: 22px;
+    }
+    line-height: 22px;
 }
