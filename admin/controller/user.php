@@ -9,14 +9,8 @@ class userController extends controller {
     public function index() {
 
         if(ajax::is()) {
-            $array[] = [
-                'id' => 1,
-                'email' => 'test'
-            ];
-            $array[] = [
-                'id' => 2,
-                'email' => 'test2'
-            ];
+            $array = db()->from('user')->fetchAll();
+
             ajax::addReturn(json_encode($array));
         }
 
