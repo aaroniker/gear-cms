@@ -26,7 +26,7 @@ Vue.component('data-table', {
     computed: {
         checkAll: {
             get: function() {
-                return this.data ? this.checked.length == this.data.length : false;
+                return this.data ? this.checked.length == this.data.length &&  this.data.length > 0 : false;
             },
             set: function(value) {
                 var checked = [];
