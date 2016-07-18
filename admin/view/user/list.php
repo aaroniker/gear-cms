@@ -18,8 +18,6 @@
             </ul>
         </nav>
 
-        <div class="clear"></div>
-
     </header>
 
     <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString"></data-table>
