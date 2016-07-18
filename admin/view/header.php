@@ -10,21 +10,21 @@
 		<div class="container">
 			<nav>
 				<ul>
-				<?php
+					<?php
 
-					foreach($menu as $url => $array) {
+						foreach($menu as $url => $array) {
 
-						$class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+							$class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
 
-						echo '
-							<li'.$class.'>
-								<a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
-							</li>
-						';
+							echo '
+								<li'.$class.'>
+									<a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+								</li>
+							';
 
-					}
+						}
 
-				?>
+					?>
 				</ul>
 			</nav>
 		</div>
@@ -110,4 +110,4 @@
 </header>
 
 <div class="container">
-  <main>
+	<main>
