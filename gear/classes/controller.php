@@ -11,9 +11,9 @@ class controller {
     }
 
     private function __loadModel() {
-		
+
         $this->model = new Model(db());
-    
-	}
-	
+
+    }
+
 }
