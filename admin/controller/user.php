@@ -30,6 +30,12 @@ class userController extends controller {
 
     }
 
+    public function add() {
+
+        include(dir::view('user/add.php'));
+
+    }
+
 }
 
 ?>
