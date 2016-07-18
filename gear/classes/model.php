@@ -23,7 +23,7 @@ class model {
 
     public static function getAll() {
 
-        $items = [];
+        $return = [];
 
         $fromDb = self::getAllFromDb();
 
@@ -32,11 +32,11 @@ class model {
             $items[] = new $class($Db->id);
         }
 
-        return $items;
+        return $return;
 
     }
 
-    protected static function getAllFromDb() {
+    public static function getAllFromDb() {
 
         $where = false;
 
@@ -53,9 +53,7 @@ class model {
     }
 
     protected function getClassVars() {
-
         return array_keys(get_class_vars(get_class($this)));
-
     }
 
     private function _getDBVars() {
@@ -98,9 +96,7 @@ class model {
     }
 
     public function count() {
-
         return db()->from($this->_model)->count();
-
     }
 
     public function insert($args) {
@@ -189,9 +185,7 @@ class model {
 
         $data = db()->from($this->_model.'_meta')->where($this->_model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
 
-        $this->_metaData = array_merge($this->_metaData, $data);
-
-        return $this->_metaData;
+        return array_merge($this->_metaData, $data);
 
     }
 
