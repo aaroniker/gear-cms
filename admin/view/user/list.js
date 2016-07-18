@@ -6,11 +6,11 @@ new Vue({
 		searchString: ''
 	},
 	ready: function() {
-		this.fetch();	
+		this.fetch();
 	},
 	methods: {
 		fetch: function() {
-			
+
 			var vue = this;
 			
 			$.ajax({
@@ -21,7 +21,7 @@ new Vue({
 			}).done(function(data) {
 				vue.$set('tableData', data);
 			});
-		
+
 		}
 	}
 });
