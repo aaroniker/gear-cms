@@ -65,12 +65,6 @@ class theme {
 
     }
 
-    public static function getTitle() {
-
-        return admin::$page;
-
-    }
-
 }
 
 ?>
