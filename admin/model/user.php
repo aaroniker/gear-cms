@@ -8,13 +8,14 @@ class UserModel extends model {
 
     public function __construct($id = 0) {
 
-        $this->_model = 'user';
+        $this->model = 'user';
 
-        $this->_metaData = [
+        $this->metaData = [
         ];
 
-        if($id)
+        if($id) {
             $this->load($id);
+        }
 
         return $this;
 

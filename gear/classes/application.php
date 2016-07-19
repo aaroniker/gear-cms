@@ -19,8 +19,9 @@ class application {
         if($env == 'admin') {
             $this->admin = true;
             $this->admin();
-        } else
+        } else {
             $this->frontend();
+        }
 
     }
 
@@ -52,22 +53,25 @@ class application {
 
                 if(method_exists($this->class, $this->action)) {
 
-                    if(!empty($this->params))
+                    if(!empty($this->params)) {
                         call_user_func_array([$this->class, $this->action], $this->params);
-                    else
+                    } else {
                         $this->class->{$this->action}();
+                    }
 
                 } else {
 
-                    if(strlen($this->action) == 0)
+                    if(strlen($this->action) == 0) {
                         $this->class->index();
-                    else
+                    } else {
                         $this->error404();
-                        
+                    }
+
                 }
 
-            } else
+            } else {
                 $this->error404();
+            }
 
         } else {
 

@@ -3,8 +3,8 @@
 class model {
 
     protected $id;
-    protected $_model;
-    protected $_metaData = [];
+    protected $model;
+    protected $metaData = [];
 
     function __construct() {
 
@@ -16,7 +16,7 @@ class model {
 
         if(property_exists(get_class($this), $var))
             return $this->$var;
-        elseif(array_key_exists($var, $this->_metaData))
+        elseif(array_key_exists($var, $this->metaData))
             return $this->_getMeta($var);
 
     }
@@ -45,11 +45,12 @@ class model {
         $class = get_called_class();
         $class = new $class;
 
-        if($where)
-            return db()->from($class->_model)->where($where)->fetchAll();
-        else
-            return db()->from($class->_model)->fetchAll();
-            
+        if($where) {
+            return db()->from($class->model)->where($where)->fetchAll();
+        } else {
+            return db()->from($class->model)->fetchAll();
+        }
+
     }
 
     protected function getClassVars() {
@@ -61,8 +62,9 @@ class model {
         $array = [];
 
         foreach($this->getClassVars() as $var) {
-            if($var[0] != '_')
+            if($var[0] != '_') {
                 $array[$var] = $this->$var;
+            }
         }
 
         unset($array["id"]);
@@ -76,8 +78,9 @@ class model {
             $data = $this->getById($id);
 
             foreach(get_class_vars(get_class($this)) as $cvar => $val) {
-                if(isset($data->$cvar))
+                if(isset($data->$cvar)) {
                     $this->$cvar = $data->$cvar;
+                }
             }
 
             $this->_loadMeta();
@@ -90,13 +93,14 @@ class model {
 
     public function getById($id = 0) {
 
-        if($id > 0)
-            return db()->from($this->_model)->where('id', $id)->fetch();
+        if($id > 0) {
+            return db()->from($this->model)->where('id', $id)->fetch();
+        }
 
     }
 
     public function count() {
-        return db()->from($this->_model)->count();
+        return db()->from($this->model)->count();
     }
 
     public function insert($args) {
@@ -108,10 +112,11 @@ class model {
 
             $value = (!isset($value)) ? '' : $value;
 
-            if(!in_array($key, $this->_metaData))
+            if(!in_array($key, $this->metaData)) {
                 $save[$key] = $value;
-            else
+            } else {
                 $meta[$key] = $value;
+            }
 
         }
 
@@ -119,12 +124,13 @@ class model {
 
         if(is_array($save)) {
 
-            $insertId = db()->insertInto($this->_model, $save)->execute();
+            $insertId = db()->insertInto($this->model, $save)->execute();
 
             $this->_setData($meta)->_saveMeta($insertId);
 
-            if((int)$insertId > 0)
+            if((int)$insertId > 0) {
                 return $this->load($insertId);
+            }
 
         }
 
@@ -132,14 +138,15 @@ class model {
 
     private function _setData($data) {
 
-        $this->_metaData = [];
+        $this->metaData = [];
 
         foreach($data as $key => $value) {
 
-            if(property_exists(get_class($this), $key))
+            if(property_exists(get_class($this), $key)) {
                 $this->$key = $value;
-            else
-                $this->_metaData[$key] = $value;
+            } else {
+                $this->metaData[$key] = $value;
+            }
 
         }
 
@@ -170,22 +177,23 @@ class model {
             'id' => $this->id
         ];
 
-        return db()->update($this->_model, $this->_getDBVars())->where($where)->execute();
+        return db()->update($this->model, $this->_getDBVars())->where($where)->execute();
 
     }
 
     private function _getMeta($meta_key) {
 
-        if($meta_key)
-            return $this->_metaData[$meta_key];
+        if($meta_key) {
+            return $this->metaData[$meta_key];
+        }
 
     }
 
     private function _loadMeta() {
 
-        $data = db()->from($this->_model.'_meta')->where($this->_model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
+        $data = db()->from($this->model.'_meta')->where($this->model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
 
-        return array_merge($this->_metaData, $data);
+        return array_merge($this->metaData, $data);
 
     }
 
@@ -195,25 +203,25 @@ class model {
 
         $this->id = ($this->id) ? $this->id : $insert;
 
-        foreach($this->_metaData as $meta_key => $meta_value) {
+        foreach($this->metaData as $meta_key => $meta_value) {
 
             if(!isset($meta_value)) {
 
                 $whereMeta = [
-                    $this->_model.'_id' => $this->id,
+                    $this->model.'_id' => $this->id,
                     'meta_key' => $meta_key
                 ];
 
-                db()->deleteFrom($this->_model.'_meta')->where($whereMeta)->execute();
+                db()->deleteFrom($this->model.'_meta')->where($whereMeta)->execute();
 
             } else {
 
                 $whereMeta = [
-                    $this->_model.'_id' => $this->id,
+                    $this->model.'_id' => $this->id,
                     'meta_key' => $meta_key
                 ];
 
-                $data = db()->from($this->_model.'_meta')->where($whereMeta)->fetchAll();
+                $data = db()->from($this->model.'_meta')->where($whereMeta)->fetchAll();
 
                 if(!count($data) || $insert) {
 
@@ -222,19 +230,19 @@ class model {
                     $args = [
                         'meta_key' => $meta_key,
                         'meta_value' => $meta_value,
-                        $this->_model.'_id' => $insert
+                        $this->model.'_id' => $insert
                     ];
 
-                    $edited[] = db()->insertInto($this->_model.'_meta')->values($args)->execute();
+                    $edited[] = db()->insertInto($this->model.'_meta')->values($args)->execute();
 
                 } else {
 
                     $args = [
                         'meta_key' => $meta_key,
-                        $this->_model.'_id' => $this->id
+                        $this->model.'_id' => $this->id
                     ];
 
-                    $edited[] = db()->update($this->_model.'_meta')->set('meta_value', $meta_value)->where($args)->execute();
+                    $edited[] = db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($args)->execute();
 
                 }
 
@@ -250,13 +258,14 @@ class model {
 
         if($this->id) {
 
-            db()->deleteFrom($this->_model.'_meta')->where($this->_model.'_id', $this->id)->execute();
-            db()->deleteFrom($this->_model)->where('id', $this->id)->execute();
+            db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $this->id)->execute();
+            db()->deleteFrom($this->model)->where('id', $this->id)->execute();
 
             return true;
 
-        } else
+        } else {
             return false;
+        }
 
     }
 
