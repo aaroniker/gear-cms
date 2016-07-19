@@ -56,7 +56,7 @@ main {
             float: right;
         }
         margin-bottom: 40px;
-        @media(max-height: 800px) {
+        @media(max-height: 800px), (max-width: 1180px) {
             margin-bottom: 25px;
         }
     }
@@ -73,6 +73,6 @@ main {
             margin-bottom: 0;
         }
         font-weight: normal;
-        width: 22px;
+        width: @checkbox-size;
     }
 }
