@@ -8,13 +8,13 @@
         $since = $datetime->getTimestamp() - $actual->getTimestamp();
 
         $chunks = array(
-            array(60 * 60 * 24 * 365 , 'Jahr', 'Jahren'),
-            array(60 * 60 * 24 * 30 , 'Monat', 'Monaten'),
-            array(60 * 60 * 24 * 7, 'Woche', 'Wochen'),
-            array(60 * 60 * 24 , 'Tag', 'Tagen'),
-            array(60 * 60 , 'Stunde', 'Stunden'),
-            array(60 , 'Minute', 'Minuten'),
-            array(1 , 'Sekunde', 'Sekunden')
+            array(60 * 60 * 24 * 365 , lang::get('year'), lang::get('years')),
+            array(60 * 60 * 24 * 30 , lang::get('month'), lang::get('months')),
+            array(60 * 60 * 24 * 7, lang::get('week'), lang::get('weeks')),
+            array(60 * 60 * 24 , lang::get('day'), lang::get('days')),
+            array(60 * 60 , lang::get('hour'), lang::get('hours')),
+            array(60 , lang::get('minute'), lang::get('minutes')),
+            array(1 , lang::get('second'), lang::get('seconds'))
         );
 
         for($i = 0, $j = count($chunks); $i < $j; $i++) {
@@ -27,7 +27,7 @@
 
         $print = ($count == 1) ? '1 '.$name[0] : $count.' '.$name[1];
 
-        return 'vor '.$print;
+        return sprintf(lang::get('ago'), $print);
 
     }
 

@@ -41,6 +41,23 @@
     ## System
     "system": "System",
 
+    ## Time
+    "year": "Jahr",
+    "years": "Jahren",
+    "month": "Monat",
+    "months": "Monaten",
+    "week": "Woche",
+    "weeks": "Wochen",
+    "day": "Tag",
+    "days": "Tagen",
+    "hour": "Stunde",
+    "hours": "Stunden",
+    "minute": "Minute",
+    "minutes": "Minuten",
+    "second": "Sekunde",
+    "seconds": "Sekunden",
+    "ago": "vor %s",
+
     ## Validate
     "validate_required": "<strong>%s</strong> ist ein Pflichtfeld",
     "validate_valid_email": "Das Feld <strong>%s</strong> ist nicht korrekt",
