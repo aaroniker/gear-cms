@@ -12,18 +12,23 @@ class message {
 
                 $return .= '<ol>';
 
-                foreach($message as $list)
+                foreach($message as $list) {
                     $return .= '<li>'.$list.'</li>';
+                }
 
                 $return .= '</ol>';
 
-            } else
+            } else {
 
                 $return .= $message[0];
 
-        } else
+            }
+
+        } else {
 
             $return .= $message;
+
+        }
 
         $return .= '</div>';
 
