@@ -2,7 +2,7 @@
 
 class type {
 
-    static public function cast($var, $type = '') {
+    static protected function cast($var, $type = '') {
 
         switch($type) {
 
