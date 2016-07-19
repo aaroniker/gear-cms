@@ -49,7 +49,7 @@ class model {
             return db()->from($class->_model)->where($where)->fetchAll();
         else
             return db()->from($class->_model)->fetchAll();
-
+            
     }
 
     protected function getClassVars() {
