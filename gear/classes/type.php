@@ -56,7 +56,7 @@ class type {
 
     static public function super($var, $type = '', $default = null) {
 
-        return self::get($var, $type, self::post($var, $type, $default));
+        return self::post($var, $type, self::get($var, $type, $default));
 
     }
 
