@@ -16,11 +16,13 @@ class extension {
 
             }
 
-            if(!isset(self::$extensions[$name]))
+            if(!isset(self::$extensions[$name])) {
                 self::$extensions[$name] = [];
+            }
 
-            if($position < 0)
+            if($position < 0) {
                 $position = count(self::$extensions[$name]);
+            }
 
             array_splice(self::$extensions[$name], $position, 0, $function);
 
@@ -37,11 +39,13 @@ class extension {
 
     public static function has($name, $function = false) {
 
-        if(!$function)
+        if(!$function) {
             return isset(self::$extensions[$name]);
+        }
 
-        if(!function_exists($function))
+        if(!function_exists($function)) {
             return false;
+        }
 
         return isset(self::$extensions[$name][$function]);
 
@@ -49,13 +53,15 @@ class extension {
 
     public static function get($name, $object = false, $this = false) {
 
-        if(!self::has($name))
+        if(!self::has($name)) {
             return $object;
+        }
 
         $extension = self::$extensions[$name];
 
-        foreach($extension as $function)
+        foreach($extension as $function) {
             $object = $function($object, $this);
+        }
 
         return $object;
 
