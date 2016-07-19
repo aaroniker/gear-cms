@@ -60,6 +60,17 @@ class admin {
 
     }
 
+    public static function getMenu($type = 'menu') {
+
+        if(isset(self::$menu[$type])) {
+            return self::$menu[$type];
+        }
+
+        return false;
+
+    }
+
+
     public static function getSubmenu($parentUrl = false) {
 
         $parentUrl = ($parentUrl) ? $parentUrl : self::$url;
@@ -71,17 +82,6 @@ class admin {
         return false;
 
     }
-
-    public static function getMenu($type = 'menu') {
-
-        if(isset(self::$menu[$type])) {
-            return self::$menu[$type];
-        }
-
-        return false;
-
-    }
-
 }
 
 ?>
