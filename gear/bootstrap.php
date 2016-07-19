@@ -16,7 +16,7 @@
     include(dir::functions('validate.php'));
 
     new config();
-    
+
     $DB = config::get('DB');
 
     $pdo = new PDO('mysql:host=' . $DB['host'] . ';dbname=' . $DB['database'] . ';charset=utf8', $DB['user'], $DB['password'], [
@@ -47,23 +47,5 @@
     ob_end_clean();
 
     config::add('system', $system);
-
-    ob_start();
-
-    new application($env);
-
-    $content = ob_get_contents();
-
-    ob_end_clean();
-
-    if(ajax::is()) {
-
-        echo ajax::getReturn();
-
-        exit();
-
-    }
-
-    config::add('content', $content);
 
 ?>

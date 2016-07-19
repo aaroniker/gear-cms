@@ -4,10 +4,8 @@
 
     new dir();
 
-    $env = 'frontend';
-
     include(dir::gear('bootstrap.php'));
 
-    echo config::get('content');
+    new application('frontend');
 
 ?>

@@ -12,7 +12,7 @@ class userController extends controller {
             ajax::addReturn(json_encode(UserModel::getAllFromDb()));
         }
 
-        admin::vue('user/list.js');
+        theme::addJS('admin/view/user/list.js', true);
 
         include(dir::view('user/list.php'));
 

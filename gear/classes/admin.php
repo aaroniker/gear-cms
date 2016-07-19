@@ -82,12 +82,6 @@ class admin {
 
     }
 
-    public static function vue($file) {
-
-        theme::addJS('admin/view/'.$file, true, 'vue');
-
-    }
-
 }
 
 ?>
