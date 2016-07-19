@@ -39,6 +39,7 @@ class cache {
             }
 
             clearstatcache();
+            
             return true;
 
         }
@@ -49,11 +50,9 @@ class cache {
     static public function write($content, $file) {
 
         if(self::$cache === true) {
-
             if(!file_put_contents(dir::cache($file), $content, LOCK_EX)) {
                 return false;
             }
-
         }
 
         return true;
@@ -73,9 +72,7 @@ class cache {
             while (($file = readdir($dir)) !== false) {
 
                 if(is_file($file)) {
-
                     self::deleteFile($file);
-
                 }
 
             }
