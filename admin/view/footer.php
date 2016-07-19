@@ -4,7 +4,7 @@
 
 <?php
 
-    $data = lang::loadLang(dir::language(lang::getLang()));
+    $data = lang::loadLang(dir::language(lang::$lang.'.json'));
 
     echo '
         <script>

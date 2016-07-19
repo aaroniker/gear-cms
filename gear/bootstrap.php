@@ -33,7 +33,6 @@
 
     unset($DB, $pdo);
 
-    lang::setDefault();
     lang::setLang(config::get('lang'));
 
     date_default_timezone_set(config::get('timezone', 'Europe/Berlin'));
