@@ -47,9 +47,7 @@ class config {
     public static function get($name, $default = null) {
 
         if(self::has($name)) {
-
             return self::$params[$name];
-
         }
 
         return $default;
@@ -69,8 +67,9 @@ class config {
 
     public static function save() {
 
-        if(!self::$isChange)
+        if(!self::$isChange) {
             return true;
+        }
 
         $newEntrys = array_merge(self::$params, self::$newEntrys);
 
