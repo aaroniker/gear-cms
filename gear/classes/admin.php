@@ -22,8 +22,9 @@ class admin {
             self::$page = $name;
             self::$url = $activeUrl[0];
 
-        } else
+        } else {
             $class = '';
+        }
 
         self::$menu[$type][$url] = [
             'name' => $name,
@@ -38,8 +39,9 @@ class admin {
 
         $active = application::getUrl();
 
-        if(count($active) > 2)
+        if(count($active) > 2) {
             $active = [$active[0], $active[1]];
+        }
 
         if($parentUrl == $url || (is_array($active) && implode('/', $active) == $url)) {
 
@@ -47,8 +49,9 @@ class admin {
 
             self::$subpage = $name;
 
-        } else
+        } else {
             $class = '';
+        }
 
         self::$submenu[$parentUrl][$url] = [
             'name' => $name,
@@ -61,8 +64,9 @@ class admin {
 
         $parentUrl = ($parentUrl) ? $parentUrl : self::$url;
 
-        if(isset(self::$submenu[$parentUrl]))
+        if(isset(self::$submenu[$parentUrl])) {
             return self::$submenu[$parentUrl];
+        }
 
         return false;
 
@@ -70,8 +74,9 @@ class admin {
 
     public static function getMenu($type = 'menu') {
 
-        if(isset(self::$menu[$type]))
+        if(isset(self::$menu[$type])) {
             return self::$menu[$type];
+        }
 
         return false;
 

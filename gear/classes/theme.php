@@ -39,7 +39,7 @@ class theme {
 
         $return = '';
 
-        if(isset(self::$jsFiles[$type]))
+        if(isset(self::$jsFiles[$type])) {
             foreach(self::$jsFiles[$type] as $js) {
 
                 $path = ($js['local']) ? config::get('url') : '';
@@ -47,9 +47,10 @@ class theme {
                 $return .= '<script src="'.$path.$js['file'].'"></script>'.PHP_EOL;
 
             }
+        }
 
-        if($type == 'footer')
-            if(isset(self::$jsFiles['vue']))
+        if($type == 'footer') {
+            if(isset(self::$jsFiles['vue'])) {
                 foreach(self::$jsFiles['vue'] as $js) {
 
                     $path = ($js['local']) ? config::get('url') : '';
@@ -57,6 +58,8 @@ class theme {
                     $return .= '<script src="'.$path.$js['file'].'"></script>'.PHP_EOL;
 
                 }
+            }
+        }
 
         return $return;
 
