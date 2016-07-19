@@ -13,11 +13,11 @@
                         <?=lang::get('back'); ?>
                     </a>
                 </li>
-                    <li>
-                        <button type="submit" class="button">
-                            <?=lang::get('save'); ?>
-                        </button>
-                    </li>
+                <li>
+                    <button type="submit" class="button">
+                        <?=lang::get('save'); ?>
+                    </button>
+                </li>
             </ul>
         </nav>
 
