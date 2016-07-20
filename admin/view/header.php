@@ -1,36 +1,5 @@
 <header id="head">
 
-    <?php
-        $menu = admin::getMenu();
-        if($menu):
-    ?>
-
-    <div class="menu">
-        <div class="container">
-            <nav>
-                <ul>
-                    <?php
-                        foreach($menu as $url => $array) {
-
-                            $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
-
-                            echo '
-                                <li'.$class.'>
-                                    <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
-                                </li>
-                            ';
-
-                        }
-                    ?>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <?php
-        endif;
-    ?>
-
     <div class="container">
 
         <h1><?=admin::$page; ?></h1>
@@ -59,7 +28,9 @@
 
             <a href="" class="profile">
                 <img src="<?=config::get('url').'admin/assets/img/avatar.jpg'; ?>" alt="">
-                <?=user::current()->email; ?>
+                <span>
+                    <?=user::current()->email; ?>
+                </span>
             </a>
 
             <div class="clear"></div>
@@ -70,39 +41,72 @@
 
     </div>
 
-    <?php
-        $submenu = admin::getSubmenu();
+    <div id="nav">
 
-        if($submenu):
-    ?>
+        <?php
+            $menu = admin::getMenu();
+            if($menu):
+        ?>
 
-    <div class="submenu">
-        <div class="container">
-            <nav>
-                <ul>
-                    <?php
+        <div class="menu">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <?php
+                            foreach($menu as $url => $array) {
 
-                        foreach($submenu as $url => $array) {
+                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
 
-                            $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+                                echo '
+                                    <li'.$class.'>
+                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+                                    </li>
+                                ';
 
-                            echo '
-                                <li'.$class.'>
-                                    <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
-                                </li>
-                            ';
-
-                        }
-
-                    ?>
-                </ul>
-            </nav>
+                            }
+                        ?>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
 
-    <?php
-        endif;
-    ?>
+        <?php
+            endif;
+
+            $submenu = admin::getSubmenu();
+
+            if($submenu):
+        ?>
+
+        <div class="submenu">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <?php
+
+                            foreach($submenu as $url => $array) {
+
+                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                                echo '
+                                    <li'.$class.'>
+                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+                                    </li>
+                                ';
+
+                            }
+
+                        ?>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <?php
+            endif;
+        ?>
+
+    </div>
 
 </header>
 
