@@ -63,6 +63,49 @@ main {
 }
 
 .table {
+    thead {
+        th {
+            &.active {
+                a {
+                    &.asc,
+                    &.dsc {
+                        &:after {
+                            font-family: @ionicons-font-family;
+                            display: block;
+                            line-height: @checkbox-size;
+                            top: 0;
+                            left: 100%;
+                            position: absolute;
+                            font-size: 1.25em;
+                            margin: 0 0 0 5px;
+                        }
+                    }
+                    &.asc {
+                        &:after {
+                            content: @ionicon-var-ios-arrow-thin-up;
+                        }
+                    }
+                    &.dsc {
+                        &:after {
+                            content: @ionicon-var-ios-arrow-thin-down;
+                        }
+                    }
+                    display: table;
+                    position: relative;
+                    color: @text;
+                }
+            }
+            a {
+                color: @text-light;
+                cursor: pointer;
+            }
+            color: @text-light;
+            line-height: @checkbox-size;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: normal;
+        }
+    }
     .check {
         .checkbox {
             label {
