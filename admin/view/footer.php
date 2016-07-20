@@ -1,8 +1,8 @@
 
-        </main>
-    </div>
-
+    </main>
 </div>
+
+<div id="overlay"></div>
 
 <?php
 

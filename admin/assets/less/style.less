@@ -12,16 +12,13 @@ body {
     }
 }
 
-#wrap {
-    &.active {
-        left: 200px;
-        right: -200px;
-    }
-    position: absolute;
+#overlay {
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    background: @light;
-    .transition(0.2s);
+    z-index: 100;
+    display: none;
 }
