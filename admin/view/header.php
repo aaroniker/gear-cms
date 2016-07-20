@@ -2,6 +2,10 @@
 
     <div class="container">
 
+        <div class="expand">
+            <i class="icon icon-navicon-round"></i>
+        </div>
+
         <h1><?=admin::$page; ?></h1>
 
         <div class="user">
@@ -44,35 +48,6 @@
     <div id="nav">
 
         <?php
-            $menu = admin::getMenu();
-            if($menu):
-        ?>
-
-        <div class="menu">
-            <div class="container">
-                <nav>
-                    <ul>
-                        <?php
-                            foreach($menu as $url => $array) {
-
-                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
-
-                                echo '
-                                    <li'.$class.'>
-                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
-                                    </li>
-                                ';
-
-                            }
-                        ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <?php
-            endif;
-
             $submenu = admin::getSubmenu();
 
             if($submenu):
@@ -96,6 +71,35 @@
 
                             }
 
+                        ?>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <?php
+            endif;
+
+            $menu = admin::getMenu();
+            if($menu):
+        ?>
+
+        <div class="menu">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <?php
+                            foreach($menu as $url => $array) {
+
+                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                                echo '
+                                    <li'.$class.'>
+                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+                                    </li>
+                                ';
+
+                            }
                         ?>
                     </ul>
                 </nav>

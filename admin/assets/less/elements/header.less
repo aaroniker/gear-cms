@@ -2,72 +2,85 @@
     #nav {
         .menu,
         .submenu {
-            nav {
-                ul {
-                    &:after {
-                        display: block;
-                        content: "";
-                        clear: both;
-                    }
-                    li {
-                        &:last-child {
-                            margin-right: 0;
-                        }
-                        a {
-                            &:hover {
-                                color: lighten(@text-dark, 20%);
-                            }
+            @media(min-width: @screen-sm-min * 1px) {
+                nav {
+                    ul {
+                        &:after {
                             display: block;
-                            line-height: 60px;
-                            color: @text-dark;
+                            content: "";
+                            clear: both;
                         }
-                        float: left;
-                        margin: 0 50px 0 0;
+                        li {
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                            a {
+                                &:hover {
+                                    color: lighten(@text-dark, 20%);
+                                }
+                                display: block;
+                                line-height: 60px;
+                                color: @text-dark;
+                            }
+                            float: left;
+                            margin: 0 50px 0 0;
+                        }
                     }
                 }
+                position: absolute;
+                left: 0;
+                right: 0;
             }
-            position: absolute;
-            left: 0;
-            right: 0;
         }
         .menu {
             top: 0;
         }
         .submenu {
-            nav {
-                ul {
-                    &:after {
-                        display: block;
-                        content: "";
-                        clear: both;
-                    }
-                    li {
-                        &.active {
-                            a {
-                                &:before {
-                                    content: "";
-                                    height: 3px;
-                                    left: -20px;
-                                    right: -20px;
-                                    bottom: 0;
-                                    display: block;
-                                    background: @primary;
-                                    position: absolute;
-                                }
-                                color: #fff;
-                            }
+            @media(min-width: @screen-sm-min * 1px) {
+                nav {
+                    ul {
+                        &:after {
+                            display: block;
+                            content: "";
+                            clear: both;
                         }
-                        a {
-                            text-transform: uppercase;
-                            position: relative;
+                        li {
+                            &.active {
+                                a {
+                                    &:before {
+                                        content: "";
+                                        height: 3px;
+                                        left: -20px;
+                                        right: -20px;
+                                        bottom: 0;
+                                        display: block;
+                                        background: @primary;
+                                        position: absolute;
+                                    }
+                                    color: #fff;
+                                }
+                            }
+                            a {
+                                text-transform: uppercase;
+                                position: relative;
+                            }
                         }
                     }
                 }
+                bottom: 0;
             }
-            bottom: 0;
         }
         @media(max-width: @screen-sm-min * 1px) {
-            display: none;
+            a {
+                color: #fff;
+            }
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 200px;
+            background: @primary;
+            z-index: -1;
         }
     }
     h1 {
@@ -77,6 +90,20 @@
         line-height: 36px;
         color: #fff;
         float: left;
+    }
+    .expand {
+        i {
+            line-height: 36px;
+            font-size: 2em;
+        }
+        margin: 0 15px 0 0;
+        cursor: pointer;
+        float: left;
+        color: #fff;
+        display: none;
+        @media(max-width: @screen-sm-min * 1px) {
+            display: block;
+        }
     }
     .user {
         nav {
@@ -144,5 +171,8 @@
     @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
         padding: 75px 0;
         margin-bottom: 40px;
+    }
+    @media(max-width: @screen-sm-min * 1px) {
+        padding: 20px 0;
     }
 }

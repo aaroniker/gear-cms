@@ -7,5 +7,21 @@
 @import 'elements/main';
 
 body {
+    &.fix {
+        overflow: hidden;
+    }
+}
+
+#wrap {
+    &.active {
+        left: 200px;
+        right: -200px;
+    }
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     background: @light;
+    .transition(0.2s);
 }

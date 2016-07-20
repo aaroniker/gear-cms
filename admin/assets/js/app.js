@@ -54,3 +54,10 @@ Vue.component('data-table', {
         }
     }
 });
+
+$(document).ready(function() {
+    $("#head .expand").click(function() {
+        $("body").toggleClass('fix');
+        $("#wrap").toggleClass('active');
+    });
+});
