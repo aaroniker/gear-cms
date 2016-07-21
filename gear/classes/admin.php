@@ -43,7 +43,7 @@ class admin {
             $active = [$active[0], $active[1]];
         }
 
-        if($parentUrl == $url || (is_array($active) && implode('/', $active) == $url)) {
+        if((is_array($active) && implode('/', $active) == $url)) {
 
             $class = 'active';
 
