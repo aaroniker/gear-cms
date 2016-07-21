@@ -1,0 +1,39 @@
+<template id="file-table-template">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="check">
+                    <div class="checkbox">
+                        <input id="checkAll" type="checkbox" v-model="checkAll">
+                        <label for="checkAll"></label>
+                    </div>
+                </th>
+                <th>
+                    {{ 'name' | lang }}
+                </th>
+                <th>
+                    {{ 'size' | lang }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="entry in data | filterBy filterKey">
+                <td class="check">
+                    <div class="checkbox">
+                        <input id="entry{{ entry.name }}" type="checkbox" v-model="checked" :value="entry.name" number>
+                        <label for="entry{{ entry.name }}"></label>
+                    </div>
+                </td>
+                <td>
+                    {{ entry.name }}
+                </td>
+                <td>
+                    {{ entry.size }}
+                </td>
+            </tr>
+            <tr v-if="!filtered.length">
+                <td class="empty" colspan="3">{{ 'no_results' | lang }}</td>
+            </tr>
+        </tbody>
+    </table>
+</template>

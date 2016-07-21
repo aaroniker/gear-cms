@@ -55,6 +55,42 @@ Vue.component('data-table', {
     }
 });
 
+Vue.component('file-table', {
+    template: '#file-table-template',
+    props: {
+        data: [],
+        filterKey: ''
+    },
+    data: function () {
+        return {
+            checked: []
+        };
+    },
+    computed: {
+        checkAll: {
+            get: function() {
+                return this.data ? this.checked.length == this.data.length &&  this.data.length > 0 : false;
+            },
+            set: function(value) {
+                var checked = [];
+
+                if(value) {
+                    this.data.forEach(function(loop) {
+                        checked.push(loop.name);
+                    });
+                }
+
+                this.checked = checked;
+            }
+        },
+        filtered: function () {
+            return this.$eval('data | filterBy filterKey');
+        }
+    },
+    methods: {
+    }
+});
+
 $(document).ready(function() {
 
     function toggleNav(open) {

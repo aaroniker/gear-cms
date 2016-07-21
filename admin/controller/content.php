@@ -26,7 +26,6 @@ class contentController extends controller {
                 if(is_dir($path)) {
 
                     $dirs[] = [
-                        'id' => $name,
                         'name' => $name,
                         'size' => ''
                     ];
@@ -34,7 +33,6 @@ class contentController extends controller {
                 } else {
 
                     $files[] = [
-                        'id' => $name,
                         'name' => $name,
                         'size' => file_size($path)
                     ];
