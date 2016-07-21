@@ -116,3 +116,5 @@
 
 <div class="container">
     <main>
+
+        <?php echo config::get('system'); ?>
