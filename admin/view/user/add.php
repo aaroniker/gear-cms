@@ -9,8 +9,8 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/admin/user" class="button border">
-                        <?=lang::get('back'); ?>
+                    <a href="/admin/user" class="button noText border">
+                        <i class="icon icon-close-round"></i>
                     </a>
                 </li>
                 <li>
