@@ -33,7 +33,10 @@
     if(userLogin::isLogged()) {
 
         admin::addMenu(lang::get('dashboard'), '');
+
         admin::addMenu(lang::get('content'), 'content');
+        admin::addSubmenu(lang::get('pages'), '', 'content');
+        admin::addSubmenu(lang::get('storage'), 'storage', 'content');
 
         admin::addMenu(lang::get('user'), 'user');
         admin::addSubmenu(lang::get('list'), '', 'user');

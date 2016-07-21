@@ -28,6 +28,9 @@
 
     ## Content
     "content": "Inhalt",
+    "storage": "Storage",
+    "upload": "Hochladen",
+    "pages": "Seiten",
 
     ## User
     "user": "Benutzer",
