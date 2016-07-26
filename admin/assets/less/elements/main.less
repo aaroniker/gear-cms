@@ -157,27 +157,30 @@ table.table {
         font-weight: normal;
         width: @checkbox-size;
     }
-    a {
-        &.dir {
-            .icon {
-                display: block;
-                width: 28px;
-                height: 28px;
-                background: @primary;
-                color: #fff;
+    td {
+        a {
+            &.dir {
+                .icon {
+                    display: block;
+                    width: 28px;
+                    height: 28px;
+                    background: @primary;
+                    color: #fff;
+                    line-height: 28px;
+                    font-size: 1em;
+                    text-align: center;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    .round(50%);
+                }
+                position: relative;
                 line-height: 28px;
-                font-size: 1em;
-                text-align: center;
-                position: absolute;
-                left: 0;
-                top: 0;
-                .round(50%);
+                padding-left: 38px;
+                display: block;
+                cursor: pointer;
             }
-            position: relative;
-            line-height: 28px;
-            padding-left: 38px;
-            display: block;
-            cursor: pointer;
         }
+        vertical-align: middle;
     }
 }
