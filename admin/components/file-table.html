@@ -31,7 +31,10 @@
                     </div>
                 </td>
                 <td v-if="entry.type == 'dir'">
-                    <a @click="setPath(entry.path)">{{ entry.name }}</a>
+                    <a class="dir" @click="setPath(entry.path)">
+                        <i class="icon icon-folder"></i>
+                        {{ entry.name }}
+                    </a>
                 </td>
                 <td v-if="entry.type == 'file'">
                     {{ entry.name }}
