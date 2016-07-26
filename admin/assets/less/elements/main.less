@@ -73,6 +73,34 @@ main {
     }
 }
 
+.breadcrumb {
+    li {
+        &:last-child {
+            &:after {
+                display: none;
+            }
+            a {
+                color: @text;
+            }
+        }
+        &:after {
+            display: inline-block;
+            content: "/";
+            margin: 0 8px;
+        }
+        a {
+            cursor: pointer;
+            color: @text-light;
+            text-transform:  uppercase;
+        }
+        font-size: 12px;
+        display: inline-block;
+    }
+    margin: 0 0 20px 0;
+    padding: 0;
+    list-style:  none;
+}
+
 table.table {
     thead {
         th {
