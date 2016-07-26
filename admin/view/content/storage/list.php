@@ -20,6 +20,6 @@
 
     </header>
 
-    <file-table :data="tableData" :filter-key="searchString"></data-table>
+    <file-table :data="data" :filter-key="searchString"></data-table>
 
 </section>

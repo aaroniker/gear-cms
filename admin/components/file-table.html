@@ -24,7 +24,10 @@
                         <label for="entry{{ entry.name }}"></label>
                     </div>
                 </td>
-                <td>
+                <td v-if="entry.type == 'dir'">
+                    <a @click="setPath(entry.path)">{{ entry.name }}</a>
+                </td>
+                <td v-if="entry.type == 'file'">
                     {{ entry.name }}
                 </td>
                 <td>

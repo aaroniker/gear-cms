@@ -59,12 +59,21 @@ Vue.component('file-table', {
     template: '#file-table-template',
     props: {
         data: [],
+        path: '/',
         filterKey: ''
     },
     data: function () {
         return {
             checked: []
         };
+    },
+    created: function () {
+        this.fetch();
+        //get session path
+        this.$watch('path', function (path) {
+            this.fetch();
+            //set session
+        });
     },
     computed: {
         checkAll: {
@@ -88,6 +97,25 @@ Vue.component('file-table', {
         }
     },
     methods: {
+        fetch: function() {
+
+            var vue = this;
+
+            $.ajax({
+                method: "POST",
+                url: "/admin/content/storage",
+                dataType: "json",
+                data: {
+                    path: vue.path
+                }
+            }).done(function(data) {
+                vue.$set('data', data);
+            });
+
+        },
+        setPath: function (path) {
+            this.$set('path', path);
+        }
     }
 });
 
