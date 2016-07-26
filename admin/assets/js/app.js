@@ -92,6 +92,19 @@ Vue.component('file-table', {
                 this.checked = checked;
             }
         },
+        breadcrumbs: function () {
+
+            var path = '';
+
+            crumb = this.path.split('/').filter(function(str) {
+                return str.length;
+            }).map(function(part) {
+            	return {path: path += '/' + part + '/', name: part};
+            });
+
+            return crumb;
+
+        },
         filtered: function () {
             return this.$eval('data | filterBy filterKey');
         }

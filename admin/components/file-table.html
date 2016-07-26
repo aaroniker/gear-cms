@@ -1,4 +1,10 @@
 <template id="file-table-template">
+    <ul>
+        <li><a @click="setPath()">{{ 'home' | lang }}</a></li>
+        <li v-for="entry in breadcrumbs">
+            <a @click="setPath(entry.path)">{{ entry.name }}</a>
+        </li>
+    </ul>
     <table class="table">
         <thead>
             <tr>
