@@ -17,26 +17,27 @@ class contentController extends controller {
             $dirs = [];
             $files = [];
 
-            $array = array_diff(scandir(dir::storage(type::post('path', 'string', '/'))), array('.', '..'));
+            $path = type::post('path', 'string', dir::storage());
+
+            $array = array_diff(scandir($path), array('.', '..'));
 
             foreach($array as $name) {
 
-                $path = dir::storage($name);
+                $file = $path.$name;
 
-                if(is_dir($path)) {
-
+                if(is_dir($file)) {
                     $dirs[] = [
                         'name' => $name,
-                        'size' => ''
+                        'path' => $file."/",
+                        'size' => '',
+                        'type' => 'dir'
                     ];
-
                 } else {
-
                     $files[] = [
                         'name' => $name,
-                        'size' => file_size($path)
+                        'size' => file_size($file),
+                        'type' => 'file'
                     ];
-
                 }
 
             }
