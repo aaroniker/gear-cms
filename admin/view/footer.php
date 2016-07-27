@@ -11,6 +11,7 @@
     echo '
         <script>
             var lang = '.json_encode($data).';
+            var url = "'.config::get('url').'";
         </script>
     ';
 
