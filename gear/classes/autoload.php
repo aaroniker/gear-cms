@@ -111,8 +111,9 @@ class autoload {
 
         self::$classes[$class] = $path;
 
-        if($path)
+        if($path) {
             include($path);
+        }
 
     }
 
@@ -131,8 +132,9 @@ class autoload {
 
         foreach($files as $file) {
 
-            if(strrchr($file, '.') != '.php')
+            if(strrchr($file, '.') != '.php') {
                 continue;
+            }
 
             self::addClass($dir.'_'.$file, $dir.DIRECTORY_SEPARATOR.$file);
             self::$isNewCache = true;
