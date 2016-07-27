@@ -17,6 +17,7 @@
 ?>
 
 <?=theme::getJS(); ?>
+<?=theme::getJSCode(); ?>
 
 </body>
 </html>

@@ -4,6 +4,10 @@ class theme {
 
     public static $cssFiles = [];
     public static $jsFiles = [];
+    public static $jsCode = [
+		'jquery' => [],
+		'all' => []
+	];
 
     public static function addCSS($css_file, $local = false) {
         self::$cssFiles[] = [
@@ -17,6 +21,10 @@ class theme {
             'file' => $js_file,
             'local' => $local
         ];;
+    }
+
+    public static function addJsCode($code, $jquery = true) {
+        self::$jsCode[($jquery) ? 'jquery' : 'all'][] = $code;
     }
 
     public static function getCSS() {
@@ -60,6 +68,27 @@ class theme {
                 }
             }
         }
+
+        return $return;
+
+    }
+
+    public static function getJSCode() {
+
+        $return = '<script>';
+        $return .= '$(document).ready(function() {';
+
+        foreach(self::$jsCode['jquery'] as $code) {
+            $return .= $code;
+        }
+
+        $return .= '});';
+
+        foreach(self::$jsCode['all'] as $code) {
+            $return .= $code;
+        }
+
+        $return .= '</script>';
 
         return $return;
 
