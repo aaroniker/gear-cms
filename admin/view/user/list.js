@@ -15,7 +15,7 @@ new Vue({
 
             $.ajax({
                 method: "POST",
-                url: "/admin/user",
+                url: url + "admin/user",
                 dataType: "json",
                 data: {}
             }).done(function(data) {
