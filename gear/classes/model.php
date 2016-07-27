@@ -7,9 +7,7 @@ class model {
     protected $metaData = [];
 
     function __construct() {
-
         return $this;
-
     }
 
     public function __get($var) {
@@ -39,8 +37,6 @@ class model {
     public static function getAllFromDb() {
 
         $where = false;
-
-        $where = extension::get('model_beforeGetAllWhere', $where);
 
         $class = get_called_class();
         $class = new $class;
@@ -158,8 +154,6 @@ class model {
 
         if(is_array($data)) {
 
-            $data = extension::get('model_beforeSave', $data);
-
             $this->_setData($data);
 
             $metaDataEdited = $this->_saveMeta();
@@ -172,13 +166,7 @@ class model {
     }
 
     private function _save() {
-
-        $where = [
-            'id' => $this->id
-        ];
-
-        return db()->update($this->model, $this->_getDBVars())->where($where)->execute();
-
+        return db()->update($this->model, $this->_getDBVars())->where('id', $this->id)->execute();
     }
 
     private function _getMeta($meta_key) {
