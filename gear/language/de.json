@@ -77,7 +77,6 @@
     "validate_max_numeric": "Das Feld <strong>%s</strong> muss entweder gleich, oder niedriger als %u sein",
     "validate_equalsfield": "Das Feld <strong>%s</strong> entspricht nicht dem Feld <strong>%s</strong>",
     "validate_valid_ip": "Das Feld <strong>%s</strong> ist keine gültige IP-Adresse",
-    "validate_contains_list": "Das Feld <strong>%s</strong> muss einen Wert von der Liste enthalten",
     "validate_date": "Das Feld <strong>%s</strong> enthält kein gültiges Datum",
 
     ## Extension
