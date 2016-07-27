@@ -27,11 +27,7 @@ class form {
 
     }
 
-    public function addFreeField($name, $value, $class, $attributes = []) {
-        return new $class($name, $value, $attributes);
-    }
-
-    public function addElement($name, $object, $save = true) {
+    private function addElement($name, $object, $save = true) {
 
         if($save) {
             $this->toSave[$name] = $object;
@@ -149,7 +145,7 @@ class form {
     }
 
     public function isSubmit() {
-        return isset($_POST['save']);
+        return type::post('save', 'bool', false);
     }
 
     public function validation() {
