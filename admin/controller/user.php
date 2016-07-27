@@ -18,13 +18,11 @@ class userController extends controller {
 
     public function edit($id = 0) {
 
-        if ($id > 0) {
+        $id = ($id) ? $id : user::current()->id;
 
-            $model = new UserModel($id);
+        $model = new UserModel($id);
 
-            include(dir::view('user/edit.php'));
-
-        }
+        include(dir::view('user/edit.php'));
 
     }
 
