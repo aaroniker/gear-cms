@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/admin/user/add" class="button">
+                    <a href="<?=config::get('url').'admin/user/add'; ?>" class="button">
                         <?=lang::get('add'); ?>
                     </a>
                 </li>

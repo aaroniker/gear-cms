@@ -9,7 +9,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/admin/user" class="button noText border">
+                    <a href="<?=config::get('url').'admin/user'; ?>" class="button noText border">
                         <i class="icon icon-close-round"></i>
                     </a>
                 </li>

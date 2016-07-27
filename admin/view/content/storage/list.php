@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/admin/content/storage/add" class="button">
+                    <a href="" class="button">
                         <?=lang::get('upload'); ?>
                     </a>
                 </li>
