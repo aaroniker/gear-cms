@@ -23,3 +23,17 @@
     <file-table :data="data" :filter-key="searchString"></data-table>
 
 </section>
+
+<?php
+    theme::addJSCode('
+        new Vue({
+            el: "#storage",
+            data: {
+                path: "/",
+                data: [],
+                tableColumns: ["name", "size"],
+                searchString: ""
+            }
+        });
+    ', true);
+?>

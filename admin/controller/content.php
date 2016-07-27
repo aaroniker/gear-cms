@@ -45,8 +45,6 @@ class contentController extends controller {
             ajax::addReturn(json_encode(array_merge($dirs, $files)));
         }
 
-        theme::addJS('admin/view/content/storage/list.js', true);
-
         include(dir::view('content/storage/list.php'));
 
     }
