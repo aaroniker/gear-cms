@@ -193,7 +193,10 @@ class form {
 
 		}
 
-        $return[] = '<button name="save" type="submit">'.lang::get('save').'</button>';
+        $return[] = '
+            <button class="button fl-right" name="save" type="submit">'.lang::get('save').'</button>
+            <div class="clear"></div>
+        ';
 
         $return[] = implode(PHP_EOL, $hidden);
 
