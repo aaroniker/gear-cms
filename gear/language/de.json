@@ -38,6 +38,7 @@
     "name": "Name",
     "rights": "Rechte",
     "groups": "Gruppen",
+    "user_added": "Benutzer erfolgreich hinzugefügt",
 
     ## Plugins
     "plugins": "Plugins",
