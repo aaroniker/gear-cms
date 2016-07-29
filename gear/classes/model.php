@@ -15,7 +15,7 @@ class model {
         if(property_exists(get_class($this), $var))
             return $this->$var;
         elseif(array_key_exists($var, $this->metaData))
-            return $this->_getMeta($var);
+            return $this->getMeta($var);
 
     }
 
@@ -73,7 +73,7 @@ class model {
                 }
             }
 
-            $this->_loadMeta();
+            $this->loadMeta();
 
         }
 
@@ -116,7 +116,7 @@ class model {
 
             $insertId = db()->insertInto($this->model, $save)->execute();
 
-            $this->_setData($meta)->_saveMeta($insertId);
+            $this->setData($meta)->saveMeta($insertId);
 
             if((int)$insertId > 0) {
                 return $this->load($insertId);
@@ -126,7 +126,7 @@ class model {
 
     }
 
-    private function _setData($data) {
+    private function setData($data) {
 
         $this->metaData = [];
 
@@ -148,10 +148,10 @@ class model {
 
         if(is_array($data)) {
 
-            $this->_setData($data);
+            $this->setData($data);
 
-            $metaDataEdited = $this->_saveMeta();
-            $dataEdited = $this->_save();
+            $metaDataEdited = $this->saveMeta();
+            $dataEdited = $this->saveData();
 
             return $metaDataEdited || $dataEdited ? true : false;
 
@@ -159,7 +159,7 @@ class model {
 
     }
 
-    private function _getMeta($meta_key) {
+    private function getMeta($meta_key) {
 
         if($meta_key) {
             return $this->metaData[$meta_key];
@@ -167,7 +167,7 @@ class model {
 
     }
 
-    private function _loadMeta() {
+    private function loadMeta() {
 
         $data = db()->from($this->model.'_meta')->where($this->model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
 
@@ -175,11 +175,11 @@ class model {
 
     }
 
-    private function _save() {
+    private function saveData() {
         return db()->update($this->model)->set($this->_getDBVars())->where('id', $this->id)->execute();
     }
 
-    private function _saveMeta($insert = false) {
+    private function saveMeta($insert = false) {
 
         $edited = [];
 
