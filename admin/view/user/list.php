@@ -32,7 +32,7 @@
                 headline: "list",
                 checked: [],
                 tableData: [],
-                tableColumns: ["email"],
+                tableColumns: ["email", "status"],
                 searchString: ""
             },
             ready: function() {

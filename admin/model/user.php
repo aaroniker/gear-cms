@@ -5,6 +5,7 @@ class UserModel extends model {
     protected $id;
     protected $password;
     protected $email;
+    protected $status;
 
     public function __construct($id = 0) {
 

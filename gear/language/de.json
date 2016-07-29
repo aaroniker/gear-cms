@@ -40,6 +40,9 @@
     "rights": "Rechte",
     "groups": "Gruppen",
     "user_added": "Benutzer erfolgreich hinzugefügt",
+    "status": "Status",
+    "active": "Aktiv",
+    "blocked": "Gesperrt",
 
     ## Plugins
     "plugins": "Plugins",

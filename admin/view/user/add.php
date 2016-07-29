@@ -7,8 +7,8 @@
         <nav>
             <ul>
                 <li>
-                    <a href="<?=config::get('url').'admin/user'; ?>" class="button noText border">
-                        <i class="icon icon-close-round"></i>
+                    <a href="<?=config::get('url').'admin/user'; ?>" class="button border">
+                        <?=lang::get('back'); ?>
                     </a>
                 </li>
             </ul>
@@ -27,6 +27,11 @@
 	    $field = $form->addPasswordField('password', '');
         $field->fieldName(lang::get('password'));
         $field->fieldValidate();
+
+	    $field = $form->addRadioField('status', 1);
+        $field->fieldName(lang::get('status'));
+        $field->add(1, lang::get('active'));
+        $field->add(0, lang::get('blocked'));
 
         if($form->isSubmit()) {
 
