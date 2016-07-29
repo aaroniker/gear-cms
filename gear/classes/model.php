@@ -19,7 +19,7 @@ class model {
 
     }
 
-    public static function getAll() {
+    public static function getAllList() {
 
         $return = [];
 
@@ -36,16 +36,10 @@ class model {
 
     public static function getAllFromDb() {
 
-        $where = false;
-
         $class = get_called_class();
         $class = new $class;
 
-        if($where) {
-            return db()->from($class->model)->where($where)->fetchAll();
-        } else {
-            return db()->from($class->model)->fetchAll();
-        }
+        return db()->from($class->model)->fetchAll();
 
     }
 
