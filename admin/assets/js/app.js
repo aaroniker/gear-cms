@@ -81,6 +81,11 @@ Vue.component('file-table', {
             //set session
         });
     },
+    watch: {
+        checked: function() {
+            this.$dispatch('checked', this.checked);
+        }
+    },
     computed: {
         checkAll: {
             get: function() {

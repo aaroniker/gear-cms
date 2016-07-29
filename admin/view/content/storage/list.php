@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2><?=lang::get('storage'); ?></h2>
+        <h2>{{ headline | lang }}</h2>
 
         <div class="search">
             <input type="text" v-model="searchString">
@@ -29,10 +29,22 @@
         new Vue({
             el: "#storage",
             data: {
+                headline: "storage",
+                checked: [],
                 path: "/",
                 data: [],
                 tableColumns: ["name", "size"],
                 searchString: ""
+            },
+            events: {
+                "checked": function (data) {
+                    this.checked = data;
+                    if(data.length) {
+                        this.headline = data.length + " " + lang["selected"];
+                    } else {
+                        this.headline = "storage";
+                    }
+                }
             }
         });
     ', true);
