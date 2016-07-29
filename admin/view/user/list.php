@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2><?=lang::get('list'); ?></h2>
+        <h2>{{ headline | lang }}</h2>
 
         <div class="search">
             <input type="text" v-model="searchString">
@@ -22,8 +22,6 @@
 
     <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString"></data-table>
 
-    {{ checked | json }}
-
 </section>
 
 <?php
@@ -31,6 +29,7 @@
         new Vue({
             el: "#user",
             data: {
+                headline: "list",
                 checked: [],
                 tableData: [],
                 tableColumns: ["email"],
@@ -58,6 +57,11 @@
             events: {
                 "checked": function (data) {
                     this.checked = data;
+                    if(data.length) {
+                        this.headline = data.length + " " + lang["selected"];
+                    } else {
+                        this.headline = "list";
+                    }
                 }
             }
         });
