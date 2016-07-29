@@ -58,7 +58,7 @@ class model {
             }
         }
 
-        $this->loadMeta();
+        $this->metaData = $this->loadMeta();
 
         return $this;
 
@@ -70,10 +70,6 @@ class model {
             return db()->from($this->model)->where('id', $id)->fetch();
         }
 
-    }
-
-    public function count() {
-        return db()->from($this->model)->count();
     }
 
     public function insert($args) {
@@ -97,14 +93,11 @@ class model {
 
         if(is_array($save)) {
 
-            $insertId = db()->insertInto($this->model, $save)->execute();
+            $this->id = db()->insertInto($this->model, $save)->execute();
 
-            $this->setData($meta)->saveMeta($insertId);
+            $this->setData($meta)->saveMeta();
 
-            if((int)$insertId > 0) {
-                return $this->load($insertId);
-            }
-
+            return $this->load($this->id);
         }
 
     }
@@ -133,21 +126,19 @@ class model {
 
             $this->setData($data);
 
-            $metaDataEdited = $this->saveMeta();
-            $dataEdited = $this->saveData();
+            $this->saveData();
+            $this->saveMeta();
 
-            return $metaDataEdited || $dataEdited ? true : false;
+            return true;
 
         }
+
+        return false;
 
     }
 
-    private function getMeta($meta_key) {
-
-        if($meta_key) {
-            return $this->metaData[$meta_key];
-        }
-
+    private function getMeta($key) {
+        return ($key) ? $this->metaData[$key] : false;
     }
 
     private function loadMeta() {
@@ -162,52 +153,46 @@ class model {
         return db()->update($this->model)->set($this->getDBVariables())->where('id', $this->id)->execute();
     }
 
-    private function saveMeta($insert = false) {
-
-        $edited = [];
-
-        $this->id = ($this->id) ? $this->id : $insert;
+    private function saveMeta() {
 
         foreach($this->metaData as $meta_key => $meta_value) {
 
             if(!isset($meta_value)) {
 
-                $whereMeta = [
+                $where = [
                     $this->model.'_id' => $this->id,
                     'meta_key' => $meta_key
                 ];
 
-                db()->deleteFrom($this->model.'_meta')->where($whereMeta)->execute();
+                db()->deleteFrom($this->model.'_meta')->where($where)->execute();
 
             } else {
 
-                $whereMeta = [
+                $where = [
                     $this->model.'_id' => $this->id,
                     'meta_key' => $meta_key
                 ];
 
-                $data = db()->from($this->model.'_meta')->where($whereMeta)->fetchAll();
+                $data = db()->from($this->model.'_meta')->where($where)->fetchAll();
 
-                if(!count($data) || $insert) {
+                if(!count($data)) {
 
-                    $insert = (!count($data)) ? $this->id : $insert;
-
-                    $args = [
+                    $values = [
                         'meta_key' => $meta_key,
                         'meta_value' => $meta_value,
-                        $this->model.'_id' => $insert
+                        $this->model.'_id' => $this->id
                     ];
 
-                    $edited[] = db()->insertInto($this->model.'_meta')->values($args)->execute();
+                    db()->insertInto($this->model.'_meta')->values($values)->execute();
 
                 } else {
 
-                    $args = [
+                    $where = [
                         'meta_key' => $meta_key,
                         $this->model.'_id' => $this->id
                     ];
 
-                    $edited[] = db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($args)->execute();
+                    db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
 
                 }
 
@@ -215,8 +200,12 @@ class model {
 
         }
 
-        return in_array(1, $edited) ? true : false;
+        return true;
 
+    }
+
+    public function count() {
+        return db()->from($this->model)->count();
     }
 
     public function delete() {

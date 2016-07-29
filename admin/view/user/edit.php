@@ -37,13 +37,9 @@
 
             if($form->validation()) {
 
-			    $edit = $this->model->save($form->getAll());
+			    $model->save($form->getAll());
 
-                if($edit) {
-        			echo message::success(lang::get('user_edited'));    
-                } else {
-        			echo message::success(lang::get('no_data_changed'));
-                }
+                echo message::success(lang::get('user_edited'));
 
 		    } else {
 			    echo $form->getErrors();
