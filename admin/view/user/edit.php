@@ -28,7 +28,7 @@
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');
 
-	    $field = $form->addRadioField('status', $model->status);
+	    $field = $form->addRadioInlineField('status', $model->status);
         $field->fieldName(lang::get('status'));
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));

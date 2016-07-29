@@ -32,7 +32,7 @@
         $field->fieldName(lang::get('password'));
         $field->fieldValidate();
 
-	    $field = $form->addRadioField('status', 1);
+	    $field = $form->addRadioInlineField('status', 1);
         $field->fieldName(lang::get('status'));
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));

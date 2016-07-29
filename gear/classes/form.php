@@ -68,13 +68,38 @@ class form {
         return $this->addField($name, $value, 'formRadio', $attributes);
     }
 
+    public function addRadioInlineField($name, $value, $attributes = []) {
+
+        $attributes['inline'] = true;
+
+        return $this->addField($name, $value, 'formRadio', $attributes);
+
+    }
+
     public function addCheckboxField($name, $value, $attributes = []) {
         return $this->addField($name, $value, 'formCheckbox', $attributes);
+    }
+
+    public function addCheckboxInlineField($name, $value, $attributes = []) {
+
+        $attributes['inline'] = true;
+
+        return $this->addField($name, $value, 'formCheckbox', $attributes);
+
     }
 
     public function addSwitchField($name, $value, $attributes = []) {
 
         $attributes['switch'] = true;
+
+        return $this->addField($name, $value, 'formCheckbox', $attributes);
+
+    }
+
+    public function addSwitchInlineField($name, $value, $attributes = []) {
+
+        $attributes['switch'] = true;
+        $attributes['inline'] = true;
 
         return $this->addField($name, $value, 'formCheckbox', $attributes);
 
