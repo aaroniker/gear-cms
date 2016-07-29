@@ -1,8 +1,9 @@
 Vue.filter('lang', function (value) {
-    if (value in lang)
+    if (value in lang) {
         return lang[value];
-    else
+    } else {
         return value;
+    }
 });
 
 Vue.component('data-table', {
@@ -22,6 +23,11 @@ Vue.component('data-table', {
             sortKey: '',
             sortOrders: sortOrders
         };
+    },
+    watch: {
+        checked: function() {
+            this.$dispatch('checked', this.checked);
+        }
     },
     computed: {
         checkAll: {
