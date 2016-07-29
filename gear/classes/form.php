@@ -145,7 +145,7 @@ class form {
     }
 
     public function isSubmit() {
-        return type::post('save', 'bool', false);
+        return isset($_POST['save']);
     }
 
     public function validation() {
