@@ -12,25 +12,11 @@ class model {
 
     public function __get($var) {
 
-        if(property_exists(get_class($this), $var))
+        if(property_exists(get_class($this), $var)) {
             return $this->$var;
-        elseif(array_key_exists($var, $this->metaData))
+        } elseif(array_key_exists($var, $this->metaData)) {
             return $this->getMeta($var);
-
-    }
-
-    public static function getAllList() {
-
-        $return = [];
-
-        $fromDb = self::getAllFromDb();
-
-        foreach($fromDb as $Db) {
-            $class = get_called_class();
-            $items[] = new $class($Db->id);
         }
-
-        return $return;
 
     }
 
@@ -43,39 +29,36 @@ class model {
 
     }
 
-    protected function getClassVars() {
+    protected function getClassVariables() {
         return array_keys(get_class_vars(get_class($this)));
     }
 
-    private function _getDBVars() {
+    protected function getDBVariables() {
 
         $array = [];
 
-        foreach($this->getClassVars() as $var) {
+        foreach($this->getClassVariables() as $var) {
             if($var != 'model' && $var != 'metaData') {
                 $array[$var] = $this->$var;
             }
         }
 
         unset($array["id"]);
+
         return $array;
     }
 
     public function load($id = 0) {
 
-        if($id > 0) {
+        $data = $this->getById($id);
 
-            $data = $this->getById($id);
-
-            foreach(get_class_vars(get_class($this)) as $cvar => $val) {
-                if(isset($data->$cvar)) {
-                    $this->$cvar = $data->$cvar;
-                }
+        foreach(get_class_vars(get_class($this)) as $cvar => $val) {
+            if(isset($data->$cvar)) {
+                $this->$cvar = $data->$cvar;
             }
-
-            $this->loadMeta();
-
         }
+
+        $this->loadMeta();
 
         return $this;
 
@@ -176,7 +159,7 @@ class model {
     }
 
     private function saveData() {
-        return db()->update($this->model)->set($this->_getDBVars())->where('id', $this->id)->execute();
+        return db()->update($this->model)->set($this->getDBVariables())->where('id', $this->id)->execute();
     }
 
     private function saveMeta($insert = false) {
@@ -245,9 +228,9 @@ class model {
 
             return true;
 
-        } else {
-            return false;
         }
+
+        return false;
 
     }
 
