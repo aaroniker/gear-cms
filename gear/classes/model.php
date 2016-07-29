@@ -52,7 +52,7 @@ class model {
         $array = [];
 
         foreach($this->getClassVars() as $var) {
-            if($var[0] != '_') {
+            if($var != 'model' && $var != 'metaData') {
                 $array[$var] = $this->$var;
             }
         }
@@ -159,10 +159,6 @@ class model {
 
     }
 
-    private function _save() {
-        return db()->update($this->model, $this->_getDBVars())->where('id', $this->id)->execute();
-    }
-
     private function _getMeta($meta_key) {
 
         if($meta_key) {
@@ -179,9 +175,13 @@ class model {
 
     }
 
+    private function _save() {
+        return db()->update($this->model)->set($this->_getDBVars())->where('id', $this->id)->execute();
+    }
+
     private function _saveMeta($insert = false) {
 
-        $edited = array();
+        $edited = [];
 
         $this->id = ($this->id) ? $this->id : $insert;
 
