@@ -33,7 +33,7 @@
             <a href="<?=config::get('url').'admin/user/edit'; ?>" class="profile">
                 <img src="<?=config::get('url').'admin/assets/img/avatar.jpg'; ?>" alt="">
                 <span>
-                    <?=user::current()->email; ?>
+                    <?=user::current()->username; ?>
                 </span>
             </a>
 
