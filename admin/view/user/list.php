@@ -22,6 +22,8 @@
 
     <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString"></data-table>
 
+    {{ checked | json }}
+
 </section>
 
 <?php
@@ -29,6 +31,7 @@
         new Vue({
             el: "#user",
             data: {
+                checked: [],
                 tableData: [],
                 tableColumns: ["email"],
                 searchString: ""
@@ -50,6 +53,11 @@
                         vue.$set("tableData", data);
                     });
 
+                }
+            },
+            events: {
+                "checked": function (data) {
+                    this.checked = data;
                 }
             }
         });
