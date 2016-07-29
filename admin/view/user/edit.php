@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2><?=lang::get('add'); ?></h2>
+        <h2><?=lang::get('edit'); ?></h2>
 
         <nav>
             <ul>
@@ -20,19 +20,15 @@
 
         $form = new form();
 
-        $field = $form->addTextField('username', '');
+        $field = $form->addTextField('username', $model->username);
 	    $field->fieldName(lang::get('username'));
         $field->fieldValidate();
 
-        $field = $form->addTextField('email', '');
+        $field = $form->addTextField('email', $model->email);
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');
 
-	    $field = $form->addPasswordField('password', '');
-        $field->fieldName(lang::get('password'));
-        $field->fieldValidate();
-
-	    $field = $form->addRadioField('status', 1);
+	    $field = $form->addRadioField('status', $model->status);
         $field->fieldName(lang::get('status'));
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));
@@ -41,15 +37,13 @@
 
             if($form->validation()) {
 
-			    extension::add('model_beforeInsert', function($data) {
-    			    $password = password_hash($data['password'], PASSWORD_DEFAULT);
-    			    $data['password'] = $password;
-    		        return $data;
-			    });
+			    $edit = $this->model->save($form->getAll());
 
-			    $this->model->insert($form->getAll());
-
-    			echo message::success(lang::get('user_added'));
+                if($edit) {
+        			echo message::success(lang::get('user_edited'));    
+                } else {
+        			echo message::success(lang::get('no_data_changed'));
+                }
 
 		    } else {
 			    echo $form->getErrors();

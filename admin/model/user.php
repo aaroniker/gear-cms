@@ -12,6 +12,7 @@ class UserModel extends model {
         $this->model = 'user';
 
         $this->metaData = [
+            "username"
         ];
 
         if($id) {
