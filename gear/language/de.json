@@ -70,6 +70,7 @@
     "ago": "vor %s",
 
     ## Permissions
+    "content[manage]": "Inhalt verwalten",
     "user[manage]": "Benutzer verwalten",
     "user[manage][add]": "Benutzer hinzufügen",
     "user[manage][edit]": "Benutzer bearbeiten",

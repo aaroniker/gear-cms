@@ -46,6 +46,7 @@
         admin::addMenu(lang::get('plugins'), 'plugins');
         admin::addMenu(lang::get('system'), 'system');
 
+        userPerm::add('content[manage]', lang::get('content[manage]'));
         userPerm::add('user[manage]', lang::get('user[manage]'));
         userPerm::add('user[manage][add]', lang::get('user[manage][add]'));
         userPerm::add('user[manage][edit]', lang::get('user[manage][edit]'));
