@@ -41,7 +41,6 @@
         admin::addMenu(lang::get('user'), 'user');
         admin::addSubmenu(lang::get('list'), '', 'user');
         admin::addSubmenu(lang::get('rights'), 'rights', 'user');
-        admin::addSubmenu(lang::get('groups'), 'groups', 'user');
 
         admin::addMenu(lang::get('plugins'), 'plugins');
         admin::addMenu(lang::get('system'), 'system');
