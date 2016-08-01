@@ -12,6 +12,15 @@
     theme::addJS('https://cdn.jsdelivr.net/vue/1.0.26/vue.min.js');
     theme::addJS('admin/assets/js/app.js', true);
 
+    userPerm::add('content[manage]', lang::get('content[manage]'));
+    userPerm::add('user[manage]', lang::get('user[manage]'));
+    userPerm::add('user[manage][add]', lang::get('user[manage][add]'));
+    userPerm::add('user[manage][edit]', lang::get('user[manage][edit]'));
+    userPerm::add('user[manage][delete]', lang::get('user[manage][delete]'));
+    userPerm::add('plugins[manage]', lang::get('plugins[manage]'));
+    userPerm::add('plugins[manage][install]', lang::get('plugins[manage][install]'));
+    userPerm::add('plugins[manage][delete]', lang::get('plugins[manage][delete]'));
+
     ob_start();
 
     new application('admin');
@@ -44,15 +53,6 @@
 
         admin::addMenu(lang::get('plugins'), 'plugins');
         admin::addMenu(lang::get('system'), 'system');
-
-        userPerm::add('content[manage]', lang::get('content[manage]'));
-        userPerm::add('user[manage]', lang::get('user[manage]'));
-        userPerm::add('user[manage][add]', lang::get('user[manage][add]'));
-        userPerm::add('user[manage][edit]', lang::get('user[manage][edit]'));
-        userPerm::add('user[manage][delete]', lang::get('user[manage][delete]'));
-        userPerm::add('plugins[manage]', lang::get('plugins[manage]'));
-        userPerm::add('plugins[manage][install]', lang::get('plugins[manage][install]'));
-        userPerm::add('plugins[manage][delete]', lang::get('plugins[manage][delete]'));
 
         include(dir::view('head.php'));
 
