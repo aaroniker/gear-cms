@@ -13,6 +13,7 @@
     "list": "Liste",
     "no_results": "Keine Ergebnisse",
     "selected": "ausgewählt",
+    "permission_denied": "Fehlende Berechtigungen",
 
     ## Login
     "email": "E-Mail",

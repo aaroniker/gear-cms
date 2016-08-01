@@ -93,6 +93,12 @@ class application {
 
     }
 
+    public function permissionDenied() {
+
+        echo message::error('permission_denied');
+
+    }
+
     private function splitUrl() {
 
         if(type::get('url', 'string', false)) {
