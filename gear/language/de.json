@@ -70,14 +70,15 @@
     "ago": "vor %s",
 
     ## Permissions
-    "content[manage]": "Inhalt verwalten",
-    "user[manage]": "Benutzer verwalten",
-    "user[manage][add]": "Benutzer hinzufügen",
-    "user[manage][edit]": "Benutzer bearbeiten",
-    "user[manage][delete]": "Benutzer löschen",
-    "plugins[manage]": "Plugins verwalten",
-    "plugins[manage][install]": "Plugins installieren",
-    "plugins[manage][delete]": "Plugins löschen",
+    "content[index]": "Inhalt verwalten",
+    "content[storage]": "Storage verwalten",
+    "user[index]": "Benutzer verwalten",
+    "user[index][add]": "Benutzer hinzufügen",
+    "user[index][edit]": "Benutzer bearbeiten",
+    "user[index][delete]": "Benutzer löschen",
+    "plugins[index]": "Plugins verwalten",
+    "plugins[index][install]": "Plugins installieren",
+    "plugins[index][delete]": "Plugins löschen",
 
     ## Validate
     "validate_required": "<strong>%s</strong> ist ein Pflichtfeld",
