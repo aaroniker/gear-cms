@@ -6,29 +6,29 @@ class userController extends controller {
         $this->model = new UserModel;
     }
 
-    public function index() {
+    public function index($action = '', $id = 0) {
 
-        if(ajax::is()) {
-            ajax::addReturn(json_encode(UserModel::getAllFromDb()));
+        if($action == 'add') {
+
+            include(dir::view('user/add.php'));
+
+        } elseif($action == 'edit') {
+
+            $id = ($id) ? $id : user::current()->id;
+
+            $model = new UserModel($id);
+
+            include(dir::view('user/edit.php'));
+
+        } else {
+
+            if(ajax::is()) {
+                ajax::addReturn(json_encode(UserModel::getAllFromDb()));
+            }
+
+            include(dir::view('user/list.php'));
+
         }
-
-        include(dir::view('user/list.php'));
-
-    }
-
-    public function edit($id = 0) {
-
-        $id = ($id) ? $id : user::current()->id;
-
-        $model = new UserModel($id);
-
-        include(dir::view('user/edit.php'));
-
-    }
-
-    public function add() {
-
-        include(dir::view('user/add.php'));
 
     }
 
