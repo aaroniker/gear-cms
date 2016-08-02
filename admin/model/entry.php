@@ -3,6 +3,7 @@
 class EntryModel extends model {
 
     protected $id;
+    protected $type;
     protected $name;
 
     public function __construct($type, $id = 0) {
