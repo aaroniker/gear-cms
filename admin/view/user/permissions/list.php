@@ -15,6 +15,20 @@
         $field->fieldName(lang::get('name'));
         $field->fieldValidate();
 
+        if($form->isSubmit()) {
+
+            if($form->validation()) {
+
+			    $this->model->insert($form->getAll());
+
+    			echo message::success(lang::get('permission_group_added'));
+
+		    } else {
+			    echo $form->getErrors();
+		    }
+
+	    }
+
     ?>
 
     <modal :show.sync="showModal">
