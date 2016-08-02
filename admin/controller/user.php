@@ -16,7 +16,7 @@ class userController extends controller {
 
             $id = ($id) ? $id : user::current()->id;
 
-            $model = new UserModel($id);
+            $this->model = new UserModel($id);
 
             include(dir::view('user/edit.php'));
 
@@ -33,6 +33,8 @@ class userController extends controller {
     }
 
     public function permissions() {
+
+        $this->model = new PermissionModel;
 
         include(dir::view('user/permissions/list.php'));
 

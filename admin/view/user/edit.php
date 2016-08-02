@@ -20,15 +20,15 @@
 
         $form = new form();
 
-        $field = $form->addTextField('username', $model->username);
+        $field = $form->addTextField('username', $this->model->username);
 	    $field->fieldName(lang::get('username'));
         $field->fieldValidate();
 
-        $field = $form->addTextField('email', $model->email);
+        $field = $form->addTextField('email', $this->model->email);
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');
 
-	    $field = $form->addRadioInlineField('status', $model->status);
+	    $field = $form->addRadioInlineField('status', $this->model->status);
         $field->fieldName(lang::get('status'));
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));
@@ -37,7 +37,7 @@
 
             if($form->validation()) {
 
-			    $model->save($form->getAll());
+			    $this->model->save($form->getAll());
 
                 echo message::success(lang::get('user_edited'));
 
@@ -52,9 +52,7 @@
     <div class="columns">
         <div class="md-6">
 
-            <?php
-                echo $form->show();
-            ?>
+            <?=$form->show(); ?>
 
         </div>
 
