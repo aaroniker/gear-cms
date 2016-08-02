@@ -64,6 +64,7 @@
         // Components
         include(dir::components('data-table.html'));
         include(dir::components('file-table.html'));
+        include(dir::components('modal.html'));
 
         include(dir::view('footer.php'));
 

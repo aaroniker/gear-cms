@@ -1,0 +1,30 @@
+<template id="modal-template">
+    <div id="modal" v-show="show" transition="modal">
+        <div class="wrap">
+            <div class="inner">
+
+                <header>
+                    <slot name="header">
+                    default header
+                    </slot>
+                </header>
+
+                <div class="content">
+                    <slot name="body">
+                        default body
+                    </slot>
+                </div>
+
+                <footer>
+                    <slot name="footer">
+                        default footer
+                        <button class="modal-default-button" @click="show = false">
+                            OK
+                        </button>
+                    </slot>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,42 @@
+#modal {
+    .wrap {
+        .inner {
+            header {
+
+            }
+            .content {
+
+            }
+            footer {
+
+            }
+            width: 300px;
+            margin: 0px auto;
+            background: #fff;
+            .transition(0.3s);
+        }
+        display: table-cell;
+        vertical-align: middle;
+    }
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    display: table;
+    .transition(0.3s);
+}
+
+
+.modal-enter,
+.modal-leave {
+    .opacity(0);
+}
+
+.modal-enter,
+.modal-leave {
+    .inner {
+    }
+}

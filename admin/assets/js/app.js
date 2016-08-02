@@ -143,6 +143,17 @@ Vue.component('file-table', {
     }
 });
 
+Vue.component('modal', {
+    template: '#modal-template',
+    props: {
+        show: {
+            type: Boolean,
+            required: true,
+            twoWay: true
+        }
+    }
+});
+
 $(document).ready(function() {
 
     function toggleNav(open) {
