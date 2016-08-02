@@ -48,7 +48,7 @@
                 </li>
             </ul>
 
-            <button @click="showModal = true">Show Modal</button>
+            <button class="button" @click="showModal = true"><?=lang::get('add'); ?></button>
 
         </div>
 
