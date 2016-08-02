@@ -4,6 +4,7 @@ class model {
 
     protected $id;
     protected $model;
+    protected $type = false;
     protected $metaData = [];
 
     function __construct() {
@@ -25,7 +26,11 @@ class model {
         $class = get_called_class();
         $class = new $class;
 
-        return db()->from($class->model)->fetchAll();
+        if($class->type) {
+            return db()->from($class->model)->where('type', $class->type)->fetchAll();
+        } else {
+            return db()->from($class->model)->fetchAll();
+        }
 
     }
 
@@ -38,7 +43,7 @@ class model {
         $array = [];
 
         foreach($this->getClassVariables() as $var) {
-            if($var != 'model' && $var != 'metaData') {
+            if($var != 'model' && $var != 'metaData' && $var != 'type') {
                 $array[$var] = $this->$var;
             }
         }
@@ -98,6 +103,7 @@ class model {
             $this->setData($meta)->saveMeta();
 
             return $this->load($this->id);
+
         }
 
     }
@@ -205,7 +211,11 @@ class model {
     }
 
     public function count() {
-        return db()->from($this->model)->count();
+        if($this->type) {
+            return db()->from($this->model)->where('type', $this->type)->count();
+        } else {
+            return db()->from($this->model)->count();
+        }
     }
 
     public function delete() {
