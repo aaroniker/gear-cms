@@ -41,9 +41,24 @@ class userController extends controller {
             $method = type::post('method', 'string', '');
 
             if($method == 'listPerm') {
+
                 ajax::addReturn(json_encode(userPerm::getAll()));
+
+            } elseif($method == 'savePerm') {
+
+                $id = type::post('id');
+                $perms = type::post('perms');
+
+                $save = [
+                    'permissions' => ''
+                ];
+
+                ajax::addReturn(json_encode($perms));
+
             } else {
+
                 ajax::addReturn(json_encode(PermissionModel::getAllFromDb()));
+
             }
 
         }

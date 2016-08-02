@@ -44,9 +44,9 @@
 
             <nav class="tabs">
                 <ul>
-                    <li v-for="entry in groups">
-                        <a :class="$index == active ? 'active' : ''" href="#" @click.prevent="setActive($index)">
-                            {{ entry.name }}
+                    <li v-for="group in groups">
+                        <a :class="$index == active ? 'active' : ''" href="#" @click.prevent="setActive($index, group.id)">
+                            {{ group.name }}
                         </a>
                     </li>
                 </ul>
@@ -58,13 +58,13 @@
 
         <div class="md-9">
 
-            <div v-for="entry in groups">
+            <div v-for="group in groups">
                 <div v-if="active == $index">
 
                     <ul class="unstyled">
                         <li v-for="entry in perms">
                             <div class="checkbox">
-                                <input id="{{ entry }}" type="checkbox" :value="entry" name="permissions[]">
+                                <input id="{{ entry }}" type="checkbox" :value="entry" v-model="checked">
                                 <label for="{{ entry }}"></label>
                                 <div>{{ entry }}</div>
                             </div>
@@ -86,13 +86,30 @@
             el: "#permissions",
             data: {
                 active: 0,
+                id: 0,
                 groups: [],
                 perms: [],
+                checked: [],
                 showModal: false
             },
             ready: function() {
                 this.fetchGroups();
                 this.fetchPerms();
+            },
+            watch: {
+                checked: function() {
+                    console.log(this.checked);
+                    var vue = this;
+
+                    $.ajax({
+                        method: "POST",
+                        url: url + "admin/user/permissions",
+                        dataType: "json",
+                        data: { method: "savePerm", id: vue.id, perms: vue.checked }
+                    }).done(function(data) {
+                        //console.log(data);
+                    });
+                }
             },
             methods: {
                 fetchGroups: function() {
@@ -105,6 +122,7 @@
                         dataType: "json"
                     }).done(function(data) {
                         vue.$set("groups", data);
+                        vue.id = data[0].id;
                     });
 
                 },
@@ -116,14 +134,16 @@
                         method: "POST",
                         url: url + "admin/user/permissions",
                         dataType: "json",
-                        data: { method: "listPerm" }
+                        data: { method: "listPerm", id: vue.id }
                     }).done(function(data) {
                         vue.$set("perms", data);
                     });
 
                 },
-                setActive: function(index){
-                    this.active = index
+                setActive: function(index, id) {
+                    this.id = id;
+                    this.active = index;
+                    this.fetchPerms();
                 }
             },
         });
