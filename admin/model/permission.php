@@ -9,6 +9,7 @@ class PermissionModel extends model {
     public function __construct($id = 0) {
 
         $this->model = 'entry';
+        
         $this->type = 'permission';
 
         $this->metaData = [

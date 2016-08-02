@@ -42,6 +42,12 @@
 
         <div class="md-3">
 
+            <ul>
+                <li v-for="entry in groups">
+                    {{ entry.name }}
+                </li>
+            </ul>
+
             <button @click="showModal = true">Show Modal</button>
 
         </div>
@@ -65,8 +71,27 @@
         new Vue({
             el: "#permissions",
             data: {
+                groups: [],
                 showModal: false
-            }
+            },
+            ready: function() {
+                this.fetch();
+            },
+            methods: {
+                fetch: function() {
+
+                    var vue = this;
+
+                    $.ajax({
+                        method: "POST",
+                        url: url + "admin/user/permissions",
+                        dataType: "json"
+                    }).done(function(data) {
+                        vue.$set("groups", data);
+                    });
+
+                }
+            },
         });
     ');
 ?>

@@ -41,6 +41,7 @@
     "name": "Name",
     "permission": "Berechtigung",
     "permissions": "Berechtigungen",
+    "permission_group_added": "Rechte-Gruppe hinzugefügt",
     "groups": "Gruppen",
     "user_added": "Benutzer erfolgreich hinzugefügt",
     "user_edited": "Benutzer erfolgreich bearbeitet",
