@@ -64,8 +64,8 @@
                     <ul class="unstyled">
                         <li v-for="entry in perms">
                             <div class="checkbox">
-                                <input id="entry" type="checkbox" v-model="checked" :value="entry" name="permissions[]">
-                                <label for="entry"></label>
+                                <input id="{{ entry }}" type="checkbox" :value="entry" name="permissions[]">
+                                <label for="{{ entry }}"></label>
                                 <div>{{ entry }}</div>
                             </div>
                         </li>
