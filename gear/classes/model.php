@@ -94,6 +94,10 @@ class model {
 
         }
 
+        if($this->type) {
+            $save['type'] = $this->type;
+        }
+
         $save = extension::get('model_beforeInsert', $save);
 
         if(is_array($save)) {
