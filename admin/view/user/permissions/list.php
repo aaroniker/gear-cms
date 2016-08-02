@@ -42,17 +42,27 @@
 
         <div class="md-3">
 
-            <ul>
-                <li v-for="entry in groups">
-                    {{ entry.name }}
-                </li>
-            </ul>
+            <nav class="tabs">
+                <ul>
+                    <li v-for="entry in groups">
+                        <a :class="$index == active ? 'active' : ''" href="#" @click.prevent="setActive($index)">
+                            {{ entry.name }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-            <button class="button" @click="showModal = true"><?=lang::get('add'); ?></button>
+            <button class="button border" @click="showModal = true"><?=lang::get('add'); ?></button>
 
         </div>
 
         <div class="md-9">
+
+            <div v-for="entry in groups">
+                <div v-if="active == $index">
+                    {{ entry.name }}
+                </div>
+            </div>
 
             <pre>
                 <?php
@@ -71,6 +81,7 @@
         new Vue({
             el: "#permissions",
             data: {
+                active: 0,
                 groups: [],
                 showModal: false
             },
@@ -90,6 +101,9 @@
                         vue.$set("groups", data);
                     });
 
+                },
+                setActive: function(index){
+                    this.active = index
                 }
             },
         });
