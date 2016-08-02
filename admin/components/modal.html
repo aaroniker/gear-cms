@@ -4,22 +4,17 @@
             <div class="inner">
 
                 <header>
-                    <slot name="header">
-                    default header
-                    </slot>
+                    <slot name="header"></slot>
                 </header>
 
                 <div class="content">
-                    <slot name="body">
-                        default body
-                    </slot>
+                    <slot name="body"></slot>
                 </div>
 
                 <footer>
                     <slot name="footer">
-                        default footer
-                        <button class="modal-default-button" @click="show = false">
-                            OK
+                        <button class="button border" @click="show = false">
+                            {{ 'close' | lang }}
                         </button>
                     </slot>
                 </footer>

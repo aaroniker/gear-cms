@@ -10,6 +10,9 @@
 
     <modal :show.sync="showModal">
         <h3 slot="header">custom header</h3>
+        <div slot="body">
+            body
+        </div>
     </modal>
 
     <pre>
