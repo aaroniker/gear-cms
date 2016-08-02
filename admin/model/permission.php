@@ -1,17 +1,18 @@
 <?php
 
-class EntryModel extends model {
+class PermissionModel extends model {
 
     protected $id;
     protected $type;
     protected $name;
 
-    public function __construct($type, $id = 0) {
+    public function __construct($id = 0) {
 
         $this->model = 'entry';
-        $this->type = $type;
+        $this->type = 'permission';
 
         $this->metaData = [
+            'permissions'
         ];
 
         if($id) {

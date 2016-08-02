@@ -32,9 +32,9 @@ class userController extends controller {
 
     }
 
-    public function rights() {
+    public function permissions() {
 
-        include(dir::view('user/rights/list.php'));
+        include(dir::view('user/permissions/list.php'));
 
     }
 
