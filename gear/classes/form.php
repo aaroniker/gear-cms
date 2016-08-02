@@ -5,6 +5,8 @@ class form {
     protected $method;
     protected $action;
 
+    protected $horizontal = true;
+
     protected $formAttributes = [];
 
     protected $toSave = [];
@@ -23,7 +25,6 @@ class form {
 
         $this->addFormAttribute('action', $this->action);
         $this->addFormAttribute('method', $this->method);
-        $this->addFormAttribute('class', 'horizontal');
 
     }
 
@@ -197,7 +198,15 @@ class form {
 
     }
 
+    public function setHorizontal($bool) {
+        $this->horizontal = $bool;
+    }
+
     public function show() {
+
+        if($this->horizontal) {
+            $this->addFormAttribute('class', 'horizontal');
+        }
 
         $return = [];
 		$hidden = [];

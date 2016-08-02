@@ -9,6 +9,7 @@
     <?php
 
         $form = new form();
+        $form->setHorizontal(false);
 
         $field = $form->addTextField('name', '');
         $field->fieldName(lang::get('name'));
