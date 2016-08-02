@@ -37,7 +37,15 @@ class userController extends controller {
         $this->model = new PermissionModel;
 
         if(ajax::is()) {
-            ajax::addReturn(json_encode(PermissionModel::getAllFromDb()));
+
+            $method = type::post('method', 'string', '');
+
+            if($method == 'listPerm') {
+                ajax::addReturn(json_encode(userPerm::getAll()));
+            } else {
+                ajax::addReturn(json_encode(PermissionModel::getAllFromDb()));
+            }
+
         }
 
         include(dir::view('user/permissions/list.php'));

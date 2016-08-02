@@ -60,15 +60,19 @@
 
             <div v-for="entry in groups">
                 <div v-if="active == $index">
-                    {{ entry.name }}
+
+                    <ul class="unstyled">
+                        <li v-for="entry in perms">
+                            <div class="checkbox">
+                                <input id="entry" type="checkbox" v-model="checked" :value="entry" name="permissions[]">
+                                <label for="entry"></label>
+                                <div>{{ entry }}</div>
+                            </div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-
-            <pre>
-                <?php
-                    var_dump(userPerm::getAll());
-                ?>
-            </pre>
 
         </div>
 
@@ -83,13 +87,15 @@
             data: {
                 active: 0,
                 groups: [],
+                perms: [],
                 showModal: false
             },
             ready: function() {
-                this.fetch();
+                this.fetchGroups();
+                this.fetchPerms();
             },
             methods: {
-                fetch: function() {
+                fetchGroups: function() {
 
                     var vue = this;
 
@@ -99,6 +105,20 @@
                         dataType: "json"
                     }).done(function(data) {
                         vue.$set("groups", data);
+                    });
+
+                },
+                fetchPerms: function() {
+
+                    var vue = this;
+
+                    $.ajax({
+                        method: "POST",
+                        url: url + "admin/user/permissions",
+                        dataType: "json",
+                        data: { method: "listPerm" }
+                    }).done(function(data) {
+                        vue.$set("perms", data);
                     });
 
                 },
