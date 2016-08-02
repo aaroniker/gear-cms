@@ -6,8 +6,20 @@
                     margin: 0;
                     font-weight: 300;
                 }
+                .close {
+                    i {
+                        font-size: 1em;
+                        color: @text-light;
+                    }
+                    cursor: pointer;
+                    position: absolute;
+                    right: 40px;
+                    top: 50%;
+                    .translate(0, -50%);
+                }
+                position: relative;
+                padding: 0 40px;
                 margin: 0;
-                padding: 40px 40px 0 40px;
             }
             .content {
                 padding: 40px;
@@ -16,7 +28,8 @@
                 border-top: 1px solid @border;
                 padding: 20px 40px;
             }
-            width: 400px;
+            max-width: 420px;
+            padding: 40px 0 0 0;
             margin: 0px auto;
             background: #fff;
             .box-shadow(0, 0, 20px, 0.2);

@@ -5,19 +5,14 @@
 
                 <header>
                     <slot name="header"></slot>
+                    <div @click="show = false" class="close">
+                        <i class="icon icon-close-round"></i>
+                    </div>
                 </header>
 
                 <div class="content">
-                    <slot name="body"></slot>
+                    <slot name="content"></slot>
                 </div>
-
-                <footer>
-                    <slot name="footer">
-                        <button class="button border" @click="show = false">
-                            {{ 'close' | lang }}
-                        </button>
-                    </slot>
-                </footer>
 
             </div>
         </div>

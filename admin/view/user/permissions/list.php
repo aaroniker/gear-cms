@@ -17,8 +17,8 @@
     ?>
 
     <modal :show.sync="showModal">
-        <h3 slot="header">custom header</h3>
-        <div slot="body">
+        <h3 slot="header"><?=lang::get('add'); ?></h3>
+        <div slot="content">
             <?=$form->show(); ?>
         </div>
     </modal>
