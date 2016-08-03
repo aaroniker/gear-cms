@@ -16,7 +16,7 @@ class userController extends controller {
 
             $id = ($id) ? $id : user::current()->id;
 
-            $this->model = new UserModel($id);
+            $this->model->load($id);
 
             include(dir::view('user/edit.php'));
 
@@ -39,21 +39,28 @@ class userController extends controller {
         if(ajax::is()) {
 
             $method = type::post('method', 'string', '');
+            $id = type::post('id', 'int', 0);
 
             if($method == 'getPerm') {
 
-                $perms = [];
+                $this->model->load($id);
+
+                $perms = ($this->model->permissions) ? unserialize($this->model->permissions) : [];
 
                 ajax::addReturn(json_encode($perms));
 
             } elseif($method == 'savePerm') {
 
-                $id = type::post('id');
                 $perms = type::post('perms');
+                $perms = ($perms) ? serialize($perms) : null;
+
+                $this->model->load($id);
 
                 $save = [
-                    'permissions' => ''
+                    'permissions' => $perms
                 ];
+
+                $this->model->save($save);
 
             } else {
 

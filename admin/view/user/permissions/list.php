@@ -105,7 +105,7 @@
                         dataType: "json",
                         data: { method: "savePerm", id: vue.groupid, perms: vue.checked }
                     }).done(function(data) {
-
+                        
                     });
                 }
             },
