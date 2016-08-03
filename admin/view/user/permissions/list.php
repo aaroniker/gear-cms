@@ -44,10 +44,18 @@
 
             <nav class="tabs">
                 <ul>
-                    <li v-for="group in groups">
-                        <a :class="$index == index ? 'active' : ''" href="#" @click.prevent="setActive($index, group.id)">
+                    <li v-for="group in groups" :class="$index == index ? 'active' : ''">
+                        <a href="#" @click.prevent="setActive($index, group.id)">
                             {{ group.name }}
                         </a>
+                        <div>
+                            <a href="">
+                                <i class="icon icon-edit"></i>
+                            </a>
+                            <a href="<?=config::get('url').'admin/user/permissions/delete/'; ?>{{ group.id }}">
+                                <i class="icon icon-trash-a"></i>
+                            </a>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -105,7 +113,7 @@
                         dataType: "json",
                         data: { method: "savePerm", id: vue.groupid, perms: vue.checked }
                     }).done(function(data) {
-                        
+
                     });
                 }
             },
