@@ -20,6 +20,21 @@ class userController extends controller {
 
             include(dir::view('user/edit.php'));
 
+        } elseif($action == 'delete') {
+            if($id) {
+                if($id == user::current()->id) {
+
+                    echo message::error(lang::get('user_delete_own'));
+
+                } else {
+
+                    $this->model->load($id)->delete();
+
+                    echo message::success(lang::get('user_delete'));
+
+                }
+
+            }
         } else {
 
             if(ajax::is()) {
@@ -32,7 +47,7 @@ class userController extends controller {
 
     }
 
-    public function permissions() {
+    public function permissions($action = '', $id = 0) {
 
         $this->model = new PermissionModel;
 
@@ -68,6 +83,16 @@ class userController extends controller {
 
             }
 
+        }
+
+        if($action == 'delete') {
+            if($id) {
+
+                $this->model->load($id)->delete();
+
+                echo message::success(lang::get('permission_group_delete'));
+
+            }
         }
 
         include(dir::view('user/permissions/list.php'));
