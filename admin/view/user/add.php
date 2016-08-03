@@ -37,6 +37,13 @@
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));
 
+        $field->fieldName(lang::get('permissions'));
+        $field->add(0, lang::get('admin'));
+
+        foreach(PermissionModel::getAllFromDb() as $entry) {
+            $field->add($entry->id, $entry->name);
+        }
+
         if($form->isSubmit()) {
 
             if($form->validation()) {

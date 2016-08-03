@@ -43,6 +43,7 @@
     "permissions": "Berechtigungen",
     "permission_group_added": "Rechte-Gruppe erfolgreich hinzugefügt",
     "permission_group_delete": "Rechte-Gruppe erfolgreich gelöscht",
+    "admin": "Administrator",
     "groups": "Gruppen",
     "user_added": "Benutzer erfolgreich hinzugefügt",
     "user_edited": "Benutzer erfolgreich bearbeitet",
