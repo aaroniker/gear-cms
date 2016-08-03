@@ -37,6 +37,7 @@
         $field->add(1, lang::get('active'));
         $field->add(0, lang::get('blocked'));
 
+        $field = $form->addSelectField('permissionID', 0);
         $field->fieldName(lang::get('permissions'));
         $field->add(0, lang::get('admin'));
 
