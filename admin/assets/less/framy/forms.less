@@ -89,7 +89,6 @@ form {
 				}
 				&:after {
 					font-family: @ionicons-font-family;
-					.transition();
 					content: @ionicon-var-checkmark;
 					position: absolute;
 					top: 0;
@@ -99,7 +98,8 @@ form {
 					line-height: @checkbox-size;
 					display: block;
 					font-size: 12px;
-					color: @checkbox-active;
+					background: @checkbox-active;
+					color: @checkbox-active-text;
 				}
 				cursor: pointer;
 				width: @checkbox-size;
@@ -111,12 +111,10 @@ form {
 		}
 		&:not(:checked) + label:after {
 			.opacity(0);
-			.scale(0);
 		}
 		&:checked + label {
 			&:after {
 				.opacity(1);
-				.scale(1);
 			}
 		}
 		&:disabled + label:after {
