@@ -70,6 +70,8 @@
 
     } else {
 
+        admin::addMenu(lang::get('login'), '');
+
         include(dir::view('head.php'));
 
         echo config::get('content');

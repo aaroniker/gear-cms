@@ -3,22 +3,24 @@
         .logo {
             img {
                 display: block;
-                width: 120px;
+                width: 130px;
             }
             display: table;
-            margin: 0 auto 55px auto;
+            margin: 0 auto 50px auto;
         }
-        .message {
-            margin: 0 0 25px 0;
-        }
-        input {
-            &:-webkit-autofill {
-                -webkit-box-shadow: 0 0 0px 1000px white inset;
+        .content {
+            .message {
+                margin: 0 0 25px 0;
             }
+            input {
+                &:-webkit-autofill {
+                    -webkit-box-shadow: 0 0 0px 1000px white inset;
+                }
+            }
+            background: #fff;
+            padding: 50px 40px;
+            box-shadow: 0 10px 30px fade(@dark, 15%);
         }
-        background: #fff;
-        padding: 55px 40px;
-        box-shadow: 0 10px 30px fade(@dark, 15%);
     }
     .action {
         button {
