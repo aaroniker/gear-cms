@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="icon" href="<?=config::get('url').'admin/assets/img/favicon.png'; ?>">
+
 <title><?=admin::$page; ?> - Gear CMS</title>
 
 <?=theme::getCSS(); ?>
