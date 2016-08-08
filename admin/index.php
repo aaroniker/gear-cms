@@ -70,7 +70,7 @@
 
     } else {
 
-        admin::addMenu(lang::get('login'), '');
+        admin::$page = lang::get('login');
 
         include(dir::view('head.php'));
 
