@@ -1,5 +1,9 @@
 <?php
 
+    if(version_compare($version = PHP_VERSION, $required = '5.4', '<')) {
+        exit(sprintf('You are running PHP %s, but Gear needs at least <strong>PHP %s</strong>.', $version, $required));
+    }
+
     ob_start();
 
     ob_implicit_flush(0);
