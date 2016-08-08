@@ -1,10 +1,7 @@
 <?php
+    $base = '../';
 
-    include('../gear/classes/dir.php');
-
-    new dir('../');
-
-    include(dir::gear('bootstrap.php'));
+    include($base.'gear/bootstrap.php');
 
     theme::addCSS('admin/assets/css/style.css', true);
 

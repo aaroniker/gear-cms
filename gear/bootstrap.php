@@ -1,9 +1,14 @@
 <?php
+
     ob_start();
 
     ob_implicit_flush(0);
     mb_internal_encoding('UTF-8');
     session_start();
+
+    include($base.'gear/classes/dir.php');
+
+    new dir($base);
 
     include(dir::classes('autoload.php'));
 

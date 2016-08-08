@@ -1,10 +1,8 @@
 <?php
 
-    include('gear/classes/dir.php');
+    $base = '';
 
-    new dir();
-
-    include(dir::gear('bootstrap.php'));
+    include($base.'gear/bootstrap.php');
 
     new application('frontend');
 
