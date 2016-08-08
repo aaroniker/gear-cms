@@ -1,7 +1,12 @@
-![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
-
 # Gear
-More information will follow soon.
+
+* [Screenshots](#screenshots)
+* [System requirements](#system-requirements)
+* [External resources](#external-resources)
+
+## Screenshots
+
+![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
 
 ## System requirements
 
