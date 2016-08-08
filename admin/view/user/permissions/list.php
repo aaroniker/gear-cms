@@ -145,6 +145,7 @@
                     }).done(function(data) {
                         vue.fetchGroups();
                         vue.showModal = false;
+                        vue.groupName = "";
                     });
 
                 },
