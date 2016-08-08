@@ -71,8 +71,9 @@ class userLogin extends user {
 
             type::addSession('login', $query->id);
 
-            if($remember)
+            if($remember) {
                 type::setCookie("remember", $query->id, time() + 3600 * 24 * 7);
+            }
 
         } else {
 
@@ -89,7 +90,7 @@ class userLogin extends user {
         type::deleteSession('login');
         type::setCookie('remember', '', time() - 3600);
 
-        echo message::info(lang::get('logged_out'));
+        echo message::success(lang::get('logged_out'));
 
     }
 
