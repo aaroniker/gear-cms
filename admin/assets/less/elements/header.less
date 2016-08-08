@@ -31,6 +31,33 @@
                 left: 0;
                 right: 0;
             }
+            @media(max-width: @screen-sm-min * 1px) {
+                nav {
+                    ul {
+                        li {
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                            &.active {
+                                a {
+                                    background: @primary;
+                                    color: #fff;
+                                }
+                            }
+                            a {
+                                display: block;
+                                line-height: 40px;
+                                padding: 0 15px;
+                                background: @light;
+                            }
+                            margin-bottom: 2px;
+                        }
+                    }
+                    border-top: 1px solid @border;
+                    margin: 0 -20px;
+                    padding: 15px 10px;
+                }
+            }
         }
         .menu {
             top: 0;
@@ -69,6 +96,23 @@
                 }
                 bottom: 0;
             }
+            @media(max-width: @screen-sm-min * 1px) {
+                nav {
+                    ul {
+                        li {
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                            a {
+                                display: block;
+                            }
+                            margin-bottom: 2px;
+                        }
+                    }
+                    margin: 0 -20px;
+                    padding: 15px 10px;
+                }
+            }
         }
         @media(max-width: @screen-sm-min * 1px) {
             a {
@@ -79,7 +123,7 @@
             top: 0;
             bottom: 0;
             width: 220px;
-            background: @light;
+            background: #fff;
             z-index: 101;
         }
     }
