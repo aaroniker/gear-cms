@@ -13,7 +13,7 @@
     theme::addJS('admin/assets/js/app.js', true);
 
     userPerm::add('content[index]', lang::get('content[index]'));
-    userPerm::add('content[storage]', lang::get('content[storage]'));
+    userPerm::add('content[media]', lang::get('content[media]'));
     userPerm::add('user[index]', lang::get('user[index]'));
     userPerm::add('user[index][add]', lang::get('user[index][add]'));
     userPerm::add('user[index][edit]', lang::get('user[index][edit]'));
@@ -46,7 +46,7 @@
 
         admin::addMenu(lang::get('content'), 'content');
         admin::addSubmenu(lang::get('pages'), '', 'content');
-        admin::addSubmenu(lang::get('storage'), 'storage', 'content');
+        admin::addSubmenu(lang::get('media'), 'media', 'content');
 
         admin::addMenu(lang::get('user'), 'user');
         admin::addSubmenu(lang::get('list'), '', 'user');

@@ -48,8 +48,8 @@ class dir {
         return self::admin('view'.DIRECTORY_SEPARATOR.$file);
     }
 
-    public static function storage($file = '') {
-        return self::base('storage'.DIRECTORY_SEPARATOR.$file);
+    public static function media($file = '') {
+        return self::base('media'.DIRECTORY_SEPARATOR.$file);
     }
 
     public static function tmp($file = '') {

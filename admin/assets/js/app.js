@@ -127,7 +127,7 @@ Vue.component('file-table', {
 
             $.ajax({
                 method: "POST",
-                url: url + "admin/content/storage",
+                url: url + "admin/content/media",
                 dataType: "json",
                 data: {
                     path: vue.path

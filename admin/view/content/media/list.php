@@ -1,4 +1,4 @@
-<section id="storage">
+<section id="media">
 
     <header>
 
@@ -27,9 +27,9 @@
 <?php
     theme::addJSCode('
         new Vue({
-            el: "#storage",
+            el: "#media",
             data: {
-                headline: "storage",
+                headline: "media",
                 checked: [],
                 path: "/",
                 data: [],
@@ -42,7 +42,7 @@
                     if(data.length) {
                         this.headline = data.length + " " + lang["selected"];
                     } else {
-                        this.headline = "storage";
+                        this.headline = "media";
                     }
                 }
             }

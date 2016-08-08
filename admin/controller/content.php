@@ -10,7 +10,7 @@ class contentController extends controller {
 
     }
 
-    public function storage() {
+    public function media() {
 
         if(ajax::is()) {
 
@@ -19,23 +19,23 @@ class contentController extends controller {
 
             $path = type::post('path', 'string', '');
 
-            $array = array_diff(scandir(dir::storage($path)), array('.', '..'));
+            $array = array_diff(scandir(dir::media($path)), array('.', '..'));
 
             foreach($array as $name) {
 
                 $file = $path.$name;
 
-                if(is_dir(dir::storage($file))) {
+                if(is_dir(dir::media($file))) {
                     $dirs[] = [
                         'name' => $name,
-                        'path' => str_replace(dir::storage(), '', $file."/"),
+                        'path' => str_replace(dir::media(), '', $file."/"),
                         'size' => '',
                         'type' => 'dir'
                     ];
                 } else {
                     $files[] = [
                         'name' => $name,
-                        'size' => file_size(dir::storage($file)),
+                        'size' => file_size(dir::media($file)),
                         'type' => 'file'
                     ];
                 }
@@ -45,7 +45,7 @@ class contentController extends controller {
             ajax::addReturn(json_encode(array_merge($dirs, $files)));
         }
 
-        include(dir::view('content/storage/list.php'));
+        include(dir::view('content/media/list.php'));
 
     }
 

@@ -30,7 +30,7 @@
 
     ## Content
     "content": "Inhalt",
-    "storage": "Storage",
+    "media": "Medien",
     "upload": "Hochladen",
     "pages": "Seiten",
     "home": "Home",
@@ -78,7 +78,7 @@
 
     ## Permissions
     "content[index]": "Inhalt verwalten",
-    "content[storage]": "Storage verwalten",
+    "content[media]": "Medien verwalten",
     "user[index]": "Benutzer verwalten",
     "user[index][add]": "Benutzer hinzufügen",
     "user[index][edit]": "Benutzer bearbeiten",
