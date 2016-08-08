@@ -30,8 +30,15 @@
 
 	    $field = $form->addRadioInlineField('status', $this->model->status);
         $field->fieldName(lang::get('status'));
-        $field->add(1, lang::get('active'));
-        $field->add(0, lang::get('blocked'));
+
+        $attributes = [];
+
+        if($this->model->id == user::current()->id) {
+            $attributes = ['disabled'];
+        }
+
+        $field->add(1, lang::get('active'), $attributes);
+        $field->add(0, lang::get('blocked'), $attributes);
 
         $field = $form->addSelectField('permissionID', $this->model->permissionID);
         $field->fieldName(lang::get('permissions'));
@@ -39,6 +46,10 @@
 
         foreach(PermissionModel::getAllFromDb() as $entry) {
             $field->add($entry->id, $entry->name);
+        }
+
+        if($this->model->id == user::current()->id) {
+            $field->addAttribute('disabled');
         }
 
         if($form->isSubmit()) {
