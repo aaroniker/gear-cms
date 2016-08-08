@@ -5,9 +5,9 @@ class theme {
     public static $cssFiles = [];
     public static $jsFiles = [];
     public static $jsCode = [
-		'jquery' => [],
-		'all' => []
-	];
+        'jquery' => [],
+        'all' => []
+    ];
 
     public static function addCSS($css_file, $local = false) {
         self::$cssFiles[] = [
