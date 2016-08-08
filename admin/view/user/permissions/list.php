@@ -11,23 +11,12 @@
         $form = new form();
         $form->setHorizontal(false);
 
+        $form->addFormAttribute('v-on:submit.prevent', 'addGroup');
+
         $field = $form->addTextField('name', '');
         $field->fieldName(lang::get('name'));
+        $field->addAttribute('v-model', 'groupName');
         $field->fieldValidate();
-
-        if($form->isSubmit()) {
-
-            if($form->validation()) {
-
-			    $this->model->insert($form->getAll());
-
-    			echo message::success(lang::get('permission_group_added'));
-
-		    } else {
-			    echo $form->getErrors();
-		    }
-
-	    }
 
     ?>
 
@@ -141,6 +130,21 @@
                         vue.$set("groups", data);
                         vue.groupid = data[0].id;
                         vue.fetchPerms();
+                    });
+
+                },
+                addGroup: function() {
+
+                    var vue = this;
+
+                    $.ajax({
+                        method: "POST",
+                        url: url + "admin/user/permissions",
+                        dataType: "text",
+                        data: { method: "addGroup", name: vue.groupName }
+                    }).done(function(data) {
+                        vue.fetchGroups();
+                        vue.showModal = false;
                     });
 
                 },

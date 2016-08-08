@@ -67,6 +67,14 @@ class userController extends controller {
 
                 ajax::addReturn(json_encode($perms));
 
+            } elseif($method == 'addGroup') {
+
+                $name = type::post('name', 'string', '');
+
+                $this->model->insert([
+                    'name'=> $name
+                ]);
+
             } elseif($method == 'savePerm') {
 
                 $perms = type::post('perms');
