@@ -13,6 +13,7 @@
                         {{ key | lang }}
                     </a>
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,9 @@
                 </td>
                 <td v-for="key in columns">
                     {{ entry[key] }}
+                </td>
+                <td class="shrink">
+                    <slot name="action"></slot>
                 </td>
             </tr>
             <tr v-if="!filtered.length">

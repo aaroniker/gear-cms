@@ -42,9 +42,9 @@
 
         <div class="md-3">
 
-            <aside>
+            <aside id="aside">
 
-                <nav class="tabs">
+                <nav>
                     <ul>
                         <li v-for="group in groups" :class="$index == index ? 'active' : ''">
                             <a href="#" @click.prevent="setActive($index, group.id)">
@@ -73,12 +73,15 @@
             <div v-for="group in groups">
                 <div v-if="index == $index">
 
-                    <ul class="unstyled">
+                    <ul class="list">
                         <li v-for="perm in perms">
-                            <div class="checkbox">
-                                <input id="{{ $key }}" type="checkbox" :value="$key" v-model="checked">
-                                <label for="{{ $key }}"></label>
-                                <div>{{ perm }}</div>
+                            <h3>{{ $key | lang }}</h3>
+                            <div v-for="entry in perm">
+                                <span>{{ entry }}</span>
+                                <div class="checkbox">
+                                    <input id="{{ $key }}" type="checkbox" :value="$key" v-model="checked">
+                                    <label for="{{ $key }}"></label>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -93,6 +96,13 @@
 </section>
 
 <?php
+
+    $perms = [];
+
+    foreach(userPerm::getAll() as $key => $val) {
+        $perms[strtok($key, '[')][$key] = $val;
+    }
+
     theme::addJSCode('
         new Vue({
             el: "#permissions",
@@ -100,7 +110,7 @@
                 index: 0,
                 groupid: 0,
                 groups: [],
-                perms: '.json_encode(userPerm::getAll()).',
+                perms: '.json_encode($perms).',
                 checked: [],
                 showModal: false
             },

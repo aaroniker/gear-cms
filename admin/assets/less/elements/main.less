@@ -6,7 +6,6 @@ main {
             clear: both;
         }
         h2 {
-            font-weight: 300;
             line-height: 36px;
             margin: 0;
             float: left;
@@ -161,6 +160,9 @@ table.table {
         width: @checkbox-size;
     }
     td {
+        &.shrink {
+            width: 1%;
+        }
         a {
             &.dir {
                 .icon {
@@ -185,5 +187,33 @@ table.table {
             }
         }
         vertical-align: middle;
+    }
+}
+
+#permissions {
+    .list {
+        li {
+            h3 {
+                margin: 4px 0 10px 0;
+                line-height: 36px;
+                padding: 0 0 4px 0;
+                border-bottom: 1px solid @border;
+            }
+            & > div {
+                span {
+                    float: left;
+                    display: block;
+                    line-height: @checkbox-size;
+                }
+                .checkbox {
+                    float: right;
+                }
+                margin: 5px 0;
+                overflow: hidden;
+            }
+        }
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
 }

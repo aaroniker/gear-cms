@@ -21,7 +21,9 @@ class userController extends controller {
             include(dir::view('user/edit.php'));
 
         } elseif($action == 'delete') {
+
             if($id) {
+
                 if($id == user::current()->id) {
 
                     echo message::error(lang::get('user_delete_own'));
@@ -35,6 +37,7 @@ class userController extends controller {
                 }
 
             }
+
         } else {
 
             if(ajax::is()) {
