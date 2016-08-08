@@ -7,6 +7,7 @@
 ## Screenshots
 
 ![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
+![User Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/user-screenshot.png "User Screenshot")
 
 ## System requirements
 
