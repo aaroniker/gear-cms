@@ -56,10 +56,9 @@ class userController extends controller {
 
         if(ajax::is()) {
 
-            $method = type::post('method', 'string', '');
             $id = type::post('id', 'int', 0);
 
-            if($method == 'getPerm') {
+            if($action == 'get') {
 
                 $this->model->load($id);
 
@@ -67,7 +66,7 @@ class userController extends controller {
 
                 ajax::addReturn(json_encode($perms));
 
-            } elseif($method == 'addGroup') {
+            } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
 
@@ -75,7 +74,7 @@ class userController extends controller {
                     'name'=> $name
                 ]);
 
-            } elseif($method == 'savePerm') {
+            } elseif($action == 'edit') {
 
                 $perms = type::post('perms');
                 $perms = ($perms) ? serialize($perms) : null;

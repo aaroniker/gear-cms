@@ -109,9 +109,9 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions",
+                        url: url + "admin/user/permissions/edit",
                         dataType: "json",
-                        data: { method: "savePerm", id: vue.groupid, perms: vue.checked }
+                        data: { id: vue.groupid, perms: vue.checked }
                     }).done(function(data) {
 
                     });
@@ -139,9 +139,9 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions",
+                        url: url + "admin/user/permissions/add",
                         dataType: "text",
-                        data: { method: "addGroup", name: vue.groupName }
+                        data: { name: vue.groupName }
                     }).done(function(data) {
                         vue.fetchGroups();
                         vue.showModal = false;
@@ -155,9 +155,9 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions",
+                        url: url + "admin/user/permissions/get",
                         dataType: "json",
-                        data: { method: "getPerm", id: vue.groupid }
+                        data: { id: vue.groupid }
                     }).done(function(data) {
                         vue.$set("checked", data);
                     });
