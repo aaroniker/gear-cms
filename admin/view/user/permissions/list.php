@@ -42,25 +42,29 @@
 
         <div class="md-3">
 
-            <nav class="tabs">
-                <ul>
-                    <li v-for="group in groups" :class="$index == index ? 'active' : ''">
-                        <a href="#" @click.prevent="setActive($index, group.id)">
-                            {{ group.name }}
-                        </a>
-                        <div>
-                            <a href="">
-                                <i class="icon icon-edit"></i>
-                            </a>
-                            <a href="<?=config::get('url').'admin/user/permissions/delete/'; ?>{{ group.id }}">
-                                <i class="icon icon-trash-a"></i>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <aside>
 
-            <button class="button border" @click="showModal = true"><?=lang::get('add'); ?></button>
+                <nav class="tabs">
+                    <ul>
+                        <li v-for="group in groups" :class="$index == index ? 'active' : ''">
+                            <a href="#" @click.prevent="setActive($index, group.id)">
+                                {{ group.name }}
+                            </a>
+                            <div>
+                                <a href="">
+                                    <i class="icon icon-edit"></i>
+                                </a>
+                                <a href="<?=config::get('url').'admin/user/permissions/delete/'; ?>{{ group.id }}">
+                                    <i class="icon icon-trash-a"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <button class="button border" @click="showModal = true"><?=lang::get('add'); ?></button>
+
+            </aside>
 
         </div>
 

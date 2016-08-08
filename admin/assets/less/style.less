@@ -6,11 +6,17 @@
 @import 'elements/header';
 @import 'elements/main';
 @import 'elements/modal';
-@import 'elements/tabs';
+@import 'elements/aside';
 
 body {
     &.fix {
         overflow: hidden;
+    }
+}
+
+input {
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
 }
 
