@@ -1,4 +1,4 @@
-![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/storage/login-screenshot.png "Login Screenshot")
+![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
 
 # Gear
 More information will follow soon.
