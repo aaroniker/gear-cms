@@ -42,12 +42,16 @@ class form {
 
     private function addField($name, $value, $class, $attributes = [], $save = true) {
 
-        $field = new $class($name, type::super($name, '', $value), $attributes);
+        $field = new $class($name, type::super($name, 'string', $value), $attributes);
         $this->addElement($name, $field, $save);
 
         return $field;
 
     }
+
+    public function addRawField($value) {
+        return $this->addField('form_'.count($this->return), $value, 'formRaw');
+	}
 
     public function addTextField($name, $value, $attributes = []) {
 
