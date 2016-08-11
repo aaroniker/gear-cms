@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?=config::get('url'); ?>">
+                        <a href="">
                             <i class="icon icon-ios-home-outline"></i>
                         </a>
                     </li>
@@ -30,7 +30,7 @@
                 </ul>
             </nav>
 
-            <a href="<?=config::get('url').'admin/user/index/edit'; ?>" class="profile">
+            <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
                 <img src="<?=config::get('url').'admin/assets/img/avatar.jpg'; ?>" alt="">
                 <span>
                     <?=user::current()->username; ?>
@@ -65,7 +65,7 @@
 
                                 echo '
                                     <li'.$class.'>
-                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+                                        <a href="'.url::admin($url).'">'.$array['name'].'</a>
                                     </li>
                                 ';
 
@@ -81,6 +81,7 @@
             endif;
 
             $menu = admin::getMenu();
+
             if($menu):
         ?>
 
@@ -95,7 +96,7 @@
 
                                 echo '
                                     <li'.$class.'>
-                                        <a href="'.config::get('url').'admin/'.$url.'">'.$array['name'].'</a>
+                                        <a href="'.url::admin($url).'">'.$array['name'].'</a>
                                     </li>
                                 ';
 

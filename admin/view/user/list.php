@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="<?=config::get('url').'admin/user/index/add'; ?>" class="button">
+                    <a href="<?=url::admin('user', ['index', 'add']); ?>" class="button">
                         <?=lang::get('add'); ?>
                     </a>
                 </li>
@@ -45,7 +45,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user",
+                        url: "'.url::admin('user').'",
                         dataType: "json",
                         data: {}
                     }).done(function(data) {

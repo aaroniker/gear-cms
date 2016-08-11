@@ -7,7 +7,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="<?=config::get('url').'admin/user'; ?>" class="button border">
+                    <a href="<?=url::admin('user'); ?>" class="button border">
                         <?=lang::get('back'); ?>
                     </a>
                 </li>
@@ -73,11 +73,8 @@
 
     <div class="columns">
         <div class="md-6">
-
             <?=$form->show(); ?>
-
         </div>
-
     </div>
 
 </section>

@@ -40,7 +40,7 @@
                                 {{ group.name }}
                             </a>
                             <div>
-                                <a href="<?=config::get('url').'admin/user/permissions/delete/'; ?>{{ group.id }}">
+                                <a href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
                                     <i class="icon icon-trash-a"></i>
                                 </a>
                             </div>
@@ -109,7 +109,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions/edit",
+                        url: "'.url::admin('user', ['permissions', 'edit']).'",
                         dataType: "json",
                         data: { id: vue.groupid, perms: vue.checked }
                     }).done(function(data) {
@@ -124,7 +124,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions",
+                        url: "'.url::admin('user', ['permissions']).'",
                         dataType: "json"
                     }).done(function(data) {
                         vue.$set("groups", data);
@@ -139,7 +139,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions/add",
+                        url: "'.url::admin('user', ['permissions', 'add']).'",
                         dataType: "text",
                         data: { name: vue.groupName }
                     }).done(function(data) {
@@ -155,7 +155,7 @@
 
                     $.ajax({
                         method: "POST",
-                        url: url + "admin/user/permissions/get",
+                        url: "'.url::admin('user', ['permissions', 'get']).'",
                         dataType: "json",
                         data: { id: vue.groupid }
                     }).done(function(data) {
