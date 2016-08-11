@@ -51,7 +51,7 @@ class extension {
 
     }
 
-    public static function get($name, $object = false, $this = false) {
+    public static function get($name, $object = false) {
 
         if(!self::has($name)) {
             return $object;
@@ -60,7 +60,7 @@ class extension {
         $extension = self::$extensions[$name];
 
         foreach($extension as $function) {
-            $object = $function($object, $this);
+            $object = $function($object);
         }
 
         return $object;
