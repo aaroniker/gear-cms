@@ -17,18 +17,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]">
+            <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]" v-slot>
                 <td class="check">
                     <div class="checkbox">
                         <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
                         <label for="entry{{ entry.id }}"></label>
                     </div>
-                </td>
-                <td v-for="key in columns">
-                    {{ entry[key] }}
-                </td>
-                <td class="shrink">
-                    <slot name="action"></slot>
                 </td>
             </tr>
             <tr v-if="!filtered.length">

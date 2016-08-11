@@ -61,6 +61,24 @@ Vue.component('data-table', {
     }
 });
 
+Vue.directive('slot', {
+    bind: function () {
+        var host = this.vm;
+        var root = host.$root;
+        var raw = host.$options._content;
+
+        for (var i = 0; i < raw.children.length; i++) {
+            var node = raw.children[i].cloneNode(true);
+            this.el.appendChild(node);
+            root.$compile(node, host, this._scope);
+        }
+    }
+});
+
+Vue.component('table-cell', {
+    template: '<td><slot></slot></td>'
+});
+
 Vue.component('file-table', {
     template: '#file-table-template',
     props: {

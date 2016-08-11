@@ -20,7 +20,10 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString"></data-table>
+    <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString">
+        <table-cell>{{ entry.email }}</table-cell>
+        <table-cell>{{ entry.status }}</table-cell>
+    </data-table>
 
 </section>
 
