@@ -150,9 +150,7 @@ table.table {
     .check {
         .checkbox {
             label {
-                &:before {
-                    background: none;
-                }
+                padding: 0 0 0 @checkbox-size;
             }
             margin-bottom: 0;
         }
@@ -206,6 +204,9 @@ table.table {
                     line-height: @checkbox-size;
                 }
                 .checkbox {
+                    label {
+                        padding: 0 0 0 @checkbox-size;
+                    }
                     float: right;
                 }
                 margin: 8px 0 0 0;

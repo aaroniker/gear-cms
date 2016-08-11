@@ -47,8 +47,7 @@ class formRadio extends formField {
             $return .= '
                 <div class="radio'.$inline.'">
                     <input id="'.$id.'Radio" '.$this->convertAttr($val['attr']).'>
-                    <label for="'.$id.'Radio"></label>
-                    <div>'.$val['value'].'</div>
+                    <label for="'.$id.'Radio">'.$val['value'].'</label>
                 </div>
             ';
         }

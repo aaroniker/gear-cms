@@ -79,8 +79,7 @@ class formCheckbox extends formField {
                 $return .= '
                     <div class="checkbox'.$inline.'">
                         <input id="'.$id.'Checkbox" '.$this->convertAttr($val['attr']).'>
-                        <label for="'.$id.'Checkbox"></label>
-                        <div>'.$val['value'].'</div>
+                        <label for="'.$id.'Checkbox">'.$val['value'].'</label>
                     </div>
                 ';
             }

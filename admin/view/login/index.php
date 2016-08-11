@@ -29,8 +29,7 @@
                     <div class="remember">
                         <div class="checkbox">
                             <input type="checkbox" name="remember" id="remember" value="1">
-                            <label for="remember"></label>
-                            <div><?=lang::get('remember'); ?></div>
+                            <label for="remember"><?=lang::get('remember'); ?></label>
                         </div>
                     </div>
 
