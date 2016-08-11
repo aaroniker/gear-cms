@@ -22,7 +22,10 @@
 
     <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString">
         <table-cell>{{ entry.email }}</table-cell>
-        <table-cell>{{ entry.status }}</table-cell>
+        <table-cell>
+            <span v-if="entry.status == 1">{{ 'active' | lang }}</span>
+            <span v-else>{{ 'blocked' | lang }}</span>
+        </table-cell>
     </data-table>
 
 </section>
