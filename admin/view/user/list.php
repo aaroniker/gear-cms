@@ -20,7 +20,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="tableColumns" :filter-key="searchString">
+    <data-table :url="fetchUrl" :columns="['email', 'status']" :filter-key="searchString">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
             <span v-if="entry.status == 1">{{ 'active' | lang }}</span>
@@ -37,28 +37,11 @@
             data: {
                 headline: "list",
                 checked: [],
-                tableData: [],
-                tableColumns: ["email", "status"],
+                fetchUrl: "'.url::admin('user').'",
                 searchString: ""
             },
             ready: function() {
-                this.fetch();
-            },
-            methods: {
-                fetch: function() {
-
-                    var vue = this;
-
-                    $.ajax({
-                        method: "POST",
-                        url: "'.url::admin('user').'",
-                        dataType: "json",
-                        data: {}
-                    }).done(function(data) {
-                        vue.$set("tableData", data);
-                    });
-
-                }
+                this.$broadcast("fetch");
             },
             events: {
                 "checked": function (data) {

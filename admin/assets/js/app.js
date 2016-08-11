@@ -9,7 +9,6 @@ Vue.filter('lang', function (value) {
 Vue.component('data-table', {
     template: '#table-template',
     props: {
-        data: [],
         columns: [],
         filterKey: ''
     },
@@ -20,6 +19,7 @@ Vue.component('data-table', {
         });
         return {
             checked: [],
+            data: [],
             sortKey: '',
             sortOrders: sortOrders
         };
@@ -57,6 +57,24 @@ Vue.component('data-table', {
         sortBy: function (key) {
             this.sortKey = key;
             this.sortOrders[key] = this.sortOrders[key] * -1;
+        },
+        fetch: function() {
+
+            var vue = this;
+
+            $.ajax({
+                method: "POST",
+                url: vue.url,
+                dataType: "json"
+            }).done(function(data) {
+                vue.$set('data', data);
+            });
+
+        }
+    },
+    events: {
+        fetch: function() {
+            this.fetch();
         }
     }
 });
