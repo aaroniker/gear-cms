@@ -50,6 +50,7 @@
     "user_delete": "Benutzer erfolgreich gelöscht",
     "user_delete_own": "Du kannst dich nicht selbst löschen",
     "status": "Status",
+    "status_change_own": "Du kannst deinen eigenen Status nicht ändern.",
     "active": "Aktiv",
     "blocked": "Gesperrt",
 

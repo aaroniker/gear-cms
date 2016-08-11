@@ -28,17 +28,20 @@
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');
 
-	    $field = $form->addRadioInlineField('status', $this->model->status);
-        $field->fieldName(lang::get('status'));
+        if($this->model->id != user::current()->id) {
 
-        $attributes = [];
+    	    $field = $form->addRadioInlineField('status', $this->model->status);
+            $field->fieldName(lang::get('status'));
 
-        if($this->model->id == user::current()->id) {
-            $attributes = ['disabled'];
+            $field->add(1, lang::get('active'));
+            $field->add(0, lang::get('blocked'));
+
+        } else {
+
+    	    $field = $form->addRawField('<p class="static">'.lang::get('status_change_own').'</p>');
+    	    $field->fieldName(lang::get('status'));
+
         }
-
-        $field->add(1, lang::get('active'), $attributes);
-        $field->add(0, lang::get('blocked'), $attributes);
 
         $field = $form->addSelectField('permissionID', $this->model->permissionID);
         $field->fieldName(lang::get('permissions'));
