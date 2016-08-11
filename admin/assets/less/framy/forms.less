@@ -22,6 +22,15 @@
 	background-color: @input-bg;
 	border: 1px solid @input-border;
 	.round(@input-border-radius);
+	&.success {
+		border-color: @success;
+	}
+	&.warning {
+		border-color: @warning;
+	}
+	&.error {
+		border-color: @error;
+	}
 }
 
 .form-element {
@@ -36,11 +45,19 @@
 
 form {
 	&.horizontal {
-		label {
-			line-height: @line-height;
-			@media(min-width: (@screen-sm-min * 1px)) {
+		.form-element {
+			& > label {
+				line-height: @line-height;
+				@media(min-width: (@screen-sm-min * 1px)) {
+					margin-bottom: 0;
+					padding: @input-padding-v 0;
+				}
+			}
+			.static {
+				@media(min-width: (@screen-sm-min * 1px)) {
+					padding: @input-padding-v 0;
+				}
 				margin-bottom: 0;
-				padding: @input-padding-v 0;
 			}
 		}
 		.checkbox:first-child,
@@ -60,17 +77,15 @@ form {
 		margin: 0 (@checkbox-size / 2) 0 0;
 		display: inline-block;
 	}
-	div {
-		float: left;
-		margin: 0 0 0 (@checkbox-size / 2);
-		line-height: @checkbox-size;
-	}
 	label {
-		width: @checkbox-size;
+		line-height: @checkbox-size;
 		height: @checkbox-size;
 		position: relative;
 		float: left;
 		margin-bottom: 0;
+		padding-left: (@checkbox-size + @checkbox-size / 2);
+		white-space: nowrap;
+		color: inherit;
 	}
 	input {
 		&:not(:checked),
@@ -82,30 +97,27 @@ form {
 					position: absolute;
 					left: 0;
 					top: 0;
-					right: 0;
-					bottom: 0;
+					width: @checkbox-size - 2px;
+					height: @checkbox-size - 2px;
 					border: 1px solid @input-border;
 					background: @input-bg;
 				}
 				&:after {
-					font-family: @ionicons-font-family;
-					content: @ionicon-var-checkmark;
+					content: "✓";
 					position: absolute;
 					top: 0;
 					left: 0;
-					right: 0;
+					width: @checkbox-size;
+					height: @checkbox-size;
 					text-align: center;
 					line-height: @checkbox-size;
 					display: block;
 					font-size: 12px;
-					background: @checkbox-active;
 					color: @checkbox-active-text;
-                    .transition();
-                    .round(@input-border-radius);
+					background: @checkbox-active;
+					.transition();
+					.round(@input-border-radius);
 				}
-				cursor: pointer;
-				width: @checkbox-size;
-				height: @checkbox-size;
 				position: relative;
 			}
 			position: absolute;
@@ -134,17 +146,15 @@ form {
 		margin: 0 (@radio-size / 2) 0 0;
 		display: inline-block;
 	}
-	div {
-		float: left;
-		margin: 0 0 0 (@radio-size / 2);
-		line-height: @radio-size;
-	}
 	label {
-		width: @radio-size;
+		line-height: @radio-size;
 		height: @radio-size;
 		position: relative;
 		float: left;
 		margin-bottom: 0;
+		padding-left: (@radio-size + @radio-size / 2);
+		white-space: nowrap;
+		color: inherit;
 	}
 	input {
 		&:not(:checked),
@@ -156,8 +166,8 @@ form {
 					position: absolute;
 					left: 0;
 					top: 0;
-					right: 0;
-					bottom: 0;
+					width: @radio-size - 2px;
+					height: @radio-size - 2px;
 					border: 1px solid @input-border;
 					background: @input-bg;
 				}
@@ -165,18 +175,14 @@ form {
 					.transition();
 					content: "";
 					position: absolute;
-					top: 50%;
-					left: 50%;
-					width: @radio-size * 0.5;
-					height: @radio-size * 0.5;
-					margin: -(@radio-size * 0.25) 0 0 -(@radio-size * 0.25);
+					top: @radio-size / 2 / 2;
+					left: @radio-size / 2 / 2;
+					width: @radio-size / 2;
+					height: @radio-size / 2;
 					display: block;
 					.round(50%);
 					background: @radio-active;
 				}
-				cursor: pointer;
-				width: @radio-size;
-				height: @radio-size;
 				position: relative;
 			}
 			position: absolute;
