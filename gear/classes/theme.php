@@ -9,17 +9,15 @@ class theme {
         'all' => []
     ];
 
-    public static function addCSS($css_file, $local = false) {
+    public static function addCSS($css_file) {
         self::$cssFiles[] = [
-            'file' => $css_file,
-            'local' => $local
+            'file' => $css_file
         ];
     }
 
-    public static function addJs($js_file, $local = false, $type = 'footer') {
+    public static function addJs($js_file, $type = 'footer') {
         self::$jsFiles[$type][] = [
-            'file' => $js_file,
-            'local' => $local
+            'file' => $js_file
         ];;
     }
 
@@ -32,11 +30,7 @@ class theme {
         $return = '';
 
         foreach(self::$cssFiles as $css) {
-
-            $path = ($css['local']) ? config::get('url') : '';
-
-            $return .= '<link rel="stylesheet" href="'.$path.$css['file'].'">'.PHP_EOL;
-
+            $return .= '<link rel="stylesheet" href="'.$css['file'].'">'.PHP_EOL;
         }
 
         return $return;
@@ -49,22 +43,14 @@ class theme {
 
         if(isset(self::$jsFiles[$type])) {
             foreach(self::$jsFiles[$type] as $js) {
-
-                $path = ($js['local']) ? config::get('url') : '';
-
-                $return .= '<script src="'.$path.$js['file'].'"></script>'.PHP_EOL;
-
+                $return .= '<script src="'.$js['file'].'"></script>'.PHP_EOL;
             }
         }
 
         if($type == 'footer') {
             if(isset(self::$jsFiles['vue'])) {
                 foreach(self::$jsFiles['vue'] as $js) {
-
-                    $path = ($js['local']) ? config::get('url') : '';
-
-                    $return .= '<script src="'.$path.$js['file'].'"></script>'.PHP_EOL;
-
+                    $return .= '<script src="'.$js['file'].'"></script>'.PHP_EOL;
                 }
             }
         }

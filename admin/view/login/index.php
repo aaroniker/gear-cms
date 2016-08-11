@@ -3,7 +3,7 @@
     <div class="form">
 
         <a href="" class="logo">
-            <img src="<?=config::get('url').'admin/assets/img/logo.svg'; ?>" alt="Gear CMS Logo">
+            <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear CMS Logo">
         </a>
 
         <div class="content">

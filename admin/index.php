@@ -3,11 +3,11 @@
 
     include($base.'gear/bootstrap.php');
 
-    theme::addCSS('admin/assets/css/style.css', true);
+    theme::addCSS(url::assets('css/style.css'));
 
     theme::addJS('https://code.jquery.com/jquery-3.0.0.min.js');
     theme::addJS('https://cdn.jsdelivr.net/vue/1.0.26/vue.min.js');
-    theme::addJS('admin/assets/js/app.js', true);
+    theme::addJS(url::assets('js/app.js'));
 
     userPerm::add('content[index]', lang::get('content[index]'));
     userPerm::add('content[media]', lang::get('content[media]'));

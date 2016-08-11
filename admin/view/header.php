@@ -31,7 +31,7 @@
             </nav>
 
             <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-                <img src="<?=config::get('url').'admin/assets/img/avatar.jpg'; ?>" alt="">
+                <img src="<?=url::assets('img/avatar.jpg'); ?>" alt="">
                 <span>
                     <?=user::current()->username; ?>
                 </span>
