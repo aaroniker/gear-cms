@@ -40,10 +40,6 @@ class userController extends controller {
 
         } else {
 
-            if(ajax::is()) {
-                ajax::addReturn(json_encode(UserModel::getAllFromDb()));
-            }
-
             include(dir::view('user/list.php'));
 
         }

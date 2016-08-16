@@ -43,6 +43,7 @@ class contentController extends controller {
             }
 
             ajax::addReturn(json_encode(array_merge($dirs, $files)));
+            
         }
 
         include(dir::view('content/media/list.php'));

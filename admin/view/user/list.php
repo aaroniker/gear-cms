@@ -5,7 +5,7 @@
         <h2>{{ headline | lang }}</h2>
 
         <div class="search">
-            <input type="text" v-model="searchString">
+            <input type="text" v-model="search">
         </div>
 
         <nav>
@@ -20,7 +20,7 @@
 
     </header>
 
-    <data-table :url="fetchUrl" :columns="['email', 'status']" :filter-key="searchString">
+    <data-table :data="tableData" :columns="['email', 'status']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
             <span v-if="entry.status == 1">{{ 'active' | lang }}</span>
@@ -37,20 +37,15 @@
             data: {
                 headline: "list",
                 checked: [],
-                fetchUrl: "'.url::admin('user').'",
-                searchString: ""
-            },
-            ready: function() {
-                this.$broadcast("fetch");
+                tableData: '.json_encode(UserModel::getAllFromDb()).',
+                search: ""
             },
             events: {
-                "checked": function (data) {
+                checked: function (data) {
                     this.checked = data;
-                    if(data.length) {
-                        this.headline = data.length + " " + lang["selected"];
-                    } else {
-                        this.headline = "list";
-                    }
+                },
+                headline: function (data) {
+                    this.headline = data;
                 }
             }
         });

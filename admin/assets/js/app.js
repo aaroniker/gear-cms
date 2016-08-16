@@ -1,5 +1,5 @@
 Vue.filter('lang', function (value) {
-    if (value in lang) {
+    if(value in lang) {
         return lang[value];
     } else {
         return value;
@@ -10,23 +10,31 @@ Vue.component('data-table', {
     template: '#table-template',
     props: {
         columns: [],
+        data: [],
+        headline: '',
         filterKey: ''
     },
-    data: function () {
+    data: function() {
         var sortOrders = {};
         this.columns.forEach(function (key) {
             sortOrders[key] = 1
         });
         return {
             checked: [],
-            data: [],
             sortKey: '',
+            oldHeadline: '',
             sortOrders: sortOrders
         };
+    },
+    created: function() {
+        this.oldHeadline = this.headline;
     },
     watch: {
         checked: function() {
             this.$dispatch('checked', this.checked);
+        },
+        headline: function() {
+            this.$dispatch('headline', this.headline);
         }
     },
     computed: {
@@ -49,43 +57,34 @@ Vue.component('data-table', {
         columnSpan: function() {
             return this.columns.length + 1;
         },
-        filtered: function () {
+        filtered: function() {
             return this.$eval('data | filterBy filterKey');
         }
     },
     methods: {
-        sortBy: function (key) {
+        sortBy: function(key) {
             this.sortKey = key;
             this.sortOrders[key] = this.sortOrders[key] * -1;
-        },
-        fetch: function() {
-
-            var vue = this;
-
-            $.ajax({
-                method: "POST",
-                url: vue.url,
-                dataType: "json"
-            }).done(function(data) {
-                vue.$set('data', data);
-            });
-
         }
     },
     events: {
-        fetch: function() {
-            this.fetch();
+        checked: function(data) {
+            if(data.length) {
+                this.headline = data.length + " " + lang["selected"];
+            } else {
+                this.headline = this.oldHeadline;
+            }
         }
     }
 });
 
 Vue.directive('slot', {
-    bind: function () {
+    bind: function() {
         var host = this.vm;
         var root = host.$root;
         var raw = host.$options._content;
 
-        for (var i = 0; i < raw.children.length; i++) {
+        for(var i = 0; i < raw.children.length; i++) {
             var node = raw.children[i].cloneNode(true);
             this.el.appendChild(node);
             root.$compile(node, host, this._scope);
@@ -104,7 +103,7 @@ Vue.component('file-table', {
         path: '/',
         filterKey: ''
     },
-    data: function () {
+    data: function() {
         return {
             checked: []
         };
@@ -139,7 +138,7 @@ Vue.component('file-table', {
                 this.checked = checked;
             }
         },
-        breadcrumbs: function () {
+        breadcrumbs: function() {
 
             var path = '';
 
@@ -152,7 +151,7 @@ Vue.component('file-table', {
             return crumb;
 
         },
-        filtered: function () {
+        filtered: function() {
             return this.$eval('data | filterBy filterKey');
         }
     },
@@ -173,7 +172,7 @@ Vue.component('file-table', {
             });
 
         },
-        setPath: function (path) {
+        setPath: function(path) {
             this.$set('path', path);
         }
     }
