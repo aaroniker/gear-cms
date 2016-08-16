@@ -72,7 +72,7 @@
     ?>
 
     <div class="columns">
-        <div class="md-8 lg-6">
+        <div class="md-9 lg-7">
             <?=$form->show(); ?>
         </div>
     </div>
