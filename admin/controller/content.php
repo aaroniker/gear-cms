@@ -14,36 +14,12 @@ class contentController extends controller {
 
         if(ajax::is()) {
 
-            $dirs = [];
-            $files = [];
-
             $path = type::post('path', 'string', '');
 
-            $array = array_diff(scandir(dir::media($path)), array('.', '..'));
+            $array = file_list($path);
 
-            foreach($array as $name) {
+            ajax::addReturn(json_encode(array_merge($array)));
 
-                $file = $path.$name;
-
-                if(is_dir(dir::media($file))) {
-                    $dirs[] = [
-                        'name' => $name,
-                        'path' => str_replace(dir::media(), '', $file."/"),
-                        'size' => '',
-                        'type' => 'dir'
-                    ];
-                } else {
-                    $files[] = [
-                        'name' => $name,
-                        'size' => file_size(dir::media($file)),
-                        'type' => 'file'
-                    ];
-                }
-
-            }
-
-            ajax::addReturn(json_encode(array_merge($dirs, $files)));
-            
         }
 
         include(dir::view('content/media/list.php'));

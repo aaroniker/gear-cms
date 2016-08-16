@@ -23,6 +23,7 @@
     include(dir::functions('html.php'));
     include(dir::functions('url.php'));
     include(dir::functions('validate.php'));
+    include(dir::functions('file.php'));
 
     new config();
 
