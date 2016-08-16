@@ -19,7 +19,7 @@
                     </li>
                     <li>
                         <a href="?logout=1">
-                            <i class="icon icon-log-in"></i>
+                            <i class="icon icon-log-out"></i>
                         </a>
                     </li>
                 </ul>
