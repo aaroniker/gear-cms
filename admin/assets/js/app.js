@@ -91,7 +91,7 @@ Vue.component('data-table', {
     events: {
         checked: function(data) {
             if(data.length) {
-                this.headline = data.length + " " + lang["selected"];
+                this.headline = data.length + " " + lang["selected"] + "<a class='icon icon-ios-trash-outline'></a>";
             } else {
                 this.headline = this.oldHeadline;
             }
