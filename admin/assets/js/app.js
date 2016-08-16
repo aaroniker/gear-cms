@@ -21,7 +21,10 @@ Vue.directive('slot', {
 });
 
 Vue.component('table-cell', {
-    template: '<td><slot></slot></td>'
+    template: '<td :class="class"><slot></slot></td>',
+    props: {
+        class: ''
+    }
 });
 
 Vue.component('data-table', {
