@@ -32,7 +32,7 @@
                 headline: "media",
                 checked: [],
                 path: "/",
-                tableData: [],
+                tableData: '.json_encode(file_list('/')).',
                 search: ""
             },
             events: {

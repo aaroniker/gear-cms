@@ -113,12 +113,6 @@ Vue.component('file-table', {
     },
     created: function () {
         this.oldHeadline = this.headline;
-        this.fetch();
-        //get session path
-        this.$watch('path', function (path) {
-            this.fetch();
-            //set session
-        });
     },
     watch: {
         checked: function() {
@@ -126,6 +120,9 @@ Vue.component('file-table', {
         },
         headline: function() {
             this.$dispatch('headline', this.headline);
+        },
+        path: function(path) {
+            this.fetch();
         }
     },
     computed: {
