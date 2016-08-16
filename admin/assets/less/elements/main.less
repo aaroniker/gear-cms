@@ -38,6 +38,9 @@ main {
             position: relative;
             float: left;
             margin: 0 0 0 30px;
+            @media(max-width: @screen-sm-min * 1px) {
+                display: none;
+            }
         }
         nav {
             ul {
@@ -57,7 +60,7 @@ main {
             float: right;
         }
         margin-bottom: 40px;
-        @media(max-height: 800px), (max-width: 1180px) {
+        @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
             margin-bottom: 25px;
         }
     }
