@@ -1,4 +1,4 @@
-Vue.filter('lang', function (value) {
+Vue.filter('lang', function(value) {
     if(value in lang) {
         return lang[value];
     } else {
@@ -37,8 +37,8 @@ Vue.component('data-table', {
     },
     data: function() {
         var sortOrders = {};
-        this.columns.forEach(function (key) {
-            sortOrders[key] = 1
+        this.columns.forEach(function(key) {
+            sortOrders[key] = -1;
         });
         return {
             checked: [],
@@ -84,8 +84,17 @@ Vue.component('data-table', {
     },
     methods: {
         sortBy: function(key) {
-            this.sortKey = key;
-            this.sortOrders[key] = this.sortOrders[key] * -1;
+
+            if(!this.sortKey) {
+                this.sortKey = key;
+                this.sortOrders[key] = 1;
+            } else if(this.sortOrders[key] == 1) {
+                this.sortOrders[key] = -1;
+            } else {
+                this.sortKey = '';
+                this.sortOrders[key] = 0;
+            }
+
         }
     },
     events: {
@@ -114,7 +123,7 @@ Vue.component('file-table', {
             checked: []
         };
     },
-    created: function () {
+    created: function() {
         this.oldHeadline = this.headline;
     },
     watch: {
@@ -124,7 +133,7 @@ Vue.component('file-table', {
         headline: function() {
             this.$dispatch('headline', this.headline);
         },
-        path: function(path) {
+        path: function() {
             this.fetch();
         }
     },
