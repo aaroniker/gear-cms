@@ -8,6 +8,7 @@
     theme::addJS('https://code.jquery.com/jquery-3.0.0.min.js');
     theme::addJS(url::assets('js/vue.js'));
     theme::addJS(url::assets('js/app.js'));
+    theme::addJS(url::assets('js/layout.js'));
 
     userPerm::add('content[index]', lang::get('content[index]'));
     userPerm::add('content[media]', lang::get('content[media]'));
