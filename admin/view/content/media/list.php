@@ -5,7 +5,7 @@
         <h2>{{ headline | lang }}</h2>
 
         <div class="search">
-            <input type="text" v-model="searchString">
+            <input type="text" v-model="search">
         </div>
 
         <nav>
@@ -20,7 +20,7 @@
 
     </header>
 
-    <file-table :data="data" :filter-key="searchString"></data-table>
+    <file-table :data="tableData" :columns="['name', 'size']" :headline="headline" :filter-key="search"></data-table>
 
 </section>
 
@@ -32,18 +32,15 @@
                 headline: "media",
                 checked: [],
                 path: "/",
-                data: [],
-                tableColumns: ["name", "size"],
-                searchString: ""
+                tableData: [],
+                search: ""
             },
             events: {
-                "checked": function (data) {
+                checked: function (data) {
                     this.checked = data;
-                    if(data.length) {
-                        this.headline = data.length + " " + lang["selected"];
-                    } else {
-                        this.headline = "media";
-                    }
+                },
+                headline: function (data) {
+                    this.headline = data;
                 }
             }
         });

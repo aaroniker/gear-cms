@@ -6,11 +6,29 @@ Vue.filter('lang', function (value) {
     }
 });
 
+Vue.directive('slot', {
+    bind: function() {
+        var host = this.vm;
+        var root = host.$root;
+        var raw = host.$options._content;
+
+        for(var i = 0; i < raw.children.length; i++) {
+            var node = raw.children[i].cloneNode(true);
+            this.el.appendChild(node);
+            root.$compile(node, host, this._scope);
+        }
+    }
+});
+
+Vue.component('table-cell', {
+    template: '<td><slot></slot></td>'
+});
+
 Vue.component('data-table', {
     template: '#table-template',
     props: {
-        columns: [],
         data: [],
+        columns: [],
         headline: '',
         filterKey: ''
     },
@@ -78,37 +96,23 @@ Vue.component('data-table', {
     }
 });
 
-Vue.directive('slot', {
-    bind: function() {
-        var host = this.vm;
-        var root = host.$root;
-        var raw = host.$options._content;
-
-        for(var i = 0; i < raw.children.length; i++) {
-            var node = raw.children[i].cloneNode(true);
-            this.el.appendChild(node);
-            root.$compile(node, host, this._scope);
-        }
-    }
-});
-
-Vue.component('table-cell', {
-    template: '<td><slot></slot></td>'
-});
-
 Vue.component('file-table', {
     template: '#file-table-template',
     props: {
         data: [],
-        path: '/',
-        filterKey: ''
+        columns: [],
+        headline: '',
+        filterKey: '',
+        path: '/'
     },
     data: function() {
         return {
+            oldHeadline: '',
             checked: []
         };
     },
     created: function () {
+        this.oldHeadline = this.headline;
         this.fetch();
         //get session path
         this.$watch('path', function (path) {
@@ -119,6 +123,9 @@ Vue.component('file-table', {
     watch: {
         checked: function() {
             this.$dispatch('checked', this.checked);
+        },
+        headline: function() {
+            this.$dispatch('headline', this.headline);
         }
     },
     computed: {
@@ -174,6 +181,15 @@ Vue.component('file-table', {
         },
         setPath: function(path) {
             this.$set('path', path);
+        }
+    },
+    events: {
+        checked: function(data) {
+            if(data.length) {
+                this.headline = data.length + " " + lang["selected"];
+            } else {
+                this.headline = this.oldHeadline;
+            }
         }
     }
 });
