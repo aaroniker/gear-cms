@@ -16,9 +16,7 @@ class contentController extends controller {
 
             $path = type::post('path', 'string', '');
 
-            $array = file_list($path);
-
-            ajax::addReturn(json_encode(array_merge($array)));
+            ajax::addReturn(json_encode(file_list($path)));
 
         }
 
