@@ -68,7 +68,7 @@
     ?>
 
     <div class="columns">
-        <div class="md-6">
+        <div class="md-8 lg-6">
             <?=$form->show(); ?>
         </div>
     </div>
