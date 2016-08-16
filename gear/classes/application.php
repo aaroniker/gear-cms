@@ -17,10 +17,15 @@ class application {
         $this->splitUrl();
 
         if($env == 'admin') {
+            
             $this->admin = true;
+
             $this->admin();
+
         } else {
+
             $this->frontend();
+
         }
 
     }
