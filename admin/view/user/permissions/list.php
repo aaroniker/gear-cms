@@ -83,92 +83,92 @@
 
 <?php
 
-    $perms = [];
+$perms = [];
 
-    foreach(userPerm::getAll() as $key => $val) {
-        $perms[strtok($key, '[')][$key] = $val;
-    }
+foreach(userPerm::getAll() as $key => $val) {
+    $perms[strtok($key, '[')][$key] = $val;
+}
 
-    theme::addJSCode('
-        new Vue({
-            el: "#permissions",
-            data: {
-                index: 0,
-                groupid: 0,
-                groups: [],
-                perms: '.json_encode($perms).',
-                checked: [],
-                showModal: false
+theme::addJSCode('
+    new Vue({
+        el: "#permissions",
+        data: {
+            index: 0,
+            groupid: 0,
+            groups: [],
+            perms: '.json_encode($perms).',
+            checked: [],
+            showModal: false
+        },
+        ready: function() {
+            this.fetchGroups();
+        },
+        watch: {
+            checked: function() {
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('user', ['permissions', 'edit']).'",
+                    dataType: "json",
+                    data: { id: vue.groupid, perms: vue.checked }
+                }).done(function(data) {
+
+                });
+            }
+        },
+        methods: {
+            fetchGroups: function() {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('user', ['permissions']).'",
+                    dataType: "json"
+                }).done(function(data) {
+                    vue.$set("groups", data);
+                    vue.groupid = data[0].id;
+                    vue.fetchPerms();
+                });
+
             },
-            ready: function() {
-                this.fetchGroups();
+            addGroup: function() {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('user', ['permissions', 'add']).'",
+                    dataType: "text",
+                    data: { name: vue.groupName }
+                }).done(function(data) {
+                    vue.fetchGroups();
+                    vue.showModal = false;
+                    vue.groupName = "";
+                });
+
             },
-            watch: {
-                checked: function() {
-                    var vue = this;
+            fetchPerms: function() {
 
-                    $.ajax({
-                        method: "POST",
-                        url: "'.url::admin('user', ['permissions', 'edit']).'",
-                        dataType: "json",
-                        data: { id: vue.groupid, perms: vue.checked }
-                    }).done(function(data) {
+                var vue = this;
 
-                    });
-                }
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('user', ['permissions', 'get']).'",
+                    dataType: "json",
+                    data: { id: vue.groupid }
+                }).done(function(data) {
+                    vue.$set("checked", data);
+                });
+
             },
-            methods: {
-                fetchGroups: function() {
-
-                    var vue = this;
-
-                    $.ajax({
-                        method: "POST",
-                        url: "'.url::admin('user', ['permissions']).'",
-                        dataType: "json"
-                    }).done(function(data) {
-                        vue.$set("groups", data);
-                        vue.groupid = data[0].id;
-                        vue.fetchPerms();
-                    });
-
-                },
-                addGroup: function() {
-
-                    var vue = this;
-
-                    $.ajax({
-                        method: "POST",
-                        url: "'.url::admin('user', ['permissions', 'add']).'",
-                        dataType: "text",
-                        data: { name: vue.groupName }
-                    }).done(function(data) {
-                        vue.fetchGroups();
-                        vue.showModal = false;
-                        vue.groupName = "";
-                    });
-
-                },
-                fetchPerms: function() {
-
-                    var vue = this;
-
-                    $.ajax({
-                        method: "POST",
-                        url: "'.url::admin('user', ['permissions', 'get']).'",
-                        dataType: "json",
-                        data: { id: vue.groupid }
-                    }).done(function(data) {
-                        vue.$set("checked", data);
-                    });
-
-                },
-                setActive: function(index, id) {
-                    this.groupid = id;
-                    this.index = index;
-                    this.fetchPerms();
-                }
-            },
-        });
-    ');
+            setActive: function(index, id) {
+                this.groupid = id;
+                this.index = index;
+                this.fetchPerms();
+            }
+        }
+    });
+');
 ?>

@@ -36,23 +36,23 @@
 </section>
 
 <?php
-    theme::addJSCode('
-        new Vue({
-            el: "#user",
-            data: {
-                headline: "list",
-                checked: [],
-                tableData: '.json_encode(UserModel::getAllFromDb()).',
-                search: ""
+theme::addJSCode('
+    new Vue({
+        el: "#user",
+        data: {
+            headline: "list",
+            checked: [],
+            tableData: '.json_encode(UserModel::getAllFromDb()).',
+            search: ""
+        },
+        events: {
+            checked: function (data) {
+                this.checked = data;
             },
-            events: {
-                checked: function (data) {
-                    this.checked = data;
-                },
-                headline: function (data) {
-                    this.headline = data;
-                }
+            headline: function (data) {
+                this.headline = data;
             }
-        });
-    ', true);
+        }
+    });
+');
 ?>

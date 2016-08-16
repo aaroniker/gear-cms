@@ -25,24 +25,24 @@
 </section>
 
 <?php
-    theme::addJSCode('
-        new Vue({
-            el: "#media",
-            data: {
-                headline: "media",
-                checked: [],
-                path: "/",
-                tableData: '.json_encode(file_list('/')).',
-                search: ""
+theme::addJSCode('
+    new Vue({
+        el: "#media",
+        data: {
+            headline: "media",
+            checked: [],
+            path: "/",
+            tableData: '.json_encode(file_list('/')).',
+            search: ""
+        },
+        events: {
+            checked: function (data) {
+                this.checked = data;
             },
-            events: {
-                checked: function (data) {
-                    this.checked = data;
-                },
-                headline: function (data) {
-                    this.headline = data;
-                }
+            headline: function (data) {
+                this.headline = data;
             }
-        });
-    ', true);
+        }
+    });
+');
 ?>
