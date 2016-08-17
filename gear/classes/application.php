@@ -17,7 +17,7 @@ class application {
         $this->splitUrl();
 
         if($env == 'admin') {
-            
+
             $this->admin = true;
 
             $this->admin();
@@ -114,6 +114,14 @@ class application {
             $this->action = isset($url[1]) ? $url[1] : '';
 
             unset($url[0], $url[1]);
+
+            $delete = type::get('delete', 'string', '');
+
+            if($delete) {
+                $this->action = 'index';
+                $url[0] = 'delete';
+                $url[1] = $delete;
+            }
 
             $this->params = (is_array($url)) ? array_values($url) : false;
 
