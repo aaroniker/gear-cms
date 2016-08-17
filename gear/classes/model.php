@@ -226,12 +226,35 @@ class model {
 
         $id = ($id) ? $id : $this->id;
 
-        if($id) {
+        if(strpos($id, ',') !== false) {
 
-            db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
-            db()->deleteFrom($this->model)->where('id', $id)->execute();
+            $ids = explode(',', $id);
 
-            return true;
+            $ids = extension::get('model_beforeDelete', $ids);
+
+            if($ids) {
+
+                foreach($ids as $id) {
+
+                    db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
+                    db()->deleteFrom($this->model)->where('id', $id)->execute();
+
+                }
+
+                return true;
+
+            }
+
+        } else {
+
+            if(extension::get('model_beforeDelete', $id)) {
+
+                db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
+                db()->deleteFrom($this->model)->where('id', $id)->execute();
+
+                return true;
+
+            }
 
         }
 
