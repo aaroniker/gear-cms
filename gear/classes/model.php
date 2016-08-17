@@ -222,12 +222,14 @@ class model {
         }
     }
 
-    public function delete() {
+    public function delete($id = 0) {
 
-        if($this->id) {
+        $id = ($id) ? $id : $this->id;
 
-            db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $this->id)->execute();
-            db()->deleteFrom($this->model)->where('id', $this->id)->execute();
+        if($id) {
+
+            db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
+            db()->deleteFrom($this->model)->where('id', $id)->execute();
 
             return true;
 
