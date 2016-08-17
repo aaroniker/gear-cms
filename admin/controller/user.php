@@ -20,25 +20,23 @@ class userController extends controller {
 
             include(dir::view('user/edit.php'));
 
-        } elseif($action == 'delete') {
+        } else {
 
-            if($id) {
+            if($action == 'delete') {
 
-                if($id == user::current()->id) {
+                extension::add('model_beforeDelete', function($id) {
+    			    if((is_array($id) && in_array(user::current()->id, $id)) || $id == user::current()->id) {
+                        echo message::error(lang::get('user_delete_own'));
+                        return false;
+                    }
+    		        return $id;
+			    });
 
-                    echo message::error(lang::get('user_delete_own'));
-
-                } else {
-
-                    $this->model->load($id)->delete();
-
+                if($this->model->delete($id)) {
                     echo message::success(lang::get('user_delete'));
-
                 }
 
             }
-
-        } else {
 
             include(dir::view('user/list.php'));
 
