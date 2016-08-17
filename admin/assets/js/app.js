@@ -189,6 +189,7 @@ Vue.component('file-table', {
 
         },
         setPath: function(path) {
+            this.checked = [];
             this.$set('path', path);
         }
     },
