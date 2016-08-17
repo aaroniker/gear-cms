@@ -11,6 +11,11 @@
         <nav>
             <ul>
                 <li>
+                    <a href="" class="button border">
+                        <?=lang::get('add_dir'); ?>
+                    </a>
+                </li>
+                <li>
                     <a href="" class="button">
                         <?=lang::get('upload'); ?>
                     </a>
