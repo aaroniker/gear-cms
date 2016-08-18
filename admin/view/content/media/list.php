@@ -4,7 +4,7 @@
 
         <h2>{{ headline | lang }}</h2>
 
-        <div class="search">
+        <div v-if="showSearch" class="search">
             <input type="text" v-model="search">
         </div>
 
@@ -38,14 +38,16 @@ theme::addJSCode('
             checked: [],
             path: "/",
             tableData: '.json_encode(file_list('/')).',
-            search: ""
+            search: "",
+            showSearch: true
         },
         events: {
             checked: function (data) {
                 this.checked = data;
             },
             headline: function (data) {
-                this.headline = data;
+                this.headline = data.headline;
+                this.showSearch = data.showSearch;
             }
         }
     });

@@ -141,6 +141,7 @@ Vue.component('file-table', {
     props: {
         data: [],
         columns: [],
+        showSearch: true,
         headline: '',
         filterKey: '',
         path: '/'
@@ -159,7 +160,10 @@ Vue.component('file-table', {
             this.$dispatch('checked', this.checked);
         },
         headline: function() {
-            this.$dispatch('headline', this.headline);
+            this.$dispatch('headline', {
+                headline: this.headline,
+                showSearch: this.showSearch
+            });
         },
         path: function() {
             this.fetch();
@@ -225,8 +229,10 @@ Vue.component('file-table', {
         checked: function(data) {
             if(data.length) {
                 this.headline = data.length + " " + lang["selected"];
+                this.showSearch = false;
             } else {
                 this.headline = this.oldHeadline;
+                this.showSearch = true;
             }
         }
     }
