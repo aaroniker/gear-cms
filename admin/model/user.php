@@ -6,8 +6,6 @@ class UserModel extends model {
     protected $password;
     protected $email;
     protected $status;
-    protected $admin;
-    protected $permissions;
 
     public function __construct($id = 0) {
 
@@ -25,7 +23,7 @@ class UserModel extends model {
         if($this->permissionID == 0) {
 
             $this->admin = true;
-            
+
         } else {
 
             $permGroup = new PermissionModel($this->permissionID);
