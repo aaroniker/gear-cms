@@ -41,14 +41,14 @@ main {
                 color: @text;
                 position: relative;
                 z-index: 1;
+                @media(max-width: @screen-sm-min * 1px) {
+                    width: 120px;
+                }
             }
             border-left: 1px solid @border;
             position: relative;
             float: left;
             margin: 0 0 0 30px;
-            @media(max-width: @screen-sm-min * 1px) {
-                display: none;
-            }
         }
         nav {
             ul {
@@ -64,8 +64,19 @@ main {
                     float: left;
                     margin-right: 15px;
                 }
+                @media(max-width: @screen-sm-min * 1px) {
+                    margin-top: 15px;
+                }
             }
             float: right;
+            @media(max-width: @screen-sm-min * 1px) {
+                &:before {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+                float: none;
+            }
         }
         margin-bottom: 40px;
         @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
@@ -138,7 +149,7 @@ main {
             border: 1px solid @border;
             .round(@border-radius);
             display: block;
-            padding: 3px 6px;
+            padding: 2px 6px;
             color: @text-light;
         }
         margin: 0 5px 0 0;
