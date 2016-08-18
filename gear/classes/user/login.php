@@ -6,7 +6,7 @@ class userLogin extends user {
 
     public function __construct() {
 
-        if(type::get('logout', 'int', false) && !type::post('login', 'int', false)) {
+        if(type::get('logout', 'int', 0) && !type::post('login', 'int', 0)) {
 
             self::logout();
 
@@ -14,7 +14,7 @@ class userLogin extends user {
 
             self::loginSession();
 
-        } elseif(type::post('login', 'string', false)) {
+        } elseif(type::post('login', 'string', '')) {
 
             self::loginPost();
 
@@ -28,8 +28,8 @@ class userLogin extends user {
 
     protected static function checkLogin() {
 
-        $session = type::session('login', 'int', '');
-        $cookie = type::cookie('remember', 'int', '');
+        $session = type::session('login', 'int', 0);
+        $cookie = type::cookie('remember', 'int', 0);
 
         if(!$session && !$cookie) {
             return false;
@@ -45,7 +45,7 @@ class userLogin extends user {
 
     protected static function loginPost() {
 
-        $remember = type::post('remember', 'int', '');
+        $remember = type::post('remember', 'int', 0);
 
         $is_valid = validate($_POST);
 
