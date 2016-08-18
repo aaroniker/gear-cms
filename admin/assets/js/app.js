@@ -44,7 +44,7 @@ Vue.component('data-table', {
             checked: [],
             sortKey: '',
             currentPage: 0,
-            perPage: 5,
+            perPage: 8,
             resultCount: 0,
             oldHeadline: '',
             sortOrders: sortOrders
