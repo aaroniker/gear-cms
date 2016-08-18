@@ -30,7 +30,7 @@
         </tbody>
     </table>
     <div class="toolbar">
-        <ul class="pagination">
+        <ul class="pagination" v-if="totalPages > 1">
             <li v-for="page in totalPages" v-if="Math.abs(page - currentPage) < 3 || page == totalPages - 1 || page == 0">
                 <a @click="setPage(page)" :class="{current: currentPage === page, last: (page == totalPages - 1 && Math.abs(page - currentPage) > 3), first:(page == 0 && Math.abs(page - currentPage) > 3)}">{{ page + 1 }}</a>
             </li>
