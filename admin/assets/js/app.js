@@ -32,6 +32,7 @@ Vue.component('data-table', {
     props: {
         data: [],
         columns: [],
+        showSearch: true,
         headline: '',
         filterKey: ''
     },
@@ -58,7 +59,10 @@ Vue.component('data-table', {
             this.$dispatch('checked', this.checked);
         },
         headline: function() {
-            this.$dispatch('headline', this.headline);
+            this.$dispatch('headline', {
+                headline: this.headline,
+                showSearch: this.showSearch
+            });
         }
     },
     computed: {
@@ -108,8 +112,10 @@ Vue.component('data-table', {
         checked: function(data) {
             if(data.length) {
                 this.headline = data.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon icon-ios-trash-outline'></a>";
+                this.showSearch = false;
             } else {
                 this.headline = this.oldHeadline;
+                this.showSearch = true;
             }
         }
     },
