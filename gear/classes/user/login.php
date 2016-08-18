@@ -53,24 +53,18 @@ class userLogin extends user {
             $query = db()->from('user')->where('email', type::post('email'))->fetch();
 
             if(!$query) {
-
                 echo message::error(lang::get('email_not_found'));
                 return;
-
             }
 
             if(!self::checkPassword(type::post('password'), $query->password)) {
-
                 echo message::error(lang::get('wrong_pw'));
                 return;
-
             }
 
             if($query->status != 1) {
-
                 echo message::error(lang::get('user_blocked'));
                 return;
-
             }
 
             self::loginSession();
