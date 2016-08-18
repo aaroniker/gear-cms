@@ -43,11 +43,11 @@
         admin::addMenu(lang::get('dashboard'), '');
 
         admin::addMenu(lang::get('content'), 'content');
-        admin::addSubmenu(lang::get('pages'), '', 'content');
+        admin::addSubmenu(lang::get('pages'), 'index', 'content');
         admin::addSubmenu(lang::get('media'), 'media', 'content');
 
         admin::addMenu(lang::get('user'), 'user');
-        admin::addSubmenu(lang::get('list'), '', 'user');
+        admin::addSubmenu(lang::get('list'), 'index', 'user');
         admin::addSubmenu(lang::get('permissions'), 'permissions', 'user');
 
         admin::addMenu(lang::get('plugins'), 'plugins');
