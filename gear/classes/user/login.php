@@ -31,8 +31,9 @@ class userLogin extends user {
         $session = type::session('login', 'int', '');
         $cookie = type::cookie('remember', 'int', '');
 
-        if(!$session && !$cookie)
+        if(!$session && !$cookie) {
             return false;
+        }
 
         self::loginSession();
 
