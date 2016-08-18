@@ -67,7 +67,11 @@ class application {
                 } else {
 
                     if(strlen($this->action) == 0) {
-                        $this->class->index();
+
+                        header('location: '.url::admin($this->controller, ['index']));
+                        
+                        exit();
+
                     } else {
                         $this->error404();
                     }
@@ -90,9 +94,9 @@ class application {
 
     public function error404() {
 
-        $path = ($this->admin) ? 'admin/' : '';
+        $path = ($this->admin) ? url::admin() : '';
 
-        header('location: '.config::get('url').$path);
+        header('location: '.$path);
 
         exit();
 
