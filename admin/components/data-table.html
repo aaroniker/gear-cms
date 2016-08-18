@@ -29,9 +29,11 @@
             </tr>
         </tbody>
     </table>
-    <ul class="pagination">
-        <li v-for="page in totalPages" v-if="Math.abs(page - currentPage) < 3 || page == totalPages - 1 || page == 0">
-            <a href="#" @click="setPage(page)" :class="{current: currentPage === page, last: (page == totalPages - 1 && Math.abs(page - currentPage) > 3), first:(page == 0 && Math.abs(page - currentPage) > 3)}">{{ page + 1 }}</a>
-        </li>
-    </ul>
+    <div class="toolbar">
+        <ul class="pagination">
+            <li v-for="page in totalPages" v-if="Math.abs(page - currentPage) < 3 || page == totalPages - 1 || page == 0">
+                <a href="#" @click="setPage(page)" :class="{current: currentPage === page, last: (page == totalPages - 1 && Math.abs(page - currentPage) > 3), first:(page == 0 && Math.abs(page - currentPage) > 3)}">{{ page + 1 }}</a>
+            </li>
+        </ul>
+    </div>
 </template>
