@@ -39,7 +39,7 @@
                             <a href="#" @click.prevent="setActive($index, group.id)">
                                 {{ group.name }}
                             </a>
-                            <div>
+                            <div v-if="group.id > 0">
                                 <a href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
                                     <i class="icon icon-trash-a"></i>
                                 </a>
@@ -65,7 +65,7 @@
                             <div v-for="entry in perm">
                                 <span>{{ entry }}</span>
                                 <div class="checkbox">
-                                    <input id="{{ $key }}" type="checkbox" :value="$key" v-model="checked">
+                                    <input id="{{ $key }}" type="checkbox" :value="$key" :disabled="group.id == 0" v-model="checked">
                                     <label for="{{ $key }}"></label>
                                 </div>
                             </div>

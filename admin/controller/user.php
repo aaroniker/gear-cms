@@ -54,9 +54,15 @@ class userController extends controller {
 
             if($action == 'get') {
 
-                $this->model->load($id);
+                if($id) {
 
-                $perms = ($this->model->permissions) ? unserialize($this->model->permissions) : [];
+                    $this->model->load($id);
+
+                    $perms = ($this->model->permissions) ? unserialize($this->model->permissions) : [];
+
+                } else {
+                    $perms = userPerm::getAll();
+                }
 
                 ajax::addReturn(json_encode($perms));
 
@@ -83,7 +89,12 @@ class userController extends controller {
 
             } else {
 
-                ajax::addReturn(json_encode(PermissionModel::getAllFromDb()));
+                $return[] = [
+                    'id' => 0,
+                    'name' => lang::get('admin')
+                ];
+
+                ajax::addReturn(json_encode(array_merge($return, PermissionModel::getAllFromDb())));
 
             }
 
