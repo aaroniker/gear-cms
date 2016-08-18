@@ -13,11 +13,6 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="http://gearcms.org" target="_blank">
-                            <i class="icon icon-ios-home-outline"></i>
-                        </a>
-                    </li>
-                    <li>
                         <a href="?logout=1">
                             <i class="icon icon-log-out"></i>
                         </a>
