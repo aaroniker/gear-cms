@@ -66,6 +66,13 @@ class userLogin extends user {
 
             }
 
+            if($query->status != 1) {
+
+                echo message::error(lang::get('user_blocked'));
+                return;
+
+            }
+
             self::loginSession();
             parent::setUser($query->id);
 

@@ -54,6 +54,7 @@
     "status_change_own": "Du kannst deinen eigenen Status nicht ändern.",
     "active": "Aktiv",
     "blocked": "Gesperrt",
+    "user_blocked": "Dein Account ist gesperrt",
 
     ## Plugins
     "plugins": "Plugins",
