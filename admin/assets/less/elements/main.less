@@ -114,6 +114,53 @@ main {
     list-style:  none;
 }
 
+.pagination {
+    li {
+        &:last-child {
+            margin-right: 0;
+        }
+        a {
+            &.first {
+                &:after {
+                    content: "...";
+                }
+            }
+            &.last {
+                &:before {
+                    content: "...";
+                }
+            }
+            &.current {
+                background: @primary;
+                border-color: @primary;
+                color: #fff;
+            }
+            border: 1px solid @border;
+            .round(@border-radius);
+            display: block;
+            padding: 3px 6px;
+            color: @text-light;
+        }
+        margin: 0 5px 0 0;
+        display: inline-block;
+    }
+    margin: 0;
+    padding: @table-padding-v @table-padding-h;
+    list-style: none;
+}
+
+.toolbar {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .pagination {
+        float: right;
+    }
+    border-top: 1px solid @border;
+}
+
 table.table {
     thead {
         th {
@@ -200,6 +247,7 @@ table.table {
         }
         vertical-align: middle;
     }
+    margin: 0;
 }
 
 #permissions {
