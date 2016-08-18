@@ -59,9 +59,21 @@ class application {
                 if(method_exists($this->class, $this->action)) {
 
                     if(!empty($this->params)) {
-                        call_user_func_array([$this->class, $this->action], $this->params);
+
+                        if(user::hasPerm($this->controller.'['.$this->action.']['.$this->params[0].']')) {
+                            call_user_func_array([$this->class, $this->action], $this->params);
+                        } else {
+                            $this->permissionDenied();
+                        }
+
                     } else {
-                        $this->class->{$this->action}();
+
+                        if(user::hasPerm($this->controller.'['.$this->action.']')) {
+                            $this->class->{$this->action}();
+                        } else {
+                            $this->permissionDenied();
+                        }
+
                     }
 
                 } else {
@@ -69,7 +81,7 @@ class application {
                     if(strlen($this->action) == 0) {
 
                         header('location: '.url::admin($this->controller, ['index']));
-                        
+
                         exit();
 
                     } else {
@@ -104,7 +116,7 @@ class application {
 
     public function permissionDenied() {
 
-        echo message::error('permission_denied');
+        echo message::error(lang::get('permission_denied'));
 
     }
 

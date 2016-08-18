@@ -13,7 +13,6 @@
     "list": "Liste",
     "no_results": "Keine Ergebnisse",
     "selected": "ausgewählt",
-    "permission_denied": "Fehlende Berechtigungen",
 
     ## Login
     "email": "E-Mail",
@@ -55,6 +54,7 @@
     "active": "Aktiv",
     "blocked": "Gesperrt",
     "user_blocked": "Dein Account ist gesperrt",
+    "permission_denied": "Zugriff verweigert",
 
     ## Plugins
     "plugins": "Plugins",
