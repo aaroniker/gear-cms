@@ -30,8 +30,6 @@ class userLogin extends user {
 
         session_regenerate_id(true);
 
-        $_SESSION = [];
-
         type::addSession('userID', $userID);
         type::addSession('user_logged_in', true);
 
