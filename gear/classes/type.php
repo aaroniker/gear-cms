@@ -98,8 +98,7 @@ class type {
 
     static public function deleteCookie($name) {
 
-        unset($_COOKIE[$name]);
-        setcookie($name, null, -1);
+        setcookie($name, "", time() - 3600 * 24 * 7);
 
     }
 
