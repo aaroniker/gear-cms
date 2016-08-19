@@ -8,7 +8,6 @@
 
     ob_implicit_flush(0);
     mb_internal_encoding('UTF-8');
-    session_start();
 
     include($base.'gear/classes/dir.php');
 
@@ -24,6 +23,8 @@
     include(dir::functions('url.php'));
     include(dir::functions('validate.php'));
     include(dir::functions('file.php'));
+
+    userSession::init();
 
     new config();
 
