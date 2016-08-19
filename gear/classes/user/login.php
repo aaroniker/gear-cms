@@ -130,7 +130,7 @@ class userLogin extends user {
 
     }
 
-    protected static function deleteCookie($userID) {
+    protected static function delCookie($userID) {
 
         $model = new UserModel($userID);
 
@@ -151,7 +151,7 @@ class userLogin extends user {
         userSession::destroy();
         userSession::update($userID);
 
-        self::deleteCookie($userID);
+        self::delCookie($userID);
 
         header('location: '.url::admin());
 
