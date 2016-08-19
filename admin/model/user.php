@@ -13,6 +13,8 @@ class UserModel extends model {
 
         $this->metaData = [
             "username",
+            "session_id",
+            "cookie_token",
             "permissionID"
         ];
 
