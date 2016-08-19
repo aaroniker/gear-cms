@@ -64,7 +64,7 @@
                             <h3>{{ $key | lang }}</h3>
                             <div v-for="entry in perm">
                                 <span>{{ entry }}</span>
-                                <div class="checkbox">
+                                <div class="switch">
                                     <input id="{{ $key }}" type="checkbox" :value="$key" :disabled="group.id == 0" v-model="checked">
                                     <label for="{{ $key }}"></label>
                                 </div>
