@@ -2,44 +2,60 @@
 
 class userLogin extends user {
 
-    static protected $isLogin = false;
-
     public function __construct() {
 
-        if(type::get('logout', 'int', 0) && !type::post('login', 'int', 0)) {
+        self::loginCookie(type::cookie('remember_me'));
 
+        if(!userSession::loggedIn()) {
+            userSession::destroy();
+        } elseif(userSession::isConcurrentExists()) {
             self::logout();
+        } else {
+            parent::setUser(type::session('userID'));
+        }
 
-        } elseif(self::checkLogin()) {
+        if(type::get('logout', 'int', 0) && !type::post('login', 'string', '')) {
+            self::logout();
+        }
 
-            self::loginSession();
-
-        } elseif(type::post('login', 'string', '')) {
-
+        if(type::post('login', 'string', '')) {
             self::loginPost();
-
         }
 
     }
 
-    protected static function loginSession() {
-        self::$isLogin = true;
+    protected static function setSession($userID) {
+
+        userSession::init();
+
+        session_regenerate_id(true);
+
+        $_SESSION = [];
+
+        type::addSession('userID', $userID);
+        type::addSession('user_logged_in', true);
+
+        userSession::update($userID, session_id());
+
     }
 
-    protected static function checkLogin() {
+    protected static function setCookie($userID) {
 
-        $session = type::session('login', 'int', 0);
-        $cookie = type::cookie('remember', 'int', 0);
+        $random_token = hash('sha256', mt_rand());
 
-        if(!$session && !$cookie) {
-            return false;
-        }
+        $model = new UserModel($userID);
 
-        self::loginSession();
+        $vars = [
+            'cookie_token' => $random_token
+        ];
 
-        parent::setUser(($session) ? $session : $cookie);
+        $model->save($vars);
 
-        return true;
+        $cookie_first_part = encryption::encrypt($userID).':'.$random_token;
+        $cookie_hash = hash('sha256', $userID.':'.$random_token);
+        $cookie = $cookie_first_part.':'.$cookie_hash;
+
+        type::setCookie('remember_me', $cookie, time() + 3600 * 24 * 7);
 
     }
 
@@ -68,13 +84,12 @@ class userLogin extends user {
                 return;
             }
 
-            self::loginSession();
             parent::setUser($query->id);
 
-            type::addSession('login', $query->id);
+            self::setSession($query->id);
 
             if($remember) {
-                type::setCookie("remember", $query->id, time() + 3600 * 24 * 7);
+                self::setCookie($query->id);
             }
 
         } else {
@@ -85,23 +100,71 @@ class userLogin extends user {
 
     }
 
+    protected static function loginCookie($cookie) {
+
+        if($cookie) {
+
+            if(count(explode(':', $cookie)) !== 3) {
+                return false;
+            }
+
+            list($userID, $token, $hash) = explode(':', $cookie);
+
+            $userID = encryption::decrypt($userID);
+
+            if($hash !== hash('sha256', $userID.':'.$token) || empty($token) || empty($userID)) {
+                return false;
+            }
+
+            $model = new UserModel($userID);
+
+            if($model->cookie_token == $token) {
+
+                self::setSession($userID);
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+    protected static function deleteCookie($userID) {
+
+        $model = new UserModel($userID);
+
+        $vars = [
+            'cookie_token' => null
+        ];
+
+        $model->save($vars);
+
+        type::deleteCookie('remember_me');
+
+    }
+
     public static function logout() {
 
-        self::$isLogin = false;
+        $userID = type::session('userID');
 
-        type::deleteSession('login');
-        type::setCookie('remember', '', time() - 3600);
+        userSession::destroy();
+        userSession::update($userID);
 
-        echo message::success(lang::get('logged_out'));
+        self::deleteCookie($userID);
+
+        header('location: '.url::admin());
+
+        exit();
 
     }
 
     public static function checkPassword($password, $hash) {
-        return password_verify($password, $hash);
-    }
 
-    public static function isLogged() {
-        return self::$isLogin;
+        return password_verify($password, $hash);
+
     }
 
 }
