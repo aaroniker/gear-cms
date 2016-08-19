@@ -37,7 +37,7 @@ class application {
     }
 
     private function admin() {
-        if(userLogin::isLogged()) {
+        if(userSession::loggedIn()) {
 
             $controller = $this->controller;
 

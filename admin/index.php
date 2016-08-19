@@ -38,7 +38,7 @@
 
     }
 
-    if(userLogin::isLogged()) {
+    if(userSession::loggedIn()) {
 
         admin::addMenu(lang::get('dashboard'), '');
 
