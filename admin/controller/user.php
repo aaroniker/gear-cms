@@ -94,7 +94,7 @@ class userController extends controller {
                     'name' => lang::get('admin')
                 ];
 
-                ajax::addReturn(json_encode(array_merge($return, PermissionModel::getAllFromDb())));
+                ajax::addReturn(json_encode(array_merge(PermissionModel::getAllFromDb(), $return)));
 
             }
 
