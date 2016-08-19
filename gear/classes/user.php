@@ -18,6 +18,12 @@ class user {
             return true;
         }
 
+        $allPerms = userPerm::getAll();
+
+        if(!isset($allPerms[$perm])) {
+            return true;
+        }
+
         return in_array($perm, self::current()->permissions);
 
     }
