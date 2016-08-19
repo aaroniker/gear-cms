@@ -96,6 +96,13 @@ class type {
 
     }
 
+    static public function deleteCookie($name) {
+
+        unset($_COOKIE[$name]);
+        setcookie($name, null, -1);
+
+    }
+
     static private function checkVar($global, $var, $type = '', $default = null) {
 
         if(isset($global[$var]) || array_key_exists($var, $global)) {
