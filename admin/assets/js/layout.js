@@ -36,4 +36,18 @@ $(document).ready(function() {
         toggleNav(false);
     });
 
+
 });
+
+function getMessages(url) {
+    $.ajax({
+        type: "POST",
+        url: url + "admin/",
+        data: { method: 'getMessages' },
+        success: function(message) {
+            if(message) {
+                alert(message);
+            }
+        }
+    });
+}
