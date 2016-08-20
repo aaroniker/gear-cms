@@ -32,6 +32,12 @@
 
     if(ajax::is()) {
 
+        if(type::post('method', 'string', '') == 'getMessages') {
+
+            ajax::addReturn('');
+
+        }
+
         echo ajax::getReturn();
 
         exit();
