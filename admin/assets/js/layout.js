@@ -36,6 +36,7 @@ $(document).ready(function() {
         toggleNav(false);
     });
 
+    setInterval("getMessages(url)", 1000);
 
 });
 
