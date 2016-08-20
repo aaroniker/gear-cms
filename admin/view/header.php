@@ -2,36 +2,40 @@
 
     <div class="container">
 
-        <div class="expand">
-            <i class="icon icon-navicon-round"></i>
-        </div>
+        <div class="inner">
 
-        <h1><?=admin::$page; ?></h1>
+            <div class="expand">
+                <i class="icon icon-navicon-round"></i>
+            </div>
 
-        <div class="user">
+            <h1><?=admin::$page; ?></h1>
 
-            <nav>
-                <ul>
-                    <li>
-                        <a href="?logout=1">
-                            <i class="icon icon-log-out"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="user">
 
-            <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-                <img src="<?=url::assets('img/avatar.jpg'); ?>" alt="">
-                <span>
-                    <?=user::current()->username; ?>
-                </span>
-            </a>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="?logout=1">
+                                <i class="icon icon-log-out"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
+                    <img src="<?=url::assets('img/avatar.jpg'); ?>" alt="">
+                    <span>
+                        <?=user::current()->username; ?>
+                    </span>
+                </a>
+
+                <div class="clear"></div>
+
+            </div>
 
             <div class="clear"></div>
 
         </div>
-
-        <div class="clear"></div>
 
     </div>
 
