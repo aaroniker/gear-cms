@@ -26,14 +26,14 @@ class userController extends controller {
 
                 extension::add('model_beforeDelete', function($id) {
     			    if((is_array($id) && in_array(user::current()->id, $id)) || $id == user::current()->id) {
-                        echo message::error(lang::get('user_delete_own'));
+                        message::error(lang::get('user_delete_own'));
                         return false;
                     }
     		        return $id;
 			    });
 
                 if($this->model->delete($id)) {
-                    echo message::success(lang::get('user_delete'));
+                    message::success(lang::get('user_delete'));
                 }
 
             }
@@ -85,7 +85,9 @@ class userController extends controller {
                     'permissions' => $perms
                 ];
 
-                $this->model->save($save);
+                if($this->model->save($save)) {
+                    message::success(lang::get('permission_saved'));
+                }
 
             } else {
 
@@ -105,7 +107,7 @@ class userController extends controller {
 
                 $this->model->load($id)->delete();
 
-                echo message::success(lang::get('permission_group_delete'));
+                message::success(lang::get('permission_group_delete'));
 
             }
         }
