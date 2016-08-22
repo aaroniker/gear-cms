@@ -111,9 +111,10 @@ theme::addJSCode('
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'edit']).'",
                     dataType: "json",
-                    data: { id: vue.groupid, perms: vue.checked }
-                }).done(function(data) {
-
+                    data: {
+                        id: vue.groupid,
+                        perms: vue.checked
+                    }
                 });
             }
         },
@@ -125,11 +126,12 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('user', ['permissions']).'",
-                    dataType: "json"
-                }).done(function(data) {
-                    vue.$set("groups", data);
-                    vue.groupid = data[0].id;
-                    vue.fetchPerms();
+                    dataType: "json",
+                    success: function(data) {
+                        vue.$set("groups", data);
+                        vue.groupid = data[0].id;
+                        vue.fetchPerms();
+                    }
                 });
 
             },
@@ -141,11 +143,14 @@ theme::addJSCode('
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'add']).'",
                     dataType: "text",
-                    data: { name: vue.groupName }
-                }).done(function(data) {
-                    vue.fetchGroups();
-                    vue.showModal = false;
-                    vue.groupName = "";
+                    data: {
+                        name: vue.groupName
+                    },
+                    success: function(data) {
+                        vue.fetchGroups();
+                        vue.showModal = false;
+                        vue.groupName = "";
+                    }
                 });
 
             },
@@ -157,9 +162,12 @@ theme::addJSCode('
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'get']).'",
                     dataType: "json",
-                    data: { id: vue.groupid }
-                }).done(function(data) {
-                    vue.$set("checked", data);
+                    data: {
+                        id: vue.groupid
+                    },
+                    success: function(data) {
+                        vue.$set("checked", data);
+                    }
                 });
 
             },
