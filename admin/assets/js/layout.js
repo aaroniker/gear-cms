@@ -32,7 +32,9 @@ function getMessages(url) {
                         index: message.key
                     },
                     success: function() {
-                        $(message.html).appendTo("#messages").hide().fadeIn(200).delay(1500).fadeOut(300);
+                        $(message.html).appendTo("#messages").hide().fadeIn(200).delay(2200).fadeOut(300, function() {
+                            $(this).remove();
+                        });
                     }
                 });
             }
