@@ -1,6 +1,13 @@
 #head {
     .inner {
         position: relative;
+        padding: 95px 0;
+        @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
+            padding: 70px 0;
+        }
+        @media(max-width: @screen-sm-min * 1px) {
+            padding: 20px 0;
+        }
     }
     #nav {
         .menu,
@@ -210,15 +217,10 @@
         }
         float: right;
     }
-    padding: 95px 0;
     background: @dark;
     position: relative;
     margin-bottom: 60px;
     @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
-        padding: 70px 0;
         margin-bottom: 40px;
-    }
-    @media(max-width: @screen-sm-min * 1px) {
-        padding: 20px 0;
     }
 }

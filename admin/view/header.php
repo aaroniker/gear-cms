@@ -4,6 +4,8 @@
 
         <div class="inner clear">
 
+            <div id="messages"></div>
+
             <div class="expand">
                 <i class="icon icon-navicon-round"></i>
             </div>
