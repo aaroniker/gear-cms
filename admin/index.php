@@ -37,16 +37,13 @@
             $messages = type::session('messages');
 
             if(is_array($messages) && count($messages)) {
-                foreach($messages as $key => $arr) {
-                    $return = [
-                        'html' => message::getMessage($arr['message'], $arr['class']),
-                        'key' => $key
-                    ];
-                    ajax::addReturn(json_encode($return));
-                }
+                $key = key($messages);
+                $return = [
+                    'html' => message::getMessage($messages[$key]['message'], $messages[$key]['class']),
+                    'key' => $key
+                ];
+                ajax::addReturn(json_encode($return));
             }
-
-            type::addSession('messages', $messages);
 
         }
 
