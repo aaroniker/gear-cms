@@ -88,8 +88,6 @@ class formSelect extends formField {
 
     public function get() {
 
-        $this->addClass('form-field');
-
         $attributes = $this->attributes;
         $attributes['name'] = $this->name;
 
@@ -99,7 +97,10 @@ class formSelect extends formField {
             $attributes['name'] .= '[]';
         }
 
-        $return = '<select '.$this->convertAttr($attributes).'>'.PHP_EOL;
+        $return = '
+            <div class="form-select">
+                <select '.$this->convertAttr($attributes).'>
+        ';
 
         foreach($this->output as $group) {
 
@@ -115,7 +116,10 @@ class formSelect extends formField {
 
         }
 
-        $return .= '</select>'.PHP_EOL;
+        $return .= '
+                </select>
+            </div>
+        ';
 
         return $return;
 
