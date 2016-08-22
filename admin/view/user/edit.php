@@ -61,10 +61,10 @@
 
 			    $this->model->save($form->getAll());
 
-                echo message::success(lang::get('user_edited'));
+                message::success(lang::get('user_edited'));
 
 		    } else {
-			    echo $form->getErrors();
+			    $form->getErrors();
 		    }
 
 	    }

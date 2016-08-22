@@ -57,7 +57,7 @@
 
 			    $this->model->insert($form->getAll());
 
-    			echo message::success(lang::get('user_added'));
+    			message::success(lang::get('user_added'));
 
 		    } else {
 			    echo $form->getErrors();
