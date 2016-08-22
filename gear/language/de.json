@@ -55,6 +55,7 @@
     "blocked": "Gesperrt",
     "user_blocked": "Dein Account ist gesperrt",
     "permission_denied": "Zugriff verweigert",
+    "permission_saved": "Berechtigung gespeichert",
 
     ## Plugins
     "plugins": "Plugins",
