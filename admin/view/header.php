@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <div class="inner">
+        <div class="inner clear">
 
             <div class="expand">
                 <i class="icon icon-navicon-round"></i>
@@ -10,7 +10,7 @@
 
             <h1><?=admin::$page; ?></h1>
 
-            <div class="user">
+            <div class="user clear">
 
                 <nav>
                     <ul>
@@ -29,11 +29,7 @@
                     </span>
                 </a>
 
-                <div class="clear"></div>
-
             </div>
-
-            <div class="clear"></div>
 
         </div>
 
