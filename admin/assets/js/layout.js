@@ -8,7 +8,9 @@ $(document).ready(function() {
         toggleNav(false);
     });
 
-    setInterval("getMessages(url)", 1000);
+    getMessages(url);
+
+    setInterval("getMessages(url)", 1500);
 
 });
 
@@ -16,10 +18,23 @@ function getMessages(url) {
     $.ajax({
         type: "POST",
         url: url + "admin/",
-        data: { method: 'getMessages' },
+        data: {
+            method: 'getMessages'
+        },
+        dataType: "json",
         success: function(message) {
             if(message) {
-                alert(message);
+                $.ajax({
+                    type: "POST",
+                    url: url + "admin/",
+                    data: {
+                        method: 'deleteMessage',
+                        index: message.key
+                    },
+                    success: function() {
+                        $(message.html).appendTo("#messages").hide().fadeIn(200).delay(1500).fadeOut(300);
+                    }
+                });
             }
         }
     });

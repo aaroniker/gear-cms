@@ -34,7 +34,30 @@
 
         if(type::post('method', 'string', '') == 'getMessages') {
 
-            ajax::addReturn('');
+            $messages = type::session('messages');
+
+            if(is_array($messages) && count($messages)) {
+                foreach($messages as $key => $arr) {
+                    $return = [
+                        'html' => message::getMessage($arr['message'], $arr['class']),
+                        'key' => $key
+                    ];
+                    ajax::addReturn(json_encode($return));
+                }
+            }
+
+            type::addSession('messages', $messages);
+
+        }
+
+        if(type::post('method', 'string', '') == 'deleteMessage') {
+
+            $messages = type::session('messages');
+            $index = type::post('index');
+
+            unset($messages[$index]);
+
+            type::addSession('messages', $messages);
 
         }
 
