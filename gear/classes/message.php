@@ -2,7 +2,7 @@
 
 class message {
 
-    static protected function getMessage($message, $class) {
+    static public function getMessage($message, $class) {
 
         $return = '<div class="message '.$class.'">';
 
@@ -36,21 +36,30 @@ class message {
 
     }
 
+    static protected function addMessage($message, $class) {
+
+        $_SESSION['messages'][] = [
+            'message' => $message,
+            'class' => $class
+        ];
+
+    }
+
     static public function info($message) {
 
-       return self::getMessage($message, 'info');
+        self::addMessage($message, 'info');
 
     }
 
     static public function error($message) {
 
-        return self::getMessage($message, 'error');
+        self::addMessage($message, 'error');
 
     }
 
     static public function success($message) {
 
-        return self::getMessage($message, 'success');
+        self::addMessage($message, 'success');
 
     }
 
