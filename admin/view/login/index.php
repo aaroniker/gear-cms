@@ -12,6 +12,8 @@
 
                 <?=config::get('system'); ?>
 
+                <div id="messages"></div>
+
                 <div class="form-element">
                     <input type="text" name="email" id="email" value="<?=type::super('email'); ?>" placeholder="<?=lang::get('email'); ?>" class="form-field">
                 </div>
