@@ -9,6 +9,15 @@
             padding: 20px 0;
         }
     }
+    #messages {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        z-index: 2;
+        @media(max-width: @screen-sm-min * 1px) {
+            top: 20px;
+        }
+    }
     #nav {
         .menu,
         .submenu {
