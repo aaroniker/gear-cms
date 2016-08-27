@@ -68,12 +68,12 @@ class userLogin extends user {
             $query = db()->from('user')->where('email', type::post('email'))->fetch();
 
             if(!$query) {
-                echo message::error(lang::get('email_not_found'));
+                message::error(lang::get('email_not_found'));
                 return;
             }
 
             if(!self::checkPassword(type::post('password'), $query->password)) {
-                echo message::error(lang::get('wrong_pw'));
+                message::error(lang::get('wrong_pw'));
                 return;
             }
 
@@ -152,10 +152,6 @@ class userLogin extends user {
         userSession::update($userID);
 
         self::delCookie($userID);
-
-        header('location: '.url::admin());
-
-        exit();
 
     }
 
