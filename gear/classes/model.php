@@ -136,10 +136,10 @@ class model {
 
             $this->setData($data);
 
-            $this->saveData();
-            $this->saveMeta();
+            $saveData = $this->saveData();
+            $saveMeta = $this->saveMeta();
 
-            return true;
+            return ($saveData || $saveMeta) ? true : false;
 
         }
 
@@ -174,7 +174,7 @@ class model {
                     'meta_key' => $meta_key
                 ];
 
-                db()->deleteFrom($this->model.'_meta')->where($where)->execute();
+                return db()->deleteFrom($this->model.'_meta')->where($where)->execute();
 
             } else {
 
@@ -193,7 +193,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    db()->insertInto($this->model.'_meta')->values($values)->execute();
+                    return db()->insertInto($this->model.'_meta')->values($values)->execute();
 
                 } else {
 
@@ -202,7 +202,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
+                    return db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
 
                 }
 
@@ -210,7 +210,7 @@ class model {
 
         }
 
-        return true;
+        return false;
 
     }
 
