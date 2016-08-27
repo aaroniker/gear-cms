@@ -38,6 +38,8 @@ class message {
 
     static protected function addMessage($message, $class) {
 
+        userSession::init();
+
         $_SESSION['messages'][] = [
             'message' => $message,
             'class' => $class
