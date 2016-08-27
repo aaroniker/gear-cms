@@ -74,6 +74,8 @@ class userController extends controller {
                     'name'=> $name
                 ]);
 
+                message::success(lang::get('permission_group_added'));
+
             } elseif($action == 'edit') {
 
                 $perms = type::post('perms');
