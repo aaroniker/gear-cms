@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     getMessages(url);
 
-    setInterval("getMessages(url)", 800);
+    setInterval("getMessages(url)", 1000);
 
 });
 
