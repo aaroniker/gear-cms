@@ -8,9 +8,9 @@
 
 ## Screenshots
 
-![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
 ![Media Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/media-screenshot.png "Media Screenshot")
 ![User Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/user-screenshot.png "User Screenshot")
+![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
 
 ## System requirements
 
