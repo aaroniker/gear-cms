@@ -1,3 +1,5 @@
+![Gear Header](https://raw.githubusercontent.com/aaroniker/gear/master/media/header.png "Gear Header")
+
 # Gear
 
 * [Screenshots](#screenshots)
