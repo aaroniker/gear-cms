@@ -153,6 +153,8 @@ class userLogin extends user {
 
         self::delCookie($userID);
 
+        header('location: '.url::admin());
+
     }
 
     public static function checkPassword($password, $hash) {
