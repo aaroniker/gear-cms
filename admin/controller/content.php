@@ -35,6 +35,10 @@ class contentController extends controller {
                         message::error(lang::get('dir_exists'));
                     }
 
+                } else {
+
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+
                 }
 
             }
