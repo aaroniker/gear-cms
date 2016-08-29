@@ -3,10 +3,11 @@
 
     include($base.'gear/bootstrap.php');
 
+    theme::addCSS('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
     theme::addCSS(url::assets('css/style.css'));
 
-    theme::addJS('https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js');
-    theme::addJS('https://code.jquery.com/jquery-3.0.0.min.js');
+    theme::addJS('https://cdn.jsdelivr.net/vue/1.0.26/vue.js');
+    theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js');
     theme::addJS(url::assets('js/app.js'));
     theme::addJS(url::assets('js/layout.js'));
 
