@@ -3,7 +3,7 @@
 # Gear
 
 * [Website] (http://gearcms.org)
-* [Documentation (Classes)] (https://github.com/aaroniker/gear/wiki)
+* [Documentation (German)] (https://github.com/aaroniker/gear/wiki)
 * [Screenshots](#screenshots)
 * [System requirements](#system-requirements)
 * [External resources](#external-resources)
