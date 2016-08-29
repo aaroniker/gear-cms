@@ -30,9 +30,9 @@ class contentController extends controller {
 
                     if(!file_exists($path)) {
                         mkdir($path, 0777, true);
-                        message::success(lang::get('dir_added').$path);
+                        message::success(lang::get('dir_added'));
                     } else {
-                        message::error(lang::get('dir_exists').$path);
+                        message::error(lang::get('dir_exists'));
                     }
 
                 }
