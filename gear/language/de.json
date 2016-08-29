@@ -31,6 +31,8 @@
     "media": "Medien",
     "upload": "Hochladen",
     "add_dir": "Ordner hinzufügen",
+    "dir_added": "Ordner erfolgreich hinzugefügt",
+    "dir_exists": "Ordner existiert bereits",
     "pages": "Seiten",
     "home": "Home",
 
