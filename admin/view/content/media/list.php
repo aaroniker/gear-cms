@@ -37,6 +37,9 @@
         $field->addAttribute('v-model', 'dirName');
         $field->fieldValidate();
 
+        $field = $form->addRawField('<p class="static">{{ path }}</p>');
+        $field->fieldName(lang::get('path'));
+
     ?>
 
     <modal :show.sync="addDirModal">
