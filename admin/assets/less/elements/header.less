@@ -10,12 +10,16 @@
         }
     }
     #messages {
-        position: absolute;
+        position: fixed;
         top: 12px;
-        right: 0;
+        left: 50%;
         z-index: 2;
+        .translate(-50%, 0);
         @media(max-width: @screen-sm-min * 1px) {
             top: 20px;
+            left: 15px;
+            right: 15px;
+            .translate(0, 0);
         }
     }
     #nav {
