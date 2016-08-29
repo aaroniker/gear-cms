@@ -168,6 +168,7 @@ Vue.component('file-table', {
             });
         },
         path: function() {
+            this.$dispatch('path', this.path);
             this.fetch();
         }
     },
@@ -191,12 +192,15 @@ Vue.component('file-table', {
         breadcrumbs: function() {
 
             var path = '';
+            var crumb = '';
 
-            crumb = this.path.split('/').filter(function(str) {
-                return str.length;
-            }).map(function(part) {
-            	return {path: path += '/' + part + '/', name: part};
-            });
+            if(this.path) {
+                crumb = this.path.split('/').filter(function(str) {
+                    return str.length;
+                }).map(function(part) {
+            	   return {path: path += '/' + part + '/', name: part};
+                });
+            }
 
             return crumb;
 
@@ -212,13 +216,14 @@ Vue.component('file-table', {
 
             $.ajax({
                 method: "POST",
-                url: url + "admin/content/media",
+                url: url + "admin/content/media/get",
                 dataType: "json",
                 data: {
                     path: vue.path
+                },
+                success: function(data) {
+                    vue.$set('data', data);
                 }
-            }).done(function(data) {
-                vue.$set('data', data);
             });
 
         },
@@ -236,6 +241,9 @@ Vue.component('file-table', {
                 this.headline = this.oldHeadline;
                 this.showSearch = true;
             }
+        },
+        fetchData: function() {
+            this.fetch();
         }
     }
 });
