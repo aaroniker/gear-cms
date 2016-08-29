@@ -42,7 +42,7 @@ function getMessages(url) {
                             element.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                                 element.remove();
                             });
-                        }, 2200);
+                        }, 3000);
 
                     }
                 });
