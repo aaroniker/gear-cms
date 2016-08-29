@@ -32,9 +32,18 @@ function getMessages(url) {
                         index: message.key
                     },
                     success: function() {
-                        $(message.html).appendTo("#messages").hide().fadeIn(200).delay(2200).fadeOut(300, function() {
-                            $(this).remove();
-                        });
+
+                        var element = $(message.html).appendTo("#messages");
+
+                        element.addClass('animated fadeInUp');
+
+                        setTimeout(function() {
+                            element.removeClass('fadeInUp').addClass('fadeOutUp');
+                            element.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                                element.remove();
+                            });
+                        }, 2200);
+
                     }
                 });
             }
