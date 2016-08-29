@@ -59,6 +59,8 @@
 
     			message::success(lang::get('user_added'));
 
+                header('location:'.url::admin('user', ['index']));
+
 		    } else {
 			    echo $form->getErrors();
 		    }
