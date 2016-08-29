@@ -20,7 +20,7 @@
 
     ?>
 
-    <modal :show.sync="showModal">
+    <modal :show.sync="addGroupModal">
         <h3 slot="header"><?=lang::get('add'); ?></h3>
         <div slot="content">
             <?=$form->show(); ?>
@@ -48,7 +48,7 @@
                     </ul>
                 </nav>
 
-                <button class="button border" @click="showModal = true"><?=lang::get('add'); ?></button>
+                <button class="button border" @click="addGroupModal = true"><?=lang::get('add'); ?></button>
 
             </aside>
 
@@ -98,7 +98,8 @@ theme::addJSCode('
             groups: [],
             perms: '.json_encode($perms).',
             checked: [],
-            showModal: false
+            addGroupModal: false,
+            groupName: ""
         },
         ready: function() {
             this.fetchGroups();
@@ -148,7 +149,7 @@ theme::addJSCode('
                     },
                     success: function(data) {
                         vue.fetchGroups();
-                        vue.showModal = false;
+                        vue.addGroupModal = false;
                         vue.groupName = "";
                     }
                 });
