@@ -37,7 +37,7 @@
         $field->addAttribute('v-model', 'dirName');
         $field->fieldValidate();
 
-        $field = $form->addRawField('<p class="static">{{ path }}</p>');
+        $field = $form->addRawField('<p class="static">{{ path }}<span class="text-light" v-if="dirName">{{ dirName }}</span></p>');
         $field->fieldName(lang::get('path'));
 
     ?>
