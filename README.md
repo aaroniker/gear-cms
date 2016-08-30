@@ -15,7 +15,7 @@ Just wait a few weeks please :)
 I'm working on this nearly every day, you can see the progress at this repository & some screenshots - a nice landing page is going to be published soon!
 
 * [Website] (http://gearcms.org)
-* [Wiki (German)] (https://github.com/aaroniker/gear/wiki)
+* [Documentation (German)] (https://github.com/aaroniker/gear/wiki)
 
 ## Screenshots
 
