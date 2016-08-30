@@ -80,8 +80,11 @@ class media {
 
                 if(!(new \FilesystemIterator($path))->valid()) {
 
-                    rmdir($path);
-                    message::success(lang::get('dir_deleted'));
+                    if(rmdir($path)) {
+                        message::success(lang::get('dir_deleted'));
+                    } else {
+                        message::error(lang::get('error_unknown'));
+                    }
 
                 } else {
                     message::error(lang::get('dir_not_empty'));
@@ -89,8 +92,11 @@ class media {
 
             } else {
 
-                unlink($path);
-                message::success(lang::get('file_deleted'));
+                if(unlink($path)) {
+                    message::success(lang::get('file_deleted'));
+                } else {
+                    message::error(lang::get('error_unknown'));
+                }
 
             }
 

@@ -13,6 +13,7 @@
     "list": "Liste",
     "no_results": "Keine Ergebnisse",
     "selected": "ausgewählt",
+    "error_unknown": "Unbekannter Fehler",
 
     ## Login
     "email": "E-Mail",
