@@ -20,11 +20,14 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['email', 'status', '']" :headline="headline" :filter-key="search">
+    <data-table :data="tableData" :columns="['email', 'status', 'permission', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
             <span v-if="entry.status == 1">{{ 'active' | lang }}</span>
             <span v-else>{{ 'blocked' | lang }}</span>
+        </table-cell>
+        <table-cell>
+            {{ entry.permissionGroup ? entry.permissionGroup : 'admin' | lang }}
         </table-cell>
         <table-cell class="shrink">
             <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>
@@ -40,7 +43,7 @@ theme::addJSCode('
         data: {
             headline: "list",
             checked: [],
-            tableData: '.json_encode(UserModel::getAllFromDb()).',
+            tableData: '.json_encode(UserModel::getAll()).',
             search: "",
             showSearch: true
         },

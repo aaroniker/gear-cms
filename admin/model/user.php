@@ -38,6 +38,21 @@ class UserModel extends model {
 
     }
 
+    public static function getAll() {
+
+        $getAllFromDb = self::getAllFromDb();
+
+        if(is_array($getAllFromDb)) {
+            foreach($getAllFromDb as $key => $val) {
+                $user = new UserModel($val->id);
+                $permission = new PermissionModel($user->permissionID);
+                $getAllFromDb[$key]->permissionGroup = $permission->name;
+            }
+        }
+
+        return $getAllFromDb;
+    }
+
 }
 
 ?>
