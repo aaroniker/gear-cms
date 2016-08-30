@@ -1,6 +1,8 @@
 <?php
 
-    function file_rename($path, $filename) {
+class media {
+
+    public static function getUniqueName($path, $filename) {
 
         if($pos = strrpos($filename, '.')) {
             $name = substr($filename, 0, $pos);
@@ -23,18 +25,18 @@
 
     }
 
-    function file_size($path) {
+    public static function size($path) {
 
         $size = filesize($path);
 
-        $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-        $power = $size > 0 ? floor(log($size, 1024)) : 0;
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+        $power = ($size > 0) ? floor(log($size, 1024)) : 0;
 
         return number_format($size / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
 
     }
 
-    function file_list($path) {
+    public static function getAll($path) {
 
         $dirs = [];
         $files = [];
@@ -55,7 +57,7 @@
             } else {
                 $files[] = [
                     'name' => $name,
-                    'size' => file_size(dir::media($file)),
+                    'size' => self::size(dir::media($file)),
                     'type' => 'file'
                 ];
             }
@@ -65,5 +67,7 @@
         return array_merge($dirs, $files);
 
     }
+
+}
 
 ?>

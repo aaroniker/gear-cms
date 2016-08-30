@@ -61,7 +61,7 @@ theme::addJSCode('
             headline: "media",
             checked: [],
             path: "/",
-            tableData: '.json_encode(file_list('/')).',
+            tableData: '.json_encode(media::getAll('/')).',
             search: "",
             showSearch: true,
             addDirModal: false,
