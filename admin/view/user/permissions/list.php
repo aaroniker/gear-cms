@@ -36,11 +36,11 @@
                 <nav>
                     <ul>
                         <li v-for="group in groups" :class="$index == index ? 'active' : ''">
-                            <a href="#" @click.prevent="setActive($index, group.id)">
+                            <a @click.prevent="setActive($index, group.id)">
                                 {{ group.name }}
                             </a>
                             <div v-if="group.id > 0">
-                                <a href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
+                                <a class="delete" href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
                                     <i class="icon icon-trash-a"></i>
                                 </a>
                             </div>
