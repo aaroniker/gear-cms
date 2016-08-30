@@ -106,7 +106,7 @@ class userController extends controller {
                     'name' => lang::get('admin')
                 ];
 
-                ajax::addReturn(json_encode(array_merge(PermissionModel::getAllFromDb(), $return)));
+                ajax::addReturn(json_encode(array_merge(PermissionModel::getAll(), $return)));
 
             }
 
@@ -115,9 +115,17 @@ class userController extends controller {
         if($action == 'delete') {
             if($id) {
 
-                $this->model->load($id)->delete();
+                extension::add('model_beforeDelete', function($id) {
+    			    if($this->model->countUser() >= 1) {
+                        message::error(lang::get('permission_group_not_empty'));
+                        return false;
+                    }
+    		        return $id;
+			    });
 
-                message::success(lang::get('permission_group_delete'));
+                if($this->model->load($id)->delete()) {
+                    message::success(lang::get('permission_group_delete'));
+                }
 
             }
         }

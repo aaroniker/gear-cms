@@ -53,6 +53,7 @@
     "permissions": "Berechtigungen",
     "permission_group_added": "Rechte-Gruppe erfolgreich hinzugefügt",
     "permission_group_delete": "Rechte-Gruppe erfolgreich gelöscht",
+    "permission_group_not_empty": "Rechte-Gruppe ist nicht leer",
     "admin": "Administrator",
     "groups": "Gruppen",
     "user_added": "Benutzer erfolgreich hinzugefügt",
