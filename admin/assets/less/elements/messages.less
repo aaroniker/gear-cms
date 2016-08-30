@@ -1,27 +1,25 @@
-#messages {
-    .message {
-    	&.success {
-    		background: @success;
-    	}
-    	&.info {
-    		background: @info;
-    	}
-    	&.warning {
-    		background: @warning;
-    	}
-    	&.error {
-    		background: @error;
-    	}
-    	ol {
-    		li {
-    			margin: 4px 0;
-    		}
-    		margin: 0;
-    		padding: 0 0 0 18px;
-    	}
-    	padding: @input-padding-v @input-padding-h;
-    	color: #fff;
-    	margin: 0 0 5px 0;
-    	.round(@border-radius);
+.message {
+    &.success {
+    	background: @success;
     }
+    &.info {
+    	background: @info;
+    }
+    &.warning {
+    	background: @warning;
+    }
+    &.error {
+    	background: @error;
+    }
+    ol {
+    	li {
+			margin: 4px 0;
+    	}
+		margin: 0;
+    	padding: 0 0 0 18px;
+    }
+    padding: @input-padding-v @input-padding-h;
+    color: #fff;
+    margin: 0 0 5px 0;
+    .round(@border-radius);
 }
