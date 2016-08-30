@@ -51,15 +51,15 @@ class media {
                 $count = count(scandir(dir::media($file))) - 2;
                 $str = ($count == 1) ? lang::get('file') : lang::get('files');
                 $dirs[] = [
-                    'id' => str_replace(dir::media(), '', $file."/"),
+                    'id' => str_replace(dir::media().'/', '', $file),
                     'name' => $name,
-                    'path' => str_replace(dir::media(), '', $file."/"),
+                    'path' => str_replace(dir::media().'/', '', $file.'/'),
                     'size' => $count.' '.$str,
                     'type' => 'dir'
                 ];
             } else {
                 $files[] = [
-                    'id' => str_replace(dir::media(), '', $file."/"),
+                    'id' => str_replace(dir::media().'/', '', $file),
                     'name' => $name,
                     'size' => self::size(dir::media($file)),
                     'type' => 'file'
@@ -78,7 +78,9 @@ class media {
 
             if(is_dir($path)) {
 
-                if(!(new \FilesystemIterator($path))->valid()) {
+                $count = array_diff(scandir($path), array('.', '..'));
+
+                if(!count($count)) {
 
                     if(rmdir($path)) {
                         message::success(lang::get('dir_deleted'));
@@ -87,7 +89,7 @@ class media {
                     }
 
                 } else {
-                    message::error(lang::get('dir_not_empty'));
+                    message::error(lang::get('dir_not_empty').$path);
                 }
 
             } else {

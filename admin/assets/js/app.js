@@ -241,7 +241,7 @@ Vue.component('file-table', {
     events: {
         checked: function(data) {
             if(data.length) {
-                this.headline = data.length + " " + lang["selected"] + "<a href='" + url + "admin/content/media/delete/" + this.checked + "' class='icon delete ajax icon-ios-trash-outline'></a>";
+                this.headline = data.length + " " + lang["selected"] + "<a href='" + url + "admin/content/media/?delete=" + this.checked + "' class='icon delete ajax icon-ios-trash-outline'></a>";
                 this.showSearch = false;
             } else {
                 this.headline = this.oldHeadline;
