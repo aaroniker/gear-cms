@@ -11,7 +11,7 @@ class config {
 
         self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
 
-        if(self::get('dev')) {
+        if(self::get('dev') && !ajax::is()) {
 
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
