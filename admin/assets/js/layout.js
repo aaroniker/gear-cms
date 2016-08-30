@@ -81,10 +81,10 @@ function getMessages(url) {
 
                         var element = $(message.html).appendTo("#messages");
 
-                        element.addClass("animated fadeInUp");
+                        element.addClass("animated fadeInDown");
 
                         setTimeout(function() {
-                            element.removeClass("fadeInUp").addClass("fadeOutUp");
+                            element.removeClass("fadeInDown").addClass("fadeOutUp");
                             element.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
                                 element.remove();
                             });
