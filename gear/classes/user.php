@@ -24,7 +24,11 @@ class user {
             return true;
         }
 
-        return in_array($perm, self::current()->permissions);
+        if(self::current()->permissions) {
+            return in_array($perm, self::current()->permissions);
+        }
+
+        return false;
 
     }
 
