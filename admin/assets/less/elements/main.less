@@ -11,6 +11,8 @@ main {
                 display: inline-block;
                 vertical-align: top;
                 font-size: 1em;
+                width: 30px;
+                text-align: center;
                 color: @text-light;
                 margin: 0 0 0 15px;
             }
@@ -86,6 +88,49 @@ main {
             margin-bottom: 25px;
         }
     }
+}
+
+a.delete {
+    div {
+        .confirm,
+        .abort {
+            &:before {
+                line-height: 28px;
+            }
+            vertical-align: top;
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            margin: 0;
+            font-size: 0.6em;
+            top: 4px;
+            text-align: center;
+            .round();
+        }
+        .confirm {
+            color: #fff;
+            background: @error;
+            left: 4px;
+        }
+        .abort {
+            color: @text;
+            background: @light;
+            right: 4px;
+        }
+        width: 68px;
+        height: 36px;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        position: absolute;
+        z-index: 5;
+        .box-shadow(0, 0, 10px, 0.1);
+        .translate(-50%, -50%);
+        .round();
+    }
+    z-index: 5;
+    position: relative;
 }
 
 .button {
