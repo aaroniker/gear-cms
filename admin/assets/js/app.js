@@ -198,7 +198,7 @@ Vue.component('file-table', {
                 crumb = this.path.split('/').filter(function(str) {
                     return str.length;
                 }).map(function(part) {
-            	   return {path: path += '/' + part + '/', name: part};
+            	    return {path: path += '/' + part + '/', name: part};
                 });
             }
 
