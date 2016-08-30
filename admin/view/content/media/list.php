@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2>{{ headline | lang }}</h2>
+        <h2>{{{ headline | lang }}}</h2>
 
         <div v-if="showSearch" class="search">
             <input type="text" v-model="search">
