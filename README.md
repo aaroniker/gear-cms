@@ -2,11 +2,19 @@
 
 # Gear
 
+* [Getting started](#getting-started)
 * [Website] (http://gearcms.org)
 * [Wiki (German)] (https://github.com/aaroniker/gear/wiki)
 * [Screenshots](#screenshots)
 * [System requirements](#system-requirements)
 * [External resources](#external-resources)
+
+## Getting started
+
+Gear is still early WIP - so its not possible to install this CMS yet.
+Just wait a few weeks please :)
+
+I'm working on this nearly every day, you can see the progress at this repository & some screenshots - a nice landing page is going to be published soon!
 
 ## Screenshots
 
