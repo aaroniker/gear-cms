@@ -21,7 +21,7 @@ $(document).ready(function() {
             var div = $("<div><i class='icon confirm icon-ios-checkmark-outline'></i><i class='icon abort icon-ios-close-empty'></i></div>");
             var element = $(this).append(div);
 
-            div.hide().fadeIn(300);
+            div.addClass("animated zoomIn");
 
             div.on("click", ".abort", function() {
                 div.fadeOut(300, function() {
