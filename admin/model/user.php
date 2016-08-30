@@ -45,8 +45,12 @@ class UserModel extends model {
         if(is_array($getAllFromDb)) {
             foreach($getAllFromDb as $key => $val) {
                 $user = new UserModel($val->id);
-                $permission = new PermissionModel($user->permissionID);
-                $getAllFromDb[$key]->permissionGroup = $permission->name;
+                if($user->permissionID) {
+                    $permission = new PermissionModel($user->permissionID);
+                    $getAllFromDb[$key]->permissionGroup = $permission->name;
+                } else {
+                    $getAllFromDb[$key]->permissionGroup = lang::get('admin');
+                }
             }
         }
 

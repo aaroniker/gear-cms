@@ -27,7 +27,7 @@
             <span v-else>{{ 'blocked' | lang }}</span>
         </table-cell>
         <table-cell>
-            {{ entry.permissionGroup ? entry.permissionGroup : 'admin' | lang }}
+            {{ entry.permissionGroup }}
         </table-cell>
         <table-cell class="shrink">
             <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>
