@@ -4,10 +4,6 @@ $(document).ready(function() {
         toggleNav(!$(this).hasClass("active"));
     });
 
-    $("#overlay").click(function() {
-        toggleNav(false);
-    });
-
     $(document).on("click", ".delete", function(e) {
 
         e.preventDefault();
