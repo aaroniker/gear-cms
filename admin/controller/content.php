@@ -41,14 +41,12 @@ class contentController extends controller {
 
                 }
 
-            }
+            } elseif($action == 'delete') {
 
-        }
-
-        if($action == 'delete') {
-
-            if($file) {
-                media::delete($file);
+                if($file) {
+                    media::delete($file);
+                }
+                
             }
 
         }

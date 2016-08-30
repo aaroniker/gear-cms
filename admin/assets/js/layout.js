@@ -31,7 +31,23 @@ $(document).ready(function() {
             });
 
             div.on("click", ".confirm", function() {
-                window.location = _this.attr("href");
+                if(_this.hasClass("ajax")) {
+                    $.ajax({
+                        method: "POST",
+                        url: _this.attr("href"),
+                        success: function() {
+                            div.fadeOut(300, function() {
+                                div.remove();
+                                _this.removeClass("active");
+                            });
+                            $.event.trigger({
+                                type: "fetchFiles"
+                            });
+                        }
+                    });
+                } else {
+                    window.location = _this.attr("href");
+                }
             });
 
         }

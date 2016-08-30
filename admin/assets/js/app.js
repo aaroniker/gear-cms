@@ -156,6 +156,10 @@ Vue.component('file-table', {
     },
     created: function() {
         this.oldHeadline = this.headline;
+        var vue = this;
+        $(document).on("fetchFiles", function() {
+            vue.fetch();
+        });
     },
     watch: {
         checked: function() {
@@ -212,6 +216,8 @@ Vue.component('file-table', {
     methods: {
         fetch: function() {
 
+            this.checked = [];
+
             var vue = this;
 
             $.ajax({
@@ -235,7 +241,7 @@ Vue.component('file-table', {
     events: {
         checked: function(data) {
             if(data.length) {
-                this.headline = data.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>";
+                this.headline = data.length + " " + lang["selected"] + "<a href='" + url + "admin/content/media/delete/" + this.checked + "' class='icon delete ajax icon-ios-trash-outline'></a>";
                 this.showSearch = false;
             } else {
                 this.headline = this.oldHeadline;
