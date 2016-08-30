@@ -165,16 +165,18 @@ class model {
 
     private function saveMeta() {
 
+        $return = false;
+
         foreach($this->metaData as $meta_key => $meta_value) {
 
-            if(!isset($meta_value)) {
+            if(is_null($meta_value)) {
 
                 $where = [
                     $this->model.'_id' => $this->id,
                     'meta_key' => $meta_key
                 ];
 
-                return db()->deleteFrom($this->model.'_meta')->where($where)->execute();
+                $return = db()->deleteFrom($this->model.'_meta')->where($where)->execute();
 
             } else {
 
@@ -193,7 +195,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    return db()->insertInto($this->model.'_meta')->values($values)->execute();
+                    $return = db()->insertInto($this->model.'_meta')->values($values)->execute();
 
                 } else {
 
@@ -202,7 +204,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    return db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
+                    $return = db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
 
                 }
 
@@ -210,7 +212,7 @@ class model {
 
         }
 
-        return false;
+        return $return;
 
     }
 
