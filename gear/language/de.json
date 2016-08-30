@@ -31,6 +31,7 @@
     "media": "Medien",
     "upload": "Hochladen",
     "path": "Pfad",
+    "size": "Größe",
     "add_dir": "Ordner hinzufügen",
     "dir_added": "Ordner erfolgreich hinzugefügt",
     "dir_exists": "Ordner existiert bereits",
@@ -38,6 +39,8 @@
     "dir_file_not_found": "Ordner oder Datei nicht gefunden",
     "file_deleted": "Datei erfolgreich gelöscht",
     "dir_deleted": "Ordner erfolgreich gelöscht",
+    "file": "Datei",
+    "files": "Dateien",
     "pages": "Seiten",
     "home": "Home",
 

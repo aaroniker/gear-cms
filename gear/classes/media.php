@@ -48,11 +48,13 @@ class media {
             $file = $path.$name;
 
             if(is_dir(dir::media($file))) {
+                $count = count(scandir(dir::media($file))) - 2;
+                $str = ($count == 1) ? lang::get('file') : lang::get('files');
                 $dirs[] = [
                     'id' => str_replace(dir::media(), '', $file."/"),
                     'name' => $name,
                     'path' => str_replace(dir::media(), '', $file."/"),
-                    'size' => '',
+                    'size' => $count.' '.$str,
                     'type' => 'dir'
                 ];
             } else {
