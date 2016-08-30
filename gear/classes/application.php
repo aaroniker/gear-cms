@@ -116,7 +116,7 @@ class application {
 
     public function permissionDenied() {
 
-        message::error(lang::get('permission_denied'));
+        echo message::getMessage(lang::get('permission_denied'), 'error');
 
     }
 
