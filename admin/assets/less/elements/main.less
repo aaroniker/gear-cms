@@ -95,15 +95,15 @@ a.delete {
         .confirm,
         .abort {
             &:before {
-                line-height: 28px;
+                line-height: 34px;
             }
             vertical-align: top;
             position: absolute;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
             margin: 0;
-            font-size: 0.6em;
+            font-size: 21px!important;
             top: 4px;
             text-align: center;
             .round();
@@ -118,15 +118,17 @@ a.delete {
             background: @light;
             right: 4px;
         }
-        width: 68px;
-        height: 36px;
+        width: 80px;
+        height: 42px;
         top: 50%;
         left: 50%;
         background: #fff;
         position: absolute;
         z-index: 5;
+        margin: -21px 0 0 -40px;
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
         .box-shadow(0, 0, 10px, 0.1);
-        .translate(-50%, -50%);
         .round();
     }
     z-index: 5;
