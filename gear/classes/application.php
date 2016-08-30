@@ -116,7 +116,7 @@ class application {
 
     public function permissionDenied() {
 
-        echo message::error(lang::get('permission_denied'));
+        message::error(lang::get('permission_denied'));
 
     }
 
@@ -134,7 +134,6 @@ class application {
             $delete = type::get('delete', 'string', '');
 
             if($delete) {
-                $this->action = 'index';
                 $url[0] = 'delete';
                 $url[1] = $delete;
             }
