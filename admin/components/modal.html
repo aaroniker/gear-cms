@@ -1,20 +1,18 @@
 <template id="modal-template">
-    <div id="modal" v-show="show" transition="modal">
-        <div class="wrap">
-            <div class="inner">
+    <div id="modal" v-show="show" class="animated" transition="fade">
+        <div class="inner">
 
-                <header>
-                    <slot name="header"></slot>
-                    <div @click="show = false" class="close">
-                        <i class="icon icon-close-round"></i>
-                    </div>
-                </header>
-
-                <div class="content">
-                    <slot name="content"></slot>
+            <header>
+                <slot name="header"></slot>
+                <div @click="show = false" class="close">
+                    <i class="icon icon-close-round"></i>
                 </div>
+            </header>
 
+            <div class="content">
+                <slot name="content"></slot>
             </div>
+
         </div>
     </div>
 </template>

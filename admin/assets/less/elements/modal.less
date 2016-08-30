@@ -1,55 +1,42 @@
 #modal {
-    .wrap {
-        .inner {
-            header {
-                h3 {
-                    margin: 0;
-                }
-                .close {
-                    i {
-                        font-size: 1em;
-                        color: @text-light;
-                    }
-                    cursor: pointer;
-                    position: absolute;
-                    right: 40px;
-                    top: 50%;
-                    .translate(0, -50%);
-                }
-                position: relative;
-                padding: 0 40px;
+    .inner {
+        header {
+            h3 {
                 margin: 0;
             }
-            .content {
-                padding: 30px 40px 40px 40px;
+            .close {
+                i {
+                    font-size: 1em;
+                    color: @text-light;
+                }
+                cursor: pointer;
+                position: absolute;
+                right: 40px;
+                top: 50%;
+                .translate(0, -50%);
             }
-            footer {
-                border-top: 1px solid @border;
-                padding: 20px 40px;
-            }
-            max-width: 420px;
-            padding: 40px 0 0 0;
-            margin: 0px auto;
-            background: #fff;
-            .box-shadow(0, 0, 20px, 0.2);
-            .transition(0.3s);
+            position: relative;
+            padding: 0 40px;
+            margin: 0;
         }
-        display: table-cell;
-        vertical-align: middle;
+        .content {
+            padding: 30px 40px 40px 40px;
+        }
+        footer {
+            border-top: 1px solid @border;
+            padding: 20px 40px;
+        }
+        padding: 40px 0 0 0;
+        background: #fff;
+        .box-shadow(0, 0, 20px, 0.2);
     }
+    width: 420px;
     position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.7);
-    display: table;
-    .transition(0.3s);
-}
-
-.modal-enter,
-.modal-leave {
-    .opacity(0);
+    left: 20px;
+    right: 20px;
+    margin: auto;
+    top: 10%;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    z-index: 101;
 }

@@ -254,6 +254,11 @@ Vue.component('file-table', {
     }
 });
 
+Vue.transition('fade', {
+    enterClass: 'fadeInDown',
+    leaveClass: 'fadeOutUp'
+});
+
 Vue.component('modal', {
     template: '#modal-template',
     props: {
@@ -261,6 +266,15 @@ Vue.component('modal', {
             type: Boolean,
             required: true,
             twoWay: true
+        }
+    },
+    watch: {
+        show: function() {
+            if(this.show) {
+                $("#overlay").fadeIn(200);
+            } else {
+                $("#overlay").fadeOut(200);
+            }
         }
     }
 });
