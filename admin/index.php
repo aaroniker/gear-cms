@@ -17,6 +17,7 @@
     userPerm::add('user[index][add]', lang::get('user[index][add]'));
     userPerm::add('user[index][edit]', lang::get('user[index][edit]'));
     userPerm::add('user[index][delete]', lang::get('user[index][delete]'));
+    userPerm::add('user[permissions]', lang::get('user[permissions]'));
     userPerm::add('plugins[index]', lang::get('plugins[index]'));
     userPerm::add('plugins[index][install]', lang::get('plugins[index][install]'));
     userPerm::add('plugins[index][delete]', lang::get('plugins[index][delete]'));

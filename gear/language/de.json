@@ -98,6 +98,7 @@
     "user[index][add]": "Benutzer hinzufügen",
     "user[index][edit]": "Benutzer bearbeiten",
     "user[index][delete]": "Benutzer löschen",
+    "user[permissions]": "Benutzer-Rechte verwalten",
     "plugins[index]": "Plugins verwalten",
     "plugins[index][install]": "Plugins installieren",
     "plugins[index][delete]": "Plugins löschen",
