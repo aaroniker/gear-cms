@@ -3,10 +3,13 @@
 class filter {
 
     public static function xss($string) {
+
         if (is_string($string)) {
             $string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
         }
+
         return $string;
+        
     }
 
     public static function url($string) {
