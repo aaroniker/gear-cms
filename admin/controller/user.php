@@ -70,11 +70,19 @@ class userController extends controller {
 
                 $name = type::post('name', 'string', '');
 
-                $this->model->insert([
-                    'name'=> $name
-                ]);
+                if($name) {
 
-                message::success(lang::get('permission_group_added'));
+                    $this->model->insert([
+                        'name'=> $name
+                    ]);
+
+                    message::success(lang::get('permission_group_added'));
+
+                } else {
+
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+
+                }
 
             } elseif($action == 'edit') {
 
