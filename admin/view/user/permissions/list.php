@@ -37,7 +37,7 @@
                     <ul>
                         <li v-for="group in groups" :class="$index == index ? 'active' : ''">
                             <a @click.prevent="setActive($index, group.id)">
-                                {{ group.name }}
+                                {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
                             </a>
                             <div v-if="group.id > 0">
                                 <a class="delete" href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">

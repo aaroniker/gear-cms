@@ -9,7 +9,7 @@ class PermissionModel extends model {
     public function __construct($id = 0) {
 
         $this->model = 'entry';
-        
+
         $this->type = 'permission';
 
         $this->metaData = [
@@ -22,6 +22,27 @@ class PermissionModel extends model {
 
         return $this;
 
+    }
+
+    public function countUser() {
+        return count(db()->from('user_meta')->where([
+            'meta_key' => 'permissionID',
+            'meta_value' => $this->id
+        ])->fetchAll());
+    }
+
+    public static function getAll() {
+
+        $getAllFromDb = self::getAllFromDb();
+
+        if(is_array($getAllFromDb)) {
+            foreach($getAllFromDb as $key => $val) {
+                $permission = new PermissionModel($val->id);
+                $getAllFromDb[$key]->countUser = $permission->countUser();
+            }
+        }
+
+        return $getAllFromDb;
     }
 
 }
