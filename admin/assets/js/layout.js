@@ -41,7 +41,7 @@ $(document).ready(function() {
                                 _this.removeClass("active");
                             });
                             $.event.trigger({
-                                type: "fetchFiles"
+                                type: "fetch"
                             });
                         }
                     });

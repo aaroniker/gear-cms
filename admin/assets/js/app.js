@@ -157,7 +157,7 @@ Vue.component('file-table', {
     created: function() {
         this.oldHeadline = this.headline;
         var vue = this;
-        $(document).on("fetchFiles", function() {
+        $(document).on("fetch", function() {
             vue.fetch();
         });
     },
