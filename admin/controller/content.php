@@ -10,7 +10,7 @@ class contentController extends controller {
 
     }
 
-    public function media($action = '') {
+    public function media($action = '', $file = '') {
 
         if(ajax::is()) {
 
@@ -18,7 +18,7 @@ class contentController extends controller {
 
             if($action == 'get') {
 
-                ajax::addReturn(json_encode(file_list($path)));
+                ajax::addReturn(json_encode(media::getAll($path)));
 
             } elseif($action == 'addDir') {
 
@@ -41,6 +41,14 @@ class contentController extends controller {
 
                 }
 
+            }
+
+        }
+
+        if($action == 'delete') {
+
+            if($file) {
+                media::delete($file);
             }
 
         }

@@ -182,7 +182,7 @@ Vue.component('file-table', {
 
                 if(value) {
                     this.data.forEach(function(loop) {
-                        checked.push(loop.name);
+                        checked.push(loop.id);
                     });
                 }
 
@@ -235,7 +235,7 @@ Vue.component('file-table', {
     events: {
         checked: function(data) {
             if(data.length) {
-                this.headline = data.length + " " + lang["selected"];
+                this.headline = data.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>";
                 this.showSearch = false;
             } else {
                 this.headline = this.oldHeadline;

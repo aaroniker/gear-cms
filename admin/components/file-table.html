@@ -26,8 +26,8 @@
             <tr v-for="entry in data | filterBy filterKey">
                 <td class="check">
                     <div class="checkbox">
-                        <input id="entry{{ entry.name }}" type="checkbox" v-model="checked" :value="entry.name" number>
-                        <label for="entry{{ entry.name }}"></label>
+                        <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
+                        <label for="entry{{ entry.id }}"></label>
                     </div>
                 </td>
                 <td v-if="entry.type == 'dir'">

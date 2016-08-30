@@ -49,6 +49,7 @@ class media {
 
             if(is_dir(dir::media($file))) {
                 $dirs[] = [
+                    'id' => str_replace(dir::media(), '', $file."/"),
                     'name' => $name,
                     'path' => str_replace(dir::media(), '', $file."/"),
                     'size' => '',
@@ -56,6 +57,7 @@ class media {
                 ];
             } else {
                 $files[] = [
+                    'id' => str_replace(dir::media(), '', $file."/"),
                     'name' => $name,
                     'size' => self::size(dir::media($file)),
                     'type' => 'file'
@@ -65,6 +67,62 @@ class media {
         }
 
         return array_merge($dirs, $files);
+
+    }
+
+    private static function deleteSingle($path) {
+
+        if(file_exists($path)) {
+
+            if(is_dir($path)) {
+
+                if(!(new \FilesystemIterator($path))->valid()) {
+
+                    rmdir($path);
+                    message::success(lang::get('dir_deleted'));
+
+                } else {
+                    message::error(lang::get('dir_not_empty'));
+                }
+
+            } else {
+
+                unlink($path);
+                message::success(lang::get('file_deleted'));
+
+            }
+
+        } else {
+            message::error(lang::get('dir_file_not_found'));
+        }
+
+    }
+
+    public static function delete($file) {
+
+        if(strpos($file, ',') !== false) {
+
+            $files = explode(',', $file);
+
+            if($files) {
+
+                foreach($files as $file) {
+
+                    $file = trim($file, '/');
+
+                    self::deleteSingle(dir::media($file));
+
+                }
+
+            }
+
+        } else {
+
+            $file = trim($file, '/');
+
+            self::deleteSingle(dir::media($file));
+
+        }
 
     }
 
