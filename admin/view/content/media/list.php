@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="button">
+                    <a @click="uploadModal = true" class="button">
                         <?=lang::get('upload'); ?>
                     </a>
                 </li>
@@ -49,6 +49,13 @@
         </div>
     </modal>
 
+    <modal :show.sync="uploadModal">
+        <h3 slot="header"><?=lang::get('upload'); ?></h3>
+        <div slot="content">
+            1
+        </div>
+    </modal>
+
     <file-table :data="tableData" :columns="['name', 'size']" :headline="headline" :filter-key="search"></data-table>
 
 </section>
@@ -65,6 +72,7 @@ theme::addJSCode('
             search: "",
             showSearch: true,
             addDirModal: false,
+            uploadModal: false,
             dirName: ""
         },
         events: {
