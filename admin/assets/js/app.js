@@ -1,4 +1,4 @@
-Vue.filter('lang', function(value) {
+Vue.filter("lang", function(value) {
     if(value in lang) {
         return lang[value];
     } else {
@@ -6,7 +6,7 @@ Vue.filter('lang', function(value) {
     }
 });
 
-Vue.directive('slot', {
+Vue.directive("slot", {
     bind: function() {
         var host = this.vm;
         var root = host.$root;
@@ -22,15 +22,15 @@ Vue.directive('slot', {
     }
 });
 
-Vue.component('table-cell', {
+Vue.component("table-cell", {
     template: '<td :class="class"><slot></slot></td>',
     props: {
         class: ''
     }
 });
 
-Vue.component('data-table', {
-    template: '#table-template',
+Vue.component("data-table", {
+    template: "#table-template",
     props: {
         data: [],
         columns: [],
@@ -58,10 +58,10 @@ Vue.component('data-table', {
     },
     watch: {
         checked: function() {
-            this.$dispatch('checked', this.checked);
+            this.$dispatch("checked", this.checked);
         },
         headline: function() {
-            this.$dispatch('headline', {
+            this.$dispatch("headline", {
                 headline: this.headline,
                 showSearch: this.showSearch
             });
@@ -88,7 +88,7 @@ Vue.component('data-table', {
             return this.columns.length + 1;
         },
         filtered: function() {
-            return this.$eval('data | filterBy filterKey');
+            return this.$eval("data | filterBy filterKey");
         },
         totalPages: function() {
             return Math.ceil(this.resultCount / this.perPage);
@@ -138,19 +138,19 @@ Vue.component('data-table', {
     }
 });
 
-Vue.component('file-table', {
-    template: '#file-table-template',
+Vue.component("file-table", {
+    template: "#file-table-template",
     props: {
         data: [],
         columns: [],
         showSearch: true,
-        headline: '',
-        filterKey: '',
-        path: '/'
+        headline: "",
+        filterKey: "",
+        path: "/"
     },
     data: function() {
         return {
-            oldHeadline: '',
+            oldHeadline: "",
             checked: []
         };
     },
@@ -158,8 +158,8 @@ Vue.component('file-table', {
 
         this.oldHeadline = this.headline;
 
-        if($.session.get('fileTablePath')) {
-            this.path = $.session.get('fileTablePath');
+        if($.session.get("fileTablePath")) {
+            this.path = $.session.get("fileTablePath");
         }
 
         var vue = this;
@@ -171,17 +171,17 @@ Vue.component('file-table', {
     },
     watch: {
         checked: function() {
-            this.$dispatch('checked', this.checked);
+            this.$dispatch("checked", this.checked);
         },
         headline: function() {
-            this.$dispatch('headline', {
+            this.$dispatch("headline", {
                 headline: this.headline,
                 showSearch: this.showSearch
             });
         },
         path: function() {
-            this.$dispatch('path', this.path);
-            $.session.set('fileTablePath', this.path);
+            this.$dispatch("path", this.path);
+            $.session.set("fileTablePath", this.path);
             this.fetch();
         }
     },
@@ -204,14 +204,14 @@ Vue.component('file-table', {
         },
         breadcrumbs: function() {
 
-            var path = '';
-            var crumb = '';
+            var path = "";
+            var crumb = "";
 
             if(this.path) {
-                crumb = this.path.split('/').filter(function(str) {
+                crumb = this.path.split("/").filter(function(str) {
                     return str.length;
                 }).map(function(part) {
-            	    return {path: path += '/' + part + '/', name: part};
+            	    return {path: path += "/" + part + "/", name: part};
                 });
             }
 
@@ -219,7 +219,7 @@ Vue.component('file-table', {
 
         },
         filtered: function() {
-            return this.$eval('data | filterBy filterKey');
+            return this.$eval("data | filterBy filterKey");
         }
     },
     methods: {
@@ -237,14 +237,14 @@ Vue.component('file-table', {
                     path: vue.path
                 },
                 success: function(data) {
-                    vue.$set('data', data);
+                    vue.$set("data", data);
                 }
             });
 
         },
         setPath: function(path) {
             this.checked = [];
-            this.$set('path', path);
+            this.$set("path", path);
         }
     },
     events: {
@@ -263,13 +263,13 @@ Vue.component('file-table', {
     }
 });
 
-Vue.transition('fade', {
-    enterClass: 'fadeInDown',
-    leaveClass: 'fadeOutUp'
+Vue.transition("fade", {
+    enterClass: "fadeInDown",
+    leaveClass: "fadeOutUp"
 });
 
-Vue.component('modal', {
-    template: '#modal-template',
+Vue.component("modal", {
+    template: "#modal-template",
     props: {
         show: {
             type: Boolean,
