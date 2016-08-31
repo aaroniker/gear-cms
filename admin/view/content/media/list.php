@@ -52,7 +52,9 @@
     <modal :show.sync="uploadModal">
         <h3 slot="header"><?=lang::get('upload'); ?></h3>
         <div slot="content">
-            1
+            <div id="upload">
+
+            </div>
         </div>
     </modal>
 
@@ -62,6 +64,9 @@
 
 <?php
 theme::addJSCode('
+    $("#upload").gearUpload({
+
+    });
     new Vue({
         el: "#media",
         data: {
