@@ -153,7 +153,13 @@ class userLogin extends user {
 
         self::delCookie($userID);
 
+        theme::addJSCode('
+            $.session.clear();
+        ');
+
         header('location: '.url::admin());
+
+        exit();
 
     }
 
