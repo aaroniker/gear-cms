@@ -155,11 +155,19 @@ Vue.component('file-table', {
         };
     },
     created: function() {
+
         this.oldHeadline = this.headline;
+
+        if($.session.get('fileTablePath')) {
+            this.path = $.session.get('fileTablePath');
+        }
+
         var vue = this;
+
         $(document).on("fetch", function() {
             vue.fetch();
         });
+
     },
     watch: {
         checked: function() {
@@ -173,6 +181,7 @@ Vue.component('file-table', {
         },
         path: function() {
             this.$dispatch('path', this.path);
+            $.session.set('fileTablePath', this.path);
             this.fetch();
         }
     },
