@@ -1,4 +1,4 @@
-![Gear Header](https://raw.githubusercontent.com/aaroniker/gear/master/media/header.png "Gear Header")
+[![Gear Header](https://raw.githubusercontent.com/aaroniker/gear/master/media/header.png)](http://gearcms.org/)
 
 # Gear
 
