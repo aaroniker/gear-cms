@@ -313,9 +313,10 @@ table.table {
 }
 
 .scrollVertical {
-    overflow-x: auto;
-    display: block;
     width: 100%;
+    @media(max-width: @screen-sm-min * 1px) {
+        overflow-x: auto;
+    }
 }
 
 #permissions {
