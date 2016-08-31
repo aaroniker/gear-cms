@@ -3,6 +3,9 @@
         header {
             h3 {
                 margin: 0;
+                @media(max-width: @screen-sm-min * 1px) {
+                    font-size: 21px;
+                }
             }
             .close {
                 i {
@@ -18,19 +21,24 @@
             position: relative;
             padding: 0 40px;
             margin: 0;
+            @media(max-width: @screen-sm-min * 1px) {
+                padding: 0 20px;
+            }
         }
         .content {
             padding: 30px 40px 40px 40px;
-        }
-        footer {
-            border-top: 1px solid @border;
-            padding: 20px 40px;
+            @media(max-width: @screen-sm-min * 1px) {
+                padding: 20px 25px 25px 25px;
+            }
         }
         padding: 40px 0 0 0;
         background: #fff;
         .box-shadow(0, 0, 20px, 0.2);
+        @media(max-width: @screen-sm-min * 1px) {
+            padding: 25px 0 0 0;
+        }
     }
-    width: 420px;
+    max-width: 420px;
     position: fixed;
     left: 20px;
     right: 20px;
