@@ -89,7 +89,7 @@ class media {
                     }
 
                 } else {
-                    message::error(lang::get('dir_not_empty').$path);
+                    message::error(lang::get('dir_not_empty'));
                 }
 
             } else {
