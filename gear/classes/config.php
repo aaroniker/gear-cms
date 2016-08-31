@@ -30,7 +30,7 @@ class config {
 
             } catch (exception $e) {
 
-                echo message::error($e->getMessage());
+                echo message::getMessage($e->getMessage(), 'error');
 
             }
 
