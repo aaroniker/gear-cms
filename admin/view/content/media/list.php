@@ -53,7 +53,16 @@
         <h3 slot="header"><?=lang::get('upload'); ?></h3>
         <div slot="content">
             <div id="upload">
+                <div class="drop">
 
+                    <i class="icon icon-ios-download-outline"></i>
+
+                    <input type="file" name="files[]" id="file" multiple>
+                    <label for="file" class="button">
+                        <?=lang::get('choose_files'); ?>
+                    </label>
+
+                </div>
             </div>
         </div>
     </modal>
