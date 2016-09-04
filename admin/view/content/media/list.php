@@ -63,6 +63,7 @@
                     </label>
 
                 </div>
+                <ul></ul>
             </div>
         </div>
     </modal>
@@ -99,6 +100,11 @@ theme::addJSCode('
             headline: function(data) {
                 this.headline = data.headline;
                 this.showSearch = data.showSearch;
+            }
+        },
+        watch: {
+            uploadModal: function() {
+                
             }
         },
         methods: {

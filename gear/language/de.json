@@ -43,6 +43,9 @@
     "file": "Datei",
     "files": "Dateien",
     "choose_files": "Dateien auswählen",
+    "complete": "Fertig",
+    "waiting": "Warte...",
+    "uploading": "Lädt hoch...",
     "pages": "Seiten",
     "home": "Home",
 
