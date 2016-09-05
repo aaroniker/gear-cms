@@ -2,6 +2,8 @@
 
 class media {
 
+    static $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+
     public static function getUniqueName($path, $filename) {
 
         if($pos = strrpos($filename, '.')) {
@@ -29,10 +31,9 @@ class media {
 
         $size = filesize($path);
 
-        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
         $power = ($size > 0) ? floor(log($size, 1024)) : 0;
 
-        return number_format($size / pow(1024, $power), 0, '.', ',') . ' ' . $units[$power];
+        return number_format($size / pow(1024, $power), 0, '.', ',') . ' ' . self::$units[$power];
 
     }
 
@@ -136,7 +137,7 @@ class media {
 
     }
 
-    public static function getServerMaxSize() {
+    public static function getServerMaxSize($bytes = true) {
 
         static $max_size = -1;
 
@@ -150,7 +151,15 @@ class media {
             }
         }
 
-        return $max_size;
+        if($bytes) {
+            return $max_size;
+        } else {
+
+            $power = ($max_size > 0) ? floor(log($max_size, 1024)) : 0;
+
+            return number_format($max_size / pow(1024, $power), 0, '.', ',') . ' ' . self::$units[$power];
+
+        }
 
     }
 
