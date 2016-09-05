@@ -50,27 +50,6 @@ $(document).ready(function() {
 
     });
 
-	$("#upload").gearUpload({
-		url: url + "admin/content/media/upload",
-		eventBeforeUpload: function(id){
-			updateFile(id, "info", lang["uploading"]);
-		},
-        eventNewFile: function(id, file){
-			addFile(id, file);
-		},
-		eventUploadProgress: function(id, percent){
-			var percentStr = percent + "%";
-			updateProgress(id, percentStr);
-		},
-		eventUploadSuccess: function(id, data){
-			updateFile(id, "success", lang["complete"]);
-			updateProgress(id, "100%");
-		},
-		eventUploadError: function(id, message){
-			updateFile(id, "error", message);
-		}
-	});
-
     getMessages(url);
 
     setInterval("getMessages(url)", 1000);
@@ -112,25 +91,6 @@ function getMessages(url) {
             }
         }
     });
-}
-
-function addFile(id, file) {
-
-    var name = file.name;
-    var size = file.size;
-
-    var template = "<li id='file" + id + "'><p><h4>" + name + " (" + size + ")</h4><small>" + lang["status"] + ": <strong>" + lang["waiting"] + "</strong></small></p><div class='progress'><div></div></div></li>";
-
-    $("#upload").find("ul").prepend(template);
-
-}
-
-function updateFile(id, status, message) {
-    $("#file" + id).find("strong").html(message).addClass(status);
-}
-
-function updateProgress(id, percent) {
-    $("#file" + id).find(".progress").children("div").width(percent);
 }
 
 function toggleNav(open) {
