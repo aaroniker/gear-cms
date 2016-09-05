@@ -62,6 +62,8 @@
                         <?=lang::get('choose_files'); ?>
                     </label>
 
+                    <small><strong><?=lang::get('path'); ?></strong> {{ path }}</small>
+
                 </div>
                 <ul></ul>
             </div>
@@ -79,14 +81,25 @@ theme::addJSCode('
         var name = file.name;
         var size = file.size;
 
-        var template = "<li id=\'file" + id + "\'><p><h4>" + name + " (" + size + ")</h4><small>" + lang["status"] + ": <strong>" + lang["waiting"] + "</strong></small></p><div class=\'progress\'><div></div></div></li>";
+        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
 
         $("#upload").find("ul").prepend(template);
 
     }
 
+    function addFileError(file, message) {
+
+        var name = file.name;
+        var size = file.size;
+
+        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
+
+        $("#upload ul").prepend(template);
+
+    }
+
     function updateFile(id, status, message) {
-        $("#file" + id).find("strong").html(message).addClass(status);
+        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
     }
 
     function updateProgress(id, percent) {
@@ -112,6 +125,7 @@ theme::addJSCode('
             },
             path: function(data) {
                 this.path = data;
+                $("#upload ul").html("");
             },
             headline: function(data) {
                 this.headline = data.headline;
@@ -121,8 +135,15 @@ theme::addJSCode('
         watch: {
             uploadModal: function() {
                 if(this.uploadModal) {
+
+                    var vue = this;
+
                 	$("#upload").gearUpload({
                 		url: url + "admin/content/media/upload",
+                        data: {
+                            path: vue.path
+                        },
+                        maxFileSize: "'.media::getServerMaxSize().'",
                 		eventBeforeUpload: function(id){
                 			updateFile(id, "info", lang["uploading"]);
                 		},
@@ -136,11 +157,19 @@ theme::addJSCode('
                 		eventUploadSuccess: function(id, data){
                 			updateFile(id, "success", lang["complete"]);
                 			updateProgress(id, "100%");
+                            vue.$broadcast("fetchData");
                 		},
                 		eventUploadError: function(id, message){
                 			updateFile(id, "error", message);
-                		}
+                		},
+                        eventFileSizeError: function(file) {
+                            addFileError(file, lang["file_too_big"]);
+                        },
+                        eventFileExtError: function(file) {
+                            addFileError(file, lang["file_wrong_ext"]);
+                        }
                 	});
+
                 }
             }
         },
