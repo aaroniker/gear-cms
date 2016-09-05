@@ -15,17 +15,66 @@
         label {
             position: absolute;
             left: 50%;
-            bottom: 20%;
+            bottom: 50px;
             white-space: nowrap;
+            .translate(-50%, 0);
+        }
+        small {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            white-space: nowrap;
+            line-height: 30px;
+            color: @text-light;
             .translate(-50%, 0);
         }
         position: relative;
         height: 200px;
         background: @light;
+        .round(3px);
     }
     ul {
         li {
-
+            &:last-child {
+                border-bottom: 0;
+            }
+            h4 {
+                font-size: 16px;
+                line-height: 28px;
+                margin: 0 0 5px 0;
+            }
+            small {
+                strong {
+                    &.success {
+                        color: @success;
+                    }
+                    &.info {
+                        color: @info;
+                    }
+                    &.error {
+                        color: @error;
+                    }
+                }
+                line-height: 28px;
+                position: absolute;
+                display: block;
+                right: 0;
+                top: 15px;
+            }
+            .progress {
+                div {
+                    height: 6px;
+                    width: 0;
+                    background: @primary;
+                    .round(2px);
+                }
+                height: 6px;
+                background: @light;
+                .round(2px);
+            }
+            border-bottom: 1px solid @border;
+            padding: 15px 0;
+            position: relative;
         }
         margin: 0;
         padding: 0;
