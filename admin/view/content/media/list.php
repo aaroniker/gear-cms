@@ -59,7 +59,7 @@
 
                     <input type="file" name="files[]" id="file" multiple>
                     <label for="file" class="button">
-                        <?=lang::get('choose_files'); ?>
+                        <?=lang::get('choose_files'); ?> (max. <?=media::getServerMaxSize(false); ?>)
                     </label>
 
                     <small><strong><?=lang::get('path'); ?></strong> {{ path }}</small>
@@ -83,7 +83,7 @@ theme::addJSCode('
 
         var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
 
-        $("#upload").find("ul").prepend(template);
+        $("#upload ul").prepend(template);
 
     }
 
@@ -103,7 +103,7 @@ theme::addJSCode('
     }
 
     function updateProgress(id, percent) {
-        $("#file" + id).find(".progress").children("div").width(percent);
+        $("#file" + id).find(".progress div").width(percent);
     }
 
     new Vue({
