@@ -46,6 +46,8 @@
     "complete": "Fertig",
     "waiting": "Warte...",
     "uploading": "Lädt hoch...",
+    "file_too_big": "Datei zu groß",
+    "file_wrong_ext": "Falscher Datei-Typ",
     "pages": "Seiten",
     "home": "Home",
 
