@@ -17,6 +17,7 @@
         extFilter: null,
         dataType: null,
         fileName: 'file',
+        uploadDelay: 0,
         eventInit: function() {},
         eventFallbackMode: function(message) {},
         eventNewFile: function(id, file) {},
@@ -199,72 +200,76 @@
 
     gearUpload.prototype.processQueue = function() {
 
-        var _this = this;
+    var _this = this;
 
-        _this.queuePos++;
+        setTimeout(function() {
 
-        if(_this.queuePos >= _this.queue.length) {
+            _this.queuePos++;
 
-            _this.settings.eventComplete.call(_this.element);
-            _this.queuePos = (_this.queue.length - 1);
-            _this.queueRunning = false;
+            if(_this.queuePos >= _this.queue.length) {
 
-            return;
+                _this.settings.eventComplete.call(_this.element);
+                _this.queuePos = (_this.queue.length - 1);
+                _this.queueRunning = false;
 
-        }
+                return;
 
-        var file = _this.queue[_this.queuePos];
-
-        var formData = new FormData();
-
-        formData.append(_this.settings.fileName, file);
-
-        var checkContinue = _this.settings.eventBeforeUpload.call(_this.element, _this.queuePos);
-
-        if(false === checkContinue) {
-            return;
-        }
-
-        $.each(_this.settings.data, function(exKey, exVal) {
-            formData.append(exKey, exVal);
-        });
-
-        _this.queueRunning = true;
-
-        $.ajax({
-            url: _this.settings.url,
-            type: _this.settings.method,
-            dataType: _this.settings.dataType,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            forceSync: false,
-            xhr: function() {
-                var xhrobj = $.ajaxSettings.xhr();
-                if(xhrobj.upload) {
-                    xhrobj.upload.addEventListener('progress', function(e) {
-                        var percent = 0;
-                        var position = e.loaded || e.position;
-                        var total = e.total || e.totalSize;
-                        if(e.lengthComputable){
-                            percent = Math.ceil(position / total * 100);
-                        }
-                        _this.settings.eventUploadProgress.call(_this.element, _this.queuePos, percent);
-                    }, false);
-                }
-                return xhrobj;
-            },
-            success: function (data, message, xhr) {
-                _this.settings.eventUploadSuccess.call(_this.element, _this.queuePos, data);
-            },
-            error: function (xhr, status, message) {
-                _this.settings.eventUploadError.call(_this.element, _this.queuePos, message);
-            },
-            complete: function(xhr, textStatus) {
-                _this.processQueue();
             }
-        });
+
+            var file = _this.queue[_this.queuePos];
+
+            var formData = new FormData();
+
+            formData.append(_this.settings.fileName, file);
+
+            var checkContinue = _this.settings.eventBeforeUpload.call(_this.element, _this.queuePos);
+
+            if(false === checkContinue) {
+                return;
+            }
+
+            $.each(_this.settings.data, function(exKey, exVal) {
+                formData.append(exKey, exVal);
+            });
+
+            _this.queueRunning = true;
+
+            $.ajax({
+                url: _this.settings.url,
+                type: _this.settings.method,
+                dataType: _this.settings.dataType,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                forceSync: false,
+                xhr: function() {
+                    var xhrobj = $.ajaxSettings.xhr();
+                    if(xhrobj.upload) {
+                        xhrobj.upload.addEventListener('progress', function(e) {
+                            var percent = 0;
+                            var position = e.loaded || e.position;
+                            var total = e.total || e.totalSize;
+                            if(e.lengthComputable){
+                                percent = Math.ceil(position / total * 100);
+                            }
+                            _this.settings.eventUploadProgress.call(_this.element, _this.queuePos, percent);
+                        }, false);
+                    }
+                    return xhrobj;
+                },
+                success: function (data, message, xhr) {
+                    _this.settings.eventUploadSuccess.call(_this.element, _this.queuePos, data);
+                },
+                error: function (xhr, status, message) {
+                    _this.settings.eventUploadError.call(_this.element, _this.queuePos, message);
+                },
+                complete: function(xhr, textStatus) {
+                    _this.processQueue();
+                }
+            });
+
+        }, _this.settings.uploadDelay);
 
     }
 
