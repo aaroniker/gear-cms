@@ -46,7 +46,16 @@ class contentController extends controller {
                 if($file) {
                     media::delete($file);
                 }
+
+            } elseif($action == 'upload') {
+
+                $file = type::files('file');
                 
+                $name = $file['name'];
+                $tmp = $file['tmp_name'];
+
+                move_uploaded_file($tmp, dir::media($path.$name));
+
             }
 
         }
