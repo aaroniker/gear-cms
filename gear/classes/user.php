@@ -3,6 +3,8 @@
 class user {
 
     static protected $userID = null;
+    static protected $avatarType = 'wavatar';
+    static protected $avatarRate = 'g';
 
     public static function setUser($id) {
         self::$userID = $id;
@@ -32,14 +34,14 @@ class user {
 
     }
 
-    public static function getAvatar($size = 80, $img = false, $d = 'wavatar', $r = 'g') {
+    public static function getAvatar($size = 80, $img = false) {
 
         $url = "https://www.gravatar.com/avatar/";
         $url .= md5(strtolower(self::current()->email));
-        $url .= "?s=$size&d=$d&r=$r";
+        $url .= "?s=$size&d=".self::$avatarType."&r=".self::$avatarRate;
 
         if($img) {
-            $url = "<img src='".$url."'>";
+            return "<img src='".$url."'>";
         }
 
         return $url;
