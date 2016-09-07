@@ -32,6 +32,20 @@ class user {
 
     }
 
+    public static function getAvatar($size = 80, $img = false, $d = 'wavatar', $r = 'g') {
+
+        $url = "https://www.gravatar.com/avatar/";
+        $url .= md5(strtolower(self::current()->email));
+        $url .= "?s=$size&d=$d&r=$r";
+
+        if($img) {
+            $url = "<img src='".$url."'>";
+        }
+
+        return $url;
+
+    }
+
 }
 
 ?>

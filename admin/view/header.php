@@ -25,7 +25,7 @@
                 </nav>
 
                 <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-                    <img src="<?=url::assets('img/avatar.jpg'); ?>" alt="">
+                    <?=user::getAvatar(36, true); ?>
                     <span>
                         <?=user::current()->username; ?>
                     </span>
