@@ -281,37 +281,39 @@ table.table {
         font-weight: normal;
         width: @checkbox-size;
     }
-    td {
-        &.shrink {
-            width: 1%;
-        }
-        a {
-            &.icon {
-                display: block;
+    tr {
+        td {
+            &.shrink {
+                width: 1%;
             }
-            &.dir {
-                .icon {
+            a {
+                &.icon {
                     display: block;
-                    width: 28px;
-                    height: 28px;
-                    background: @primary;
-                    color: #fff;
-                    line-height: 28px;
-                    font-size: 1em;
-                    text-align: center;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    .round(50%);
                 }
-                position: relative;
-                line-height: 28px;
-                padding-left: 38px;
-                display: block;
-                cursor: pointer;
+                &.dir {
+                    .icon {
+                        display: block;
+                        width: 28px;
+                        height: 28px;
+                        background: @primary;
+                        color: #fff;
+                        line-height: 28px;
+                        font-size: 1em;
+                        text-align: center;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        .round(50%);
+                    }
+                    position: relative;
+                    line-height: 28px;
+                    padding-left: 38px;
+                    display: block;
+                    cursor: pointer;
+                }
             }
+            vertical-align: middle;
         }
-        vertical-align: middle;
     }
     margin: 0;
 }
