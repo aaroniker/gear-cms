@@ -6,16 +6,16 @@ Vue.filter("lang", function(value) {
     }
 });
 
-Vue.directive('drag-and-drop', {
+Vue.directive("drag-and-drop", {
     params: [
-        'drag-and-drop',
-        'drag-start',
-        'drag',
-        'drag-over',
-        'drag-enter',
-        'drag-leave',
-        'drag-end',
-        'drop'
+        "drag-and-drop",
+        "drag-start",
+        "drag",
+        "drag-over",
+        "drag-enter",
+        "drag-leave",
+        "drag-end",
+        "drop"
     ],
     bind: function () {
 
@@ -23,14 +23,14 @@ Vue.directive('drag-and-drop', {
 
         this.handleDragStart = function(e) {
 
-            e.target.classList.add('dragging');
+            e.target.classList.add("dragging");
 
             this.vm._dragSrcEl = e.target;
 
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text', '*');
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text", "*");
 
-            if(typeof(this.vm[this.params.dragStart]) === 'function') {
+            if(typeof(this.vm[this.params.dragStart]) === "function") {
                 this.vm[this.params.dragStart].call(this, e.target);
             }
 
@@ -42,10 +42,10 @@ Vue.directive('drag-and-drop', {
                 e.preventDefault();
             }
 
-            e.dataTransfer.dropEffect = 'move';
-            e.target.classList.add('drag-over');
+            e.dataTransfer.dropEffect = "move";
+            e.target.classList.add("drag-over");
 
-            if(typeof(this.vm[this.params.dragOver]) === 'function') {
+            if(typeof(this.vm[this.params.dragOver]) === "function") {
                 this.vm[this.params.dragOver].call(this, e.target);
             }
 
@@ -55,27 +55,27 @@ Vue.directive('drag-and-drop', {
 
         this.handleDragEnter = function(e) {
 
-            if(typeof(this.vm[this.params.dragEnter]) === 'function') {
+            if(typeof(this.vm[this.params.dragEnter]) === "function") {
                 this.vm[this.params.dragEnter].call(this, e.target);
             }
 
-            e.target.classList.add('drag-enter');
+            e.target.classList.add("drag-enter");
 
         }.bind(this);
 
         this.handleDragLeave = function(e) {
 
-            if(typeof(this.vm[this.params.dragLeave]) === 'function') {
+            if(typeof(this.vm[this.params.dragLeave]) === "function") {
                 this.vm[this.params.dragLeave].call(this, e.target);
             }
 
-            e.target.classList.remove('drag-enter');
+            e.target.classList.remove("drag-enter");
 
         }.bind(this);
 
         this.handleDrag = function(e) {
 
-            if(typeof(this.vm[this.params.drag]) === 'function') {
+            if(typeof(this.vm[this.params.drag]) === "function") {
                 this.vm[this.params.drag].call(this, e.target);
             }
 
@@ -83,9 +83,9 @@ Vue.directive('drag-and-drop', {
 
         this.handleDragEnd = function(e) {
 
-            e.target.classList.remove('dragging', 'drag-over', 'drag-enter');
+            e.target.classList.remove("dragging", "drag-over", "drag-enter");
 
-            if(typeof(this.vm[this.params.dragEnd]) === 'function') {
+            if(typeof(this.vm[this.params.dragEnd]) === "function") {
                 this.vm[this.params.dragEnd].call(this, e.target);
             }
 
@@ -100,7 +100,7 @@ Vue.directive('drag-and-drop', {
             }
 
             if(this.vm._dragSrcEl != e.target) {
-                if(typeof(this.vm[this.params.drop]) === 'function') {
+                if(typeof(this.vm[this.params.drop]) === "function") {
 
                     var el = (e.target.draggable) ? e.target : e.target.parentElement;
 
@@ -113,15 +113,15 @@ Vue.directive('drag-and-drop', {
 
         }.bind(this);
 
-        this.el.setAttribute('draggable', 'true');
+        this.el.setAttribute("draggable", "true");
 
-        this.el.addEventListener('dragstart', this.handleDragStart, false);
-        this.el.addEventListener('dragenter', this.handleDragEnter, false);
-        this.el.addEventListener('dragover', this.handleDragOver, false);
-        this.el.addEventListener('drag', this.handleDrag, false);
-        this.el.addEventListener('dragleave', this.handleDragLeave, false);
-        this.el.addEventListener('drop', this.handleDrop, false);
-        this.el.addEventListener('dragend', this.handleDragEnd, false);
+        this.el.addEventListener("dragstart", this.handleDragStart, false);
+        this.el.addEventListener("dragenter", this.handleDragEnter, false);
+        this.el.addEventListener("dragover", this.handleDragOver, false);
+        this.el.addEventListener("drag", this.handleDrag, false);
+        this.el.addEventListener("dragleave", this.handleDragLeave, false);
+        this.el.addEventListener("drop", this.handleDrop, false);
+        this.el.addEventListener("dragend", this.handleDragEnd, false);
 
     },
     update: function (newValue, oldValue) {
@@ -129,15 +129,15 @@ Vue.directive('drag-and-drop', {
     },
     unbind: function () {
 
-        this.el.classList.remove('dragging', 'drag-over', 'drag-enter');
+        this.el.classList.remove("dragging", "drag-over", "drag-enter");
 
-        this.el.removeAttribute('draggable');
+        this.el.removeAttribute("draggable");
 
-        this.el.removeEventListener('dragstart', this.handleDragStart);
-        this.el.removeEventListener('dragenter', this.handleDragEnter);
-        this.el.removeEventListener('dragover', this.handleDragOver);
-        this.el.removeEventListener('dragleave', this.handleDragLeave);
-        this.el.removeEventListener('drag', this.handleDrag);
+        this.el.removeEventListener("dragstart", this.handleDragStart);
+        this.el.removeEventListener("dragenter", this.handleDragEnter);
+        this.el.removeEventListener("dragover", this.handleDragOver);
+        this.el.removeEventListener("dragleave", this.handleDragLeave);
+        this.el.removeEventListener("drag", this.handleDrag);
 
     }
 });
