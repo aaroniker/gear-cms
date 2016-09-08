@@ -44,6 +44,17 @@ class media {
 
         $array = array_diff(scandir(dir::media($path)), array('.', '..'));
 
+        if($path && $path != '/') {
+            $up = substr($path, 0, strrpos($path, '/'));
+            $dirs[] = [
+                'id' => '',
+                'name' => '..',
+                'path' => substr($up, 0, strrpos($up, '/')),
+                'size' => '',
+                'type' => 'dir'
+            ];
+        }
+
         foreach($array as $name) {
 
             $file = $path.$name;
