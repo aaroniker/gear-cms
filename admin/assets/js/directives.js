@@ -14,8 +14,7 @@ Vue.directive("slot", {
     }
 });
 
-var dropTo = "";
-var _ = Vue.util;
+var util = Vue.util;
 
 Vue.directive("drag", {
     bind: function() {
@@ -26,10 +25,8 @@ Vue.directive("drag", {
 
         this.dragstart = function(e) {
 
-            dropTo = self.arg;
-
-            e.target.classList.add(self.data.dragged);
             e.dataTransfer.effectAllowed = "all";
+
             e.dataTransfer.setData("data", JSON.stringify(self.data));
             e.dataTransfer.setData("tag", self.arg);
 
@@ -38,25 +35,21 @@ Vue.directive("drag", {
         };
 
         this.dragend = function(e) {
-
-            e.target.classList.remove(self.data.dragged);
-
             return false;
-
         };
 
         this.el.setAttribute("draggable", true);
 
-        _.on(this.el, "dragstart", this.dragstart);
-        _.on(this.el, "dragend", this.dragend);
+        util.on(this.el, "dragstart", this.dragstart);
+        util.on(this.el, "dragend", this.dragend);
 
     },
     unbind: function() {
 
         this.el.setAttribute("draggable", false);
 
-        _.off(this.el, "dragstart", this.dragstart);
-        _.off(this.el, "dragend", this.dragend);
+        util.off(this.el, "dragstart", this.dragstart);
+        util.off(this.el, "dragend", this.dragend);
 
     },
     update: function(value, old) {
@@ -71,10 +64,11 @@ Vue.directive("drop", {
         var self = this;
 
         this.dragenter = function(e) {
-            if(dropTo == self.arg) {
-                e.target.classList.add(self.arg);
-            }
+
+            self.el.className = "dragActive";
+
             return false;
+
         };
 
         this.dragover = function(e) {
@@ -83,13 +77,10 @@ Vue.directive("drop", {
                 e.preventDefault();
             }
 
-            if(dropTo == self.arg) {
-                e.dataTransfer.effectAllowed = "all";
-                e.dataTransfer.dropEffect = "copy";
-            } else {
-                e.dataTransfer.effectAllowed = "none";
-                e.dataTransfer.dropEffect = "none";
-            }
+            self.el.className = "dragActive";
+
+            e.dataTransfer.effectAllowed = "all";
+            e.dataTransfer.dropEffect = "copy";
 
             return false;
 
@@ -97,9 +88,7 @@ Vue.directive("drop", {
 
         this.dragleave = function(e) {
 
-            if(dropTo == self.arg) {
-                e.target.classList.remove(self.arg);
-            }
+            self.el.className = "";
 
             return false;
 
@@ -111,30 +100,29 @@ Vue.directive("drop", {
                 e.preventDefault();
             }
 
+            self.el.className = "";
+
             var tag = e.dataTransfer.getData("tag");
             var data = e.dataTransfer.getData("data");
 
-            if(dropTo == self.arg) {
-                self.handler(tag, JSON.parse(data));
-                e.target.classList.remove(self.arg);
-            }
+            self.handler(tag, JSON.parse(data));
 
             return false;
 
         };
 
-        _.on(this.el, "dragenter", this.dragenter);
-        _.on(this.el, "dragleave", this.dragleave);
-        _.on(this.el, "dragover", this.dragover);
-        _.on(this.el, "drop", this.drop);
+        util.on(this.el, "dragenter", this.dragenter);
+        util.on(this.el, "dragleave", this.dragleave);
+        util.on(this.el, "dragover", this.dragover);
+        util.on(this.el, "drop", this.drop);
 
     },
     unbind: function() {
 
-        _.off(this.el, "dragenter", this.dragenter);
-        _.off(this.el, "dragleave", this.dragleave);
-        _.off(this.el, "dragover", this.dragover);
-        _.off(this.el, "drop", this.drop);
+        util.off(this.el, "dragenter", this.dragenter);
+        util.off(this.el, "dragleave", this.dragleave);
+        util.off(this.el, "dragover", this.dragover);
+        util.off(this.el, "drop", this.drop);
 
     },
     update: function(value, old) {
