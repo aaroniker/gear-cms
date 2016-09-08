@@ -130,6 +130,14 @@ class media {
 
     }
 
+    public static function upload($file) {
+
+        $name = self::getUniqueName(dir::media($path), $file['name']);
+
+        return move_uploaded_file($file['tmp_name'], dir::media($path.$name));
+
+    }
+
     public static function delete($file) {
 
         if(strpos($file, ',') !== false) {

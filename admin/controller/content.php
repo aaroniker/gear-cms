@@ -75,10 +75,7 @@ class contentController extends controller {
 
                 $file = type::files('file');
 
-                $name = media::getUniqueName(dir::media($path), $file['name']);
-                $tmp = $file['tmp_name'];
-
-                move_uploaded_file($tmp, dir::media($path.$name));
+                media::upload($file);
 
             }
 
