@@ -229,6 +229,10 @@ Vue.component("file-table", {
         setPath: function(path) {
             this.checked = [];
             this.$set("path", path);
+        },
+        move: function(path, dropdata) {
+            console.log(path);
+            console.log(dropdata);
         }
     },
     events: {
