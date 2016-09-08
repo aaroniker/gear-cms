@@ -52,6 +52,25 @@ class contentController extends controller {
                     message::error(lang::get('file_not_moved'));
                 }
 
+            } elseif($action == 'edit') {
+
+                $file = type::post('file', 'string', '');
+                $name = type::post('name', 'string', '');
+
+                if($name) {
+
+                    if(media::move($file, $path.$name)) {
+                        message::success(lang::get('file_edited'));
+                    } else {
+                        message::error(lang::get('file_not_edited'));
+                    }
+
+                } else {
+
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+
+                }
+
             } elseif($action == 'delete') {
 
                 if($file) {

@@ -136,6 +136,7 @@ Vue.component("file-table", {
         return {
             editFile: false,
             editFileID: '',
+            editFileName: '',
             oldHeadline: "",
             checked: []
         };
@@ -248,6 +249,25 @@ Vue.component("file-table", {
                     name: dropdata.name
                 },
                 success: function() {
+                    vue.fetch();
+                }
+            });
+
+        },
+        edit: function() {
+
+            var vue = this;
+
+            $.ajax({
+                method: "POST",
+                url: url + "admin/content/media/edit",
+                data: {
+                    path: vue.path,
+                    file: vue.editFileID,
+                    name: vue.editFileName
+                },
+                success: function() {
+                    vue.editFile = false;
                     vue.fetch();
                 }
             });
