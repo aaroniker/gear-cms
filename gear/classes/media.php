@@ -138,6 +138,22 @@ class media {
 
     }
 
+    public static function addDir($path) {
+
+        if(!file_exists($path)) {
+
+            if(mkdir($path, 0777, true)) {
+                message::success(lang::get('dir_added'));
+            } else {
+                message::error(lang::get('dir_not_added'));
+            }
+
+        } else {
+            message::error(lang::get('dir_exists'));
+        }
+
+    }
+
     public static function delete($file) {
 
         if(strpos($file, ',') !== false) {

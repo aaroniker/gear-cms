@@ -35,6 +35,7 @@
     "size": "Größe",
     "add_dir": "Ordner hinzufügen",
     "dir_added": "Ordner erfolgreich hinzugefügt",
+    "dir_not_added": "Ordner konnte nicht hinzugefügt werden",
     "dir_exists": "Ordner existiert bereits",
     "dir_not_empty": "Ordner ist nicht leer",
     "dir_file_not_found": "Ordner oder Datei nicht gefunden",

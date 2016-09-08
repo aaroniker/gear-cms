@@ -26,16 +26,11 @@ class contentController extends controller {
 
                 $name = filter::url($name);
 
-                $path = dir::media($path.$name);
-
                 if($name) {
 
-                    if(!file_exists($path)) {
-                        mkdir($path, 0777, true);
-                        message::success(lang::get('dir_added'));
-                    } else {
-                        message::error(lang::get('dir_exists'));
-                    }
+                    $path = dir::media($path.$name);
+
+                    media::addDir($path);
 
                 } else {
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
@@ -73,9 +68,7 @@ class contentController extends controller {
 
             } elseif($action == 'upload') {
 
-                $file = type::files('file');
-
-                media::upload($file);
+                media::upload(type::files('file'));
 
             }
 
