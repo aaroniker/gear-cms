@@ -109,6 +109,16 @@ class media {
 
     }
 
+    public static function move($file, $destination) {
+
+        if(file_exists(dir::media($destination))) {
+            return false;
+        }
+
+        return rename(dir::media($file), dir::media($destination));
+
+    }
+
     public static function delete($file) {
 
         if(strpos($file, ',') !== false) {

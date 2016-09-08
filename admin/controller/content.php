@@ -41,6 +41,17 @@ class contentController extends controller {
 
                 }
 
+            } elseif($action == 'move') {
+
+                $filePath = type::post('file', 'string', '');
+                $name = type::post('name', 'string', '');
+
+                if(media::move($filePath, $path.$name)) {
+                    message::success(lang::get('file_moved'));
+                } else {
+                    message::error(lang::get('file_not_moved'));
+                }
+
             } elseif($action == 'delete') {
 
                 if($file) {

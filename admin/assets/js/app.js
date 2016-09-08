@@ -231,8 +231,22 @@ Vue.component("file-table", {
             this.$set("path", path);
         },
         move: function(path, dropdata) {
-            console.log(path);
-            console.log(dropdata);
+
+            var vue = this;
+
+            $.ajax({
+                method: "POST",
+                url: url + "admin/content/media/move",
+                data: {
+                    path: path,
+                    file: dropdata.id,
+                    name: dropdata.name
+                },
+                success: function() {
+                    vue.fetch();
+                }
+            });
+
         }
     },
     events: {

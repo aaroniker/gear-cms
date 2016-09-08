@@ -37,7 +37,7 @@
                             {{ entry.name }}
                         </a>
                     </td>
-                    <td v-if="entry.type == 'file'" v-drag="{id: entry.id}">
+                    <td v-if="entry.type == 'file'" v-drag="{id: entry.id, name: entry.name}">
                         {{ entry.name }}
                     </td>
                     <td>
