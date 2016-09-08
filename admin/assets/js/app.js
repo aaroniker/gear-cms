@@ -189,17 +189,20 @@ Vue.component("file-table", {
         breadcrumbs: function() {
 
             var path = "";
-            var crumb = "";
+            var str = "";
 
             if(this.path) {
-                crumb = this.path.split("/").filter(function(str) {
+                str = this.path.split("/").filter(function(str) {
                     return str.length;
                 }).map(function(part) {
-            	    return {path: path += "/" + part + "/", name: part};
+            	    return {
+                        path: path += "/" + part + "/",
+                        name: part
+                    };
                 });
             }
 
-            return crumb;
+            return str;
 
         },
         filtered: function() {
