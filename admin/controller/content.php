@@ -51,7 +51,7 @@ class contentController extends controller {
 
             } elseif($action == 'edit') {
 
-                $name = filter::url($name);
+                $name = filter::file($name);
 
                 if($name) {
 
