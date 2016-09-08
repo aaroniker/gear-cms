@@ -134,6 +134,8 @@ Vue.component("file-table", {
     },
     data: function() {
         return {
+            editFile: false,
+            editFileID: '',
             oldHeadline: "",
             checked: []
         };

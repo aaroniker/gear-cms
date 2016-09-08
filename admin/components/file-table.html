@@ -5,6 +5,12 @@
             <a @click="setPath(entry.path)">{{ entry.name }}</a>
         </li>
     </ul>
+    <modal :show.sync="editFile">
+        <h3 slot="header"><?=lang::get('edit'); ?></h3>
+        <div slot="content">
+            {{ editFileID }}
+        </div>
+    </modal>
     <div class="scrollVertical">
         <table class="table">
             <thead>
@@ -21,6 +27,7 @@
                     <th>
                         {{ 'size' | lang }}
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +49,9 @@
                     </td>
                     <td>
                         {{ entry.size }}
+                    </td>
+                    <td class="shrink">
+                        <a v-if="entry.id"  @click="editFileID = entry.id, editFile = true;" class="icon icon-edit"></a>
                     </td>
                 </tr>
                 <tr v-if="!filtered.length">
