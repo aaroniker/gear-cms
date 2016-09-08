@@ -31,13 +31,13 @@
                             <label for="entry{{ entry.id }}"></label>
                         </div>
                     </td>
-                    <td v-if="entry.type == 'dir'">
+                    <td v-if="entry.type == 'dir'" v-drop="move(entry.path, $dropdata)">
                         <a class="dir" @click="setPath(entry.path)">
                             <i class="icon icon-folder"></i>
                             {{ entry.name }}
                         </a>
                     </td>
-                    <td v-if="entry.type == 'file'">
+                    <td v-if="entry.type == 'file'" v-drag="{id: entry.id}">
                         {{ entry.name }}
                     </td>
                     <td>
