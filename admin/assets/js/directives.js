@@ -14,8 +14,6 @@ Vue.directive("slot", {
     }
 });
 
-var util = Vue.util;
-
 Vue.directive("drag", {
     bind: function() {
 
@@ -40,16 +38,16 @@ Vue.directive("drag", {
 
         this.el.setAttribute("draggable", true);
 
-        util.on(this.el, "dragstart", this.dragstart);
-        util.on(this.el, "dragend", this.dragend);
+        Vue.util.on(this.el, "dragstart", this.dragstart);
+        Vue.util.on(this.el, "dragend", this.dragend);
 
     },
     unbind: function() {
 
         this.el.setAttribute("draggable", false);
 
-        util.off(this.el, "dragstart", this.dragstart);
-        util.off(this.el, "dragend", this.dragend);
+        Vue.util.off(this.el, "dragstart", this.dragstart);
+        Vue.util.off(this.el, "dragend", this.dragend);
 
     },
     update: function(value, old) {
@@ -111,18 +109,18 @@ Vue.directive("drop", {
 
         };
 
-        util.on(this.el, "dragenter", this.dragenter);
-        util.on(this.el, "dragleave", this.dragleave);
-        util.on(this.el, "dragover", this.dragover);
-        util.on(this.el, "drop", this.drop);
+        Vue.util.on(this.el, "dragenter", this.dragenter);
+        Vue.util.on(this.el, "dragleave", this.dragleave);
+        Vue.util.on(this.el, "dragover", this.dragover);
+        Vue.util.on(this.el, "drop", this.drop);
 
     },
     unbind: function() {
 
-        util.off(this.el, "dragenter", this.dragenter);
-        util.off(this.el, "dragleave", this.dragleave);
-        util.off(this.el, "dragover", this.dragover);
-        util.off(this.el, "drop", this.drop);
+        Vue.util.off(this.el, "dragenter", this.dragenter);
+        Vue.util.off(this.el, "dragleave", this.dragleave);
+        Vue.util.off(this.el, "dragover", this.dragover);
+        Vue.util.off(this.el, "drop", this.drop);
 
     },
     update: function(value, old) {
