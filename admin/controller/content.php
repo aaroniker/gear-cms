@@ -24,11 +24,9 @@ class contentController extends controller {
 
             } elseif($action == 'addDir') {
 
-                $name = filter::url($name);
-
                 if($name) {
 
-                    $path = dir::media($path.$name);
+                    $path = dir::media($path.filter::url($name));
 
                     media::addDir($path);
 
@@ -46,11 +44,9 @@ class contentController extends controller {
 
             } elseif($action == 'edit') {
 
-                $name = filter::file($name);
-
                 if($name) {
 
-                    if(media::move($file, $path.$name)) {
+                    if(media::move($file, $path.filter::file($name))) {
                         message::success(lang::get('file_edited'));
                     } else {
                         message::error(lang::get('file_not_edited'));
