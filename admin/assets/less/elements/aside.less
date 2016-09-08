@@ -6,6 +6,13 @@
                     border-bottom: 0;
                 }
                 &.active {
+                    &:hover {
+                        .action {
+                            a {
+                                color: #fff;
+                            }
+                        }
+                    }
                     .action {
                         a {
                             color: #fff;
@@ -20,7 +27,7 @@
                 &:hover {
                     .action {
                         a {
-                            color: #fff;
+                            color: @text;
                         }
                         .opacity(1);
                     }
