@@ -49,7 +49,7 @@ class media {
             $dirs[] = [
                 'id' => '',
                 'name' => '..',
-                'path' => substr($up, 0, strrpos($up, '/')),
+                'path' => substr($up, 0, strrpos($up, '/')).'/',
                 'size' => '',
                 'type' => 'dir'
             ];
