@@ -15,14 +15,14 @@ class contentController extends controller {
         if(ajax::is()) {
 
             $path = type::post('path', 'string', '');
+            $name = type::post('name', 'string', '');
+            $file = type::post('file', 'string', $file);
 
             if($action == 'get') {
 
                 ajax::addReturn(json_encode(media::getAll($path)));
 
             } elseif($action == 'addDir') {
-
-                $name = type::post('name', 'string', '');
 
                 $path = dir::media($path.$name);
 
@@ -36,26 +36,18 @@ class contentController extends controller {
                     }
 
                 } else {
-
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
-
                 }
 
             } elseif($action == 'move') {
 
-                $filePath = type::post('file', 'string', '');
-                $name = type::post('name', 'string', '');
-
-                if(media::move($filePath, $path.$name)) {
+                if(media::move($file, $path.$name)) {
                     message::success(lang::get('file_moved'));
                 } else {
                     message::error(lang::get('file_not_moved'));
                 }
 
             } elseif($action == 'edit') {
-
-                $file = type::post('file', 'string', '');
-                $name = type::post('name', 'string', '');
 
                 if($name) {
 
@@ -66,9 +58,7 @@ class contentController extends controller {
                     }
 
                 } else {
-
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
-
                 }
 
             } elseif($action == 'delete') {
