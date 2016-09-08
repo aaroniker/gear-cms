@@ -24,6 +24,8 @@ class contentController extends controller {
 
             } elseif($action == 'addDir') {
 
+                $name = filter::url($name);
+
                 $path = dir::media($path.$name);
 
                 if($name) {
@@ -48,6 +50,8 @@ class contentController extends controller {
                 }
 
             } elseif($action == 'edit') {
+
+                $name = filter::url($name);
 
                 if($name) {
 
