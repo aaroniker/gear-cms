@@ -31,17 +31,14 @@
         if($this->model->id != user::current()->id) {
 
     	    $field = $form->addRadioInlineField('status', $this->model->status);
-            $field->fieldName(lang::get('status'));
-
             $field->add(1, lang::get('active'));
             $field->add(0, lang::get('blocked'));
 
         } else {
-
     	    $field = $form->addRawField('<p class="static">'.lang::get('status_change_own').'</p>');
-    	    $field->fieldName(lang::get('status'));
-
         }
+
+        $field->fieldName(lang::get('status'));
 
         $field = $form->addSelectField('permissionID', $this->model->permissionID);
         $field->fieldName(lang::get('permissions'));
