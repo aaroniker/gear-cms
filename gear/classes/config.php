@@ -133,10 +133,10 @@ class config {
 
         return [
             'userAgent' => $userAgent,
-            'name'      => $name,
-            'version'   => $version,
-            'platform'  => $platform,
-            'pattern'    => $pattern
+            'name' => $name,
+            'version' => $version,
+            'platform' => $platform,
+            'pattern' => $pattern
         ];
 
     }
