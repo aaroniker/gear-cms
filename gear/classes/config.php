@@ -77,6 +77,70 @@ class config {
 
     }
 
+    public static function getBrowser() {
+
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        $name = 'Unknown';
+        $platform = 'Unknown';
+        $version= "";
+
+        if(preg_match('/linux/i', $userAgent)) {
+            $platform = 'linux';
+        } elseif (preg_match('/macintosh|mac os x/i', $userAgent)) {
+            $platform = 'mac';
+        } elseif (preg_match('/windows|win32/i', $userAgent)) {
+            $platform = 'windows';
+        }
+
+        if(preg_match('/MSIE/i',$userAgent) && !preg_match('/Opera/i',$userAgent)) {
+            $name = 'Internet Explorer';
+            $ub = "MSIE";
+        } elseif(preg_match('/Firefox/i',$userAgent)) {
+            $name = 'Mozilla Firefox';
+            $ub = "Firefox";
+        } elseif(preg_match('/Chrome/i',$userAgent)) {
+            $name = 'Google Chrome';
+            $ub = "Chrome";
+        } elseif(preg_match('/Safari/i',$userAgent)) {
+            $name = 'Apple Safari';
+            $ub = "Safari";
+        } elseif(preg_match('/Opera/i',$userAgent)) {
+            $name = 'Opera';
+            $ub = "Opera";
+        }
+
+        $known = ['Version', $ub, 'other'];
+        $pattern = '#(?<browser>'.join('|', $known).')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+        preg_match_all($pattern, $userAgent, $matches);
+
+        $i = count($matches['browser']);
+
+        if($i != 1) {
+
+            if(strripos($userAgent,"Version") < strripos($userAgent,$ub)) {
+                $version = $matches['version'][0];
+            } else {
+                $version = $matches['version'][1];
+            }
+
+        } else {
+            $version= $matches['version'][0];
+        }
+
+        if($version == null || $version == "") {
+            $version = "?";
+        }
+
+        return [
+            'userAgent' => $userAgent,
+            'name'      => $name,
+            'version'   => $version,
+            'platform'  => $platform,
+            'pattern'    => $pattern
+        ];
+
+    }
+
 }
 
 ?>
