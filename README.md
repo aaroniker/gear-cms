@@ -19,9 +19,12 @@ I'm working on this nearly every day, you can see the progress at this repositor
 
 ## Screenshots
 
-![Media Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/media-screenshot.png "Media Screenshot")
-![User Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/user-screenshot.png "User Screenshot")
+### Login
 ![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
+### Media
+![Media Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/media-screenshot.png "Media Screenshot")
+### Userlist
+![User Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/user-screenshot.png "User Screenshot")
 
 ## System requirements
 
