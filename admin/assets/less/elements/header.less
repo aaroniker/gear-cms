@@ -36,10 +36,10 @@
                     &.active {
                         a {
                             &:hover {
-                                color: @text;
+                                color: @text-light;
                             }
                             background: #fff;
-                            color: @text-light;
+                            color: @text;
                             .round(4px);
                             .box-shadow(0, 2px, 6px, darken(@dark, 4%));
                         }
@@ -157,6 +157,9 @@
                         bottom: 0;
                         position: absolute;
                         background: @primary;
+                    }
+                    a {
+                        color: @text;
                     }
                 }
                 a {
