@@ -79,9 +79,7 @@ class userController extends controller {
                     message::success(lang::get('permission_group_added'));
 
                 } else {
-
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
-
                 }
 
             } elseif($action == 'edit') {
