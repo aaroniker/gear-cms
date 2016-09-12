@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     getMessages(url);
 
-    setInterval("getMessages(url)", 1000);
+    setInterval("getMessages(url)", 1200);
 
 });
 
@@ -84,7 +84,7 @@ function getMessages(url) {
                             element.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
                                 element.remove();
                             });
-                        }, 3000);
+                        }, 3200);
 
                     }
                 });
