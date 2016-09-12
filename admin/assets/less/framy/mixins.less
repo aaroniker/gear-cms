@@ -16,10 +16,10 @@
 	border-radius: 0 @radius @radius 0;
 }
 
-.box-shadow (@x: 0, @y: 0, @blur: 5px, @alpha: 0.8) {
-	-webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
-	-moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
-	box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+.box-shadow (@x: 0, @y: 0, @blur: 5px, @color) {
+	-webkit-box-shadow: @x @y @blur @color;
+	-moz-box-shadow: @x @y @blur @color;
+	box-shadow: @x @y @blur @color;
 }
 
 .opacity (@opacity: 0.4) {

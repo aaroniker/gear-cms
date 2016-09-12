@@ -3,9 +3,9 @@
         .logo {
             img {
                 display: block;
-                width: 132px;
-                -webkit-filter: drop-shadow(0 3px 10px fade(@dark, 15%));
-                filter: drop-shadow(0 3px 10px fade(@dark, 15%));
+                width: 130px;
+                -webkit-filter: drop-shadow(0 4px 10px fade(@dark, 15%));
+                filter: drop-shadow(0 4px 10px fade(@dark, 15%));
             }
             display: table;
             margin: 0 auto 50px auto;
@@ -13,8 +13,8 @@
         .content {
             #messages {
                 .animated {
-                    -webkit-animation-duration: 0.3s;
-                    animation-duration: 0.3s;
+                    -webkit-animation-duration: 0.4s;
+                    animation-duration: 0.4s;
                 }
                 bottom: 100%;
                 left: 50%;
@@ -24,7 +24,7 @@
             position: relative;
             background: #fff;
             padding: 45px 30px;
-            box-shadow: 0 10px 25px fade(@dark, 10%);
+            .box-shadow(0, 5px, 35px, fade(@dark, 5%));
         }
         .action {
             button {
@@ -37,7 +37,7 @@
             }
         }
     }
-    max-width: 300px;
+    max-width: 310px;
     width: 100%;
     margin: 10% auto 0 auto;
     display: table;

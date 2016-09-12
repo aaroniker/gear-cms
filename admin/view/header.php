@@ -1,19 +1,44 @@
 <header id="head">
 
-    <div class="container">
-
-        <div class="inner clear">
+    <div class="container clear">
+        <div class="inner">
 
             <div id="messages"></div>
+
+            <a href="http://gearcms.org" class="logo" target="_blank">
+                <img src="<?=url::assets('img/logoPrimary.svg'); ?>" alt="Gear Logo">
+            </a>
+
+            <?php
+                $menu = admin::getMenu();
+                if($menu):
+            ?>
+            <nav class="nav">
+                <ul>
+                <?php
+                    foreach($menu as $url => $array):
+
+                        $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                        echo '
+                        <li'.$class.'>
+                            <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                        </li>
+                        ';
+
+                    endforeach;
+                ?>
+                </ul>
+            </nav>
+            <?php
+                endif;
+            ?>
 
             <div class="expand">
                 <i class="icon icon-navicon-round"></i>
             </div>
 
-            <h1><?=admin::$page; ?></h1>
-
             <div class="user clear">
-
                 <nav>
                     <ul>
                         <li>
@@ -23,89 +48,43 @@
                         </li>
                     </ul>
                 </nav>
-
                 <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
                     <?=user::getAvatar(36, true); ?>
-                    <span>
-                        <?=user::current()->username; ?>
-                    </span>
+                    <span><?=user::current()->username; ?></span>
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
-    <div id="nav">
-
-        <?php
-            $submenu = admin::getSubmenu();
-
-            if($submenu):
-        ?>
-
-        <div class="submenu">
-            <div class="container">
-                <nav>
-                    <ul>
-                        <?php
-
-                            foreach($submenu as $url => $array) {
-
-                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
-
-                                echo '
-                                    <li'.$class.'>
-                                        <a href="'.url::admin($url).'">'.$array['name'].'</a>
-                                    </li>
-                                ';
-
-                            }
-
-                        ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <?php
-            endif;
-
-            $menu = admin::getMenu();
-
-            if($menu):
-        ?>
-
-        <div class="menu">
-            <div class="container">
-                <nav>
-                    <ul>
-                        <?php
-                            foreach($menu as $url => $array) {
-
-                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
-
-                                echo '
-                                    <li'.$class.'>
-                                        <a href="'.url::admin($url).'">'.$array['name'].'</a>
-                                    </li>
-                                ';
-
-                            }
-                        ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <?php
-            endif;
-        ?>
-
-    </div>
-
 </header>
+
+<?php
+    $submenu = admin::getSubmenu();
+    if($submenu):
+?>
+<div id="subHead">
+    <div class="container clear">
+        <nav>
+            <ul>
+            <?php
+                foreach($submenu as $url => $array):
+
+                    $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                    echo '
+                    <li'.$class.'>
+                        <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                    </li>
+                    ';
+
+                endforeach;
+            ?>
+            </ul>
+        </nav>
+    </div>
+</div>
+<?php
+    endif;
+?>
 
 <div class="container">
     <main>
