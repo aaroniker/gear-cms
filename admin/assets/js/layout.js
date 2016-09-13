@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 
     $("#head .expand").click(function() {
         toggleNav(!$(this).hasClass("active"));
