@@ -40,7 +40,9 @@ class message {
 
         userSession::init();
 
-        $_SESSION['messages'][] = [
+        $index = count($_SESSION['messages']) + 1;
+
+        $_SESSION['messages'][$index] = [
             'message' => $message,
             'class' => $class
         ];

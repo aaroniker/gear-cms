@@ -42,12 +42,14 @@
             $messages = type::session('messages');
 
             if(is_array($messages) && count($messages)) {
-                $key = key($messages);
-                $return = [
-                    'html' => message::getMessage($messages[$key]['message'], $messages[$key]['class']),
-                    'key' => $key
-                ];
-                ajax::addReturn(json_encode($return));
+                foreach($messages as $index => $val) {
+                    $return = [
+                        'html' => message::getMessage($val['message'], $val['class']),
+                        'index' => $index
+                    ];
+                    ajax::addReturn(json_encode($return));
+                    break;
+                }
             }
 
         }

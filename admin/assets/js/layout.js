@@ -71,7 +71,7 @@ function getMessages(url) {
                     url: url + "admin/",
                     data: {
                         method: "deleteMessage",
-                        index: message.key
+                        index: message.index
                     },
                     success: function() {
 
