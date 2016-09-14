@@ -4,6 +4,8 @@
 
 <div id="overlay"></div>
 
+</div>
+
 <?php
 
     $data = lang::loadLang(dir::language(lang::$lang.'.json'));
