@@ -41,7 +41,7 @@
         $field->fieldName(lang::get('status'));
 
         $field = $form->addRawField('
-            <a v-if="!changePassword" @click="changePassword = true" class="button border">'.lang::get('generate_password').'</a>
+            <a v-if="!changePassword" @click="changePassword = true" class="button border">'.lang::get('change_password').'</a>
             <template v-if="changePassword">
                 <a @click="changePassword = false" class="button border">'.lang::get('close').'</a>
                 <a @click="generate" class="button border">'.lang::get('generate_password').'</a>

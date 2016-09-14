@@ -69,6 +69,7 @@
     "groups": "Gruppen",
     "user_added": "Benutzer erfolgreich hinzugefügt",
     "generate_password": "Passwort generieren",
+    "change_password": "Passwort ändern",
     "new_password": "Neues Passwort",
     "sessions": "Session",
     "delete_all": "Alle löschen",
