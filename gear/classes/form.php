@@ -49,8 +49,8 @@ class form {
 
     }
 
-    public function addRawField($value) {
-        return $this->addField('form_'.count($this->return), $value, 'formRaw');
+    public function addRawField($value, $attributes = []) {
+        return $this->addField('form_'.count($this->return), $value, 'formRaw', $attributes);
 	}
 
     public function addTextField($name, $value, $attributes = []) {
@@ -224,7 +224,10 @@ class form {
 				continue;
 			}
 
-			$return[] = '<div class="form-element">';
+            $parent = $show->getAttribute('parent');
+            $show->delAttribute('parent');
+
+			$return[] = '<div class="form-element" '.$parent.'>';
 			$return[] = '<label class="sm-3" for="'.$show->getAttribute('id').'">'.$show->fieldName.'</label>';
 			$return[] = '<div class="sm-9">'.$show->get().'</div>';
 			$return[] = '</div>';
