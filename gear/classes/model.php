@@ -134,6 +134,8 @@ class model {
 
         if(is_array($data)) {
 
+            $data = extension::get('model_beforeSave', $data);
+
             $this->setData($data);
 
             $saveData = $this->saveData();
