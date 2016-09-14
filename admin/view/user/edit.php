@@ -40,6 +40,18 @@
 
         $field->fieldName(lang::get('status'));
 
+        $field = $form->addRawField('
+            <a v-if="!changePassword" @click="changePassword = true" class="button border">'.lang::get('generate_password').'</a>
+            <template v-if="changePassword">
+                <a @click="changePassword = false" class="button border">'.lang::get('close').'</a>
+                <a @click="generate" class="button border">'.lang::get('generate_password').'</a>
+            </template>
+        ');
+        $field->fieldName(lang::get('password'));
+
+        $field = $form->addTextField('password', '', ['parent' => 'v-if="changePassword"', 'v-model="newPassword"']);
+        $field->fieldName(lang::get('new_password'));
+
         $field = $form->addSelectField('permissionID', $this->model->permissionID);
         $field->fieldName(lang::get('permissions'));
         $field->add(0, lang::get('admin'));
@@ -55,6 +67,16 @@
         if($form->isSubmit()) {
 
             if($form->validation()) {
+
+			    extension::add('model_beforeSave', function($data) {
+                    if(!empty($data['password'])) {
+    			        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+    			        $data['password'] = $password;
+                    } else {
+                        unset($data['password']);
+                    }
+    		        return $data;
+			    });
 
 			    $this->model->save($form->getAll());
 
@@ -75,3 +97,29 @@
     </div>
 
 </section>
+
+<?php
+theme::addJSCode('
+    new Vue({
+        el: "#user",
+        data: {
+            newPassword: "",
+            changePassword: false
+        },
+        watch: {
+            changePassword: function(bool) {
+                if(bool) {
+                    this.newPassword = randomPassword(12);
+                } else {
+                    this.newPassword = "";
+                }
+            }
+        },
+        methods: {
+            generate: function() {
+                this.newPassword = randomPassword(12);
+            }
+        }
+    });
+');
+?>
