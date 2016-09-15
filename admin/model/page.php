@@ -13,6 +13,7 @@ class PageModel extends model {
         $this->type = 'page';
 
         $this->metaData = [
+            'parentID'
         ];
 
         if($id) {
@@ -23,11 +24,26 @@ class PageModel extends model {
 
     }
 
-    public static function getAll() {
+    public static function getAll($parentID = 0) {
+
+        $return = [];
 
         $getAllFromDb = self::getAllFromDb();
 
-        return $getAllFromDb;
+        if(is_array($getAllFromDb)) {
+            foreach($getAllFromDb as $key => $val) {
+                $page = new PageModel($val->id);
+                if($page->parentID == $parentID) {
+                    $return[$page->id] = [
+                        'name' => $page->name,
+                        'children' => self::getAll($page->id)
+                    ];
+                }
+            }
+        }
+
+        return $return;
+
     }
 
 }
