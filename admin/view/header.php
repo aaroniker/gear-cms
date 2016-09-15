@@ -13,7 +13,7 @@
                 $menu = admin::getMenu();
                 if($menu):
             ?>
-            <nav class="nav">
+            <nav id="nav">
                 <ul>
                 <?php
                     foreach($menu as $url => $array):
@@ -51,6 +51,9 @@
                     endforeach;
                 ?>
                 </ul>
+                <div class="close">
+                    <i class="icon icon-close-round"></i>
+                </div>
             </nav>
             <?php
                 endif;

@@ -4,6 +4,10 @@ jQuery(document).ready(function($) {
         toggleNav(!$(this).hasClass("active"));
     });
 
+    $("#nav .close").click(function() {
+        toggleNav(false);
+    });
+
     $(document).on("click", ".delete", function(e) {
 
         e.preventDefault();
