@@ -26,15 +26,15 @@
             display: block;
         }
         .nav {
-            ul {
+            & > ul {
                 &:after {
                     clear: both;
                     content: "";
                     display: block;
                 }
-                li {
+                & > li {
                     &.active {
-                        a {
+                        & > a {
                             &:hover {
                                 color: @text;
                             }
@@ -44,7 +44,7 @@
                             .box-shadow(0, 2px, 6px, darken(@dark, 4%));
                         }
                     }
-                    a {
+                    & > a {
                         &:hover {
                             color: lighten(@text-dark, 20%);
                         }
@@ -52,6 +52,9 @@
                         padding: 0 18px;
                         line-height: 36px;
                         color: @text-dark;
+                    }
+                    & > ul {
+                        display: none;
                     }
                     margin: 0 12px 0 0;
                     position: relative;

@@ -71,9 +71,7 @@ class admin {
     }
 
 
-    public static function getSubmenu($parentUrl = false) {
-
-        $parentUrl = ($parentUrl) ? $parentUrl : self::$url;
+    public static function getSubmenu($parentUrl) {
 
         if(isset(self::$submenu[$parentUrl])) {
             return self::$submenu[$parentUrl];

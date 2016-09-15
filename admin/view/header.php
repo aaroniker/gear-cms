@@ -23,6 +23,28 @@
                         echo '
                         <li'.$class.'>
                             <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                        ';
+
+                        $sub = admin::getSubmenu($url);
+                        if($sub):
+                            echo '<ul>';
+
+                            foreach($sub as $url => $array):
+
+                                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                                echo '
+                                <li'.$class.'>
+                                    <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                                </li>
+                                ';
+
+                            endforeach;
+
+                            echo '</ul>';
+                        endif;
+
+                        echo '
                         </li>
                         ';
 
@@ -58,7 +80,7 @@
 </header>
 
 <?php
-    $submenu = admin::getSubmenu();
+    $submenu = admin::getSubmenu(admin::$url);
     if($submenu):
 ?>
 <div id="subHead">
