@@ -49,7 +49,7 @@ theme::addJSCode('
             headline: "pages",
             addPageModal: false,
             pageName: "",
-            pages: []
+            pages: '.json_encode(PageModel::getAll()).'
         },
         methods: {
             fetch: function() {

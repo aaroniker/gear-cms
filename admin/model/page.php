@@ -23,6 +23,13 @@ class PageModel extends model {
 
     }
 
+    public static function getAll() {
+
+        $getAllFromDb = self::getAllFromDb();
+
+        return $getAllFromDb;
+    }
+
 }
 
 ?>

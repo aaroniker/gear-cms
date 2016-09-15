@@ -16,7 +16,7 @@ class contentController extends controller {
 
             if($action == 'get') {
 
-                ajax::addReturn(json_encode(PageModel::getAllFromDb()));
+                ajax::addReturn(json_encode(PageModel::getAll()));
 
             } elseif($action == 'add') {
 
