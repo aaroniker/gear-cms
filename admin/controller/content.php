@@ -8,6 +8,8 @@ class contentController extends controller {
 
     public function index() {
 
+        include(dir::view('content/list.php'));
+
     }
 
     public function media($action = '', $file = '') {
