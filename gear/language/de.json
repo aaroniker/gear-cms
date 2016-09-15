@@ -55,6 +55,8 @@
     "file_wrong_ext": "Falscher Datei-Typ",
     "pages": "Seiten",
     "page_added": "Seite hinzugefügt",
+    "page_parent": "Übergeordnete Seite",
+    "page_parent_no": "Keine",
     "home": "Home",
 
     ## User

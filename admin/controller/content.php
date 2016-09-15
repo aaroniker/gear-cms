@@ -21,11 +21,13 @@ class contentController extends controller {
             } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
+                $parentID = type::post('parent', 'int', 0);
 
                 if($name) {
 
                     $this->model->insert([
-                        'name'=> $name
+                        'name'=> $name,
+                        'parentID' => $parentID
                     ]);
 
                     message::success(lang::get('page_added'));
