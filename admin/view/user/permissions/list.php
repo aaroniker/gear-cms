@@ -61,12 +61,14 @@
 
                     <ul class="list">
                         <li v-for="perm in perms">
-                            <h3>{{ $key | lang }}</h3>
-                            <div v-for="entry in perm">
-                                <span>{{ entry }}</span>
-                                <div class="switch">
-                                    <input :id="$key" type="checkbox" :value="$key" :disabled="group.id == 0" v-model="checked">
-                                    <label :for="$key"></label>
+                            <div class="box">
+                                <h3>{{ $key | lang }}</h3>
+                                <div v-for="entry in perm">
+                                    <span>{{ entry }}</span>
+                                    <div class="switch">
+                                        <input :id="$key" type="checkbox" :value="$key" :disabled="group.id == 0" v-model="checked">
+                                        <label :for="$key"></label>
+                                    </div>
                                 </div>
                             </div>
                         </li>

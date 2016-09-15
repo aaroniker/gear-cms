@@ -91,6 +91,16 @@ main {
     padding: 50px 0 0 0;
 }
 
+.box {
+    background: #fff;
+    padding: 25px;
+    .round(4px);
+    .box-shadow(0, 10px, 25px, fade(@shadow, 50%));
+    @media(max-width: @screen-sm-min * 1px) {
+        padding: 15px;
+    }
+}
+
 a.delete {
     div {
         .confirm,
@@ -104,7 +114,7 @@ a.delete {
             width: 32px;
             height: 32px;
             margin: 0;
-            font-size: 21px!important;
+            font-size: 21px !important;
             top: 4px;
             text-align: center;
             .round();
@@ -128,7 +138,7 @@ a.delete {
         margin: -20px 0 0 -38px;
         -webkit-animation-duration: 0.4s;
         animation-duration: 0.4s;
-        .box-shadow(0, 0, 25px, fade(@dark, 15%));
+        .box-shadow(0, 0, 25px, fade(@shadow, 15%));
         .round(4px);
     }
     z-index: 5;
@@ -350,12 +360,12 @@ table.table {
     .list {
         li {
             h3 {
-                margin: 4px 0 15px 0;
+                margin: 0 0 20px 0;
                 line-height: 36px;
                 padding: 0 0 4px 0;
                 border-bottom: 1px solid @border;
             }
-            & > div {
+            .box > div {
                 span {
                     float: left;
                     display: block;
