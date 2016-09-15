@@ -6,7 +6,37 @@ class contentController extends controller {
 
     }
 
-    public function index() {
+    public function index($action = '', $id = 0) {
+
+        $this->model = new PageModel;
+
+        if(ajax::is()) {
+
+            $id = type::post('id', 'int', 0);
+
+            if($action == 'get') {
+
+                ajax::addReturn(json_encode(PageModel::getAllFromDb()));
+
+            } elseif($action == 'add') {
+
+                $name = type::post('name', 'string', '');
+
+                if($name) {
+
+                    $this->model->insert([
+                        'name'=> $name
+                    ]);
+
+                    message::success(lang::get('page_added'));
+
+                } else {
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                }
+
+            }
+
+        }
 
         include(dir::view('content/list.php'));
 
