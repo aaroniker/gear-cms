@@ -34,14 +34,25 @@
             <div v-if="searchBoxShow" class="searchBox">
                 <div class="search">
                     <input type="text" v-model="searchBox">
+                    <i @click="toggleSearchBox" class="icon icon-close-round"></i>
                 </div>
-                <template v-if="this.searchBox.length > 2">
+                <template v-if="pageParent != 0">
+                    <div class="result">
+                        <span class="active">{{ parent }}</span>
+                    </div>
+                </template>
+                <template v-if="this.searchBox.length >= 2">
                     <ul class="result" v-if="searchFilter.length">
                         <li v-for="entry in pageAll | filterBy searchBox" @click="pageParent = entry.id, pageParentName = entry.name">
                             {{ entry.name }}
                         </li>
                     </ul>
                     <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
+                </template>
+                <template v-if="pageParent != 0">
+                    <div class="result">
+                        <span @click="pageParent = 0, pageParentName = \'\'">{{ "page_parent_no" | lang }}</span>
+                    </div>
                 </template>
             </div>
         </div>
