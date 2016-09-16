@@ -16,7 +16,12 @@ class contentController extends controller {
 
             if($action == 'get') {
 
-                ajax::addReturn(json_encode(PageModel::getAll()));
+                $return = [
+                    'tree' => PageModel::getAll(),
+                    'all' => PageModel::getAllFromDb()
+                ];
+
+                ajax::addReturn(json_encode($return));
 
             } elseif($action == 'add') {
 

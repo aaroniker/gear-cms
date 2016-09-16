@@ -30,7 +30,20 @@
 
         $field = $form->addRawField('
         <div class="form-select">
-            <div class="choose">'.lang::get('page_parent_no').'</div>
+            <div class="choose" @click="toggleSearchBox">{{ parent }}</div>
+            <div v-if="searchBoxShow" class="searchBox">
+                <div class="search">
+                    <input type="text" v-model="searchBox">
+                </div>
+                <template v-if="this.searchBox.length > 2">
+                    <ul class="result" v-if="searchFilter.length">
+                        <li v-for="entry in pageAll | filterBy searchBox" @click="pageParent = entry.id, pageParentName = entry.name">
+                            {{ entry.name }}
+                        </li>
+                    </ul>
+                    <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
+                </template>
+            </div>
         </div>
         ');
         $field->fieldName(lang::get('page_parent'));
@@ -77,8 +90,11 @@ theme::addJSCode('
             addPageModal: false,
             pageName: "",
             pageParent: 0,
+            pageParentName: "",
             pageTree: '.json_encode(PageModel::getAll()).',
-            pageAll: '.json_encode(PageModel::getAllFromDb()).'
+            pageAll: '.json_encode(PageModel::getAllFromDb()).',
+            searchBoxShow: false,
+            searchBox: ""
         },
         methods: {
             fetch: function() {
@@ -90,7 +106,8 @@ theme::addJSCode('
                     url: "'.url::admin('content', ['index', 'get']).'",
                     dataType: "json",
                     success: function(data) {
-                        vue.pageTree = data;
+                        vue.pageAll = data.all;
+                        vue.pageTree = data.tree;
                     }
                 });
 
@@ -114,6 +131,26 @@ theme::addJSCode('
                     }
                 });
 
+            },
+            toggleSearchBox: function() {
+                this.searchBoxShow = !this.searchBoxShow;
+            }
+        },
+        watch: {
+            pageParent: function() {
+                this.searchBoxShow = false;
+            }
+        },
+        computed: {
+            searchFilter: function() {
+                return this.$eval("pageAll | filterBy searchBox");
+            },
+            parent: function() {
+                if(this.pageParent == 0) {
+                    return lang["page_parent_no"];
+                } else {
+                    return this.pageParentName;
+                }
             }
         }
     });

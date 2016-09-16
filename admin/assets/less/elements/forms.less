@@ -88,4 +88,57 @@
 		line-height: @line-height;
 		padding: @input-padding-v @input-padding-h;
 	}
+    .searchBox {
+        .search {
+            &:before {
+                content: @ionicon-var-ios-search;
+                font-family: @ionicons-font-family;
+                line-height: 32px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 34px;
+                text-align: center;
+                font-size: 1.4em;
+            }
+            input {
+                &:focus {
+                    outline: none;
+                }
+                background: none;
+                border: 0;
+                line-height: 32px;
+                color: @text;
+                width: 100%;
+                position: relative;
+                z-index: 1;
+            }
+            padding: 0 0 0 34px;
+            position: relative;
+        }
+        .result {
+            li {
+                &:hover {
+                    color: #fff;
+                    background: @primary;
+                }
+                padding: 2px 5px;
+                cursor: pointer;
+                .round(3px);
+            }
+            border-top: 1px solid @border;
+            padding: 10px 0 5px 0;
+            margin: 0;
+            list-style: none;
+        }
+        top: 100%;
+        left: 5px;
+        right: 5px;
+        .translate(0, -5px);
+        padding: 5px 10px;
+        position: absolute;
+        z-index: 1;
+        background: #fff;
+        border: 1px solid @border;
+    }
 }
