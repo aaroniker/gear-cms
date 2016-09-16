@@ -28,14 +28,12 @@
         $field->addAttribute('v-model', 'pageName');
         $field->fieldValidate();
 
-        $field = $form->addSelectField('parentID', '');
+        $field = $form->addRawField('
+        <div class="form-select">
+            <div class="choose">'.lang::get('page_parent_no').'</div>
+        </div>
+        ');
         $field->fieldName(lang::get('page_parent'));
-        $field->addAttribute('v-model', 'pageParent');
-
-        $field->add(0, lang::get('page_parent_no'));
-        foreach(PageModel::getAllFromDb() as $page) {
-            $field->add($page->id, $page->name);
-        }
 
     ?>
 
