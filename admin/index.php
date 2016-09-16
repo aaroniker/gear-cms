@@ -78,6 +78,7 @@
 
         admin::addMenu(lang::get('content'), 'content');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
+        admin::addSubmenu(lang::get('menus'), 'menus', 'content');
         admin::addSubmenu(lang::get('media'), 'media', 'content');
 
         admin::addMenu(lang::get('user'), 'user');

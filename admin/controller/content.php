@@ -44,6 +44,12 @@ class contentController extends controller {
 
     }
 
+    public function menus() {
+
+        include(dir::view('content/menus/list.php'));
+
+    }
+
     public function media($action = '', $file = '') {
 
         if(ajax::is()) {

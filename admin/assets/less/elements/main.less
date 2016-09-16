@@ -91,20 +91,35 @@ main {
     padding: 50px 0 0 0;
 }
 
-#pageList {
+#menuList {
     ul {
+        .placeholder {
+            background: @error;
+        }
+        .hint {
+            background: @success;
+        }
         li {
             div {
                 padding: 5px 10px;
-                background: #fff;
+                background: @light;
             }
-            margin: 5px 0 5px 15px;
+            margin: 5px 5px 5px 15px;
         }
         border: 1px solid @border;
-        list-style-type: none;
+        list-style: none;
         padding: 0;
         margin: 0;
     }
+}
+
+#sortableListsBase li {
+    div {
+        padding: 5px 10px;
+        background: @light;
+    }
+    margin: 0;
+    list-style: none;
 }
 
 .box {
