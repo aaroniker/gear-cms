@@ -72,17 +72,6 @@ theme::addJSCode('
         }
     });
 
-    var options = {
-        insertZone: 30,
-        placeholderClass: "placeholder",
-        hintClass: "hint",
-        baseClass: "",
-        complete: function(el) {
-            console.log("complete");
-        },
-        ignoreClass: "click"
-    };
-
     new Vue({
         el: "#content",
         data: {
@@ -92,9 +81,6 @@ theme::addJSCode('
             pageParent: 0,
             pageTree: '.json_encode(PageModel::getAll()).',
             pageAll: '.json_encode(PageModel::getAllFromDb()).'
-        },
-        ready: function() {
-            $("#pageList > ul").sortableLists(options);
         },
         methods: {
             fetch: function() {
@@ -107,7 +93,6 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.pageTree = data;
-                        $("#pageList > ul").sortableLists(options);
                     }
                 });
 

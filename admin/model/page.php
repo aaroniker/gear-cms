@@ -35,6 +35,7 @@ class PageModel extends model {
                 $page = new PageModel($val->id);
                 if($page->parentID == $parentID) {
                     $return[$page->id] = [
+                        'id' => $page->id,
                         'name' => $page->name,
                         'children' => self::getAll($page->id)
                     ];
