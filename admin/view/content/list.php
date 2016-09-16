@@ -46,14 +46,18 @@
         </div>
     </modal>
 
-    <item v-for="model in pageTree" :model="model"></item>
+    <div id="pageList" class="box">
+        <ul>
+            <item v-for="model in pageTree" :model="model"></item>
+        </ul>
+    </div>
 
 </section>
 
 <template id="item-template">
     <li>
-        {{ model.name }}
-        <ul v-if="model.children">
+        <div>{{ model.name }}</div>
+        <ul v-if="model.children.length != 0">
             <item v-for="model in model.children" :model="model"></item>
         </ul>
     </li>
@@ -67,6 +71,18 @@ theme::addJSCode('
             model: Object
         }
     });
+
+    var options = {
+        insertZone: 30,
+        placeholderClass: "placeholder",
+        hintClass: "hint",
+        baseClass: "",
+        complete: function(el) {
+            console.log("complete");
+        },
+        ignoreClass: "click"
+    };
+
     new Vue({
         el: "#content",
         data: {
@@ -76,6 +92,9 @@ theme::addJSCode('
             pageParent: 0,
             pageTree: '.json_encode(PageModel::getAll()).',
             pageAll: '.json_encode(PageModel::getAllFromDb()).'
+        },
+        ready: function() {
+            $("#pageList > ul").sortableLists(options);
         },
         methods: {
             fetch: function() {
@@ -88,6 +107,7 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.pageTree = data;
+                        $("#pageList > ul").sortableLists(options);
                     }
                 });
 
