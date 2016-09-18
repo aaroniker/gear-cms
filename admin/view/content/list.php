@@ -46,13 +46,18 @@
         </div>
     </modal>
 
-    <item v-for="model in pageTree" :model="model"></item>
+    <div id="pageList">
+        <div v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></div>
+        <ul>
+            <item v-for="model in pageTree" :model="model"></item>
+        </ul>
+    </div>
 
 </section>
 
 <template id="item-template">
     <li>
-        {{ model.name }}
+        <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">{{ model.name }}</div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
         </ul>
@@ -65,6 +70,25 @@ theme::addJSCode('
         template: "#item-template",
         props: {
             model: Object
+        },
+        methods: {
+            move: function(parentID, data) {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'move']).'",
+                    data: {
+                        parent: parentID,
+                        id: data.id
+                    },
+                    success: function() {
+                        vue.$dispatch("eventFetch");
+                    }
+                });
+
+            }
         }
     });
     new Vue({
@@ -87,7 +111,8 @@ theme::addJSCode('
                     url: "'.url::admin('content', ['index', 'get']).'",
                     dataType: "json",
                     success: function(data) {
-                        vue.pageTree = data;
+                        vue.pageAll = data.all;
+                        vue.pageTree = data.tree;
                     }
                 });
 
@@ -111,6 +136,28 @@ theme::addJSCode('
                     }
                 });
 
+            },
+            move: function(parentID, data) {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'move']).'",
+                    data: {
+                        parent: parentID,
+                        id: data.id
+                    },
+                    success: function() {
+                        vue.fetch();
+                    }
+                });
+
+            }
+        },
+        events: {
+            eventFetch: function() {
+                this.fetch();
             }
         }
     });

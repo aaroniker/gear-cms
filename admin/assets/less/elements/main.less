@@ -91,6 +91,46 @@ main {
     padding: 50px 0 0 0;
 }
 
+#menuList {
+    ul {
+        .placeholder {
+            background: @error;
+        }
+        .hint {
+            background: @success;
+        }
+        li {
+            div {
+                padding: 5px 10px;
+                background: @light;
+            }
+            margin: 5px 5px 5px 15px;
+        }
+        border: 1px solid @border;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+#pageList {
+    .dragActive > div {
+        background: red;
+    }
+    .drag {
+        color: red;
+    }
+}
+
+#sortableListsBase li {
+    div {
+        padding: 5px 10px;
+        background: @light;
+    }
+    margin: 0;
+    list-style: none;
+}
+
 .box {
     background: #fff;
     padding: 25px;

@@ -13,15 +13,32 @@ class contentController extends controller {
         if(ajax::is()) {
 
             $id = type::post('id', 'int', 0);
+            $parentID = type::post('parent', 'int', 0);
 
             if($action == 'get') {
 
-                ajax::addReturn(json_encode(PageModel::getAll()));
+                $return = [
+                    'tree' => PageModel::getAll(),
+                    'all' => PageModel::getAllFromDb()
+                ];
+
+                ajax::addReturn(json_encode($return));
+
+            } elseif($action == 'move') {
+
+                $this->model->load($id);
+
+                $save = [
+                    'parentID' => $parentID
+                ];
+
+                if($this->model->save($save)) {
+                    message::success(lang::get('page_moved'));
+                }
 
             } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
-                $parentID = type::post('parent', 'int', 0);
 
                 if($name) {
 
@@ -41,6 +58,12 @@ class contentController extends controller {
         }
 
         include(dir::view('content/list.php'));
+
+    }
+
+    public function menus() {
+
+        include(dir::view('content/menus/list.php'));
 
     }
 
