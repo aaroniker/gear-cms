@@ -1,12 +1,13 @@
 <FilesMatch "((\.(lock|cache))|config.json|composer.json)$">
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-        Satisfy All
-    </IfModule>
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
+	<IfModule !mod_authz_core.c>
+		Order allow,deny
+		Deny from all
+		Satisfy All
+	</IfModule>
+	
+	<IfModule mod_authz_core.c>
+		Require all denied
+	</IfModule>
 </FilesMatch>
 
 Options -MultiViews
@@ -14,7 +15,7 @@ Options -MultiViews
 RewriteEngine On
 
 <IfModule mod_autoindex.c>
-    Options -Indexes
+	Options -Indexes
 </IfModule>
 
 RewriteCond %{REQUEST_FILENAME} !-d
