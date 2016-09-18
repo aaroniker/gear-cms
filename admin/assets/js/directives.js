@@ -25,6 +25,8 @@ Vue.directive("drag", {
 
             e.dataTransfer.effectAllowed = "all";
 
+            self.el.className = "drag";
+
             e.dataTransfer.setData("data", JSON.stringify(self.data));
             e.dataTransfer.setData("tag", self.arg);
 
@@ -33,7 +35,11 @@ Vue.directive("drag", {
         };
 
         this.dragend = function(e) {
+
+            self.el.className = "";
+
             return false;
+
         };
 
         this.el.setAttribute("draggable", true);
