@@ -28,14 +28,36 @@
         $field->addAttribute('v-model', 'pageName');
         $field->fieldValidate();
 
-        $field = $form->addSelectField('parentID', '');
+        $field = $form->addRawField('
+        <div class="form-select">
+            <div class="choose" @click="toggleSearchBox">{{ parent }}</div>
+            <div v-if="searchBoxShow" class="searchBox">
+                <div class="search">
+                    <input type="text" v-model="searchBox">
+                    <i @click="toggleSearchBox" class="icon icon-close-round"></i>
+                </div>
+                <template v-if="pageParent != 0">
+                    <div class="result">
+                        <span class="active">{{ parent }}</span>
+                    </div>
+                </template>
+                <template v-if="this.searchBox.length >= 2">
+                    <ul class="result" v-if="searchFilter.length">
+                        <li v-for="entry in pageAll | filterBy searchBox" @click="pageParent = entry.id, pageParentName = entry.name">
+                            {{ entry.name }}
+                        </li>
+                    </ul>
+                    <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
+                </template>
+                <template v-if="pageParent != 0">
+                    <div class="result">
+                        <span @click="pageParent = 0, pageParentName = \'\'">{{ "page_parent_no" | lang }}</span>
+                    </div>
+                </template>
+            </div>
+        </div>
+        ');
         $field->fieldName(lang::get('page_parent'));
-        $field->addAttribute('v-model', 'pageParent');
-
-        $field->add(0, lang::get('page_parent_no'));
-        foreach(PageModel::getAllFromDb() as $page) {
-            $field->add($page->id, $page->name);
-        }
 
     ?>
 
@@ -46,8 +68,12 @@
         </div>
     </modal>
 
+<<<<<<< HEAD
     <div id="pageList">
         <div v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></div>
+=======
+    <div id="pageList" class="box">
+>>>>>>> origin/master
         <ul>
             <item v-for="model in pageTree" :model="model"></item>
         </ul>
@@ -57,8 +83,13 @@
 
 <template id="item-template">
     <li>
+<<<<<<< HEAD
         <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">{{ model.name }}</div>
         <ul v-if="model.children">
+=======
+        <div>{{ model.name }}</div>
+        <ul v-if="model.children.length != 0">
+>>>>>>> origin/master
             <item v-for="model in model.children" :model="model"></item>
         </ul>
     </li>
@@ -91,6 +122,7 @@ theme::addJSCode('
             }
         }
     });
+
     new Vue({
         el: "#content",
         data: {
@@ -98,8 +130,11 @@ theme::addJSCode('
             addPageModal: false,
             pageName: "",
             pageParent: 0,
+            pageParentName: "",
             pageTree: '.json_encode(PageModel::getAll()).',
-            pageAll: '.json_encode(PageModel::getAllFromDb()).'
+            pageAll: '.json_encode(PageModel::getAllFromDb()).',
+            searchBoxShow: false,
+            searchBox: ""
         },
         methods: {
             fetch: function() {
@@ -137,6 +172,7 @@ theme::addJSCode('
                 });
 
             },
+<<<<<<< HEAD
             move: function(parentID, data) {
 
                 var vue = this;
@@ -158,6 +194,27 @@ theme::addJSCode('
         events: {
             eventFetch: function() {
                 this.fetch();
+=======
+            toggleSearchBox: function() {
+                this.searchBoxShow = !this.searchBoxShow;
+            }
+        },
+        watch: {
+            pageParent: function() {
+                this.searchBoxShow = false;
+            }
+        },
+        computed: {
+            searchFilter: function() {
+                return this.$eval("pageAll | filterBy searchBox");
+            },
+            parent: function() {
+                if(this.pageParent == 0) {
+                    return lang["page_parent_no"];
+                } else {
+                    return this.pageParentName;
+                }
+>>>>>>> origin/master
             }
         }
     });

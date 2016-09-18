@@ -23,6 +23,7 @@ class contentController extends controller {
                 ];
 
                 ajax::addReturn(json_encode($return));
+<<<<<<< HEAD
 
             } elseif($action == 'move') {
 
@@ -35,6 +36,8 @@ class contentController extends controller {
                 if($this->model->save($save)) {
                     message::success(lang::get('page_moved'));
                 }
+=======
+>>>>>>> origin/master
 
             } elseif($action == 'add') {
 
