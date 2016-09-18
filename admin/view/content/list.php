@@ -68,12 +68,8 @@
         </div>
     </modal>
 
-<<<<<<< HEAD
     <div id="pageList">
         <div v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></div>
-=======
-    <div id="pageList" class="box">
->>>>>>> origin/master
         <ul>
             <item v-for="model in pageTree" :model="model"></item>
         </ul>
@@ -83,13 +79,8 @@
 
 <template id="item-template">
     <li>
-<<<<<<< HEAD
         <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">{{ model.name }}</div>
         <ul v-if="model.children">
-=======
-        <div>{{ model.name }}</div>
-        <ul v-if="model.children.length != 0">
->>>>>>> origin/master
             <item v-for="model in model.children" :model="model"></item>
         </ul>
     </li>
@@ -172,7 +163,6 @@ theme::addJSCode('
                 });
 
             },
-<<<<<<< HEAD
             move: function(parentID, data) {
 
                 var vue = this;
@@ -194,7 +184,7 @@ theme::addJSCode('
         events: {
             eventFetch: function() {
                 this.fetch();
-=======
+            },
             toggleSearchBox: function() {
                 this.searchBoxShow = !this.searchBoxShow;
             }
@@ -214,7 +204,6 @@ theme::addJSCode('
                 } else {
                     return this.pageParentName;
                 }
->>>>>>> origin/master
             }
         }
     });
