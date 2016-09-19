@@ -32,14 +32,23 @@ class option {
             return self::del($name);
         }
 
-        $values = [
-            'option_value' => $value
-        ];
-
         if(self::has($name)) {
+
+            $values = [
+                'option_value' => $value
+            ];
+
             return db()->update('options')->set($values)->where('option_key', $name)->execute();
+
         } else {
+
+            $values = [
+                'option_key' => $name,
+                'option_value' => $value
+            ];
+
             return db()->insertInto('options')->values($values)->execute();
+
         }
 
     }
