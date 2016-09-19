@@ -28,7 +28,7 @@ class option {
 
     public static function set($name, $value) {
 
-        if(!$value) {
+        if(is_null($value)) {
             return self::del($name);
         }
 
