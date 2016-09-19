@@ -1,6 +1,7 @@
 [![Gear Header](https://raw.githubusercontent.com/aaroniker/gear/master/media/header.png)](http://gearcms.org/)
 
 # Gear
+(Will be available after the release in english also!)
 
 * [Installation](#installation)
 * [Screenshots](#screenshots)
