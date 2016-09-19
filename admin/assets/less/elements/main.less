@@ -158,7 +158,7 @@ main {
                     color: @text-light;
                 }
                 position: absolute;
-                right: 80px;
+                right: 65px;
                 color: @primary;
                 font-size: 21px;
                 line-height: 30px;
@@ -166,17 +166,16 @@ main {
                 display: block;
                 .translate(0, -50%);
             }
-            .checkbox {
-                label {
-                    &:before {
-                        background: none;
-                    }
-                    padding: 0 0 0 @checkbox-size;
+            .delete {
+                &:hover {
+                    color: @primary;
                 }
-                margin-bottom: 0;
+                display: block;
                 position: absolute;
-                right: 40px;
+                right: 35px;
                 top: 50%;
+                color: @text-light;
+                font-size: 21px;
                 .translate(0, -50%);
             }
             .edit {
@@ -186,6 +185,7 @@ main {
                 display: block;
                 position: absolute;
                 right: 0;
+                font-size: 21px;
                 top: 50%;
                 color: @text-light;
                 .translate(0, -50%);
@@ -267,7 +267,7 @@ a.delete {
         margin: -20px 0 0 -38px;
         -webkit-animation-duration: 0.4s;
         animation-duration: 0.4s;
-        .box-shadow(0, 0, 25px, fade(@shadow, 15%));
+        .box-shadow(0, 0, 12px, fade(@shadow, 70%));
         .round(4px);
     }
     z-index: 5;
@@ -434,6 +434,7 @@ table.table {
                         color: @primary;
                     }
                     cursor: pointer;
+                    font-size: 21px;
                     color: @text-light;
                 }
                 width: 1%;

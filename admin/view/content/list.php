@@ -93,10 +93,7 @@
             </div>
             <i v-if="model.home" class="setHome icon icon-ios-home"></i>
             <i v-else @click="setHome(model.id)" class="setHome inactive icon icon-ios-home-outline"></i>
-            <div class="checkbox">
-                <input id="entry{{ model.id }}" type="checkbox" v-model="checked" :value="model.id" number>
-                <label for="entry{{ model.id }}"></label>
-            </div>
+            <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete icon-ios-trash-outline"></a>
             <a href="<?=url::admin('content', ['index', 'edit', '{{ model.id }}']); ?>" class="icon edit icon-edit"></a>
         </div>
         <ul v-if="model.children">
@@ -154,7 +151,6 @@ theme::addJSCode('
         data: {
             headline: "pages",
             addPageModal: false,
-            checked: [],
             pageName: "",
             pageParent: 0,
             pageParentName: "",
