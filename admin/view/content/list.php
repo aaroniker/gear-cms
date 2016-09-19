@@ -72,18 +72,24 @@
         </div>
     </modal>
 
-    <div id="pageList">
-        <div v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></div>
+    <div id="pageList" class="box">
+        <h3 v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></h3>
         <ul>
             <item v-for="model in pageTree | filterBy filterKey" :model="model"></item>
         </ul>
+        <template v-if="!pageTree">
+            <?=lang::get('no_results'); ?>
+        </template>
     </div>
 
 </section>
 
 <template id="item-template">
     <li>
-        <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">{{ model.name }}</div>
+        <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
+            <span>{{ model.name }}</span>
+            <small>{{ model.siteURL }}</small>
+        </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
         </ul>
