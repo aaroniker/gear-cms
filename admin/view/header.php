@@ -9,6 +9,8 @@
                 <img src="<?=url::assets('img/logoPrimary.svg'); ?>" alt="Gear Logo">
             </a>
 
+            <h1><?=admin::$page; ?></h1>
+
             <?php
                 $menu = admin::getMenu();
                 if($menu):
