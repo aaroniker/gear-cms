@@ -2,36 +2,35 @@
 
 # Gear
 
-* [Getting started](#getting-started)
+* [Installation](#installation)
 * [Screenshots](#screenshots)
-* [System requirements](#system-requirements)
-* [External resources](#external-resources)
+* [Systemvorraussetzungen](#systemvorraussetzungen)
+* [Externe Resourcen](#externe-resourcen)
 
-## Getting started
+## Installation
 
-Gear is still early WIP - so its not possible to install this CMS yet.
-Just wait a few weeks please :)
+Gear ist noch im frühen Entwicklungsstatus - so wie es jetzt ist, kann es noch nicht installiert & verwendet werden .. einfach ein paar Wochen warten :)
 
-I'm working on this nearly every day, you can see the progress at this repository & some screenshots - a nice landing page is going to be published soon!
+Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 
-* [Website] (http://gearcms.org)
-* [Documentation (German)] (https://github.com/aaroniker/gear/wiki)
+* [Webseite] (http://gearcms.org)
+* [Dokumentation] (https://github.com/aaroniker/gear/wiki)
 
 ## Screenshots
 
-### Content
+### Inhalt (Seiten)
 ![Content Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/content.gif "Media Animation")
-### Media
+### Inhalt (Medien)
 ![Media Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/media.gif "Media Animation")
-### Permission
+### Benutzer (Berechtigungen)
 ![Permission Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/permission.gif "Permission Animation")
 
-## System requirements
+## Systemvorraussetzungen
 
 *  PHP Version >= 5.4
-*  Any database supported by PDO (MySQL, ...)
+*  PDO (MySQL, ...)
 
-## External resources
+## Externe Resourcen
 
 * [Framy CSS](http://www.framycss.org/)
 * [gearUpload.js](https://github.com/aaroniker/gear-upload)
