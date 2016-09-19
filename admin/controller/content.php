@@ -44,7 +44,8 @@ class contentController extends controller {
 
                     $this->model->insert([
                         'name'=> $name,
-                        'parentID' => $parentID
+                        'parentID' => $parentID,
+                        'siteURL' => filter::url($name)
                     ]);
 
                     message::success(lang::get('page_added'));
