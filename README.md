@@ -3,7 +3,7 @@
 # Gear
 
 * [Getting started](#getting-started)
-* [Screenshots (Gif's)](#screenshots)
+* [Screenshots](#screenshots)
 * [System requirements](#system-requirements)
 * [External resources](#external-resources)
 
@@ -19,14 +19,10 @@ I'm working on this nearly every day, you can see the progress at this repositor
 
 ## Screenshots
 
-### Login
-![Login Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/login-screenshot.png "Login Screenshot")
 ### Content
 ![Content Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/content.gif "Media Animation")
 ### Media
 ![Media Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/media.gif "Media Animation")
-### Userlist
-![User Screenshot](https://raw.githubusercontent.com/aaroniker/gear/master/media/user-screenshot.png "User Screenshot")
 ### Permission
 ![Permission Animation](https://raw.githubusercontent.com/aaroniker/gear/master/media/permission.gif "Permission Animation")
 
