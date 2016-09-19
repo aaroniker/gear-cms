@@ -26,14 +26,18 @@ class contentController extends controller {
 
             } elseif($action == 'move') {
 
-                $this->model->load($id);
+                if($id != $parentID) {
 
-                $save = [
-                    'parentID' => $parentID
-                ];
+                    $this->model->load($id);
 
-                if($this->model->save($save)) {
-                    message::success(lang::get('page_moved'));
+                    $save = [
+                        'parentID' => $parentID
+                    ];
+
+                    if($this->model->save($save)) {
+                        message::success(lang::get('page_moved'));
+                    }
+
                 }
 
             } elseif($action == 'add') {
