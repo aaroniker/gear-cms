@@ -86,9 +86,11 @@
 
 <template id="item-template">
     <li>
-        <div v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
-            <span>{{ model.name }}</span>
-            <small>{{ model.siteURL }}</small>
+        <div class="entry clear" v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
+            <div class="info">
+                <span>{{ model.name }}</span>
+                <small>{{ model.siteURL }}</small>
+            </div>
         </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>

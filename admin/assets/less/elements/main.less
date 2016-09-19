@@ -123,19 +123,22 @@ main {
 }
 
 #pageList {
-    .dragActive {
-        background: @light;
-    }
     h3 {
         margin: 0 0 15px 0;
     }
     ul {
-        div {
-            span {
-                display: block;
+        .entry {
+            &.dragActive {
+                background: @light;
             }
-            small {
-                color: @text-light;
+            .info {
+                span {
+                    display: block;
+                }
+                small {
+                    color: @text-light;
+                }
+                float: left;
             }
         }
         ul {
