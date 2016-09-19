@@ -86,16 +86,13 @@
 
 <template id="item-template">
     <li>
-        <div class="entry clear" v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
+        <div class="entry" v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
             <div class="info">
-
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
-
-                <i v-if="model.home" class="icon icon-ios-home"></i>
-                <i v-else @click="setHome(model.id)" class="inactive icon icon-ios-home-outline"></i>
-
             </div>
+            <i v-if="model.home" class="setHome icon icon-ios-home"></i>
+            <i v-else @click="setHome(model.id)" class="setHome inactive icon icon-ios-home-outline"></i>
             <div class="checkbox">
                 <input id="entry{{ model.id }}" type="checkbox" v-model="checked" :value="model.id" number>
                 <label for="entry{{ model.id }}"></label>
