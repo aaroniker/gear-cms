@@ -25,6 +25,20 @@ class PageModel extends model {
 
     }
 
+    public static function getFullURL($id, $base = '') {
+
+        $page = new PageModel($id);
+
+        $siteURL = '/'.$page->siteURL.$base;
+
+        if($page->parentID) {
+            $siteURL = self::getFullURL($page->parentID, $siteURL);
+        }
+
+        return $siteURL;
+
+    }
+
     public static function getAll($parentID = 0) {
 
         $return = [];
@@ -38,6 +52,7 @@ class PageModel extends model {
                     $return[$page->id] = [
                         'id' => $page->id,
                         'name' => $page->name,
+                        'siteURL' => self::getFullURL($page->id),
                         'children' => self::getAll($page->id)
                     ];
                 }
