@@ -96,6 +96,11 @@
                 <i v-else @click="setHome(model.id)" class="inactive icon icon-ios-home-outline"></i>
 
             </div>
+            <div class="checkbox">
+                <input id="entry{{ model.id }}" type="checkbox" v-model="checked" :value="model.id" number>
+                <label for="entry{{ model.id }}"></label>
+            </div>
+            <a href="<?=url::admin('content', ['index', 'edit', '{{ model.id }}']); ?>" class="icon edit icon-edit"></a>
         </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
@@ -152,6 +157,7 @@ theme::addJSCode('
         data: {
             headline: "pages",
             addPageModal: false,
+            checked: [],
             pageName: "",
             pageParent: 0,
             pageParentName: "",
