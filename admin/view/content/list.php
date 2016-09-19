@@ -93,7 +93,7 @@
             </div>
             <i v-if="model.home" class="setHome icon icon-ios-home"></i>
             <i v-else @click="setHome(model.id)" class="setHome inactive icon icon-ios-home-outline"></i>
-            <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete icon-ios-trash-outline"></a>
+            <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete ajax icon-ios-trash-outline"></a>
             <a href="<?=url::admin('content', ['index', 'edit', '{{ model.id }}']); ?>" class="icon edit icon-edit"></a>
         </div>
         <ul v-if="model.children">
@@ -159,6 +159,14 @@ theme::addJSCode('
             searchBoxShow: false,
             searchBox: "",
             filterKey: ""
+        },
+        created: function() {
+
+            var vue = this;
+
+            $(document).on("fetch", function() {
+                vue.fetch();
+            });
         },
         methods: {
             fetch: function() {

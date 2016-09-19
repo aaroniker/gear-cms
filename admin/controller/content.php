@@ -12,7 +12,7 @@ class contentController extends controller {
 
         if(ajax::is()) {
 
-            $id = type::post('id', 'int', 0);
+            $id = type::post('id', 'int', $id);
             $parentID = type::post('parent', 'int', 0);
 
             if($action == 'get') {
@@ -64,6 +64,20 @@ class contentController extends controller {
 
                 } else {
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                }
+
+            } elseif($action == 'delete') {
+
+                extension::add('model_beforeDelete', function($id) {
+    			    if($id == option::get('home')) {
+                        message::error(lang::get('page_delete_home'));
+                        return false;
+                    }
+    		        return $id;
+			    });
+
+                if($this->model->delete($id)) {
+                    message::success(lang::get('page_delete'));
                 }
 
             }

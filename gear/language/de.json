@@ -57,6 +57,8 @@
     "page": "Seite",
     "menus": "Menüs",
     "page_added": "Seite hinzugefügt",
+    "page_delete": "Seite gelöscht",
+    "page_delete_home": "Startseite kann nicht gelöscht werden",
     "page_parent": "Übergeordnete Seite",
     "page_parent_no": "Keine",
     "page_moved": "Seite verschoben",
