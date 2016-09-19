@@ -86,8 +86,8 @@
 
 <template id="item-template">
     <li>
-        <div class="entry" v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
-            <div class="info">
+        <div class="entry clear" v-drop="move(model.id, $dropdata)">
+            <div v-drag="{id: model.id}" class="info">
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
             </div>
