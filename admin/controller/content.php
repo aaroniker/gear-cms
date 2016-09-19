@@ -96,7 +96,7 @@ class contentController extends controller {
 
                 if($name) {
 
-                    $path = dir::media($path.filter::url($name));
+                    $path = dir::media($path.filter::file($name));
 
                     media::addDir($path);
 
