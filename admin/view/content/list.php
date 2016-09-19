@@ -4,6 +4,10 @@
 
         <h2>{{{ headline | lang }}}</h2>
 
+        <div class="search">
+            <input type="text" v-model="filterKey">
+        </div>
+
         <nav>
             <ul>
                 <li>
@@ -71,7 +75,7 @@
     <div id="pageList">
         <div v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></div>
         <ul>
-            <item v-for="model in pageTree" :model="model"></item>
+            <item v-for="model in pageTree | filterBy filterKey" :model="model"></item>
         </ul>
     </div>
 
@@ -125,7 +129,8 @@ theme::addJSCode('
             pageTree: '.json_encode(PageModel::getAll()).',
             pageAll: '.json_encode(PageModel::getAllFromDb()).',
             searchBoxShow: false,
-            searchBox: ""
+            searchBox: "",
+            filterKey: ""
         },
         methods: {
             fetch: function() {
