@@ -88,8 +88,13 @@
     <li>
         <div class="entry clear" v-drag="{id: model.id}" v-drop="move(model.id, $dropdata)">
             <div class="info">
+
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
+
+                <i v-if="model.home" class="icon icon-ios-home"></i>
+                <i v-else @click="setHome(model.id)" class="inactive icon icon-ios-home-outline"></i>
+
             </div>
         </div>
         <ul v-if="model.children">
@@ -116,6 +121,22 @@ theme::addJSCode('
                     data: {
                         parent: parentID,
                         id: data.id
+                    },
+                    success: function() {
+                        vue.$dispatch("eventFetch");
+                    }
+                });
+
+            },
+            setHome: function(id) {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'setHome']).'",
+                    data: {
+                        id: id
                     },
                     success: function() {
                         vue.$dispatch("eventFetch");

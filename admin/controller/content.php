@@ -40,6 +40,14 @@ class contentController extends controller {
 
                 }
 
+            } elseif($action == 'setHome') {
+
+                if($id) {
+                    if(option::set('home', $id)) {
+                        message::success(lang::get('page_home_set'));
+                    }
+                }
+
             } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
