@@ -123,6 +123,11 @@ main {
 }
 
 #pageList {
+    h3 {
+        &.dragActive {
+            color: @text-light;
+        }
+    }
     ul {
         .entry {
             &.dragActive {
@@ -163,16 +168,57 @@ main {
                 position: relative;
                 float: left;
             }
+            .checkbox {
+                label {
+                    &:before {
+                        background: none;
+                    }
+                    padding: 0 0 0 @checkbox-size;
+                }
+                margin-bottom: 0;
+                position: absolute;
+                right: 40px;
+                top: 50%;
+                .translate(0, -50%);
+            }
+            .edit {
+                &:hover {
+                    color: @primary;
+                }
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                color: @text-light;
+                .translate(0, -50%);
+            }
+            position: relative;
         }
         ul {
             padding: 0 0 0 10px;
         }
         li {
-            margin: 5px 0;
+            &:last-child {
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+            &:first-child {
+                border-top: 1px solid @border;
+                margin-top: 5px;
+            }
+            border-bottom: 1px solid @border;
+            padding: 5px 0;
         }
         margin: 0;
         padding: 0;
         list-style: none;
+    }
+    & > ul {
+        & > li {
+            &:first-child {
+                border-top: none;
+            }
+        }
     }
 }
 
@@ -386,6 +432,9 @@ table.table {
         td {
             &.shrink {
                 a {
+                    &:hover {
+                        color: @primary;
+                    }
                     cursor: pointer;
                     color: @text-light;
                 }
