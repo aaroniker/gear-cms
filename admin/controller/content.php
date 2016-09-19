@@ -76,6 +76,18 @@ class contentController extends controller {
     		        return $id;
 			    });
 
+                extension::add('model_beforeDelete', function($id) {
+                    $where = [
+                        'meta_key' => 'parentID',
+                        'meta_value' => $id
+                    ];
+                    if(db()->from('entry')->leftJoin('entry_meta ON id = entry_id')->where($where)->fetch()) {
+                        message::error(lang::get('page_is_parent'));
+                        return false;
+                    }
+                    return $id;
+			    });
+
                 if($this->model->delete($id)) {
                     message::success(lang::get('page_delete'));
                 }

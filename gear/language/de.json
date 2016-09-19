@@ -61,6 +61,7 @@
     "page_delete_home": "Startseite kann nicht gelöscht werden",
     "page_parent": "Übergeordnete Seite",
     "page_parent_no": "Keine",
+    "page_is_parent": "Seite mit Unterseiten kann nicht gelöscht werden",
     "page_moved": "Seite verschoben",
     "page_home_set": "Startseite geändert",
     "home": "Home",
