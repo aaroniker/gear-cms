@@ -16,5 +16,8 @@
         "main-menu",
         "another-position",
         "third-slot"
+    ],
+    "include": [
+        "random.php"
     ]
 }
