@@ -298,6 +298,13 @@ a.delete {
         padding-right: @padding-sm-h;
         background: none;
     }
+    &.border {
+        &:hover {
+            &:before {
+                border-color: darken(@border, 5%);
+            }
+        }
+    }
     cursor: pointer;
 }
 
