@@ -50,7 +50,7 @@ class userController extends controller {
 
         if(ajax::is()) {
 
-            $id = type::post('id', 'int', 0);
+            $id = type::post('id', 'int', $id);
 
             if($action == 'get') {
 
