@@ -89,7 +89,7 @@ class contentController extends controller {
 			    });
 
                 if($this->model->delete($id)) {
-                    message::success(lang::get('page_delete'));
+                    message::success(lang::get('page_deleted'));
                 }
 
             }
@@ -100,7 +100,54 @@ class contentController extends controller {
 
     }
 
-    public function menus() {
+    public function menus($action = '', $id = 0) {
+
+        $this->model = new MenuModel;
+
+        if(ajax::is()) {
+
+            $id = type::post('id', 'int', $id);
+
+            if($action == 'get') {
+
+                // get menu items - all pages for demo so far
+                ajax::addReturn(json_encode(PageModel::getAll()));
+
+            } elseif($action == 'add') {
+
+                $name = type::post('name', 'string', '');
+
+                if($name) {
+
+                    $insert = $this->model->insert([
+                        'name'=> $name
+                    ]);
+
+                    message::success(lang::get('menu_added'));
+
+                    ajax::addReturn(json_encode($insert));
+
+                } else {
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                }
+
+            } elseif($action == 'edit') {
+
+                //edit
+
+            } else {
+                ajax::addReturn(json_encode(MenuModel::getAllFromDb()));
+            }
+
+        }
+
+        if($action == 'delete') {
+            if($id) {
+                if($this->model->load($id)->delete()) {
+                    message::success(lang::get('menu_deleted'));
+                }
+            }
+        }
 
         include(dir::view('content/menus/list.php'));
 

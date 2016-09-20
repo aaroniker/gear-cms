@@ -41,7 +41,7 @@
             <aside id="aside">
 
                 <nav>
-                    <ul v-if="menus > 0">
+                    <ul>
                         <li v-for="menu in menus" :class="menu.id == menuID ? 'active' : ''">
                             <a @click.prevent="setActive(menu.id)">
                                 {{ menu.name }}
@@ -91,7 +91,7 @@
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
             </div>
-            <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete ajax icon-ios-trash-outline"></a>
+            <a href="" class="icon delete ajax icon-ios-trash-outline"></a>
         </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
@@ -116,7 +116,7 @@ theme::addJSCode('
         complete: function(el) {
             console.log($("#menuList > ul").sortableListsToArray());
         },
-        ignoreClass: "click"
+        ignoreClass: "icon"
     };
 
     new Vue({
@@ -145,7 +145,9 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.menus = data;
-                        vue.setActive(data[0].id);
+                        if(data.length) {
+                            vue.setActive(data[0].id);
+                        }
                     }
                 });
 
