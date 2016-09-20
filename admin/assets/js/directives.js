@@ -26,6 +26,7 @@ Vue.directive("drag", {
             e.dataTransfer.effectAllowed = "all";
 
             $(self.el).addClass("drag");
+            $(self.el).parent().parent().find('.entry').addClass('dontDrop');
 
             e.dataTransfer.setData("data", JSON.stringify(self.data));
             e.dataTransfer.setData("tag", self.arg);
@@ -37,6 +38,7 @@ Vue.directive("drag", {
         this.dragend = function(e) {
 
             $(self.el).removeClass("drag");
+            $(self.el).parent().parent().find('.entry').removeClass('dontDrop');
 
             return false;
 
@@ -69,7 +71,9 @@ Vue.directive("drop", {
 
         this.dragenter = function(e) {
 
-            $(self.el).addClass("dragActive");
+            if(!$(self.el).hasClass('dontDrop')) {
+                $(self.el).addClass("dragActive");
+            }
 
             return false;
 
@@ -81,7 +85,9 @@ Vue.directive("drop", {
                 e.preventDefault();
             }
 
-            $(self.el).addClass("dragActive");
+            if(!$(self.el).hasClass('dontDrop')) {
+                $(self.el).addClass("dragActive");
+            }
 
             return false;
 
@@ -101,11 +107,15 @@ Vue.directive("drop", {
                 e.preventDefault();
             }
 
-            $(self.el).removeClass("dragActive");
+            if(!$(self.el).hasClass('dontDrop')) {
 
-            var data = e.dataTransfer.getData("data");
+                $(self.el).removeClass("dragActive");
 
-            self.handler(JSON.parse(data));
+                var data = e.dataTransfer.getData("data");
+
+                self.handler(JSON.parse(data));
+
+            }
 
             return false;
 
