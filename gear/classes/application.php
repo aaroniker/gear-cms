@@ -44,12 +44,7 @@ class application {
             $this->class = $controller.'Controller';
 
             if(!$controller) {
-
-                include(dir::controller('dashboard.php'));
-
-                $page = new dashboardController();
-                $page->index();
-
+                $this->error404();
             } elseif(file_exists(dir::controller($this->controller.'.php'))) {
 
                 include(dir::controller($this->controller.'.php'));
