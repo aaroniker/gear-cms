@@ -54,7 +54,6 @@
     "file_too_big": "Datei zu groß",
     "file_wrong_ext": "Falscher Datei-Typ",
     "pages": "Seiten",
-    "page": "Seite",
     "menus": "Menüs",
     "page_added": "Seite hinzugefügt",
     "page_deleted": "Seite gelöscht",
@@ -102,6 +101,12 @@
 
     ## System
     "system": "System",
+    "general": "Allgemein",
+    "general_edited": "Allgemeine Einstellungen bearbeitet",
+    "sitename": "Seitenname",
+    "siteurl": "URL",
+    "development": "Entwicklung",
+    "cache": "Cache",
 
     ## Time
     "year": "Jahr",
