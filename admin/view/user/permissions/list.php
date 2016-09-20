@@ -35,12 +35,12 @@
 
                 <nav>
                     <ul>
-                        <li v-for="group in groups" :class="$index == index ? 'active' : ''">
-                            <a @click.prevent="setActive($index, group.id)">
+                        <li v-for="group in groups" :class="group.id == groupID ? 'active' : ''">
+                            <a @click.prevent="setActive(group.id)">
                                 {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
                             </a>
                             <div class="action" v-if="group.id > 0">
-                                <a class="delete" href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
+                                <a class="delete" href="<?=url::admin('user', ['permissions', 'delete', '{{ group.id }}']); ?>">
                                     <i class="icon icon-ios-trash-outline"></i>
                                 </a>
                             </div>
@@ -57,7 +57,7 @@
         <div class="md-9">
 
             <div v-for="group in groups">
-                <div v-if="index == $index">
+                <div v-if="groupID == group.id">
 
                     <ul class="list">
                         <li v-for="perm in perms">
@@ -95,8 +95,7 @@ theme::addJSCode('
     new Vue({
         el: "#permissions",
         data: {
-            index: 0,
-            groupid: 0,
+            groupID: 0,
             groups: [],
             perms: '.json_encode($perms).',
             checked: [],
@@ -115,7 +114,7 @@ theme::addJSCode('
                     url: "'.url::admin('user', ['permissions', 'edit']).'",
                     dataType: "json",
                     data: {
-                        id: vue.groupid,
+                        id: vue.groupID,
                         perms: vue.checked
                     }
                 });
@@ -131,9 +130,8 @@ theme::addJSCode('
                     url: "'.url::admin('user', ['permissions']).'",
                     dataType: "json",
                     success: function(data) {
-                        vue.$set("groups", data);
-                        vue.groupid = data[0].id;
-                        vue.fetchPerms();
+                        vue.groups = data;
+                        vue.setActive(data[0].id);
                     }
                 });
 
@@ -145,7 +143,7 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'add']).'",
-                    dataType: "text",
+                    dataType: "json",
                     data: {
                         name: vue.groupName
                     },
@@ -166,17 +164,16 @@ theme::addJSCode('
                     url: "'.url::admin('user', ['permissions', 'get']).'",
                     dataType: "json",
                     data: {
-                        id: vue.groupid
+                        id: vue.groupID
                     },
                     success: function(data) {
-                        vue.$set("checked", data);
+                        vue.checked = data;
                     }
                 });
 
             },
-            setActive: function(index, id) {
-                this.groupid = id;
-                this.index = index;
+            setActive: function(id) {
+                this.groupID = id;
                 this.fetchPerms();
             }
         }

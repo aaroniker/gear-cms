@@ -72,11 +72,13 @@ class userController extends controller {
 
                 if($name) {
 
-                    $this->model->insert([
+                    $insert = $this->model->insert([
                         'name'=> $name
                     ]);
 
                     message::success(lang::get('permission_group_added'));
+
+                    ajax::addReturn(json_encode($insert));
 
                 } else {
                     message::error(sprintf(lang::get('validate_required'), lang::get('name')));
