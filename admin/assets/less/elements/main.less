@@ -7,6 +7,11 @@ main {
         }
         h2 {
             .icon {
+                &.delete {
+                    &:hover {
+                        color: @error;
+                    }
+                }
                 line-height: 36px;
                 display: inline-block;
                 vertical-align: top;
@@ -185,7 +190,7 @@ main {
             }
             .delete {
                 &:hover {
-                    color: @primary;
+                    color: @error;
                 }
                 display: block;
                 position: absolute;
