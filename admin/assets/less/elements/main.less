@@ -108,6 +108,7 @@ main {
                         display: block;
                     }
                     small {
+                        display: block;
                         color: @text-light;
                     }
                     float: left;
@@ -125,7 +126,7 @@ main {
                     .translate(0, -50%);
                 }
                 position: relative;
-                padding: 8px 15px;
+                padding: 10px 15px;
                 background: #fff;
                 .round();
                 .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
@@ -157,6 +158,7 @@ main {
                     display: block;
                 }
                 small {
+                    display: block;
                     color: @text-light;
                 }
                 float: left;
@@ -174,7 +176,7 @@ main {
                 .translate(0, -50%);
             }
             position: relative;
-            padding: 8px 15px;
+            padding: 10px 15px;
             background: #fff;
             .round();
             .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
@@ -193,6 +195,7 @@ main {
         &.dragActive {
             color: @text-light;
         }
+        font-size: 18px;
     }
     ul {
         .entry {
@@ -301,7 +304,7 @@ main {
 
 .box {
     background: #fff;
-    padding: 40px 30px;
+    padding: 30px;
     .round();
     .box-shadow(0, 12px, 25px, fade(@shadow, 60%));
     @media(max-width: @screen-sm-min * 1px) {
