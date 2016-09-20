@@ -4,17 +4,16 @@
     "author": "Aaron Iker",
     "url": "http://aaroniker.me",
     "required": {
-        "gear": 0.1,
+        "version": 0.1,
         "plugins": {}
     },
     "templates": {
         "blog": "templates/blog.php",
-        "page": "templates/page.php"
+        "page": "page.php"
     },
-    "slots": [
+    "positions": [
         "main-menu",
-        "footer-menu",
         "another-position",
-        "fourth-slot"
+        "third-slot"
     ]
 }
