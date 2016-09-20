@@ -86,7 +86,9 @@
         admin::addSubmenu(lang::get('permissions'), 'permissions', 'user');
 
         admin::addMenu(lang::get('plugins'), 'plugins');
+
         admin::addMenu(lang::get('system'), 'system');
+        admin::addSubmenu(lang::get('general'), 'index', 'system');
 
         include(dir::view('head.php'));
 
