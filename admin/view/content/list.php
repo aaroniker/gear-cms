@@ -91,8 +91,8 @@
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
             </div>
-            <i v-if="model.home" class="setHome icon icon-ios-home"></i>
-            <i v-else @click="setHome(model.id)" class="setHome inactive icon icon-ios-home-outline"></i>
+            <span v-if="model.home" class="setHome" data-tooltip="<?=lang::get('page_home'); ?>"><i class="icon icon-ios-home"></i></span>
+            <span v-else class="setHome" @click="setHome(model.id)"><i class="inactive icon icon-ios-home-outline"></i></span>
             <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete ajax icon-ios-trash-outline"></a>
             <a href="<?=url::admin('content', ['index', 'edit', '{{ model.id }}']); ?>" class="icon edit icon-edit"></a>
         </div>

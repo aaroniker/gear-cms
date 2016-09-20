@@ -208,11 +208,13 @@ main {
             }
             &:hover {
                 .setHome {
-                    &.inactive {
-                        &:hover {
-                            color: @primary;
+                    i {
+                        &.inactive {
+                            &:hover {
+                                color: @primary;
+                            }
+                            display: block;
                         }
-                        display: block;
                     }
                 }
             }
@@ -235,18 +237,20 @@ main {
                 padding: 3px 15px 3px 5px;
             }
             .setHome {
-                &.inactive {
-                    display: none;
-                    cursor: pointer;
-                    color: @text-light;
+                i {
+                    &.inactive {
+                        display: none;
+                        cursor: pointer;
+                        color: @text-light;
+                    }
+                    color: @primary;
+                    font-size: 21px;
+                    display: block;
                 }
-                position: absolute;
-                right: 65px;
-                color: @primary;
-                font-size: 21px;
-                line-height: 30px;
-                top: 50%;
                 display: block;
+                position: absolute;
+                top: 50%;
+                right: 65px;
                 .translate(0, -50%);
             }
             .delete {

@@ -26,8 +26,8 @@
             {{ entry.permissionGroup }}
         </table-cell>
         <table-cell>
-            <span v-if="entry.status == 1" class="status active"></span>
-            <span v-else class="status inactive"></span>
+            <span v-if="entry.status == 1" data-tooltip="<?=lang::get('active'); ?>" class="status active"></span>
+            <span v-else data-tooltip="<?=lang::get('blocked'); ?>" class="status inactive"></span>
         </table-cell>
         <table-cell class="shrink">
             <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>
