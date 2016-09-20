@@ -28,7 +28,7 @@
     </modal>
 
     <div class="scrollVertical">
-        <table class="table">
+        <table class="table media">
             <thead>
                 <tr>
                     <th class="check">
@@ -60,8 +60,10 @@
                             {{ entry.name }}
                         </a>
                     </td>
-                    <td v-if="entry.type == 'file'" v-drag="{id: entry.id, name: entry.name}">
-                        {{ entry.name }}
+                    <td v-if="entry.type == 'file'" class="file" v-drag="{id: entry.id, name: entry.name}">
+                        <div>
+                            {{ entry.name }}
+                        </div>
                     </td>
                     <td>
                         {{ entry.size }}

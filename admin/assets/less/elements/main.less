@@ -484,6 +484,29 @@ table.table {
             vertical-align: middle;
         }
     }
+    &.media {
+        tr {
+            td {
+                &.file {
+                    div {
+                        height: 28px;
+                        line-height: 28px;
+                        padding: 0 10px;
+                        .round(4px);
+                    }
+                    padding-left: (@table-padding-h - 10px);
+                }
+                &.drag {
+                    &.file {
+                        div {
+                            background: #fff;
+                        }
+                    }
+                }
+                padding: (@table-padding-v - 2px) @table-padding-h;
+            }
+        }
+    }
     margin: 0;
 }
 
