@@ -127,8 +127,8 @@ main {
                 position: relative;
                 padding: 8px 15px;
                 background: #fff;
-                .round(3px);
-                .box-shadow(0, 2px, 6px, fade(@shadow, 65%));
+                .round();
+                .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
             }
             cursor: move;
             margin: 8px 0;
@@ -176,8 +176,8 @@ main {
             position: relative;
             padding: 8px 15px;
             background: #fff;
-            .round(3px);
-            .box-shadow(0, 2px, 6px, fade(@shadow, 65%));
+            .round();
+            .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
         }
         margin: 8px 0;
         list-style: none;
@@ -203,7 +203,7 @@ main {
                     }
                     color: #fff;
                     background: @primary;
-                    .round(4px);
+                    .round();
                 }
             }
             &:hover {
@@ -225,7 +225,7 @@ main {
                     }
                     color: @text;
                     background: @light;
-                    .round(4px);
+                    .round();
                 }
                 span {
                     display: block;
@@ -301,9 +301,9 @@ main {
 
 .box {
     background: #fff;
-    padding: 25px;
-    .round(4px);
-    .box-shadow(0, 10px, 25px, fade(@shadow, 50%));
+    padding: 40px 30px;
+    .round();
+    .box-shadow(0, 12px, 25px, fade(@shadow, 60%));
     @media(max-width: @screen-sm-min * 1px) {
         padding: 15px;
     }
@@ -346,8 +346,8 @@ a.delete {
         margin: -20px 0 0 -38px;
         -webkit-animation-duration: 0.4s;
         animation-duration: 0.4s;
-        .box-shadow(0, 0, 12px, fade(@shadow, 70%));
-        .round(4px);
+        .round();
+        .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
     }
     z-index: 5;
     position: relative;
@@ -586,7 +586,7 @@ table.table {
                         height: 28px;
                         line-height: 28px;
                         padding: 0 10px;
-                        .round(4px);
+                        .round();
                     }
                     padding-left: (@table-padding-h - 10px);
                 }

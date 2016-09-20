@@ -6,7 +6,7 @@
             <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear CMS Logo">
         </a>
 
-        <div class="content">
+        <div class="content box">
 
             <form action="" method="post">
 
