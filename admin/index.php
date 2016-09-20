@@ -74,7 +74,8 @@
 
     if(userSession::loggedIn()) {
 
-        admin::addMenu(lang::get('dashboard'), '');
+        admin::addMenu(lang::get('dashboard'), 'dashboard');
+        admin::addSubmenu(lang::get('overview'), 'index', 'dashboard');
 
         admin::addMenu(lang::get('content'), 'content');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
