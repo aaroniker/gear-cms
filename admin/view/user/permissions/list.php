@@ -41,7 +41,7 @@
                             </a>
                             <div class="action" v-if="group.id > 0">
                                 <a class="delete" href="<?=url::admin('user', ['permissions', 'delete']); ?>/{{ group.id }}">
-                                    <i class="icon icon-trash-a"></i>
+                                    <i class="icon icon-ios-trash-outline"></i>
                                 </a>
                             </div>
                         </li>
