@@ -20,14 +20,14 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['email', 'status', 'permission', '']" :headline="headline" :filter-key="search">
+    <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
-            <span v-if="entry.status == 1">{{ 'active' | lang }}</span>
-            <span v-else>{{ 'blocked' | lang }}</span>
+            {{ entry.permissionGroup }}
         </table-cell>
         <table-cell>
-            {{ entry.permissionGroup }}
+            <span v-if="entry.status == 1" class="status active"></span>
+            <span v-else class="status inactive"></span>
         </table-cell>
         <table-cell class="shrink">
             <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>

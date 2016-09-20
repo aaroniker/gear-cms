@@ -497,6 +497,19 @@ table.table {
                     cursor: pointer;
                 }
             }
+            .status {
+                &.active {
+                    background: @success;
+                }
+                &.inactive {
+                    background: @error;
+                }
+                display: block;
+                background: @light;
+                width: 10px;
+                height: 10px;
+                .round(50%);
+            }
             vertical-align: middle;
         }
     }
