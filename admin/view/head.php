@@ -7,7 +7,7 @@
 
 <link rel="icon" href="<?=url::assets('img/favicon.png'); ?>">
 
-<title><?=admin::$page; ?> - Gear CMS</title>
+<title><?=admin::$page; ?> - <?=option::get('sitename'); ?></title>
 
 <?=theme::getCSS(); ?>
 <?=theme::getJS('head'); ?>
