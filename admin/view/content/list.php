@@ -191,7 +191,6 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('content', ['index', 'add']).'",
-                    dataType: "text",
                     data: {
                         name: vue.pageName,
                         parent: vue.pageParent

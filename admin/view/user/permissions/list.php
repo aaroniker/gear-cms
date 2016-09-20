@@ -112,7 +112,6 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'edit']).'",
-                    dataType: "json",
                     data: {
                         id: vue.groupID,
                         perms: vue.checked
@@ -143,7 +142,6 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('user', ['permissions', 'add']).'",
-                    dataType: "json",
                     data: {
                         name: vue.groupName
                     },

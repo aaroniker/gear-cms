@@ -4,13 +4,6 @@
 
         <h2>{{{ headline | lang }}}</h2>
 
-        <nav>
-            <ul>
-                <li>
-                </li>
-            </ul>
-        </nav>
-
     </header>
 
     <?php
@@ -177,13 +170,12 @@ theme::addJSCode('
                 $.ajax({
                     method: "POST",
                     url: "'.url::admin('content', ['menus', 'add']).'",
-                    dataType: "json",
                     data: {
                         name: vue.menuName
                     },
                     success: function(data) {
-                        vue.fetchMenus();
                         vue.addMenuModal = false;
+                        vue.fetchMenus();
                         vue.menuName = "";
                     }
                 });

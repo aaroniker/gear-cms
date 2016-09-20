@@ -103,9 +103,10 @@ class application {
 
         $path = ($this->admin) ? url::admin('dashboard') : '';
 
-        header('location: '.$path);
-
-        exit();
+        if(!ajax::is()) {
+            header('location: '.$path);
+            exit();
+        }
 
     }
 
