@@ -99,32 +99,88 @@ main {
 #menuList {
     ul {
         .placeholder {
-            background: @error;
         }
         .hint {
-            background: @success;
+            border: 2px dashed @border;
         }
         li {
-            div {
-                padding: 5px 10px;
-                background: @light;
+            .entry {
+                .info {
+                    span {
+                        display: block;
+                    }
+                    small {
+                        color: @text-light;
+                    }
+                    float: left;
+                }
+                .delete {
+                    &:hover {
+                        color: @error;
+                    }
+                    display: block;
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    color: @text-light;
+                    font-size: 21px;
+                    .translate(0, -50%);
+                }
+                position: relative;
+                padding: 8px 15px;
+                background: #fff;
+                .round(3px);
+                .box-shadow(0, 2px, 6px, fade(@shadow, 65%));
             }
-            margin: 5px 5px 5px 15px;
+            cursor: move;
+            margin: 8px 0;
         }
-        border: 1px solid @border;
+        ul {
+            padding: 0 0 0 10px;
+        }
         list-style: none;
         padding: 0;
         margin: 0;
     }
 }
 
-#sortableListsBase li {
-    div {
-        padding: 5px 10px;
-        background: @light;
+#sortableListsBase {
+    li {
+        .entry {
+            .info {
+                span {
+                    display: block;
+                }
+                small {
+                    color: @text-light;
+                }
+                float: left;
+            }
+            .delete {
+                &:hover {
+                    color: @error;
+                }
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                color: @text-light;
+                font-size: 21px;
+                .translate(0, -50%);
+            }
+            position: relative;
+            padding: 8px 15px;
+            background: #fff;
+            .round(3px);
+            .box-shadow(0, 2px, 6px, fade(@shadow, 65%));
+        }
+        margin: 8px 0;
+        list-style: none;
     }
-    margin: 0;
-    list-style: none;
+    ul {
+        margin: 0;
+        padding: 0 0 0 10px;
+    }
 }
 
 #pageList {
