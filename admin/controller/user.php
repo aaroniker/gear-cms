@@ -33,7 +33,7 @@ class userController extends controller {
 			    });
 
                 if($this->model->delete($id)) {
-                    message::success(lang::get('user_delete'));
+                    message::success(lang::get('user_deleted'));
                 }
 
             }
@@ -124,7 +124,7 @@ class userController extends controller {
 			    });
 
                 if($this->model->load($id)->delete()) {
-                    message::success(lang::get('permission_group_delete'));
+                    message::success(lang::get('permission_group_deleted'));
                 }
 
             }
