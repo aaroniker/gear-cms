@@ -106,7 +106,7 @@ class application {
 
     public function error404() {
 
-        $path = ($this->admin) ? url::admin() : '';
+        $path = ($this->admin) ? url::admin('dashboard') : '';
 
         header('location: '.$path);
 
