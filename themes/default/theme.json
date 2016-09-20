@@ -6,7 +6,7 @@
     "url": "http://aaroniker.me",
     "required": {
         "version": 0.1,
-        "plugins": {}
+        "plugins": []
     },
     "templates": {
         "blog": "templates/blog.php",
