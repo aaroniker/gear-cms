@@ -73,7 +73,7 @@
     </modal>
 
     <div id="pageList" class="box">
-        <h3 v-drop="move(0, $dropdata)"><?=lang::get('page'); ?></h3>
+        <h3 v-drop="move(0, $dropdata)"><?=option::get('sitename'); ?></h3>
         <ul>
             <item v-for="model in pageTree | filterBy filterKey" :model="model"></item>
         </ul>
