@@ -3,6 +3,7 @@
 class config {
 
     static $params = [];
+    static $fileParams = [];
     static $isChange = false;
 
     static $newEntrys = [];
@@ -10,6 +11,7 @@ class config {
     public function __construct() {
 
         self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
+        self::$fileParams = self::$params;
 
         if(self::get('dev') && !ajax::is()) {
 
@@ -71,7 +73,7 @@ class config {
             return true;
         }
 
-        $newEntrys = array_merge(self::$params, self::$newEntrys);
+        $newEntrys = array_merge(self::$fileParams, self::$newEntrys);
 
         return file_put_contents(dir::gear('config.json'), json_encode($newEntrys, JSON_PRETTY_PRINT));
 
