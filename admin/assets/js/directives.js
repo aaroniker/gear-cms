@@ -83,9 +83,6 @@ Vue.directive("drop", {
 
             $(self.el).addClass("dragActive");
 
-            e.dataTransfer.effectAllowed = "all";
-            e.dataTransfer.dropEffect = "copy";
-
             return false;
 
         };
@@ -106,10 +103,9 @@ Vue.directive("drop", {
 
             $(self.el).removeClass("dragActive");
 
-            var tag = e.dataTransfer.getData("tag");
             var data = e.dataTransfer.getData("data");
 
-            self.handler(tag, JSON.parse(data));
+            self.handler(JSON.parse(data));
 
             return false;
 
@@ -133,14 +129,12 @@ Vue.directive("drop", {
 
         var vm = this.vm;
 
-        this.handler = function(tag, data) {
+        this.handler = function(data) {
 
-            vm.$droptag = tag;
             vm.$dropdata = data;
 
-            var res = value(tag, data);
+            var res = value(data);
 
-            vm.$droptag = null;
             vm.$dropdata = null;
 
             return res;
