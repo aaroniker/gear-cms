@@ -57,10 +57,11 @@ class dir {
     }
 
     public static function plugins($file = '', $plugin = false) {
-        if($plugin)
+        if($plugin) {
             return self::gear('plugins'.DIRECTORY_SEPARATOR.$plugin.DIRECTORY_SEPARATOR.$file);
-        else
+        } else {
             return self::gear('plugins'.DIRECTORY_SEPARATOR.$file);
+        }
     }
 
     public static function classes($file = '') {
