@@ -20,6 +20,16 @@ class plugin {
         return $this->config;
     }
 
+    public function get($key, $default = null) {
+
+        if(isset($this->config[$key])) {
+            return $this->config[$key];
+        }
+
+        return $default;
+
+    }
+
 	public static function getAll() {
 
         if(!count(self::$allPlugins)) {
