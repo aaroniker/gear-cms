@@ -42,7 +42,7 @@ class media {
         $dirs = [];
         $files = [];
 
-        $array = array_diff(scandir(dir::media($path)), array('.', '..'));
+        $array = array_diff(scandir(dir::media($path)), ['.', '..']);
 
         if($path && $path != '/') {
             $up = substr($path, 0, strrpos($path, '/'));
@@ -90,7 +90,7 @@ class media {
 
             if(is_dir($path)) {
 
-                $count = array_diff(scandir($path), array('.', '..'));
+                $count = array_diff(scandir($path), ['.', '..']);
 
                 if(!count($count)) {
 
