@@ -5,7 +5,7 @@
 
             <div id="messages"></div>
 
-            <a href="http://gearcms.org" class="logo" target="_blank">
+            <a href="<?=url::admin('dashboard'); ?>" class="logo">
                 <img src="<?=url::assets('img/logoPrimary.svg'); ?>" alt="Gear Logo">
             </a>
 
