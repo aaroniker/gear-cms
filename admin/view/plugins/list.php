@@ -10,12 +10,9 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['name', 'status']" :headline="headline" :filter-key="search">
+    <data-table :data="tableData" :columns="['name', 'description']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.name }}</table-cell>
-        <table-cell>
-            <span v-if="entry.status == 1" class="status active"></span>
-            <span v-else class="status inactive"></span>
-        </table-cell>
+        <table-cell>{{ entry.description }}</table-cell>
     </data-table>
 
 </section>
@@ -27,7 +24,7 @@ theme::addJSCode('
         data: {
             headline: "list",
             checked: [],
-            tableData: [],
+            tableData: '.json_encode(plugin::getAll()).',
             search: "",
             showSearch: true
         },
