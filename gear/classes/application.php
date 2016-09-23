@@ -4,7 +4,7 @@ class application {
 
     private $class = false;
 
-    private $admin = false;
+    public $admin = false;
 
     private $controller = false;
     private $action = false;
