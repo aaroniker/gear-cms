@@ -33,7 +33,7 @@
 
             <aside id="aside">
 
-                <nav>
+                <nav v-if="menuID">
                     <ul>
                         <li v-for="menu in menus" :class="menu.id == menuID ? 'active' : ''">
                             <a @click.prevent="setActive(menu.id)">
