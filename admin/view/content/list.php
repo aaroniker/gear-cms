@@ -45,7 +45,7 @@
                         <span class="active">{{ parent }}</span>
                     </div>
                 </template>
-                <template v-if="this.searchBox.length >= 2">
+                <template v-if="this.searchBox.length >= 1">
                     <ul class="result" v-if="searchFilter.length">
                         <li v-for="entry in pageAll | filterBy searchBox" @click="pageParent = entry.id, pageParentName = entry.name">
                             {{ entry.name }}
