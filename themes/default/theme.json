@@ -12,7 +12,7 @@
         "blog": "templates/blog.php",
         "page": "page.php"
     },
-    "slots": [
+    "positions": [
         "main-menu",
         "another-position",
         "third-slot"
