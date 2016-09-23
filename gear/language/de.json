@@ -10,6 +10,7 @@
     "edit": "Bearbeiten",
     "delete": "Löschen",
     "close": "Schließen",
+    "show": "Anzeigen",
     "list": "Liste",
     "no_results": "Keine Ergebnisse",
     "selected": "ausgewählt",
@@ -110,6 +111,7 @@
     "siteurl": "URL",
     "development": "Entwicklung",
     "cache": "Cache",
+    "dropdown_nav": "Dropdown im Menü",
 
     ## Time
     "year": "Jahr",

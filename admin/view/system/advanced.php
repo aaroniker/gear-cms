@@ -22,6 +22,10 @@
 	    $field->fieldName(lang::get('cache'));
         $field->add(true, lang::get('yes'));
 
+        $field = $form->addSwitchField('navShowUL', option::get('navShowUL', false));
+	    $field->fieldName(lang::get('dropdown_nav'));
+        $field->add(1, lang::get('show'));
+
         if($form->isSubmit()) {
 
             if($form->validation()) {
@@ -36,7 +40,11 @@
                 config::add('cache', $cache, true);
                 config::save();
 
+                option::set('navShowUL', $array['navShowUL']);
+
                 message::success(lang::get('advanced_edited'));
+
+                url::refresh();
 
 		    } else {
 			    $form->getErrors();

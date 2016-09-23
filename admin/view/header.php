@@ -15,7 +15,7 @@
                 $menu = admin::getMenu();
                 if($menu):
             ?>
-            <nav id="nav" class="withUL">
+            <nav id="nav" <?=(option::get('navShowUL', false)) ? 'class="navShowUL"' : ''; ?>>
                 <ul>
                 <?php
                     foreach($menu as $url => $array):
