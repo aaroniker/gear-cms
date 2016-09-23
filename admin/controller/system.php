@@ -12,6 +12,12 @@ class systemController extends controller {
 
     }
 
+    public function advanced($action = '', $id = 0) {
+
+        include(dir::view('system/advanced.php'));
+
+    }
+
 }
 
 ?>

@@ -103,7 +103,9 @@
     ## System
     "system": "System",
     "general": "Allgemein",
+    "advanced": "Erweitert",
     "general_edited": "Allgemeine Einstellungen bearbeitet",
+    "advanced_edited": "Erweiterte Einstellungen bearbeitet",
     "sitename": "Seitenname",
     "siteurl": "URL",
     "development": "Entwicklung",
