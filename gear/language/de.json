@@ -57,11 +57,13 @@
     "file_wrong_ext": "Falscher Datei-Typ",
     "pages": "Seiten",
     "menus": "Menüs",
+    "page": "Seite",
     "page_added": "Seite hinzugefügt",
     "page_deleted": "Seite gelöscht",
     "page_delete_home": "Startseite kann nicht gelöscht werden",
     "page_parent": "Übergeordnete Seite",
     "page_parent_no": "Keine",
+    "page_no": "Keine",
     "page_is_parent": "Seite mit Unterseiten kann nicht gelöscht werden",
     "page_moved": "Seite verschoben",
     "page_home_set": "Startseite geändert",
@@ -69,6 +71,8 @@
     "home": "Home",
     "menu_added": "Menü hinzugefügt",
     "menu_deleted": "Menü gelöscht",
+    "menu_item_added": "Menü-Eintrag hinzugefügt",
+    "menu_item_deleted": "Menü-Eintrag gelöscht",
 
     ## User
     "user": "Benutzer",

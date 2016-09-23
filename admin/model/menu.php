@@ -23,6 +23,20 @@ class MenuModel extends model {
 
     }
 
+    public function addItem($name, $pageID) {
+
+        $model = new MenuItemModel();
+
+        $insert = [
+            'name' => $name,
+            'menuID' => $this->id,
+            'pageID' => $pageID
+        ];
+
+        return $model->insert($insert);
+
+    }
+
 }
 
 ?>

@@ -110,9 +110,31 @@ class contentController extends controller {
 
             if($action == 'get') {
 
-                // get menu items - all pages for demo so far
-                ajax::addReturn(json_encode(PageModel::getAll()));
+                ajax::addReturn(json_encode(MenuItemModel::getAll($id)));
 
+            } elseif($action == 'addItem') {
+
+                $name = type::post('name', 'string', "");
+                $pageID = type::post('pageID', 'int', 0);
+
+                if($name) {
+                    if($pageID) {
+                        if($this->model->load($id)->addItem($name, $pageID)) {
+                            message::success(lang::get('menu_item_added'));
+                        }
+                    } else {
+                        message::error(sprintf(lang::get('validate_required'), lang::get('page')));
+                    }
+                } else {
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                }
+
+            } elseif($action == 'delItem') {
+                if($id) {
+                    if($this->model->load($id)->delete()) {
+                        message::success(lang::get('menu_item_deleted'));
+                    }
+                }
             } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
