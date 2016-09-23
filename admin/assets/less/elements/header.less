@@ -43,6 +43,60 @@
             }
         }
         #nav {
+            &.withUL {
+                & > ul {
+                    & > li {
+                        &.active {
+                            &:hover {
+                                & > ul {
+                                    @media(min-width: @screen-md-min * 1px) {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        &:hover {
+                            @media(min-width: @screen-md-min * 1px) {
+                                & > ul {
+                                    top: 110%;
+                                    visibility: visible;
+                                    .opacity(1);
+                                }
+                            }
+                        }
+                        & > ul {
+                            @media(min-width: @screen-md-min * 1px) {
+                                li {
+                                    &:hover {
+                                        a {
+                                            color: @primary;
+                                        }
+                                    }
+                                    a {
+                                        padding: 2px 0;
+                                        display: block;
+                                        color: @text;
+                                    }
+                                }
+                                visibility: hidden;
+                                display: block;
+                                min-width: 140px;
+                                padding: 8px 20px 8px 10px;
+                                background: #fff;
+                                position: absolute;
+                                z-index: 1;
+                                margin: 0;
+                                left: 18px;
+                                top: 100%;
+                                .box-shadow(0, 2px, 6px, fade(@dark, 20%));
+                                .round();
+                                .opacity(0);
+                                .transition(0.2s);
+                            }
+                        }
+                    }
+                }
+            }
             & > ul {
                 &:after {
                     clear: both;
@@ -51,10 +105,12 @@
                 }
                 & > li {
                     &.active {
-                        & > a {
-                            &:hover {
-                                color: @text;
+                        &:hover {
+                            & > a {
+                                color: @text-dark;
                             }
+                        }
+                        & > a {
                             background: #fff;
                             color: @text;
                             .round();
@@ -88,10 +144,12 @@
                             .round();
                         }
                     }
-                    & > a {
-                        &:hover {
+                    &:hover {
+                        & > a {
                             color: lighten(@text-dark, 20%);
                         }
+                    }
+                    & > a {
                         display: block;
                         padding: 0 18px;
                         line-height: 36px;
