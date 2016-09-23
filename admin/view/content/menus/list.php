@@ -66,55 +66,61 @@
                 </div>
             </div>
 
-            <div class="box" v-if="menuID">
-                <h3><?=lang::get('add'); ?></h3>
-                <?php
+            <template v-if="menuID">
 
-                    $form = new form();
+                <hr>
+                
+                <div class="box">
+                    <h3><?=lang::get('add'); ?></h3>
+                    <?php
 
-                    $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
+                        $form = new form();
 
-                    $field = $form->addTextField('name', '');
-                    $field->fieldName(lang::get('name'));
-                    $field->addAttribute('v-model', 'menuItemName');
-                    $field->fieldValidate();
+                        $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
 
-                    $field = $form->addRawField('
-                    <div class="form-select">
-                        <div class="choose" @click="toggleSearchBox">{{ searchBoxTitle }}</div>
-                        <div v-if="searchBoxShow" class="searchBox">
-                            <div class="search">
-                                <input type="text" v-model="searchBox">
-                                <i @click="toggleSearchBox" class="icon icon-close-round"></i>
+                        $field = $form->addTextField('name', '');
+                        $field->fieldName(lang::get('name'));
+                        $field->addAttribute('v-model', 'menuItemName');
+                        $field->fieldValidate();
+
+                        $field = $form->addRawField('
+                        <div class="form-select">
+                            <div class="choose" @click="toggleSearchBox">{{ searchBoxTitle }}</div>
+                            <div v-if="searchBoxShow" class="searchBox">
+                                <div class="search">
+                                    <input type="text" v-model="searchBox">
+                                    <i @click="toggleSearchBox" class="icon icon-close-round"></i>
+                                </div>
+                                <template v-if="menuItemPageID != 0">
+                                    <div class="result">
+                                        <span class="active">{{ menuItemPage }}</span>
+                                    </div>
+                                </template>
+                                <template v-if="this.searchBox.length >= 1">
+                                    <ul class="result" v-if="searchFilter.length">
+                                        <li v-for="entry in pageAll | filterBy searchBox" @click="menuItemPageID = entry.id, menuItemPage = entry.name">
+                                            {{ entry.name }}
+                                        </li>
+                                    </ul>
+                                    <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
+                                </template>
+                                <template v-if="menuItemPageID != 0">
+                                    <div class="result">
+                                        <span @click="menuItemPageID = 0, menuItemPage = \'\'">{{ "page_parent_no" | lang }}</span>
+                                    </div>
+                                </template>
                             </div>
-                            <template v-if="menuItemPageID != 0">
-                                <div class="result">
-                                    <span class="active">{{ menuItemPage }}</span>
-                                </div>
-                            </template>
-                            <template v-if="this.searchBox.length >= 1">
-                                <ul class="result" v-if="searchFilter.length">
-                                    <li v-for="entry in pageAll | filterBy searchBox" @click="menuItemPageID = entry.id, menuItemPage = entry.name">
-                                        {{ entry.name }}
-                                    </li>
-                                </ul>
-                                <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
-                            </template>
-                            <template v-if="menuItemPageID != 0">
-                                <div class="result">
-                                    <span @click="menuItemPageID = 0, menuItemPage = \'\'">{{ "page_parent_no" | lang }}</span>
-                                </div>
-                            </template>
                         </div>
-                    </div>
-                    ');
-                    $field->fieldName(lang::get('page'));
-                    $field->fieldValidate();
+                        ');
+                        $field->fieldName(lang::get('page'));
+                        $field->fieldValidate();
 
-                    echo $form->show();
+                        echo $form->show();
 
-                ?>
-            </div>
+                    ?>
+                </div>
+
+            </template>
 
         </div>
 
