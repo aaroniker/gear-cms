@@ -165,7 +165,7 @@ class contentController extends controller {
 
         if($action == 'delete') {
             if($id) {
-                if($this->model->load($id)->delete()) {
+                if($this->model->load($id)->deleteAllItems()->delete()) {
                     message::success(lang::get('menu_deleted'));
                 }
             }

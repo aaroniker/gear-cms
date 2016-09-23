@@ -37,6 +37,21 @@ class MenuModel extends model {
 
     }
 
+    public function deleteAllItems() {
+
+        $items = MenuItemModel::getAll($this->id);
+
+        if(is_array($items)) {
+            foreach($items as $id => $item) {
+                $model = new MenuItemModel($id);
+                $model->delete();
+            }
+        }
+
+        return $this;
+
+    }
+
 }
 
 ?>
