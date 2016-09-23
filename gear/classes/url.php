@@ -28,6 +28,18 @@ class url {
 
     }
 
+    public static function refresh($admin = true) {
+
+        $url = config::get('url');
+        $url .= ($admin) ? 'admin/' : '';
+        $url .= type::get('url', 'string', '');
+
+        header('location: '.$url);
+
+        exit();
+
+    }
+
 }
 
 ?>
