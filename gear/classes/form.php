@@ -14,6 +14,8 @@ class form {
 
     protected $fields = [];
 
+    protected $tabs = [];
+
     protected $errors = [];
 
     public static $rules = [];
