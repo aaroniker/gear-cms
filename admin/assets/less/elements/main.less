@@ -99,6 +99,21 @@ main {
     }
 }
 
+.tabMenu {
+    nav {
+        ul {
+            &:after {
+                clear: both;
+                content: "";
+                display: block;
+            }
+            li {
+                float: left;
+            }
+        }
+    }
+}
+
 #menuList {
     ul {
         .hint {
