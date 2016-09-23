@@ -6,7 +6,7 @@ class option {
 
         $option = db()->from('options')->where('option_key', $name)->fetch();
 
-        if($option && $option->option_value) {
+        if($option && !is_null($option->option_value)) {
             return true;
         }
 
