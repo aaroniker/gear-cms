@@ -6,7 +6,7 @@
     theme::addCSS('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
     theme::addCSS(url::assets('css/style.css'));
 
-    theme::addJS('https://cdn.jsdelivr.net/vue/1.0.26/vue.js');
+    theme::addJS(url::assets('js/vue.js'));
     theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.0/jquery.min.js');
     theme::addJS('https://cdn.jsdelivr.net/gear-upload/0.2/gearUpload.min.js');
     theme::addJS(url::assets('js/session.js'));
