@@ -14,7 +14,9 @@ class MenuItemModel extends model {
 
         $this->metaData = [
             'menuID',
-            'pageID'
+            'parentID',
+            'pageID',
+            'order'
         ];
 
         if($id) {
@@ -25,7 +27,7 @@ class MenuItemModel extends model {
 
     }
 
-    public static function getAll($menuID = 0) {
+    public static function getAllMenu($menuID = 0) {
 
         $return = [];
 
@@ -42,11 +44,48 @@ class MenuItemModel extends model {
 
                     $return[$item->id] = [
                         'id' => $item->id,
+                        'order' => $item->order,
+                        'name' => $item->name,
+                        'pageName' => $page->name,
+                        'pageURL' => PageModel::getFullURL($page->id)
+                    ];
+
+                }
+
+            }
+        }
+
+        return $return;
+
+    }
+
+    public static function getAll($menuID = 0, $parentID = 0) {
+
+        $return = [];
+
+        $getAllFromDb = self::getAllFromDb();
+
+        if(is_array($getAllFromDb)) {
+            foreach($getAllFromDb as $key => $val) {
+
+                $item = new MenuItemModel($val->id);
+
+                if($item->parentID == $parentID && $item->menuID == $menuID) {
+
+                    $page = new PageModel($item->pageID);
+
+                    $return[] = [
+                        'id' => $item->id,
+                        'order' => $item->order,
                         'name' => $item->name,
                         'pageName' => $page->name,
                         'pageURL' => PageModel::getFullURL($page->id),
-                        'children' => []
+                        'children' => self::getAll($menuID, $item->id)
                     ];
+
+                    usort($return, function($a, $b) {
+                        return $a['order'] - $b['order'];
+                    });
 
                 }
 

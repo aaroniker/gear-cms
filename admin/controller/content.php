@@ -119,7 +119,7 @@ class contentController extends controller {
 
                 if($name) {
                     if($pageID) {
-                        if($this->model->load($id)->addItem($name, $pageID)) {
+                        if($this->model->load($id)->addItem($name, 0, $pageID)) {
                             message::success(lang::get('menu_item_added'));
                         }
                     } else {
@@ -156,6 +156,29 @@ class contentController extends controller {
             } elseif($action == 'edit') {
 
                 //edit
+
+            } elseif($action == 'move') {
+
+                $array = type::post('array', 'array', []);
+
+                foreach($array as $key => $val) {
+
+                    $id = str_replace('item_', '', $val['id']);
+
+                    $itemModel = new MenuItemModel($id);
+
+                    $parentID = ($val['parentId']) ? str_replace('item_', '', $val['parentId']) : 0;
+
+                    $values = [
+                        'parentID' => $parentID,
+                        'order' => $val['order']
+                    ];
+
+                    $itemModel->save($values);
+
+                }
+
+                message::success(lang::get('menu_item_moved'));
 
             } else {
                 ajax::addReturn(json_encode(MenuModel::getAllFromDb()));

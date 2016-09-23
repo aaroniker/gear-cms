@@ -23,13 +23,14 @@ class MenuModel extends model {
 
     }
 
-    public function addItem($name, $pageID) {
+    public function addItem($name, $parentID, $pageID) {
 
         $model = new MenuItemModel();
 
         $insert = [
             'name' => $name,
             'menuID' => $this->id,
+            'parentID' => $parentID,
             'pageID' => $pageID
         ];
 
@@ -39,11 +40,11 @@ class MenuModel extends model {
 
     public function deleteAllItems() {
 
-        $items = MenuItemModel::getAll($this->id);
+        $items = MenuItemModel::getAllMenu($this->id);
 
         if(is_array($items)) {
             foreach($items as $id => $item) {
-                $model = new MenuItemModel($id);
+                $model = new MenuItemModel($item['id']);
                 $model->delete();
             }
         }

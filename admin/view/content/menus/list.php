@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box" v-if="menuID">
                 <h3><?=lang::get('add'); ?></h3>
                 <?php
 
@@ -152,7 +152,15 @@ theme::addJSCode('
         hintClass: "hint",
         baseClass: "",
         complete: function(el) {
-            console.log($("#menuList > ul").sortableListsToArray());
+            var array = $("#menuList > ul").sortableListsToArray();
+            $.ajax({
+                method: "POST",
+                url: "'.url::admin('content', ['menus', 'move']).'",
+                dataType: "json",
+                data: {
+                    array: array
+                }
+            });
         },
         ignoreClass: "icon"
     };
@@ -177,6 +185,7 @@ theme::addJSCode('
             this.fetchMenus();
         },
         created: function() {
+
             var vue = this;
             $(document).on("fetch", function() {
                 vue.fetchItems();
@@ -213,7 +222,10 @@ theme::addJSCode('
                     },
                     success: function(data) {
                         vue.items = data;
-                        $("#menuList > ul").sortableLists(options);
+                        if(!$("#menuList").hasClass("loaded")) {
+                            $("#menuList").addClass("loaded");
+                            $("#menuList > ul").sortableLists(options);
+                        }
                     }
                 });
 
