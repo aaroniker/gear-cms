@@ -69,7 +69,7 @@
             <template v-if="menuID">
 
                 <hr>
-                
+
                 <div class="box">
                     <h3><?=lang::get('add'); ?></h3>
                     <?php
@@ -77,6 +77,8 @@
                         $form = new form();
 
                         $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
+
+                        $form->addTab('test');
 
                         $field = $form->addTextField('name', '');
                         $field->fieldName(lang::get('name'));

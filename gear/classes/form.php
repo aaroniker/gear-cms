@@ -208,18 +208,15 @@ class form {
         $this->horizontal = $bool;
     }
 
-    public function show() {
+    public function addTab($name) {
+        $this->tabs[] = [
+            'name' => $name
+        ];
+    }
 
-        if($this->horizontal) {
-            $this->addFormAttribute('class', 'horizontal');
-        }
+    private function loopFields($data, $return) {
 
-        $return = [];
-		$hidden = [];
-
-        $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
-
-        foreach($this->return as $show) {
+        foreach($data as $show) {
 
 			if($show->getAttribute('type') == 'hidden') {
 				$hidden[] = $show->get();
@@ -235,6 +232,23 @@ class form {
 			$return[] = '</div>';
 
 		}
+
+        return $return;
+
+    }
+
+    public function show() {
+
+        if($this->horizontal) {
+            $this->addFormAttribute('class', 'horizontal');
+        }
+
+        $return = [];
+		$hidden = [];
+
+        $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
+
+        $return = $this->loopFields($this->return, $return);
 
         $return[] = '
             <button class="button fl-right" name="save" type="submit">'.lang::get('save').'</button>
