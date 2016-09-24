@@ -15,6 +15,7 @@ class form {
     protected $fields = [];
 
     protected $tabs = [];
+    protected $lastTab = '';
 
     protected $errors = [];
 
@@ -36,7 +37,11 @@ class form {
             $this->toSave[$name] = $object;
         }
 
-        $this->return[$name] = $object;
+        if(count($this->tabs)) {
+            $this->tabs[$this->lastTab][$name] = $object;
+        } else {
+            $this->return[$name] = $object;
+        }
 
         return $object;
 
@@ -140,18 +145,6 @@ class form {
 
     }
 
-    public function getElement($name) {
-        return $this->return[$name];
-    }
-
-    public function deleteElement($name) {
-
-        unset($this->return[$name]);
-
-        return $this;
-
-    }
-
     public function getAll() {
 
         $return = [];
@@ -209,9 +202,11 @@ class form {
     }
 
     public function addTab($name) {
-        $this->tabs[] = [
-            'name' => $name
-        ];
+
+        $this->tabs[$name] = [];
+
+        $this->lastTab = $name;
+
     }
 
     private function loopFields($data, $return) {
@@ -248,7 +243,27 @@ class form {
 
         $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
 
-        $return = $this->loopFields($this->return, $return);
+        if(count($this->tabs)) {
+
+            $return[] = '<nav class="tabs">';
+            $return[] = '<ul>';
+            foreach($this->tabs as $name => $content) {
+                $return[] = '<li><a href="#tab-'.filter::url($name).'">'.$name.'</a></li>';
+            }
+            $return[] = '</ul>';
+            $return[] = '</nav>';
+
+            $return[] = '<section class="tabs">';
+            foreach($this->tabs as $name => $content) {
+                $return[] = '<div id="tab-'.filter::url($name).'">';
+                $return = $this->loopFields($content, $return);
+                $return[] = '</div>';
+            }
+            $return[] = '</section>';
+
+        } else {
+            $return = $this->loopFields($this->return, $return);
+        }
 
         $return[] = '
             <button class="button fl-right" name="save" type="submit">'.lang::get('save').'</button>

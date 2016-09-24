@@ -85,6 +85,8 @@
                         $field->addAttribute('v-model', 'menuItemName');
                         $field->fieldValidate();
 
+                        $form->addTab('test2');
+
                         $field = $form->addRawField('
                         <div class="form-select">
                             <div class="choose" @click="toggleSearchBox">{{ searchBoxTitle }}</div>
