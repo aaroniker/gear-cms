@@ -78,14 +78,12 @@
 
                         $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
 
-                        $form->addTab('test');
+                        $form->addTab(lang::get('menu_page_link'));
 
                         $field = $form->addTextField('name', '');
                         $field->fieldName(lang::get('name'));
                         $field->addAttribute('v-model', 'menuItemName');
                         $field->fieldValidate();
-
-                        $form->addTab('test2');
 
                         $field = $form->addRawField('
                         <div class="form-select">
@@ -117,6 +115,18 @@
                         </div>
                         ');
                         $field->fieldName(lang::get('page'));
+                        $field->fieldValidate();
+
+                        $form->addTab(lang::get('menu_link'));
+
+                        $field = $form->addTextField('name', '');
+                        $field->fieldName(lang::get('name'));
+                        $field->addAttribute('v-model', 'menuItemName');
+                        $field->fieldValidate();
+
+                        $field = $form->addTextField('link', '');
+                        $field->fieldName(lang::get('link'));
+                        $field->addAttribute('v-model', 'menuItemLink');
                         $field->fieldValidate();
 
                         echo $form->show();
