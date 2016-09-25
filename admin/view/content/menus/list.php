@@ -197,9 +197,11 @@ theme::addJSCode('
         created: function() {
 
             var vue = this;
+
             $(document).on("fetch", function() {
                 vue.fetchItems();
             });
+
         },
         methods: {
             fetchMenus: function(id) {
@@ -236,6 +238,7 @@ theme::addJSCode('
                             $("#menuList").addClass("loaded");
                             $("#menuList > ul").sortableLists(options);
                         }
+                        setTabs();
                     }
                 });
 

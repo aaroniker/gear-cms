@@ -58,7 +58,44 @@ jQuery(document).ready(function($) {
 
     setInterval("getMessages(url)", 1200);
 
+    setTabs();
+
 });
+
+function setTabs() {
+
+    if(window.location.hash) {
+
+        var target = window.location.hash;
+
+        $(".tabs > nav > ul > li > a[href='" + target + "']").parent().addClass('active');
+
+        $(".tabs > section > div").hide();
+        $(".tabs > section").find(target).show();
+
+    } else {
+        $(".tabs > section > div").hide();
+        $(".tabs > section > div:first-child").show();
+        $(".tabs > nav > ul > li:first-child").addClass("active");
+    }
+
+    $(".tabs > nav > ul > li > a").click(function(e) {
+
+        e.preventDefault();
+
+        var target = $(this).attr("href");
+
+        window.location.hash = target;
+
+        $(".tabs > nav > ul > li").removeClass("active");
+        $(".tabs > section > div").hide();
+
+        $(this).parent().addClass("active");
+        $(".tabs > section").find(target).show();
+
+    });
+
+}
 
 function getMessages(url) {
     $.ajax({

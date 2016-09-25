@@ -245,21 +245,23 @@ class form {
 
         if(count($this->tabs)) {
 
-            $return[] = '<nav class="tabs">';
-            $return[] = '<ul>';
+            $return[] = '<div class="tabs">';
+            $return[] = '<nav>';
+            $return[] = '<ul class="clear">';
             foreach($this->tabs as $name => $content) {
                 $return[] = '<li><a href="#tab-'.filter::url($name).'">'.$name.'</a></li>';
             }
             $return[] = '</ul>';
             $return[] = '</nav>';
 
-            $return[] = '<section class="tabs">';
+            $return[] = '<section>';
             foreach($this->tabs as $name => $content) {
                 $return[] = '<div id="tab-'.filter::url($name).'">';
                 $return = $this->loopFields($content, $return);
                 $return[] = '</div>';
             }
             $return[] = '</section>';
+            $return[] = '</div>';
 
         } else {
             $return = $this->loopFields($this->return, $return);
