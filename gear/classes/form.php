@@ -157,7 +157,11 @@ class form {
 
         foreach($this->toSave as $name => $object) {
 
-            $value = type::super($name);
+            if($this->method == 'get') {
+                $value = type::get($name);
+            } else {
+                $value = type::post($name);
+            }
 
             $return[$name] = (is_array($value)) ? implode('|', $value) : $value;
 
@@ -176,7 +180,15 @@ class form {
     }
 
     public function isSubmit() {
-        return isset($_POST[$this->name]);
+
+        if($this->method == 'get') {
+            return isset($_GET[$this->name]);
+        } else {
+            return isset($_POST[$this->name]);
+        }
+
+        return false;
+
     }
 
     public function validation() {
@@ -197,9 +209,9 @@ class form {
 
         if(count($this->errors)) {
             return implode(PHP_EOL, $this->errors);
-        } else {
-            return '';
         }
+
+        return '';
 
     }
 
