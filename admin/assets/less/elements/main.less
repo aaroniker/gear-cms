@@ -99,21 +99,6 @@ main {
     }
 }
 
-.tabMenu {
-    nav {
-        ul {
-            &:after {
-                clear: both;
-                content: "";
-                display: block;
-            }
-            li {
-                float: left;
-            }
-        }
-    }
-}
-
 #menuList {
     ul {
         .hint {
@@ -375,22 +360,6 @@ a.delete {
 }
 
 .button {
-    &.noText {
-        .icon {
-            left: 0;
-            bottom: -1px;
-        }
-        padding-left: @padding-sm-h;
-        padding-right: @padding-sm-h;
-        background: none;
-    }
-    &.border {
-        &:hover {
-            &:before {
-                border-color: darken(@border, 5%);
-            }
-        }
-    }
     cursor: pointer;
 }
 
