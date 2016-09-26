@@ -4,8 +4,8 @@
             img {
                 display: block;
                 width: 130px;
-                -webkit-filter: drop-shadow(0 4px 12px fade(@dark, 20%));
-                filter: drop-shadow(0 4px 12px fade(@dark, 20%));
+                -webkit-filter: drop-shadow(0 4px 11px fade(@shadow, 60%));
+                filter: drop-shadow(0 4px 11px fade(@shadow, 60%));
             }
             display: table;
             margin: 0 auto 50px auto;
@@ -21,7 +21,11 @@
                 position: absolute;
                 .translate(-50%, 0);
             }
+            padding: 40px 30px;
             position: relative;
+            @media(max-width: @screen-sm-min * 1px) {
+                padding: 30px 20px;
+            }
         }
         .action {
             button {
