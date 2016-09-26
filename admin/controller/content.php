@@ -124,10 +124,10 @@ class contentController extends controller {
                             message::success(lang::get('menu_item_added'));
                         }
                     } else {
-                        message::error(sprintf(lang::get('validate_required'), lang::get('page')));
+                        message::error(lang::get('menu_page_link_required'));
                     }
                 } else {
-                    message::error(lang::get('menu_page_link_required'));
+                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
                 }
 
             } elseif($action == 'delItem') {
