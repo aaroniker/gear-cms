@@ -194,7 +194,8 @@ theme::addJSCode('
             searchBox: "",
             menuItemName: "",
             menuItemPage: "",
-            menuItemPageID: 0
+            menuItemPageID: 0,
+            menuItemLink: ""
         },
         ready: function() {
             this.fetchMenus();
