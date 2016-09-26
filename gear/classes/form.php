@@ -4,6 +4,7 @@ class form {
 
     protected $method;
     protected $action;
+    protected $name;
 
     protected $horizontal = true;
 
@@ -21,10 +22,15 @@ class form {
 
     public static $rules = [];
 
+    protected static $count = 1;
+
     public function __construct($action = '', $method = 'post') {
 
         $this->method = $method;
         $this->action = $action;
+        $this->name = 'form'.self::$count;
+
+        self::$count++;
 
         $this->addFormAttribute('action', $this->action);
         $this->addFormAttribute('method', $this->method);
@@ -170,7 +176,7 @@ class form {
     }
 
     public function isSubmit() {
-        return isset($_POST['save']);
+        return isset($_POST[$this->name]);
     }
 
     public function validation() {
@@ -268,7 +274,7 @@ class form {
         }
 
         $return[] = '
-            <button class="button fl-right" name="save" type="submit">'.lang::get('save').'</button>
+            <button class="button fl-right" name="'.$this->name.'" type="submit">'.lang::get('save').'</button>
             <div class="clear"></div>
         ';
 
