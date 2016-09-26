@@ -16,6 +16,8 @@ class MenuItemModel extends model {
             'menuID',
             'parentID',
             'pageID',
+            'link',
+            'typeLink',
             'order'
         ];
 
@@ -42,13 +44,23 @@ class MenuItemModel extends model {
 
                     $page = new PageModel($item->pageID);
 
-                    $return[$item->id] = [
-                        'id' => $item->id,
-                        'order' => $item->order,
-                        'name' => $item->name,
-                        'pageName' => $page->name,
-                        'pageURL' => PageModel::getFullURL($page->id)
-                    ];
+                    if($item->typeLink == 'pageID') {
+                        $return[$item->id] = [
+                            'id' => $item->id,
+                            'order' => $item->order,
+                            'name' => $item->name,
+                            'pageName' => $page->name,
+                            'pageURL' => PageModel::getFullURL($page->id)
+                        ];
+                    } elseif($item->typeLink == 'link') {
+                        $return[$item->id] = [
+                            'id' => $item->id,
+                            'order' => $item->order,
+                            'name' => $item->name,
+                            'pageName' => '',
+                            'pageURL' => $item->link
+                        ];
+                    }
 
                 }
 
@@ -74,14 +86,25 @@ class MenuItemModel extends model {
 
                     $page = new PageModel($item->pageID);
 
-                    $return[] = [
-                        'id' => $item->id,
-                        'order' => $item->order,
-                        'name' => $item->name,
-                        'pageName' => $page->name,
-                        'pageURL' => PageModel::getFullURL($page->id),
-                        'children' => self::getAll($menuID, $item->id)
-                    ];
+                    if($item->typeLink == 'pageID') {
+                        $return[] = [
+                            'id' => $item->id,
+                            'order' => $item->order,
+                            'name' => $item->name,
+                            'pageName' => $page->name.' -',
+                            'pageURL' => PageModel::getFullURL($page->id),
+                            'children' => self::getAll($menuID, $item->id)
+                        ];
+                    } elseif($item->typeLink == 'link') {
+                        $return[] = [
+                            'id' => $item->id,
+                            'order' => $item->order,
+                            'name' => $item->name,
+                            'pageName' => '',
+                            'pageURL' => $item->link,
+                            'children' => self::getAll($menuID, $item->id)
+                        ];
+                    }
 
                     usort($return, function($a, $b) {
                         return $a['order'] - $b['order'];

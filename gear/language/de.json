@@ -75,6 +75,7 @@
     "menu_item_deleted": "Menü-Eintrag gelöscht",
     "menu_item_moved": "Menü-Eintrag verschoben",
     "link": "Link",
+    "menu_page_link_required": "Bitte Seite oder Link angeben",
 
     ## User
     "user": "Benutzer",

@@ -23,16 +23,23 @@ class MenuModel extends model {
 
     }
 
-    public function addItem($name, $parentID, $pageID) {
+    public function addItem($name, $parentID, $pageID, $link) {
 
         $model = new MenuItemModel();
 
         $insert = [
             'name' => $name,
             'menuID' => $this->id,
-            'parentID' => $parentID,
-            'pageID' => $pageID
+            'parentID' => $parentID
         ];
+
+        if($pageID) {
+            $insert['typeLink'] = 'pageID';
+            $insert['pageID'] = $pageID;
+        } else {
+            $insert['typeLink'] = 'link';
+            $insert['link'] = $link;
+        }
 
         return $model->insert($insert);
 

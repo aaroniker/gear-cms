@@ -114,19 +114,20 @@ class contentController extends controller {
 
             } elseif($action == 'addItem') {
 
-                $name = type::post('name', 'string', "");
+                $name = type::post('name', 'string', '');
                 $pageID = type::post('pageID', 'int', 0);
+                $link = type::post('link', 'string', '');
 
                 if($name) {
-                    if($pageID) {
-                        if($this->model->load($id)->addItem($name, 0, $pageID)) {
+                    if($pageID || $link) {
+                        if($this->model->load($id)->addItem($name, 0, $pageID, $link)) {
                             message::success(lang::get('menu_item_added'));
                         }
                     } else {
                         message::error(sprintf(lang::get('validate_required'), lang::get('page')));
                     }
                 } else {
-                    message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                    message::error(lang::get('menu_page_link_required'));
                 }
 
             } elseif($action == 'delItem') {
