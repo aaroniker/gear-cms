@@ -199,6 +199,8 @@ theme::addJSCode('
                         vue.fetch();
                         vue.addPageModal = false;
                         vue.pageName = "";
+                        vue.pageParent = 0;
+                        vue.pageParentName = "";
                     }
                 });
 
