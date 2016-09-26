@@ -243,6 +243,8 @@ class form {
 
         $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
 
+        $return = $this->loopFields($this->return, $return);
+
         if(count($this->tabs)) {
 
             $return[] = '<div class="tabs">';
@@ -263,8 +265,6 @@ class form {
             $return[] = '</section>';
             $return[] = '</div>';
 
-        } else {
-            $return = $this->loopFields($this->return, $return);
         }
 
         $return[] = '
