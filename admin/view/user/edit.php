@@ -24,6 +24,9 @@
 	    $field->fieldName(lang::get('username'));
         $field->fieldValidate();
 
+        $field = $form->addMediaField('avatar', $this->model->avatar);
+        $field->fieldName(lang::get('avatar'));
+
         $field = $form->addTextField('email', $this->model->email);
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');

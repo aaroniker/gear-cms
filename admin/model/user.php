@@ -13,6 +13,7 @@ class UserModel extends model {
 
         $this->metaData = [
             "username",
+            "avatar",
             "session_ids",
             "permissionID"
         ];

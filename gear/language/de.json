@@ -80,6 +80,7 @@
     ## User
     "user": "Benutzer",
     "username": "Benutzername",
+    "avatar": "Avatar",
     "name": "Name",
     "permission": "Berechtigung",
     "permissions": "Berechtigungen",
