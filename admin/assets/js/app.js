@@ -127,7 +127,6 @@ Vue.component("file-table", {
     template: "#file-table-template",
     props: {
         data: [],
-        columns: [],
         showSearch: true,
         headline: "",
         filterKey: "",
