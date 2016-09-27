@@ -70,7 +70,7 @@
         </div>
     </modal>
 
-    <file-table :data="tableData" :columns="['name', 'size']" :headline="headline" :filter-key="search"></data-table>
+    <file-table :data="tableData" :columns="['name', 'size']" :headline="headline" :filter-key="search"></file-table>
 
 </section>
 
