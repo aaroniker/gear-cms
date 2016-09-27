@@ -9,8 +9,8 @@ class formMedia extends formField {
         $this->addAttribute('value', type::super($this->name, '', $this->value));
 
 		return '
-            <div>'.type::super($this->name, '', $this->value).'</div>
-            <input'.$this->convertAttr().'>
+            <div><input'.$this->convertAttr().'></div>
+
         ';
 
 	}
