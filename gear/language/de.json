@@ -107,6 +107,7 @@
 
     ## Plugins
     "plugins": "Plugins",
+    "description": "Beschreibung",
 
     ## System
     "system": "System",
