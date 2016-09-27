@@ -315,3 +315,10 @@ Vue.component("modal", {
         }
     }
 });
+
+new Vue({
+    el: ".formMedia",
+    data: {
+        addMediaModal: false
+    }
+});
