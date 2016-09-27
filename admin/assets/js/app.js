@@ -44,9 +44,6 @@ Vue.component("data-table", {
         return {
             checked: [],
             sortKey: '',
-            currentPage: 0,
-            perPage: 8,
-            resultCount: 0,
             oldHeadline: '',
             sortOrders: sortOrders
         };
@@ -87,9 +84,6 @@ Vue.component("data-table", {
         },
         filtered: function() {
             return this.$eval("data | filterBy filterKey");
-        },
-        totalPages: function() {
-            return Math.ceil(this.resultCount / this.perPage);
         }
     },
     methods: {
@@ -103,9 +97,6 @@ Vue.component("data-table", {
                 this.sortKey = '';
                 this.sortOrders[key] = 0;
             }
-        },
-        setPage: function(page) {
-            this.currentPage = page;
         }
     },
     events: {
@@ -117,21 +108,6 @@ Vue.component("data-table", {
                 this.headline = this.oldHeadline;
                 this.showSearch = true;
             }
-        }
-    },
-    filters: {
-        paginate: function(list) {
-
-            this.resultCount = list.length;
-
-            if (this.currentPage >= this.totalPages) {
-                this.currentPage = this.totalPages - 1;
-            }
-
-            var index = this.currentPage * this.perPage;
-
-            return list.slice(index, index + this.perPage);
-
         }
     }
 });

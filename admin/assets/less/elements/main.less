@@ -391,48 +391,7 @@ a.delete {
     list-style:  none;
 }
 
-.pagination {
-    li {
-        &:last-child {
-            margin-right: 0;
-        }
-        a {
-            &.first {
-                &:after {
-                    content: "...";
-                }
-            }
-            &.last {
-                &:before {
-                    content: "...";
-                }
-            }
-            &.active {
-                background: @primary;
-                border-color: @primary;
-                color: #fff;
-            }
-            border: 1px solid @border;
-            cursor: pointer;
-            display: block;
-            text-align: center;
-            width: 28px;
-            padding: 2px 0;
-            color: @text-light;
-            .round(@border-radius);
-        }
-        margin: 0 5px 0 0;
-        display: inline-block;
-    }
-    margin: 0;
-    padding: @table-padding-v @table-padding-h;
-    list-style: none;
-}
-
 .toolbar {
-    .pagination {
-        float: right;
-    }
     border-top: 1px solid @border;
 }
 

@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey] | paginate" v-slot>
+                <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]" v-slot>
                     <td class="check">
                         <div class="checkbox">
                             <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
@@ -31,11 +31,5 @@
             </tbody>
         </table>
     </div>
-    <div class="toolbar clear">
-        <ul class="pagination" v-if="totalPages > 1">
-            <li v-for="page in totalPages" v-if="Math.abs(page - currentPage) < 3 || page == totalPages - 1 || page == 0">
-                <a @click="setPage(page)" :class="{ active: currentPage === page, last: (page == totalPages - 1 && Math.abs(page - currentPage) > 3), first:(page == 0 && Math.abs(page - currentPage) > 3) }">{{ page + 1 }}</a>
-            </li>
-        </ul>
-    </div>
+    <div class="toolbar clear"></div>
 </template>
