@@ -31,7 +31,7 @@
         <table class="table media">
             <thead>
                 <tr>
-                    <th class="check">
+                    <th class="check" v-if="!select">
                         <div class="checkbox">
                             <input id="checkAll" type="checkbox" v-model="checkAll">
                             <label for="checkAll"></label>
@@ -48,7 +48,7 @@
             </thead>
             <tbody>
                 <tr v-for="entry in data | filterBy filterKey">
-                    <td class="check">
+                    <td class="check" v-if="!select">
                         <div class="checkbox" v-if="entry.id">
                             <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
                             <label for="entry{{ entry.id }}"></label>
@@ -60,20 +60,33 @@
                             {{ entry.name }}
                         </a>
                     </td>
+                    <template v-if="select">
+                    <td v-if="entry.type == 'file'" class="file">
+                        <div>
+                            {{ entry.name }}
+                        </div>
+                    </td>
+                    </template>
+                    <template v-else>
                     <td v-if="entry.type == 'file'" class="file" v-drag="{id: entry.id, name: entry.name}">
                         <div>
                             {{ entry.name }}
                         </div>
                     </td>
+                    </template>
                     <td>
                         {{ entry.size }}
                     </td>
-                    <td class="shrink">
-                        <a v-if="entry.id"  @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
+                    <td v-if="select" class="shrink">
+                        <a v-if="entry.type == 'file'" @click="selectFile(entry.id)" class="icon icon-checkmark-circled"></a>
+                    </td>
+                    <td v-else class="shrink">
+                        <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
                     </td>
                 </tr>
                 <tr v-if="!filtered.length">
-                    <td class="empty" colspan="3">{{ 'no_results' | lang }}</td>
+                    <td v-if="select" class="empty" colspan="3">{{ 'no_results' | lang }}</td>
+                    <td v-else class="empty" colspan="4">{{ 'no_results' | lang }}</td>
                 </tr>
             </tbody>
         </table>

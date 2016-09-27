@@ -130,7 +130,8 @@ Vue.component("file-table", {
         showSearch: true,
         headline: "",
         filterKey: "",
-        path: "/"
+        path: "/",
+        select: false
     },
     data: function() {
         return {
@@ -272,6 +273,9 @@ Vue.component("file-table", {
                 }
             });
 
+        },
+        selectFile: function(path) {
+            alert(path);
         }
     },
     events: {
@@ -320,6 +324,8 @@ if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
     new Vue({
         el: ".formMedia",
         data: {
+            search: "",
+            headline: "list",
             addMediaModal: false
         }
     });

@@ -15,7 +15,7 @@ class formMedia extends formField {
                 <modal :show.sync="addMediaModal">
                     <h3 slot="header">'.lang::get('choose').'</h3>
                     <div slot="content">
-                        123
+                        <file-table :data=\''.json_encode(media::getAll('/')).'\' :headline="headline" :select="true" :filter-key="search"></file-table>
                     </div>
                 </modal>
             </div>
