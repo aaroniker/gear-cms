@@ -131,6 +131,10 @@ class form {
 
     }
 
+    public function addMediaField($name, $value, $attributes = []) {
+        return $this->addField($name, $value, 'formMedia', $attributes);
+    }
+
     public function addSelectField($name, $value, $attributes = []) {
         return $this->addField($name, $value, 'formSelect', $attributes);
     }
