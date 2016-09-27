@@ -391,7 +391,35 @@ a.delete {
     list-style:  none;
 }
 
+.pagination {
+    a {
+        &:before {
+            display: block;
+            line-height: 25px;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        float: left;
+        display: block;
+        width: 25px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        background: @primary;
+        .round(3px);
+    }
+    div {
+        padding: 0 12px;
+        float: left;
+        line-height: 25px;
+    }
+    margin: 15px 0 0 0;
+}
+
 .toolbar {
+    .pagination {
+        float: right;
+    }
     border-top: 1px solid @border;
 }
 

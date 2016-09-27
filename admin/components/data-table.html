@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey]" v-slot>
+                <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey] | limitBy rowsPerPage startRow" v-slot>
                     <td class="check">
                         <div class="checkbox">
                             <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
@@ -31,5 +31,11 @@
             </tbody>
         </table>
     </div>
-    <div class="toolbar clear"></div>
+    <div class="toolbar clear">
+        <div v-if="filtered.length > rowsPerPage" class="pagination clear">
+            <a @click="movePages(-1)" class="back icon icon-chevron-left"></a>
+            <div>{{ startRow / rowsPerPage + 1 }} / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
+            <a @click="movePages(1)" class="next icon icon-chevron-right"></a>
+        </div>
+    </div>
 </template>

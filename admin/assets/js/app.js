@@ -43,6 +43,8 @@ Vue.component("data-table", {
         });
         return {
             checked: [],
+            startRow: 0,
+            rowsPerPage: 8,
             sortKey: '',
             oldHeadline: '',
             sortOrders: sortOrders
@@ -97,6 +99,15 @@ Vue.component("data-table", {
                 this.sortKey = '';
                 this.sortOrders[key] = 0;
             }
+        },
+        movePages: function(amount) {
+            var newStartRow = this.startRow + (amount * this.rowsPerPage);
+            if(newStartRow >= 0 && newStartRow < this.data.length) {
+                this.startRow = newStartRow;
+            }
+        },
+        resetStartRow: function() {
+            this.startRow = 0;
         }
     },
     events: {
