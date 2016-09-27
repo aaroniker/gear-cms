@@ -90,8 +90,7 @@
         admin::addSubmenu(lang::get('list'), 'index', 'plugins');
 
         admin::addMenu(lang::get('system'), 'system');
-        admin::addSubmenu(lang::get('general'), 'index', 'system');
-        admin::addSubmenu(lang::get('advanced'), 'advanced', 'system');
+        admin::addSubmenu(lang::get('settings'), 'index', 'system');
 
         include(dir::view('head.php'));
 
