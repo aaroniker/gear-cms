@@ -316,9 +316,12 @@ Vue.component("modal", {
     }
 });
 
-new Vue({
-    el: ".formMedia",
-    data: {
-        addMediaModal: false
-    }
-});
+var formMedia =  document.getElementsByClassName('formMedia');
+if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
+    new Vue({
+        el: ".formMedia",
+        data: {
+            addMediaModal: false
+        }
+    });
+}
