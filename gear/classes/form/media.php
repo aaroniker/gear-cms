@@ -10,7 +10,10 @@ class formMedia extends formField {
 
 		return '
             <div class="formMedia">
-                <a @click="addMediaModal = true" class="button border">'.lang::get('choose').'</a>
+                <a @click="addMediaModal = true" class="button border">
+                    <i class="icon icon-archive"></i>
+                    '.lang::get('choose').'
+                </a>
                 <a class="button none">{{ fileName ? fileName : "'.$this->value.'" }}</a>
                 <input'.$this->convertAttr().'>
                 <modal :show.sync="addMediaModal">
