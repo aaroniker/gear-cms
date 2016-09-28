@@ -6,11 +6,12 @@ class formMedia extends formField {
 
         $this->addAttribute('type', 'hidden');
         $this->addAttribute('name', $this->name);
-        $this->addAttribute('value', type::super($this->name, '', $this->value));
+        $this->addAttribute('value', type::super($this->name, '', '{{ fileName ? fileName : "'.$this->value.'" }}'));
 
 		return '
             <div class="formMedia">
                 <a @click="addMediaModal = true" class="button border">'.lang::get('choose').'</a>
+                <a class="button none">{{ fileName ? fileName : "'.$this->value.'" }}</a>
                 <input'.$this->convertAttr().'>
                 <modal :show.sync="addMediaModal">
                     <h3 slot="header">'.lang::get('choose').'</h3>

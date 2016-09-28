@@ -131,7 +131,8 @@ Vue.component("file-table", {
         headline: "",
         filterKey: "",
         path: "/",
-        select: false
+        select: false,
+        fileName: ""
     },
     data: function() {
         return {
@@ -275,7 +276,8 @@ Vue.component("file-table", {
 
         },
         selectFile: function(path) {
-            alert(path);
+            this.$dispatch("fileName", path);
+            this.$dispatch("addMediaModal", false);
         }
     },
     events: {
@@ -326,7 +328,16 @@ if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
         data: {
             search: "",
             headline: "list",
-            addMediaModal: false
+            addMediaModal: false,
+            fileName: ""
+        },
+        events: {
+            fileName: function(data) {
+                this.fileName = data;
+            },
+            addMediaModal: function(data) {
+                this.addMediaModal = data;
+            }
         }
     });
 }
