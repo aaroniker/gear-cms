@@ -84,15 +84,6 @@
                         <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
                     </td>
                 </tr>
-                <tr v-if="select">
-                    <td>
-                        <div>{{ 'choose_files_no' | lang }}</div>
-                    </td>
-                    <td></td>
-                    <td class="shrink">
-                        <a @click="selectFile()" class="icon icon-close-circled"></a>
-                    </td>
-                </tr>
                 <tr v-if="!filtered.length">
                     <td v-if="select" class="empty" colspan="3">{{ 'no_results' | lang }}</td>
                     <td v-else class="empty" colspan="4">{{ 'no_results' | lang }}</td>
@@ -101,4 +92,8 @@
         </table>
     </div>
     <div class="toolbar clear"></div>
+    <a v-if="select && fileName" @click="selectFile()" class="button error center">
+        <i class="icon icon-close-circled"></i>
+        {{ 'choose_files_no' | lang }}
+    </a>
 </template>

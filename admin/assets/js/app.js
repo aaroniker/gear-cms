@@ -279,8 +279,9 @@ Vue.component("file-table", {
             if(!path) {
                 path = "";
             }
-            this.$dispatch("fileName", path);
             this.$dispatch("addMediaModal", false);
+            this.$dispatch("fileName", path);
+            this.fileName = path;
         }
     },
     events: {
