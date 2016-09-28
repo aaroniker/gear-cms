@@ -32,10 +32,10 @@ theme::addJSCode('
             showSearch: true
         },
         events: {
-            checked: function (data) {
+            checked: function(data) {
                 this.checked = data;
             },
-            headline: function (data) {
+            headline: function(data) {
                 this.headline = data.headline;
                 this.showSearch = data.showSearch;
             }
