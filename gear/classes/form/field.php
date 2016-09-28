@@ -110,6 +110,10 @@ abstract class formField extends form {
         return $this->name;
     }
 
+    public function getLabel() {
+        return filter::url($this->name).'Form';
+    }
+
     public function getHide() {
         return ($this->hide) ? 'hide' : '';
     }

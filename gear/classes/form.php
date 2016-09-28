@@ -244,7 +244,7 @@ class form {
             $show->delAttribute('parent');
 
 			$return[] = '<div class="form-element" '.$parent.'>';
-			$return[] = '<label class="sm-3" for="'.$show->getAttribute('id').'">'.$show->fieldName.'</label>';
+			$return[] = '<label class="sm-3" for="'.$show->getLabel().'">'.$show->fieldName.'</label>';
 			$return[] = '<div class="sm-9">'.$show->get().'</div>';
 			$return[] = '</div>';
 
