@@ -92,7 +92,7 @@
         </table>
     </div>
     <div class="toolbar clear"></div>
-    <a v-if="select && fileName" @click="selectFile()" class="button error center">
+    <a v-if="select" @click="selectFile()" class="button error center">
         <i class="icon icon-close-circled"></i>
         {{ 'choose_files_no' | lang }}
     </a>
