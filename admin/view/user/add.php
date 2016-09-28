@@ -31,7 +31,7 @@
 	    $field->fieldName(lang::get('email'));
         $field->fieldValidate('valid_email|required');
 
-	    $field = $form->addPasswordField('password', '');
+        $field = $form->addTextField('password', '', ['v-model="newPassword"']);
         $field->fieldName(lang::get('password'));
         $field->fieldValidate();
 
@@ -79,3 +79,17 @@
     </div>
 
 </section>
+
+<?php
+theme::addJSCode('
+    new Vue({
+        el: "#user",
+        data: {
+            newPassword: ""
+        },
+        ready: function() {
+            this.newPassword = randomPassword(12);
+        }
+    });
+');
+?>
