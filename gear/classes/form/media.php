@@ -6,7 +6,7 @@ class formMedia extends formField {
 
         $this->addAttribute('type', 'hidden');
         $this->addAttribute('name', $this->name);
-        $this->addAttribute('value', type::super($this->name, '', '{{ fileName ? fileName : "'.$this->value.'" }}'));
+        $this->addAttribute('value', type::super($this->name, '', '{{ (fileName === false) ? "'.$this->value.'" : fileName }}'));
 
 		return '
             <div class="formMedia">
@@ -14,7 +14,7 @@ class formMedia extends formField {
                     <i class="icon icon-archive"></i>
                     '.lang::get('choose').'
                 </a>
-                <a class="button none">{{ fileName ? fileName : "'.$this->value.'" }}</a>
+                <a class="button none">{{ (fileName === false) ? "'.$this->value.'" : fileName }}</a>
                 <input'.$this->convertAttr().'>
                 <modal :show.sync="addMediaModal">
                     <h3 slot="header">'.lang::get('choose').'</h3>

@@ -75,6 +75,7 @@
             if($form->validation()) {
 
 			    extension::add('model_beforeSave', function($data) {
+                    $data['avatar'] = ($data['avatar']) ? $data['avatar'] : null;
                     if(!empty($data['password'])) {
     			        $password = password_hash($data['password'], PASSWORD_DEFAULT);
     			        $data['password'] = $password;

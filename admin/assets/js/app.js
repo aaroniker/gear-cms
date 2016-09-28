@@ -276,6 +276,9 @@ Vue.component("file-table", {
 
         },
         selectFile: function(path) {
+            if(!path) {
+                path = "";
+            }
             this.$dispatch("fileName", path);
             this.$dispatch("addMediaModal", false);
         }
@@ -329,7 +332,7 @@ if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
             search: "",
             headline: "list",
             addMediaModal: false,
-            fileName: ""
+            fileName: false
         },
         events: {
             fileName: function(data) {

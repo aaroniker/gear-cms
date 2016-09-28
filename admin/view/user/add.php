@@ -53,6 +53,7 @@
             if($form->validation()) {
 
 			    extension::add('model_beforeInsert', function($data) {
+                    $data['avatar'] = ($data['avatar']) ? $data['avatar'] : null;
     			    $password = password_hash($data['password'], PASSWORD_DEFAULT);
     			    $data['password'] = $password;
     		        return $data;
