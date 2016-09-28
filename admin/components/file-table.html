@@ -85,8 +85,7 @@
                     </td>
                 </tr>
                 <tr v-if="!filtered.length">
-                    <td v-if="select" class="empty" colspan="3">{{ 'no_results' | lang }}</td>
-                    <td v-else class="empty" colspan="4">{{ 'no_results' | lang }}</td>
+                    <td class="empty" colspan="{{ select ? 3 : 4 }}">{{ 'no_results' | lang }}</td>
                 </tr>
             </tbody>
         </table>
