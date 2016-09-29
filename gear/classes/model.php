@@ -147,7 +147,7 @@ class model {
             $saveData = $this->saveData();
             $saveMeta = $this->saveMeta();
 
-            if(($saveData || $saveMeta) && $this->log) {
+            if($this->log) {
                 log::set($this->log, $this->id, 'edit');
             }
 
