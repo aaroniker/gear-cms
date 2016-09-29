@@ -11,6 +11,7 @@ class PageModel extends model {
         $this->model = 'entry';
 
         $this->type = 'page';
+        $this->log = 'page';
 
         $this->metaData = [
             'parentID',
