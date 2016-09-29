@@ -11,9 +11,7 @@ class userSession extends user {
     }
 
     public static function destroy() {
-
         session_destroy();
-
     }
 
     public static function update($userID = 0, $sessionID = null, $remember) {
@@ -44,7 +42,7 @@ class userSession extends user {
                 'session_ids' => serialize($sessions)
             ];
 
-            $model->save($vars, false);
+            $model->save($vars);
 
         }
 
@@ -64,7 +62,7 @@ class userSession extends user {
                 'session_ids' => serialize($sessions)
             ];
 
-            $model->save($vars, false);
+            $model->save($vars);
 
         }
 
@@ -100,9 +98,7 @@ class userSession extends user {
     }
 
     public static function loggedIn() {
-
         return type::session('user_logged_in', 'bool', false);
-
     }
 
 }

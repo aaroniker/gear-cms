@@ -78,7 +78,7 @@ class model {
 
     }
 
-    public function insert($args) {
+    public function insert($args, $log = false) {
 
         $save = [];
         $meta = [];
@@ -108,7 +108,7 @@ class model {
 
             $this->setData($meta)->saveMeta();
 
-            if($this->log) {
+            if($this->log && $log) {
                 log::set($this->log, $this->id);
             }
 
@@ -136,7 +136,7 @@ class model {
 
     }
 
-    public function save($data, $log = true) {
+    public function save($data, $log = false) {
 
         if(is_array($data)) {
 

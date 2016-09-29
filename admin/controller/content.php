@@ -58,7 +58,7 @@ class contentController extends controller {
                         'name'=> $name,
                         'parentID' => $parentID,
                         'siteURL' => filter::url($name)
-                    ]);
+                    ], true);
 
                     message::success(lang::get('page_added'));
 
@@ -144,7 +144,7 @@ class contentController extends controller {
 
                     $insert = $this->model->insert([
                         'name'=> $name
-                    ]);
+                    ], true);
 
                     message::success(lang::get('menu_added'));
 

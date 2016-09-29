@@ -63,7 +63,7 @@
 					return $data;
 				});
 
-				$this->model->insert($form->getAll());
+				$this->model->insert($form->getAll(), true);
 
 				message::success(lang::get('user_added'));
 

@@ -85,7 +85,7 @@
     		        return $data;
 			    });
 
-			    $this->model->save($form->getAll());
+			    $this->model->save($form->getAll(), true);
 
                 message::success(lang::get('user_edited'));
 
