@@ -5,6 +5,7 @@ class model {
     protected $id;
     protected $model;
     protected $type = false;
+    protected $log = false;
     protected $metaData = [];
 
     function __construct() {
@@ -43,7 +44,7 @@ class model {
         $array = [];
 
         foreach($this->getClassVariables() as $var) {
-            if($var != 'model' && $var != 'metaData' && $var != 'type') {
+            if($var != 'model' && $var != 'metaData' && $var != 'type' && $var != 'log') {
                 $array[$var] = $this->$var;
             }
         }
@@ -99,12 +100,17 @@ class model {
         }
 
         $save = extension::get('model_beforeInsert', $save);
+        $meta = extension::get('model_beforeInsertMeta', $meta);
 
         if(is_array($save)) {
 
             $this->id = db()->insertInto($this->model, $save)->execute();
 
             $this->setData($meta)->saveMeta();
+
+            if($this->log) {
+                log::set($this->log, $this->id);
+            }
 
             return $this->load($this->id);
 
@@ -140,6 +146,10 @@ class model {
 
             $saveData = $this->saveData();
             $saveMeta = $this->saveMeta();
+
+            if(($saveData || $saveMeta) && $this->log) {
+                log::set($this->log, $this->id, 'edit');
+            }
 
             return ($saveData || $saveMeta) ? true : false;
 
@@ -240,6 +250,8 @@ class model {
 
                 foreach($ids as $id) {
 
+                    log::del($this->type, $id);
+
                     db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
                     db()->deleteFrom($this->model)->where('id', $id)->execute();
 
@@ -252,6 +264,8 @@ class model {
         } else {
 
             if(extension::get('model_beforeDelete', $id)) {
+
+                log::del($this->type, $id);
 
                 db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
                 db()->deleteFrom($this->model)->where('id', $id)->execute();
