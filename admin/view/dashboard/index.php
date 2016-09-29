@@ -17,8 +17,8 @@
 
         <div class="lg-4 sm-5">
             <div class="box">
-                <h3><?=lang::get('recent'); ?></h3>
-                <ul class="recent">
+                <h3><?=lang::get('logs'); ?></h3>
+                <ul class="logs">
 
                 </ul>
             </div>
