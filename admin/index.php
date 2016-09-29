@@ -6,8 +6,8 @@
     theme::addCSS('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
     theme::addCSS(url::assets('css/style.css'));
 
-    theme::addJS(url::assets('js/vue.js'));
     theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js');
+    theme::addJS(url::assets('js/vue.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
     theme::addJS(url::assets('js/directives.js'));
