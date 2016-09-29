@@ -8,10 +8,19 @@
 
     <div class="columns">
 
-        <div class="lg-8">
+        <div class="lg-8 sm-7">
             <div class="box primary">
                 <h3><?=lang::get('statistics'); ?></h3>
                 <div class="statistics"></div>
+            </div>
+        </div>
+
+        <div class="lg-4 sm-5">
+            <div class="box">
+                <h3><?=lang::get('recent'); ?></h3>
+                <ul class="recent">
+
+                </ul>
             </div>
         </div>
 
@@ -45,15 +54,15 @@ theme::addJSCode('
             showGrid: false,
             offset: 25,
             labelOffset: {
-                x: -6,
+                x: -7,
                 y: 6
             }
         },
         chartPadding: {
             top: 0,
-            right: 15,
+            right: 8,
             bottom: 0,
-            left: 5
+            left: 8
         },
         plugins: [
             Chartist.plugins.tooltip({
