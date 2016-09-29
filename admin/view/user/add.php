@@ -1,96 +1,100 @@
 <section id="user">
 
-    <header>
+	<header>
 
-        <h2><?=lang::get('add'); ?></h2>
+		<h2><?=lang::get('add'); ?></h2>
 
-        <nav>
-            <ul>
-                <li>
-                    <a href="<?=url::admin('user'); ?>" class="button border">
-                        <?=lang::get('back'); ?>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+		<nav>
+			<ul>
+				<li>
+					<a href="<?=url::admin('user'); ?>" class="button border">
+						<?=lang::get('back'); ?>
+					</a>
+				</li>
+			</ul>
+		</nav>
 
-    </header>
+	</header>
 
-    <?php
+	<?php
 
-        $form = new form();
+		$form = new form();
 
-        $field = $form->addTextField('username', '');
-	    $field->fieldName(lang::get('username'));
-        $field->fieldValidate();
+		$field = $form->addTextField('username', '');
+		$field->fieldName(lang::get('username'));
+		$field->fieldValidate();
 
-        $field = $form->addMediaField('avatar', '');
-        $field->fieldName(lang::get('avatar'));
+		$field = $form->addMediaField('avatar', '');
+		$field->fieldName(lang::get('avatar'));
 
-        $field = $form->addTextField('email', '');
-	    $field->fieldName(lang::get('email'));
-        $field->fieldValidate('valid_email|required');
+		$field = $form->addTextField('email', '');
+		$field->fieldName(lang::get('email'));
+		$field->fieldValidate('valid_email|required');
 
-        $field = $form->addTextField('password', '', ['v-model="newPassword"']);
-        $field->fieldName(lang::get('password'));
-        $field->fieldValidate();
+		$field = $form->addTextField('password', '', ['v-model="newPassword"']);
+		$field->fieldName(lang::get('password'));
+		$field->fieldValidate();
 
-	    $field = $form->addRadioInlineField('status', 1);
-        $field->fieldName(lang::get('status'));
-        $field->add(1, lang::get('active'));
-        $field->add(0, lang::get('blocked'));
+		$field = $form->addRadioInlineField('status', 1);
+		$field->fieldName(lang::get('status'));
+		$field->add(1, lang::get('active'));
+		$field->add(0, lang::get('blocked'));
 
-        $field = $form->addSelectField('permissionID', 0);
-        $field->fieldName(lang::get('permissions'));
-        $field->add(0, lang::get('admin'));
+		$field = $form->addSelectField('permissionID', 0);
+		$field->fieldName(lang::get('permissions'));
+		$field->add(0, lang::get('admin'));
 
-        foreach(PermissionModel::getAllFromDb() as $entry) {
-            $field->add($entry->id, $entry->name);
-        }
+		foreach(PermissionModel::getAllFromDb() as $entry) {
+			$field->add($entry->id, $entry->name);
+		}
 
-        if($form->isSubmit()) {
+		if($form->isSubmit()) {
 
-            if($form->validation()) {
+			if($form->validation()) {
 
-			    extension::add('model_beforeInsert', function($data) {
-                    $data['avatar'] = ($data['avatar']) ? $data['avatar'] : null;
-    			    $password = password_hash($data['password'], PASSWORD_DEFAULT);
-    			    $data['password'] = $password;
-    		        return $data;
-			    });
+				extension::add('model_beforeInsert', function($data) {
+					$password = password_hash($data['password'], PASSWORD_DEFAULT);
+					$data['password'] = $password;
+					return $data;
+				});
 
-			    $this->model->insert($form->getAll());
+				extension::add('model_beforeInsertMeta', function($data) {
+					$data['avatar'] = (isset($data['avatar']) && $data['avatar']) ? $data['avatar'] : null;
+					return $data;
+				});
 
-    			message::success(lang::get('user_added'));
+				$this->model->insert($form->getAll());
 
-                header('location:'.url::admin('user', ['index']));
+				message::success(lang::get('user_added'));
 
-		    } else {
-			    echo $form->getErrors();
-		    }
+				header('location:'.url::admin('user', ['index']));
 
-	    }
+			} else {
+				echo $form->getErrors();
+			}
 
-    ?>
+		}
 
-    <div class="columns">
-        <div class="md-9 lg-7">
-            <?=$form->show(); ?>
-        </div>
-    </div>
+	?>
+
+	<div class="columns">
+		<div class="md-9 lg-7">
+			<?=$form->show(); ?>
+		</div>
+	</div>
 
 </section>
 
 <?php
 theme::addJSCode('
-    new Vue({
-        el: "#user",
-        data: {
-            newPassword: ""
-        },
-        ready: function() {
-            this.newPassword = randomPassword(12);
-        }
-    });
+	new Vue({
+		el: "#user",
+		data: {
+			newPassword: ""
+		},
+		ready: function() {
+			this.newPassword = randomPassword(12);
+		}
+	});
 ');
 ?>
