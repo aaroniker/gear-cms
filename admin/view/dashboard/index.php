@@ -19,7 +19,21 @@
             <div class="box">
                 <h3><?=lang::get('logs'); ?></h3>
                 <ul class="logs">
-
+                    <?php
+                        $logs = log::getAll();
+                        if($logs) {
+                            foreach($logs as $log) {
+                                echo '
+                                    <li>
+                                        <span>'.$log->log_entry_type.'('.$log->log_entry_id.') - '.$log->log_action.'- '.$log->log_user_id.'</span>
+                                        <div>'.time_since($log->log_datetime).'</div>
+                                    </li>
+                                ';
+                            }
+                        } else {
+                            echo '<li>'.lang::get('no_results').'</li>';
+                        }
+                    ?>
                 </ul>
             </div>
         </div>
