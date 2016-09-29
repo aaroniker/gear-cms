@@ -44,7 +44,7 @@ class userSession extends user {
                 'session_ids' => serialize($sessions)
             ];
 
-            $model->save($vars);
+            $model->save($vars, false);
 
         }
 
@@ -64,7 +64,7 @@ class userSession extends user {
                 'session_ids' => serialize($sessions)
             ];
 
-            $model->save($vars);
+            $model->save($vars, false);
 
         }
 

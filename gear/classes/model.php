@@ -136,7 +136,7 @@ class model {
 
     }
 
-    public function save($data) {
+    public function save($data, $log = true) {
 
         if(is_array($data)) {
 
@@ -147,7 +147,7 @@ class model {
             $saveData = $this->saveData();
             $saveMeta = $this->saveMeta();
 
-            if($this->log) {
+            if($this->log && $log) {
                 log::set($this->log, $this->id, 'edit');
             }
 
