@@ -20,12 +20,15 @@
                 <h3><?=lang::get('logs'); ?></h3>
                 <ul class="logs">
                     <?php
-                        $logs = log::getAll();
+                        $logs = log::getAll(8);
                         if($logs) {
                             foreach($logs as $log) {
+                                $icon = ($log->log_action == 'edit') ? '<i class="icon icon-edit"></i>' : '<i class="icon icon-plus"></i>';
+                                $user = new UserModel($log->log_user_id);
                                 echo '
                                     <li>
-                                        <span>'.$log->log_entry_type.'('.$log->log_entry_id.') - '.$log->log_action.'- '.$log->log_user_id.'</span>
+                                        <span data-tooltip="'.$log->log_entry_id.'">'.lang::get($log->log_entry_type).' '.$icon.'</span>
+                                        <div data-tooltip="'.$user->username.'"><i class="icon icon-person"></i></div>
                                         <div>'.time_since($log->log_datetime).'</div>
                                     </li>
                                 ';

@@ -101,7 +101,27 @@ main {
 
 .logs {
     li {
-        line-height: 20px;
+        &:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        span {
+            display: block;
+            float: left;
+        }
+        div {
+            display: block;
+            float: right;
+            color: @text-light;
+        }
+        i {
+            &.icon-person {
+                margin: 0 0 0 6px;
+            }
+            font-size: 14px;
+        }
+        line-height: 25px;
     }
     margin: 0;
     padding: 0;
