@@ -8,8 +8,8 @@
 
     <div class="columns">
 
-        <div class="lg-7">
-            <div class="box">
+        <div class="lg-8">
+            <div class="box primary">
                 <h3><?=lang::get('statistics'); ?></h3>
                 <div class="statistics"></div>
             </div>
@@ -30,9 +30,10 @@ theme::addJSCode('
     new Chartist.Line(".statistics", {
         labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
         series: [
-            [12, 9, 7, 8, 5, 10, 20]
+            [102, 85, 50, 60, 80, 95, 75]
         ]
     }, {
+        height: 200,
         fullWidth: true,
         showArea: true,
         axisY: {
@@ -44,12 +45,12 @@ theme::addJSCode('
             showGrid: false,
             offset: 25,
             labelOffset: {
-                x: 0,
-                y: 5
+                x: -6,
+                y: 6
             }
         },
         chartPadding: {
-            top: 15,
+            top: 0,
             right: 15,
             bottom: 0,
             left: 5

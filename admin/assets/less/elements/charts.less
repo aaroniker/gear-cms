@@ -1,14 +1,23 @@
 .statistics {
+    .ct-chart-line {
+        display: block;
+    }
     .ct-area {
-        fill: @primary !important;
+        fill: #fff !important;
     }
     .ct-point,
     .ct-line {
-        stroke: @primary !important;
+        stroke: #fff !important;
+    }
+    .ct-label {
+        color: #fff;
     }
 }
 
 .chartist-tooltip {
+    &.tooltip-show {
+        display: block;
+    }
     position: absolute;
     display: inline-block;
     padding: 5px 10px;
@@ -16,13 +25,9 @@
     color: @text-dark;
     pointer-events: none;
     z-index: 1;
-    .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
+    display: none;
+    .box-shadow(0, 3px, 9px, fade(@dark, 20%));
     .round();
-    .opacity(0);
-}
-
-.chartist-tooltip.tooltip-show {
-    .opacity(1);
 }
 
 .ct-area,
