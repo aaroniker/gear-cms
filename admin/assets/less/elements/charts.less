@@ -11,12 +11,13 @@
 .chartist-tooltip {
     position: absolute;
     display: inline-block;
-    min-width: 5em;
-    padding: 10px;
-    background: @primary;
-    color: #fff;
+    padding: 5px 10px;
+    background: #fff;
+    color: @text-dark;
     pointer-events: none;
     z-index: 1;
+    .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
+    .round();
     .opacity(0);
 }
 

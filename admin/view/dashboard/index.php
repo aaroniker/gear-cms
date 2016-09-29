@@ -53,7 +53,12 @@ theme::addJSCode('
             right: 15,
             bottom: 0,
             left: 5
-        }
+        },
+        plugins: [
+            Chartist.plugins.tooltip({
+                appendToBody: true
+            })
+        ]
     });
 ');
 ?>
