@@ -11,6 +11,8 @@ class UserModel extends model {
 
         $this->model = 'user';
 
+        $this->log = 'user';
+
         $this->metaData = [
             "username",
             "avatar",
