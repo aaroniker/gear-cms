@@ -7,3 +7,24 @@
         stroke: @primary !important;
     }
 }
+
+.chartist-tooltip {
+    position: absolute;
+    display: inline-block;
+    min-width: 5em;
+    padding: 10px;
+    background: @primary;
+    color: #fff;
+    pointer-events: none;
+    z-index: 1;
+    .opacity(0);
+}
+
+.chartist-tooltip.tooltip-show {
+    .opacity(1);
+}
+
+.ct-area,
+.ct-line {
+    pointer-events: none;
+}
