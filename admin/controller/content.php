@@ -201,6 +201,8 @@ class contentController extends controller {
 
     public function media($action = '', $file = '') {
 
+        theme::addJS('https://cdn.jsdelivr.net/gear-upload/0.2/gearUpload.min.js');
+
         if(ajax::is()) {
 
             $path = type::post('path', 'string', '');

@@ -8,7 +8,6 @@
 
     theme::addJS(url::assets('js/vue.js'));
     theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js');
-    theme::addJS('https://cdn.jsdelivr.net/gear-upload/0.2/gearUpload.min.js');
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
     theme::addJS(url::assets('js/directives.js'));
