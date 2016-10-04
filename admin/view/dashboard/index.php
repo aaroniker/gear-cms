@@ -17,7 +17,15 @@
 
         <div class="lg-4 sm-5">
             <div class="box">
-                <div id="calendar"></div>
+                <div id="calendar">
+                    <div id="calendar_header">
+                        <i class="icon-chevron-left"></i>
+                        <h1></h1>
+                        <i class="icon-chevron-right"></i>
+                    </div>
+                    <div id="calendar_weekdays"></div>
+                    <div id="calendar_content"></div>
+                </div>
             </div>
         </div>
 
