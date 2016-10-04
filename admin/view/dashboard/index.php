@@ -147,14 +147,6 @@ theme::addJSCode('
         }
     });
 
-    $("#calendar").fullCalendar({
-        header: {
-            left: "prev",
-            center: "title",
-            right: "next"
-        }
-    });
-
     new Chartist.Line(".statistics", {
         labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
         series: [
