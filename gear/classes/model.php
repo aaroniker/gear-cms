@@ -52,6 +52,7 @@ class model {
         unset($array["id"]);
 
         return $array;
+
     }
 
     public function load($id = 0) {
