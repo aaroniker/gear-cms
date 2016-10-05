@@ -18,22 +18,19 @@ $(function() {
                 l.append('<div class="blank"></div>')
             } else {
                 var v = e[c].day;
-                var m = g(new Date(t, n - 1, v)) ? '<div class="today">' : "<div>";
+                var m = g(new Date(year, month - 1, v)) ? '<div class="today">' : "<div>";
                 l.append(m + "" + v + "</div>")
             }
         }
-        var y = o[n - 1];
-        a.css("background-color", y).find("h1").text(i[n - 1] + " " + t);
-        f.find("div").css("color", y);
-        l.find(".today").css("background-color", y);
+        toolbar.find("h3").text(i[month - 1] + " " + year);
     }
 
     function h() {
         var e = [];
-        for(var r = 1; r < v(t, n) + 1; r++) {
+        for(var r = 1; r < v(year, month) + 1; r++) {
             e.push({
                 day: r,
-                weekday: s[m(t, n, r)]
+                weekday: s[m(year, month, r)]
             })
         }
         return e
@@ -42,16 +39,16 @@ $(function() {
     function p() {
         f.empty();
         for (var e = 0; e < 7; e++) {
-            f.append("<div>" + s[e].substring(0, 3) + "</div>")
+            f.append("<div>" + s[e].substring(0, 2) + "</div>")
         }
     }
 
-    function v(e, t) {
-        return (new Date(e, t, 0)).getDate()
+    function v(e, year) {
+        return (new Date(e, year, 0)).getDate()
     }
 
-    function m(e, t, n) {
-        return (new Date(e, t - 1, n)).getDay()
+    function m(e, year, month) {
+        return (new Date(e, year - 1, month)).getDay()
     }
 
     function g(e) {
@@ -63,40 +60,41 @@ $(function() {
     }
 
     function b() {
-        var e = new Date;
-        t = e.getFullYear();
-        n = e.getMonth() + 1
+        var date = new Date;
+        year = date.getFullYear();
+        month = date.getMonth() + 1
     }
     var e = 480;
-    var t = 2013;
-    var n = 9;
+    var year = null;
+    var month = null;
     var r = [];
-    var i = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+    var i = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
     var s = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var o = ["#16a085", "#1abc9c", "#c0392b", "#27ae60", "#FF6860", "#f39c12", "#f1c40f", "#e67e22", "#2ecc71", "#e74c3c", "#d35400", "#2c3e50"];
-    var u = $("#calendar");
-    var a = u.find("#calendar_header");
-    var f = u.find("#calendar_weekdays");
-    var l = u.find("#calendar_content");
+    var calendar = $("#calendar");
+    var toolbar = calendar.find(".header");
+    var f = calendar.find(".weekdays");
+    var l = calendar.find(".content");
     b();
     c();
-    a.find('i[class^="icon-chevron"]').on("click", function() {
-        var e = $(this);
-        var r = function(e) {
-            n = e == "next" ? n + 1 : n - 1;
-            if (n < 1) {
-                n = 12;
-                t--
-            } else if (n > 12) {
-                n = 1;
-                t++
+
+    toolbar.find('.icon').on("click", function() {
+        var element = $(this);
+        var set = function(dir) {
+            month = (dir == "next") ? month + 1 : month - 1;
+            if(month < 1) {
+                month = 12;
+                year--;
+            } else if(month > 12) {
+                month = 1;
+                year++;
             }
-            c()
+            c();
         };
-        if (e.attr("class").indexOf("left") != -1) {
-            r("previous")
+        if(element.hasClass("prev")) {
+            set("prev");
         } else {
-            r("next")
+            set("next");
         }
-    })
+    });
+
 });
