@@ -38,25 +38,25 @@ $(function() {
 
     function weekdays() {
         weekdaysEl.empty();
-        for(var e = 0; e < 7; e++) {
-            weekdaysEl.append("<div>" + lang[weekdayArr[e]].substring(0, 2) + "</div>");
+        for(var i = 0; i < 7; i++) {
+            weekdaysEl.append("<div>" + lang[weekdayArr[i]].substring(0, 2) + "</div>");
         }
     }
 
-    function v(e, year) {
-        return (new Date(e, year, 0)).getDate();
+    function v(year, month) {
+        return (new Date(year, month, 0)).getDate();
     }
 
-    function m(e, year, month) {
-        return (new Date(e, year - 1, month)).getDay();
+    function m(year, month, day) {
+        return (new Date(year, month - 1, day)).getDay();
     }
 
-    function g(e) {
-        return y(new Date) == y(e);
+    function g(date) {
+        return y(new Date) == y(date);
     }
 
-    function y(e) {
-        return e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate();
+    function y(date) {
+        return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     }
 
     function b() {
@@ -82,8 +82,8 @@ $(function() {
     days();
 
     toolbarEl.find('.icon').on("click", function() {
-        var set = function(dir) {
-            month = (dir == "next") ? month + 1 : month - 1;
+        var set = function(direction) {
+            month = (direction == "next") ? month + 1 : month - 1;
             if(month < 1) {
                 month = 12;
                 year--;
