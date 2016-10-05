@@ -175,7 +175,7 @@ main {
     }
 }
 
-.logs {
+#logs {
     & > ul {
         li {
             &:after {
@@ -190,21 +190,21 @@ main {
                     font-size: 12px;
                     line-height: 32px;
                     vertical-align: top;
-                    margin: 0 5px 0 0;
+                    width: 16px;
                 }
                 display: block;
                 float: left;
             }
             div {
+                &.user {
+                    margin: 0 0 0 10px;
+                }
                 display: block;
                 float: right;
                 font-style: italic;
                 color: @text-light;
             }
             i {
-                &.icon-person {
-                    margin: 0 0 0 10px;
-                }
                 font-size: 14px;
             }
             line-height: 32px;
@@ -213,6 +213,9 @@ main {
         padding: 0;
         list-style: none;
         min-height: 160px;
+        @media(max-width: @screen-md-min * 1px) {
+            min-height: 0;
+        }
     }
     nav {
         ul {
@@ -261,6 +264,7 @@ main {
                     border-top: 1px solid @border;
                     padding: 10px 0;
                     position: relative;
+                    cursor: pointer;
                     z-index: 1;
                     @media(max-width: @screen-md-min * 1px) {
                         border-right: 1px solid @border;

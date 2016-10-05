@@ -30,9 +30,9 @@
         </div>
 
         <div class="lg-6 md-5">
-            <div class="box logs">
+            <div id="logs" class="box">
                 <h3><?=lang::get('logs'); ?></h3>
-                <ul>
+                <ul v-if="logShowAll">
                     <?php
                         $logs = log::getAll(5);
                         if($logs) {
@@ -42,7 +42,47 @@
                                 echo '
                                     <li>
                                         <span data-tooltip="'.$log->log_entry_id.'">'.$icon.' <a href="">'.lang::get($log->log_entry_type).'</a></span>
-                                        <div data-tooltip="'.$user->username.'"><i class="icon icon-person"></i></div>
+                                        <div class="user" data-tooltip="'.$user->username.'"><i class="icon icon-person"></i></div>
+                                        <div>'.time_since($log->log_datetime).'</div>
+                                    </li>
+                                ';
+                            }
+                        } else {
+                            echo '<li>'.lang::get('no_results').'</li>';
+                        }
+                    ?>
+                </ul>
+                <ul v-if="logShowAdd">
+                    <?php
+                        $logs = log::getAll(5, 'add');
+                        if($logs) {
+                            foreach($logs as $log) {
+                                $icon = ($log->log_action == 'edit') ? '<i class="icon icon-edit"></i>' : '<i class="icon icon-plus"></i>';
+                                $user = new UserModel($log->log_user_id);
+                                echo '
+                                    <li>
+                                        <span data-tooltip="'.$log->log_entry_id.'">'.$icon.' <a href="">'.lang::get($log->log_entry_type).'</a></span>
+                                        <div class="user" data-tooltip="'.$user->username.'"><i class="icon icon-person"></i></div>
+                                        <div>'.time_since($log->log_datetime).'</div>
+                                    </li>
+                                ';
+                            }
+                        } else {
+                            echo '<li>'.lang::get('no_results').'</li>';
+                        }
+                    ?>
+                </ul>
+                <ul v-if="logShowEdit">
+                    <?php
+                        $logs = log::getAll(5, 'edit');
+                        if($logs) {
+                            foreach($logs as $log) {
+                                $icon = ($log->log_action == 'edit') ? '<i class="icon icon-edit"></i>' : '<i class="icon icon-plus"></i>';
+                                $user = new UserModel($log->log_user_id);
+                                echo '
+                                    <li>
+                                        <span data-tooltip="'.$log->log_entry_id.'">'.$icon.' <a href="">'.lang::get($log->log_entry_type).'</a></span>
+                                        <div class="user" data-tooltip="'.$user->username.'"><i class="icon icon-person"></i></div>
                                         <div>'.time_since($log->log_datetime).'</div>
                                     </li>
                                 ';
@@ -54,18 +94,18 @@
                 </ul>
                 <nav>
                     <ul>
-                        <li class="active">
-                            <a href="">
+                        <li :class="{ active: logShowAll }">
+                            <a @click="setLogShow('all')">
                                 <?=lang::get('all'); ?>
                             </a>
                         </li>
-                        <li>
-                            <a href="">
+                        <li :class="{ active: logShowAdd }">
+                            <a @click="setLogShow('add')">
                                 <i class="icon icon-plus"></i>
                             </a>
                         </li>
-                        <li>
-                            <a href="">
+                        <li :class="{ active: logShowEdit }">
+                            <a @click="setLogShow('edit')">
                                 <i class="icon icon-edit"></i>
                             </a>
                         </li>
@@ -144,6 +184,26 @@ theme::addJSCode('
     new Vue({
         el: "#dashboard",
         data: {
+            logShowAll: true,
+            logShowAdd: false,
+            logShowEdit: false
+        },
+        methods: {
+            setLogShow: function(action) {
+                if(action == "all") {
+                    this.logShowAll = true;
+                    this.logShowAdd = false;
+                    this.logShowEdit = false;
+                } else if(action == "add") {
+                    this.logShowAll = false;
+                    this.logShowAdd = true;
+                    this.logShowEdit = false;
+                } else if(action == "edit") {
+                    this.logShowAll = false;
+                    this.logShowAdd = false;
+                    this.logShowEdit = true;
+                }
+            }
         }
     });
 
