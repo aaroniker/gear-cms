@@ -119,7 +119,7 @@
                 <h3><?=lang::get('actions'); ?></h3>
                 <div class="columns">
                     <div class="sm-6">
-                        <a href="">
+                        <a href="<?=url::admin('content'); ?>">
                             <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"><g transform="translate(0, 0)">
                             <line class="primary" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="16" y1="15" x2="16" y2="23" stroke-linejoin="miter"></line>
                             <line class="primary" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="20" y1="19" x2="12" y2="19" stroke-linejoin="miter"></line>
@@ -127,11 +127,11 @@
                             <line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="8" x2="31" y2="8" stroke-linejoin="miter"></line>
                             <line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="7" y1="3" x2="7" y2="8" stroke-linejoin="miter"></line>
                             </g></svg>
-                            <?=lang::get('add_page'); ?>
+                            <?=lang::get('manage_pages'); ?>
                         </a>
                     </div>
                     <div class="sm-6">
-                        <a href="">
+                        <a href="<?=url::admin('system'); ?>">
                             <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"><g transform="translate(0, 0)">
                             <line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="7" y1="3" x2="7" y2="8" stroke-linejoin="miter"></line>
                             <polyline data-cap="butt" fill="none" stroke-width="2" stroke-miterlimit="10" points="31,11 31,29 1,29 1,3
@@ -146,7 +146,7 @@
                         </a>
                     </div>
                     <div class="sm-6">
-                        <a href="">
+                        <a href="<?=url::admin('system'); ?>">
                             <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"><g transform="translate(0, 0)">
                             <line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="17" y1="5" x2="31" y2="5" stroke-linejoin="miter"></line>
                             <line fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1" y1="5" x2="5" y2="5" stroke-linejoin="miter"></line>
@@ -162,7 +162,7 @@
                         </a>
                     </div>
                     <div class="sm-6">
-                        <a href="">
+                        <a href="<?=url::admin('plugins'); ?>">
                             <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"><g transform="translate(0, 0)">
                             <rect x="3" y="9" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="26" height="22" stroke-linejoin="miter"></rect>
                             <line class="primary" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="7" y1="5" x2="25" y2="5" stroke-linejoin="miter"></line>
