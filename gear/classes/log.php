@@ -35,9 +35,13 @@ class log {
 
     }
 
-    public static function getAll($limit = 10) {
+    public static function getAll($limit = 10, $action = false) {
 
-        return db()->from('logs')->orderBy('log_id DESC')->limit($limit)->fetchAll();
+        if(!$action) {
+            return db()->from('logs')->orderBy('log_id DESC')->limit($limit)->fetchAll();
+        } else {
+            return db()->from('logs')->where('log_action', $action)->orderBy('log_id DESC')->limit($limit)->fetchAll();
+        }
 
     }
 
