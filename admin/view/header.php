@@ -76,7 +76,15 @@
                     </ul>
                 </nav>
                 <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-                    <?=user::getAvatar(36, true); ?>
+                    <?php
+
+                        if(user::current()->avatar && file_exists(dir::media(user::current()->avatar))) {
+                            echo '<div class="img" style="background-image: url('.url::media(user::current()->avatar).');"></div>';
+                        } else {
+                            echo user::getAvatar(36, true);
+                        }
+
+                    ?>
                     <span><?=user::current()->username; ?></span>
                 </a>
             </div>
