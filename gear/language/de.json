@@ -149,6 +149,29 @@
     "seconds": "Sekunden",
     "ago": "vor %s",
 
+    ## Months
+    "january": "Januar",
+    "february": "Februar",
+    "march": "März",
+    "april": "April",
+    "may": "Mai",
+    "june": "Juni",
+    "july": "Juli",
+    "august": "August",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "Dezember",
+
+    ## Weekdays
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag",
+
     ## Permissions
     "content[index]": "Inhalt verwalten",
     "content[media]": "Medien verwalten",

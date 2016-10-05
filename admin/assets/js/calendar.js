@@ -1,28 +1,28 @@
 $(function() {
-    function c() {
-        p();
+    function days() {
+        weekdays();
         var e = h();
         var r = 0;
         var u = false;
-        l.empty();
-        while (!u) {
-            if (s[r] == e[0].weekday) {
-                u = true
+        contentEl.empty();
+        while(!u) {
+            if(s[r] == e[0].weekday) {
+                u = true;
             } else {
-                l.append('<div class="blank"></div>');
-                r++
+                contentEl.append('<div class="blank"></div>');
+                r++;
             }
         }
-        for (var c = 0; c < 42 - r; c++) {
-            if (c >= e.length) {
-                l.append('<div class="blank"></div>')
+        for(var c = 0; c < 42 - r; c++) {
+            if(c >= e.length) {
+                contentEl.append('<div class="blank"></div>')
             } else {
                 var v = e[c].day;
                 var m = g(new Date(year, month - 1, v)) ? '<div class="today">' : "<div>";
-                l.append(m + "" + v + "</div>")
+                contentEl.append(m + "" + v + "</div>")
             }
         }
-        toolbar.find("h3").text(i[month - 1] + " " + year);
+        toolbar.find("h3").text(lang[i[month - 1]] + " " + year);
     }
 
     function h() {
@@ -31,32 +31,32 @@ $(function() {
             e.push({
                 day: r,
                 weekday: s[m(year, month, r)]
-            })
+            });
         }
-        return e
+        return e;
     }
 
-    function p() {
-        f.empty();
-        for (var e = 0; e < 7; e++) {
-            f.append("<div>" + s[e].substring(0, 2) + "</div>")
+    function weekdays() {
+        weekdaysEl.empty();
+        for(var e = 0; e < 7; e++) {
+            weekdaysEl.append("<div>" + lang[s[e]].substring(0, 2) + "</div>")
         }
     }
 
     function v(e, year) {
-        return (new Date(e, year, 0)).getDate()
+        return (new Date(e, year, 0)).getDate();
     }
 
     function m(e, year, month) {
-        return (new Date(e, year - 1, month)).getDay()
+        return (new Date(e, year - 1, month)).getDay();
     }
 
     function g(e) {
-        return y(new Date) == y(e)
+        return y(new Date) == y(e);
     }
 
     function y(e) {
-        return e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate()
+        return e.getFullYear() + "/" + (e.getMonth() + 1) + "/" + e.getDate();
     }
 
     function b() {
@@ -64,18 +64,23 @@ $(function() {
         year = date.getFullYear();
         month = date.getMonth() + 1
     }
-    var e = 480;
+
+    var e = null;
     var year = null;
     var month = null;
     var r = [];
-    var i = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-    var s = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var i = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+    var s = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
     var calendar = $("#calendar");
     var toolbar = calendar.find(".header");
-    var f = calendar.find(".weekdays");
-    var l = calendar.find(".content");
+
+    var weekdaysEl = calendar.find(".weekdays");
+    var contentEl = calendar.find(".content");
+
     b();
-    c();
+    days();
 
     toolbar.find('.icon').on("click", function() {
         var element = $(this);
@@ -88,7 +93,7 @@ $(function() {
                 month = 1;
                 year++;
             }
-            c();
+            days();
         };
         if(element.hasClass("prev")) {
             set("prev");
