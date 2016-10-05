@@ -28,6 +28,16 @@ class url {
 
     }
 
+    public static function media($file = '') {
+
+        if($file) {
+            return config::get('url').'media'.$file;
+        }
+
+        return false;
+
+    }
+
     public static function refresh($admin = true) {
 
         $url = config::get('url');
