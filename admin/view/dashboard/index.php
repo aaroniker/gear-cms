@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="sm-6">
+        <div class="lg-6 md-5">
             <div class="box logs">
                 <h3><?=lang::get('logs'); ?></h3>
                 <ul>
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-        <div class="sm-6">
+        <div class="lg-6 md-7">
             <div class="box action">
                 <h3><?=lang::get('actions'); ?></h3>
                 <div class="columns">

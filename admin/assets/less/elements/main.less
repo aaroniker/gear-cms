@@ -185,24 +185,12 @@ main {
             }
             span {
                 .icon {
-                    &:after {
-                        content: "";
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        position: absolute;
-                        right: 0;
-                        border: 1px solid @border;
-                        .round(50%);
-                    }
                     height: 26px;
-                    width: 26px;
                     position: relative;
-                    text-align: center;
                     font-size: 12px;
-                    line-height: 26px;
+                    line-height: 32px;
                     vertical-align: top;
-                    margin: 3px 8px 0 0;
+                    margin: 0 5px 0 0;
                 }
                 display: block;
                 float: left;
@@ -228,8 +216,20 @@ main {
     }
     nav {
         ul {
+            &:after {
+                content: "";
+                clear: both;
+                display: block;
+            }
             li {
                 &.active {
+                    &:first-child {
+                        a {
+                            @media(max-width: @screen-md-min * 1px) {
+                                border-radius: 0 0 0 4px;
+                            }
+                        }
+                    }
                     &:last-child {
                         a {
                             border-radius: 0 0 4px 0;
@@ -240,6 +240,16 @@ main {
                         color: @text;
                     }
                     margin: 0 0 0 -1px;
+                    @media(max-width: @screen-md-min * 1px) {
+                        margin: -1px 0 0 0;
+                    }
+                }
+                &:last-child {
+                    a {
+                        @media(max-width: @screen-md-min * 1px) {
+                            border-right: none;
+                        }
+                    }
                 }
                 a {
                     .icon {
@@ -252,12 +262,26 @@ main {
                     padding: 10px 0;
                     position: relative;
                     z-index: 1;
+                    @media(max-width: @screen-md-min * 1px) {
+                        border-right: 1px solid @border;
+                        border-top: none;
+                    }
+                }
+                @media(max-width: @screen-md-min * 1px) {
+                    float: left;
+                    width: 33.33%;
                 }
             }
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
+            @media(max-width: @screen-md-min * 1px) {
+                left: auto;
+                right: auto;
+                bottom: auto;
+                position: relative;
+            }
         }
         border-radius: 0 4px 4px 0;
         background: @light;
@@ -267,8 +291,20 @@ main {
         top: 0;
         right: 0;
         bottom: 0;
+        @media(max-width: @screen-md-min * 1px) {
+            top: auto;
+            left: 0;
+            width: auto;
+            border-radius: 0 0 4px 4px;
+            border-left: none;
+            border-top: 1px solid @border;
+        }
     }
     padding-right: 140px;
+    @media(max-width: @screen-md-min * 1px) {
+        padding-right: inherit;
+        padding-bottom: 60px;
+    }
 }
 
 .box.action {
