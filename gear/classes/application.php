@@ -16,6 +16,11 @@ class application {
 
         $this->splitUrl();
 
+        if(!file_exists(dir::gear('config.json')) && $env != 'install') {
+            header('location: '.url::base(['install']));
+            exit();
+        }
+
         if($env == 'admin') {
 
             $this->admin = true;
