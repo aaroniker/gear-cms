@@ -6,17 +6,17 @@ class url {
 
         $return = config::get('url').'admin';
 
-		if($page != '') {
+        if($page != '') {
             $return .= '/'.$page;
         }
 
-		if(count($params)) {
-			$return .= '/'.implode('/', $params);
-		}
+        if(count($params)) {
+            $return .= '/'.implode('/', $params);
+        }
 
-		return $return;
+        return $return;
 
-	}
+    }
 
     public static function assets($file = '') {
 
