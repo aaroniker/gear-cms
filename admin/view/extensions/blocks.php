@@ -10,7 +10,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
+    <data-table :data="tableData" :columns="['name', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.name }}</table-cell>
         <table-cell class="shrink">
             info
@@ -26,7 +26,7 @@ theme::addJSCode('
         data: {
             headline: "list",
             checked: [],
-            tableData: '.json_encode([]).',
+            tableData: '.json_encode(block::getAll()).',
             search: "",
             showSearch: true
         },
