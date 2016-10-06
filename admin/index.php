@@ -27,7 +27,7 @@
 
     ob_start();
 
-    $app = new application('admin');
+    new application('admin');
 
     $content = ob_get_contents();
 
