@@ -16,6 +16,10 @@ class dir {
         return self::base('admin'.DIRECTORY_SEPARATOR.$file);
     }
 
+    public static function install($file = '') {
+        return self::base('install'.DIRECTORY_SEPARATOR.$file);
+    }
+
     public static function gear($file = '') {
         return self::base('gear'.DIRECTORY_SEPARATOR.$file);
     }
