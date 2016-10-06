@@ -35,8 +35,7 @@
 
     if(ajax::is()) {
 
-        ajax::getMessages();
-        ajax::deleteMessages();
+        ajax::messages();
 
         echo ajax::getReturn();
 

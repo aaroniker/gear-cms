@@ -13,10 +13,10 @@ class ajax {
     }
 
     public static function getReturn() {
-        return implode('<br />', self::$return);
+        return implode('<br>', self::$return);
     }
 
-    public static function getMessages() {
+    public static function messages() {
 
         if(type::post('method', 'string', '') == 'getMessages') {
 
@@ -34,10 +34,6 @@ class ajax {
             }
 
         }
-
-    }
-
-    public static function deleteMessages() {
 
         if(type::post('method', 'string', '') == 'deleteMessage') {
 
