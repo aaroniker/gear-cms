@@ -48,6 +48,19 @@
             padding: 20px 0 0 0;
         }
     }
+    table {
+        &.media {
+            .file {
+                div {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 190px;
+                    min-width: 0;
+                }
+            }
+        }
+    }
     max-width: 420px;
     position: fixed;
     left: 20px;
