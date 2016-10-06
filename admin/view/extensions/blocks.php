@@ -24,7 +24,7 @@ theme::addJSCode('
     new Vue({
         el: "#blocks",
         data: {
-            headline: "list",
+            headline: "blocks",
             checked: [],
             tableData: '.json_encode(block::getAll()).',
             search: "",
