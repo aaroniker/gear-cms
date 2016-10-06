@@ -57,7 +57,11 @@ class model {
 
     public function load($id = 0) {
 
-        $data = $this->getById($id);
+        if(is_array($id)) {
+            $data = $this->getByWhere($id);
+        } else {
+            $data = $this->getById($id);
+        }
 
         foreach(get_class_vars(get_class($this)) as $cvar => $val) {
             if(isset($data->$cvar)) {
@@ -76,6 +80,12 @@ class model {
         if($id > 0) {
             return db()->from($this->model)->where('id', $id)->fetch();
         }
+
+    }
+
+    public function getByWhere($where = []) {
+
+        return db()->from($this->model)->where($where)->fetch();
 
     }
 
