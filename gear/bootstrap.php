@@ -20,37 +20,39 @@
 
     include(dir::functions('time.php'));
     include(dir::functions('html.php'));
-    include(dir::functions('url.php'));
     include(dir::functions('validate.php'));
-    include(dir::functions('file.php'));
 
-    userSession::init();
+    $config = new config();
 
-    new config();
+    if($config->cfg) {
 
-    $DB = config::get('DB');
+        userSession::init();
 
-    $pdo = new PDO('mysql:host=' . $DB['host'] . ';dbname=' . $DB['database'] . ';charset=utf8', $DB['user'], $DB['password'], [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-    ]);
+        $DB = config::get('DB');
 
-    $db = new FluentPDO($pdo);
+        $pdo = new PDO('mysql:host=' . $DB['host'] . ';dbname=' . $DB['database'] . ';charset=utf8', $DB['user'], $DB['password'], [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+        ]);
 
-    function db() {
-        global $db;
-        return $db;
+        $db = new FluentPDO($pdo);
+
+        function db() {
+            global $db;
+            return $db;
+        }
+
+        unset($DB, $pdo);
+
+        lang::setLang(config::get('lang'));
+
+        cache::setCache(config::get('cache'));
+
     }
-
-    unset($DB, $pdo);
-
-    lang::setLang(config::get('lang'));
 
     date_default_timezone_set(config::get('timezone', 'Europe/Berlin'));
 
     new userLogin();
-
-    cache::setCache(config::get('cache'));
 
     $system = ob_get_contents();
 
