@@ -2,6 +2,8 @@
 
 class config {
 
+    public $cfg = true;
+
     static $params = [];
     static $fileParams = [];
     static $isChange = false;
@@ -10,12 +12,18 @@ class config {
 
     public function __construct() {
 
-        self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
-        self::$fileParams = self::$params;
+        if(!file_exists(dir::gear('config.json'))) {
+            $this->cfg = false;
+        } else {
 
-        if(self::get('dev')) {
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
+            self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
+            self::$fileParams = self::$params;
+
+            if(self::get('dev')) {
+                error_reporting(E_ALL);
+                ini_set('display_errors', 1);
+            }
+
         }
 
     }
