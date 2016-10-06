@@ -68,6 +68,10 @@ class dir {
         }
     }
 
+    public static function blocks($file = '') {
+        return self::gear('blocks'.DIRECTORY_SEPARATOR.$file);
+    }
+
     public static function classes($file = '') {
         return self::gear('classes'.DIRECTORY_SEPARATOR.$file);
     }
