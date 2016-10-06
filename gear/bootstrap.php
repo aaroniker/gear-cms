@@ -22,9 +22,9 @@
     include(dir::functions('html.php'));
     include(dir::functions('validate.php'));
 
-    $config = new config();
+    if(!defined('INSTALL')) {
 
-    if($config->cfg) {
+        new config();
 
         userSession::init();
 
