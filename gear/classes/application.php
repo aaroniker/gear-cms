@@ -51,7 +51,9 @@ class application {
 
     private function frontend() {
 
-        echo 'front';
+        $url = self::getUrl();
+
+        var_dump($url);
 
     }
 
