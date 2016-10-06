@@ -64,6 +64,7 @@
     "uploading": "Lädt hoch...",
     "file_too_big": "Datei zu groß",
     "file_wrong_ext": "Falscher Datei-Typ",
+    "file_select_wrong_ext": "Falscher Datei-Typ, erlaubt:",
     "pages": "Seiten",
     "menu": "Menü",
     "menus": "Menüs",

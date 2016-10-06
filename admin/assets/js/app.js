@@ -132,6 +132,7 @@ Vue.component("file-table", {
         filterKey: "",
         path: "/",
         select: false,
+        ext: [],
         fileName: ""
     },
     data: function() {
@@ -276,12 +277,22 @@ Vue.component("file-table", {
 
         },
         selectFile: function(path) {
+
+            var vue = this;
+
             if(!path) {
                 path = "";
+            } else {
+                var ext = path.split(".").pop();
+                if(vue.ext.indexOf(ext) > -1 || !vue.ext.length) {
+                    this.$dispatch("addMediaModal", false);
+                    this.$dispatch("fileName", path);
+                    this.fileName = path;
+                } else {
+                    alert(lang["file_select_wrong_ext"] + " " + vue.ext);
+                }
             }
-            this.$dispatch("addMediaModal", false);
-            this.$dispatch("fileName", path);
-            this.fileName = path;
+
         }
     },
     events: {

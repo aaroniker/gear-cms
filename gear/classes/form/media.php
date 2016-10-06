@@ -8,6 +8,10 @@ class formMedia extends formField {
         $this->addAttribute('name', $this->name);
         $this->addAttribute('value', type::super($this->name, '', '{{ (fileName === false) ? "'.$this->value.'" : fileName }}'));
 
+        $ext = $this->getAttribute('ext');
+        $ext = ($ext) ? explode(',', $ext) : [];
+        $this->delAttribute('ext');
+
 		return '
             <div class="formMedia">
                 <a @click="addMediaModal = true" class="button border">
@@ -19,7 +23,7 @@ class formMedia extends formField {
                 <modal :show.sync="addMediaModal">
                     <h3 slot="header">'.lang::get('choose').'</h3>
                     <div slot="content">
-                        <file-table :data=\''.json_encode(media::getAll('/')).'\' :headline="headline" :select="true" :filter-key="search"></file-table>
+                        <file-table :data=\''.json_encode(media::getAll('/')).'\' :headline="headline" :select="true" :ext=\''.json_encode($ext).'\' :filter-key="search"></file-table>
                     </div>
                 </modal>
             </div>
