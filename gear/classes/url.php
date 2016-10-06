@@ -2,6 +2,18 @@
 
 class url {
 
+    public static function base($params = []) {
+
+        $return = config::get('url');
+
+        if(count($params)) {
+            $return .= '/'.implode('/', $params);
+        }
+
+        return $return;
+
+    }
+
     public static function admin($page = '', $params = []) {
 
         $return = config::get('url').'admin';
