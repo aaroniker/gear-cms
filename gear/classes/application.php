@@ -20,6 +20,10 @@ class application {
 
             $this->admin = true;
 
+            if(config::get('dev') && !ajax::is()) {
+                admin::generateLess();
+            }
+
             $this->admin();
 
         } else {
