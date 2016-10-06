@@ -27,25 +27,6 @@
 
     ob_start();
 
-    if(config::get('dev')) {
-
-        $less = new lessc;
-        $less->setFormatter('compressed');
-
-        try {
-
-            $newCSS = $less->compileFile(dir::less('style.less'));
-
-            $fp = fopen(dir::css('style.css'),"wb");
-            fwrite($fp, $newCSS);
-            fclose($fp);
-
-        } catch (exception $e) {
-            echo message::getMessage($e->getMessage(), 'error');
-        }
-
-    }
-
     new application('admin');
 
     $content = ob_get_contents();
@@ -56,33 +37,8 @@
 
     if(ajax::is()) {
 
-        if(type::post('method', 'string', '') == 'getMessages') {
-
-            $messages = type::session('messages');
-
-            if(is_array($messages) && count($messages)) {
-                foreach($messages as $index => $val) {
-                    $return = [
-                        'html' => message::getMessage($val['message'], $val['class']),
-                        'index' => $index
-                    ];
-                    ajax::addReturn(json_encode($return));
-                    break;
-                }
-            }
-
-        }
-
-        if(type::post('method', 'string', '') == 'deleteMessage') {
-
-            $messages = type::session('messages');
-            $index = type::post('index');
-
-            unset($messages[$index]);
-
-            type::addSession('messages', $messages);
-
-        }
+        ajax::getMessages();
+        ajax::deleteMessages();
 
         echo ajax::getReturn();
 
