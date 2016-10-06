@@ -4,6 +4,6 @@
 
     include($base.'gear/bootstrap.php');
 
-    new application('frontend');
+    $app = new application('frontend');
 
 ?>
