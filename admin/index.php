@@ -27,6 +27,25 @@
 
     ob_start();
 
+    if(config::get('dev')) {
+
+        $less = new lessc;
+        $less->setFormatter('compressed');
+
+        try {
+
+            $newCSS = $less->compileFile(dir::less('style.less'));
+
+            $fp = fopen(dir::css('style.css'),"wb");
+            fwrite($fp, $newCSS);
+            fclose($fp);
+
+        } catch (exception $e) {
+            echo message::getMessage($e->getMessage(), 'error');
+        }
+
+    }
+
     new application('admin');
 
     $content = ob_get_contents();

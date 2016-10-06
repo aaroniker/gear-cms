@@ -13,29 +13,9 @@ class config {
         self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
         self::$fileParams = self::$params;
 
-        if(self::get('dev') && !ajax::is()) {
-
+        if(self::get('dev')) {
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-
-            $less = new lessc;
-
-            $less->setFormatter('compressed');
-
-            try {
-
-                $newCSS = $less->compileFile(dir::less('style.less'));
-
-                $fp = fopen(dir::css('style.css'),"wb");
-                fwrite($fp, $newCSS);
-                fclose($fp);
-
-            } catch (exception $e) {
-
-                echo message::getMessage($e->getMessage(), 'error');
-
-            }
-
         }
 
     }
