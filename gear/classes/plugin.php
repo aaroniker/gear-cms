@@ -11,10 +11,10 @@ class plugin {
         $file = dir::plugins('plugin.json', $name);
 
         if(file_exists($file)) {
-		    $this->config = json_decode(file_get_contents($file), true);
+            $this->config = json_decode(file_get_contents($file), true);
         }
 
-	}
+    }
 
     public function getConfig() {
         return $this->config;
@@ -30,7 +30,7 @@ class plugin {
 
     }
 
-	public static function getAll() {
+    public static function getAll() {
 
         if(!count(self::$allPlugins)) {
 
@@ -46,9 +46,9 @@ class plugin {
 
         }
 
-		return self::$allPlugins;
+        return self::$allPlugins;
 
-	}
+    }
 
 }
 
