@@ -1,6 +1,6 @@
 <?php
 
-class pluginsController extends controller {
+class extensionsController extends controller {
 
     public function __construct() {
 
@@ -8,7 +8,7 @@ class pluginsController extends controller {
 
     public function index($action = '', $id = 0) {
 
-        include(dir::view('plugins/list.php'));
+        include(dir::view('extensions/plugins.php'));
 
     }
 

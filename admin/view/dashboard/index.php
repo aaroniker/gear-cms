@@ -162,7 +162,7 @@
                         </a>
                     </div>
                     <div class="sm-6">
-                        <a href="<?=url::admin('plugins'); ?>">
+                        <a href="<?=url::admin('extensions'); ?>">
                             <svg class="nc-icon outline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32"><g transform="translate(0, 0)">
                             <rect x="3" y="9" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" width="26" height="22" stroke-linejoin="miter"></rect>
                             <line class="primary" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="7" y1="5" x2="25" y2="5" stroke-linejoin="miter"></line>

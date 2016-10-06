@@ -117,7 +117,8 @@
     "permission_denied": "Zugriff verweigert",
     "permission_saved": "Berechtigung gespeichert",
 
-    ## Plugins
+    ## Extensions
+    "extensions": "Erweiterungen",
     "plugins": "Plugins",
     "description": "Beschreibung",
 
@@ -181,9 +182,7 @@
     "user[index][edit]": "Benutzer bearbeiten",
     "user[index][delete]": "Benutzer löschen",
     "user[permissions]": "Benutzer-Rechte verwalten",
-    "plugins[index]": "Plugins verwalten",
-    "plugins[index][install]": "Plugins installieren",
-    "plugins[index][delete]": "Plugins löschen",
+    "extensions[index]": "Erweiterungen verwalten",
 
     ## Validate
     "validate_required": "<strong>%s</strong> ist ein Pflichtfeld",

@@ -25,7 +25,7 @@ theme::addJSCode('
     new Vue({
         el: "#plugins",
         data: {
-            headline: "list",
+            headline: "plugins",
             checked: [],
             tableData: '.json_encode(plugin::getAll()).',
             search: "",
