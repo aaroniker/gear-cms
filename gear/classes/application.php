@@ -26,11 +26,21 @@ class application {
 
             $this->admin();
 
+        } elseif($env == 'install') {
+
+            $this->install();
+
         } else {
 
             $this->frontend();
 
         }
+
+    }
+
+    private function install() {
+
+        echo 'install';
 
     }
 
