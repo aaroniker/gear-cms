@@ -16,6 +16,42 @@ class ajax {
         return implode('<br />', self::$return);
     }
 
+    public static function getMessages() {
+
+        if(type::post('method', 'string', '') == 'getMessages') {
+
+            $messages = type::session('messages');
+
+            if(is_array($messages) && count($messages)) {
+                foreach($messages as $index => $val) {
+                    $return = [
+                        'html' => message::getMessage($val['message'], $val['class']),
+                        'index' => $index
+                    ];
+                    self::addReturn(json_encode($return));
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+    public static function deleteMessages() {
+
+        if(type::post('method', 'string', '') == 'deleteMessage') {
+
+            $messages = type::session('messages');
+            $index = type::post('index');
+
+            unset($messages[$index]);
+
+            type::addSession('messages', $messages);
+
+        }
+
+    }
+
 }
 
 ?>
