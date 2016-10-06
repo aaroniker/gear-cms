@@ -282,6 +282,9 @@ Vue.component("file-table", {
 
             if(!path) {
                 path = "";
+                this.$dispatch("addMediaModal", false);
+                this.$dispatch("fileName", path);
+                this.fileName = path;
             } else {
                 var ext = path.split(".").pop();
                 if(vue.ext.indexOf(ext) > -1 || !vue.ext.length) {
