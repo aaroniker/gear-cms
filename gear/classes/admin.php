@@ -80,6 +80,28 @@ class admin {
         return false;
 
     }
+
+    public static function generateLess() {
+
+        $less = new lessc;
+        $less->setFormatter('compressed');
+
+        try {
+
+            $newCSS = $less->compileFile(dir::less('style.less'));
+
+            $fp = fopen(dir::css('style.css'),"wb");
+            fwrite($fp, $newCSS);
+            fclose($fp);
+
+        } catch (exception $e) {
+
+            echo message::getMessage($e->getMessage(), 'error');
+
+        }
+
+    }
+
 }
 
 ?>
