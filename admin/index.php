@@ -60,6 +60,7 @@
 
         admin::addMenu(lang::get('extensions'), 'extensions');
         admin::addSubmenu(lang::get('plugins'), 'index', 'extensions');
+        admin::addSubmenu(lang::get('blocks'), 'blocks', 'extensions');
 
         admin::addMenu(lang::get('system'), 'system');
         admin::addSubmenu(lang::get('settings'), 'index', 'system');

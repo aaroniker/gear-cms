@@ -12,6 +12,12 @@ class extensionsController extends controller {
 
     }
 
+    public function blocks($action = '', $id = 0) {
+
+        include(dir::view('extensions/blocks.php'));
+
+    }
+
 }
 
 ?>

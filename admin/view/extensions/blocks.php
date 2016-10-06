@@ -1,4 +1,4 @@
-<section id="plugins">
+<section id="blocks">
 
     <header>
 
@@ -12,7 +12,6 @@
 
     <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.name }}</table-cell>
-        <table-cell>{{ entry.description }}</table-cell>
         <table-cell class="shrink">
             info
         </table-cell>
@@ -23,11 +22,11 @@
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#plugins",
+        el: "#blocks",
         data: {
             headline: "list",
             checked: [],
-            tableData: '.json_encode(plugin::getAll()).',
+            tableData: '.json_encode([]).',
             search: "",
             showSearch: true
         },
