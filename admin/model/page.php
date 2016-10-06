@@ -51,10 +51,11 @@ class PageModel extends model {
                 $page = new PageModel($val->id);
                 if($page->parentID == $parentID) {
                     $home = (option::get('home') == $page->id) ? true : false;
+                    $siteURL = ($home) ? '/' : self::getFullURL($page->id);
                     $return[$page->id] = [
                         'id' => $page->id,
                         'name' => $page->name,
-                        'siteURL' => self::getFullURL($page->id),
+                        'siteURL' => $siteURL,
                         'home' => $home,
                         'children' => self::getAll($page->id)
                     ];
