@@ -35,7 +35,9 @@
             PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
         ]);
 
-        $db = new FluentPDO($pdo);
+        $db = new sql($pdo);
+
+        $db->setPrefix($DB['prefix']);
 
         function db() {
             global $db;
