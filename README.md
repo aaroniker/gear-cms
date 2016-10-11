@@ -5,6 +5,7 @@
 
 * [Installation](#installation)
 * [Screenshots](#screenshots)
+* [Design auf Dribbble](https://dribbble.com/aaroniker/projects/415861-Gear)
 * [Systemvorraussetzungen](#systemvorraussetzungen)
 * [Externe Resourcen](#externe-resourcen)
 
