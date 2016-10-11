@@ -51,8 +51,8 @@ class block {
 
     }
 
-    public function getHTML() {
-        return $this->filterFile('[html]', '[/html]');
+    public function getContent() {
+        return $this->filterFile('[content]', '[/content]');
     }
 
     public function getCSS() {
