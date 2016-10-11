@@ -1,0 +1,26 @@
+[info]
+{
+    "name": "Text",
+    "description": "Einfacher Text",
+    "content": {
+        "text": {
+            "name": "Text",
+            "type": "textarea"
+        }
+    }
+}
+[/info]
+
+[content]
+<div class="text">
+    <?=$text; ?>
+</div>
+[/content]
+
+[css]
+.text {
+    padding: 20px;
+    color: #fff;
+    background: #000;
+}
+[/css]
