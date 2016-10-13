@@ -65,7 +65,7 @@ class form {
 
     public function addRawField($value, $attributes = []) {
         return $this->addField('form_'.count($this->return), $value, 'formRaw', $attributes);
-	}
+    }
 
     public function addTextField($name, $value, $attributes = []) {
 
@@ -240,20 +240,24 @@ class form {
 
         foreach($data as $show) {
 
-			if($show->getAttribute('type') == 'hidden') {
-				$hidden[] = $show->get();
-				continue;
-			}
+            if($show->getAttribute('type') == 'hidden') {
+                $hidden[] = $show->get();
+                continue;
+            }
 
             $parent = $show->getAttribute('parent');
             $show->delAttribute('parent');
 
-			$return[] = '<div class="form-element" '.$parent.'>';
-			$return[] = '<label class="sm-3" for="'.$show->getLabel().'">'.$show->fieldName.'</label>';
-			$return[] = '<div class="sm-9">'.$show->get().'</div>';
-			$return[] = '</div>';
+            $return[] = '<div class="form-element" '.$parent.'>';
+            if($show->fieldName) {
+                $return[] = '<label class="sm-3" for="'.$show->getLabel().'">'.$show->fieldName.'</label>';
+                $return[] = '<div class="sm-9">'.$show->get().'</div>';
+            } else {
+                $return[] = '<div class="sm-12">'.$show->get().'</div>';
+            }
+            $return[] = '</div>';
 
-		}
+        }
 
         return $return;
 
@@ -266,7 +270,7 @@ class form {
         }
 
         $return = [];
-		$hidden = [];
+        $hidden = [];
 
         $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
 
