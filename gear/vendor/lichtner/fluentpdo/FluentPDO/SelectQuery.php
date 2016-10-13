@@ -14,127 +14,181 @@
  * @method SelectQuery  limit(int $limit) add LIMIT to query
  * @method SelectQuery  offset(int $offset) add OFFSET to query
  */
-class SelectQuery extends CommonQuery implements Countable {
+class SelectQuery extends CommonQuery implements Countable
+{
 
-	private $fromTable, $fromAlias;
+    /** @var mixed */
+    private $fromTable;
+    /** @var mixed */
+    private $fromAlias;
 
-	function __construct(FluentPDO $fpdo, $from) {
-		$clauses = array(
-			'SELECT' => ', ',
-			'FROM' => null,
-			'JOIN' => array($this, 'getClauseJoin'),
-			'WHERE' => ' AND ',
-			'GROUP BY' => ',',
-			'HAVING' => ' AND ',
-			'ORDER BY' => ', ',
-			'LIMIT' => null,
-			'OFFSET' => null,
-			"\n--" => "\n--",
-		);
-		parent::__construct($fpdo, $clauses);
+    /** @var boolean */
+    private $convertTypes = false;
 
-		# initialize statements
-		$fromParts = explode(' ', $from);
-		$this->fromTable = reset($fromParts);
-		$this->fromAlias = end($fromParts);
+    /**
+     * SelectQuery constructor.
+     *
+     * @param FluentPDO $fpdo
+     * @param           $from
+     */
+    function __construct(FluentPDO $fpdo, $from) {
+        $clauses = array(
+            'SELECT'   => ', ',
+            'FROM'     => null,
+            'JOIN'     => array($this, 'getClauseJoin'),
+            'WHERE'    => ' AND ',
+            'GROUP BY' => ',',
+            'HAVING'   => ' AND ',
+            'ORDER BY' => ', ',
+            'LIMIT'    => null,
+            'OFFSET'   => null,
+            "\n--"     => "\n--",
+        );
+        parent::__construct($fpdo, $clauses);
 
-		$this->statements['FROM'] = $from;
-		$this->statements['SELECT'][] = $this->fromAlias . '.*';
-		$this->joins[] = $this->fromAlias;
-	}
+        // initialize statements
+        $fromParts       = explode(' ', $from);
+        $this->fromTable = reset($fromParts);
+        $this->fromAlias = end($fromParts);
 
-	/** Return table name from FROM clause
-	 * @internal
-	 */
-	public function getFromTable() {
-		return $this->fromTable;
-	}
+        $this->statements['FROM']     = $from;
+        $this->statements['SELECT'][] = $this->fromAlias . '.*';
+        $this->joins[]                = $this->fromAlias;
 
-	/** Return table alias from FROM clause
-	 * @internal
-	 */
-	public function getFromAlias() {
-		return $this->fromAlias;
-	}
+        if(isset($fpdo->convertTypes) && $fpdo->convertTypes){
+            $this->convertTypes = true;
+        }
+    }
 
-	/** Returns a single column
-	 * @param int $columnNumber
-	 * @return string
-	 */
-	public function fetchColumn($columnNumber = 0) {
-		if ($s = $this->execute()) {
-			return $s->fetchColumn($columnNumber);
-		}
-		return false;
-	}
+    /** Return table name from FROM clause
+     *
+     * @internal
+     */
+    public function getFromTable() {
+        return $this->fromTable;
+    }
 
-	/** Fetch first row or column
-	 * @param string $column column name or empty string for the whole row
-	 * @return mixed string, array or false if there is no row
-	 */
-	public function fetch($column = '') {
-		$return = $this->execute();
-		if ($return === false) {
-			return false;
-		}
-		$return = $return->fetch();
-		if ($return && $column != '') {
-			if (is_object($return)) {
-				return $return->{$column};
-			} else {
-				return $return[$column];
-			}
-		}
-		return $return;
-	}
+    /** Return table alias from FROM clause
+     *
+     * @internal
+     */
+    public function getFromAlias() {
+        return $this->fromAlias;
+    }
 
-	/**
-	 * Fetch pairs
-	 * @param $key
-	 * @param $value
-	 * @param $object
-	 * @return array of fetched rows as pairs
-	 */
-	public function fetchPairs($key, $value, $object = false) {
-		if ($s = $this->select(null)->select("$key, $value")->asObject($object)->execute()) {
-			return $s->fetchAll(PDO::FETCH_KEY_PAIR);
-		}
-		return false;
-	}
+    /**
+     * Returns a single column
+     *
+     * @param int $columnNumber
+     *
+     * @return string
+     */
+    public function fetchColumn($columnNumber = 0) {
+        if (($s = $this->execute()) !== false) {
+            return $s->fetchColumn($columnNumber);
+        }
 
-	/** Fetch all row
-	 * @param string $index  specify index column
-	 * @param string $selectOnly  select columns which could be fetched
-	 * @return array of fetched rows
-	 */
-	public function fetchAll($index = '', $selectOnly = '') {
-		if ($selectOnly) {
-			$this->select(null)->select($index . ', ' . $selectOnly);
-		}
-		if ($index) {
-			$data = array();
-			foreach ($this as $row) {
-				if (is_object($row)) {
-					$data[$row->{$index}] = $row;
-				} else {
-					$data[$row[$index]] = $row;
-				}
-			}
-			return $data;
-		} else {
-			if ($s = $this->execute()) {
-				return $s->fetchAll();
-			}
-			return false;
-		}
-	}
+        return $s;
+    }
 
-	/** Countable interface
-	 * doesn't break current fluentpdo select query
-	 * @return
-	 */
-	public function count() {
-		$fpdo = clone $this;
-		return (int) $fpdo->select(null)->select('COUNT(*)')->fetchColumn();
-	}
+    /**
+     * Fetch first row or column
+     *
+     * @param string $column column name or empty string for the whole row
+     *
+     * @return mixed string, array or false if there is no row
+     */
+    public function fetch($column = '') {
+        $s = $this->execute();
+        if ($s === false) {
+            return false;
+        }
+        $row = $s->fetch();
+
+        if($this->convertTypes){
+            $row = FluentUtils::convertToNativeTypes($s,$row);
+        }
+
+        if ($row && $column != '') {
+            if (is_object($row)) {
+                return $row->{$column};
+            } else {
+                return $row[$column];
+            }
+        }
+
+        return $row;
+    }
+
+    /**
+     * Fetch pairs
+     *
+     * @param $key
+     * @param $value
+     * @param $object
+     *
+     * @return array of fetched rows as pairs
+     */
+    public function fetchPairs($key, $value, $object = false) {
+        if (($s = $this->select(null)->select("$key, $value")->asObject($object)->execute()) !== false) {
+            return $s->fetchAll(PDO::FETCH_KEY_PAIR);
+        }
+
+        return $s;
+    }
+
+    /** Fetch all row
+     *
+     * @param string $index      specify index column
+     * @param string $selectOnly select columns which could be fetched
+     *
+     * @return array of fetched rows
+     */
+    public function fetchAll($index = '', $selectOnly = '') {
+        if ($selectOnly) {
+            $this->select(null)->select($index . ', ' . $selectOnly);
+        }
+        if ($index) {
+            $data = array();
+            foreach ($this as $row) {
+                if (is_object($row)) {
+                    $data[$row->{$index}] = $row;
+                } else {
+                    $data[$row[$index]] = $row;
+                }
+            }
+
+            return $data;
+        } else {
+            if (($s = $this->execute()) !== false) {
+                if($this->convertTypes){
+                    return FluentUtils::convertToNativeTypes($s,$s->fetchAll());
+                }else{
+                    return $s->fetchAll();
+                }
+            }
+
+            return $s;
+        }
+    }
+
+    /**
+     * Countable interface doesn't break current \FluentPDO select query
+     *
+     * @return int
+     */
+    public function count() {
+        $fpdo = clone $this;
+
+        return (int)$fpdo->select(null)->select('COUNT(*)')->fetchColumn();
+    }
+
+    public function getIterator() {
+        if($this->convertTypes){
+            return new ArrayIterator($this->fetchAll());
+        }else{
+            return $this->execute();
+        }       
+    }
+    
 }
