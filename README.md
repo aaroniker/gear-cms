@@ -40,6 +40,7 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 * [jQuery](https://jquery.com/)
 * [Vue.js](http://vuejs.org/)
 * [Chartist.js](http://gionkunz.github.io/chartist-js/index.html)
+* [highlight.js](https://highlightjs.org/)
 * [FluentPDO](https://github.com/envms/fluentpdo)
 * [password_compat](https://github.com/ircmaxell/password_compat)
 * [GUMP](https://github.com/Wixel/GUMP)
