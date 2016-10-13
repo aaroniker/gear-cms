@@ -13,7 +13,7 @@
 
 [content]
 <div class="text">
-    <?=$text; ?>
+    {{ text }}
 </div>
 [/content]
 
