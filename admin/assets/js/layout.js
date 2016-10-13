@@ -1,5 +1,9 @@
 jQuery(document).ready(function($) {
 
+    $("pre code").each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+
     $("#head .expand").click(function() {
         toggleNav(!$(this).hasClass("active"));
     });
@@ -66,7 +70,7 @@ function setTabs() {
 
     $(".tabs > section > div").hide();
     $(".tabs > nav > ul > li").removeClass("active");
-    
+
     $(".tabs > section > div:first-child").show();
     $(".tabs > nav > ul > li:first-child").addClass("active");
 
