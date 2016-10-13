@@ -7,6 +7,7 @@ class form {
     protected $name;
 
     protected $horizontal = true;
+    protected $showSubmit = true;
 
     protected $formAttributes = [];
 
@@ -223,6 +224,10 @@ class form {
         $this->horizontal = $bool;
     }
 
+    public function setShowSubmit($bool) {
+        $this->showSubmit = $bool;
+    }
+
     public function addTab($name) {
 
         $this->tabs[$name] = [];
@@ -289,10 +294,12 @@ class form {
 
         }
 
-        $return[] = '
-            <button class="button fl-right" name="'.$this->name.'" type="submit">'.lang::get('save').'</button>
-            <div class="clear"></div>
-        ';
+        if($this->showSubmit) {
+            $return[] = '
+                <button class="button fl-right" name="'.$this->name.'" type="submit">'.lang::get('save').'</button>
+                <div class="clear"></div>
+            ';
+        }
 
         $return[] = implode(PHP_EOL, $hidden);
 
