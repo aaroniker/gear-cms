@@ -9,9 +9,17 @@ class block {
 
     public function __construct($file) {
 
-        $this->file = file_get_contents(dir::blocks($file));
+        $file = dir::blocks($file);
 
-        return $this;
+        if(file_exists($file)) {
+
+            $this->file = file_get_contents($file);
+
+            return $this;
+
+        }
+
+        return false;
 
     }
 
