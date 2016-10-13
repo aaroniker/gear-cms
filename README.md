@@ -43,3 +43,4 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 * [FluentPDO](https://github.com/envms/fluentpdo)
 * [password_compat](https://github.com/ircmaxell/password_compat)
 * [GUMP](https://github.com/Wixel/GUMP)
+* [Twig](http://twig.sensiolabs.org/)
