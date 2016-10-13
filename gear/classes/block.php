@@ -34,6 +34,7 @@ class block {
                 $block = new block($file);
 
                 self::$allBlocks[] = [
+                    'id' => str_replace('.block', '', $file),
                     'name' => $block->getInfo('name'),
                     'description' => $block->getInfo('description')
                 ];
