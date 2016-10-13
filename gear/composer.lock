@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5ed809a923a0b5b416fe6b80aba8538",
-    "content-hash": "5ace7cd1a30f4de49b9e22c59372a1b8",
+    "content-hash": "0eee6284387c3f7320646f4b6b3f5212",
     "packages": [
         {
             "name": "ircmaxell/password-compat",
@@ -47,20 +46,20 @@
                 "hashing",
                 "password"
             ],
-            "time": "2014-11-20 16:49:30"
+            "time": "2014-11-20T16:49:30+00:00"
         },
         {
             "name": "lichtner/fluentpdo",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fpdo/fluentpdo.git",
-                "reference": "db16192f7a70f28193930bdbc6f05880220fe670"
+                "url": "https://github.com/envms/fluentpdo.git",
+                "reference": "42f2e1a76ef84c79c556af9cb6028ff8f02eb7f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/db16192f7a70f28193930bdbc6f05880220fe670",
-                "reference": "db16192f7a70f28193930bdbc6f05880220fe670",
+                "url": "https://api.github.com/repos/envms/fluentpdo/zipball/42f2e1a76ef84c79c556af9cb6028ff8f02eb7f1",
+                "reference": "42f2e1a76ef84c79c556af9cb6028ff8f02eb7f1",
                 "shasum": ""
             },
             "type": "library",
@@ -87,7 +86,68 @@
                 "dbal",
                 "pdo"
             ],
-            "time": "2016-03-30 20:33:43"
+            "time": "2016-08-19 16:03:13"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.26.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.26-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2016-10-05T18:57:41+00:00"
         },
         {
             "name": "wixel/gump",
@@ -95,12 +155,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wixel/GUMP.git",
-                "reference": "34792ec8ff9a8caf3f1a859203baed74c509dc46"
+                "reference": "6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/34792ec8ff9a8caf3f1a859203baed74c509dc46",
-                "reference": "34792ec8ff9a8caf3f1a859203baed74c509dc46",
+                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08",
+                "reference": "6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08",
                 "shasum": ""
             },
             "type": "library",
@@ -145,7 +205,7 @@
             ],
             "description": "A fast, extensible & stand-alone PHP input validation class that allows you to validate any data",
             "homepage": "https://wixelhq.com/",
-            "time": "2016-06-04 09:22:30"
+            "time": "2016-08-30 16:12:49"
         }
     ],
     "packages-dev": [],

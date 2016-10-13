@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '2371fe58591751a9b725c6706865644e' => $vendorDir . '/lichtner/fluentpdo/FluentPDO/FluentPDO.php',
     'e40631d46120a9c38ea139981f8dab26' => $vendorDir . '/ircmaxell/password-compat/lib/password.php',
+    '2371fe58591751a9b725c6706865644e' => $vendorDir . '/lichtner/fluentpdo/FluentPDO/FluentPDO.php',
     'da253f61703e9c22a5a34f228526f05a' => $vendorDir . '/wixel/gump/gump.class.php',
 );
