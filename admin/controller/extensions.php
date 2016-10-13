@@ -14,7 +14,17 @@ class extensionsController extends controller {
 
     public function blocks($action = '', $block = '') {
 
-        include(dir::view('extensions/blocks/list.php'));
+        if($action == 'show' && $block) {
+
+            $block = new block($block.'.block');
+
+            include(dir::view('extensions/blocks/show.php'));
+
+        } else {
+
+            include(dir::view('extensions/blocks/list.php'));
+
+        }
 
     }
 

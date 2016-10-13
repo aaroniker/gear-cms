@@ -121,6 +121,8 @@
     "extensions": "Erweiterungen",
     "plugins": "Plugins",
     "blocks": "Blöcke",
+    "css": "CSS",
+    "info": "Info",
     "description": "Beschreibung",
 
     ## System

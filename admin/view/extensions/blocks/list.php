@@ -14,7 +14,7 @@
         <table-cell>{{ entry.name }}</table-cell>
         <table-cell>{{ entry.description }}</table-cell>
         <table-cell class="shrink">
-            info
+            <a href="<?=url::admin('extensions', ['blocks', 'show', '{{ entry.id }}']); ?>" class="icon icon-navicon-round"></a>
         </table-cell>
     </data-table>
 
