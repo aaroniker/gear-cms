@@ -96,7 +96,17 @@ class contentController extends controller {
 
         }
 
-        include(dir::view('content/list.php'));
+        if($action == 'edit' && $id) {
+
+            $this->model->load($id);
+
+            include(dir::view('content/edit.php'));
+
+        } else {
+
+            include(dir::view('content/list.php'));
+
+        }
 
     }
 
