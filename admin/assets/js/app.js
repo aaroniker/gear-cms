@@ -126,7 +126,6 @@ Vue.component("data-table", {
 Vue.component("file-table", {
     template: "#file-table-template",
     props: {
-        data: [],
         showSearch: true,
         headline: "",
         filterKey: "",
@@ -137,6 +136,7 @@ Vue.component("file-table", {
     },
     data: function() {
         return {
+            tableData: [],
             editFile: false,
             editFileID: '',
             editFileName: '',
@@ -144,7 +144,7 @@ Vue.component("file-table", {
             checked: []
         };
     },
-    created: function() {
+    mounted: function() {
 
         this.oldHeadline = this.headline;
 
@@ -178,13 +178,13 @@ Vue.component("file-table", {
     computed: {
         checkAll: {
             get: function() {
-                return this.data ? this.checked.length == this.data.length &&  this.data.length > 0 : false;
+                return this.tableData ? this.checked.length == this.tableData.length &&  this.tableData.length > 0 : false;
             },
             set: function(value) {
                 var checked = [];
 
                 if(value) {
-                    this.data.forEach(function(loop) {
+                    this.tableData.forEach(function(loop) {
                         checked.push(loop.id);
                     });
                 }
@@ -212,7 +212,9 @@ Vue.component("file-table", {
 
         },
         filtered: function() {
-            return this.$eval("data | filterBy filterKey");
+            return this.tableData.filter(function(entry) {
+                return entry.name.indexOf(this.filterKey)
+            });
         }
     },
     methods: {

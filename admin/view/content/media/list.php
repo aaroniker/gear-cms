@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2>{{{ headline | lang }}}</h2>
+        <h2 v-html="headline"></h2>
 
         <div v-if="showSearch" class="search">
             <input type="text" v-model="search">
@@ -37,7 +37,7 @@
         $field->addAttribute('v-model', 'dirName');
         $field->fieldValidate();
 
-        $field = $form->addRawField('<p class="static">{{ path }}<span class="text-light" v-if="dirName">{{ dirName }}</span></p>');
+        $field = $form->addRawField('<p class="static" v-text="path"><span class="text-light" v-if="dirName" v-text="dirName"></span></p>');
         $field->fieldName(lang::get('path'));
 
     ?>
@@ -62,7 +62,7 @@
                         <?=lang::get('choose_files'); ?> (max. <?=media::getServerMaxSize(false); ?>)
                     </label>
 
-                    <small><strong><?=lang::get('path'); ?></strong> {{ path }}</small>
+                    <small><strong><?=lang::get('path'); ?></strong> <span v-text="path"></span></small>
 
                 </div>
                 <ul></ul>
@@ -70,7 +70,7 @@
         </div>
     </modal>
 
-    <file-table :data="tableData" :headline="headline" :filter-key="search"></file-table>
+    <file-table :tableData="tableData" :headline="headline" :filter-key="search"></file-table>
 
 </section>
 
