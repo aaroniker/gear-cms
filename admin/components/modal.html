@@ -1,18 +1,22 @@
 <template id="modal-template">
-    <div id="modal" v-show="show" class="animated" transition="fade">
-        <div class="inner">
+    <transition name="modal">
+        <div class="modal">
+            <div class="mask">
+                <div class="inner">
 
-            <header>
-                <slot name="header"></slot>
-                <div @click="show = false" class="close">
-                    <i class="icon icon-close-round"></i>
+                    <header>
+                        <slot name="header"></slot>
+                        <div @click="$emit('close')" class="close">
+                            <i class="icon icon-close-round"></i>
+                        </div>
+                    </header>
+
+                    <div class="content">
+                        <slot name="content"></slot>
+                    </div>
+
                 </div>
-            </header>
-
-            <div class="content">
-                <slot name="content"></slot>
             </div>
-
         </div>
-    </div>
+    </transition>
 </template>

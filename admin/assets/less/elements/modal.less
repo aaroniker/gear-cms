@@ -1,73 +1,88 @@
-#modal {
-    .inner {
-        header {
-            h3 {
-                margin: 0;
-                padding: 0;
-                @media(max-width: @screen-sm-min * 1px) {
-                    font-size: 21px;
-                }
-            }
-            .close {
-                &:hover {
-                    i {
-                        color: @text;
+.modal {
+    .mask {
+        .inner {
+            header {
+                h3 {
+                    margin: 0;
+                    padding: 0;
+                    @media(max-width: @screen-sm-min * 1px) {
+                        font-size: 21px;
                     }
                 }
-                i {
-                    font-size: 1em;
-                    color: @text-light;
+                .close {
+                    &:hover {
+                        i {
+                            color: @text;
+                        }
+                    }
+                    i {
+                        font-size: 1em;
+                        color: @text-light;
+                    }
+                    cursor: pointer;
+                    position: absolute;
+                    right: 30px;
+                    top: 50%;
+                    .translate(0, -50%);
+                    @media(max-width: @screen-sm-min * 1px) {
+                        right: 20px;
+                    }
                 }
-                cursor: pointer;
-                position: absolute;
-                right: 30px;
-                top: 50%;
-                .translate(0, -50%);
+                position: relative;
+                padding: 0 30px;
+                margin: 0;
                 @media(max-width: @screen-sm-min * 1px) {
-                    right: 20px;
+                    padding: 0 20px;
                 }
             }
-            position: relative;
-            padding: 0 30px;
-            margin: 0;
+            .content {
+                padding: 20px 30px 30px 30px;
+                @media(max-width: @screen-sm-min * 1px) {
+                    padding: 10px 20px 20px 20px;
+                }
+            }
+            padding: 30px 0 0 0;
+            background: #fff;
+            .round();
+            .box-shadow(0, 5px, 20px, fade(@dark, 70%));
             @media(max-width: @screen-sm-min * 1px) {
-                padding: 0 20px;
+                padding: 20px 0 0 0;
             }
         }
-        .content {
-            padding: 20px 30px 30px 30px;
-            @media(max-width: @screen-sm-min * 1px) {
-                padding: 10px 20px 20px 20px;
-            }
-        }
-        padding: 30px 0 0 0;
-        background: #fff;
-        .round();
-        .box-shadow(0, 5px, 20px, fade(@dark, 70%));
-        @media(max-width: @screen-sm-min * 1px) {
-            padding: 20px 0 0 0;
-        }
-    }
-    table {
-        &.media {
-            .file {
-                div {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    max-width: 190px;
-                    min-width: 0;
+        table {
+            &.media {
+                .file {
+                    div {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 190px;
+                        min-width: 0;
+                    }
                 }
             }
         }
+        max-width: 420px;
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        margin: auto;
+        top: 10%;
     }
-    max-width: 420px;
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    margin: auto;
-    top: 10%;
-    -webkit-animation-duration: 0.5s;
-    animation-duration: 0.5s;
-    z-index: 101;
+    background: fade(@dark, 75%);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    .transition(0.2s);
+}
+
+.modal-enter {
+    .opacity(0);
+}
+
+.modal-leave-active {
+    .opacity(0);
 }
