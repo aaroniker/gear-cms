@@ -20,7 +20,7 @@
 
     ?>
 
-    <modal :show.sync="addGroupModal">
+    <modal v-if="addGroupModal" @close="addGroupModal = false">
         <h3 slot="header"><?=lang::get('add'); ?></h3>
         <div slot="content">
             <?=$form->show(); ?>
@@ -40,7 +40,7 @@
                                 {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
                             </a>
                             <div class="action" v-if="group.id > 0">
-                                <a class="delete" href="<?=url::admin('user', ['permissions', 'delete', '{{ group.id }}']); ?>">
+                                <a class="delete" href="">
                                     <i class="icon icon-ios-trash-outline"></i>
                                 </a>
                             </div>
@@ -60,14 +60,14 @@
                 <div v-if="groupID == group.id">
 
                     <ul class="list">
-                        <li v-for="perm in perms">
+                        <li v-for="(perm, key) in perms">
                             <div class="box">
-                                <h3>{{ $key | lang }}</h3>
-                                <div v-for="entry in perm">
+                                <h3>{{ key | lang }}</h3>
+                                <div v-for="(entry, key) in perm">
                                     <span>{{ entry }}</span>
                                     <div class="switch">
-                                        <input :id="$key" type="checkbox" :value="$key" :disabled="group.id == 0" v-model="checked">
-                                        <label :for="$key"></label>
+                                        <input :id="key" type="checkbox" :value="key" :disabled="group.id == 0" v-model="checked">
+                                        <label :for="key"></label>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@ theme::addJSCode('
             addGroupModal: false,
             groupName: ""
         },
-        ready: function() {
+        mounted: function() {
             this.fetchGroups();
         },
         watch: {
