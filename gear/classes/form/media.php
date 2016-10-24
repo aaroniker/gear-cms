@@ -20,7 +20,7 @@ class formMedia extends formField {
                 </a>
                 <a class="button none sm">{{ (fileName === false) ? "'.$this->value.'" : fileName }}</a>
                 <input'.$this->convertAttr().'>
-                <modal :show.sync="addMediaModal">
+                <modal v-if="addMediaModal" @close="addMediaModal = false">
                     <h3 slot="header">'.lang::get('choose').'</h3>
                     <div slot="content">
                         <file-table :data=\''.json_encode(media::getAll('/')).'\' :headline="headline" :select="true" :ext=\''.json_encode($ext).'\' :filter-key="search"></file-table>

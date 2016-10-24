@@ -20,7 +20,7 @@
 
     ?>
 
-    <modal :show.sync="addMenuModal">
+    <modal v-if="addMenuModal" @close="addMenuModal = false">
         <h3 slot="header"><?=lang::get('add'); ?></h3>
         <div slot="content">
             <?=$form->show(); ?>

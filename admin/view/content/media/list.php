@@ -42,14 +42,14 @@
 
     ?>
 
-    <modal :show.sync="addDirModal">
+    <modal v-if="addDirModal" @close="addDirModal = false">
         <h3 slot="header"><?=lang::get('add_dir'); ?></h3>
         <div slot="content">
             <?=$form->show(); ?>
         </div>
     </modal>
 
-    <modal :show.sync="uploadModal">
+    <modal v-if="uploadModal" @close="uploadModal = false">
         <h3 slot="header"><?=lang::get('upload'); ?></h3>
         <div slot="content">
             <div id="upload">
