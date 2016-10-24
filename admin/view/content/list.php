@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2>{{{ headline | lang }}}</h2>
+        <h2 v-html="headline"></h2>
 
         <div class="search">
             <input type="text" v-model="filterKey">
@@ -47,7 +47,7 @@
                 </template>
                 <template v-if="this.searchBox.length >= 1">
                     <ul class="result" v-if="searchFilter.length">
-                        <li v-for="entry in pageAll | filterBy searchBox" @click="pageParent = entry.id, pageParentName = entry.name">
+                        <li v-for="entry in searchFilter" @click="pageParent = entry.id, pageParentName = entry.name">
                             {{ entry.name }}
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
 
     ?>
 
-    <modal :show.sync="addPageModal">
+    <modal v-if="addPageModal" @close="addPageModal = false">
         <h3 slot="header"><?=lang::get('add'); ?></h3>
         <div slot="content">
             <?=$form->show(); ?>
@@ -73,9 +73,9 @@
     </modal>
 
     <div id="pageList" class="box">
-        <h3 v-drop="move(0, $dropdata)"><?=option::get('sitename'); ?></h3>
+        <h3><?=option::get('sitename'); ?></h3>
         <ul>
-            <item v-for="model in pageTree | filterBy filterKey" :model="model"></item>
+            <item v-for="model in pageTreeFilter" :model="model"></item>
         </ul>
         <template v-if="!pageTree">
             <?=lang::get('no_results'); ?>
@@ -237,15 +237,23 @@ theme::addJSCode('
             }
         },
         computed: {
-            searchFilter: function() {
-                return this.$eval("pageAll | filterBy searchBox");
-            },
             parent: function() {
                 if(this.pageParent == 0) {
                     return lang["page_parent_no"];
                 } else {
                     return this.pageParentName;
                 }
+            },
+            pageTreeFilter: function() {
+                console.log(this.pageTree);
+                return this.pageAll.filter(function(entry) {
+                    return entry.name.indexOf(this.filterKey)
+                });
+            },
+            searchFilter: function() {
+                return this.pageAll.filter(function(entry) {
+                    return entry.name.indexOf(this.searchBox)
+                });
             }
         }
     });
