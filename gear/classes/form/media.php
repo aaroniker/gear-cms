@@ -6,7 +6,12 @@ class formMedia extends formField {
 
         $this->addAttribute('type', 'hidden');
         $this->addAttribute('name', $this->name);
-        $this->addAttribute('value', type::super($this->name, '', '{{ (fileName === false) ? "'.$this->value.'" : fileName }}'));
+
+        if(type::super($this->name, '', $this->value)) {
+            $this->addAttribute('value', type::super($this->name, '', $this->value));
+        } else {
+            $this->addAttribute('v-model', 'fileName');
+        }
 
         $ext = $this->getAttribute('ext');
         $ext = ($ext) ? explode(',', $ext) : [];
@@ -18,8 +23,8 @@ class formMedia extends formField {
                     <i class="icon icon-archive"></i>
                     '.lang::get('choose').'
                 </a>
-                <a class="button none sm">{{ (fileName === false) ? "'.$this->value.'" : fileName }}</a>
-                <input'.$this->convertAttr().'>
+                <a class="button none sm" v-text="fileName === false ? \'\' : fileName">'.$this->value.'</a>
+                <input '.$this->convertAttr().'>
                 <modal v-if="addMediaModal" @close="addMediaModal = false">
                     <h3 slot="header">'.lang::get('choose').'</h3>
                     <div slot="content">
