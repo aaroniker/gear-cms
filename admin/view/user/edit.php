@@ -44,19 +44,21 @@
         $field->fieldName(lang::get('status'));
 
         $field = $form->addRawField('
-            <a v-if="!changePassword" @click="changePassword = true" class="button border">'.lang::get('change_password').'</a>
-            <template v-if="changePassword">
-                <a @click="changePassword = false" class="button border">'.lang::get('close').'</a>
-                <a @click="generate" class="button border">
-                    <i class="icon icon-refresh"></i>
-                    '.lang::get('generate_password').'
-                </a>
-            </template>
+            <div id="pwChange">
+                <a v-if="!changePassword" @click="changePassword = true" class="button border">'.lang::get('change_password').'</a>
+                <template v-if="changePassword">
+                    <a @click="changePassword = false" class="button border">'.lang::get('close').'</a>
+                    <a @click="generate" class="button border">
+                        <i class="icon icon-refresh"></i>
+                        '.lang::get('generate_password').'
+                    </a>
+                    <input v-model="newPassword" type="text" name="password" id="passwordForm" class="form-field">
+                </template>
+            </div>
         ');
         $field->fieldName(lang::get('password'));
 
-        $field = $form->addTextField('password', '', ['parent' => 'v-if="changePassword"', 'v-model="newPassword"']);
-        $field->fieldName(lang::get('new_password'));
+        $form->addSave('password');
 
         $field = $form->addSelectField('permissionID', $this->model->permissionID);
         $field->fieldName(lang::get('permissions'));
@@ -108,7 +110,7 @@
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#user",
+        el: "#pwChange",
         data: {
             newPassword: "",
             changePassword: false
