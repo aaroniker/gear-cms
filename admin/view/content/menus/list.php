@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2>{{{ headline | lang }}}</h2>
+        <h2 v-html="headline"></h2>
 
     </header>
 
@@ -100,7 +100,7 @@
                                 </template>
                                 <template v-if="this.searchBox.length >= 1">
                                     <ul class="result" v-if="searchFilter.length">
-                                        <li v-for="entry in pageAll | filterBy searchBox" @click="menuItemPageID = entry.id, menuItemPage = entry.name">
+                                        <li v-for="entry in searchFilter" @click="menuItemPageID = entry.id, menuItemPage = entry.name">
                                             {{ entry.name }}
                                         </li>
                                     </ul>
@@ -138,7 +138,7 @@
 </section>
 
 <template id="item-template">
-    <li id="item_{{ model.id }}">
+    <li :id="'item_' + model.id">
         <div class="entry clear">
             <div class="info">
                 <span>{{ model.name }}</span>
@@ -183,7 +183,7 @@ theme::addJSCode('
     new Vue({
         el: "#content",
         data: {
-            headline: "menus",
+            headline: lang["menus"],
             menus: [],
             items: [],
             pageAll: '.json_encode(PageModel::getAllFromDb()).',
@@ -197,12 +197,11 @@ theme::addJSCode('
             menuItemPageID: 0,
             menuItemLink: ""
         },
-        ready: function() {
-            this.fetchMenus();
-        },
-        created: function() {
+        mounted: function() {
 
             var vue = this;
+
+            vue.fetchMenus();
 
             $(document).on("fetch", function() {
                 vue.fetchItems();
@@ -305,7 +304,9 @@ theme::addJSCode('
         },
         computed: {
             searchFilter: function() {
-                return this.$eval("pageAll | filterBy searchBox");
+                return this.pageAll.filter(function(entry) {
+                    return entry.name.indexOf(this.searchBox)
+                });
             },
             searchBoxTitle: function() {
                 if(this.menuItemPageID == 0) {
