@@ -41,7 +41,7 @@ class form {
     private function addElement($name, $object, $save = true) {
 
         if($save) {
-            $this->toSave[$name] = $object;
+            $this->addSave($name);
         }
 
         if(count($this->tabs)) {
@@ -52,6 +52,10 @@ class form {
 
         return $object;
 
+    }
+
+    public function addSave($name) {
+        $this->toSave[$name] = true;
     }
 
     private function addField($name, $value, $class, $attributes = [], $save = true) {
