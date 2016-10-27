@@ -107,7 +107,7 @@ theme::addJSCode('
             });
 
             eventHub.$on("setHome", this.setHome);
-            eventHub.$on("setParent", this.setParent)
+            eventHub.$on("setSearchbox", this.setParent);
 
         },
         methods: {
@@ -145,7 +145,10 @@ theme::addJSCode('
                         vue.fetch();
                         vue.addPageModal = false;
                         vue.pageName = "";
-                        vue.setParent("", 0);
+                        vue.setParent({
+                            id: 0,
+                            name: ""
+                        });
                     }
                 });
 
