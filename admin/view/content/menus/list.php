@@ -40,7 +40,7 @@
                                 {{ menu.name }}
                             </a>
                             <div class="action">
-                                <a class="delete" href="<?=url::admin('content', ['menus', 'delete', '{{ menu.id }}']); ?>">
+                                <a class="delete" :href="'<?=url::admin('content', ['menus', 'delete']); ?>/' + menu.id">
                                     <i class="icon icon-ios-trash-outline"></i>
                                 </a>
                             </div>
@@ -144,7 +144,7 @@
                 <span>{{ model.name }}</span>
                 <small>{{ model.pageName }} {{ model.pageURL }}</small>
             </div>
-            <a href="<?=url::admin('content', ['menus', 'delItem', '{{ model.id }}']); ?>" class="icon delete ajax icon-ios-trash-outline"></a>
+            <a :href="'<?=url::admin('content', ['menus', 'delItem']); ?>/' + model.id" class="icon delete ajax icon-ios-trash-outline"></a>
         </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
