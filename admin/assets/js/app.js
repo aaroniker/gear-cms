@@ -346,7 +346,7 @@ Vue.component("searchbox", {
             this.active = active;
             this.activeID = activeID;
 
-            eventHub.$emit("setParent", {
+            eventHub.$emit("setSearchbox", {
                 name: active,
                 id: activeID
             });
