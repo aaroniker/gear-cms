@@ -12,6 +12,8 @@ function randomPassword(length) {
 
 }
 
+var eventHub = new Vue();
+
 Vue.filter("lang", function(value) {
     if(value in lang) {
         return lang[value];
@@ -318,6 +320,48 @@ Vue.component("file-table", {
 
 Vue.component("modal", {
     template: "#modal-template"
+});
+
+Vue.component("searchbox", {
+    template: "#searchbox-template",
+    data: function() {
+        return {
+            searchBoxShow: false,
+            searchBox: "",
+            active: "",
+            activeID: 0
+        }
+    },
+    props: [
+        "list",
+        "val",
+        "id"
+    ],
+    methods: {
+        toggleSearchBox: function() {
+            this.searchBoxShow = !this.searchBoxShow;
+        },
+        setActive: function(active, activeID) {
+
+            this.active = active;
+            this.activeID = activeID;
+
+            eventHub.$emit("setParent", {
+                name: active,
+                id: activeID
+            });
+
+            this.searchBoxShow = false;
+        }
+    },
+    computed: {
+        data: function() {
+            var self = this;
+            return self.list.filter(function(entry) {
+                return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;
+            });
+        }
+    }
 });
 
 var formMedia =  document.getElementsByClassName('formMedia');
