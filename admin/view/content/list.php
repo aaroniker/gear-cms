@@ -86,8 +86,8 @@
 
 <template id="item-template">
     <li>
-        <div class="entry clear" v-drop="move(model.id, $dropdata)">
-            <div v-drag="{id: model.id}" class="info">
+        <div class="entry clear">
+            <div class="info">
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
             </div>
@@ -104,44 +104,17 @@
 
 <?php
 theme::addJSCode('
+
+    var eventHub = new Vue();
+
     Vue.component("item", {
         template: "#item-template",
         props: {
             model: Object
         },
         methods: {
-            move: function(parentID, data) {
-
-                var vue = this;
-
-                $.ajax({
-                    method: "POST",
-                    url: "'.url::admin('content', ['index', 'move']).'",
-                    data: {
-                        parent: parentID,
-                        id: data.id
-                    },
-                    success: function() {
-                        vue.$dispatch("eventFetch");
-                    }
-                });
-
-            },
             setHome: function(id) {
-
-                var vue = this;
-
-                $.ajax({
-                    method: "POST",
-                    url: "'.url::admin('content', ['index', 'setHome']).'",
-                    data: {
-                        id: id
-                    },
-                    success: function() {
-                        vue.$dispatch("eventFetch");
-                    }
-                });
-
+                eventHub.$emit("setHome", id);
             }
         }
     });
@@ -167,6 +140,9 @@ theme::addJSCode('
             $(document).on("fetch", function() {
                 vue.fetch();
             });
+
+            eventHub.$on("setHome", this.setHome);
+
         },
         methods: {
             fetch: function() {
@@ -222,13 +198,24 @@ theme::addJSCode('
                 });
 
             },
+            setHome: function(id) {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'setHome']).'",
+                    data: {
+                        id: id
+                    },
+                    success: function() {
+                        vue.fetch();
+                    }
+                });
+
+            },
             toggleSearchBox: function() {
                 this.searchBoxShow = !this.searchBoxShow;
-            }
-        },
-        events: {
-            eventFetch: function() {
-                this.fetch();
             }
         },
         watch: {
@@ -245,10 +232,7 @@ theme::addJSCode('
                 }
             },
             pageTreeFilter: function() {
-                console.log(this.pageTree);
-                return this.pageAll.filter(function(entry) {
-                    return entry.name.indexOf(this.filterKey)
-                });
+                return this.pageTree;
             },
             searchFilter: function() {
                 return this.pageAll.filter(function(entry) {
