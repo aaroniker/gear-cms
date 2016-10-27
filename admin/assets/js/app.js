@@ -146,7 +146,7 @@ Vue.component("file-table", {
             checked: []
         };
     },
-    mounted: function() {
+    created: function() {
 
         this.oldHeadline = this.headline;
 
@@ -212,11 +212,6 @@ Vue.component("file-table", {
 
             return str;
 
-        },
-        filtered: function() {
-            return this.tableData.filter(function(entry) {
-                return entry.name.indexOf(this.filterKey)
-            });
         }
     },
     methods: {

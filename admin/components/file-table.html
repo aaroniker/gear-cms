@@ -47,14 +47,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="entry in filtered">
+                    <tr v-for="entry in tableData">
                         <td class="check" v-if="!select">
                             <div class="checkbox" v-if="entry.id">
                                 <input :id="'entry' + entry.id" type="checkbox" v-model="checked" :value="entry.id" number>
                                 <label :for="'entry' + entry.id"></label>
                             </div>
                         </td>
-                        <td v-if="entry.type == 'dir'" v-drop="move(entry.path, $dropdata)">
+                        <td v-if="entry.type == 'dir'">
                             <a class="dir" @click="setPath(entry.path)">
                                 <i class="icon icon-folder"></i>
                                 {{ entry.name }}
@@ -68,7 +68,7 @@
                         </td>
                         </template>
                         <template v-else>
-                        <td v-if="entry.type == 'file'" class="file" v-drag="{id: entry.id, name: entry.name}">
+                        <td v-if="entry.type == 'file'" class="file">
                             <div>
                                 {{ entry.name }}
                             </div>
@@ -84,7 +84,7 @@
                             <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
                         </td>
                     </tr>
-                    <tr v-if="!filtered.length">
+                    <tr v-if="!tableData.length">
                         <td class="empty" :colspan="select ? 3 : 4"><?=lang::get('no_results'); ?></td>
                     </tr>
                 </tbody>

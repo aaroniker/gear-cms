@@ -109,7 +109,7 @@ theme::addJSCode('
     new Vue({
         el: "#media",
         data: {
-            headline: "media",
+            headline: lang["media"],
             checked: [],
             path: "/",
             tableData: '.json_encode(media::getAll('/')).',
