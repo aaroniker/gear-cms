@@ -4,10 +4,6 @@
 
         <h2 v-html="headline"></h2>
 
-        <div class="search">
-            <input type="text" v-model="filterKey">
-        </div>
-
         <nav>
             <ul>
                 <li>
@@ -75,7 +71,7 @@
     <div id="pageList" class="box">
         <h3><?=option::get('sitename'); ?></h3>
         <ul>
-            <item v-for="model in pageTreeFilter" :model="model"></item>
+            <item v-for="model in pageTree" :model="model"></item>
         </ul>
         <template v-if="!pageTree">
             <?=lang::get('no_results'); ?>
@@ -93,8 +89,8 @@
             </div>
             <span v-if="model.home" class="setHome" data-tooltip="<?=lang::get('page_home'); ?>"><i class="icon icon-ios-home"></i></span>
             <span v-else class="setHome" @click="setHome(model.id)"><i class="inactive icon icon-ios-home-outline"></i></span>
-            <a href="<?=url::admin('content', ['index', 'delete', '{{ model.id }}']); ?>" class="icon delete ajax icon-ios-trash-outline"></a>
-            <a href="<?=url::admin('content', ['index', 'edit', '{{ model.id }}']); ?>" class="icon edit icon-edit"></a>
+            <a :href="'<?=url::admin('content', ['index', 'delete']); ?>/' + model.id" class="icon delete ajax icon-ios-trash-outline"></a>
+            <a :href="'<?=url::admin('content', ['index', 'edit']); ?>/' + model.id" class="icon edit icon-edit"></a>
         </div>
         <ul v-if="model.children">
             <item v-for="model in model.children" :model="model"></item>
@@ -122,7 +118,7 @@ theme::addJSCode('
     new Vue({
         el: "#content",
         data: {
-            headline: "pages",
+            headline: lang["pages"],
             addPageModal: false,
             pageName: "",
             pageParent: 0,
@@ -130,8 +126,7 @@ theme::addJSCode('
             pageTree: '.json_encode(PageModel::getAll()).',
             pageAll: '.json_encode(PageModel::getAllFromDb()).',
             searchBoxShow: false,
-            searchBox: "",
-            filterKey: ""
+            searchBox: ""
         },
         created: function() {
 
@@ -230,9 +225,6 @@ theme::addJSCode('
                 } else {
                     return this.pageParentName;
                 }
-            },
-            pageTreeFilter: function() {
-                return this.pageTree;
             },
             searchFilter: function() {
                 return this.pageAll.filter(function(entry) {
