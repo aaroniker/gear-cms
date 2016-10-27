@@ -28,35 +28,7 @@
         $field->addAttribute('v-model', 'pageName');
         $field->fieldValidate();
 
-        $field = $form->addRawField('
-        <div class="form-select">
-            <div class="choose" @click="toggleSearchBox">{{ parent }}</div>
-            <div v-if="searchBoxShow" class="searchBox">
-                <div class="search">
-                    <input type="text" v-model="searchBox">
-                    <i @click="toggleSearchBox" class="icon icon-close-round"></i>
-                </div>
-                <template v-if="pageParent != 0">
-                    <div class="result">
-                        <span class="active">{{ parent }}</span>
-                    </div>
-                </template>
-                <template v-if="this.searchBox.length >= 1">
-                    <ul class="result" v-if="searchFilter.length">
-                        <li v-for="entry in searchFilter" @click="pageParent = entry.id, pageParentName = entry.name">
-                            {{ entry.name }}
-                        </li>
-                    </ul>
-                    <div class="result" v-if="!searchFilter.length">'.lang::get('no_results').'</div>
-                </template>
-                <template v-if="pageParent != 0">
-                    <div class="result">
-                        <span @click="pageParent = 0, pageParentName = \'\'">{{ "page_parent_no" | lang }}</span>
-                    </div>
-                </template>
-            </div>
-        </div>
-        ');
+        $field = $form->addRawField('<searchbox :list="pageAll" val="name" id="id"></searchbox>');
         $field->fieldName(lang::get('page_parent'));
 
     ?>
@@ -101,8 +73,6 @@
 <?php
 theme::addJSCode('
 
-    var eventHub = new Vue();
-
     Vue.component("item", {
         template: "#item-template",
         props: {
@@ -137,6 +107,7 @@ theme::addJSCode('
             });
 
             eventHub.$on("setHome", this.setHome);
+            eventHub.$on("setParent", this.setParent)
 
         },
         methods: {
@@ -155,6 +126,10 @@ theme::addJSCode('
                 });
 
             },
+            setParent: function(data) {
+                this.pageParent = data.id;
+                this.pageParentName = data.name;
+            },
             addPage: function() {
 
                 var vue = this;
@@ -170,8 +145,7 @@ theme::addJSCode('
                         vue.fetch();
                         vue.addPageModal = false;
                         vue.pageName = "";
-                        vue.pageParent = 0;
-                        vue.pageParentName = "";
+                        vue.setParent("", 0);
                     }
                 });
 
@@ -208,28 +182,6 @@ theme::addJSCode('
                     }
                 });
 
-            },
-            toggleSearchBox: function() {
-                this.searchBoxShow = !this.searchBoxShow;
-            }
-        },
-        watch: {
-            pageParent: function() {
-                this.searchBoxShow = false;
-            }
-        },
-        computed: {
-            parent: function() {
-                if(this.pageParent == 0) {
-                    return lang["page_parent_no"];
-                } else {
-                    return this.pageParentName;
-                }
-            },
-            searchFilter: function() {
-                return this.pageAll.filter(function(entry) {
-                    return entry.name.indexOf(this.searchBox)
-                });
             }
         }
     });
