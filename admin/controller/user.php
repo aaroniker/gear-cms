@@ -61,7 +61,7 @@ class userController extends controller {
                     $perms = ($this->model->permissions) ? unserialize($this->model->permissions) : [];
 
                 } else {
-                    $perms = userPerm::getAll(true);
+                    $perms = array_keys(userPerm::getAll());
                 }
 
                 ajax::addReturn(json_encode($perms));

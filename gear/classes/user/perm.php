@@ -22,15 +22,7 @@ class userPerm {
 
     }
 
-    public static function getAll($onlyKey = false) {
-
-        if($onlyKey) {
-            $return = [];
-            foreach(self::$perms as $key => $val) {
-                $return[] = $key;
-            }
-            return $return;
-        }
+    public static function getAll() {
 
         return self::$perms;
 
