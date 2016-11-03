@@ -69,7 +69,12 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="?logout=1">
+                            <a href="http://gearcms.org" data-tooltip="<?=lang::get('website'); ?>" target="_blank">
+                                <i class="icon icon-earth"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?logout=1" data-tooltip="<?=lang::get('logout'); ?>">
                                 <i class="icon icon-log-out"></i>
                             </a>
                         </li>

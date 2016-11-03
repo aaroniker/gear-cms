@@ -218,6 +218,16 @@
                         clear: both;
                     }
                     li {
+                        [data-tooltip] {
+                            &:after {
+                                bottom: auto;
+                                top: 110%;
+                                font-size: 14px;
+                            }
+                            &:before {
+                                display: none;
+                            }
+                        }
                         &:last-child {
                             margin-right: 0;
                         }
