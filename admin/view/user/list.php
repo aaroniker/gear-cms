@@ -20,6 +20,14 @@
 
     </header>
 
+    <?php
+
+        $table = new table();
+
+        var_dump($table);
+
+    ?>
+
     <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
