@@ -2,7 +2,7 @@
 
     <header>
 
-        <h2>{{{ headline | lang }}}</h2>
+        <h2 v-html="headline"></h2>
 
         <div v-if="showSearch" class="search">
             <input type="text" v-model="search">
@@ -49,7 +49,7 @@ theme::addJSCode('
     new Vue({
         el: "#user",
         data: {
-            headline: "list",
+            headline: lang["list"],
             checked: [],
             tableData: '.json_encode(UserModel::getAll()).',
             search: "",
