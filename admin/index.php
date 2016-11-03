@@ -11,7 +11,6 @@
     theme::addJS('https://cdn.jsdelivr.net/vue/2.0.3/vue.js');
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
-    theme::addJS(url::assets('js/directives.js'));
     theme::addJS(url::assets('js/app.js'));
     theme::addJS(url::assets('js/layout.js'));
 

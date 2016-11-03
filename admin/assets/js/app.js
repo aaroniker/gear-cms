@@ -22,13 +22,6 @@ Vue.filter("lang", function(value) {
     }
 });
 
-Vue.component("table-cell", {
-    template: '<td :class="class"><slot></slot></td>',
-    props: {
-        class: ''
-    }
-});
-
 Vue.component("data-table", {
     template: "#table-template",
     props: {
