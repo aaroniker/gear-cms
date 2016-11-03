@@ -45,7 +45,7 @@
         <ul>
             <item v-for="model in pageTree" :model="model"></item>
         </ul>
-        <template v-if="!pageTree">
+        <template v-if="!pageTreeLength">
             <?=lang::get('no_results'); ?>
         </template>
     </div>
@@ -185,6 +185,11 @@ theme::addJSCode('
                     }
                 });
 
+            }
+        },
+        computed: {
+            pageTreeLength: function() {
+                return !jQuery.isEmptyObject(this.pageTree);;
             }
         }
     });
