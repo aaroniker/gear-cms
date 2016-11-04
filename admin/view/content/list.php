@@ -189,7 +189,7 @@ theme::addJSCode('
         },
         computed: {
             pageTreeLength: function() {
-                return !jQuery.isEmptyObject(this.pageTree);;
+                return !jQuery.isEmptyObject(this.pageTree);
             }
         }
     });
