@@ -10,6 +10,9 @@
 
     </header>
 
+    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :search="search"></data-table>
+
+    <?php /*
     <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
         <table-cell>{{ entry.name }}</table-cell>
         <table-cell>{{ entry.description }}</table-cell>
@@ -17,6 +20,7 @@
             <a href="<?=url::admin('extensions', ['blocks', 'show', '{{ entry.id }}']); ?>" class="icon icon-navicon-round"></a>
         </table-cell>
     </data-table>
+    */ ?>
 
 </section>
 
@@ -26,19 +30,19 @@ theme::addJSCode('
         el: "#blocks",
         data: {
             headline: lang["blocks"],
-            checked: [],
             tableData: '.json_encode(block::getAll()).',
             search: "",
             showSearch: true
         },
-        events: {
-            checked: function(data) {
-                this.checked = data;
-            },
-            headline: function(data) {
-                this.headline = data.headline;
-                this.showSearch = data.showSearch;
-            }
+        created: function() {
+
+            var vue = this;
+
+            eventHub.$on("setHeadline", function(data) {
+                vue.headline = data.headline;
+                vue.showSearch = data.showSearch;
+            });
+
         }
     });
 ');

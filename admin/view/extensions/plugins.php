@@ -10,13 +10,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
-        <table-cell>{{ entry.name }}</table-cell>
-        <table-cell>{{ entry.description }}</table-cell>
-        <table-cell class="shrink">
-            info
-        </table-cell>
-    </data-table>
+    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :search="search"></data-table>
 
 </section>
 
@@ -26,19 +20,19 @@ theme::addJSCode('
         el: "#plugins",
         data: {
             headline: lang["plugins"],
-            checked: [],
             tableData: '.json_encode(plugin::getAll()).',
             search: "",
             showSearch: true
         },
-        events: {
-            checked: function(data) {
-                this.checked = data;
-            },
-            headline: function(data) {
-                this.headline = data.headline;
-                this.showSearch = data.showSearch;
-            }
+        created: function() {
+
+            var vue = this;
+
+            eventHub.$on("setHeadline", function(data) {
+                vue.headline = data.headline;
+                vue.showSearch = data.showSearch;
+            });
+
         }
     });
 ');
