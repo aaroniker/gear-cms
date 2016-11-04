@@ -16,7 +16,7 @@ class table {
 
         $this->addSection('thead');
 
-        #$attributes['class'][] = 'table';
+        $attributes['class'][] = 'table';
 
         $this->tableAttr = $attributes;
 
