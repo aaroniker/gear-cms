@@ -24,13 +24,12 @@ Vue.filter("lang", function(value) {
 
 Vue.component("data-table", {
     template: "#table-template",
-    props: {
-        data: [],
-        columns: [],
-        showSearch: true,
-        headline: '',
-        filterKey: ''
-    },
+    props: [
+        "data",
+        "columns",
+        "headline",
+        "search"
+    ],
     data: function() {
         var sortOrders = {};
         this.columns.forEach(function(key) {
@@ -41,6 +40,8 @@ Vue.component("data-table", {
             startRow: 0,
             rowsPerPage: 8,
             sortKey: '',
+            showSearch: false,
+            newHeadline: '',
             oldHeadline: '',
             sortOrders: sortOrders
         };
@@ -50,13 +51,19 @@ Vue.component("data-table", {
     },
     watch: {
         checked: function() {
-            this.$dispatch("checked", this.checked);
-        },
-        headline: function() {
-            this.$dispatch("headline", {
-                headline: this.headline,
-                showSearch: this.showSearch
-            });
+
+            if(this.checked.length) {
+                eventHub.$emit("setHeadline", {
+                    headline: this.checked.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>",
+                    showSearch: false
+                });
+            } else {
+                eventHub.$emit("setHeadline", {
+                    headline: this.oldHeadline,
+                    showSearch: true
+                });
+            }
+
         }
     },
     computed: {
@@ -65,6 +72,7 @@ Vue.component("data-table", {
                 return this.data ? this.checked.length == this.data.length &&  this.data.length > 0 : false;
             },
             set: function(value) {
+
                 var checked = [];
 
                 if(value) {
@@ -74,13 +82,14 @@ Vue.component("data-table", {
                 }
 
                 this.checked = checked;
+
             }
         },
         columnSpan: function() {
             return this.columns.length + 1;
         },
         filtered: function() {
-            return this.$eval("data | filterBy filterKey");
+            return true;
         }
     },
     methods: {
@@ -103,17 +112,6 @@ Vue.component("data-table", {
         },
         resetStartRow: function() {
             this.startRow = 0;
-        }
-    },
-    events: {
-        checked: function(data) {
-            if(data.length) {
-                this.headline = data.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>";
-                this.showSearch = false;
-            } else {
-                this.headline = this.oldHeadline;
-                this.showSearch = true;
-            }
         }
     }
 });

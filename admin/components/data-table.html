@@ -1,41 +1,46 @@
 <template id="table-template">
-    <div class="scrollVertical">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="check">
-                        <div class="checkbox">
-                            <input id="checkAll" type="checkbox" v-model="checkAll">
-                            <label for="checkAll"></label>
-                        </div>
-                    </th>
-                    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey && sortKey == key }">
-                        <a :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
-                            {{ key | lang }}
-                        </a>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="entry in data | filterBy filterKey | orderBy sortKey sortOrders[sortKey] | limitBy rowsPerPage startRow" v-slot>
-                    <td class="check">
-                        <div class="checkbox">
-                            <input id="entry{{ entry.id }}" type="checkbox" v-model="checked" :value="entry.id" number>
-                            <label for="entry{{ entry.id }}"></label>
-                        </div>
-                    </td>
-                </tr>
-                <tr v-if="!filtered.length">
-                    <td class="empty" :colspan="columnSpan">{{ 'no_results' | lang }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="toolbar clear">
-        <div v-if="filtered.length > rowsPerPage" class="pagination clear">
-            <a @click="movePages(-1)" class="back icon icon-chevron-left"></a>
-            <div>{{ startRow / rowsPerPage + 1 }} / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
-            <a @click="movePages(1)" class="next icon icon-chevron-right"></a>
+    <div>
+        <div class="scrollVertical">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="check">
+                            <div class="checkbox">
+                                <input id="checkAll" type="checkbox" v-model="checkAll">
+                                <label for="checkAll"></label>
+                            </div>
+                        </th>
+                        <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey && sortKey == key }">
+                            <a :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+                                {{ key }}
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="entry in data">
+                        <td class="check">
+                            <div class="checkbox">
+                                <input :id="'entry' + entry.id" type="checkbox" v-model="checked" :value="entry.id">
+                                <label :for="'entry' + entry.id"></label>
+                            </div>
+                        </td>
+                        <td v-for="key in columns">
+                            {{ entry[key] }}
+                        </td>
+                    </tr>
+                    <tr v-if="!filtered">
+                        <td class="empty" :colspan="columnSpan">{{ lang['no_results'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="toolbar clear">
+            <div v-if="data.length > rowsPerPage" class="pagination clear">
+                <a @click="movePages(-1)" class="back icon icon-chevron-left"></a>
+                <div>{{ startRow / rowsPerPage + 1 }} / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
+                <a @click="movePages(1)" class="next icon icon-chevron-right"></a>
+            </div>
         </div>
     </div>
 </template>
