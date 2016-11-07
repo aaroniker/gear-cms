@@ -10,7 +10,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :search="search"></data-table>
+    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
 </section>
 
@@ -21,6 +21,17 @@ theme::addJSCode('
         data: {
             headline: lang["plugins"],
             tableData: '.json_encode(plugin::getAll()).',
+            columns: {
+                "name": {
+                    title: lang["name"]
+                },
+                "description": {
+                    title: lang["description"]
+                },
+                "action": {
+                    title: ""
+                }
+            },
             search: "",
             showSearch: true
         },

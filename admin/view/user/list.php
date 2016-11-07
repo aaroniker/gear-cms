@@ -20,7 +20,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['email', 'permissionGroup', 'status', '']" :headline="headline" :search="search"></data-table>
+    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
     <?php /*
     <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :search="search">
@@ -47,6 +47,20 @@ theme::addJSCode('
         data: {
             headline: lang["list"],
             tableData: '.json_encode(UserModel::getAll()).',
+            columns: {
+                email: {
+                    title: lang["email"]
+                },
+                permissionGroup: {
+                    title: lang["permission"]
+                },
+                status: {
+                    title: lang["status"]
+                },
+                action: {
+                    title: ""
+                }
+            },
             search: "",
             showSearch: true
         },

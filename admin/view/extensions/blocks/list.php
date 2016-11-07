@@ -10,7 +10,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :search="search"></data-table>
+    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
     <?php /*
     <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
@@ -31,6 +31,17 @@ theme::addJSCode('
         data: {
             headline: lang["blocks"],
             tableData: '.json_encode(block::getAll()).',
+            columns: {
+                "name": {
+                    title: lang["name"]
+                },
+                "description": {
+                    title: lang["description"]
+                },
+                "action": {
+                    title: ""
+                }
+            },
             search: "",
             showSearch: true
         },
