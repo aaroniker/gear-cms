@@ -20,7 +20,7 @@
 
     </header>
 
-    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
+    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search" filterkey="email"></data-table>
 
     <?php /*
     <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :search="search">
