@@ -98,6 +98,9 @@ Vue.component("data-table", {
                     return entry.name.indexOf(self.search) !== -1;
                 }
             });
+        },
+        ordered: function() {
+            return _.orderBy(this.filtered, this.sortKey, this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc');
         }
     },
     methods: {

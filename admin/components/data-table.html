@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="entry in filtered">
+                    <tr v-for="entry in ordered">
                         <td class="check">
                             <div class="checkbox">
                                 <input :id="'entry' + entry.id" type="checkbox" v-model="checked" :value="entry.id">
