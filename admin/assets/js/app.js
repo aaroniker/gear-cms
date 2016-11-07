@@ -104,9 +104,6 @@ Vue.component("data-table", {
         },
         limited: function() {
             return this.ordered.slice(this.startRow, (this.startRow + this.rowsPerPage));
-        },
-        showPagination: function() {
-            return this.filtered.length > this.rowsPerPage;
         }
     },
     methods: {
