@@ -101,6 +101,12 @@ Vue.component("data-table", {
         },
         ordered: function() {
             return _.orderBy(this.filtered, this.sortKey, this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc');
+        },
+        limited: function() {
+            return this.ordered.slice(this.startRow, (this.startRow + this.rowsPerPage));
+        },
+        showPagination: function() {
+            return this.filtered.length > this.rowsPerPage;
         }
     },
     methods: {
@@ -117,7 +123,7 @@ Vue.component("data-table", {
         },
         movePages: function(amount) {
             var newStartRow = this.startRow + (amount * this.rowsPerPage);
-            if(newStartRow >= 0 && newStartRow < this.data.length) {
+            if(newStartRow >= 0 && newStartRow < this.filtered.length) {
                 this.startRow = newStartRow;
             }
         },

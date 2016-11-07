@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="entry in ordered">
+                    <tr v-for="entry in limited">
                         <td class="check">
                             <div class="checkbox">
                                 <input :id="'entry' + entry.id" type="checkbox" v-model="checked" :value="entry.id">
@@ -36,7 +36,7 @@
             </table>
         </div>
         <div class="toolbar clear">
-            <div v-if="data.length > rowsPerPage" class="pagination clear">
+            <div v-if="showPagination" class="pagination clear">
                 <a @click="movePages(-1)" class="back icon icon-chevron-left"></a>
                 <div>{{ startRow / rowsPerPage + 1 }} / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
                 <a @click="movePages(1)" class="next icon icon-chevron-right"></a>
