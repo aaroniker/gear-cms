@@ -20,15 +20,10 @@
 
     </header>
 
-    <?php
+    <data-table :data="tableData" :columns="['email', 'permissionGroup', 'status', '']" :headline="headline" :search="search"></data-table>
 
-        $table = new table();
-
-        var_dump($table);
-
-    ?>
-
-    <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :filter-key="search">
+    <?php /*
+    <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :search="search">
         <table-cell>{{ entry.email }}</table-cell>
         <table-cell>
             {{ entry.permissionGroup }}
@@ -41,6 +36,7 @@
             <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>
         </table-cell>
     </data-table>
+    */ ?>
 
 </section>
 
@@ -50,19 +46,19 @@ theme::addJSCode('
         el: "#user",
         data: {
             headline: lang["list"],
-            checked: [],
             tableData: '.json_encode(UserModel::getAll()).',
             search: "",
             showSearch: true
         },
-        events: {
-            checked: function(data) {
-                this.checked = data;
-            },
-            headline: function(data) {
-                this.headline = data.headline;
-                this.showSearch = data.showSearch;
-            }
+        created: function() {
+
+            var vue = this;
+
+            eventHub.$on("setHeadline", function(data) {
+                vue.headline = data.headline;
+                vue.showSearch = data.showSearch;
+            });
+
         }
     });
 ');
