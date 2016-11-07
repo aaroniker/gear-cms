@@ -10,9 +10,9 @@
                                 <label for="checkAll"></label>
                             </div>
                         </th>
-                        <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey && sortKey == key }">
+                        <th v-for="(value, key) in columns" @click="sortBy(key)" :class="{ active: sortKey && sortKey == key }">
                             <a :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
-                                {{ key }}
+                                {{ value.title }}
                             </a>
                         </th>
                     </tr>
@@ -25,7 +25,7 @@
                                 <label :for="'entry' + entry.id"></label>
                             </div>
                         </td>
-                        <td v-for="key in columns">
+                        <td v-for="(value, key) in columns">
                             {{ entry[key] }}
                         </td>
                     </tr>

@@ -32,7 +32,7 @@ Vue.component("data-table", {
     ],
     data: function() {
         var sortOrders = {};
-        this.columns.forEach(function(key) {
+        Object.keys(this.columns).forEach(function(key) {
             sortOrders[key] = -1;
         });
         return {
