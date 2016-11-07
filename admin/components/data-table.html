@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="entry in data">
+                    <tr v-for="entry in filtered">
                         <td class="check">
                             <div class="checkbox">
                                 <input :id="'entry' + entry.id" type="checkbox" v-model="checked" :value="entry.id">
@@ -29,8 +29,8 @@
                             {{ entry[key] }}
                         </td>
                     </tr>
-                    <tr v-if="!filtered">
-                        <td class="empty" :colspan="columnSpan">{{ lang['no_results'] }}</td>
+                    <tr v-if="!filtered.length">
+                        <td class="empty" :colspan="columnSpan"><?=lang::get('no_results'); ?></td>
                     </tr>
                 </tbody>
             </table>

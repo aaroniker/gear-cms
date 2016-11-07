@@ -28,7 +28,8 @@ Vue.component("data-table", {
         "data",
         "columns",
         "headline",
-        "search"
+        "search",
+        "filterkey"
     ],
     data: function() {
         var sortOrders = {};
@@ -86,10 +87,17 @@ Vue.component("data-table", {
             }
         },
         columnSpan: function() {
-            return this.columns.length + 1;
+            return Object.keys(this.columns).length + 1;
         },
         filtered: function() {
-            return true;
+            var self = this;
+            return self.data.filter(function(entry) {
+                if(typeof(self.filterkey) != 'undefined') {
+                    return entry[self.filterkey].indexOf(self.search) !== -1;
+                } else {
+                    return entry.name.indexOf(self.search) !== -1;
+                }
+            });
         }
     },
     methods: {
