@@ -303,7 +303,7 @@ Vue.component("file-table", {
             var vue = this;
 
             if(!path) {
-                path = "";
+                path = null;
                 eventHub.$emit("selectFile", {
                     addMediaModal: false,
                     fileName: path
