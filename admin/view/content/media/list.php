@@ -37,7 +37,7 @@
         $field->addAttribute('v-model', 'dirName');
         $field->fieldValidate();
 
-        $field = $form->addRawField('<p class="static" v-text="path"><span class="text-light" v-if="dirName" v-text="dirName"></span></p>');
+        $field = $form->addRawField('<p class="static">{{ path }}<span class="text-light" v-if="dirName" v-text="dirName"></span></p>');
         $field->fieldName(lang::get('path'));
 
     ?>
@@ -159,7 +159,7 @@ theme::addJSCode('
                         path: vue.path
                     },
                     success: function(data) {
-                        vue.$broadcast("fetchData");
+                        jQuery.event.trigger("fetch");
                         vue.addDirModal = false;
                         vue.dirName = "";
                     }
