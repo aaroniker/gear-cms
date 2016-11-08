@@ -76,6 +76,35 @@
 
 <?php
 theme::addJSCode('
+    function addFile(id, file) {
+
+        var name = file.name;
+        var size = file.size;
+
+        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
+
+        $("#upload ul").prepend(template);
+
+    }
+
+    function addFileError(file, message) {
+
+        var name = file.name;
+        var size = file.size;
+
+        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
+
+        $("#upload ul").prepend(template);
+
+    }
+
+    function updateFile(id, status, message) {
+        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
+    }
+
+    function updateProgress(id, percent) {
+        $("#file" + id).find(".progress div").width(percent);
+    }
     new Vue({
         el: "#media",
         data: {
@@ -167,35 +196,5 @@ theme::addJSCode('
             }
         }
     });
-
-    function addFile(id, file) {
-
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function addFileError(file, message) {
-
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function updateFile(id, status, message) {
-        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
-    }
-
-    function updateProgress(id, percent) {
-        $("#file" + id).find(".progress div").width(percent);
-    }
 ');
 ?>
