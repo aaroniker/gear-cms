@@ -28,7 +28,7 @@ class formMedia extends formField {
                 <modal v-if="addMediaModal" @close="addMediaModal = false">
                     <h3 slot="header">'.lang::get('choose').'</h3>
                     <div slot="content">
-                        <file-table :data=\''.json_encode(media::getAll('/')).'\' :headline="headline" :select="true" :ext=\''.json_encode($ext).'\' :filter-key="search"></file-table>
+                        <file-table :headline="headline" :search="search" table-type="select" ext=\''.json_encode($ext).'\'></file-table>
                     </div>
                 </modal>
             </div>
