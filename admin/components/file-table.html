@@ -21,7 +21,7 @@
         ?>
 
         <modal v-if="editFile" @close="editFile = false">
-            <h3 slot="header"><?=lang::get('edit'); ?></h3>
+            <h3 slot="header">{{ 'edit' | lang }}</h3>
             <div slot="content">
                 <?=$form->show(); ?>
             </div>
@@ -85,7 +85,7 @@
                         </td>
                     </tr>
                     <tr v-if="!filtered.length">
-                        <td class="empty" :colspan="fileSelect ? 3 : 4"><?=lang::get('no_results'); ?></td>
+                        <td class="empty" :colspan="fileSelect ? 3 : 4">{{ 'no_results' | lang }}</td>
                     </tr>
                 </tbody>
             </table>
