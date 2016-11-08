@@ -32,13 +32,13 @@ theme::addJSCode('
             headline: lang["blocks"],
             tableData: '.json_encode(block::getAll()).',
             columns: {
-                "name": {
+                name: {
                     title: lang["name"]
                 },
-                "description": {
+                description: {
                     title: lang["description"]
                 },
-                "action": {
+                action: {
                     title: ""
                 }
             },

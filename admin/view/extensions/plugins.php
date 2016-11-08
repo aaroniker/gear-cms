@@ -22,13 +22,13 @@ theme::addJSCode('
             headline: lang["plugins"],
             tableData: '.json_encode(plugin::getAll()).',
             columns: {
-                "name": {
+                name: {
                     title: lang["name"]
                 },
-                "description": {
+                description: {
                     title: lang["description"]
                 },
-                "action": {
+                action: {
                     title: ""
                 }
             },
