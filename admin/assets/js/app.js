@@ -123,9 +123,6 @@ Vue.component("data-table", {
             if(newStartRow >= 0 && newStartRow < this.filtered.length) {
                 this.startRow = newStartRow;
             }
-        },
-        resetStartRow: function() {
-            this.startRow = 0;
         }
     }
 });
