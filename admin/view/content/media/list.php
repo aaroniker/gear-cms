@@ -70,49 +70,18 @@
         </div>
     </modal>
 
-    <file-table :tableData="tableData" :headline="headline" :filter-key="search"></file-table>
+    <file-table :headline="headline" :search="search"></file-table>
 
 </section>
 
 <?php
 theme::addJSCode('
-    function addFile(id, file) {
-
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function addFileError(file, message) {
-
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function updateFile(id, status, message) {
-        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
-    }
-
-    function updateProgress(id, percent) {
-        $("#file" + id).find(".progress div").width(percent);
-    }
-
     new Vue({
         el: "#media",
         data: {
             headline: lang["media"],
             checked: [],
             path: "/",
-            tableData: '.json_encode(media::getAll('/')).',
             search: "",
             showSearch: true,
             addDirModal: false,
@@ -120,17 +89,20 @@ theme::addJSCode('
             dirName: ""
         },
         events: {
-            checked: function(data) {
-                this.checked = data;
-            },
             path: function(data) {
                 this.path = data;
                 $("#upload ul").html("");
-            },
-            headline: function(data) {
-                this.headline = data.headline;
-                this.showSearch = data.showSearch;
             }
+        },
+        created: function() {
+
+            var vue = this;
+
+            eventHub.$on("setHeadline", function(data) {
+                vue.headline = data.headline;
+                vue.showSearch = data.showSearch;
+            });
+
         },
         watch: {
             uploadModal: function() {
@@ -196,5 +168,35 @@ theme::addJSCode('
             }
         }
     });
+
+    function addFile(id, file) {
+
+        var name = file.name;
+        var size = file.size;
+
+        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
+
+        $("#upload ul").prepend(template);
+
+    }
+
+    function addFileError(file, message) {
+
+        var name = file.name;
+        var size = file.size;
+
+        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
+
+        $("#upload ul").prepend(template);
+
+    }
+
+    function updateFile(id, status, message) {
+        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
+    }
+
+    function updateProgress(id, percent) {
+        $("#file" + id).find(".progress div").width(percent);
+    }
 ');
 ?>

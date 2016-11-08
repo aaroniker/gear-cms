@@ -136,18 +136,16 @@ Vue.component("data-table", {
 
 Vue.component("file-table", {
     template: "#file-table-template",
-    props: {
-        showSearch: true,
-        headline: "",
-        filterKey: "",
-        path: "/",
-        select: false,
-        ext: [],
-        fileName: ""
-    },
+    props: [
+        "select",
+        "headline",
+        "search",
+        "tableType"
+    ],
     data: function() {
         return {
             tableData: [],
+            path: '/',
             editFile: false,
             editFileID: '',
             editFileName: '',
@@ -156,7 +154,6 @@ Vue.component("file-table", {
         };
     },
     created: function() {
-
         this.oldHeadline = this.headline;
 
         if($.session.get("fileTablePath")) {
@@ -169,19 +166,24 @@ Vue.component("file-table", {
             vue.fetch();
         });
 
+        vue.fetch();
+
     },
     watch: {
         checked: function() {
-            this.$dispatch("checked", this.checked);
-        },
-        headline: function() {
-            this.$dispatch("headline", {
-                headline: this.headline,
-                showSearch: this.showSearch
-            });
+            if(this.checked.length) {
+                eventHub.$emit("setHeadline", {
+                    headline: this.checked.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>",
+                    showSearch: false
+                });
+            } else {
+                eventHub.$emit("setHeadline", {
+                    headline: this.oldHeadline,
+                    showSearch: true
+                });
+            }
         },
         path: function() {
-            this.$dispatch("path", this.path);
             $.session.set("fileTablePath", this.path);
             this.fetch();
         }
@@ -203,6 +205,9 @@ Vue.component("file-table", {
                 this.checked = checked;
             }
         },
+        filtered: function() {
+            return this.tableData;
+        },
         breadcrumbs: function() {
 
             var path = "";
@@ -221,6 +226,13 @@ Vue.component("file-table", {
 
             return str;
 
+        },
+        fileSelect: function() {
+            if(this.tableType == "select") {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     methods: {
@@ -238,14 +250,14 @@ Vue.component("file-table", {
                     path: vue.path
                 },
                 success: function(data) {
-                    vue.$set("data", data);
+                    vue.tableData = data;
                 }
             });
 
         },
         setPath: function(path) {
             this.checked = [];
-            this.$set("path", path);
+            this.path = path;
         },
         move: function(path, dropdata) {
 
@@ -307,15 +319,6 @@ Vue.component("file-table", {
         }
     },
     events: {
-        checked: function(data) {
-            if(data.length) {
-                this.headline = data.length + " " + lang["selected"] + "<a href='" + url + "admin/content/media/?delete=" + this.checked + "' class='icon delete ajax icon-ios-trash-outline'></a>";
-                this.showSearch = false;
-            } else {
-                this.headline = this.oldHeadline;
-                this.showSearch = true;
-            }
-        },
         fetchData: function() {
             this.fetch();
         }
