@@ -185,6 +185,7 @@ Vue.component("file-table", {
             }
         },
         path: function() {
+            eventHub.$emit("setPath", this.path);
             $.session.set("fileTablePath", this.path);
             this.fetch();
         }

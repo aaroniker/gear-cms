@@ -126,6 +126,10 @@ theme::addJSCode('
 
             var vue = this;
 
+            eventHub.$on("setPath", function(path) {
+                vue.path = path;
+            });
+
             eventHub.$on("setHeadline", function(data) {
                 vue.headline = data.headline;
                 vue.showSearch = data.showSearch;
