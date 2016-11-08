@@ -385,7 +385,7 @@ if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
             search: "",
             headline: "list",
             addMediaModal: false,
-            fileName: false
+            fileName: ""
         },
         created: function() {
 
