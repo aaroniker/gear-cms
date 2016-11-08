@@ -80,7 +80,6 @@ theme::addJSCode('
         el: "#media",
         data: {
             headline: lang["media"],
-            checked: [],
             path: "/",
             search: "",
             showSearch: true,
@@ -129,7 +128,7 @@ theme::addJSCode('
                 		eventUploadSuccess: function(id, data){
                 			updateFile(id, "success", lang["complete"]);
                 			updateProgress(id, "100%");
-                            vue.$broadcast("fetchData");
+                            jQuery.event.trigger("fetch");
                 		},
                 		eventUploadError: function(id, message){
                 			updateFile(id, "error", message);

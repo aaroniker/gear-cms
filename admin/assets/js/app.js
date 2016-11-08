@@ -173,7 +173,7 @@ Vue.component("file-table", {
         checked: function() {
             if(this.checked.length) {
                 eventHub.$emit("setHeadline", {
-                    headline: this.checked.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete icon-ios-trash-outline'></a>",
+                    headline: this.checked.length + " " + lang["selected"] + "<a href='?delete=" + this.checked + "' class='icon delete ajax icon-ios-trash-outline'></a>",
                     showSearch: false
                 });
             } else {
