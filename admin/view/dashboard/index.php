@@ -324,6 +324,7 @@ theme::addJSCode('
         height: 237,
         fullWidth: true,
         showArea: true,
+        low: 0,
         axisY: {
             showGrid: false,
             showLabel: false,
