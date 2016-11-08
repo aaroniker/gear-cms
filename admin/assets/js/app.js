@@ -303,14 +303,18 @@ Vue.component("file-table", {
 
             if(!path) {
                 path = "";
-                this.$dispatch("addMediaModal", false);
-                this.$dispatch("fileName", path);
+                eventHub.$emit("selectFile", {
+                    addMediaModal: false,
+                    fileName: path
+                });
                 this.fileName = path;
             } else {
                 var ext = path.split(".").pop();
                 if(vue.ext.indexOf(ext) > -1 || !vue.ext.length) {
-                    this.$dispatch("addMediaModal", false);
-                    this.$dispatch("fileName", path);
+                    eventHub.$emit("selectFile", {
+                        addMediaModal: false,
+                        fileName: path
+                    });
                     this.fileName = path;
                 } else {
                     alert(lang["file_select_wrong_ext"] + " " + vue.ext);
@@ -382,13 +386,15 @@ if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
             addMediaModal: false,
             fileName: false
         },
-        events: {
-            fileName: function(data) {
-                this.fileName = data;
-            },
-            addMediaModal: function(data) {
-                this.addMediaModal = data;
-            }
+        created: function() {
+
+            var vue = this;
+
+            eventHub.$on("selectFile", function(data) {
+                vue.fileName = data.fileName;
+                vue.addMediaModal = data.addMediaModal;
+            });
+
         }
     });
 }
