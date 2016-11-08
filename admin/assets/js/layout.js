@@ -101,7 +101,7 @@ function getMessages(url) {
         },
         dataType: "json",
         success: function(message) {
-            if(message) {
+            if(!jQuery.isEmptyObject(message)) {
                 $.ajax({
                     type: "POST",
                     url: url + "admin/",
