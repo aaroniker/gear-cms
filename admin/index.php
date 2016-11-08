@@ -9,7 +9,7 @@
     theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js');
     theme::addJS('https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js');
     theme::addJS('https://cdn.jsdelivr.net/highlight.js/9.6.0/highlight.min.js');
-    theme::addJS('https://cdn.jsdelivr.net/vue/2.0.5/vue.js');
+    theme::addJS('https://cdn.jsdelivr.net/vue/2.0.5/vue.min.js');
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
     theme::addJS(url::assets('js/app.js'));
