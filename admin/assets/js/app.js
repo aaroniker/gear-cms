@@ -140,7 +140,8 @@ Vue.component("file-table", {
         "select",
         "headline",
         "search",
-        "tableType"
+        "tableType",
+        "ext"
     ],
     data: function() {
         return {
