@@ -55,7 +55,10 @@ theme::addJSCode('
                     title: lang["permission"]
                 },
                 status: {
-                    title: lang["status"]
+                    title: lang["status"],
+                    content: function(entry) {
+                        return "<strong>" + entry.status + "</strong>";
+                    }
                 },
                 action: {
                     title: ""
