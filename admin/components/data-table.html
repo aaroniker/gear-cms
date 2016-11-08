@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                     <tr v-if="!filtered.length">
-                        <td class="empty" :colspan="columnSpan"><?=lang::get('no_results'); ?></td>
+                        <td class="empty" :colspan="columnSpan">{{ 'no_results' | lang }}</td>
                     </tr>
                 </tbody>
             </table>
