@@ -263,7 +263,11 @@ class contentController extends controller {
 
             } elseif($action == 'upload') {
 
-                media::upload(type::files('file'));
+                if(media::upload(type::files('file'), $path)) {
+                    message::success(lang::get('file_uploaded'));
+                } else {
+                    message::error(lang::get('file_not_uploaded'));
+                }
 
             }
 
