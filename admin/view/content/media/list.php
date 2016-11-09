@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a @click="uploadModal = true" class="button">
+                    <a class="button">
                         <?=lang::get('upload'); ?>
                     </a>
                 </li>
@@ -49,62 +49,13 @@
         </div>
     </modal>
 
-    <modal v-if="uploadModal" @close="uploadModal = false">
-        <h3 slot="header"><?=lang::get('upload'); ?></h3>
-        <div slot="content">
-            <div id="upload">
-                <div class="drop">
-
-                    <i class="icon icon-ios-download-outline"></i>
-
-                    <input type="file" name="files[]" id="file" multiple>
-                    <label for="file" class="button">
-                        <?=lang::get('choose_files'); ?> (max. <?=media::getServerMaxSize(false); ?>)
-                    </label>
-
-                    <small><strong><?=lang::get('path'); ?></strong> <span v-text="path"></span></small>
-
-                </div>
-                <ul></ul>
-            </div>
-        </div>
-    </modal>
-
     <file-table :headline="headline" :search="search"></file-table>
 
 </section>
 
 <?php
 theme::addJSCode('
-    function addFile(id, file) {
 
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li id=\'file" + id + "\'><h4>" + name + "</h4><small><strong>" + lang["waiting"] + "</strong></small><div class=\'progress\'><div></div></div></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function addFileError(file, message) {
-
-        var name = file.name;
-        var size = file.size;
-
-        var template = "<li><h4>" + name + "</h4><small><strong class=\'error\'>" + message + "</strong></small></li>";
-
-        $("#upload ul").prepend(template);
-
-    }
-
-    function updateFile(id, status, message) {
-        $("#file" + id).find("strong").html(message).removeClass().addClass(status);
-    }
-
-    function updateProgress(id, percent) {
-        $("#file" + id).find(".progress div").width(percent);
-    }
     new Vue({
         el: "#media",
         data: {
@@ -113,7 +64,6 @@ theme::addJSCode('
             search: "",
             showSearch: true,
             addDirModal: false,
-            uploadModal: false,
             dirName: ""
         },
         events: {
@@ -135,47 +85,6 @@ theme::addJSCode('
                 vue.showSearch = data.showSearch;
             });
 
-        },
-        watch: {
-            uploadModal: function() {
-                if(this.uploadModal) {
-
-                    var vue = this;
-
-                	$("#upload").gearUpload({
-                		url: url + "admin/content/media/upload",
-                        data: {
-                            path: vue.path
-                        },
-                        maxFileSize: "'.media::getServerMaxSize().'",
-                		eventBeforeUpload: function(id){
-                			updateFile(id, "info", lang["uploading"]);
-                		},
-                        eventNewFile: function(id, file){
-                			addFile(id, file);
-                		},
-                		eventUploadProgress: function(id, percent){
-                			var percentStr = percent + "%";
-                			updateProgress(id, percentStr);
-                		},
-                		eventUploadSuccess: function(id, data){
-                			updateFile(id, "success", lang["complete"]);
-                			updateProgress(id, "100%");
-                            jQuery.event.trigger("fetch");
-                		},
-                		eventUploadError: function(id, message){
-                			updateFile(id, "error", message);
-                		},
-                        eventFileSizeError: function(file) {
-                            addFileError(file, lang["file_too_big"]);
-                        },
-                        eventFileExtError: function(file) {
-                            addFileError(file, lang["file_wrong_ext"]);
-                        }
-                	});
-
-                }
-            }
         },
         methods: {
             addDir: function() {
