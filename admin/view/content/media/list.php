@@ -99,10 +99,10 @@ theme::addJSCode('
                     $("#upload").ajaxSubmit({
                     	uploadProgress: function(event, position, total, percentComplete) {
                     		var pVel = percentComplete + "%";
-                    		$("#upload .bar").width(pVel);
+                    		$("#upload .button").text(lang["loading"] + " (" + pVel + ")");
                     	},
                     	complete: function(data) {
-                            $("#upload .bar").width(0);
+                            $("#upload .button").text(lang["upload"]);
                             jQuery.event.trigger("fetch");
                     	}
                     });
