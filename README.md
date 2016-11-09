@@ -35,7 +35,6 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 ## Externe Resourcen
 
 * [Framy CSS](http://www.framycss.org/)
-* [gearUpload.js](https://github.com/aaroniker/gear-upload)
 * [Ionicons](http://ionicons.com/)
 * [jQuery](https://jquery.com/)
 * [Vue.js](http://vuejs.org/)
