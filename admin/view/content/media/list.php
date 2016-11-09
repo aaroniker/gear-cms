@@ -16,9 +16,13 @@
                     </a>
                 </li>
                 <li>
-                    <a class="button">
-                        <?=lang::get('upload'); ?>
-                    </a>
+                    <form id="upload" method="post" action="<?=url::admin('content', ['media', 'upload']); ?>" enctype="multipart/form-data">
+                        <a class="button">
+                            <?=lang::get('upload'); ?>
+                        </a>
+                        <input class="file" type="file" name="file">
+                        <input type="hidden" name="path" :value="path">
+                    </form>
                 </li>
             </ul>
         </nav>
@@ -55,7 +59,6 @@
 
 <?php
 theme::addJSCode('
-
     new Vue({
         el: "#media",
         data: {
@@ -83,6 +86,28 @@ theme::addJSCode('
             eventHub.$on("setHeadline", function(data) {
                 vue.headline = data.headline;
                 vue.showSearch = data.showSearch;
+            });
+
+            $(document).ready(function() {
+
+                $("#upload").on("click", ".button", function(e) {
+                    e.preventDefault();
+                    $(this).next(".file").click();
+                });
+
+                $("#upload .file").on("change", function() {
+                    $("#upload").ajaxSubmit({
+                    	uploadProgress: function(event, position, total, percentComplete) {
+                    		var pVel = percentComplete + "%";
+                    		$("#upload .bar").width(pVel);
+                    	},
+                    	complete: function(data) {
+                            $("#upload .bar").width(0);
+                            jQuery.event.trigger("fetch");
+                    	}
+                    });
+                });
+
             });
 
         },
