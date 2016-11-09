@@ -130,7 +130,7 @@ class media {
 
     }
 
-    public static function upload($file) {
+    public static function upload($file, $path) {
 
         $name = self::getUniqueName(dir::media($path), $file['name']);
 
