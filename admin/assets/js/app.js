@@ -253,6 +253,19 @@ Vue.component("file-table", {
                 },
                 success: function(data) {
                     vue.tableData = data;
+                    $(document).ready(function() {
+                        $(".file div").draggable({
+                            revert: "invalid",
+                            helper: "clone"
+                        });
+                        $(".dir").droppable({
+                            hoverClass: "dropActive",
+                            drop: function(e, ui) {
+                                $(this);
+                                alert();
+                            }
+                        });
+                    });
                 }
             });
 
