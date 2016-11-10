@@ -12,6 +12,25 @@ function randomPassword(length) {
 
 }
 
+(function($) {
+    $.fn.onDraggable = function(opts) {
+        this.on("mouseover", function() {
+            if(!$(this).data("init")) {
+                $(this).data("init", true).draggable(opts);
+            }
+        });
+        return this;
+    }
+    $.fn.onDroppable = function(opts) {
+        this.on("mouseover", function() {
+            if(!$(this).data("init")) {
+                $(this).data("init", true).droppable(opts);
+            }
+        });
+        return this;
+    }
+}(jQuery));
+
 var eventHub = new Vue();
 
 Vue.filter("lang", function(value) {
