@@ -61,19 +61,20 @@ class theme {
 
     public static function getJSCode() {
 
-        $return = '<script>'.PHP_EOL;
-        $return .= '$(document).ready(function() {';
+        $js = '$(document).ready(function() {';
 
         foreach(self::$jsCode['jquery'] as $code) {
-            $return .= $code;
+            $js .= $code;
         }
 
-        $return .= '});'.PHP_EOL;
+        $js .= '});';
 
         foreach(self::$jsCode['all'] as $code) {
-            $return .= $code;
+            $js .= $code;
         }
 
+        $return = '<script>'.PHP_EOL;
+        $return .= filter::compress($js).PHP_EOL;
         $return .= '</script>';
 
         return $return;

@@ -43,6 +43,16 @@ class filter {
 
     }
 
+    public static function compress($string) {
+
+        $string = str_replace(["\n","\r"], '', $string);
+        $string = preg_replace('!\s+!',' ', $string);
+        $string = str_replace([' {', ' }', '{ ', '; '], ['{', '}', '{', ';'], $string);
+
+        return $string;
+
+    }
+
 }
 
 ?>
