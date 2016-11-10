@@ -26,7 +26,7 @@
                             </div>
                         </td>
                         <td v-for="(value, key) in columns" :class="value.class">
-                            <div v-if="_.isFunction(value.content)" v-html="value.content(entry)"></div>
+                            <div v-if="_.isFunction(value.content)" v-html="value.content(entry, key)"></div>
                             <div v-else>
                                 {{ entry[key] }}
                             </div>
