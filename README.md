@@ -29,8 +29,8 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 
 ## Systemvorraussetzungen
 
-*  PHP Version >= 5.4
-*  PDO (MySQL, ...)
+*  PHP Version >= 5.6
+*  PDO (MySQL 5.6, ...)
 
 ## Externe Resourcen
 
