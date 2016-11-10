@@ -173,7 +173,7 @@ main {
     position: relative;
     margin: 0 0 30px 0;
     .round();
-    .box-shadow(0, 12px, 25px, fade(@shadow, 60%));
+    .box-shadow(0, 12px, 25px, fade(@dark, 10%));
     @media(max-width: @screen-sm-min * 1px) {
         padding: 20px;
     }
@@ -394,7 +394,7 @@ main {
                 padding: 10px 15px;
                 background: #fff;
                 .round();
-                .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
+                .box-shadow(0, 3px, 9px, fade(@dark, 10%));
             }
             cursor: move;
             margin: 8px 0;
@@ -444,7 +444,7 @@ main {
             padding: 10px 15px;
             background: #fff;
             .round();
-            .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
+            .box-shadow(0, 3px, 9px, fade(@dark, 10%));
         }
         margin: 8px 0;
         list-style: none;
@@ -605,7 +605,7 @@ a.delete {
         -webkit-animation-duration: 0.4s;
         animation-duration: 0.4s;
         .round();
-        .box-shadow(0, 3px, 9px, fade(@shadow, 75%));
+        .box-shadow(0, 3px, 9px, fade(@dark, 10%));
     }
     z-index: 5;
     position: relative;
@@ -751,21 +751,17 @@ table.table {
                 }
                 width: 1%;
             }
-            &.dragActive {
-                a {
-                    &.dir {
-                        .icon {
-                            background: @primary;
-                        }
-                        color: @primary;
-                    }
-                }
-            }
             a {
                 &.icon {
                     display: block;
                 }
                 &.dir {
+                    &.dropActive {
+                        .icon {
+                            background: @primary;
+                        }
+                        color: @primary;
+                    }
                     .icon {
                         display: block;
                         width: 28px;
@@ -809,19 +805,17 @@ table.table {
             td {
                 &.file {
                     div {
+                        &.ui-draggable-dragging {
+                            background: #fff;
+                            .box-shadow(0, 3px, 9px, fade(@dark, 10%));
+                        }
+                        cursor: move;
                         height: 28px;
                         line-height: 28px;
                         padding: 0 10px;
                         .round();
                     }
                     padding-left: (@table-padding-h - 10px);
-                }
-                &.drag {
-                    &.file {
-                        div {
-                            background: #fff;
-                        }
-                    }
                 }
                 padding: (@table-padding-v - 2px) @table-padding-h;
             }
