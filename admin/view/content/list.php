@@ -55,7 +55,7 @@
 <template id="item-template">
     <li>
         <div class="entry clear">
-            <div class="info">
+            <div class="info" :data-id="model.id">
                 <span>{{ model.name }}</span>
                 <small>{{ model.siteURL }}</small>
             </div>
@@ -109,6 +109,8 @@ theme::addJSCode('
             eventHub.$on("setHome", this.setHome);
             eventHub.$on("setSearchbox", this.setParent);
 
+            vue.dragdrop();
+
         },
         methods: {
             fetch: function() {
@@ -122,7 +124,28 @@ theme::addJSCode('
                     success: function(data) {
                         vue.pageAll = data.all;
                         vue.pageTree = data.tree;
+                        vue.dragdrop();
                     }
+                });
+
+            },
+            dragdrop: function() {
+
+                var vue = this;
+
+                $(document).ready(function() {
+                    $("#pageList .entry .info").draggable({
+                        revert: "invalid",
+                        helper: "clone"
+                    });
+                    $("#pageList .entry .info, #pageList > h3").droppable({
+                        hoverClass: "dropActive",
+                        drop: function(e, ui) {
+                            var drag = $(ui.draggable);
+                            var drop = $(this);
+                            vue.move(drop.data("id"), drag.data("id"));
+                        }
+                    });
                 });
 
             },
@@ -153,7 +176,7 @@ theme::addJSCode('
                 });
 
             },
-            move: function(parentID, data) {
+            move: function(parentID, id) {
 
                 var vue = this;
 
@@ -162,7 +185,7 @@ theme::addJSCode('
                     url: "'.url::admin('content', ['index', 'move']).'",
                     data: {
                         parent: parentID,
-                        id: data.id
+                        id: id
                     },
                     success: function() {
                         vue.fetch();
