@@ -457,23 +457,13 @@ main {
 
 #pageList {
     h3 {
-        &.dragActive {
-            color: @text-light;
+        &.dropActive {
+            color: @primary;
         }
         font-size: 18px;
     }
     ul {
         .entry {
-            &.dragActive {
-                .info {
-                    small {
-                        color: #fff;
-                    }
-                    color: #fff;
-                    background: @primary;
-                    .round();
-                }
-            }
             &:hover {
                 .setHome {
                     i {
@@ -487,12 +477,21 @@ main {
                 }
             }
             .info {
-                &.drag {
+                &.dropActive {
+                    small {
+                        color: #fff;
+                    }
+                    color: #fff;
+                    background: @primary;
+                    .round();
+                }
+                &.ui-draggable-dragging {
                     small {
                         color: @text-light;
                     }
                     color: @text;
-                    background: @light;
+                    background: rgba(255, 255, 255, 0.85);
+                    .box-shadow(0, 3px, 9px, fade(@dark, 10%));
                     .round();
                 }
                 span {
@@ -501,6 +500,7 @@ main {
                 small {
                     color: @text-light;
                 }
+                cursor: move;
                 float: left;
                 padding: 3px 15px 3px 5px;
             }
@@ -806,7 +806,7 @@ table.table {
                 &.file {
                     div {
                         &.ui-draggable-dragging {
-                            background: #fff;
+                            background: rgba(255, 255, 255, 0.85);
                             .box-shadow(0, 3px, 9px, fade(@dark, 10%));
                         }
                         cursor: move;
