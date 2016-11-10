@@ -25,8 +25,11 @@
                                 <label :for="'entry' + entry.id"></label>
                             </div>
                         </td>
-                        <td v-for="(value, key) in columns">
-                            {{ entry[key] }}
+                        <td v-for="(value, key) in columns" :class="value.class">
+                            <div v-if="_.isFunction(value.content)" v-html="value.content(entry)"></div>
+                            <div v-else>
+                                {{ entry[key] }}
+                            </div>
                         </td>
                     </tr>
                     <tr v-if="!filtered.length">
