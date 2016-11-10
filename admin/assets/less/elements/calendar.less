@@ -1,0 +1,56 @@
+#calendar {
+    .header {
+        .next,
+        .prev {
+            &:hover {
+                color: @text;
+            }
+            color: @text-light;
+            position: absolute;
+            top: 0;
+            line-height: 36px;
+            vertical-align: top;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        h3 {
+            text-align: center;
+        }
+        position: relative;
+    }
+    .weekdays {
+        div {
+            float: left;
+            width: 14.285%;
+            line-height: 33px;
+            text-align: center;
+            color: @text-light;
+        }
+        overflow: hidden;
+    }
+    .content {
+        div {
+            &.today {
+                color: @primary;
+                font-weight: bold;
+            }
+            &.blank {
+                height: 34px;
+            }
+            float: left;
+            width: 14.285%;
+            line-height: 34px;
+            text-align: center;
+        }
+        width: 100%;
+        height: 204px;
+        overflow: hidden;
+    }
+    width: 100%;
+}
