@@ -22,22 +22,6 @@
 
     <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
-    <?php /*
-    <data-table :data="tableData" :columns="['email', 'permission', 'status', '']" :headline="headline" :search="search">
-        <table-cell>{{ entry.email }}</table-cell>
-        <table-cell>
-            {{ entry.permissionGroup }}
-        </table-cell>
-        <table-cell>
-            <span v-if="entry.status == 1" data-tooltip="<?=lang::get('active'); ?>" class="status active"></span>
-            <span v-else data-tooltip="<?=lang::get('blocked'); ?>" class="status inactive"></span>
-        </table-cell>
-        <table-cell class="shrink">
-            <a href="<?=url::admin('user', ['index', 'edit', '{{ entry.id }}']); ?>" class="icon icon-edit"></a>
-        </table-cell>
-    </data-table>
-    */ ?>
-
 </section>
 
 <?php
@@ -57,11 +41,19 @@ theme::addJSCode('
                 status: {
                     title: lang["status"],
                     content: function(entry) {
-                        return "<strong>" + entry.status + "</strong>";
+                        if(entry.status == 1) {
+                            return "<span data-tooltip=\'" + lang["active"] + "\' class=\'status active\'></span>";
+                        } else {
+                            return "<span data-tooltip=\'" + lang["blocked"] + "\' class=\'status inactive\'></span>";
+                        }
                     }
                 },
                 action: {
-                    title: ""
+                    title: "",
+                    class: "shrink",
+                    content: function(entry) {
+                        return "<a href=\''.url::admin('user', ['index', 'edit']).'/" + entry.id + "\' class=\'icon icon-edit\'></a>";
+                    }
                 }
             },
             search: "",

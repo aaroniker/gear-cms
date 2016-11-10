@@ -12,16 +12,6 @@
 
     <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
-    <?php /*
-    <data-table :data="tableData" :columns="['name', 'description', '']" :headline="headline" :filter-key="search">
-        <table-cell>{{ entry.name }}</table-cell>
-        <table-cell>{{ entry.description }}</table-cell>
-        <table-cell class="shrink">
-            <a href="<?=url::admin('extensions', ['blocks', 'show', '{{ entry.id }}']); ?>" class="icon icon-navicon-round"></a>
-        </table-cell>
-    </data-table>
-    */ ?>
-
 </section>
 
 <?php
@@ -39,7 +29,11 @@ theme::addJSCode('
                     title: lang["description"]
                 },
                 action: {
-                    title: ""
+                    title: "",
+                    class: "shrink",
+                    content: function(entry) {
+                        return "<a href=\''.url::admin('extensions', ['blocks', 'show']).'/" + entry.id + "\' class=\'icon icon-navicon-round\'></a>";
+                    }
                 }
             },
             search: "",
