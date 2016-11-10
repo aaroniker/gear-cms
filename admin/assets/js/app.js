@@ -261,8 +261,12 @@ Vue.component("file-table", {
                         $(".dir").droppable({
                             hoverClass: "dropActive",
                             drop: function(e, ui) {
-                                $(this);
-                                alert();
+                                var drag = $(ui.draggable);
+                                var drop = $(this);
+                                vue.move(drop.data("path"), {
+                                    id: drag.data("id"),
+                                    name: drag.data("name")
+                                });
                             }
                         });
                     });
@@ -274,7 +278,7 @@ Vue.component("file-table", {
             this.checked = [];
             this.path = path;
         },
-        move: function(path, dropdata) {
+        move: function(path, data) {
 
             var vue = this;
 
@@ -283,8 +287,8 @@ Vue.component("file-table", {
                 url: url + "admin/content/media/move",
                 data: {
                     path: path,
-                    file: dropdata.id,
-                    name: dropdata.name
+                    file: data.id,
+                    name: data.name
                 },
                 success: function() {
                     vue.fetch();

@@ -55,21 +55,21 @@
                             </div>
                         </td>
                         <td v-if="entry.type == 'dir'">
-                            <a class="dir" @click="setPath(entry.path)">
+                            <a class="dir" :data-path="entry.path" @click="setPath(entry.path)">
                                 <i class="icon icon-folder"></i>
                                 {{ entry.name }}
                             </a>
                         </td>
                         <template v-if="fileSelect">
                         <td v-if="entry.type == 'file'" class="file">
-                            <div>
+                            <div :data-id="entry.id" :data-name="entry.name">
                                 {{ entry.name }}
                             </div>
                         </td>
                         </template>
                         <template v-else>
                         <td v-if="entry.type == 'file'" class="file">
-                            <div>
+                            <div :data-id="entry.id" :data-name="entry.name">
                                 {{ entry.name }}
                             </div>
                         </td>
