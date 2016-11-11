@@ -19,11 +19,19 @@
                     }
                     border-color: #fff;
                     background: rgba(255, 255, 255, 0.05);
-                    padding-top: 12px;
-                    padding-bottom: 12px;
                 }
                 & > a {
-
+                    i {
+                        &:before {
+                            font-size: 21px;
+                            vertical-align: top;
+                        }
+                        vertical-align: top;
+                        line-height: 30px;
+                        text-align: center;
+                        width: 22px;
+                    }
+                    line-height: 30px;
                 }
                 ul {
                     li {
@@ -34,11 +42,12 @@
                         }
                         a {
                             font-size: 14px;
+                            line-height: 24px;
                         }
                     }
                     margin: 6px 0 0 0;
                 }
-                padding: 8px 0 8px 22px;
+                padding: 12px 0 12px 22px;
                 border-left: 3px solid transparent;
             }
         }
@@ -51,7 +60,6 @@
             font-size: 18px;
             .opacity(0.4);
         }
-        padding: 15px 0;
     }
     .user {
         nav {
@@ -116,7 +124,7 @@
         padding: 15px 20px;
     }
     z-index: 2;
-    width: 230px;
+    width: 250px;
     position: fixed;
     background: rgb(193,193,224);
     background: -moz-linear-gradient(42deg, rgba(193,193,224,1) 0%, rgba(136,179,224,1) 12%, rgba(97,158,223,1) 38%, rgba(33,106,208,1) 81%, rgba(29,85,193,1) 100%);
@@ -136,7 +144,7 @@
         font-size: 21px;
     }
     position: fixed;
-    left: 230px;
+    left: 250px;
     padding: 20px 35px;
     top: 0;
     right: 0;

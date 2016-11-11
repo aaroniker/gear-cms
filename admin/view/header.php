@@ -19,7 +19,10 @@
 
                 echo '
                 <li'.$class.'>
-                    <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                    <a href="'.url::admin($url).'">
+                        <i class="icon icon-'.$array['icon'].'"></i>
+                        '.$array['name'].'
+                    </a>
                 ';
 
                 $sub = admin::getSubmenu($url);
