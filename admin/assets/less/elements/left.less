@@ -1,0 +1,146 @@
+#left {
+    .top {
+        .logo {
+            img {
+                height: 36px;
+                display: block;
+            }
+            display: table;
+            margin: 0 auto;
+        }
+        padding: 20px 0;
+    }
+    #nav {
+        & > ul {
+            & > li {
+                &.active {
+                    & > a {
+                        .opacity(1);
+                    }
+                    border-color: #fff;
+                    background: rgba(255, 255, 255, 0.05);
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                }
+                & > a {
+
+                }
+                ul {
+                    li {
+                        &.active {
+                            a {
+                                .opacity(1);
+                            }
+                        }
+                        a {
+                            font-size: 14px;
+                        }
+                    }
+                    margin: 6px 0 0 0;
+                }
+                padding: 8px 0 8px 22px;
+                border-left: 3px solid transparent;
+            }
+        }
+        a {
+            &:hover {
+                .opacity(0.8);
+            }
+            color: #fff;
+            display: block;
+            font-size: 18px;
+            .opacity(0.4);
+        }
+        padding: 15px 0;
+    }
+    .user {
+        nav {
+            ul {
+                li {
+                    [data-tooltip] {
+                        &:after {
+                            font-size: 14px;
+                        }
+                    }
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    a {
+                        &:hover {
+                            color: lighten(@text-dark, 20%);
+                        }
+                        i {
+                            line-height: 36px;
+                            font-size: 21px;
+                        }
+                        color: @text-dark;
+                    }
+                    margin: 0 10px 0 0;
+                    float: left;
+                }
+            }
+            float: right;
+        }
+        .profile {
+            &:hover {
+                color: lighten(@text-dark, 20%);
+            }
+            .img,
+            img {
+                width: 36px;
+                height: 36px;
+                position: absolute;
+                display: block;
+                left: 0;
+                top: 0;
+                background-position: center center;
+                background-size: cover;
+                .round(50%);
+            }
+            span {
+                display: inline-block;
+                margin: 0 0 0 15px;
+            }
+            color: @text-dark;
+            padding: 0 0 0 36px;
+            line-height: 36px;
+            position: relative;
+            display: block;
+            float: left;
+        }
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: lighten(@dark, 4%);
+        padding: 15px 20px;
+    }
+    z-index: 2;
+    width: 230px;
+    position: fixed;
+    background: rgb(193,193,224);
+    background: -moz-linear-gradient(42deg, rgba(193,193,224,1) 0%, rgba(136,179,224,1) 12%, rgba(97,158,223,1) 38%, rgba(33,106,208,1) 81%, rgba(29,85,193,1) 100%);
+    background: -webkit-linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
+    background: linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1c1e0', endColorstr='#1d55c1',GradientType=1);
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#head {
+    h1 {
+        float: left;
+        line-height: 36px;
+        margin: 0;
+        font-size: 21px;
+    }
+    position: fixed;
+    left: 230px;
+    padding: 20px 35px;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    background: #fff;
+	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
+}

@@ -1,10 +1,6 @@
-
-    </main>
-</div>
+</main>
 
 <div id="overlay"></div>
-
-</div>
 
 <?php
 

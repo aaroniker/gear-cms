@@ -93,22 +93,20 @@ main {
             margin-bottom: 20px;
         }
     }
-    padding: 50px 0 0 0;
+    position: relative;
+    overflow: hidden;
+    padding: 110px 35px 40px 265px;
     @media(max-height: 800px), (max-width: @screen-lg-min * 1px) {
         padding: 30px 0 0 0;
     }
 }
 
 .box {
-    &.primary {
+    &.dark {
         h3 {
             color: #fff;
         }
-        background: rgb(193,193,224);
-        background: -moz-linear-gradient(42deg, rgba(193,193,224,1) 0%, rgba(136,179,224,1) 12%, rgba(97,158,223,1) 38%, rgba(33,106,208,1) 81%, rgba(29,85,193,1) 100%);
-        background: -webkit-linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
-        background: linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1c1e0', endColorstr='#1d55c1',GradientType=1);
+        background: @dark;
         color: #fff;
     }
     background: #fff;
@@ -116,7 +114,7 @@ main {
     position: relative;
     margin: 0 0 30px 0;
     .round();
-    .box-shadow(0, 12px, 25px, fade(@dark, 10%));
+    .box-shadow(0, 4px, 10px, fade(@dark, 5%));
     @media(max-width: @screen-sm-min * 1px) {
         padding: 20px;
     }

@@ -20,6 +20,7 @@ body {
     &.fix {
         overflow: hidden;
     }
+    background: #f7f9fc;
 }
 
 input {
@@ -42,22 +43,4 @@ h3 {
     bottom: 0;
     z-index: 100;
     display: none;
-}
-
-#wrap {
-    &:before {
-        min-height: 920px;
-        content: "";
-        position: absolute;
-        z-index: -1;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        .gradient(#e3e7ed, #fff);
-    }
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 30px;
-    min-height: 100vh;
 }

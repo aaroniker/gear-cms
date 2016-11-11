@@ -9,7 +9,7 @@
     <div class="columns">
 
         <div class="lg-8 sm-7">
-            <div class="box primary">
+            <div class="box dark">
                 <h3><?=lang::get('statistics'); ?></h3>
                 <div class="statistics"></div>
             </div>
