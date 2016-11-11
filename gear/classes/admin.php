@@ -9,7 +9,7 @@ class admin {
     public static $url = '';
     public static $subpage = '';
 
-    public static function addMenu($name, $url, $type = 'menu') {
+    public static function addMenu($name, $url, $icon = '', $type = 'menu') {
 
         $active = application::getUrl();
 
@@ -28,6 +28,7 @@ class admin {
 
         self::$menu[$type][$url] = [
             'name' => $name,
+            'icon' => $icon,
             'class' => $class
         ];
 
