@@ -49,23 +49,23 @@
 
     if(userSession::loggedIn()) {
 
-        admin::addMenu(lang::get('dashboard'), 'dashboard');
+        admin::addMenu(lang::get('dashboard'), 'dashboard', 'stats-bars');
         admin::addSubmenu(lang::get('overview'), 'index', 'dashboard');
 
-        admin::addMenu(lang::get('content'), 'content');
+        admin::addMenu(lang::get('content'), 'content', 'images');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
         admin::addSubmenu(lang::get('menus'), 'menus', 'content');
         admin::addSubmenu(lang::get('media'), 'media', 'content');
 
-        admin::addMenu(lang::get('user'), 'user');
+        admin::addMenu(lang::get('user'), 'user', 'person');
         admin::addSubmenu(lang::get('list'), 'index', 'user');
         admin::addSubmenu(lang::get('permissions'), 'permissions', 'user');
 
-        admin::addMenu(lang::get('extensions'), 'extensions');
+        admin::addMenu(lang::get('extensions'), 'extensions', 'fork-repo');
         admin::addSubmenu(lang::get('plugins'), 'index', 'extensions');
         admin::addSubmenu(lang::get('blocks'), 'blocks', 'extensions');
 
-        admin::addMenu(lang::get('system'), 'system');
+        admin::addMenu(lang::get('system'), 'system', 'settings');
         admin::addSubmenu(lang::get('settings'), 'index', 'system');
 
         include(dir::view('head.php'));
