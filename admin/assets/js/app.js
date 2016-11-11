@@ -208,7 +208,10 @@ Vue.component("file-table", {
             }
         },
         filtered: function() {
-            return this.tableData;
+            var self = this;
+            return self.tableData.filter(function(entry) {
+                return entry.name.indexOf(self.search) !== -1;
+            });
         },
         breadcrumbs: function() {
 
