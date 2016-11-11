@@ -70,7 +70,7 @@
             <ul class="clear">
                 <li>
                     <a href="http://gearcms.org" data-tooltip="<?=lang::get('website'); ?>" target="_blank">
-                        <i class="icon icon-ios-home"></i>
+                        <i class="icon icon-earth"></i>
                     </a>
                 </li>
                 <li>
