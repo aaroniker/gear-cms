@@ -37,8 +37,23 @@
     .content {
         div {
             &.today {
-                color: @primary;
-                font-weight: bold;
+                &:before {
+                    content: "";
+                    width: 30px;
+                    height: 30px;
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    z-index: -1;
+                    background: @primary;
+                    .round(50%);
+                    .translate(-50%, -50%);
+                }
+                font-size: 12px;
+                z-index: 1;
+                position: relative;
+                color: #fff;
             }
             &.blank {
                 height: 34px;
