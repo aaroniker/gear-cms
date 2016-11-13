@@ -26,7 +26,7 @@
                 ';
 
                 $sub = admin::getSubmenu($url);
-                if($sub):
+                if($sub && count($sub) > 1):
                     echo '<ul>';
 
                     foreach($sub as $url => $array):
