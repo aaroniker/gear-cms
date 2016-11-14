@@ -1,87 +1,77 @@
-<section id="permissions">
+<?php
 
-    <header>
+    $form = new form();
+    $form->setHorizontal(false);
 
-        <h2><?=lang::get('permissions'); ?></h2>
+    $form->addFormAttribute('v-on:submit.prevent', 'addGroup');
 
-    </header>
+    $field = $form->addTextField('name', '');
+    $field->fieldName(lang::get('name'));
+    $field->addAttribute('v-model', 'groupName');
+    $field->fieldValidate();
 
-    <?php
+?>
 
-        $form = new form();
-        $form->setHorizontal(false);
+<modal v-if="addGroupModal" @close="addGroupModal = false">
+    <h3 slot="header"><?=lang::get('add'); ?></h3>
+    <div slot="content">
+        <?=$form->show(); ?>
+    </div>
+</modal>
 
-        $form->addFormAttribute('v-on:submit.prevent', 'addGroup');
+<div class="columns">
 
-        $field = $form->addTextField('name', '');
-        $field->fieldName(lang::get('name'));
-        $field->addAttribute('v-model', 'groupName');
-        $field->fieldValidate();
+    <div class="md-3">
 
-    ?>
+        <aside id="aside">
 
-    <modal v-if="addGroupModal" @close="addGroupModal = false">
-        <h3 slot="header"><?=lang::get('add'); ?></h3>
-        <div slot="content">
-            <?=$form->show(); ?>
-        </div>
-    </modal>
-
-    <div class="columns">
-
-        <div class="md-3">
-
-            <aside id="aside">
-
-                <nav>
-                    <ul>
-                        <li v-for="group in groups" :class="group.id == groupID ? 'active' : ''">
-                            <a @click.prevent="setActive(group.id)">
-                                {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
+            <nav>
+                <ul>
+                    <li v-for="group in groups" :class="group.id == groupID ? 'active' : ''">
+                        <a @click.prevent="setActive(group.id)">
+                            {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
+                        </a>
+                        <div class="action" v-if="group.id > 0">
+                            <a class="delete" :href="'<?=url::admin('user', ['permissions', 'delete']); ?>/' + group.id">
+                                <i class="icon icon-ios-trash-outline"></i>
                             </a>
-                            <div class="action" v-if="group.id > 0">
-                                <a class="delete" :href="'<?=url::admin('user', ['permissions', 'delete']); ?>/' + group.id">
-                                    <i class="icon icon-ios-trash-outline"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
 
-                <button class="button border" @click="addGroupModal = true"><?=lang::get('add'); ?></button>
+            <button class="button border" @click="addGroupModal = true"><?=lang::get('add'); ?></button>
 
-            </aside>
+        </aside>
 
-        </div>
+    </div>
 
-        <div class="md-9">
+    <div class="md-9">
 
-            <div v-for="group in groups">
-                <div v-if="groupID == group.id">
+        <div id="permissions" v-for="group in groups">
+            <div v-if="groupID == group.id">
 
-                    <ul class="list">
-                        <li v-for="(perm, key) in perms">
-                            <div class="box">
-                                <h3>{{ key | lang }}</h3>
-                                <div v-for="(entry, key) in perm">
-                                    <span>{{ entry }}</span>
-                                    <div class="switch">
-                                        <input :id="key" type="checkbox" :value="key" :disabled="group.id == 0" v-model="checked">
-                                        <label :for="key"></label>
-                                    </div>
+                <ul class="list">
+                    <li v-for="(perm, key) in perms">
+                        <div class="box">
+                            <h3>{{ key | lang }}</h3>
+                            <div v-for="(entry, key) in perm">
+                                <span>{{ entry }}</span>
+                                <div class="switch">
+                                    <input :id="key" type="checkbox" :value="key" :disabled="group.id == 0" v-model="checked">
+                                    <label :for="key"></label>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </li>
+                </ul>
 
-                </div>
             </div>
-
         </div>
 
     </div>
 
-</section>
+</div>
 
 <?php
 
@@ -93,8 +83,9 @@ foreach(userPerm::getAll() as $key => $val) {
 
 theme::addJSCode('
     new Vue({
-        el: "#permissions",
+        el: "#app",
         data: {
+            headline: "'.lang::get('permissions').'",
             groupID: 0,
             groups: [],
             perms: '.json_encode($perms).',
