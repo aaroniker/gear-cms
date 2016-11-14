@@ -1,61 +1,62 @@
-<section id="system">
+<?php
 
-    <header>
+    $form = new form();
 
-        <h2><?=lang::get('settings'); ?></h2>
+    $form->addTab(lang::get('general'));
 
-    </header>
+    $field = $form->addTextField('sitename', option::get('sitename'));
+    $field->fieldName(lang::get('sitename'));
+    $field->fieldValidate();
 
-    <?php
+    $form->addTab(lang::get('advanced'));
 
-        $form = new form();
+    $field = $form->addTextField('siteurl', config::get('url'));
+    $field->fieldName(lang::get('siteurl'));
+    $field->fieldValidate();
 
-        $form->addTab(lang::get('general'));
+    $field = $form->addSwitchField('cache', config::get('cache'));
+    $field->fieldName(lang::get('cache'));
+    $field->add(true, lang::get('yes'));
 
-        $field = $form->addTextField('sitename', option::get('sitename'));
-        $field->fieldName(lang::get('sitename'));
-        $field->fieldValidate();
+    if($form->isSubmit()) {
 
-        $form->addTab(lang::get('advanced'));
+        if($form->validation()) {
 
-        $field = $form->addTextField('siteurl', config::get('url'));
-        $field->fieldName(lang::get('siteurl'));
-        $field->fieldValidate();
+            $array = $form->getAll();
 
-        $field = $form->addSwitchField('cache', config::get('cache'));
-        $field->fieldName(lang::get('cache'));
-        $field->add(true, lang::get('yes'));
+            $cache = ($array['cache']) ? true : false;
 
-        if($form->isSubmit()) {
+            config::add('url', $array['siteurl'], true);
+            config::add('cache', $cache, true);
+            config::save();
 
-            if($form->validation()) {
+            option::set('sitename', $array['sitename']);
 
-                $array = $form->getAll();
+            message::success(lang::get('settings_edited'));
 
-                $cache = ($array['cache']) ? true : false;
+            url::refresh();
 
-                config::add('url', $array['siteurl'], true);
-                config::add('cache', $cache, true);
-                config::save();
-
-                option::set('sitename', $array['sitename']);
-
-                message::success(lang::get('settings_edited'));
-
-                url::refresh();
-
-            } else {
-                $form->getErrors();
-            }
-
+        } else {
+            $form->getErrors();
         }
 
-    ?>
+    }
 
-    <div class="columns">
-        <div class="md-9 lg-7">
-            <?=$form->show(); ?>
-        </div>
+?>
+
+<div class="columns">
+    <div class="md-9 lg-7">
+        <?=$form->show(); ?>
     </div>
+</div>
 
-</section>
+<?php
+theme::addJSCode('
+    new Vue({
+        el: "#app",
+        data: {
+            headline: "'.lang::get('settings').'"
+        }
+    });
+');
+?>
