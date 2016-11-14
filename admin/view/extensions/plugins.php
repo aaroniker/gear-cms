@@ -1,23 +1,13 @@
-<section id="plugins">
+<?php
+    admin::$search = true;
+?>
 
-    <header>
-
-        <h2 v-html="headline"></h2>
-
-        <div v-if="showSearch" class="search">
-            <input type="text" v-model="search">
-        </div>
-
-    </header>
-
-    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
-
-</section>
+<data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#plugins",
+        el: "#app",
         data: {
             headline: lang["plugins"],
             tableData: '.json_encode(plugin::getAll()).',
