@@ -112,6 +112,10 @@
     </div>
 </div>
 
+<div id="expand">
+    <i class="icon icon-navicon-round"></i>
+</div>
+
 <header id="head" class="clear">
 
     <div id="messages"></div>
@@ -173,5 +177,19 @@
         endif;
     ?>
     </nav>
+
+    <div class="buttons clear">
+        <?php
+            if(count(admin::getButtons())):
+                echo '<nav><ul class="clear">';
+                foreach(admin::getButtons() as $button) {
+                    echo '<li>';
+                    echo $button;
+                    echo '</li>';
+                }
+                echo '</ul></nav>';
+            endif;
+        ?>
+    </div>
 
     <?=config::get('system'); ?>

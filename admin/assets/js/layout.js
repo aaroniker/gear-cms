@@ -4,6 +4,13 @@ jQuery(document).ready(function($) {
         hljs.highlightBlock(block);
     });
 
+    $(document).on("click", "#expand", function(e) {
+        $("#overlay").fadeToggle(400, function() {
+            $("#left").toggleClass("active");
+            $("#expand").toggleClass("active");
+        });
+    });
+
     $(document).on("click", "#nav > ul > li > span", function(e) {
 
         var _this = $(this).parent();

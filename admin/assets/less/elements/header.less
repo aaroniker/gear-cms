@@ -22,6 +22,9 @@
         line-height: 36px;
         margin: 0;
         font-size: 21px;
+        @media(max-width: @screen-sm-min * 1px) {
+            font-size: 16px;
+        }
     }
     h2 {
         &:after {
@@ -38,6 +41,9 @@
         line-height: 36px;
         margin: 0 10px 0 0;
         font-size: 21px;
+        @media(max-width: @screen-sm-min * 1px) {
+            font-size: 16px;
+        }
     }
     nav {
         ul {
@@ -51,12 +57,7 @@
         }
         float: right;
         @media(max-width: @screen-sm-min * 1px) {
-            &:before {
-                content: "";
-                display: block;
-                clear: both;
-            }
-            float: none;
+            display: none;
         }
     }
     .search {
@@ -83,7 +84,7 @@
             position: relative;
             z-index: 1;
             @media(max-width: @screen-sm-min * 1px) {
-                width: 120px;
+                width: 100px;
             }
         }
         &:after {
@@ -121,7 +122,44 @@
     padding: 20px 35px;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 99;
     background: #fff;
 	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
+    @media(max-width: @screen-md-min * 1px) {
+        left: 0;
+        padding-left: 75px;
+    }
+    @media(max-width: @screen-sm-min * 1px) {
+        padding-left: 60px;
+        padding-right: 15px;
+    }
+}
+
+#expand {
+    &.active {
+        color: #fff;
+        left: 270px;
+    }
+    .icon {
+        &:before {
+            line-height: 36px;
+            font-size: 32px;
+        }
+    }
+    cursor: pointer;
+    color: @text-dark;
+    position: fixed;
+    display: none;
+    width: 40px;
+    text-align: center;
+    left: 25px;
+    top: 20px;
+    z-index: 101;
+    .transition();
+    @media(max-width: @screen-md-min * 1px) {
+        display: block;
+    }
+    @media(max-width: @screen-sm-min * 1px) {
+        left: 15px;
+    }
 }

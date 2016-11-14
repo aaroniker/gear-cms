@@ -1,4 +1,7 @@
 #left {
+    &.active {
+        left: 0;
+    }
     .top {
         .logo {
             img {
@@ -237,7 +240,7 @@
         bottom: 0;
         left: 0;
     }
-    z-index: 2;
+    z-index: 102;
     width: 250px;
     position: fixed;
     background: rgb(193,193,224);
@@ -249,4 +252,8 @@
     top: 0;
     bottom: 0;
     overflow: hidden;
+    .transition(0.2s);
+    @media(max-width: @screen-md-min * 1px) {
+        left: -250px;
+    }
 }
