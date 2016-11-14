@@ -1,98 +1,84 @@
-<section id="user">
+<?php
+    admin::addButton('
+        <a href="'.url::admin('user').'" class="button border">
+            '.lang::get('back').'
+        </a>
+    ');
 
-	<header>
+    $form = new form();
 
-		<h2><?=lang::get('add'); ?></h2>
+	$field = $form->addTextField('username', '');
+	$field->fieldName(lang::get('username'));
+	$field->fieldValidate();
 
-		<nav>
-			<ul>
-				<li>
-					<a href="<?=url::admin('user'); ?>" class="button border">
-						<?=lang::get('back'); ?>
-					</a>
-				</li>
-			</ul>
-		</nav>
+	$field = $form->addMediaField('avatar', '', ['ext' => 'jpg,jpeg,png,gif']);
+	$field->fieldName(lang::get('avatar'));
 
-	</header>
+	$field = $form->addTextField('email', '');
+	$field->fieldName(lang::get('email'));
+	$field->fieldValidate('valid_email|required');
 
-	<?php
+	$field = $form->addTextField('password', '', ['v-model="newPassword"']);
+	$field->fieldName(lang::get('password'));
+	$field->fieldValidate();
 
-		$form = new form();
+	$field = $form->addRadioInlineField('status', 1);
+	$field->fieldName(lang::get('status'));
+	$field->add(1, lang::get('active'));
+	$field->add(0, lang::get('blocked'));
 
-		$field = $form->addTextField('username', '');
-		$field->fieldName(lang::get('username'));
-		$field->fieldValidate();
+	$field = $form->addSelectField('permissionID', 0);
+	$field->fieldName(lang::get('permissions'));
+	$field->add(0, lang::get('admin'));
 
-		$field = $form->addMediaField('avatar', '', ['ext' => 'jpg,jpeg,png,gif']);
-		$field->fieldName(lang::get('avatar'));
+	foreach(PermissionModel::getAllFromDb() as $entry) {
+		$field->add($entry->id, $entry->name);
+	}
 
-		$field = $form->addTextField('email', '');
-		$field->fieldName(lang::get('email'));
-		$field->fieldValidate('valid_email|required');
+	if($form->isSubmit()) {
 
-		$field = $form->addTextField('password', '', ['v-model="newPassword"']);
-		$field->fieldName(lang::get('password'));
-		$field->fieldValidate();
+		if($form->validation()) {
 
-		$field = $form->addRadioInlineField('status', 1);
-		$field->fieldName(lang::get('status'));
-		$field->add(1, lang::get('active'));
-		$field->add(0, lang::get('blocked'));
+			extension::add('model_beforeInsert', function($data) {
+				$password = password_hash($data['password'], PASSWORD_DEFAULT);
+				$data['password'] = $password;
+				return $data;
+			});
 
-		$field = $form->addSelectField('permissionID', 0);
-		$field->fieldName(lang::get('permissions'));
-		$field->add(0, lang::get('admin'));
+			extension::add('model_beforeInsertMeta', function($data) {
+				$data['avatar'] = (isset($data['avatar']) && $data['avatar']) ? $data['avatar'] : null;
+				return $data;
+			});
 
-		foreach(PermissionModel::getAllFromDb() as $entry) {
-			$field->add($entry->id, $entry->name);
+			$this->model->insert($form->getAll(), true);
+
+			message::success(lang::get('user_added'));
+
+			header('location:'.url::admin('user', ['index']));
+
+		} else {
+			echo $form->getErrors();
 		}
 
-		if($form->isSubmit()) {
+	}
 
-			if($form->validation()) {
+?>
 
-				extension::add('model_beforeInsert', function($data) {
-					$password = password_hash($data['password'], PASSWORD_DEFAULT);
-					$data['password'] = $password;
-					return $data;
-				});
-
-				extension::add('model_beforeInsertMeta', function($data) {
-					$data['avatar'] = (isset($data['avatar']) && $data['avatar']) ? $data['avatar'] : null;
-					return $data;
-				});
-
-				$this->model->insert($form->getAll(), true);
-
-				message::success(lang::get('user_added'));
-
-				header('location:'.url::admin('user', ['index']));
-
-			} else {
-				echo $form->getErrors();
-			}
-
-		}
-
-	?>
-
-	<div class="columns">
-		<div class="md-9 lg-7">
-			<?=$form->show(); ?>
-		</div>
+<div class="columns">
+	<div class="md-9 lg-7">
+		<?=$form->show(); ?>
 	</div>
-
-</section>
+</div>
 
 <?php
 theme::addJSCode('
 	new Vue({
-		el: "#user",
+		el: "#app",
 		data: {
+            headline: "'.lang::get('add').'",
 			newPassword: ""
 		},
-		ready: function() {
+		created: function() {
 			this.newPassword = randomPassword(12);
 		}
 	});
