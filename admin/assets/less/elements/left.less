@@ -2,13 +2,13 @@
     .top {
         .logo {
             img {
-                height: 36px;
+                height: 44px;
                 display: block;
             }
             display: table;
             margin: 0 auto;
         }
-        padding: 20px 0;
+        padding: 33px 0;
     }
     #nav {
         & > ul {
@@ -62,62 +62,81 @@
         }
     }
     .user {
-        nav {
-            ul {
-                li {
-                    [data-tooltip] {
-                        &:after {
-                            font-size: 14px;
+        .inner {
+            nav {
+                ul {
+                    li {
+                        [data-tooltip] {
+                            &:after {
+                                font-size: 14px;
+                            }
                         }
-                    }
-                    &:last-child {
-                        margin-right: 0;
-                    }
-                    a {
-                        &:hover {
-                            color: lighten(@text-dark, 20%);
+                        &:last-child {
+                            margin-right: 0;
                         }
-                        i {
-                            line-height: 36px;
-                            font-size: 21px;
+                        a {
+                            &:hover {
+                                color: @text;
+                            }
+                            i {
+                                line-height: 36px;
+                                font-size: 21px;
+                            }
+                            color: @text-light;
                         }
-                        color: @text-dark;
+                        margin: 0 10px 0 0;
+                        float: left;
                     }
-                    margin: 0 10px 0 0;
-                    float: left;
                 }
+                float: right;
             }
-            float: right;
-        }
-        .profile {
-            &:hover {
-                color: lighten(@text-dark, 20%);
-            }
-            .img,
-            img {
-                width: 36px;
-                height: 36px;
-                position: absolute;
+            .profile {
+                &:hover {
+                    color: @text;
+                }
+                .img,
+                img {
+                    width: 36px;
+                    height: 36px;
+                    position: absolute;
+                    display: block;
+                    left: 0;
+                    top: 0;
+                    background-position: center center;
+                    background-size: cover;
+                    .round(50%);
+                }
+                span {
+                    display: inline-block;
+                    margin: 0 0 0 15px;
+                }
+                color: @text-light;
+                padding: 0 0 0 36px;
+                line-height: 36px;
+                position: relative;
                 display: block;
-                left: 0;
-                top: 0;
-                background-position: center center;
-                background-size: cover;
-                .round(50%);
+                float: left;
             }
-            span {
-                display: inline-block;
-                margin: 0 0 0 15px;
-            }
-            color: @text-dark;
-            padding: 0 0 0 36px;
-            line-height: 36px;
-            position: relative;
-            display: block;
-            float: left;
+            background: #fff;
+            padding: 10px 15px;
+            .box-shadow(0, 2px, 8px, rgba(0, 0, 0, 0.2));
+            .round();
         }
-        background: lighten(@dark, 4%);
-        padding: 15px 20px;
+        padding: 0 15px 20px 15px;
+    }
+    &:before {
+        content: "";
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 15px;
+        position: absolute;
+        display: block;
+        background: -moz-linear-gradient(left, rgba(30,87,153,0) 0%, rgba(0,0,0,1) 100%);
+        background: -webkit-linear-gradient(left, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
+        background: linear-gradient(to right, rgba(30,87,153,0) 0%,rgba(0,0,0,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#000000',GradientType=1 );
+        .opacity(0.05);
     }
     z-index: 2;
     width: 250px;

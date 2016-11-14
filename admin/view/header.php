@@ -6,33 +6,30 @@
         </a>
     </div>
 
-    <div class="user clear">
-        <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-            <?php
+    <div class="user">
+        <div class="inner clear">
+            <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
+                <?php
 
-                if(user::current()->avatar && file_exists(dir::media(user::current()->avatar))) {
-                    echo '<div class="img" style="background-image: url('.url::media(user::current()->avatar).');"></div>';
-                } else {
-                    echo user::getAvatar(36, true);
-                }
+                    if(user::current()->avatar && file_exists(dir::media(user::current()->avatar))) {
+                        echo '<div class="img" style="background-image: url('.url::media(user::current()->avatar).');"></div>';
+                    } else {
+                        echo user::getAvatar(36, true);
+                    }
 
-            ?>
-            <span><?=user::current()->username; ?></span>
-        </a>
-        <nav>
-            <ul class="clear">
-                <li>
-                    <a href="http://gearcms.org" data-tooltip="<?=lang::get('website'); ?>" target="_blank">
-                        <i class="icon icon-earth"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="?logout=1" data-tooltip="<?=lang::get('logout'); ?>">
-                        <i class="icon icon-log-out"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                ?>
+                <span><?=user::current()->username; ?></span>
+            </a>
+            <nav>
+                <ul class="clear">
+                    <li>
+                        <a href="?logout=1" data-tooltip="<?=lang::get('logout'); ?>">
+                            <i class="icon icon-log-out"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
     <?php
