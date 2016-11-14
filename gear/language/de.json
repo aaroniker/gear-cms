@@ -17,6 +17,7 @@
     "selected": "ausgewählt",
     "choose": "Auswählen",
     "error_unknown": "Unbekannter Fehler",
+    "version": "Gear v%s",
 
     ## Login
     "email": "E-Mail",

@@ -82,6 +82,21 @@
         endif;
     ?>
 
+    <div class="info clear">
+        <div class="fl-left">
+            <?=sprintf(lang::get('version'), config::get('version')); ?>
+        </div>
+        <nav>
+            <ul class="clear">
+                <li>
+                    <a href="http://gearcms.org" data-tooltip="<?=lang::get('website'); ?>" target="_blank">
+                        <i class="icon icon-earth"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 </div>
 
 <header id="head" class="clear">
@@ -92,6 +107,6 @@
 
 <main>
 
-<div id="messages"></div>
+    <div id="messages"></div>
 
-<?=config::get('system'); ?>
+    <?=config::get('system'); ?>
