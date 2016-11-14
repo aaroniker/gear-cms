@@ -90,18 +90,10 @@ Vue.component("data-table", {
         },
         filtered: function() {
             var self = this;
-            var obj = [];
-            for(var key in Object.keys(this.columns)) {
-                if(!Object.keys(this.columns).hasOwnProperty(key)) continue;
-                var object = self.data[key];
-                for(var key in object) {
-                    if(typeof(object[key]) != 'undefined' && typeof(object[key]) === 'string' && object[key].indexOf(self.search) !== -1) {
-                        obj.push(object);
-                        break;
-                    }
-                }
-            }
-            return obj;
+            var searchKey = Object.keys(this.columns)[0];
+            return self.data.filter(function(entry) {
+                return entry[searchKey].indexOf(self.search) !== -1;
+            });
         },
         ordered: function() {
             return _.orderBy(this.filtered, this.sortKey, this.sortOrders[this.sortKey] > 0 ? 'asc' : 'desc');
