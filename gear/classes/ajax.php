@@ -48,6 +48,34 @@ class ajax {
 
     }
 
+    public static function setMenu() {
+
+        if(type::post('method', 'string', '') == 'setMenu') {
+
+            $url = type::post('url', 'string', '');
+            $active = type::post('active', 'int', 0);
+
+            $user = user::current();
+            $menu = ($user->openMenu) ? unserialize($user->openMenu) : [];
+
+            if($active) {
+                $menu[$url] = true;
+            } else {
+                if(isset($menu[$url])) {
+                    unset($menu[$url]);
+                }
+            }
+
+            $menu = (is_array($menu) && count($menu)) ? serialize($menu) : null;
+
+            $user->save([
+                'openMenu' => $menu
+            ]);
+
+        }
+
+    }
+
 }
 
 ?>
