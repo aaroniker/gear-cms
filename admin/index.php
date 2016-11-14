@@ -70,11 +70,8 @@
         admin::addSubmenu(lang::get('settings'), 'index', 'system');
 
         include(dir::view('head.php'));
-
         include(dir::view('header.php'));
-
         echo config::get('content');
-
         include(dir::view('footer.php'));
 
     } else {
