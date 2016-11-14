@@ -92,7 +92,7 @@ function setTabs() {
     $(".tabs > section > div:first-child").show();
     $(".tabs > nav > ul > li:first-child").addClass("active");
 
-    $(".tabs > nav > ul > li > a").click(function(e) {
+    $(document).on("click", ".tabs > nav > ul > li > a", function(e) {
 
         e.preventDefault();
 
