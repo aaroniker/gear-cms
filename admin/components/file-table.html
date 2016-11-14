@@ -84,7 +84,7 @@
                             <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
                         </td>
                     </tr>
-                    <tr v-if="!filtered.length || (path && filtered.length <= 1)">
+                    <tr v-if="!filtered.length">
                         <td class="empty" :colspan="fileSelect ? 3 : 4">{{ 'no_results' | lang }}</td>
                     </tr>
                 </tbody>
