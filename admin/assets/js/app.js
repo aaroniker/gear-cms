@@ -95,12 +95,9 @@ Vue.component("data-table", {
                 if(!Object.keys(this.columns).hasOwnProperty(key)) continue;
                 var object = self.data[key];
                 for(var key in object) {
-                    var value = object[key];
-                    if(typeof(value) != 'undefined' && typeof(value) === 'string') {
-                        if(value.indexOf(self.search) !== -1) {
-                            obj.push(object);
-                            break;
-                        }
+                    if(typeof(object[key]) != 'undefined' && typeof(object[key]) === 'string' && object[key].indexOf(self.search) !== -1) {
+                        obj.push(object);
+                        break;
                     }
                 }
             }
