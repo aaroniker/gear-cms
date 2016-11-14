@@ -1,32 +1,19 @@
-<section id="content">
+<?php
+    admin::addButton('
+        <a href="'.url::admin('content').'" class="button border">
+            '.lang::get('back').'
+        </a>
+    ');
+?>
 
-    <header>
-
-        <h2><?=$this->model->name; ?></h2>
-
-        <nav>
-            <ul>
-                <li>
-                    <a href="<?=url::admin('content'); ?>" class="button border">
-                        <?=lang::get('back'); ?>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-    </header>
-
-    content
-
-</section>
+content
 
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#content",
+        el: "#app",
         data: {
-            pageTree: '.json_encode(PageModel::getAll()).',
-            pageAll: '.json_encode(PageModel::getAllFromDb()).'
+            headline: "'.$this->model->name.'"
         }
     });
 ');
