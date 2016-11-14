@@ -1,33 +1,18 @@
-<section id="user">
+<?php
+    admin::addButton('
+        <a href="'.url::admin('user', ['index', 'add']).'" class="button">
+            '.lang::get('add').'
+        </a>
+    ');
+    admin::$search = true;
+?>
 
-    <header>
-
-        <h2 v-html="headline"></h2>
-
-        <div v-if="showSearch" class="search">
-            <input type="text" v-model="search">
-        </div>
-
-        <nav>
-            <ul>
-                <li>
-                    <a href="<?=url::admin('user', ['index', 'add']); ?>" class="button">
-                        <?=lang::get('add'); ?>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-    </header>
-
-    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
-
-</section>
+<data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#user",
+        el: "#app",
         data: {
             headline: lang["list"],
             tableData: '.json_encode(UserModel::getAll()).',
