@@ -4,12 +4,15 @@ jQuery(document).ready(function($) {
         hljs.highlightBlock(block);
     });
 
-    $("#head .expand").click(function() {
-        toggleNav(!$(this).hasClass("active"));
-    });
+    $("#nav > ul > li > span").click(function() {
 
-    $("#nav .close").click(function() {
-        toggleNav(false);
+        var _this = $(this).parent();
+
+        _this.toggleClass("drop");
+
+        _this.children("ul").slideToggle(150, function() {
+            _this.toggleClass("dropFade");
+        });
     });
 
     $(document).on("click", ".delete", function(e) {
@@ -127,32 +130,4 @@ function getMessages(url) {
             }
         }
     });
-}
-
-function toggleNav(open) {
-
-    var expand = $(this);
-    var overlay = $("#overlay");
-    var nav = $("#nav");
-    var active = expand.hasClass("active");
-
-    expand.toggleClass("active");
-
-    if(open) {
-        $("body").addClass("fix");
-        overlay.fadeIn(200, function() {
-            nav.animate({
-                left: 0
-            }, 200);
-        });
-    } else {
-        nav.animate({
-            left: -220
-        }, 200, function() {
-            overlay.fadeOut(200, function() {
-                $("body").removeClass("fix");
-            });
-        });
-    }
-
 }
