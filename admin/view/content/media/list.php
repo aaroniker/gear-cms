@@ -1,66 +1,48 @@
-<section id="media">
+<?php
+    admin::addButton('
+        <a @click="addDirModal = true" class="button border">
+            '.lang::get('add_dir').'
+        </a>
+    ');
+    admin::addButton('
+        <form id="upload" method="post" action="'.url::admin('content', ['media', 'upload']).'" enctype="multipart/form-data">
+            <a class="button">
+                '.lang::get('upload').'
+            </a>
+            <input class="file" type="file" name="file">
+            <input type="hidden" name="path" :value="path">
+        </form>
+    ');
+    admin::$search = true;
 
-    <header>
+    $form = new form();
+    $form->setHorizontal(false);
 
-        <h2 v-html="headline"></h2>
+    $form->addFormAttribute('v-on:submit.prevent', 'addDir');
 
-        <div v-if="showSearch" class="search">
-            <input type="text" v-model="search">
-        </div>
+    $field = $form->addTextField('name', '');
+    $field->fieldName(lang::get('name'));
+    $field->addAttribute('v-model', 'dirName');
+    $field->fieldValidate();
 
-        <nav>
-            <ul>
-                <li>
-                    <a @click="addDirModal = true" class="button border">
-                        <?=lang::get('add_dir'); ?>
-                    </a>
-                </li>
-                <li>
-                    <form id="upload" method="post" action="<?=url::admin('content', ['media', 'upload']); ?>" enctype="multipart/form-data">
-                        <a class="button">
-                            <?=lang::get('upload'); ?>
-                        </a>
-                        <input class="file" type="file" name="file">
-                        <input type="hidden" name="path" :value="path">
-                    </form>
-                </li>
-            </ul>
-        </nav>
+    $field = $form->addRawField('<p class="static">{{ path }}<span class="text-light" v-if="dirName" v-text="dirName"></span></p>');
+    $field->fieldName(lang::get('path'));
 
-    </header>
+?>
 
-    <?php
+<modal v-if="addDirModal" @close="addDirModal = false">
+    <h3 slot="header"><?=lang::get('add_dir'); ?></h3>
+    <div slot="content">
+        <?=$form->show(); ?>
+    </div>
+</modal>
 
-        $form = new form();
-        $form->setHorizontal(false);
-
-        $form->addFormAttribute('v-on:submit.prevent', 'addDir');
-
-        $field = $form->addTextField('name', '');
-        $field->fieldName(lang::get('name'));
-        $field->addAttribute('v-model', 'dirName');
-        $field->fieldValidate();
-
-        $field = $form->addRawField('<p class="static">{{ path }}<span class="text-light" v-if="dirName" v-text="dirName"></span></p>');
-        $field->fieldName(lang::get('path'));
-
-    ?>
-
-    <modal v-if="addDirModal" @close="addDirModal = false">
-        <h3 slot="header"><?=lang::get('add_dir'); ?></h3>
-        <div slot="content">
-            <?=$form->show(); ?>
-        </div>
-    </modal>
-
-    <file-table :headline="headline" :search="search"></file-table>
-
-</section>
+<file-table :headline="headline" :search="search"></file-table>
 
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#media",
+        el: "#app",
         data: {
             headline: lang["media"],
             path: "/",
