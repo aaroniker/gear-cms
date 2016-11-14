@@ -67,9 +67,9 @@
             position: absolute;
             top: 0;
             left: 1px;
-            width: 56px;
+            width: 50px;
             text-align: center;
-            font-size: 2em;
+            font-size: 24px;
         }
         input {
             &:focus {
@@ -86,10 +86,19 @@
                 width: 120px;
             }
         }
-        border-left: 1px solid @border;
+        &:after {
+            content: "";
+            display: block;
+            left: 0;
+            top: 4px;
+            height: 28px;
+            width: 1px;
+            background: @border;
+            position: absolute;
+        }
         position: relative;
         float: left;
-        margin: 0 0 0 30px;
+        margin: 0 0 0 20px;
     }
     #messages {
         .animated {
