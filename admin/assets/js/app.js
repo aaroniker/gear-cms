@@ -69,14 +69,14 @@ Vue.component("data-table", {
     computed: {
         checkAll: {
             get: function() {
-                return this.data ? this.checked.length == this.data.length &&  this.data.length > 0 : false;
+                return this.filtered ? this.checked.length == this.filtered.length &&  this.filtered.length > 0 : false;
             },
             set: function(value) {
 
                 var checked = [];
 
                 if(value) {
-                    this.data.forEach(function(loop) {
+                    this.filtered.forEach(function(loop) {
                         checked.push(loop.id);
                     });
                 }
@@ -190,13 +190,13 @@ Vue.component("file-table", {
     computed: {
         checkAll: {
             get: function() {
-                return this.tableData ? this.checked.length == this.tableData.length &&  this.tableData.length > 0 : false;
+                return this.filtered ? this.checked.length == this.filtered.length &&  this.filtered.length > 0 : false;
             },
             set: function(value) {
                 var checked = [];
 
                 if(value) {
-                    this.tableData.forEach(function(loop) {
+                    this.filtered.forEach(function(loop) {
                         checked.push(loop.id);
                     });
                 }
