@@ -1,23 +1,13 @@
-<section id="blocks">
+<?php
+    admin::$search = true;
+?>
 
-    <header>
-
-        <h2 v-html="headline"></h2>
-
-        <div v-if="showSearch" class="search">
-            <input type="text" v-model="search">
-        </div>
-
-    </header>
-
-    <data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
-
-</section>
+<data-table :data="tableData" :columns="columns" :headline="headline" :search="search"></data-table>
 
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#blocks",
+        el: "#app",
         data: {
             headline: lang["blocks"],
             tableData: '.json_encode(block::getAll()).',
