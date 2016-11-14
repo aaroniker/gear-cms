@@ -17,7 +17,8 @@ class UserModel extends model {
             "username",
             "avatar",
             "session_ids",
-            "permissionID"
+            "permissionID",
+            "openMenu"
         ];
 
         if($id) {

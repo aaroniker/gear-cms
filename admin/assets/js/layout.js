@@ -7,11 +7,26 @@ jQuery(document).ready(function($) {
     $("#nav > ul > li > span").click(function() {
 
         var _this = $(this).parent();
+        var _url = $(this).data("id");
+        var _active = 0;
+
+        if(!_this.children("ul").is(":visible")) {
+            _active = 1;
+        }
 
         _this.toggleClass("drop");
 
         _this.children("ul").slideToggle(150, function() {
             _this.toggleClass("dropFade");
+            $.ajax({
+                method: "POST",
+                url: url + "admin/",
+                data: {
+                    method: "setMenu",
+                    url: _url,
+                    active: _active
+                }
+            });
         });
     });
 

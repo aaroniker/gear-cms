@@ -41,13 +41,20 @@
         <?php
             foreach($menu as $url => $array):
 
-                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+                $openArr = [];
+                if(user::current()->openMenu) {
+                    $openArr = unserialize(user::current()->openMenu);
+                }
+                $open = (isset($openArr[$url])) ? true : false;
+
+                $class = ($array['class']) ? $array['class'] : '';
+                $class = ($open) ? $class.' drop dropFade' : $class;
 
                 $sub = admin::getSubmenu($url);
-                $drop = ($sub && count($sub) > 1) ? '<span></span>' : '';
+                $drop = ($sub && count($sub) > 1) ? '<span data-id="'.$url.'"></span>' : '';
 
                 echo '
-                <li'.$class.'>
+                <li class="'.$class.'">
                     '.$drop.'
                     <a href="'.url::admin($url).'">
                         <i class="icon icon-'.$array['icon'].'"></i>

@@ -40,6 +40,7 @@
     if(ajax::is()) {
 
         ajax::messages();
+        ajax::setMenu();
 
         echo ajax::getReturn();
 
