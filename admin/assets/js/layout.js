@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
         hljs.highlightBlock(block);
     });
 
-    $("#nav > ul > li > span").click(function() {
+    $(document).on("click", "#nav > ul > li > span", function(e) {
 
         var _this = $(this).parent();
         var _url = $(this).data("id");
