@@ -4,6 +4,7 @@ class admin {
 
     public static $menu = [];
     public static $submenu = [];
+    public static $buttons = [];
 
     public static $page = '';
     public static $url = '';
@@ -79,6 +80,18 @@ class admin {
         }
 
         return false;
+
+    }
+
+    public static function addButton($html) {
+
+        self::$buttons[] = $html;
+
+    }
+
+    public static function getButtons() {
+
+        return implode(PHP_EOL, self::$buttons);
 
     }
 
