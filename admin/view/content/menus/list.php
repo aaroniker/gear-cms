@@ -1,128 +1,120 @@
-<section id="content">
+<?php
 
-    <header>
+    admin::addComponent('
+    <template id="item-template">
+        <li :id="\'item_\' + model.id">
+            <div class="entry clear">
+                <div class="info">
+                    <span>{{ model.name }}</span>
+                    <small>{{ model.pageName }} {{ model.pageURL }}</small>
+                </div>
+                <a :href="\''.url::admin('content', ['menus', 'delItem']).'/\' + model.id" class="icon delete ajax icon-ios-trash-outline"></a>
+            </div>
+            <ul v-if="model.children">
+                <item v-for="model in model.children" :model="model"></item>
+            </ul>
+        </li>
+    </template>
+    ');
 
-        <h2 v-html="headline"></h2>
+    $form = new form();
+    $form->setHorizontal(false);
 
-    </header>
+    $form->addFormAttribute('v-on:submit.prevent', 'addMenu');
 
-    <?php
+    $field = $form->addTextField('name', '');
+    $field->fieldName(lang::get('name'));
+    $field->addAttribute('v-model', 'menuName');
+    $field->fieldValidate();
 
-        $form = new form();
-        $form->setHorizontal(false);
+?>
 
-        $form->addFormAttribute('v-on:submit.prevent', 'addMenu');
+<modal v-if="addMenuModal" @close="addMenuModal = false">
+    <h3 slot="header"><?=lang::get('add'); ?></h3>
+    <div slot="content">
+        <?=$form->show(); ?>
+    </div>
+</modal>
 
-        $field = $form->addTextField('name', '');
-        $field->fieldName(lang::get('name'));
-        $field->addAttribute('v-model', 'menuName');
-        $field->fieldValidate();
+<div class="columns">
 
-    ?>
+    <div class="md-3">
 
-    <modal v-if="addMenuModal" @close="addMenuModal = false">
-        <h3 slot="header"><?=lang::get('add'); ?></h3>
-        <div slot="content">
-            <?=$form->show(); ?>
-        </div>
-    </modal>
+        <aside id="aside">
 
-    <div class="columns">
-
-        <div class="md-3">
-
-            <aside id="aside">
-
-                <nav v-if="menuID">
-                    <ul>
-                        <li v-for="menu in menus" :class="menu.id == menuID ? 'active' : ''">
-                            <a @click.prevent="setActive(menu.id)">
-                                {{ menu.name }}
+            <nav v-if="menuID">
+                <ul>
+                    <li v-for="menu in menus" :class="menu.id == menuID ? 'active' : ''">
+                        <a @click.prevent="setActive(menu.id)">
+                            {{ menu.name }}
+                        </a>
+                        <div class="action">
+                            <a class="delete" :href="'<?=url::admin('content', ['menus', 'delete']); ?>/' + menu.id">
+                                <i class="icon icon-ios-trash-outline"></i>
                             </a>
-                            <div class="action">
-                                <a class="delete" :href="'<?=url::admin('content', ['menus', 'delete']); ?>/' + menu.id">
-                                    <i class="icon icon-ios-trash-outline"></i>
-                                </a>
-                            </div>
-                        </li>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <button class="button border" @click="addMenuModal = true"><?=lang::get('add'); ?></button>
+
+        </aside>
+
+    </div>
+
+    <div class="md-9">
+
+        <div v-for="menu in menus">
+            <div v-if="menuID == menu.id">
+                <div id="menuList">
+                    <ul>
+                        <item v-for="model in items" :model="model"></item>
                     </ul>
-                </nav>
-
-                <button class="button border" @click="addMenuModal = true"><?=lang::get('add'); ?></button>
-
-            </aside>
-
-        </div>
-
-        <div class="md-9">
-
-            <div v-for="menu in menus">
-                <div v-if="menuID == menu.id">
-                    <div id="menuList">
-                        <ul>
-                            <item v-for="model in items" :model="model"></item>
-                        </ul>
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <div v-show="menuID">
+        <div v-show="menuID">
 
-                <hr>
+            <hr>
 
-                <div class="box">
-                    <h3><?=lang::get('add'); ?></h3>
-                    <?php
+            <div class="box">
+                <h3><?=lang::get('add'); ?></h3>
+                <?php
 
-                        $form = new form();
+                    $form = new form();
 
-                        $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
+                    $form->addFormAttribute('v-on:submit.prevent', 'addMenuItem');
 
-                        $field = $form->addTextField('name', '');
-                        $field->fieldName(lang::get('name'));
-                        $field->addAttribute('v-model', 'menuItemName');
-                        $field->fieldValidate();
+                    $field = $form->addTextField('name', '');
+                    $field->fieldName(lang::get('name'));
+                    $field->addAttribute('v-model', 'menuItemName');
+                    $field->fieldValidate();
 
-                        $form->addTab(lang::get('page'));
+                    $form->addTab(lang::get('page'));
 
-                        $field = $form->addRawField('<searchbox :list="pageAll" val="name" id="id"></searchbox>');
-                        $field->fieldName(lang::get('page'));
-                        $field->fieldValidate();
+                    $field = $form->addRawField('<searchbox :list="pageAll" val="name" id="id"></searchbox>');
+                    $field->fieldName(lang::get('page'));
+                    $field->fieldValidate();
 
-                        $form->addTab(lang::get('link'));
+                    $form->addTab(lang::get('link'));
 
-                        $field = $form->addTextField('link', '');
-                        $field->fieldName(lang::get('link'));
-                        $field->addAttribute('v-model', 'menuItemLink');
-                        $field->fieldValidate();
+                    $field = $form->addTextField('link', '');
+                    $field->fieldName(lang::get('link'));
+                    $field->addAttribute('v-model', 'menuItemLink');
+                    $field->fieldValidate();
 
-                        echo $form->show();
+                    echo $form->show();
 
-                    ?>
-                </div>
-
+                ?>
             </div>
 
         </div>
 
     </div>
 
-</section>
-
-<template id="item-template">
-    <li :id="'item_' + model.id">
-        <div class="entry clear">
-            <div class="info">
-                <span>{{ model.name }}</span>
-                <small>{{ model.pageName }} {{ model.pageURL }}</small>
-            </div>
-            <a :href="'<?=url::admin('content', ['menus', 'delItem']); ?>/' + model.id" class="icon delete ajax icon-ios-trash-outline"></a>
-        </div>
-        <ul v-if="model.children">
-            <item v-for="model in model.children" :model="model"></item>
-        </ul>
-    </li>
-</template>
+</div>
 
 <?php
 theme::addJSCode('
@@ -153,7 +145,7 @@ theme::addJSCode('
     };
 
     new Vue({
-        el: "#content",
+        el: "#app",
         data: {
             headline: lang["menus"],
             menus: [],
