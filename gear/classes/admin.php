@@ -6,6 +6,7 @@ class admin {
     public static $submenu = [];
     public static $buttons = [];
     public static $search = false;
+    public static $components = '';
 
     public static $page = '';
     public static $url = '';
@@ -87,6 +88,12 @@ class admin {
     public static function addButton($html) {
 
         self::$buttons[] = $html;
+
+    }
+
+    public static function addComponent($html) {
+
+        self::$components .= $html;
 
     }
 
