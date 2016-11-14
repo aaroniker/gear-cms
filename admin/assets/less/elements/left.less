@@ -222,6 +222,21 @@
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#000000',GradientType=1 );
         .opacity(0.1);
     }
+    & > .inner {
+        & > .wrap {
+            position: relative;
+            padding-bottom: 80px;
+            width: 250px;
+            min-height: 100vh;
+        }
+        overflow-y: scroll;
+        overflow-x: hidden;
+        right: -17px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+    }
     z-index: 2;
     width: 250px;
     position: fixed;
@@ -233,6 +248,7 @@
     left: 0;
     top: 0;
     bottom: 0;
+    overflow: hidden;
 }
 
 #head {
