@@ -1,4 +1,42 @@
 main {
+    & > nav {
+        ul {
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            li {
+                &:last-child {
+                    margin-right: 0;
+                }
+                &.active {
+                    a {
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: -1px;
+                            height: 2px;
+                            background: @primary;
+                        }
+                        color: @text-dark;
+                    }
+                }
+                a {
+                    position: relative;
+                    color: @text;
+                    display: block;
+                    padding: 10px 15px;
+                }
+                margin: 0 10px 0 0;
+                float: left;
+            }
+        }
+        border-bottom: 1px solid @border;
+        margin: 0 0 30px 0;
+    }
     header {
         &:after {
             content: "";
@@ -132,24 +170,15 @@ main {
             height: 32px;
             .translate(0, -50%);
         }
-        &:before {
-            border: 1px solid @border;
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            display: block;
-            .round();
-        }
         color: @text;
-        position: relative;
+        background: @light;
         height: 70px;
         line-height: 70px;
         margin-top: 15px;
         display: block;
+        position: relative;
         padding-left: 67px;
+        .round();
     }
 }
 

@@ -1,11 +1,5 @@
 <section id="dashboard">
 
-    <header>
-
-        <h2><?=lang::get('overview'); ?></h2>
-
-    </header>
-
     <div class="columns">
 
         <div class="lg-8 sm-7">

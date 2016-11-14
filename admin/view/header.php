@@ -43,15 +43,17 @@
 
                 $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
 
+                $sub = admin::getSubmenu($url);
+                $drop = ($sub && count($sub) > 1) ? '<span></span>' : '';
+
                 echo '
                 <li'.$class.'>
+                    '.$drop.'
                     <a href="'.url::admin($url).'">
                         <i class="icon icon-'.$array['icon'].'"></i>
                         '.$array['name'].'
                     </a>
                 ';
-
-                $sub = admin::getSubmenu($url);
                 if($sub && count($sub) > 1):
                     echo '<ul>';
 
@@ -103,10 +105,44 @@
 
     <h1><?=admin::$page; ?></h1>
 
+    <nav>
+        <ul class="clear">
+            <li>
+                <a href="">
+                    <span>4</span>
+                    <i class="icon icon-android-list"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
 </header>
 
 <main>
 
     <div id="messages"></div>
+
+    <nav>
+    <?php
+        $sub = admin::getSubmenu(admin::$url);
+        if($sub):
+            echo '<ul>';
+
+            foreach($sub as $url => $array):
+
+                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+
+                echo '
+                <li'.$class.'>
+                    <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                </li>
+                ';
+
+            endforeach;
+
+            echo '</ul>';
+        endif;
+    ?>
+    </nav>
 
     <?=config::get('system'); ?>
