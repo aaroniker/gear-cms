@@ -397,25 +397,31 @@ Vue.component("searchbox", {
     }
 });
 
-var formMedia =  document.getElementsByClassName('formMedia');
-if(typeof(formMedia) != 'undefined' && formMedia != null && formMedia.length) {
-    new Vue({
-        el: ".formMedia",
-        data: {
+Vue.component("form-media", {
+    template: "#form-media",
+    data: function() {
+        return {
             search: "",
             headline: "list",
             addMediaModal: false,
             fileName: ""
-        },
-        created: function() {
-
-            var vue = this;
-
-            eventHub.$on("selectFile", function(data) {
-                vue.fileName = data.fileName;
-                vue.addMediaModal = data.addMediaModal;
-            });
-
         }
-    });
-}
+    },
+    props: [
+        "value",
+        "value2",
+        "attr",
+        "name",
+        "ext"
+    ],
+    created: function() {
+
+        var vue = this;
+
+        eventHub.$on("selectFile", function(data) {
+            vue.fileName = data.fileName;
+            vue.addMediaModal = data.addMediaModal;
+        });
+
+    }
+});

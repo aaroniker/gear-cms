@@ -11,6 +11,7 @@
     include(dir::components('file-table.html'));
     include(dir::components('modal.html'));
     include(dir::components('searchbox.html'));
+    include(dir::components('form-media.html'));
     echo admin::$components;
 
     $data = lang::loadLang(dir::language(lang::$lang.'.json'));
