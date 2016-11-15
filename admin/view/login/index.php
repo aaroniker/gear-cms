@@ -2,7 +2,7 @@
 
     <div class="form">
 
-        <a href="" class="logo">
+        <a href="http://gearcms.org" class="logo" target="_blank">
             <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear CMS Logo">
         </a>
 
