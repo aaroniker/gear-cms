@@ -38,7 +38,7 @@
 
 <div class="columns">
 
-    <div class="md-3">
+    <div class="lg-3 md-4">
 
         <aside id="aside">
 
@@ -63,7 +63,7 @@
 
     </div>
 
-    <div class="md-9">
+    <div class="lg-9 md-8">
 
         <div v-for="menu in menus">
             <div v-if="menuID == menu.id">
