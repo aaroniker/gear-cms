@@ -12,16 +12,19 @@
                 }
                 &.active {
                     a {
+                        &:hover {
+                            color: @text-dark;
+                        }
                         &:before {
                             content: "";
                             position: absolute;
                             left: 0;
                             right: 0;
-                            bottom: 0;
+                            bottom: -1px;
                             height: 3px;
                             background: @primary;
                         }
-                        color: #fff;
+                        color: @text;
                     }
                 }
                 a {
@@ -29,7 +32,7 @@
                         color: @text;
                     }
                     position: relative;
-                    color: @text-dark;
+                    color: @text-light;
                     display: block;
                     padding: 12px 15px;
                     @media(max-width: @screen-sm-min * 1px) {
@@ -42,9 +45,10 @@
                     margin: 0 8px 0 0;
                 }
             }
+            border-bottom: 1px solid @border;
         }
         padding: 0 35px;
-        background: @dark;
+        background: #fff;
         @media(max-width: @screen-sm-min * 1px) {
             padding: 0 15px;
         }
@@ -83,6 +87,9 @@
                 margin: 0 0 0 10px;
             }
             a {
+                &:hover {
+                    color: @text;
+                }
                 color: @text-light;
                 display: inline-block;
                 margin: 0;
