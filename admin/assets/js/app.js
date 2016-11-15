@@ -341,13 +341,23 @@ Vue.component("file-table", {
 });
 
 Vue.component("modal", {
+    template: "#modal-template",
     props: {
         size: {
             type: String,
             default: ""
         }
     },
-    template: "#modal-template"
+    data: function() {
+        return {
+            "animated": ""
+        }
+    },
+    methods: {
+        beforeEnter: function() {
+            this.animated = "animated fadeInDown";
+        }
+    }
 });
 
 Vue.component("searchbox", {

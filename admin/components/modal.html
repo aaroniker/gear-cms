@@ -1,8 +1,8 @@
 <template id="modal-template">
-    <transition name="modal">
+    <transition name="modal" v-on:before-enter="beforeEnter">
         <div class="modal">
             <div :class="'mask ' + size">
-                <div class="inner">
+                <div :class="'inner ' + animated">
 
                     <header>
                         <slot name="header"></slot>
