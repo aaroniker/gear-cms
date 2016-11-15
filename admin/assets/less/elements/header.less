@@ -47,8 +47,11 @@
             }
             border-bottom: 1px solid @border;
         }
-        padding: 0 35px;
+        padding: 0 55px;
         background: #fff;
+        @media(max-width: @screen-lg-min * 1px) {
+            padding: 0 35px;
+        }
         @media(max-width: @screen-sm-min * 1px) {
             padding: 0 15px;
         }
@@ -162,7 +165,10 @@
         }
         background: #fff;
     	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
-        padding: 20px 35px;
+        padding: 20px 55px;
+        @media(max-width: @screen-lg-min * 1px) {
+            padding: 20px 35px;
+        }
         @media(max-width: @screen-md-min * 1px) {
             padding-left: 85px;
             padding-right: 75px;

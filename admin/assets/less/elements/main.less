@@ -21,7 +21,11 @@ main {
     }
     position: relative;
     overflow: hidden;
-    padding: 160px 35px 30px 285px;
+    padding: 160px 55px 30px 305px;
+    @media(max-width: @screen-lg-min * 1px) {
+        padding-left: 285px;
+        padding-right: 35px;
+    }
     @media(max-width: @screen-md-min * 1px) {
         padding-left: 35px;
     }
