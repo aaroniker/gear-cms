@@ -1,7 +1,7 @@
 <template id="modal-template">
     <transition name="modal">
         <div class="modal">
-            <div class="mask">
+            <div :class="'mask ' + size">
                 <div class="inner">
 
                     <header>

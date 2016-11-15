@@ -341,6 +341,9 @@ Vue.component("file-table", {
 });
 
 Vue.component("modal", {
+    props: [
+        "size"
+    ],
     template: "#modal-template"
 });
 
