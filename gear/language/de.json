@@ -45,7 +45,7 @@
     "upload": "Hochladen",
     "path": "Pfad",
     "size": "Größe",
-    "add_dir": "Ordner hinzufügen",
+    "add_dir": "Neuer Ordner",
     "dir_added": "Ordner hinzugefügt",
     "dir_not_added": "Ordner konnte nicht hinzugefügt werden",
     "dir_exists": "Ordner existiert bereits",
