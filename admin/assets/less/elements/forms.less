@@ -2,6 +2,64 @@
     input {
         display: none;
     }
+    .button {
+        a {
+            span {
+                cursor: pointer;
+                display: block;
+            }
+            &:hover {
+                background: darken(@primary, 2%);
+            }
+            position: relative;
+            display: block;
+            background: @primary;
+            z-index: 2;
+            line-height: 36px;
+            height: 36px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            .round();
+        }
+        svg {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -12px 0 0 -12px;
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+        div {
+            span {
+                position: absolute;
+                background: @success;
+                height: 4px;
+                left: 0;
+                top: 0;
+                width: 0;
+                display: block;
+                .transition(0.2s);
+                .round(2px);
+            }
+            height: 4px;
+            margin: -2px 0 0 0;
+            position: absolute;
+            top: 50%;
+            left: 51px;
+            right: 15px;
+            background: @text-dark;
+            display: none;
+            .round(2px);
+        }
+	    display: block;
+        position: relative;
+        background: @dark;
+        padding: 0;
+        width: 105px;
+    }
 }
 
 .form-select {
