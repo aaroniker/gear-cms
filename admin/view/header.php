@@ -117,7 +117,7 @@
 </div>
 
 <a id="logo" href="<?=url::admin('dashboard'); ?>">
-    <img src="<?=url::assets('img/logoPrimary.svg'); ?>" alt="Gear Logo">
+    <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear Logo">
 </a>
 
 <div id="messages"></div>
