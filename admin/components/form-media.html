@@ -6,7 +6,7 @@
         </a>
         <a class="button none sm" v-text="fileName == false ? value : fileName">{{ value }}</a>
         <input :name="name" type="hidden" v-model="fileName == false ? value2 : fileName">
-        <modal v-if="addMediaModal" @close="addMediaModal = false">
+        <modal v-if="addMediaModal" @close="addMediaModal = false" size="large">
             <h3 slot="header"><?=lang::get('choose'); ?></h3>
             <div slot="content">
                 <file-table :headline="headline" :search="search" table-type="select" :ext="ext"></file-table>
