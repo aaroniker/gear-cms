@@ -118,42 +118,7 @@
 
 <div id="messages"></div>
 
-<header id="head" class="clear">
-
-    <?php if(admin::$subpage): ?>
-    <h2>
-        <a href="<?=url::admin(admin::$url); ?>">
-            <?=admin::$page; ?>
-        </a>
-    </h2>
-    <h1 v-html="headline"><?=admin::$subpage; ?></h1>
-    <?php else: ?>
-    <h1><?=admin::$page; ?></h1>
-    <?php endif; ?>
-
-    <?php if(admin::$search): ?>
-    <div v-if="showSearch" class="search">
-        <input type="text" v-model="search">
-    </div>
-    <?php endif; ?>
-
-    <nav>
-        <ul class="clear">
-            <?php
-                if(count(admin::getButtons())):
-                    foreach(admin::getButtons() as $button) {
-                        echo '<li>';
-                        echo $button;
-                        echo '</li>';
-                    }
-                endif;
-            ?>
-        </ul>
-    </nav>
-
-</header>
-
-<main>
+<header id="head">
 
     <nav>
     <?php
@@ -177,6 +142,45 @@
         endif;
     ?>
     </nav>
+
+    <div class="content clear">
+
+        <?php if(admin::$subpage): ?>
+        <h2>
+            <a href="<?=url::admin(admin::$url); ?>">
+                <?=admin::$page; ?>
+            </a>
+        </h2>
+        <h1 v-html="headline"><?=admin::$subpage; ?></h1>
+        <?php else: ?>
+        <h1><?=admin::$page; ?></h1>
+        <?php endif; ?>
+
+        <?php if(admin::$search): ?>
+        <div v-if="showSearch" class="search">
+            <input type="text" v-model="search">
+        </div>
+        <?php endif; ?>
+
+        <nav>
+            <ul class="clear">
+                <?php
+                    if(count(admin::getButtons())):
+                        foreach(admin::getButtons() as $button) {
+                            echo '<li>';
+                            echo $button;
+                            echo '</li>';
+                        }
+                    endif;
+                ?>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+<main>
 
     <div class="buttons clear">
         <?php

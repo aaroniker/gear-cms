@@ -1,54 +1,4 @@
 main {
-    & > nav {
-        ul {
-            &:after {
-                content: "";
-                display: block;
-                clear: both;
-            }
-            li {
-                &:last-child {
-                    margin-right: 0;
-                }
-                &.active {
-                    a {
-                        &:before {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            right: 0;
-                            bottom: -1px;
-                            height: 2px;
-                            background: @primary;
-                        }
-                        color: @text-dark;
-                    }
-                }
-                a {
-                    &:hover {
-                        color: @text-dark;
-                    }
-                    position: relative;
-                    color: @text;
-                    display: block;
-                    padding: 12px 15px;
-                    @media(max-width: @screen-sm-min * 1px) {
-                        padding: 10px 8px;
-                    }
-                }
-                margin: 0 12px 0 0;
-                float: left;
-                @media(max-width: @screen-sm-min * 1px) {
-                    margin: 0 8px 0 0;
-                }
-            }
-        }
-        border-bottom: 1px solid @border;
-        margin: 0 0 30px 0;
-        @media(max-width: @screen-sm-min * 1px) {
-            margin: 0 0 20px 0;
-        }
-    }
     & > .buttons {
         ul {
             li {
@@ -71,12 +21,12 @@ main {
     }
     position: relative;
     overflow: hidden;
-    padding: 110px 35px 30px 285px;
+    padding: 160px 35px 30px 285px;
     @media(max-width: @screen-md-min * 1px) {
         padding-left: 35px;
     }
     @media(max-width: @screen-sm-min * 1px) {
-        padding: 90px 15px 30px 15px;
+        padding: 140px 15px 20px 15px;
     }
 }
 

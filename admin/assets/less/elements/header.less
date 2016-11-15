@@ -1,121 +1,175 @@
 #head {
-    h1 {
-        & > .icon {
-            &.delete {
-                &:hover {
-                    color: @error;
-                }
-            }
-            &:before {
-                font-size: 24px;
-                vertical-align: top;
-            }
-            line-height: 36px;
-            display: inline-block;
-            vertical-align: top;
-            width: 30px;
-            text-align: center;
-            color: @text-light;
-            margin: 0 0 0 10px;
-        }
-        float: left;
-        line-height: 36px;
-        margin: 0;
-        font-size: 21px;
-        @media(max-width: @screen-sm-min * 1px) {
-            font-size: 16px;
-        }
-    }
-    h2 {
-        &:after {
-            content: "/";
-            margin: 0 0 0 10px;
-        }
-        a {
-            color: @text-light;
-            display: inline-block;
-            margin: 0;
-        }
-        color: @text-light;
-        float: left;
-        line-height: 36px;
-        margin: 0 10px 0 0;
-        font-size: 21px;
-        @media(max-width: @screen-sm-min * 1px) {
-            font-size: 16px;
-        }
-    }
-    nav {
+    & > nav {
         ul {
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
             li {
                 &:last-child {
                     margin-right: 0;
                 }
-                margin: 0 15px 0 0;
+                &.active {
+                    a {
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            height: 3px;
+                            background: @primary;
+                        }
+                        color: #fff;
+                    }
+                }
+                a {
+                    &:hover {
+                        color: @text;
+                    }
+                    position: relative;
+                    color: @text-dark;
+                    display: block;
+                    padding: 12px 15px;
+                    @media(max-width: @screen-sm-min * 1px) {
+                        padding: 10px 8px;
+                    }
+                }
+                margin: 0 12px 0 0;
                 float: left;
+                @media(max-width: @screen-sm-min * 1px) {
+                    margin: 0 8px 0 0;
+                }
             }
         }
-        float: right;
+        padding: 0 35px;
+        background: @dark;
         @media(max-width: @screen-sm-min * 1px) {
-            display: none;
+            padding: 0 15px;
         }
     }
-    .search {
-        &:before {
-            content: @ionicon-var-ios-search;
-            font-family: @ionicons-font-family;
-            line-height: 36px;
-            position: absolute;
-            top: 0;
-            left: 1px;
-            width: 50px;
-            text-align: center;
-            font-size: 24px;
-        }
-        input {
-            &:focus {
-                outline: none;
+    .content {
+        h1 {
+            & > .icon {
+                &.delete {
+                    &:hover {
+                        color: @error;
+                    }
+                }
+                &:before {
+                    font-size: 24px;
+                    vertical-align: top;
+                }
+                line-height: 36px;
+                display: inline-block;
+                vertical-align: top;
+                width: 30px;
+                text-align: center;
+                color: @text-light;
+                margin: 0 0 0 10px;
             }
-            background: none;
-            border: 0;
-            padding: 0 0 0 56px;
+            float: left;
             line-height: 36px;
-            color: @text;
-            position: relative;
-            z-index: 1;
+            margin: 0;
+            font-size: 21px;
             @media(max-width: @screen-sm-min * 1px) {
-                width: 100px;
+                font-size: 16px;
             }
         }
-        &:after {
-            content: "";
-            display: block;
-            left: 0;
-            top: 4px;
-            height: 28px;
-            width: 1px;
-            background: @border;
-            position: absolute;
+        h2 {
+            &:after {
+                content: "/";
+                margin: 0 0 0 10px;
+            }
+            a {
+                color: @text-light;
+                display: inline-block;
+                margin: 0;
+            }
+            color: @text-light;
+            float: left;
+            line-height: 36px;
+            margin: 0 10px 0 0;
+            font-size: 21px;
+            @media(max-width: @screen-sm-min * 1px) {
+                font-size: 16px;
+            }
         }
-        position: relative;
-        float: left;
-        margin: 0 0 0 20px;
+        nav {
+            ul {
+                li {
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    margin: 0 15px 0 0;
+                    float: left;
+                }
+            }
+            float: right;
+            @media(max-width: @screen-sm-min * 1px) {
+                display: none;
+            }
+        }
+        .search {
+            &:before {
+                content: @ionicon-var-ios-search;
+                font-family: @ionicons-font-family;
+                line-height: 36px;
+                position: absolute;
+                top: 0;
+                left: 1px;
+                width: 50px;
+                text-align: center;
+                font-size: 24px;
+            }
+            input {
+                &:focus {
+                    outline: none;
+                }
+                background: none;
+                border: 0;
+                padding: 0 0 0 56px;
+                line-height: 36px;
+                color: @text;
+                position: relative;
+                z-index: 1;
+                @media(max-width: @screen-sm-min * 1px) {
+                    width: 100px;
+                }
+            }
+            &:after {
+                content: "";
+                display: block;
+                left: 0;
+                top: 4px;
+                height: 28px;
+                width: 1px;
+                background: @border;
+                position: absolute;
+            }
+            position: relative;
+            float: left;
+            margin: 0 0 0 20px;
+        }
+        background: #fff;
+    	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
+        padding: 20px 35px;
+        @media(max-width: @screen-md-min * 1px) {
+            padding-left: 75px;
+        }
+        @media(max-width: @screen-sm-min * 1px) {
+            padding-left: 60px;
+            padding-right: 15px;
+        }
     }
     position: fixed;
     left: 250px;
-    padding: 20px 35px;
     top: 0;
     right: 0;
     z-index: 99;
-    background: #fff;
-	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
     @media(max-width: @screen-md-min * 1px) {
         left: 0;
-        padding-left: 75px;
-    }
-    @media(max-width: @screen-sm-min * 1px) {
-        padding-left: 60px;
-        padding-right: 15px;
     }
 }
 
@@ -137,7 +191,7 @@
     width: 40px;
     text-align: center;
     left: 25px;
-    top: 20px;
+    top: 64px;
     z-index: 101;
     .transition();
     @media(max-width: @screen-md-min * 1px) {
@@ -145,6 +199,7 @@
     }
     @media(max-width: @screen-sm-min * 1px) {
         left: 15px;
+        top: 60px;
     }
 }
 
@@ -154,7 +209,7 @@
         animation-duration: 0.4s;
     }
     position: fixed;
-    top: 20px;
+    top: 64px;
     left: 50%;
     z-index: 110;
     margin-left: 125px;
@@ -165,6 +220,7 @@
     @media(max-width: @screen-sm-min * 1px) {
         left: 20px;
         right: 20px;
+        top: 60px;
         .translate(0, 0);
     }
 }
