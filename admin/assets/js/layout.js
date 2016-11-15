@@ -145,7 +145,7 @@ function getMessages(url) {
                             element.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
                                 element.remove();
                             });
-                        }, 3200);
+                        }, 2200);
 
                     }
                 });
