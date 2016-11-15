@@ -6,6 +6,18 @@
                     border-bottom: 0;
                 }
                 &.active {
+                    &:first-child {
+                        a {
+                            border-top-left-radius: @border-radius;
+                            border-top-right-radius: @border-radius;
+                        }
+                    }
+                    &:last-child {
+                        a {
+                            border-bottom-left-radius: @border-radius;
+                            border-bottom-right-radius: @border-radius;
+                        }
+                    }
                     &:hover {
                         .action {
                             a {
