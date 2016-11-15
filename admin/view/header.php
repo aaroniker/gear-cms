@@ -116,6 +116,10 @@
     <i class="icon icon-navicon-round"></i>
 </div>
 
+<a id="logo" href="<?=url::admin('dashboard'); ?>">
+    <img src="<?=url::assets('img/logoPrimary.svg'); ?>" alt="Gear Logo">
+</a>
+
 <div id="messages"></div>
 
 <header id="head">

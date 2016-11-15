@@ -140,6 +140,7 @@
                 line-height: 36px;
                 color: @text;
                 position: relative;
+                width: 150px;
                 z-index: 1;
                 @media(max-width: @screen-sm-min * 1px) {
                     width: 100px;
@@ -163,7 +164,8 @@
     	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
         padding: 20px 35px;
         @media(max-width: @screen-md-min * 1px) {
-            padding-left: 75px;
+            padding-left: 85px;
+            padding-right: 75px;
         }
         @media(max-width: @screen-sm-min * 1px) {
             padding-left: 60px;
@@ -183,7 +185,6 @@
 #expand {
     &.active {
         color: #fff;
-        left: 270px;
     }
     .icon {
         &:before {
@@ -197,7 +198,7 @@
     display: none;
     width: 40px;
     text-align: center;
-    left: 25px;
+    right: 30px;
     top: 65px;
     z-index: 101;
     .transition();
@@ -205,8 +206,28 @@
         display: block;
     }
     @media(max-width: @screen-sm-min * 1px) {
-        left: 15px;
         top: 61px;
+        right: 15px;
+    }
+}
+
+#logo {
+    img {
+        display: block;
+        height: 36px;
+    }
+    position: fixed;
+    left: 35px;
+    top: 65px;
+    z-index: 100;
+    display: none;
+    .transition();
+    @media(max-width: @screen-md-min * 1px) {
+        display: block;
+    }
+    @media(max-width: @screen-sm-min * 1px) {
+        top: 61px;
+        left: 15px;
     }
 }
 
