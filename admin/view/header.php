@@ -116,9 +116,9 @@
     <i class="icon icon-navicon-round"></i>
 </div>
 
-<header id="head" class="clear">
+<div id="messages"></div>
 
-    <div id="messages"></div>
+<header id="head" class="clear">
 
     <?php if(admin::$subpage): ?>
     <h2>

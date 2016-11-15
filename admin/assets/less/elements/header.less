@@ -101,22 +101,6 @@
         float: left;
         margin: 0 0 0 20px;
     }
-    #messages {
-        .animated {
-            -webkit-animation-duration: 0.4s;
-            animation-duration: 0.4s;
-        }
-        position: absolute;;
-        top: 20px;
-        left: 50%;
-        z-index: 102;
-        .translate(-50%, 0);
-        @media(max-width: @screen-sm-min * 1px) {
-            left: 20px;
-            right: 20px;
-            .translate(0, 0);
-        }
-    }
     position: fixed;
     left: 250px;
     padding: 20px 35px;
@@ -161,5 +145,26 @@
     }
     @media(max-width: @screen-sm-min * 1px) {
         left: 15px;
+    }
+}
+
+#messages {
+    .animated {
+        -webkit-animation-duration: 0.4s;
+        animation-duration: 0.4s;
+    }
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    z-index: 110;
+    margin-left: 125px;
+    .translate(-50%, 0);
+    @media(max-width: @screen-md-min * 1px) {
+        margin-left: 0;
+    }
+    @media(max-width: @screen-sm-min * 1px) {
+        left: 20px;
+        right: 20px;
+        .translate(0, 0);
     }
 }
