@@ -5,7 +5,7 @@
         </a>
     ');
     admin::addButton('
-        <form id="upload" method="post" action="'.url::admin('content', ['media', 'upload']).'" enctype="multipart/form-data">
+        <form class="upload" method="post" action="'.url::admin('content', ['media', 'upload']).'" enctype="multipart/form-data">
             <div class="button">
                 <a>
                     <span>'.lang::get('upload').'</span>
@@ -95,15 +95,16 @@ theme::addJSCode('
 
             $(document).ready(function() {
 
-                $("#upload").on("click", ".button a span", function(e) {
+                $(".upload").on("click", ".button a span", function(e) {
                     e.preventDefault();
                     var btn = $(this).parent().parent();
-                    btn.next(".file").click();
+                    btn.next(".file").trigger("click");
                 });
 
-                $("#upload .file").on("change", function() {
+                $(".upload .file").on("change", function() {
 
-                    var btn = $(this).parent().children(".button");
+                    var upload = $(this).parent();
+                    var btn = upload.children(".button");
                     var loadSVG = btn.children("a").children(".load");
                     var loadBar = btn.children("div").children("span");
                     var checkSVG = btn.children("a").children(".check");
@@ -114,10 +115,10 @@ theme::addJSCode('
                         }, 100, function() {
                             loadSVG.fadeIn(300);
                             btn.animate({
-                                width: 200
+                                width: 180
                             }, 200, function() {
                                 btn.children("div").fadeIn(200, function() {
-                                    $("#upload").ajaxSubmit({
+                                    upload.ajaxSubmit({
                                     	uploadProgress: function(event, position, total, percentComplete) {
                                     		loadBar.width(percentComplete + "%");
                                     	},
