@@ -1,6 +1,11 @@
 #logs {
     & > ul {
         li {
+            [data-tooltip] {
+                &:after {
+                    line-height: normal;
+                }
+            }
             &:after {
                 content: "";
                 clear: both;
