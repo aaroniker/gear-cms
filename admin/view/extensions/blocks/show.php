@@ -10,17 +10,17 @@
 
     $form->addTab(lang::get('info'));
     $form->addRawField('
-        <pre><code>'.json_encode($block->getInfo(), JSON_PRETTY_PRINT).'</code></pre>
+        <pre>'.json_encode($block->getInfo(), JSON_PRETTY_PRINT).'</pre>
     ');
 
     $form->addTab(lang::get('content'));
     $form->addRawField('
-        <pre><code>'.htmlentities($block->getContent()).'</code></pre>
+        <pre>'.htmlentities($block->getContent()).'</pre>
     ');
 
     $form->addTab(lang::get('css'));
     $form->addRawField('
-        <pre><code>'.$block->getCSS().'</code></pre>
+        <pre>'.$block->getCSS().'</pre>
     ');
 
 ?>
