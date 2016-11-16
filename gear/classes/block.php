@@ -70,7 +70,7 @@ class block {
 
     protected function filterFile($start, $end) {
 
-        $string = ' '.$this->file;
+        $string = ' '.str_replace(['{{', '}}'], ['-->', '<--'], $this->file);
         $ini = strpos($string, $start);
 
         if($ini == 0) {
