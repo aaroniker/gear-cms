@@ -43,6 +43,7 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 * [jQuery + UI](https://jquery.com/)
 * [Vue.js](http://vuejs.org/)
 * [lodash](https://github.com/lodash/lodash)
+* [animate.css](https://github.com/daneden/animate.css)
 * [Chartist.js](http://gionkunz.github.io/chartist-js/index.html)
 * [FluentPDO](https://github.com/envms/fluentpdo)
 * [GUMP](https://github.com/Wixel/GUMP)
