@@ -12,6 +12,7 @@
     theme::addJS('https://cdn.jsdelivr.net/lodash/4.17.1/lodash.min.js');
     theme::addJS('https://cdn.jsdelivr.net/vue/2.0.6/vue.min.js');
     theme::addJS(url::assets('js/form.js'));
+    theme::addJS(url::assets('js/autogrow.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
     theme::addJS(url::assets('js/app.js'));
