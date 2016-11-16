@@ -1,7 +1,6 @@
 {
     "require": {
         "lichtner/fluentpdo": "dev-master",
-        "ircmaxell/password-compat": "*",
         "wixel/gump": "dev-master",
         "twig/twig": "~1.0"
     }
