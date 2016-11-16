@@ -40,8 +40,9 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 
 * [Framy CSS](http://www.framycss.org/)
 * [Ionicons](http://ionicons.com/)
-* [jQuery](https://jquery.com/)
+* [jQuery + UI](https://jquery.com/)
 * [Vue.js](http://vuejs.org/)
+* [lodash](https://github.com/lodash/lodash)
 * [Chartist.js](http://gionkunz.github.io/chartist-js/index.html)
 * [FluentPDO](https://github.com/envms/fluentpdo)
 * [GUMP](https://github.com/Wixel/GUMP)
