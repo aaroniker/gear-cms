@@ -1,9 +1,5 @@
 jQuery(document).ready(function($) {
 
-    $("pre code").each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
-
     $(document).on("click", "#expand", function(e) {
         $("#overlay").fadeToggle(400, function() {
             $("#left").toggleClass("active");
