@@ -36,7 +36,7 @@ class message {
 
     }
 
-    static protected function addMessage($message, $class) {
+    static public function addMessage($message, $class) {
 
         userSession::init();
 
