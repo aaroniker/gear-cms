@@ -7,6 +7,13 @@ jQuery(document).ready(function($) {
         });
     });
 
+    $(document).on("click", "#switch", function(e) {
+        $("#left ul ul").slideToggle(300, function() {
+            $("#left").toggleClass("small");
+            $("#head").toggleClass("small");
+        });
+    });
+
     $(document).on("click", "#nav > ul > li > span", function(e) {
 
         var _this = $(this).parent();
