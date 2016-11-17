@@ -51,9 +51,19 @@ class application {
 
     private function frontend() {
 
-        $url = self::getUrl();
+        $page = (new PageModel())->getByURL(self::getUrl());
 
-        var_dump($url);
+        if(!$page) {
+
+            echo '<h1>404</h1>';
+
+        } else {
+
+            echo '<h1>'.$page->name.'</h1>';
+
+            var_dump($page);
+
+        }
 
     }
 
