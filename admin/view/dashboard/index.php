@@ -4,16 +4,7 @@
 
         <div class="lg-8 sm-7">
             <div class="box">
-                <div class="clear">
-                    <h3 class="fl-left"><?=lang::get('statistics'); ?></h3>
-                    <div class="form-select fl-right">
-                        <select class="form-field">
-                            <option><?=lang::get('week'); ?></option>
-                            <option><?=lang::get('month'); ?></option>
-                            <option><?=lang::get('year'); ?></option>
-                        </select>
-					</div>
-                </div>
+                <h3><?=lang::get('statistics'); ?></h3>
                 <div class="statistics"></div>
             </div>
         </div>
