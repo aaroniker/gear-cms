@@ -78,6 +78,12 @@ class type {
 
     }
 
+    static public function browser($var, $type = '', $default = null) {
+
+        return self::session($var, $type, self::cookie($var, $type, $default));
+
+    }
+
     static public function addSession($name, $value) {
 
         $_SESSION[$name] = $value;
