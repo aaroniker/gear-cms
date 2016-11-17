@@ -165,9 +165,9 @@
         }
         background: #fff;
     	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
-        padding: 20px 50px;
+        padding: 20px 50px 20px 75px;
         @media(max-width: @screen-lg-min * 1px) {
-            padding: 20px 35px;
+            padding: 20px 35px 20px 60px;
         }
         @media(max-width: @screen-md-min * 1px) {
             padding-left: 85px;
@@ -215,6 +215,33 @@
     @media(max-width: @screen-sm-min * 1px) {
         top: 61px;
         right: 15px;
+    }
+}
+
+#switch {
+    &:hover {
+        color: @text;
+    }
+    .icon {
+        &:before {
+            line-height: 36px;
+            font-size: 21px;
+        }
+    }
+    cursor: pointer;
+    color: @text-light;
+    position: fixed;
+    width: 40px;
+    text-align: center;
+    left: 287px;
+    top: 65px;
+    z-index: 101;
+    .transition();
+    @media(max-width: @screen-lg-min * 1px) {
+        left: 270px;
+    }
+    @media(max-width: @screen-md-min * 1px) {
+        display: none;
     }
 }
 

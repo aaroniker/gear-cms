@@ -112,6 +112,10 @@
     </div>
 </div>
 
+<div id="switch">
+    <i class="icon icon-chevron-left"></i>
+</div>
+
 <div id="expand">
     <i class="icon icon-navicon-round"></i>
 </div>
