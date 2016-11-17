@@ -73,6 +73,21 @@ class userSession extends user {
         $sessionID = session_id();
         $userID = type::session('userID', 'int', 0);
 
+        if($userID) {
+
+            $model = new UserModel($userID);
+            $now = (new DateTime('now'))->format('U');
+
+            $sessions = unserialize($model->session_ids);
+
+            foreach($sessions as $id => $info) {
+                if($info['expiration'] < $now) {
+                    self::delete($userID, $id);
+                }
+            }
+
+        }
+
         if($userID && isset($sessionID)) {
 
             $model = new UserModel($userID);
