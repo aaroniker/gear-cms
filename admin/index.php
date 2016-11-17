@@ -78,9 +78,7 @@
         admin::$page = lang::get('login');
 
         include(dir::view('head.php'));
-
         echo config::get('content');
-
         include(dir::view('footer.php'));
 
     }
