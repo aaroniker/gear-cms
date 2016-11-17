@@ -327,7 +327,7 @@ Vue.component("file-table", {
                     });
                     this.fileName = path;
                 } else {
-                    alert(lang["file_select_wrong_ext"] + " " + vue.ext);
+                    setMessage(lang["file_select_wrong_ext"] + " " + vue.ext, "error");
                 }
             }
 
