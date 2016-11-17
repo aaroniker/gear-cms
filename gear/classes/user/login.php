@@ -76,6 +76,8 @@ class userLogin extends user {
 
         $userID = type::session('userID');
 
+        type::deleteCookie('session_id');
+
         userSession::delete($userID, session_id());
         userSession::destroy();
 

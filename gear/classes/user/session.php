@@ -30,6 +30,8 @@ class userSession extends user {
 
             $expiration = (new DateTime('now'))->modify($modify)->format('U');
 
+            type::setCookie('session_id', $sessionID, $expiration);
+
             $browser = config::getBrowser();
 
             $sessions[$sessionID] = [
@@ -70,7 +72,7 @@ class userSession extends user {
 
     public static function exists() {
 
-        $sessionID = session_id();
+        $sessionID = type::cookie('session_id', 'string', session_id());
         $userID = type::session('userID', 'int', 0);
 
         if($userID) {
