@@ -248,7 +248,9 @@ Vue.component("file-table", {
                     $(document).ready(function() {
                         $(".file div").draggable({
                             revert: "invalid",
-                            helper: "clone"
+                            helper: "clone",
+                            axis: "y",
+                            containment: vue.$el
                         });
                         $(".dir").droppable({
                             hoverClass: "dropActive",

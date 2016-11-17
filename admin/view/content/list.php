@@ -123,7 +123,8 @@ theme::addJSCode('
                 $(document).ready(function() {
                     $("#pageList .entry .info").draggable({
                         revert: "invalid",
-                        helper: "clone"
+                        helper: "clone",
+                        containment: $("#pageList")
                     });
                     $("#pageList .entry .info, #pageList > h3").droppable({
                         hoverClass: "dropActive",
