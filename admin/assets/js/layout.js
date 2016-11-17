@@ -113,6 +113,18 @@ function setTabs() {
 
 }
 
+function setMessage(message, type) {
+    $.ajax({
+        type: "POST",
+        url: url + "admin/",
+        data: {
+            method: "setMessage",
+            message: message,
+            type: type
+        }
+    });
+}
+
 function getMessages(url) {
     $.ajax({
         type: "POST",

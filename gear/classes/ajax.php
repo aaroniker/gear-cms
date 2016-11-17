@@ -35,6 +35,15 @@ class ajax {
 
         }
 
+        if(type::post('method', 'string', '') == 'setMessage') {
+
+            $message = type::post('message', 'string', '');
+            $type = type::post('type', 'string', 'success');
+
+            message::addMessage($message, $type);
+
+        }
+
         if(type::post('method', 'string', '') == 'deleteMessage') {
 
             $messages = type::session('messages');
