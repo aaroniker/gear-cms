@@ -98,7 +98,7 @@ class type {
 
     static public function setCookie($name, $value, $time) {
 
-        setcookie($name, $value, $time);
+        setcookie($name, $value, $time, '/');
 
     }
 
