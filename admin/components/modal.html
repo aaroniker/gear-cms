@@ -1,6 +1,6 @@
 <template id="modal-template">
     <transition name="modal" v-on:before-enter="beforeEnter">
-        <div class="modal">
+        <div class="modal" @click.self="$emit('close')">
             <div :class="'mask ' + size">
                 <div :class="'inner ' + animated">
 
