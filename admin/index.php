@@ -14,8 +14,8 @@
     theme::addJS(url::assets('js/form.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
-    theme::addJS(url::assets('js/app.js'));
     theme::addJS(url::assets('js/layout.js'));
+    theme::addJS(url::assets('js/app.js'));
 
     userPerm::add('content[index]', lang::get('content[index]'));
     userPerm::add('content[media]', lang::get('content[media]'));
