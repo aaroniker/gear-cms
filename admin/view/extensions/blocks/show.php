@@ -15,7 +15,7 @@
 
     $form->addTab(lang::get('content'));
     $form->addRawField('
-        <pre>'.htmlentities($block->getContent()).'</pre>
+        <pre>'.str_replace(['{{', '}}'], ['<strong class="var">', '</strong>'], htmlentities($block->getContent())).'</pre>
     ');
 
     $form->addTab(lang::get('css'));
