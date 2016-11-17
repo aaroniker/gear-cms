@@ -26,6 +26,38 @@ class PageModel extends model {
 
     }
 
+    public function getByURL($url) {
+
+        $url = (!is_array($url)) ? [] : $url;
+
+        $pages = [];
+
+        $getAllFromDb = self::getAllFromDb();
+
+        if(is_array($getAllFromDb)) {
+            foreach($getAllFromDb as $key => $val) {
+                $page = new PageModel($val->id);
+                $pages[self::getFullURL($val->id, '')] = $page;
+            }
+        }
+
+        if(empty($url)) {
+            $page = new PageModel(option::get('home'));
+            if(isset($page->id)) {
+                return $page;
+            }
+        }
+
+        $url = '/'.implode('/', $url);
+
+        if(!isset($pages[$url])) {
+            return false;
+        }
+
+        return $pages[$url];
+
+    }
+
     public static function getFullURL($id, $base = '') {
 
         $page = new PageModel($id);
