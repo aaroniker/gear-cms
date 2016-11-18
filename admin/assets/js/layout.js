@@ -25,24 +25,15 @@ jQuery(document).ready(function($) {
             },
             success: function() {
 
-                if(_this.hasClass("small")) {
+                _this.toggleClass("small");
+                $("#left").toggleClass("small");
+                $("#head").toggleClass("small");
+                $("main").toggleClass("small");
 
-                    _this.removeClass("small");
-                    $("#left").removeClass("small");
-                    $("#head").removeClass("small");
-                    $("main").removeClass("small");
-
+                if(!_this.hasClass("small")) {
                     $("#left .drop ul").slideDown(300);
-
                 } else {
-
                     $("#left .drop ul").hide();
-
-                    _this.addClass("small");
-                    $("#left").addClass("small");
-                    $("#head").addClass("small");
-                    $("main").addClass("small");
-
                 }
 
                 setTimeout(function() {
