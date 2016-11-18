@@ -83,6 +83,22 @@ class ajax {
 
         }
 
+        if(type::post('method', 'string', '') == 'setMenuSmall') {
+
+            $active = type::post('active', 'int', 0);
+
+            $user = user::current();
+
+            if(!$active) {
+                $active = null;
+            }
+
+            $user->save([
+                'smallMenu' => $active
+            ]);
+
+        }
+
     }
 
 }
