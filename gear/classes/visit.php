@@ -4,34 +4,40 @@ class visit {
 
     public static function add() {
 
-        $now = new DateTime('now');
+        if(!self::checkBot()) {
 
-        $ip = self::getIP();
+            $now = new DateTime('now');
 
-        $where = [
-            'visit_ip' => $ip,
-            'visit_date' => $now->format('Y-m-d')
-        ];
+            $ip = self::getIP();
 
-        $entry = db()->from('visits')->where($where)->fetch();
-
-        if($entry) {
-
-            $set = [
-                'visit_hits' => $entry->visit_hits + 1
+            $where = [
+                'visit_ip' => $ip,
+                'visit_date' => $now->format('Y-m-d')
             ];
 
-            return db()->update('visits')->set($set)->where('visit_id',  $entry->visit_id)->execute();
+            $entry = db()->from('visits')->where($where)->fetch();
+
+            if($entry) {
+
+                $set = [
+                    'visit_hits' => $entry->visit_hits + 1
+                ];
+
+                return db()->update('visits')->set($set)->where('visit_id',  $entry->visit_id)->execute();
+
+            }
+
+            $values = [
+                'visit_ip' => $ip,
+                'visit_hits' => 1,
+                'visit_date' => $now->format('Y-m-d')
+            ];
+
+            return db()->insertInto('visits')->values($values)->execute();
 
         }
 
-        $values = [
-            'visit_ip' => $ip,
-            'visit_hits' => 1,
-            'visit_date' => $now->format('Y-m-d')
-        ];
-
-        return db()->insertInto('visits')->values($values)->execute();
+        return false;
 
     }
 
@@ -45,6 +51,10 @@ class visit {
             return $_SERVER['REMOTE_ADDR'];
         }
 
+    }
+
+    public static function checkBot() {
+        return (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT']));
     }
 
 }
