@@ -312,7 +312,7 @@ theme::addJSCode('
     new Chartist.Line(".statistics", {
         labels: ["'.implode('","', array_keys(visit::getLast(7))).'"],
         series: [
-            [102, 85, 50, 60, 80, 95, 75]
+            ['.implode(',', visit::getLast(7)).']
         ]
     }, {
         height: 237,
@@ -333,7 +333,7 @@ theme::addJSCode('
             }
         },
         chartPadding: {
-            top: 0,
+            top: 5,
             right: 14,
             bottom: 0,
             left: 14
