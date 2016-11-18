@@ -68,6 +68,18 @@ class visit {
             $date = $now->modify("-1 day");
             $visits = 0;
 
+            $where = [
+                'visit_date' => $date->format('Y-m-d')
+            ];
+
+            $entry = db()->from('visits')->where($where)->fetchAll();
+
+            if($entry) {
+                foreach($entry as $val) {
+                    $visits = $visits + 1;
+                }
+            }
+
             $return[$date->format('d.m')] = $visits;
 
         }
