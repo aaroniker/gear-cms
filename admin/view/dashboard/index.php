@@ -310,7 +310,7 @@ theme::addJSCode('
     });
 
     new Chartist.Line(".statistics", {
-        labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+        labels: ["'.implode('","', array_keys(visit::getLast(7))).'"],
         series: [
             [102, 85, 50, 60, 80, 95, 75]
         ]
