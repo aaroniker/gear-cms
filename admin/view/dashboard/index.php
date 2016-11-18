@@ -328,15 +328,15 @@ theme::addJSCode('
             showGrid: false,
             offset: 25,
             labelOffset: {
-                x: -7,
+                x: -15,
                 y: 6
             }
         },
         chartPadding: {
             top: 0,
-            right: 8,
+            right: 14,
             bottom: 0,
-            left: 8
+            left: 14
         },
         plugins: [
             Chartist.plugins.tooltip({
