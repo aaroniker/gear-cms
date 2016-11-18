@@ -19,6 +19,16 @@ main {
             display: block;
         }
     }
+    &.small {
+        @media(min-width: (@screen-md-min + 1) * 1px) {
+            padding-left: 136px;
+        }
+        @media(max-width: @screen-lg-min * 1px) {
+            @media(min-width: (@screen-md-min + 1) * 1px) {
+                padding-left: 121px;
+            }
+        }
+    }
     position: relative;
     overflow: hidden;
     padding: 160px 50px 30px 300px;

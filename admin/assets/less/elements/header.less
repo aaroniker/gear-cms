@@ -179,7 +179,9 @@
         }
     }
     &.small {
-        left: 86px;
+        @media(min-width: (@screen-md-min + 1) * 1px) {
+            left: 86px;
+        }
     }
     position: fixed;
     left: 250px;
@@ -222,6 +224,17 @@
 }
 
 #switch {
+    &.small {
+        .icon {
+            &:before {
+                content: @ionicon-var-chevron-right;
+            }
+        }
+        left: 121px;
+        @media(max-width: @screen-lg-min * 1px) {
+            left: 106px;
+        }
+    }
     &:hover {
         color: @text;
     }

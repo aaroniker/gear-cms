@@ -8,13 +8,34 @@ jQuery(document).ready(function($) {
     });
 
     $(document).on("click", "#switch", function(e) {
-        $("#left ul ul").slideToggle(300, function() {
-            $("#left").toggleClass("small");
-            $("#head").toggleClass("small");
-        });
+
+        var _this = $(this);
+
+        if(_this.hasClass("small")) {
+
+            _this.removeClass("small");
+            $("#left").removeClass("small");
+            $("#head").removeClass("small");
+            $("main").removeClass("small");
+
+            $("#left .drop ul").slideDown(300);
+
+        } else {
+
+            _this.addClass("small");
+            $("#left").addClass("small");
+            $("#head").addClass("small");
+            $("main").addClass("small");
+
+        }
+
+        setTimeout(function() {
+            window.dispatchEvent(new Event('resize'));
+        }, 300);
+
     });
 
-    $(document).on("click", "#nav > ul > li > span", function(e) {
+    $(document).on("click", "#nav > ul > li > .arrow", function(e) {
 
         var _this = $(this).parent();
         var _url = $(this).data("id");

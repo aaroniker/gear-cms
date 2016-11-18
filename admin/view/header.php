@@ -53,14 +53,14 @@
                         $class = ($open) ? $class.' drop dropFade' : $class;
 
                         $sub = admin::getSubmenu($url);
-                        $drop = ($sub && count($sub) > 1) ? '<span data-id="'.$url.'"></span>' : '';
+                        $drop = ($sub && count($sub) > 1) ? '<span class="arrow" data-id="'.$url.'"></span>' : '';
 
                         echo '
                         <li class="'.$class.'">
                             '.$drop.'
                             <a href="'.url::admin($url).'">
                                 <i class="icon icon-'.$array['icon'].'"></i>
-                                '.$array['name'].'
+                                <span>'.$array['name'].'</span>
                             </a>
                         ';
                         if($sub && count($sub) > 1):
@@ -94,7 +94,7 @@
             ?>
 
             <div class="info clear">
-                <div class="fl-left">
+                <div class="version">
                     <?=sprintf(lang::get('version'), config::get('version')); ?>
                 </div>
                 <nav>
