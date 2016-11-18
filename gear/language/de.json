@@ -131,6 +131,7 @@
     "sitename": "Seitenname",
     "siteurl": "URL",
     "cache": "Cache",
+    "language": "Sprache",
 
     ## Time
     "year": "Jahr",

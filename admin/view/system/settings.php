@@ -8,6 +8,12 @@
     $field->fieldName(lang::get('sitename'));
     $field->fieldValidate();
 
+    $field = $form->addSelectField('lang', config::get('lang'));
+    $field->fieldName(lang::get('language'));
+    foreach(lang::getAll() as $key => $val) {
+        $field->add($key, $val);
+    }
+
     $form->addTab(lang::get('advanced'));
 
     $field = $form->addTextField('siteurl', config::get('url'));
@@ -27,6 +33,7 @@
             $cache = ($array['cache']) ? true : false;
 
             config::add('url', $array['siteurl'], true);
+            config::add('lang', $array['lang'], true);
             config::add('cache', $cache, true);
             config::save();
 
