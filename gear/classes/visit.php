@@ -57,6 +57,25 @@ class visit {
         return (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT']));
     }
 
+    public static function getLast($count) {
+
+        $now = new DateTime('now');
+
+        $return = [];
+
+        for($i = 0; $i < $count; $i++) {
+
+            $date = $now->modify("-1 day");
+            $visits = 0;
+
+            $return[$date->format('d.m')] = $visits;
+
+        }
+
+        return $return;
+
+    }
+
 }
 
 ?>
