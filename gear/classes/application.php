@@ -53,6 +53,8 @@ class application {
 
         $page = (new PageModel())->getByURL(self::getUrl());
 
+        visit::add();
+
         if(!$page) {
 
             echo '<h1>404</h1>';
