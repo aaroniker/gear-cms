@@ -73,6 +73,7 @@ class media {
                 $files[] = [
                     'id' => str_replace(dir::media().'/', '', $file),
                     'name' => $name,
+                    'url' => url::media($file),
                     'size' => self::size(dir::media($file)),
                     'type' => 'file'
                 ];
