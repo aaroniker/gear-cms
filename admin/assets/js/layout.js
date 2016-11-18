@@ -117,9 +117,7 @@ jQuery(document).ready(function($) {
 
     });
 
-    getMessages(url);
-
-    setInterval("getMessages(url)", 1200);
+    setInterval("getMessages(url)", 1000);
 
     setTabs();
 
