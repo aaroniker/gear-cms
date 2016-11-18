@@ -133,20 +133,34 @@ function setTabs() {
     $(".tabs > section > div:first-child").show();
     $(".tabs > nav > ul > li:first-child").addClass("active");
 
+    function setTabActive(target) {
+
+        var _this = $(".tabs > nav > ul > li > a[href='" + target + "']");
+
+        if(_this.length) {
+
+            var tabEl = _this.parent().parent().parent().parent();
+            var sectionEl = tabEl.children("section");
+
+            window.location.hash = target;
+
+            _this.parent().parent().children("li").removeClass("active");
+            sectionEl.children('div').hide();
+
+            _this.parent().addClass("active");
+            sectionEl.find(target).show();
+
+        }
+
+    }
+
+    if(window.location.hash) {
+        setTabActive(window.location.hash);
+    }
+
     $(document).on("click", ".tabs > nav > ul > li > a", function(e) {
-
         e.preventDefault();
-
-        var target = $(this).attr("href");
-        var tabEl = $(this).parent().parent().parent().parent();
-        var sectionEl = tabEl.children("section");
-
-        $(this).parent().parent().children("li").removeClass("active");
-        sectionEl.children('div').hide();
-
-        $(this).parent().addClass("active");
-        sectionEl.find(target).show();
-
+        setTabActive($(this).attr("href"));
     });
 
 }
