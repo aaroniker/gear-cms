@@ -78,7 +78,9 @@
                             {{ entry.size }}
                         </td>
                         <td v-if="fileSelect" class="shrink">
-                            <a v-if="entry.type == 'file'" @click="selectFile(entry.id)" class="icon icon-checkmark-circled"></a>
+                            <nav>
+                                <a v-if="entry.type == 'file'" @click="selectFile(entry.id)" class="icon icon-checkmark-circled"></a>
+                            </nav>
                         </td>
                         <td v-else class="shrink">
                             <nav>
