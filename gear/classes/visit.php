@@ -88,6 +88,27 @@ class visit {
 
     }
 
+    public static function getToday() {
+
+        $now = new DateTime('now');
+        $visits = 0;
+
+        $where = [
+            'visit_date' => $now->format('Y-m-d')
+        ];
+
+        $entry = db()->from('visits')->where($where)->fetchAll();
+
+        if($entry) {
+            foreach($entry as $val) {
+                $visits = $visits + 1;
+            }
+        }
+
+        return $visits;
+
+    }
+
 }
 
 ?>
