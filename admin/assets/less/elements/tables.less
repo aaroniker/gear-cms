@@ -63,13 +63,25 @@ table.table {
     tr {
         td {
             &.shrink {
-                a {
-                    &:hover {
-                        color: @primary;
+                nav {
+                    .icon {
+                        &:before {
+                            font-size: 21px;
+                            line-height: 28px;
+                        }
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                        &:hover {
+                            color: @primary;
+                        }
+                        cursor: pointer;
+                        color: @text-light;
+                        display: inline-block;
+                        margin: 0 12px 0 0;
                     }
-                    cursor: pointer;
-                    font-size: 21px;
-                    color: @text-light;
+                    text-align: right;
+                    white-space: nowrap;
                 }
                 width: 1%;
             }
