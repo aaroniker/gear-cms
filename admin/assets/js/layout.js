@@ -10,28 +10,47 @@ jQuery(document).ready(function($) {
     $(document).on("click", "#switch", function(e) {
 
         var _this = $(this);
+        var _active = 1;
 
         if(_this.hasClass("small")) {
-
-            _this.removeClass("small");
-            $("#left").removeClass("small");
-            $("#head").removeClass("small");
-            $("main").removeClass("small");
-
-            $("#left .drop ul").slideDown(300);
-
-        } else {
-
-            _this.addClass("small");
-            $("#left").addClass("small");
-            $("#head").addClass("small");
-            $("main").addClass("small");
-
+            _active = 0;
         }
 
-        setTimeout(function() {
-            window.dispatchEvent(new Event('resize'));
-        }, 300);
+        $.ajax({
+            method: "POST",
+            url: url + "admin/",
+            data: {
+                method: "setMenuSmall",
+                active: _active
+            },
+            success: function() {
+
+                if(_this.hasClass("small")) {
+
+                    _this.removeClass("small");
+                    $("#left").removeClass("small");
+                    $("#head").removeClass("small");
+                    $("main").removeClass("small");
+
+                    $("#left .drop ul").slideDown(300);
+
+                } else {
+
+                    $("#left .drop ul").hide();
+
+                    _this.addClass("small");
+                    $("#left").addClass("small");
+                    $("#head").addClass("small");
+                    $("main").addClass("small");
+
+                }
+
+                setTimeout(function() {
+                    window.dispatchEvent(new Event('resize'));
+                }, 300);
+
+            }
+        });
 
     });
 

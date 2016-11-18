@@ -1,4 +1,8 @@
-<div id="left">
+<?php
+    $smallClass = (user::current()->smallMenu) ? 'class="small"' : '';
+?>
+
+<div id="left" <?=$smallClass; ?>>
     <div class="inner">
         <div class="wrap">
 
@@ -112,7 +116,7 @@
     </div>
 </div>
 
-<div id="switch">
+<div id="switch" <?=$smallClass; ?>>
     <i class="icon icon-chevron-left"></i>
 </div>
 
@@ -126,7 +130,7 @@
 
 <div id="messages"></div>
 
-<header id="head">
+<header id="head" <?=$smallClass; ?>>
 
     <nav>
     <?php
@@ -188,7 +192,7 @@
 
 </header>
 
-<main>
+<main <?=$smallClass; ?>>
 
     <div class="buttons clear">
         <?php
