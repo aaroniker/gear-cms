@@ -22,7 +22,7 @@ theme::addJSCode('
                     title: "",
                     class: "shrink",
                     content: function(entry) {
-                        return "<a href=\''.url::admin('extensions', ['blocks', 'show']).'/" + entry.id + "\' class=\'icon icon-navicon-round\'></a>";
+                        return "<nav><a href=\''.url::admin('extensions', ['blocks', 'show']).'/" + entry.id + "\' class=\'icon icon-navicon-round\'></a></nav>";
                     }
                 }
             },

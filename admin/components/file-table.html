@@ -81,7 +81,10 @@
                             <a v-if="entry.type == 'file'" @click="selectFile(entry.id)" class="icon icon-checkmark-circled"></a>
                         </td>
                         <td v-else class="shrink">
-                            <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
+                            <nav>
+                                <a v-if="entry.type == 'file'" :href="entry.url" target="_blank" class="icon icon-arrow-down-a"></a>
+                                <a @click="editFileID = entry.id, editFileName = entry.name, editFile = true;" class="icon icon-edit"></a>
+                            </nav>
                         </td>
                     </tr>
                     <tr v-if="!filtered.length">

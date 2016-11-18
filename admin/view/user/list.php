@@ -37,7 +37,7 @@ theme::addJSCode('
                     title: "",
                     class: "shrink",
                     content: function(entry) {
-                        return "<a href=\''.url::admin('user', ['index', 'edit']).'/" + entry.id + "\' class=\'icon icon-edit\'></a>";
+                        return "<nav><a href=\''.url::admin('user', ['index', 'edit']).'/" + entry.id + "\' class=\'icon icon-edit\'></a></nav>";
                     }
                 }
             },
