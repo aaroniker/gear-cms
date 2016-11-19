@@ -15,7 +15,7 @@
                         &:hover {
                             color: @text-dark;
                         }
-                        &:before {
+                        &:after {
                             content: "";
                             position: absolute;
                             left: 0;
@@ -31,13 +31,22 @@
                     &:hover {
                         color: @text;
                     }
+                    &:before {
+                        line-height: 21px;
+                        font-size: 18px;
+                        display: block;
+                    }
                     position: relative;
                     color: @text-light;
+                    line-height: 21px;
                     display: block;
-                    padding: 15px 12px 9px 12px;
+                    padding: 14px 12px 8px 12px;
                     @media(max-width: @screen-sm-min * 1px) {
                         padding: 13px 8px 7px 8px;
                     }
+                }
+                &.tool {
+                    float: right;
                 }
                 margin: 0 12px 0 0;
                 float: left;

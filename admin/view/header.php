@@ -133,26 +133,27 @@
 <header id="head" <?=$smallClass; ?>>
 
     <nav>
-    <?php
-        $sub = admin::getSubmenu(admin::$url);
-        if($sub):
-            echo '<ul>';
+        <ul>
+            <?php
+                $sub = admin::getSubmenu(admin::$url);
+                if($sub):
+                    foreach($sub as $url => $array):
 
-            foreach($sub as $url => $array):
+                        $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
 
-                $class = ($array['class']) ? ' class="'.$array['class'].'"' : '';
+                        echo '
+                        <li'.$class.'>
+                            <a href="'.url::admin($url).'">'.$array['name'].'</a>
+                        </li>
+                        ';
 
-                echo '
-                <li'.$class.'>
-                    <a href="'.url::admin($url).'">'.$array['name'].'</a>
-                </li>
-                ';
-
-            endforeach;
-
-            echo '</ul>';
-        endif;
-    ?>
+                    endforeach;
+                endif;
+            ?>
+            <li class="tool">
+                <a href="<?=url::base(); ?>" target="_blank" class="icon icon-android-desktop"></a>
+            </li>
+        </ul>
     </nav>
 
     <div class="content clear">
