@@ -110,7 +110,7 @@ class contentController extends controller {
 
     }
 
-    public function menus($action = '', $id = 0) {
+    public function menus($action = '', $id = 0, $children = 0) {
 
         $this->model = new MenuModel;
 
@@ -141,10 +141,12 @@ class contentController extends controller {
                 }
 
             } elseif($action == 'delItem') {
-                if($id) {
+                if($id && $children == 0) {
                     if($this->model->load($id)->delete()) {
                         message::success(lang::get('menu_item_deleted'));
                     }
+                } else {
+                    message::error(lang::get('menu_item_delete_children'));
                 }
             } elseif($action == 'add') {
 

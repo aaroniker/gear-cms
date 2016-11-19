@@ -83,6 +83,7 @@
     "menu_deleted": "Menü gelöscht",
     "menu_item_added": "Menü-Eintrag hinzugefügt",
     "menu_item_deleted": "Menü-Eintrag gelöscht",
+    "menu_item_delete_children": "Menü-Eintrag hat Unterpunkte",
     "menu_item_moved": "Menü-Eintrag verschoben",
     "link": "Link",
     "menu_page_link_required": "<strong>Seite</strong> oder <strong>Link</strong> angeben",
