@@ -13,6 +13,7 @@ Gear ist noch im frühen Entwicklungsstatus - so wie es jetzt ist, kann es noch 
 
 Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 
+* [Forum] (http://forum.gearcms.org/)
 * [Webseite] (http://gearcms.org)
 * [Dokumentation] (https://github.com/aaroniker/gear/wiki)
 
