@@ -202,3 +202,20 @@ a.delete {
     border-top: 1px solid @border;
     margin-bottom: (@line-height-computed / 2);
 }
+
+.todayStat {
+    span {
+        vertical-align: top;
+        line-height: 26px;
+        margin: 5px 0 0 6px;
+        background: @primary;
+        color: #fff;
+        width: 36px;
+        text-align: center;
+        display: inline-block;
+        .round(13px);
+    }
+    color: @text-light;
+    line-height: 36px;
+    float: right;
+}

@@ -4,7 +4,13 @@
 
         <div class="lg-8 sm-7">
             <div class="box">
-                <h3><?=lang::get('statistics'); ?></h3>
+                <div class="clear">
+                    <h3 class="fl-left"><?=lang::get('statistics'); ?></h3>
+                    <div class="todayStat">
+                        <?=lang::get('today'); ?>
+                        <span><?=visit::getToday(); ?></span>
+                    </div>
+                </div>
                 <div class="statistics"></div>
             </div>
         </div>
