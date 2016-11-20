@@ -134,6 +134,7 @@
     "siteurl": "URL",
     "cache": "Cache",
     "language": "Sprache",
+    "theme": "Theme",
 
     ## Time
     "year": "Jahr",
