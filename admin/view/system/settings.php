@@ -52,9 +52,12 @@
 ?>
 
 <div class="columns">
-    <div class="md-9 lg-7">
-        <?=$form->show(); ?>
+  <div class="md-9 lg-7">
+    <div class="box">
+      <h3><?=option::get('sitename'); ?></h3>
+      <?=$form->show(); ?>
     </div>
+  </div>
 </div>
 
 <?php
