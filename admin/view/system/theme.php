@@ -1,12 +1,10 @@
 <div class="columns">
-    <?php foreach(theme::getAll() as $key => $theme): ?>
-    <div class="md-4 sm-6">
+    <div v-for="(entry, key) in themes" class="md-4 sm-6">
         <div class="box">
-            <h3><?=$theme['name']; ?></h3>
-            <?=$key; ?>
+            <h3>{{ entry.name }}</h3>
+            {{ key }}
         </div>
     </div>
-    <?php endforeach; ?>
 </div>
 
 <?php
@@ -14,7 +12,8 @@ theme::addJSCode('
     new Vue({
         el: "#app",
         data: {
-            headline: lang["theme"]
+            headline: lang["theme"],
+            themes: '.json_encode(theme::getAll()).'
         },
         created: function() {
 
@@ -24,6 +23,13 @@ theme::addJSCode('
                 vue.headline = data.headline;
             });
 
+            vue.fetch();
+
+        },
+        methods: {
+            fetch: function() {
+
+            }
         }
     });
 ');
