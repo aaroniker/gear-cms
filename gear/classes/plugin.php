@@ -39,7 +39,7 @@ class plugin {
 
                 $plugin = new self($dir);
 
-                self::$allPlugins[] = $plugin->getConfig();
+                self::$allPlugins[] = array_merge(['id' => $dir], $plugin->getConfig());
 
             }
 
