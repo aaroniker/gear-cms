@@ -123,6 +123,8 @@
     "css": "CSS",
     "info": "Info",
     "description": "Beschreibung",
+    "plugin_activated": "Plugin aktiviert",
+    "plugin_deactivated": "Plugin deaktiviert",
 
     ## System
     "system": "System",
@@ -136,7 +138,7 @@
     "language": "Sprache",
     "theme": "Theme",
     "activate": "Aktivieren",
-    "theme_active": "Theme aktiviert",
+    "theme_activated": "Theme aktiviert",
 
     ## Time
     "year": "Jahr",

@@ -33,13 +33,19 @@ class plugin {
 
         if(!count(self::$allPlugins)) {
 
+            $active = unserialize(option::get('plugins'));
+            $active = (!is_array($active)) ? [] : $active;
+
             $plugins = array_diff(scandir(dir::plugins()), ['.', '..']);
 
             foreach($plugins as $dir) {
 
                 $plugin = new self($dir);
 
-                self::$allPlugins[] = array_merge(['id' => $dir], $plugin->getConfig());
+                self::$allPlugins[] = array_merge([
+                    'id' => $dir,
+                    'active' => in_array($dir, $active)
+                ], $plugin->getConfig());
 
             }
 

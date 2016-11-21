@@ -19,7 +19,15 @@ theme::addJSCode('
                     title: lang["description"]
                 },
                 action: {
-                    title: ""
+                    title: "",
+                    class: "shrink",
+                    content: function(entry) {
+                        if(entry.active) {
+                            return "<nav><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-close-round\'></a></nav>";
+                        } else {
+                            return "<nav><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-checkmark-round\'></a></nav>";
+                        }
+                    }
                 }
             },
             search: "",
@@ -34,6 +42,26 @@ theme::addJSCode('
                 vue.showSearch = data.showSearch;
             });
 
+            $(document).on("fetch", function() {
+                vue.fetch();
+            });
+
+        },
+        methods: {
+            fetch: function() {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('extensions', ['index', 'get']).'",
+                    dataType: "json",
+                    success: function(data) {
+                        vue.tableData = data;
+                    }
+                });
+
+            }
         }
     });
 ');
