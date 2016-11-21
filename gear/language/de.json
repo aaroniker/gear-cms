@@ -125,6 +125,7 @@
     "description": "Beschreibung",
     "plugin_activated": "Plugin aktiviert",
     "plugin_deactivated": "Plugin deaktiviert",
+    "deactivate": "Deaktivieren",
 
     ## System
     "system": "System",
