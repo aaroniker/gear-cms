@@ -205,20 +205,56 @@
 
 #expand {
     &.active {
-        color: #fff;
-    }
-    .icon {
-        &:before {
-            line-height: 36px;
-            font-size: 32px;
+        span {
+            &:before,
+            &:after {
+                top: 0;
+                background: @dark;
+            }
+            &:before {
+                .rotation(45deg);
+            }
+            &:after {
+                .rotation(-45deg);
+            }
+            background: transparent;
         }
     }
+    span {
+        &:before,
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 30px;
+            background: @text;
+            .round(2px);
+            .transition();
+        }
+        &:before {
+            top: -10px;
+        }
+        &:after {
+            top: 10px;
+        }
+        content: "";
+        display: block;
+        position: absolute;
+        height: 4px;
+        width: 30px;
+        top: 14px;
+        left: 50%;
+        background: @text;
+        .round(2px);
+        .translate(-50%, 0);
+        .transition();
+    }
     cursor: pointer;
-    color: @text-dark;
     position: fixed;
     display: none;
     width: 40px;
-    text-align: center;
+    height: 36px;
     right: 30px;
     top: 65px;
     z-index: 101;
@@ -227,7 +263,7 @@
         display: block;
     }
     @media(max-width: @screen-sm-min * 1px) {
-        top: 61px;
+        top: 63px;
         right: 15px;
     }
 }

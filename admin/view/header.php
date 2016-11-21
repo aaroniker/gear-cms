@@ -121,7 +121,7 @@
 </div>
 
 <div id="expand">
-    <i class="icon icon-navicon-round"></i>
+    <span></span>
 </div>
 
 <a id="logo" href="<?=url::admin('dashboard'); ?>">
