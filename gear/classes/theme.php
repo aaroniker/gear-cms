@@ -26,13 +26,21 @@ class theme {
 
         if(!count(self::$allThemes)) {
 
+            $active = option::get('theme');
+
             $themes = array_diff(scandir(dir::themes()), ['.', '..']);
 
             foreach($themes as $dir) {
 
                 $theme = new self($dir);
 
-                self::$allThemes[$dir] = $theme->getConfig();
+                $return = $theme->getConfig();
+
+                if($dir == $active) {
+                    $return = array_merge(['active' => 1], $return);
+                }
+
+                self::$allThemes[$dir] = $return;
 
             }
 

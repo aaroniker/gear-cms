@@ -135,6 +135,8 @@
     "cache": "Cache",
     "language": "Sprache",
     "theme": "Theme",
+    "activate": "Aktivieren",
+    "theme_active": "Theme aktiviert",
 
     ## Time
     "year": "Jahr",
