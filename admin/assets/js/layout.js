@@ -71,6 +71,24 @@ jQuery(document).ready(function($) {
         });
     });
 
+    $(document).on("click", "a.ajaxCall", function(e) {
+
+        e.preventDefault();
+
+        var _this = $(this);
+
+        $.ajax({
+            method: "POST",
+            url: _this.attr("href"),
+            success: function() {
+                $.event.trigger({
+                    type: "fetch"
+                });
+            }
+        });
+
+    });
+
     $(document).on("click", ".delete", function(e) {
 
         e.preventDefault();
