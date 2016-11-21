@@ -9,13 +9,11 @@
         "plugins": []
     },
     "templates": {
-        "blog": "templates/blog.php",
-        "page": "page.php"
+        "home": "home.php"
     },
     "positions": [
-        "main-menu",
-        "another-position",
-        "third-slot"
+        "top",
+        "bottom"
     ],
     "include": [
         "theme.php"
