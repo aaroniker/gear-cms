@@ -32,7 +32,7 @@ class theme {
 
                 $theme = new self($dir);
 
-                self::$allThemes[] = $theme->getConfig();
+                self::$allThemes[$dir] = $theme->getConfig();
 
             }
 
