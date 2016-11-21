@@ -21,7 +21,7 @@ class systemController extends controller {
             if($action == 'setActive') {
                 if($theme) {
                     if(option::set('theme', $theme)) {
-                        message::success(lang::get('theme_active'));
+                        message::success(lang::get('theme_activated'));
                     }
                 }
             } elseif($action == 'get') {
