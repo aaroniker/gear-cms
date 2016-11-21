@@ -2,9 +2,8 @@
 
 class plugin {
 
-    protected static $allPlugins = [];
-
     protected $config = [];
+    protected static $allPlugins = [];
 
     public function __construct($name) {
 
@@ -38,7 +37,7 @@ class plugin {
 
             foreach($plugins as $dir) {
 
-                $plugin = new plugin($dir);
+                $plugin = new self($dir);
 
                 self::$allPlugins[] = $plugin->getConfig();
 
