@@ -2,12 +2,49 @@
 
 class theme {
 
+    protected $config = [];
+    protected static $allThemes = [];
+
     public static $cssFiles = [];
     public static $jsFiles = [];
     public static $jsCode = [
         'jquery' => [],
         'all' => []
     ];
+
+    public function __construct($name) {
+
+        $file = dir::themes('theme.json', $name);
+
+        if(file_exists($file)) {
+            $this->config = json_decode(file_get_contents($file), true);
+        }
+
+    }
+
+    public static function getAll() {
+
+        if(!count(self::$allThemes)) {
+
+            $themes = array_diff(scandir(dir::themes()), ['.', '..']);
+
+            foreach($themes as $dir) {
+
+                $theme = new self($dir);
+
+                self::$allThemes[] = $theme->getConfig();
+
+            }
+
+        }
+
+        return self::$allThemes;
+
+    }
+
+    public function getConfig() {
+        return $this->config;
+    }
 
     public static function addCSS($css_file) {
         self::$cssFiles[] = [
