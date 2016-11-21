@@ -68,6 +68,14 @@ class dir {
         }
     }
 
+    public static function themes($file = '', $theme = false) {
+        if($theme) {
+            return self::base('themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file);
+        } else {
+            return self::base('themes'.DIRECTORY_SEPARATOR.$file);
+        }
+    }
+
     public static function blocks($file = '') {
         return self::gear('blocks'.DIRECTORY_SEPARATOR.$file);
     }
