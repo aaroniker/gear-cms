@@ -16,7 +16,9 @@
             <div class="columns">
                 <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                     <div class="box">
-                        {{ column.size }}
+                        <div class="blocks">
+                            {{ column.size }}
+                        </div>
                         <div class="size">
                             <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                             <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
