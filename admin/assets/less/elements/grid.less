@@ -61,8 +61,11 @@
                 left: auto;
                 right: -20px;
             }
-            .size {
+            .edit {
                 i {
+                    &.drag {
+                        cursor: move;
+                    }
                     &:hover {
                         color: @text;
                     }
@@ -70,7 +73,7 @@
                         font-size: 16px;
                         vertical-align: top;
                         display: block;
-                        line-height: 18px;
+                        line-height: 20px;
                     }
                     cursor: pointer;
                     display: block;
@@ -86,6 +89,7 @@
             .blocks {
                 background: @light;
                 padding: 10px;
+                min-height: 70px;
                 .round();
             }
             padding: 10px 30px 10px 10px;

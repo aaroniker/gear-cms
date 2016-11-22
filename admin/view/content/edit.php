@@ -19,7 +19,8 @@
                         <div class="blocks">
                             {{ column.size }}
                         </div>
-                        <div class="size">
+                        <div class="edit">
+                            <i class="drag icon icon-arrow-move"></i>
                             <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                             <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
                         </div>
