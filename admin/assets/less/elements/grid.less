@@ -1,10 +1,44 @@
 #grid {
+    .columns {
+        & > div {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        margin-left: 0;
+        margin-right: 0;
+    }
     .row {
+        & > .move {
+            &:hover {
+                color: @text;
+            }
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            display: block;
+            font-size: 18px;
+            color: @text-light;
+            cursor: move;
+            .translate(0, -50%);
+            @media(max-width: @screen-sm-min * 1px) {
+                display: none;
+            }
+        }
         .box {
-            margin: 10px 5px;
+            margin: 0 5px 10px 5px;
         }
         border: 2px dashed @border;
         margin: 0 0 10px 0;
+        padding: 10px 5px 0 5px;
+        position: relative;
+    }
+    .placeholder {
+        margin: 0 0 10px 0;
+        height: 50px;
+        border: 2px dashed @border;
     }
     padding: 0 0 0 25px;
+    @media(max-width: @screen-sm-min * 1px) {
+        padding-left: 0;
+    }
 }

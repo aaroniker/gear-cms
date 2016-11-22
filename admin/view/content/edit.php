@@ -8,6 +8,7 @@
 
 <section id="grid">
     <div class="row" v-for="(columns, row) in grid">
+        <i class="icon icon-arrow-move move"></i>
         <div class="columns">
             <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                 <div class="box">
@@ -50,8 +51,15 @@ theme::addJSCode('
                 ]
             ]
         },
-        created: function() {
+        mounted: function() {
+
             var vue = this;
+
+            $("#grid").sortable({
+                placeholder: "placeholder",
+                handle: ".move"
+            });
+
         },
         methods: {
             size: function(row, key, num) {
