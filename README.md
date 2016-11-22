@@ -15,7 +15,6 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 
 * [Forum] (http://forum.gearcms.org/)
 * [Webseite] (http://gearcms.org)
-* [Dokumentation] (https://github.com/aaroniker/gear/wiki)
 
 ## Screenshots
 
