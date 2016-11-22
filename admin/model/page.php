@@ -26,6 +26,20 @@ class PageModel extends model {
 
     }
 
+    public function getLink() {
+
+        $siteURL = '/'.$this->siteURL;
+
+        if($this->parentID) {
+            $siteURL = self::getFullURL($this->parentID, $siteURL);
+        }
+
+        $siteURL = explode('/', $siteURL);
+
+        return url::base($siteURL);
+
+    }
+
     public function getByURL($url) {
 
         $url = (!is_array($url)) ? [] : $url;
