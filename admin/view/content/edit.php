@@ -9,11 +9,18 @@
     ');
 ?>
 
+<modal v-if="addColumnModal" @close="addColumnModal = false">
+    <h3 slot="header"><?=lang::get('add'); ?></h3>
+    <div slot="content">
+        grid
+    </div>
+</modal>
+
 <section id="grid">
     <div class="rows">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
-            <div class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
+            <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                 <i class="icon icon-android-add"></i>
             </div>
             <div class="columns">
@@ -27,7 +34,7 @@
                             <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
                             <i class="icon icon-android-cancel"></i>
                         </div>
-                        <div class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
+                        <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                             <i class="icon icon-android-add"></i>
                         </div>
                     </div>
@@ -67,7 +74,8 @@ theme::addJSCode('
                         size: "8"
                     }
                 ]
-            ]
+            ],
+            addColumnModal: false
         },
         mounted: function() {
 
