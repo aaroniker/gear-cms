@@ -12,7 +12,7 @@
             <div class="box">
                 <div class="size">
                     <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-plus-circled"></i>
-                    <i v-if="column.size > 1" @click="size(row, key, -1)" class="minus icon icon-minus-circled"></i>
+                    <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-minus-circled"></i>
                 </div>
             </div>
         </div>
@@ -53,7 +53,14 @@ theme::addJSCode('
         },
         methods: {
             size: function(row, key, num) {
-                this.grid[row][key].size = parseInt(this.grid[row][key].size) + parseInt(num);
+
+                var size = parseInt(this.grid[row][key].size);
+                var newSize = size + parseInt(num);
+
+                if(newSize > 1 && newSize < 13) {
+                    this.grid[row][key].size = newSize;
+                }
+
             }
         }
     });
