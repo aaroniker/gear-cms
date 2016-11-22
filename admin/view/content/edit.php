@@ -3,6 +3,9 @@
         <a href="'.url::admin('content').'" class="button border">
             '.lang::get('back').'
         </a>
+        <a href="'.$this->model->getLink().'" target="_blank" class="button border">
+            '.lang::get('show').'
+        </a>
     ');
 ?>
 
