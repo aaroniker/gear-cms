@@ -1,8 +1,8 @@
 #grid {
     .columns {
         & > div {
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 10px;
+            padding-right: 10px;
         }
         margin-left: 0;
         margin-right: 0;
@@ -13,11 +13,10 @@
                 color: @text;
             }
             position: absolute;
-            left: 2px;
+            left: -25px;
             top: 50%;
             display: block;
-            width: 28px;
-            text-align: center;
+            width: 25px;
             font-size: 18px;
             color: @text-light;
             cursor: move;
@@ -25,6 +24,28 @@
             @media(max-width: @screen-sm-min * 1px) {
                 display: none;
             }
+        }
+        .addColumn {
+            &:hover {
+                color: @text;
+            }
+            i {
+                &:before {
+                    font-size: 14px;
+                    vertical-align: top;
+                    display: block;
+                    line-height: 30px;
+                }
+                display: block;
+            }
+            top: 50%;
+            left: 0;
+            cursor: pointer;
+            text-align: center;
+            width: 20px;
+            position: absolute;
+            color: @text-light;
+            .translate(0, -50%);
         }
         &.new {
             &:hover {
@@ -36,6 +57,10 @@
             color: @text-light;
         }
         .box {
+            .addColumn {
+                left: auto;
+                right: -20px;
+            }
             .size {
                 i {
                     &:hover {
@@ -56,21 +81,22 @@
                 position: absolute;
                 .translate(0, -50%);
             }
-            margin: 0 5px 10px 5px;
+            margin: 0 0 10px 0;
             position: relative;
         }
         border: 2px dashed @border;
         margin: 0 0 10px 0;
-        padding: 10px 5px 0 30px;
+        padding: 10px 10px 0 10px;
         position: relative;
         .round();
-        @media(max-width: @screen-sm-min * 1px) {
-            padding-left: 5px;
-        }
     }
     .placeholder {
         margin: 0 0 10px 0;
         height: 50px;
         border: 2px dashed @border;
+    }
+    padding: 0 0 0 25px;
+    @media(max-width: @screen-sm-min * 1px) {
+        padding-left: 0;
     }
 }
