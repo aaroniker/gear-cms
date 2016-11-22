@@ -4,10 +4,10 @@ class url {
 
     public static function base($params = []) {
 
-        $return = config::get('url');
+        $return = rtrim(config::get('url'), '/');
 
         if(count($params)) {
-            $return .= '/'.implode('/', $params);
+            $return .= implode('/', $params);
         }
 
         return $return;
