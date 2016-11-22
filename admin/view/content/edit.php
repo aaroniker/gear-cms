@@ -10,7 +10,7 @@
     <div class="rows">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
-            <div class="addColumn">
+            <div class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                 <i class="icon icon-android-add"></i>
             </div>
             <div class="columns">
@@ -23,7 +23,7 @@
                             <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                             <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
                         </div>
-                        <div class="addColumn">
+                        <div class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                             <i class="icon icon-android-add"></i>
                         </div>
                     </div>
