@@ -6,18 +6,20 @@
     ');
 ?>
 
-<div class="row" v-for="(columns, row) in grid">
-    <div class="columns">
-        <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
-            <div class="box">
-                <div class="size">
-                    <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-plus-circled"></i>
-                    <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-minus-circled"></i>
+<section id="grid">
+    <div class="row" v-for="(columns, row) in grid">
+        <div class="columns">
+            <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
+                <div class="box">
+                    <div class="size">
+                        <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-plus-circled"></i>
+                        <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-minus-circled"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <?php
 theme::addJSCode('
