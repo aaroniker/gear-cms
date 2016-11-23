@@ -37,7 +37,7 @@
                         <div class="edit">
                             <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                             <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
-                            <i class="remove icon icon-android-cancel"></i>
+                            <i @click="removeColumn(row, key)" class="remove icon icon-android-cancel"></i>
                         </div>
                         <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                             <i class="icon icon-android-add"></i>
@@ -92,7 +92,12 @@ theme::addJSCode('
                 placeholder: "placeholder",
                 handle: ".move",
                 helper: "clone",
-                axis: "y"
+                axis: "y",
+                update: function(event, ui) {
+
+                    var item = ui.item;
+
+                }
             });
 
         },
@@ -113,9 +118,7 @@ theme::addJSCode('
                     this.push.apply(this, arr);
                 };
 
-                var newRow = [[]];
-
-                this.grid.pushArray(newRow);
+                this.grid.pushArray([[]]);
 
             },
             removeRow: function(row) {
@@ -123,6 +126,15 @@ theme::addJSCode('
                 var entry = this.grid[row];
 
                 this.grid = _.filter(this.grid, function(obj) {
+                    return entry !== obj;
+                });
+
+            },
+            removeColumn: function(row, key) {
+
+                var entry = this.grid[row][key];
+
+                this.grid[row] = _.filter(this.grid[row], function(obj) {
                     return entry !== obj;
                 });
 
