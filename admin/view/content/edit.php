@@ -69,7 +69,7 @@ theme::addJSCode('
         el: "#app",
         data: {
             headline: "'.$this->model->name.'",
-            isEdit: true,
+            isEdit: false,
             breakpoint: "md",
             minSize: 2,
             maxSize: 12,
@@ -103,6 +103,13 @@ theme::addJSCode('
 
             this.setDrag();
 
+        },
+        watch: {
+            isEdit: function() {
+                if(!this.isEdit) {
+                    setMessage(lang["grid_saved"], "success");
+                }
+            }
         },
         methods: {
             setDrag: function() {
