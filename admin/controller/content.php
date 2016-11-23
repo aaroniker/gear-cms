@@ -103,9 +103,18 @@ class contentController extends controller {
             if(ajax::is()) {
 
                 if($method == 'getContent') {
+
                     ajax::addReturn($this->model->content);
+
                 } elseif($method == 'saveContent') {
-                    
+
+                    $content = type::post('content', 'array', []);
+                    $content = (count($content)) ? json_encode($content, JSON_OBJECT_AS_ARRAY) : null;
+
+                    $this->model->save([
+                        'content' => $content
+                    ]);
+
                 }
 
             }

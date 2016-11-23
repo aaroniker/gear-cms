@@ -11,7 +11,8 @@
             <div>'.lang::get('grid').'</div>
         </div>
     ');
-    admin::addButton('<a href="'.$this->model->getLink().'" target="_blank" class="button border">
+    admin::addButton('
+        <a href="'.$this->model->getLink().'" target="_blank" class="button border">
             '.lang::get('show').'
         </a>
     ');
@@ -89,13 +90,6 @@ theme::addJSCode('
             this.fetch();
 
         },
-        watch: {
-            isEdit: function() {
-                if(!this.isEdit) {
-                    setMessage(lang["grid_saved"], "success");
-                }
-            }
-        },
         methods: {
             fetch: function() {
 
@@ -111,26 +105,35 @@ theme::addJSCode('
                 });
 
             },
+            save: function(grid) {
+
+                if(!grid) {
+                    grid = this.grid;
+                }
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'saveContent']).'",
+                    data: {
+                        content: grid
+                    },
+                    success: function() {
+                        vue.fetch();
+                    }
+                });
+
+            },
             setDrag: function() {
 
                 var vue = this;
-                var from = null;
 
                 var drake = dragula([$("#grid > .rows")[0]], {
                     moves: function(el, container, handle) {
                         return handle.classList.contains("move");
                     },
                     mirrorContainer: $("#grid")[0]
-                });
-
-                drake.on("drag", function(element, source) {
-                    var index = [].indexOf.call(element.parentNode.children, element);
-                    from = index;
-                });
-
-                drake.on("drop", function(element, target, source, sibling) {
-                    var index = [].indexOf.call(element.parentNode.children, element);
-                    vue.grid.splice(index, 0, vue.grid.splice(from, 1)[0]);
                 });
 
             },
@@ -142,6 +145,8 @@ theme::addJSCode('
                 if(newSize >= this.minSize && newSize <= this.maxSize) {
                     this.grid[row][key].size = newSize;
                 }
+
+                this.save(this.grid);
 
             },
             addRow: function() {
@@ -161,6 +166,8 @@ theme::addJSCode('
                     return entry !== obj;
                 });
 
+                this.save(this.grid);
+
             },
             addColumn: function() {
 
@@ -170,6 +177,8 @@ theme::addJSCode('
                     size: this.addColumnSize
                 });
 
+                this.save(this.grid);
+
             },
             removeColumn: function(row, key) {
 
@@ -178,6 +187,8 @@ theme::addJSCode('
                 this.grid[row] = _.filter(this.grid[row], function(obj) {
                     return entry !== obj;
                 });
+
+                this.save(this.grid);
 
             }
         }
