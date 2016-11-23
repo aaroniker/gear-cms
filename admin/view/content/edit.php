@@ -20,6 +20,7 @@
     <div class="rows">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
+            <i v-if="!columns.length" @click="removeRow(row)" class="icon icon-ios-trash-outline remove"></i>
             <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                 <i class="icon icon-android-add"></i>
             </div>
@@ -32,7 +33,7 @@
                         <div class="edit">
                             <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                             <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
-                            <a href="" class="delete icon icon-android-cancel"></a>
+                            <i class="remove icon icon-android-cancel"></i>
                         </div>
                         <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
                             <i class="icon icon-android-add"></i>
@@ -109,6 +110,15 @@ theme::addJSCode('
                 var newRow = [[]];
 
                 this.grid.pushArray(newRow);
+
+            },
+            removeRow: function(row) {
+
+                var entry = this.grid[row];
+
+                this.grid = _.filter(this.grid, function(obj) {
+                    return entry !== obj;
+                });
 
             }
         }
