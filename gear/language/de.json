@@ -89,6 +89,7 @@
     "menu_page_link_required": "<strong>Seite</strong> oder <strong>Link</strong> angeben",
     "new_row": "Neue Reihe",
     "new_column": "Neue Spalte",
+    "grid": "Grid",
 
     ## User
     "user": "Benutzer",
