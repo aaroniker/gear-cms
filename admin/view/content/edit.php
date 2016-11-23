@@ -21,7 +21,7 @@
 </modal>
 
 <section id="grid">
-    <div class="rows" v-dragula="grid" bag="grid">
+    <div class="rows">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
             <i v-if="!columns.length" @click="removeRow(row)" class="icon icon-ios-trash-outline remove"></i>
@@ -50,6 +50,7 @@
     <div @click="addRow" class="row new">
         <?=lang::get('new_row'); ?>
     </div>
+    <pre>{{ grid }}</pre>
 </section>
 
 <?php
@@ -85,8 +86,6 @@ theme::addJSCode('
             addColumnModal: false
         },
         mounted: function() {
-
-            var vue = this;
 
         },
         methods: {
