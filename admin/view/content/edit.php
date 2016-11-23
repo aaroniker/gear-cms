@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="row new">
+    <div @click="addRow" class="row new">
         <?=lang::get('new_row'); ?>
     </div>
 </section>
@@ -98,6 +98,17 @@ theme::addJSCode('
                 if(newSize > 1 && newSize < 13) {
                     this.grid[row][key].size = newSize;
                 }
+
+            },
+            addRow: function() {
+
+                Array.prototype.pushArray = function(arr) {
+                    this.push.apply(this, arr);
+                };
+
+                var newRow = [[]];
+
+                this.grid.pushArray(newRow);
 
             }
         }
