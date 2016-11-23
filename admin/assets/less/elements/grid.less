@@ -1,126 +1,122 @@
 #grid {
-    .columns {
-        & > div {
-            padding-left: 10px;
-            padding-right: 10px;
-            .transition(0.2s);
-        }
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .row {
-        & > .remove,
-        & > .move {
-            &:hover {
-                color: @text;
-            }
-            position: absolute;
-            top: 50%;
-            display: block;
-            width: 25px;
-            font-size: 18px;
-            color: @text-light;
-            cursor: move;
-            .translate(0, -50%);
-        }
-        & > .move {
-            left: -25px;
-            cursor: move;
-            @media(max-width: @screen-sm-min * 1px) {
-                display: none;
-            }
-        }
-        & > .remove {
-            &:hover {
-                color: @error;
-            }
-            right: -25px;
-            cursor: pointer;
-            text-align: right;
-        }
-        .addColumn {
-            &:hover {
-                color: @text;
-            }
-            i {
-                &:before {
-                    font-size: 14px;
-                    vertical-align: top;
-                    display: block;
-                    line-height: 30px;
-                }
-                display: block;
-            }
-            top: 50%;
-            left: 0;
-            cursor: pointer;
-            text-align: center;
-            width: 20px;
-            position: absolute;
-            color: @text-light;
-            .translate(0, -50%);
-        }
-        &.new {
-            &:hover {
-                color: @text;
-            }
-            padding: 10px 5px;
-            text-align: center;
-            cursor: pointer;
-            color: @text-light;
-            min-height: 0;
-        }
-        .box {
-            .addColumn {
-                left: auto;
-                right: -20px;
-            }
-            .edit {
-                & > .icon {
-                    &:hover {
-                        color: @text;
-                    }
-                    &:before {
-                        font-size: 16px;
-                        vertical-align: top;
-                        display: block;
-                        line-height: 20px;
-                    }
-                    cursor: pointer;
-                    display: block;
-                    color: @text-light;
-                }
-                right: 5px;
-                width: 20px;
-                text-align: center;
-                top: 50%;
-                position: absolute;
-                .translate(0, -50%);
-            }
-            .blocks {
-                background: @light;
-                padding: 10px;
-                min-height: 70px;
-                .round();
-            }
-            padding: 10px 30px 10px 10px;
-            margin: 0 0 10px 0;
-            position: relative;
-        }
-        border: 2px dashed @border;
-        margin: 0 0 10px 0;
-        padding: 10px 10px 0 10px;
-        position: relative;
-        min-height: 50px;
-        .round();
-    }
-    .placeholder {
-        margin: 0 0 10px 0;
-        height: 50px;
-        border: 2px dashed @border;
-    }
     padding: 0 25px;
     @media(max-width: @screen-sm-min * 1px) {
         padding-left: 0;
     }
+}
+
+#grid .row,
+.gu-mirror.row {
+    .columns {
+        & > div {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        margin-left: 0;
+        margin-right: 0;
+    }
+    & > .remove,
+    & > .move {
+        &:hover {
+            color: @text;
+        }
+        position: absolute;
+        top: 50%;
+        display: block;
+        width: 25px;
+        font-size: 18px;
+        color: @text-light;
+        cursor: move;
+        .translate(0, -50%);
+    }
+    & > .move {
+        left: -25px;
+        cursor: move;
+        @media(max-width: @screen-sm-min * 1px) {
+            display: none;
+        }
+    }
+    & > .remove {
+        &:hover {
+            color: @error;
+        }
+        right: -25px;
+        cursor: pointer;
+        text-align: right;
+    }
+    .addColumn {
+        &:hover {
+            color: @text;
+        }
+        i {
+            &:before {
+                font-size: 14px;
+                vertical-align: top;
+                display: block;
+                line-height: 30px;
+            }
+            display: block;
+        }
+        top: 50%;
+        left: 0;
+        cursor: pointer;
+        text-align: center;
+        width: 20px;
+        position: absolute;
+        color: @text-light;
+        .translate(0, -50%);
+    }
+    &.new {
+        &:hover {
+            color: @text;
+        }
+        padding: 10px 5px;
+        text-align: center;
+        cursor: pointer;
+        color: @text-light;
+        min-height: 0;
+    }
+    .box {
+        .addColumn {
+            left: auto;
+            right: -20px;
+        }
+        .edit {
+            & > .icon {
+                &:hover {
+                    color: @text;
+                }
+                &:before {
+                    font-size: 16px;
+                    vertical-align: top;
+                    display: block;
+                    line-height: 20px;
+                }
+                cursor: pointer;
+                display: block;
+                color: @text-light;
+            }
+            right: 5px;
+            width: 20px;
+            text-align: center;
+            top: 50%;
+            position: absolute;
+            .translate(0, -50%);
+        }
+        .blocks {
+            background: @light;
+            padding: 10px;
+            min-height: 70px;
+            .round();
+        }
+        padding: 10px 30px 10px 10px;
+        margin: 0 0 10px 0;
+        position: relative;
+    }
+    border: 2px dashed @border;
+    margin: 0 0 10px 0;
+    padding: 10px 10px 0 10px;
+    position: relative;
+    min-height: 50px;
+    .round();
 }

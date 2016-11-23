@@ -21,7 +21,7 @@
 </modal>
 
 <section id="grid">
-    <div class="rows">
+    <div class="rows" v-dragula="grid" bag="grid">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
             <i v-if="!columns.length" @click="removeRow(row)" class="icon icon-ios-trash-outline remove"></i>
@@ -87,18 +87,6 @@ theme::addJSCode('
         mounted: function() {
 
             var vue = this;
-
-            $("#grid > .rows").sortable({
-                placeholder: "placeholder",
-                handle: ".move",
-                helper: "clone",
-                axis: "y",
-                update: function(event, ui) {
-
-                    var item = ui.item;
-
-                }
-            });
 
         },
         methods: {
