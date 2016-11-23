@@ -87,6 +87,17 @@ theme::addJSCode('
         },
         mounted: function() {
 
+            var drake = dragula([$("#grid > .rows")[0]], {
+                moves: function(el, container, handle) {
+                    return handle.classList.contains("move");
+                },
+                mirrorContainer: $("#grid")[0]
+            });
+
+            drake.on("drop", function() {
+                alert();
+            });
+
         },
         methods: {
             size: function(row, key, num) {
