@@ -12,7 +12,11 @@
 <modal v-if="addColumnModal" @close="addColumnModal = false">
     <h3 slot="header"><?=lang::get('add'); ?></h3>
     <div slot="content">
-        grid
+        <div class="form-select">
+            <select>
+                <option v-for="n in _.range(minSize, maxSize + 1)" :value="n">{{ n }}</option>
+            </select>
+        </div>
     </div>
 </modal>
 
@@ -31,8 +35,8 @@
                             {{ column.size }}
                         </div>
                         <div class="edit">
-                            <i v-if="column.size < 12" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
-                            <i v-if="column.size > 2" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
+                            <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
+                            <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
                             <i class="remove icon icon-android-cancel"></i>
                         </div>
                         <div @click="addColumnModal = true" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
@@ -55,6 +59,8 @@ theme::addJSCode('
         data: {
             headline: "'.$this->model->name.'",
             breakpoint: "md",
+            minSize: 2,
+            maxSize: 12,
             grid: [
                 [
                     {
@@ -96,7 +102,7 @@ theme::addJSCode('
                 var size = parseInt(this.grid[row][key].size);
                 var newSize = size + parseInt(num);
 
-                if(newSize > 1 && newSize < 13) {
+                if(newSize >= this.minSize && newSize <= this.maxSize) {
                     this.grid[row][key].size = newSize;
                 }
 
