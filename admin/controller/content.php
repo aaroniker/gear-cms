@@ -111,9 +111,9 @@ class contentController extends controller {
                     $content = type::post('content', 'array', []);
                     $content = (count($content)) ? json_encode($content, JSON_OBJECT_AS_ARRAY) : null;
 
-                    $this->model->save([
-                        'content' => $content
-                    ]);
+                    if($this->model->save(['content' => $content])) {
+                        message::success(lang::get('grid_saved'));
+                    }
 
                 }
 
