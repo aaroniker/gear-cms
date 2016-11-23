@@ -6,7 +6,7 @@ class contentController extends controller {
 
     }
 
-    public function index($action = '', $id = 0) {
+    public function index($action = '', $id = 0, $method = '') {
 
         $this->model = new PageModel;
 
@@ -99,6 +99,14 @@ class contentController extends controller {
         if($action == 'edit' && $id) {
 
             $this->model->load($id);
+
+            if(ajax::is()) {
+
+                if($method == 'getContent') {
+                    ajax::addReturn($this->model->content);
+                }
+
+            }
 
             include(dir::view('content/edit.php'));
 

@@ -58,6 +58,9 @@
             </div>
         </div>
     </div>
+    <div v-if="!grid.length">
+        -
+    </div>
     <div @click="addRow" class="row new">
         <?=lang::get('new_row'); ?>
     </div>
@@ -73,27 +76,7 @@ theme::addJSCode('
             breakpoint: "md",
             minSize: 2,
             maxSize: 12,
-            grid: [
-                [
-                    {
-                        size: 6
-                    },
-                    {
-                        size: 3
-                    },
-                    {
-                        size: 3
-                    }
-                ],
-                [
-                    {
-                        size: 4
-                    },
-                    {
-                        size: 8
-                    }
-                ]
-            ],
+            grid: [],
             addColumnSize: 6,
             addColumnRow: null,
             addColumnIndex: null,
@@ -102,6 +85,8 @@ theme::addJSCode('
         mounted: function() {
 
             this.setDrag();
+
+            this.fetch();
 
         },
         watch: {
@@ -112,6 +97,20 @@ theme::addJSCode('
             }
         },
         methods: {
+            fetch: function() {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'getContent']).'",
+                    dataType: "json",
+                    success: function(data) {
+                        vue.grid = data;
+                    }
+                });
+
+            },
             setDrag: function() {
 
                 var vue = this;

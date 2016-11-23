@@ -15,7 +15,8 @@ class PageModel extends model {
 
         $this->metaData = [
             'parentID',
-            'siteURL'
+            'siteURL',
+            'content'
         ];
 
         if($id) {
