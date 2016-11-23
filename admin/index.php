@@ -11,6 +11,8 @@
     theme::addJS('https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js');
     theme::addJS('https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js');
     theme::addJS('https://cdn.jsdelivr.net/vue/2.1.0/vue.js');
+    theme::addJS('https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js');
+    theme::addJS(url::assets('js/vue-dragula.js'));
     theme::addJS(url::assets('js/form.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/sortable.js'));
