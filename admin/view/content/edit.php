@@ -65,21 +65,21 @@ theme::addJSCode('
             grid: [
                 [
                     {
-                        size: "6"
+                        size: 6
                     },
                     {
-                        size: "3"
+                        size: 3
                     },
                     {
-                        size: "3"
+                        size: 3
                     }
                 ],
                 [
                     {
-                        size: "4"
+                        size: 4
                     },
                     {
-                        size: "8"
+                        size: 8
                     }
                 ]
             ],
