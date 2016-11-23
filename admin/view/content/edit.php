@@ -23,7 +23,7 @@
     </div>
 </modal>
 
-<section id="grid">
+<section id="grid" :class="isEdit ? 'isEdit' : 'noEdit'">
     <div class="rows">
         <div class="row" v-for="(columns, row) in grid">
             <i class="icon icon-arrow-move move"></i>
@@ -61,6 +61,7 @@ theme::addJSCode('
         el: "#app",
         data: {
             headline: "'.$this->model->name.'",
+            isEdit: true,
             breakpoint: "md",
             minSize: 2,
             maxSize: 12,

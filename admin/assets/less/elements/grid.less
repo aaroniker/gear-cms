@@ -113,6 +113,37 @@
         min-height: 50px;
         .round();
     }
+    &.noEdit {
+        .row {
+            .columns {
+                & > div {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                margin-left: -10px;
+                margin-right: -10px;
+            }
+            & > .remove,
+            & > .move {
+                display: none;
+            }
+            .addColumn {
+                display: none;
+            }
+            &.new {
+                display: none;
+            }
+            .box {
+                .edit {
+                    display: none;
+                }
+                padding: 10px;
+            }
+            border: none;
+            padding: 0;
+        }
+        padding: 0;
+    }
     padding: 0 25px;
     @media(max-width: @screen-sm-min * 1px) {
         padding-left: 0;
