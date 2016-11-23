@@ -104,6 +104,8 @@ class contentController extends controller {
 
                 if($method == 'getContent') {
                     ajax::addReturn($this->model->content);
+                } elseif($method == 'saveContent') {
+                    
                 }
 
             }
