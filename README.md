@@ -35,6 +35,7 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 * [Framy CSS](http://www.framycss.org/)
 * [Ionicons](http://ionicons.com/)
 * [jQuery + UI](https://jquery.com/)
+* [dragula.js](https://github.com/bevacqua/dragula)
 * [Vue.js](http://vuejs.org/)
 * [lodash](https://github.com/lodash/lodash)
 * [animate.css](https://github.com/daneden/animate.css)
