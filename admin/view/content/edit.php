@@ -84,11 +84,7 @@ theme::addJSCode('
             addColumnModal: false
         },
         mounted: function() {
-
-            this.setDrag();
-
             this.fetch();
-
         },
         methods: {
             fetch: function() {
@@ -101,15 +97,12 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
+                        vue.setDrag();
                     }
                 });
 
             },
             save: function(grid) {
-
-                if(!grid) {
-                    grid = this.grid;
-                }
 
                 var vue = this;
 
@@ -119,21 +112,39 @@ theme::addJSCode('
                     data: {
                         content: grid
                     },
-                    success: function() {
-                        vue.fetch();
+                    dataType: "json",
+                    success: function(data) {
+                        vue.grid = data;
                     }
                 });
 
             },
             setDrag: function() {
 
+                Array.prototype.swap = function(a, b) {
+                    this[a] = this.splice(b, 1, this[a])[0];
+                    return this;
+                };
+
                 var vue = this;
+                var from = null;
 
                 var drake = dragula([$("#grid > .rows")[0]], {
                     moves: function(el, container, handle) {
                         return handle.classList.contains("move");
                     },
                     mirrorContainer: $("#grid")[0]
+                });
+
+                drake.on("drag", function(element, source) {
+                    var index = $(element).parent().children(".row").index($(element));
+                    from = index;
+                });
+
+                drake.on("drop", function(element, target, source, sibling) {
+                    var index = $(element).parent().children(".row").index($(element));
+                    vue.grid.swap(index, from);
+                    vue.save(vue.grid);
                 });
 
             },

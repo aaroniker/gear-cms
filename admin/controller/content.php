@@ -115,6 +115,8 @@ class contentController extends controller {
                         message::success(lang::get('grid_saved'));
                     }
 
+                    ajax::addReturn($this->model->load($id)->content);
+
                 }
 
             }
