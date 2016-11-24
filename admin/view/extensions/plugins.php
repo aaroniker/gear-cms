@@ -23,9 +23,9 @@ theme::addJSCode('
                     class: "shrink",
                     content: function(entry) {
                         if(entry.active) {
-                            return "<nav><span data-tooltip=\''.lang::get('deactivate').'\'><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-close-round\'></a></span></nav>";
+                            return "<nav><span data-tooltip=\''.lang::get('deactivate').'\'><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-close\'></a></span></nav>";
                         } else {
-                            return "<nav><span data-tooltip=\''.lang::get('activate').'\'><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-checkmark-round\'></a></span></nav>";
+                            return "<nav><span data-tooltip=\''.lang::get('activate').'\'><a href=\''.url::admin('extensions', ['index', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-checkmark\'></a></span></nav>";
                         }
                     }
                 }

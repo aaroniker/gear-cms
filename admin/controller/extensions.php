@@ -51,6 +51,35 @@ class extensionsController extends controller {
 
         } else {
 
+            if(ajax::is()) {
+
+                $block = type::post('block', 'string', $block);
+
+                if($action == 'setActive') {
+                    if($block) {
+
+                        $active = unserialize(option::get('blocks'));
+                        $active = (!is_array($active)) ? [] : $active;
+
+                        if(($key = array_search($block, $active)) !== false) {
+                            unset($active[$key]);
+                            message::success(lang::get('block_deactivated'));
+                        } else {
+                            $active[] = $block;
+                            message::success(lang::get('block_activated'));
+                        }
+
+                        $active = (count($active)) ? serialize($active) : null;
+
+                        option::set('blocks', $active);
+
+                    }
+                } elseif($action == 'get') {
+                    ajax::addReturn(json_encode(block::getAll()));
+                }
+
+            }
+
             include(dir::view('extensions/blocks/list.php'));
 
         }

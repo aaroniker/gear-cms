@@ -22,7 +22,12 @@ theme::addJSCode('
                     title: "",
                     class: "shrink",
                     content: function(entry) {
-                        return "<nav><a href=\''.url::admin('extensions', ['blocks', 'show']).'/" + entry.id + "\' class=\'icon icon-navicon-round\'></a></nav>";
+                        var show = "<span data-tooltip=\''.lang::get('show').'\'><a href=\''.url::admin('extensions', ['blocks', 'show']).'/" + entry.id + "\' class=\'icon icon-navicon-round\'></a></span>";
+                        if(entry.active) {
+                            return "<nav>" + show + "<span data-tooltip=\''.lang::get('deactivate').'\'><a href=\''.url::admin('extensions', ['blocks', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-close\'></a></span></nav>";
+                        } else {
+                            return "<nav>" + show + "<span data-tooltip=\''.lang::get('activate').'\'><a href=\''.url::admin('extensions', ['blocks', 'setActive']).'/" + entry.id + "\' class=\'ajaxCall icon icon-checkmark\'></a></span></nav>";
+                        }
                     }
                 }
             },
@@ -38,6 +43,26 @@ theme::addJSCode('
                 vue.showSearch = data.showSearch;
             });
 
+            $(document).on("fetch", function() {
+                vue.fetch();
+            });
+
+        },
+        methods: {
+            fetch: function() {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('extensions', ['blocks', 'get']).'",
+                    dataType: "json",
+                    success: function(data) {
+                        vue.tableData = data;
+                    }
+                });
+
+            }
         }
     });
 ');
