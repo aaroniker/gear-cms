@@ -2,10 +2,9 @@
 
 class block {
 
-    protected static $allBlocks = [];
-
     protected $file;
     protected $config = [];
+    protected static $allBlocks = [];
 
     public function __construct($file) {
 
@@ -27,6 +26,9 @@ class block {
 
         if(!count(self::$allBlocks)) {
 
+            $active = unserialize(option::get('blocks'));
+            $active = (!is_array($active)) ? [] : $active;
+
             $blocks = array_diff(scandir(dir::blocks()), ['.', '..']);
 
             foreach($blocks as $file) {
@@ -35,6 +37,7 @@ class block {
 
                 self::$allBlocks[] = [
                     'id' => str_replace('.block', '', $file),
+                    'active' => in_array(str_replace('.block', '', $file), $active),
                     'name' => $block->getInfo('name'),
                     'description' => $block->getInfo('description')
                 ];

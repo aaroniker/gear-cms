@@ -130,6 +130,8 @@
     "plugin_activated": "Plugin aktiviert",
     "plugin_deactivated": "Plugin deaktiviert",
     "deactivate": "Deaktivieren",
+    "block_activated": "Block aktiviert",
+    "block_deactivated": "Block deaktiviert",
 
     ## System
     "system": "System",
