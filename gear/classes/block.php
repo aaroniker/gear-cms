@@ -22,6 +22,39 @@ class block {
 
     }
 
+    public static function generateCSS($blocks = []) {
+
+        $css = '';
+
+        foreach($blocks as $file) {
+
+            $block = new self($file.'.block');
+
+            if($block) {
+                $css .= $block->getCSS();
+            }
+
+        }
+
+        if($css) {
+
+            $less = new lessc;
+            $less->setFormatter('compressed');
+
+            try {
+                $css = $less->compile($css);
+            } catch(exception $e) {
+
+            }
+
+        }
+
+        $fp = fopen(dir::tmp('css/blocks.css'),"wb");
+        fwrite($fp, $css);
+        fclose($fp);
+
+    }
+
 	public static function getAll() {
 
         if(!count(self::$allBlocks)) {
