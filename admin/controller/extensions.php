@@ -69,6 +69,8 @@ class extensionsController extends controller {
                             message::success(lang::get('block_activated'));
                         }
 
+                        block::generateCSS($active);
+
                         $active = (count($active)) ? serialize($active) : null;
 
                         option::set('blocks', $active);
