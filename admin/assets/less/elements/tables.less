@@ -64,6 +64,13 @@ table.table {
         td {
             &.shrink {
                 nav {
+                    & > * {
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                        display: inline-block;
+                        margin: 0 15px 0 0;
+                    }
                     .icon {
                         &:before {
                             font-size: 21px;
