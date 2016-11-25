@@ -121,11 +121,6 @@ theme::addJSCode('
             },
             setDrag: function() {
 
-                Array.prototype.swap = function(a, b) {
-                    this[a] = this.splice(b, 1, this[a])[0];
-                    return this;
-                };
-
                 var vue = this;
                 var from = null;
 
@@ -143,8 +138,13 @@ theme::addJSCode('
 
                 drake.on("drop", function(element, target, source, sibling) {
                     var index = $(element).parent().children(".row").index($(element));
-                    vue.grid.swap(index, from);
+
+                    var first = vue.grid[from];
+                    vue.grid[from] = vue.grid[index];
+                    vue.grid[index] = first;
+
                     vue.save(vue.grid);
+
                 });
 
             },
