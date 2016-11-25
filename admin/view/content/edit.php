@@ -137,14 +137,8 @@ theme::addJSCode('
                 });
 
                 drake.on("drop", function(element, target, source, sibling) {
-                    var index = $(element).parent().children(".row").index($(element));
-
-                    var first = vue.grid[from];
-                    vue.grid[from] = vue.grid[index];
-                    vue.grid[index] = first;
-
-                    vue.save(vue.grid);
-
+                    var to = $(element).parent().children(".row").index($(element));
+                    alert(from + " -> " + to);
                 });
 
             },
