@@ -138,7 +138,19 @@ theme::addJSCode('
 
                 drake.on("drop", function(element, target, source, sibling) {
                     var to = $(element).parent().children(".row").index($(element));
-                    vue.grid.slice(0,from).concat(vue.grid[to],vue.grid.slice(from+1,to),vue.grid[from],vue.grid.slice(to+1));
+                    $.ajax({
+                        method: "POST",
+                        url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'orderRows']).'",
+                        data: {
+                            from: from,
+                            to: to,
+                            content: vue.grid
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            vue.grid = data;
+                        }
+                    });
                 });
 
             },
