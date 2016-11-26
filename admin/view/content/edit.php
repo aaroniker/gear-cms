@@ -138,7 +138,7 @@ theme::addJSCode('
 
                 drake.on("drop", function(element, target, source, sibling) {
                     var to = $(element).parent().children(".row").index($(element));
-                    alert(from + " -> " + to);
+                    vue.grid.slice(0,from).concat(vue.grid[to],vue.grid.slice(from+1,to),vue.grid[from],vue.grid.slice(to+1));
                 });
 
             },
