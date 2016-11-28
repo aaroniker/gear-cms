@@ -57,7 +57,7 @@ class visit {
         return (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider/i', $_SERVER['HTTP_USER_AGENT']));
     }
 
-    public static function getLast($count) {
+    public static function getLast($count, $order = 'asc') {
 
         $now = new DateTime('now');
 
@@ -84,7 +84,11 @@ class visit {
 
         }
 
-        return $return;
+        if($order == 'desc') {
+            return $return;
+        }
+
+        return array_reverse($return);
 
     }
 
