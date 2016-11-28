@@ -115,7 +115,9 @@ class contentController extends controller {
                         message::success(lang::get('grid_saved'));
                     }
 
-                    ajax::addReturn($this->model->load($id)->content);
+                    $return = ($this->model->load($id)->content) ? $this->model->load($id)->content : json_encode([], JSON_OBJECT_AS_ARRAY);
+
+                    ajax::addReturn($return);
 
                 } elseif($method == 'orderRows') {
 
