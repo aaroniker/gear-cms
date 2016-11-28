@@ -121,7 +121,7 @@ class contentController extends controller {
 
                 } elseif($method == 'orderRows') {
 
-                    $content = type::post('content', 'array', []);
+                    $content = json_decode($this->model->content);
                     $from = type::post('from');
                     $to = type::post('to');
 
@@ -130,16 +130,12 @@ class contentController extends controller {
                         $first = $content[$from];
                         $second = $content[$to];
 
-                        $content[$from] = $second;
                         $content[$to] = $first;
+                        $content[$from] = $second;
 
-                        $content = json_encode($content, JSON_OBJECT_AS_ARRAY);
+                        $this->model->save(['content' => json_encode($content, JSON_OBJECT_AS_ARRAY)]);
 
-                        if($this->model->save(['content' => $content])) {
-                            message::success(lang::get('grid_saved'));
-                        }
-
-                        ajax::addReturn($this->model->load($id)->content);
+                        message::success(lang::get('grid_saved'));
 
                     }
 

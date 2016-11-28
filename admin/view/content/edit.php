@@ -59,9 +59,6 @@
             </div>
         </div>
     </div>
-    <div v-if="!grid.length">
-        -
-    </div>
     <div @click="addRow" class="row new">
         <?=lang::get('new_row'); ?>
     </div>
@@ -115,6 +112,7 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
+                        vue.setDrag();
                     }
                 });
 
@@ -143,12 +141,10 @@ theme::addJSCode('
                         url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'orderRows']).'",
                         data: {
                             from: from,
-                            to: to,
-                            content: vue.grid
+                            to: to
                         },
-                        dataType: "json",
-                        success: function(data) {
-                            vue.grid = data;
+                        success: function() {
+                            vue.setDrag();
                         }
                     });
                 });
