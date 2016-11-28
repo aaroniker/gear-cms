@@ -177,9 +177,9 @@
         }
         background: #fff;
     	.box-shadow(0, 4px, 10px, fade(@dark, 5%));
-        padding: 20px 50px 20px 75px;
+        padding: 20px 50px 20px 101px;
         @media(max-width: @screen-lg-min * 1px) {
-            padding: 20px 35px 20px 60px;
+            padding: 20px 35px 20px 81px;
         }
         @media(max-width: @screen-md-min * 1px) {
             padding-left: 85px;
@@ -212,7 +212,7 @@
             &:before,
             &:after {
                 top: 0;
-                background: #fff;
+                background: @text;
             }
             &:before {
                 .rotation(45deg);
@@ -222,6 +222,7 @@
             }
             background: transparent;
         }
+        background: #fff;
     }
     span {
         &:before,
@@ -229,26 +230,26 @@
             content: "";
             display: block;
             position: absolute;
-            height: 4px;
-            width: 30px;
-            background: @text;
+            height: 3px;
+            width: 24px;
+            background: #fff;
             .round(2px);
             .transition();
         }
         &:before {
-            top: -10px;
+            top: -8px;
         }
         &:after {
-            top: 10px;
+            top: 8px;
         }
         content: "";
         display: block;
         position: absolute;
-        height: 4px;
-        width: 30px;
-        top: 14px;
+        height: 3px;
+        width: 24px;
+        top: 16px;
         left: 50%;
-        background: @text;
+        background: #fff;
         .round(2px);
         .translate(-50%, 0);
         .transition();
@@ -256,17 +257,19 @@
     cursor: pointer;
     position: fixed;
     display: none;
-    width: 40px;
+    width: 36px;
     height: 36px;
     right: 30px;
-    top: 66px;
+    background: @primary;
+    top: 64px;
     z-index: 101;
     .transition();
+    .round();
     @media(max-width: @screen-md-min * 1px) {
         display: block;
     }
     @media(max-width: @screen-sm-min * 1px) {
-        top: 64px;
+        top: 62px;
         right: 15px;
     }
 }
@@ -278,9 +281,9 @@
                 content: @ionicon-var-chevron-right;
             }
         }
-        left: 121px;
+        left: 136px;
         @media(max-width: @screen-lg-min * 1px) {
-            left: 106px;
+            left: 121px;
         }
     }
     &:hover {
@@ -289,20 +292,24 @@
     .icon {
         &:before {
             line-height: 36px;
-            font-size: 21px;
+            font-size: 18px;
+            display: block;
         }
     }
     cursor: pointer;
     color: @text-light;
     position: fixed;
-    width: 42px;
+    width: 36px;
+    height: 36px;
     text-align: center;
-    left: 285px;
+    left: 300px;
+    background: @light;
     top: 64px;
     z-index: 101;
     .transition();
+    .round();
     @media(max-width: @screen-lg-min * 1px) {
-        left: 270px;
+        left: 285px;
     }
     @media(max-width: @screen-md-min * 1px) {
         display: none;
@@ -316,7 +323,7 @@
     }
     position: fixed;
     left: 35px;
-    top: 65px;
+    top: 64px;
     z-index: 100;
     display: none;
     .transition();
@@ -324,7 +331,7 @@
         display: block;
     }
     @media(max-width: @screen-sm-min * 1px) {
-        top: 61px;
+        top: 62px;
         left: 15px;
     }
 }
