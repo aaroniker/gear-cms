@@ -142,6 +142,7 @@
     "sitename": "Seitenname",
     "siteurl": "URL",
     "cache": "Cache",
+    "debug": "Debug",
     "language": "Sprache",
     "theme": "Theme",
     "activate": "Aktivieren",

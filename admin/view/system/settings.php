@@ -24,6 +24,10 @@
     $field->fieldName(lang::get('cache'));
     $field->add(true, lang::get('yes'));
 
+    $field = $form->addSwitchField('debug', config::get('debug'));
+    $field->fieldName(lang::get('debug'));
+    $field->add(true, lang::get('yes'));
+
     if($form->isSubmit()) {
 
         if($form->validation()) {
@@ -31,10 +35,12 @@
             $array = $form->getAll();
 
             $cache = ($array['cache']) ? true : false;
+            $debug = ($array['debug']) ? true : false;
 
             config::add('url', $array['siteurl'], true);
             config::add('lang', $array['lang'], true);
             config::add('cache', $cache, true);
+            config::add('debug', $debug, true);
             config::save();
 
             option::set('sitename', $array['sitename']);

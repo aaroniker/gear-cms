@@ -15,9 +15,12 @@ class config {
         self::$params = json_decode(file_get_contents(dir::gear('config.json')), true);
         self::$fileParams = self::$params;
 
-        if(self::get('dev')) {
+        if(self::get('debug')) {
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
+        } else {
+            error_reporting(0);
+            ini_set('display_errors', 0);
         }
 
     }
