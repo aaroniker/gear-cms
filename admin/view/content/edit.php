@@ -32,37 +32,54 @@
     </div>
 </modal>
 
-<section id="grid" :class="isEdit ? 'isEdit' : 'noEdit'">
-    <div class="rows">
-        <div class="row" v-for="(columns, row) in grid">
-            <i class="icon icon-arrow-move move"></i>
-            <i v-if="!columns.length" @click="removeRow(row)" class="icon icon-ios-trash-outline remove"></i>
-            <div @click="addColumnModal = true, addColumnRow = row, addColumnIndex = 0" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
-                <i class="icon icon-android-add"></i>
-            </div>
-            <div class="columns">
-                <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
-                    <div class="box">
-                        <div class="blocks">
-                            {{ column.size }}
-                        </div>
-                        <div class="edit">
-                            <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
-                            <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
-                            <i @click="removeColumn(row, key)" class="remove icon icon-android-cancel"></i>
-                        </div>
-                        <div @click="addColumnModal = true, addColumnRow = row, addColumnIndex = (key + 1)" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
-                            <i class="icon icon-android-add"></i>
+<div class="tabs box">
+    <nav>
+        <ul class="clear">
+            <li class="active">
+                <a href="#grid"><?=lang::get('grid'); ?></a>
+            </li>
+            <li>
+                <a href="#<?=strtolower(lang::get('options')); ?>"><?=lang::get('options'); ?></a>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <div id="grid" :class="isEdit ? 'isEdit' : 'noEdit'">
+            <div class="rows">
+                <div class="row" v-for="(columns, row) in grid">
+                    <i class="icon icon-arrow-move move"></i>
+                    <i v-if="!columns.length" @click="removeRow(row)" class="icon icon-ios-trash-outline remove"></i>
+                    <div @click="addColumnModal = true, addColumnRow = row, addColumnIndex = 0" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
+                        <i class="icon icon-android-add"></i>
+                    </div>
+                    <div class="columns">
+                        <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
+                            <div class="box">
+                                <div class="blocks">
+                                    {{ column.size }}
+                                </div>
+                                <div class="edit">
+                                    <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
+                                    <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
+                                    <i @click="removeColumn(row, key)" class="remove icon icon-android-cancel"></i>
+                                </div>
+                                <div @click="addColumnModal = true, addColumnRow = row, addColumnIndex = (key + 1)" class="addColumn" data-tooltip="<?=lang::get('new_column'); ?>">
+                                    <i class="icon icon-android-add"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div @click="addRow" class="row new">
+                <?=lang::get('new_row'); ?>
+            </div>
         </div>
-    </div>
-    <div @click="addRow" class="row new">
-        <?=lang::get('new_row'); ?>
-    </div>
-</section>
+        <div id="<?=strtolower(lang::get('options')); ?>">
+            edit
+        </div>
+    </section>
+</div>
 
 <?php
 theme::addJSCode('
