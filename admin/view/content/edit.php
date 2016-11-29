@@ -23,6 +23,16 @@
     $field->fieldName(lang::get('name'));
     $field->fieldValidate();
 
+    $parent->name = '';
+    $parent->id = 0;
+
+    if($this->model->parentID) {
+        $parent = new PageModel($this->model->parentID);
+    }
+
+    $field = $form->addRawField('<searchbox '.$currentParent.' :current="pageParentName" :currentid="pageParent" except="'.$this->model->name.'" :list="pageAll" val="name" id="id"></searchbox>');
+    $field->fieldName(lang::get('page_parent'));
+
     if($form->isSubmit()) {
 
         if($form->validation()) {
@@ -117,6 +127,7 @@ theme::addJSCode('
         el: "#app",
         data: {
             headline: "'.$this->model->name.'",
+            pageAll: '.json_encode(PageModel::getAllFromDb()).',
             isEdit: false,
             breakpoint: "md",
             minSize: 2,
@@ -125,10 +136,17 @@ theme::addJSCode('
             addColumnSize: 6,
             addColumnRow: null,
             addColumnIndex: null,
-            addColumnModal: false
+            addColumnModal: false,
+            pageParent: '.$parent->id.',
+            pageParentName: "'.$parent->name.'"
+
         },
         mounted: function() {
+
             this.fetch();
+
+            eventHub.$on("setSearchbox", this.setParent);
+
         },
         methods: {
             fetch: function() {
@@ -148,6 +166,10 @@ theme::addJSCode('
                     }
                 });
 
+            },
+            setParent: function(data) {
+                this.pageParent = data.id;
+                this.pageParentName = data.name;
             },
             save: function(grid) {
 
