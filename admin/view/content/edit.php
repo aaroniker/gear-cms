@@ -23,14 +23,11 @@
     $field->fieldName(lang::get('name'));
     $field->fieldValidate();
 
-    $parent->name = '';
-    $parent->id = 0;
-
-    if($this->model->parentID) {
-        $parent = new PageModel($this->model->parentID);
-    }
-
-    $field = $form->addRawField('<searchbox '.$currentParent.' :current="pageParentName" :currentid="pageParent" except="'.$this->model->name.'" :list="pageAll" val="name" id="id"></searchbox>');
+    $form->addSave('parentID');
+    $field = $form->addRawField('
+        <searchbox :current="pageParentName" :currentid="pageParent" except="'.$this->model->name.'" :list="pageAll" val="name" id="id"></searchbox>
+        <input type="hidden" v-model="pageParent" name="parentID">
+    ');
     $field->fieldName(lang::get('page_parent'));
 
     if($form->isSubmit()) {
@@ -51,6 +48,14 @@
 	    }
 
 	}
+
+    $parent = new stdClass();
+    $parent->name = '';
+    $parent->id = 0;
+
+    if($this->model->parentID) {
+        $parent = new PageModel($this->model->parentID);
+    }
 
 ?>
 
