@@ -182,8 +182,9 @@
 <?php
 theme::addJSCode('
     new Vue({
-        el: "#dashboard",
+        el: "#app",
         data: {
+            headline: lang["overview"],
             logShowAll: true,
             logShowAdd: false,
             logShowEdit: false
