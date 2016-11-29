@@ -111,6 +111,9 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
+                        if(!data.length) {
+                            vue.isEdit = true;
+                        }
                         vue.setDrag();
                     }
                 });
