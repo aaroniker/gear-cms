@@ -13,6 +13,12 @@ class dashboardController extends controller {
 
     }
 
+    public function logs() {
+
+        include(dir::view('dashboard/logs.php'));
+
+    }
+
 }
 
 ?>

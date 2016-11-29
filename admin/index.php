@@ -52,6 +52,7 @@
 
         admin::addMenu(lang::get('dashboard'), 'dashboard', 'stats-bars');
         admin::addSubmenu(lang::get('overview'), 'index', 'dashboard');
+        admin::addSubmenu(lang::get('logs'), 'logs', 'dashboard');
 
         admin::addMenu(lang::get('content'), 'content', 'images');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
