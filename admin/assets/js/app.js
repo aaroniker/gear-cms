@@ -375,8 +375,17 @@ Vue.component("searchbox", {
     props: [
         "list",
         "val",
-        "id"
+        "id",
+        "except",
+        "current",
+        "currentid"
     ],
+    mounted: function() {
+        if(this.current && this.currentid) {
+            this.active = this.current;
+            this.activeID = this.currentid;
+        }
+    },
     methods: {
         toggleSearchBox: function() {
             this.searchBoxShow = !this.searchBoxShow;
@@ -398,7 +407,13 @@ Vue.component("searchbox", {
         data: function() {
             var self = this;
             return self.list.filter(function(entry) {
-                return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;
+                if(self.except) {
+                    if(entry[self.val] != self.except) {
+                        return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;    
+                    }
+                } else {
+                    return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;
+                }
             });
         }
     }
