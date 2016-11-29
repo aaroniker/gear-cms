@@ -21,7 +21,7 @@ theme::addJSCode('
                     title: lang["email"]
                 },
                 permissionGroup: {
-                    title: lang["permission"]
+                    title: lang["user_group"]
                 },
                 status: {
                     title: lang["status"],

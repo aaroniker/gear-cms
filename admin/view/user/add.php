@@ -27,8 +27,8 @@
 	$field->add(1, lang::get('active'));
 	$field->add(0, lang::get('blocked'));
 
-	$field = $form->addSelectField('permissionID', 0);
-	$field->fieldName(lang::get('permissions'));
+	$field = $form->addSelectField('groupID', 0);
+	$field->fieldName(lang::get('user_group'));
 	$field->add(0, lang::get('admin'));
 
 	foreach(PermissionModel::getAllFromDb() as $entry) {

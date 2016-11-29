@@ -32,7 +32,7 @@
                             {{ group.name }} <span v-if="group.id > 0">({{ group.countUser }})</span>
                         </a>
                         <div class="action" v-if="group.id > 0">
-                            <a class="delete" :href="'<?=url::admin('user', ['permissions', 'delete']); ?>/' + group.id">
+                            <a class="delete" :href="'<?=url::admin('user', ['groups', 'delete']); ?>/' + group.id">
                                 <i class="icon icon-ios-trash-outline"></i>
                             </a>
                         </div>
@@ -48,7 +48,7 @@
 
     <div class="lg-9 md-8">
 
-        <div id="permissions" v-for="group in groups">
+        <div id="groups" v-for="group in groups">
             <div v-if="groupID == group.id">
 
                 <ul class="list">
@@ -85,7 +85,7 @@ theme::addJSCode('
     new Vue({
         el: "#app",
         data: {
-            headline: "'.lang::get('permissions').'",
+            headline: "'.lang::get('user_groups').'",
             groupID: 0,
             groups: [],
             perms: '.json_encode($perms).',
@@ -102,7 +102,7 @@ theme::addJSCode('
 
                 $.ajax({
                     method: "POST",
-                    url: "'.url::admin('user', ['permissions', 'edit']).'",
+                    url: "'.url::admin('user', ['groups', 'edit']).'",
                     data: {
                         id: vue.groupID,
                         perms: vue.checked
@@ -117,7 +117,7 @@ theme::addJSCode('
 
                 $.ajax({
                     method: "POST",
-                    url: "'.url::admin('user', ['permissions']).'",
+                    url: "'.url::admin('user', ['groups']).'",
                     dataType: "json",
                     success: function(data) {
                         vue.groups = data;
@@ -132,7 +132,7 @@ theme::addJSCode('
 
                 $.ajax({
                     method: "POST",
-                    url: "'.url::admin('user', ['permissions', 'add']).'",
+                    url: "'.url::admin('user', ['groups', 'add']).'",
                     data: {
                         name: vue.groupName
                     },
@@ -150,7 +150,7 @@ theme::addJSCode('
 
                 $.ajax({
                     method: "POST",
-                    url: "'.url::admin('user', ['permissions', 'get']).'",
+                    url: "'.url::admin('user', ['groups', 'get']).'",
                     dataType: "json",
                     data: {
                         id: vue.groupID

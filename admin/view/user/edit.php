@@ -47,8 +47,8 @@
 
     $form->addSave('password');
 
-    $field = $form->addSelectField('permissionID', $this->model->permissionID);
-    $field->fieldName(lang::get('permissions'));
+    $field = $form->addSelectField('groupID', $this->model->groupID);
+    $field->fieldName(lang::get('user_group'));
     $field->add(0, lang::get('admin'));
 
     foreach(PermissionModel::getAllFromDb() as $entry) {

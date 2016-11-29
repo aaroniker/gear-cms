@@ -44,7 +44,7 @@ class userController extends controller {
 
     }
 
-    public function permissions($action = '', $id = 0) {
+    public function groups($action = '', $id = 0) {
 
         $this->model = new PermissionModel;
 
@@ -76,7 +76,7 @@ class userController extends controller {
                         'name'=> $name
                     ]);
 
-                    message::success(lang::get('permission_group_added'));
+                    message::success(lang::get('user_group_added'));
 
                     ajax::addReturn(json_encode($insert));
 
@@ -117,20 +117,20 @@ class userController extends controller {
 
                 extension::add('model_beforeDelete', function($id) {
     			    if($this->model->countUser() >= 1) {
-                        message::error(lang::get('permission_group_not_empty'));
+                        message::error(lang::get('user_group_not_empty'));
                         return false;
                     }
     		        return $id;
 			    });
 
                 if($this->model->load($id)->delete()) {
-                    message::success(lang::get('permission_group_deleted'));
+                    message::success(lang::get('user_group_deleted'));
                 }
 
             }
         }
 
-        include(dir::view('user/permissions/list.php'));
+        include(dir::view('user/groups/list.php'));
 
     }
 

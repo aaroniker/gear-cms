@@ -17,7 +17,7 @@ class UserModel extends model {
             "username",
             "avatar",
             "session_ids",
-            "permissionID",
+            "groupID",
             "openMenu",
             "smallMenu"
         ];
@@ -26,13 +26,13 @@ class UserModel extends model {
             $this->load($id);
         }
 
-        if($this->permissionID == 0) {
+        if($this->groupID == 0) {
 
             $this->admin = true;
 
         } else {
 
-            $permGroup = new PermissionModel($this->permissionID);
+            $permGroup = new PermissionModel($this->groupID);
 
             $this->permissions = unserialize($permGroup->permissions);
 
@@ -49,8 +49,8 @@ class UserModel extends model {
         if(is_array($getAllFromDb)) {
             foreach($getAllFromDb as $key => $val) {
                 $user = new UserModel($val->id);
-                if($user->permissionID) {
-                    $permission = new PermissionModel($user->permissionID);
+                if($user->groupID) {
+                    $permission = new PermissionModel($user->groupID);
                     $getAllFromDb[$key]->permissionGroup = $permission->name;
                 } else {
                     $getAllFromDb[$key]->permissionGroup = lang::get('admin');

@@ -24,7 +24,7 @@
     userPerm::add('user[index][add]', lang::get('user[index][add]'));
     userPerm::add('user[index][edit]', lang::get('user[index][edit]'));
     userPerm::add('user[index][delete]', lang::get('user[index][delete]'));
-    userPerm::add('user[permissions]', lang::get('user[permissions]'));
+    userPerm::add('user[groups]', lang::get('user[groups]'));
     userPerm::add('extensions[index]', lang::get('extensions[index]'));
 
     ob_start();
@@ -61,7 +61,7 @@
 
         admin::addMenu(lang::get('user'), 'user', 'person');
         admin::addSubmenu(lang::get('list'), 'index', 'user');
-        admin::addSubmenu(lang::get('permissions'), 'permissions', 'user');
+        admin::addSubmenu(lang::get('user_groups'), 'groups', 'user');
 
         admin::addMenu(lang::get('extensions'), 'extensions', 'fork-repo');
         admin::addSubmenu(lang::get('plugins'), 'index', 'extensions');
