@@ -51,9 +51,18 @@ class application {
 
     private function frontend() {
 
+        ob_start();
+
         $page = (new PageModel())->getByURL(self::getUrl());
 
         visit::add();
+
+        $loader = new Twig_Loader_Filesystem(dir::themes(option::get('theme')));
+        $twig = new Twig_Environment($loader, [
+            'cache' => false
+        ]);
+
+        $template = $twig->load('index.php');
 
         if(!$page) {
 
@@ -62,10 +71,16 @@ class application {
         } else {
 
             echo '<h1>'.$page->name.'</h1>';
-
             var_dump($page);
 
         }
+
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        echo $template->render([
+            'content' => $content
+        ]);
 
     }
 
