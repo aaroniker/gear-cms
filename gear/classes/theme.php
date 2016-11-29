@@ -14,7 +14,7 @@ class theme {
 
     public function __construct($name) {
 
-        $file = dir::themes('theme.json', $name);
+        $file = dir::themes($name, 'theme.json');
 
         if(file_exists($file)) {
             $this->config = json_decode(file_get_contents($file), true);

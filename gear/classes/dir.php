@@ -68,7 +68,7 @@ class dir {
         }
     }
 
-    public static function themes($file = '', $theme = false) {
+    public static function themes($theme = false, $file = '') {
         if($theme) {
             return self::base('themes'.DIRECTORY_SEPARATOR.$theme.DIRECTORY_SEPARATOR.$file);
         } else {
