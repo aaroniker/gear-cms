@@ -16,6 +16,32 @@
             '.lang::get('show').'
         </a>
     ');
+
+    $form = new form();
+
+    $field = $form->addTextField('name', $this->model->name);
+    $field->fieldName(lang::get('name'));
+    $field->fieldValidate();
+
+    if($form->isSubmit()) {
+
+        if($form->validation()) {
+
+		    extension::add('model_beforeSave', function($data) {
+                $data['siteURL'] = filter::url($data['name']);
+    		    return $data;
+		    });
+
+			$this->model->save($form->getAll(), true);
+
+            message::success(lang::get('page_edited'));
+
+		} else {
+		    $form->getErrors();
+	    }
+
+	}
+
 ?>
 
 <modal v-if="addColumnModal" @close="addColumnModal = false">
@@ -76,7 +102,11 @@
             </div>
         </div>
         <div id="<?=strtolower(lang::get('options')); ?>">
-            edit
+            <div class="columns">
+                <div class="md-9 lg-7">
+                    <?=$form->show(); ?>
+                </div>
+            </div>
         </div>
     </section>
 </div>
