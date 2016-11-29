@@ -57,22 +57,20 @@ class application {
 
         visit::add();
 
+        $cache = (config::get('cache')) ? dir::cache() : false;
+
         $loader = new Twig_Loader_Filesystem(dir::themes(option::get('theme')));
         $twig = new Twig_Environment($loader, [
-            'cache' => false
+            'cache' => $cache
         ]);
 
         $template = $twig->load('index.php');
 
         if(!$page) {
-
             echo '<h1>404</h1>';
-
         } else {
-
             echo '<h1>'.$page->name.'</h1>';
             var_dump($page);
-
         }
 
         $content = ob_get_contents();
