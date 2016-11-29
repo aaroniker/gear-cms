@@ -66,20 +66,21 @@ class formCheckbox extends formField {
                 $val['attr']['name'] = $this->name.'[]';
             }
             $id = preg_replace('/[^a-zA-Z0-9]+/', '-', $val['value']);
+            $name = preg_replace('/[^a-zA-Z0-9]+/', '-', $this->name);
             $inline = ($this->inline) ? '-inline' : '';
             if($this->divSwitch) {
                 $return .= '
                     <div class="switch'.$inline.'">
-                        <input id="'.$id.'Checkbox" '.$this->convertAttr($val['attr']).'>
-                        <label for="'.$id.'Checkbox"></label>
+                        <input id="'.$name.$id.'Checkbox" '.$this->convertAttr($val['attr']).'>
+                        <label for="'.$name.$id.'Checkbox"></label>
                         <div>'.$val['value'].'</div>
                     </div>
                 ';
             } else {
                 $return .= '
                     <div class="checkbox'.$inline.'">
-                        <input id="'.$id.'Checkbox" '.$this->convertAttr($val['attr']).'>
-                        <label for="'.$id.'Checkbox">'.$val['value'].'</label>
+                        <input id="'.$name.$id.'Checkbox" '.$this->convertAttr($val['attr']).'>
+                        <label for="'.$name.$id.'Checkbox">'.$val['value'].'</label>
                     </div>
                 ';
             }
