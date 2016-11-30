@@ -85,7 +85,7 @@ theme::addJSCode('
             searchBoxShow: false,
             searchBox: ""
         },
-        created: function() {
+        mounted: function() {
 
             var vue = this;
 
