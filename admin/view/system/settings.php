@@ -58,12 +58,18 @@
 ?>
 
 <div class="columns">
-  <div class="md-9 lg-7">
-    <div class="box">
-      <h3><?=option::get('sitename'); ?></h3>
-      <?=$form->show(); ?>
+    <div class="md-9 lg-8">
+        <div class="box">
+            <h3><?=option::get('sitename'); ?></h3>
+            <?=$form->show(); ?>
+        </div>
     </div>
-  </div>
+    <div class="md-3 lg-4">
+        <div class="box">
+            <strong>PHP</strong> <?=config::getPHPVersion(); ?><br>
+            <strong>MySQL</strong> <?=config::getMySQLVersion(); ?>
+        </div>
+    </div>
 </div>
 
 <?php
