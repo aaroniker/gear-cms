@@ -39,12 +39,15 @@
 
         $db->setPrefix($DB['prefix']);
 
-        function db() {
-            global $db;
+        function db($pdoReturn = false) {
+            global $db, $pdo;
+            if($pdoReturn) {
+                return $pdo;
+            }
             return $db;
         }
 
-        unset($DB, $pdo);
+        unset($DB);
 
         lang::setLang(config::get('lang'));
 
