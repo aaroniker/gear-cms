@@ -121,12 +121,12 @@ theme::addJSCode('
                 var vue = this;
 
                 $(document).ready(function() {
-                    $("#pageList .entry .info").draggable({
+                    $("#pageList .entry > .info").draggable({
                         revert: "invalid",
                         helper: "clone",
                         containment: $("#pageList")
                     });
-                    $("#pageList .entry .info, #pageList > h3").droppable({
+                    $("#pageList .entry > .info, #pageList > h3").droppable({
                         hoverClass: "dropActive",
                         drop: function(e, ui) {
                             var drag = $(ui.draggable);
