@@ -117,11 +117,7 @@
             </div>
         </div>
         <div id="<?=strtolower(lang::get('options')); ?>">
-            <div class="columns">
-                <div class="md-9 lg-7">
-                    <?=$form->show(); ?>
-                </div>
-            </div>
+            <?=$form->show(); ?>
         </div>
     </section>
 </div>
