@@ -4,10 +4,6 @@
     "version": 0.1,
     "author": "Aaron Iker",
     "url": "http://aaroniker.me",
-    "required": {
-        "version": 0.1,
-        "plugins": []
-    },
     "include": [
         "hello.php"
     ]
