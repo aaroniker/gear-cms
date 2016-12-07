@@ -37,7 +37,7 @@ class admin {
 
     }
 
-    public static function addSubmenu($name, $url, $parentUrl) {
+    public static function addSubmenu($name, $url, $parentUrl, $show = true) {
 
         $url = ($url) ? $parentUrl.'/'.$url : $parentUrl;
 
@@ -57,10 +57,12 @@ class admin {
             $class = '';
         }
 
-        self::$submenu[$parentUrl][$url] = [
-            'name' => $name,
-            'class' => $class
-        ];
+        if($show) {
+            self::$submenu[$parentUrl][$url] = [
+                'name' => $name,
+                'class' => $class
+            ];
+        }
 
     }
 
