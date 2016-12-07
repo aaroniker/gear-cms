@@ -97,7 +97,7 @@
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
                                 <div class="blocks">
-                                    {{ column.size }}
+
                                 </div>
                                 <div class="edit">
                                     <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
@@ -114,6 +114,20 @@
             </div>
             <div @click="addRow" class="row new">
                 <?=lang::get('new_row'); ?>
+            </div>
+            <div class="installedBlocks">
+                <h3><?=lang::get('blocks'); ?></h3>
+                <?php
+                    if(count(block::getInstalled())) {
+                        echo '<ul class="clear unstyled">';
+                        foreach(block::getInstalled() as $block) {
+                            echo '<li class="button" data-id="'.$block['id'].'">'.$block['name'].'</li>';
+                        }
+                        echo '</ul>';
+                    } else {
+                        echo lang::get('no_results');
+                    }
+                ?>
             </div>
         </div>
         <div id="<?=strtolower(lang::get('options')); ?>">

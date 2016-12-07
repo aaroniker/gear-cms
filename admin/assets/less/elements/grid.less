@@ -98,6 +98,8 @@
             }
             .blocks {
                 min-height: 60px;
+                background: @light;
+                padding: 10px;
                 .round();
             }
             padding: 10px 30px 10px 10px;
@@ -112,6 +114,9 @@
         position: relative;
         min-height: 50px;
         .round();
+    }
+    .installedBlocks {
+        display: none;
     }
     &.noEdit {
         .row {
@@ -141,6 +146,23 @@
             }
             border: none;
             padding: 0;
+        }
+        .installedBlocks {
+            h3 {
+                font-size: 18px;
+                margin: 0;
+            }
+            ul {
+                li {
+                    cursor: move;
+                    float: left;
+                    margin: 5px 10px 5px 0;
+                }
+            }
+            padding: 10px 0 0 0;
+            margin: 15px 0 0 0;
+            border-top: 1px solid @border;
+            display: block;
         }
         padding: 0;
     }
