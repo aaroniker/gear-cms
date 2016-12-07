@@ -4,7 +4,7 @@
             '.lang::get('grid_templates').'
         </a>
     ');
-    
+
     admin::addButton('
         <a @click="addPageModal = true" class="button">
             '.lang::get('add').'
@@ -43,6 +43,15 @@
 
     $field = $form->addRawField('<searchbox :list="pageAll" val="name" id="id"></searchbox>');
     $field->fieldName(lang::get('page_parent'));
+
+    $field = $form->addSelectField('content', '');
+    $field->fieldName(lang::get('grid_template'));
+    $field->addAttribute('v-model', 'pageGrid');
+    $field->add(0, lang::get('no_template'));
+    foreach(GridModel::getAll() as $val) {
+        $field->add($val['id'], $val['name']);
+    }
+
 
 ?>
 
@@ -85,6 +94,7 @@ theme::addJSCode('
             addPageModal: false,
             pageName: "",
             pageParent: 0,
+            pageGrid: 0,
             pageParentName: "",
             pageTree: '.json_encode(PageModel::getAll()).',
             pageAll: '.json_encode(PageModel::getAllFromDb()).',
@@ -156,12 +166,14 @@ theme::addJSCode('
                     url: "'.url::admin('content', ['index', 'add']).'",
                     data: {
                         name: vue.pageName,
-                        parent: vue.pageParent
+                        parent: vue.pageParent,
+                        grid: vue.pageGrid
                     },
                     success: function(data) {
                         vue.fetch();
                         vue.addPageModal = false;
                         vue.pageName = "";
+                        vue.pageGrid = 0;
                         vue.setParent({
                             id: 0,
                             name: ""

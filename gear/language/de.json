@@ -98,6 +98,7 @@
     "grid_templates": "Grid-Vorlagen",
     "grid_template_added": "Grid-Vorlage hinzugefügt",
     "grid_template_deleted": "Grid-Vorlage gelöscht",
+    "no_template": "Keine Vorlage",
     "grid_saved": "Grid gespeichert",
     "options": "Optionen",
 

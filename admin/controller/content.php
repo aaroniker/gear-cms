@@ -51,14 +51,24 @@ class contentController extends controller {
             } elseif($action == 'add') {
 
                 $name = type::post('name', 'string', '');
+                $grid = type::post('grid', 'int', 0);
 
                 if($name) {
 
-                    $this->model->insert([
+                    $insert = [
                         'name'=> $name,
                         'parentID' => $parentID,
                         'siteURL' => filter::url($name)
-                    ], true);
+                    ];
+
+                    if($grid) {
+                        $grid = new GridModel($grid);
+                        if($grid->content) {
+                            $insert['content'] = $grid->content;
+                        }
+                    }
+
+                    $this->model->insert($insert, true);
 
                     message::success(lang::get('page_added'));
 
