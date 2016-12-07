@@ -100,56 +100,61 @@ class contentController extends controller {
 
             $this->model->load($id);
 
-            if(ajax::is()) {
-
-                if($method == 'getContent') {
-
-                    $return = ($this->model->content) ? $this->model->content : json_encode([], JSON_OBJECT_AS_ARRAY);
-
-                    ajax::addReturn($return);
-
-                } elseif($method == 'saveContent') {
-
-                    $content = type::post('content', 'array', []);
-                    $content = (count($content)) ? json_encode($content, JSON_OBJECT_AS_ARRAY) : null;
-
-                    if($this->model->save(['content' => $content])) {
-                        message::success(lang::get('grid_saved'));
-                    }
-
-                    $return = ($this->model->load($id)->content) ? $this->model->load($id)->content : json_encode([], JSON_OBJECT_AS_ARRAY);
-
-                    ajax::addReturn($return);
-
-                } elseif($method == 'orderRows') {
-
-                    $content = json_decode($this->model->content);
-                    $from = type::post('from');
-                    $to = type::post('to');
-
-                    if(count($content) && isset($content[$from]) && isset($content[$to])) {
-
-                        $first = $content[$from];
-                        $second = $content[$to];
-
-                        $content[$to] = $first;
-                        $content[$from] = $second;
-
-                        $this->model->save(['content' => json_encode($content, JSON_OBJECT_AS_ARRAY)]);
-
-                        message::success(lang::get('grid_saved'));
-
-                    }
-
-                }
-
-            }
+            $this->gridAjax($id, $method);
 
             include(dir::view('content/edit.php'));
 
         } else {
 
             include(dir::view('content/list.php'));
+
+        }
+
+    }
+
+    public function grid($action = '', $id = 0, $method = '') {
+
+        $this->model = new GridModel;
+
+        if($action == 'edit' && $id) {
+
+            $this->model->load($id);
+
+            $this->gridAjax($id, $method);
+
+            include(dir::view('content/grid/edit.php'));
+
+        } else {
+
+            if(ajax::is()) {
+                if($action == 'get') {
+                    ajax::addReturn(json_encode(GridModel::getAll()));
+                } elseif($action == 'add') {
+
+                    $name = type::post('name', 'string', '');
+
+                    if($name) {
+
+                        $this->model->insert([
+                            'name'=> $name
+                        ], true);
+
+                        message::success(lang::get('grid_template_added'));
+
+                    } else {
+                        message::error(sprintf(lang::get('validate_required'), lang::get('name')));
+                    }
+
+                }
+            }
+
+            if($action == 'delete') {
+                if($this->model->delete($id)) {
+                    message::success(lang::get('grid_template_deleted'));
+                }
+            }
+
+            include(dir::view('content/grid/list.php'));
 
         }
 
@@ -321,6 +326,55 @@ class contentController extends controller {
         }
 
         include(dir::view('content/media/list.php'));
+
+    }
+
+    public function gridAjax($id, $method) {
+
+        if(ajax::is()) {
+
+            if($method == 'getContent') {
+
+                $return = ($this->model->content) ? $this->model->content : json_encode([], JSON_OBJECT_AS_ARRAY);
+
+                ajax::addReturn($return);
+
+            } elseif($method == 'saveContent') {
+
+                $content = type::post('content', 'array', []);
+                $content = (count($content)) ? json_encode($content, JSON_OBJECT_AS_ARRAY) : null;
+
+                if($this->model->save(['content' => $content])) {
+                    message::success(lang::get('grid_saved'));
+                }
+
+                $return = ($this->model->load($id)->content) ? $this->model->load($id)->content : json_encode([], JSON_OBJECT_AS_ARRAY);
+
+                ajax::addReturn($return);
+
+            } elseif($method == 'orderRows') {
+
+                $content = json_decode($this->model->content);
+                $from = type::post('from');
+                $to = type::post('to');
+
+                if(count($content) && isset($content[$from]) && isset($content[$to])) {
+
+                    $first = $content[$from];
+                    $second = $content[$to];
+
+                    $content[$to] = $first;
+                    $content[$from] = $second;
+
+                    $this->model->save(['content' => json_encode($content, JSON_OBJECT_AS_ARRAY)]);
+
+                    message::success(lang::get('grid_saved'));
+
+                }
+
+            }
+
+        }
 
     }
 

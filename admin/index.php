@@ -56,6 +56,7 @@
 
         admin::addMenu(lang::get('content'), 'content', 'images');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
+        admin::addSubmenu(lang::get('grid_templates'), 'grid', 'content', false);
         admin::addSubmenu(lang::get('menus'), 'menus', 'content');
         admin::addSubmenu(lang::get('media'), 'media', 'content');
 

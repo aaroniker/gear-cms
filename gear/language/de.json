@@ -94,8 +94,12 @@
     "new_row": "Neue Reihe",
     "new_column": "Neue Spalte",
     "grid": "Grid",
-    "options": "Optionen",
+    "grid_template": "Grid-Vorlage",
+    "grid_templates": "Grid-Vorlagen",
+    "grid_template_added": "Grid-Vorlage hinzugefügt",
+    "grid_template_deleted": "Grid-Vorlage gelöscht",
     "grid_saved": "Grid gespeichert",
+    "options": "Optionen",
 
     ## User
     "user": "Benutzer",

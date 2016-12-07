@@ -1,5 +1,11 @@
 <?php
     admin::addButton('
+        <a href="'.url::admin('content', ['grid']).'" class="button border">
+            '.lang::get('grid_templates').'
+        </a>
+    ');
+    
+    admin::addButton('
         <a @click="addPageModal = true" class="button">
             '.lang::get('add').'
         </a>

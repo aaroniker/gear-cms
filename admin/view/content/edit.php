@@ -140,7 +140,6 @@ theme::addJSCode('
             addColumnModal: false,
             pageParent: '.$parent->id.',
             pageParentName: "'.$parent->name.'"
-
         },
         mounted: function() {
 
