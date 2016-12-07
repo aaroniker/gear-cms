@@ -5,6 +5,7 @@ class block {
     protected $file;
     protected $config = [];
     protected static $allBlocks = [];
+    protected static $installedBlocks = [];
 
     public function __construct($file) {
 
@@ -80,6 +81,31 @@ class block {
         }
 
         return self::$allBlocks;
+
+	}
+
+	public static function getInstalled() {
+
+        if(!count(self::$installedBlocks)) {
+
+            $active = unserialize(option::get('blocks'));
+            $active = (!is_array($active)) ? [] : $active;
+
+            foreach($active as $file) {
+
+                $block = new block($file.'.block');
+
+                self::$installedBlocks[] = [
+                    'id' => $file,
+                    'name' => $block->getInfo('name'),
+                    'description' => $block->getInfo('description')
+                ];
+
+            }
+
+        }
+
+        return self::$installedBlocks;
 
 	}
 
