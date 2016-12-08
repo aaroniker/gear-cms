@@ -96,9 +96,9 @@
                     <div class="columns">
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
-                                <div class="blocks">
-
-                                </div>
+                                <ul class="blocks">
+                                    <li v-if="row == 0 && key == 0" class="button">123</li>
+                                </ul>
                                 <div class="edit">
                                     <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                                     <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
@@ -119,7 +119,7 @@
                 <h3><?=lang::get('blocks'); ?></h3>
                 <?php
                     if(count(block::getInstalled())) {
-                        echo '<ul class="clear unstyled">';
+                        echo '<ul id="blocks" class="clear unstyled">';
                         foreach(block::getInstalled() as $block) {
                             echo '<li class="button" data-id="'.$block['id'].'">'.$block['name'].'</li>';
                         }
@@ -175,8 +175,9 @@ theme::addJSCode('
                         vue.grid = data;
                         if(!data.length) {
                             vue.isEdit = true;
+                            vue.setDrag();
                         }
-                        vue.setDrag();
+                        vue.setDragBlocks();
                     }
                 });
 
@@ -233,6 +234,20 @@ theme::addJSCode('
                             vue.setDrag();
                         }
                     });
+                });
+
+            },
+            setDragBlocks: function() {
+
+                var vue = this;
+
+                var drake = dragula([document.getElementById("blocks"), document.getElementsByClassName("blocks")], {
+                    copy: function (el, source) {
+                        return source === document.getElementById("blocks")
+                    },
+                    accepts: function (el, target) {
+                        return target !== document.getElementById("blocks")
+                    }
                 });
 
             },
