@@ -10,7 +10,6 @@
     theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js');
     theme::addJS('https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js');
     theme::addJS('https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js');
-    theme::addJS('https://cdn.jsdelivr.net/interact.js/1.2.7/interact.min.js');
     theme::addJS('https://cdn.jsdelivr.net/vue/2.1.4/vue.js');
     theme::addJS('https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js');
     theme::addJS(url::assets('js/form.js'));

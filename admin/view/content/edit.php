@@ -241,7 +241,11 @@ theme::addJSCode('
 
                 var vue = this;
 
-                var drake = dragula([document.getElementById("blocks"), document.getElementsByClassName("blocks")], {
+                var containers = $(".blocks").toArray();
+
+                console.log($(".blocks"));
+
+                var drake = dragula(containers, {
                     copy: function (el, source) {
                         return source === document.getElementById("blocks")
                     },
