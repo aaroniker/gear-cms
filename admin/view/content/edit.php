@@ -120,11 +120,11 @@
             <div @click="addRow" class="row new">
                 <?=lang::get('new_row'); ?>
             </div>
-            <div class="installedBlocks" v-if="showBlocks">
+            <div v-show="showBlocks" class="installedBlocks">
                 <h3><?=lang::get('blocks'); ?></h3>
                 <?php
                     if(count(block::getInstalled())) {
-                        echo '<ul id="blocks" class="clear unstyled">';
+                        echo '<ul class="clear unstyled">';
                         foreach(block::getInstalled() as $block) {
                             echo '<li class="button" data-id="'.$block['id'].'">'.$block['name'].'</li>';
                         }
@@ -159,7 +159,9 @@ theme::addJSCode('
             addColumnIndex: null,
             addColumnModal: false,
             pageParent: '.$parent->id.',
-            pageParentName: "'.$parent->name.'"
+            pageParentName: "'.$parent->name.'",
+            drakeGrid: null,
+            drakeBlocks: null
         },
         mounted: function() {
 
@@ -181,9 +183,7 @@ theme::addJSCode('
                         vue.grid = data;
                         if(!data.length) {
                             vue.isEdit = true;
-                            vue.setDrag();
                         }
-                        vue.setDragBlocks();
                     }
                 });
 
@@ -215,19 +215,19 @@ theme::addJSCode('
                 var vue = this;
                 var from = null;
 
-                var drake = dragula([$("#grid > .rows")[0]], {
+                this.drakeGrid = dragula([$("#grid > .rows")[0]], {
                     moves: function(el, container, handle) {
                         return handle.classList.contains("move");
                     },
                     mirrorContainer: $("#grid")[0]
                 });
 
-                drake.on("drag", function(element, source) {
+                this.drakeGrid.on("drag", function(element, source) {
                     var index = $(element).parent().children(".row").index($(element));
                     from = index;
                 });
 
-                drake.on("drop", function(element, target, source, sibling) {
+                this.drakeGrid.on("drop", function(element, target, source, sibling) {
                     var to = $(element).parent().children(".row").index($(element));
                     $.ajax({
                         method: "POST",
@@ -248,15 +248,14 @@ theme::addJSCode('
                 var vue = this;
 
                 var containers = $(".blocks").toArray();
+                containers = containers.concat($(".installedBlocks > ul").toArray());
 
-                console.log($(".blocks"));
-
-                var drake = dragula(containers, {
+                this.drakeBlocks = dragula(containers, {
                     copy: function (el, source) {
-                        return source === document.getElementById("blocks")
+                        return source === $(".installedBlocks > ul")[0]
                     },
                     accepts: function (el, target) {
-                        return target !== document.getElementById("blocks")
+                        return target !== $(".installedBlocks > ul")[0]
                     }
                 });
 
@@ -313,6 +312,28 @@ theme::addJSCode('
                 });
 
                 this.save(this.grid);
+
+            }
+        },
+        watch: {
+            showBlocks: function() {
+
+                if(this.showBlocks) {
+                    this.setDragBlocks();
+                    $(".blocks").addClass("move");
+                } else {
+                    this.drakeBlocks.destroy();
+                    $(".blocks").removeClass("move");
+                }
+
+            },
+            isEdit: function() {
+
+                if(this.isEdit) {
+                    this.setDrag();
+                } else {
+                    this.drakeGrid.destroy();
+                }
 
             }
         }
