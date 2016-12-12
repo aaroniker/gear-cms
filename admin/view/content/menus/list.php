@@ -118,13 +118,13 @@
 
 <?php
 theme::addJSCode('
+    window.addEventListener("touchmove", function() {});
     Vue.component("item", {
         template: "#item-template",
         props: {
             model: Object
         }
     });
-
     var options = {
         insertZone: 50,
         placeholderClass: "placeholder",
@@ -143,7 +143,6 @@ theme::addJSCode('
         },
         ignoreClass: "icon"
     };
-
     new Vue({
         el: "#app",
         data: {

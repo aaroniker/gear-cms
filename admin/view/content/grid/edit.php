@@ -56,6 +56,7 @@
 
 <?php
 theme::addJSCode('
+    window.addEventListener("touchmove", function() {});
     new Vue({
         el: "#app",
         data: {
