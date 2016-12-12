@@ -101,8 +101,8 @@
                     <div class="columns">
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
-                                <ul class="blocks">
-                                    <li v-if="row == 0 && key == 0" class="button">123</li>
+                                <ul class="blocks" :data-row="row" :data-column="key">
+                                    <li v-for="(block, key) in column.blocks" class="button">{{ block.name }}</li>
                                 </ul>
                                 <div class="edit">
                                     <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
@@ -140,6 +140,10 @@
         </div>
     </section>
 </div>
+
+<pre>
+{{grid}}
+</pre>
 
 <?php
 theme::addJSCode('
@@ -258,6 +262,20 @@ theme::addJSCode('
                     accepts: function (el, target) {
                         return target !== $(".installedBlocks > ul")[0]
                     }
+                });
+
+                this.drakeBlocks.on("drop", function(element, target, source, sibling) {
+                    var id = $(element).data("id");
+                    var row = $(target).data("row");
+                    var column = $(target).data("column");
+                    var index = $(element).index();
+                    if(typeof vue.grid[row][column].blocks === "undefined") {
+                        vue.grid[row][column].blocks = new Array();
+                    }
+                    vue.grid[row][column].blocks.splice(index, 0, {
+                        name: id
+                    });
+                    vue.save(vue.grid);
                 });
 
             },
