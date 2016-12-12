@@ -5,13 +5,6 @@
         </a>
     ');
     admin::addButton('
-        <div class="switch">
-            <input v-model="isEdit" id="isEdit" value="1" type="checkbox">
-            <label for="isEdit"></label>
-            <div>'.lang::get('grid').'</div>
-        </div>
-    ');
-    admin::addButton('
         <a href="'.$this->model->getLink().'" target="_blank" class="button border">
             '.lang::get('show').'
         </a>
@@ -115,7 +108,18 @@
             <div @click="addRow" class="row new">
                 <?=lang::get('new_row'); ?>
             </div>
-            <div class="installedBlocks">
+            <hr>
+            <div class="switch-inline">
+                <input v-model="isEdit" id="isEdit" value="1" type="checkbox">
+                <label for="isEdit"></label>
+                <div><?=lang::get('grid'); ?></div>
+            </div>
+            <div class="switch-inline">
+                <input v-model="showBlocks" id="showBlocks" value="1" type="checkbox">
+                <label for="showBlocks"></label>
+                <div><?=lang::get('blocks'); ?></div>
+            </div>
+            <div class="installedBlocks" v-if="showBlocks">
                 <h3><?=lang::get('blocks'); ?></h3>
                 <?php
                     if(count(block::getInstalled())) {
@@ -144,6 +148,7 @@ theme::addJSCode('
             headline: "'.$this->model->name.'",
             pageAll: '.json_encode(PageModel::getAllFromDb()).',
             isEdit: false,
+            showBlocks: false,
             breakpoint: "md",
             minSize: 2,
             maxSize: 12,
