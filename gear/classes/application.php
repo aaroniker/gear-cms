@@ -21,8 +21,6 @@ class application {
             exit();
         }
 
-        $this->bootstrap();
-
         if($env == 'admin') {
 
             $this->admin = true;
@@ -31,6 +29,7 @@ class application {
                 admin::generateLess();
             }
 
+            $this->bootstrap();
             $this->admin();
 
         } elseif($env == 'install') {
@@ -39,6 +38,7 @@ class application {
 
         } else {
 
+            $this->bootstrap();
             $this->frontend();
 
         }
