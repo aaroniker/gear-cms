@@ -32,9 +32,12 @@
                 <div class="columns">
                     <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                         <div class="box">
-                            <div class="blocks">
-                                {{ column.size }}
-                            </div>
+                            <ul class="blocks move" :data-row="row" :data-column="key">
+                                <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button">
+                                    {{ block.name }}
+                                    <a @click="deleteBlock(row, key, blockKey)" class="icon icon-ios-trash-outline delBlock"></a>
+                                </li>
+                            </ul>
                             <div class="edit">
                                 <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
                                 <i v-if="column.size > minSize" @click="size(row, key, -1)" class="minus icon icon-android-remove-circle"></i>
@@ -50,6 +53,20 @@
         </div>
         <div @click="addRow" class="row new">
             <?=lang::get('new_row'); ?>
+        </div>
+        <div class="installedBlocks">
+            <h3><?=lang::get('blocks'); ?></h3>
+            <?php
+                if(count(block::getInstalled())) {
+                    echo '<ul class="clear unstyled">';
+                    foreach(block::getInstalled() as $block) {
+                        echo '<li class="button" data-id="'.$block['id'].'" data-name="'.$block['name'].'">'.$block['name'].'</li>';
+                    }
+                    echo '</ul>';
+                } else {
+                    echo lang::get('no_results');
+                }
+            ?>
         </div>
     </div>
 </div>
@@ -69,10 +86,16 @@ theme::addJSCode('
             addColumnSize: 6,
             addColumnRow: null,
             addColumnIndex: null,
-            addColumnModal: false
+            addColumnModal: false,
+            drakeGrid: null,
+            drakeBlocks: null
         },
         mounted: function() {
-            this.fetch();
+            var vue = this;
+            vue.fetch();
+            setTimeout(function() {
+                vue.setDragBlocks();
+            }, 100);
         },
         methods: {
             fetch: function() {
@@ -85,12 +108,15 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
-                        vue.setDrag();
+                        if(!data.length) {
+                            vue.setDrag();
+                            vue.setDragBlocks();
+                        }
                     }
                 });
 
             },
-            save: function(grid) {
+            save: function(grid, callback) {
 
                 var vue = this;
 
@@ -103,7 +129,9 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
-                        vue.setDrag();
+                        if(typeof callback === "function") {
+                            callback();
+                        }
                     }
                 });
 
@@ -113,19 +141,19 @@ theme::addJSCode('
                 var vue = this;
                 var from = null;
 
-                var drake = dragula([$("#grid > .rows")[0]], {
+                this.drakeGrid = dragula([$("#grid > .rows")[0]], {
                     moves: function(el, container, handle) {
                         return handle.classList.contains("move");
                     },
                     mirrorContainer: $("#grid")[0]
                 });
 
-                drake.on("drag", function(element, source) {
+                this.drakeGrid.on("drag", function(element, source) {
                     var index = $(element).parent().children(".row").index($(element));
                     from = index;
                 });
 
-                drake.on("drop", function(element, target, source, sibling) {
+                this.drakeGrid.on("drop", function(element, target, source, sibling) {
                     var to = $(element).parent().children(".row").index($(element));
                     $.ajax({
                         method: "POST",
@@ -141,7 +169,57 @@ theme::addJSCode('
                 });
 
             },
+            setDragBlocks: function() {
+
+                var vue = this;
+
+                var containers = $(".blocks").toArray();
+                containers = containers.concat($(".installedBlocks > ul").toArray());
+
+                this.drakeBlocks = dragula(containers, {
+                    copy: function (el, source) {
+                        return source === $(".installedBlocks > ul")[0]
+                    },
+                    accepts: function (el, target) {
+                        return target !== $(".installedBlocks > ul")[0]
+                    }
+                });
+
+                this.drakeBlocks.on("drop", function(element, target, source, sibling) {
+
+                    var id = $(element).data("id");
+                    var name = $(element).data("name");
+
+                    $(".blocks").each(function(i) {
+
+                        var row = $(this).data("row");
+                        var column = $(this).data("column");
+
+                        vue.grid[row][column].blocks = new Array();
+
+                        $(this).children("li").each(function(index) {
+                            var id = $(this).data("id");
+                            var name = $(this).data("name");
+                            vue.grid[row][column].blocks.splice(index, 0, {
+                                id: id,
+                                name: name
+                            });
+                        });
+
+                    });
+
+                    vue.save(vue.grid, function() {
+                        if(!$(source).hasClass("blocks")) {
+                            $(element).remove();
+                        }
+                    });
+
+                });
+
+            },
             size: function(row, key, num) {
+
+                var vue = this;
 
                 var size = parseInt(this.grid[row][key].size);
                 var newSize = size + parseInt(num);
@@ -150,7 +228,10 @@ theme::addJSCode('
                     this.grid[row][key].size = newSize;
                 }
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                    vue.setDragBlocks();
+                });
 
             },
             addRow: function() {
@@ -164,16 +245,23 @@ theme::addJSCode('
             },
             removeRow: function(row) {
 
+                var vue = this;
+
                 var entry = this.grid[row];
 
                 this.grid = _.filter(this.grid, function(obj) {
                     return entry !== obj;
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                    vue.setDragBlocks();
+                });
 
             },
             addColumn: function() {
+
+                var vue = this;
 
                 this.addColumnModal = false;
 
@@ -181,14 +269,35 @@ theme::addJSCode('
                     size: this.addColumnSize
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                    vue.setDragBlocks();
+                });
 
             },
             removeColumn: function(row, key) {
 
+                var vue = this;
+
                 var entry = this.grid[row][key];
 
                 this.grid[row] = _.filter(this.grid[row], function(obj) {
+                    return entry !== obj;
+                });
+
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                    vue.setDragBlocks();
+                });
+
+            },
+            deleteBlock: function(row, key, block) {
+
+                var vue = this;
+
+                var entry = this.grid[row][key].blocks[block];
+
+                this.grid[row][key].blocks = _.filter(this.grid[row][key].blocks, function(obj) {
                     return entry !== obj;
                 });
 
