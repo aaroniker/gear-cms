@@ -242,9 +242,6 @@ theme::addJSCode('
                         data: {
                             from: from,
                             to: to
-                        },
-                        success: function() {
-                            vue.setDrag();
                         }
                     });
                 });
@@ -350,6 +347,9 @@ theme::addJSCode('
 
                 this.save(this.grid, function() {
                     vue.setDrag();
+                    if(vue.showBlocks) {
+                        vue.setDragBlocks();
+                    }
                 });
 
             },
@@ -363,9 +363,7 @@ theme::addJSCode('
                     return entry !== obj;
                 });
 
-                this.save(this.grid, function() {
-                    vue.setDrag();
-                });
+                this.save(this.grid);
 
             },
             deleteBlock: function(row, key, block) {

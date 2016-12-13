@@ -94,6 +94,7 @@ theme::addJSCode('
             var vue = this;
             vue.fetch();
             setTimeout(function() {
+                vue.setDrag();
                 vue.setDragBlocks();
             }, 100);
         },
@@ -108,10 +109,8 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
-                        if(!data.length) {
-                            vue.setDrag();
-                            vue.setDragBlocks();
-                        }
+                        vue.setDrag();
+                        vue.setDragBlocks();
                     }
                 });
 
@@ -132,6 +131,8 @@ theme::addJSCode('
                         if(typeof callback === "function") {
                             callback();
                         }
+                        vue.setDrag();
+                        vue.setDragBlocks();
                     }
                 });
 
@@ -161,9 +162,6 @@ theme::addJSCode('
                         data: {
                             from: from,
                             to: to
-                        },
-                        success: function() {
-                            vue.setDrag();
                         }
                     });
                 });
@@ -228,10 +226,7 @@ theme::addJSCode('
                     this.grid[row][key].size = newSize;
                 }
 
-                this.save(this.grid, function() {
-                    vue.setDrag();
-                    vue.setDragBlocks();
-                });
+                this.save(this.grid);
 
             },
             addRow: function() {
@@ -253,10 +248,7 @@ theme::addJSCode('
                     return entry !== obj;
                 });
 
-                this.save(this.grid, function() {
-                    vue.setDrag();
-                    vue.setDragBlocks();
-                });
+                this.save(this.grid);
 
             },
             addColumn: function() {
@@ -269,10 +261,7 @@ theme::addJSCode('
                     size: this.addColumnSize
                 });
 
-                this.save(this.grid, function() {
-                    vue.setDrag();
-                    vue.setDragBlocks();
-                });
+                this.save(this.grid);
 
             },
             removeColumn: function(row, key) {
@@ -285,10 +274,7 @@ theme::addJSCode('
                     return entry !== obj;
                 });
 
-                this.save(this.grid, function() {
-                    vue.setDrag();
-                    vue.setDragBlocks();
-                });
+                this.save(this.grid);
 
             },
             deleteBlock: function(row, key, block) {
