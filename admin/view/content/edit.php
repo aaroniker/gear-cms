@@ -79,18 +79,6 @@
     </nav>
     <section>
         <div id="grid" :class="isEdit ? 'isEdit' : 'noEdit'">
-            <div class="options clear">
-                <div class="switch">
-                    <input v-model="isEdit" id="isEdit" value="1" type="checkbox">
-                    <label for="isEdit"></label>
-                    <div><?=lang::get('grid'); ?></div>
-                </div>
-                <div class="switch">
-                    <input v-model="showBlocks" id="showBlocks" value="1" type="checkbox">
-                    <label for="showBlocks"></label>
-                    <div><?=lang::get('blocks'); ?></div>
-                </div>
-            </div>
             <div class="rows">
                 <div class="row" v-for="(columns, row) in grid">
                     <i class="icon icon-arrow-move move"></i>
@@ -123,6 +111,19 @@
             <div @click="addRow" class="row new">
                 <?=lang::get('new_row'); ?>
             </div>
+            <hr>
+            <div class="options clear">
+                <div class="switch">
+                    <input v-model="isEdit" id="isEdit" value="1" type="checkbox">
+                    <label for="isEdit"></label>
+                    <div><?=lang::get('grid'); ?></div>
+                </div>
+                <div class="switch">
+                    <input v-model="showBlocks" id="showBlocks" value="1" type="checkbox">
+                    <label for="showBlocks"></label>
+                    <div><?=lang::get('blocks'); ?></div>
+                </div>
+            </div>
             <div v-show="showBlocks" class="installedBlocks">
                 <h3><?=lang::get('blocks'); ?></h3>
                 <?php
@@ -143,10 +144,6 @@
         </div>
     </section>
 </div>
-
-<pre>
-{{grid}}
-</pre>
 
 <?php
 theme::addJSCode('
