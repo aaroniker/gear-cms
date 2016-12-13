@@ -135,7 +135,15 @@ jQuery(document).ready(function($) {
 
     });
 
-    setInterval("getMessages(url)", 1000);
+    var focus;
+
+    $(window).focus(function() {
+        focus = true;
+    }).blur(function() {
+        focus = false;
+    });
+
+    setInterval("getMessages(url, focus)", 1000);
 
     setTabs();
 
@@ -193,39 +201,43 @@ function setMessage(message, type) {
     });
 }
 
-function getMessages(url) {
-    $.ajax({
-        type: "POST",
-        url: url + "admin/",
-        data: {
-            method: "getMessages"
-        },
-        dataType: "json",
-        success: function(message) {
-            if(!jQuery.isEmptyObject(message)) {
-                $.ajax({
-                    type: "POST",
-                    url: url + "admin/",
-                    data: {
-                        method: "deleteMessage",
-                        index: message.index
-                    },
-                    success: function() {
+function getMessages(url, focus) {
 
-                        var element = $(message.html).appendTo("#messages");
+    if(focus) {
+        $.ajax({
+            type: "POST",
+            url: url + "admin/",
+            data: {
+                method: "getMessages"
+            },
+            dataType: "json",
+            success: function(message) {
+                if(!jQuery.isEmptyObject(message)) {
+                    $.ajax({
+                        type: "POST",
+                        url: url + "admin/",
+                        data: {
+                            method: "deleteMessage",
+                            index: message.index
+                        },
+                        success: function() {
 
-                        element.addClass("animated fadeInDown");
+                            var element = $(message.html).appendTo("#messages");
 
-                        setTimeout(function() {
-                            element.removeClass("fadeInDown").addClass("fadeOutUp");
-                            element.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
-                                element.remove();
-                            });
-                        }, 2200);
+                            element.addClass("animated fadeInDown");
 
-                    }
-                });
+                            setTimeout(function() {
+                                element.removeClass("fadeInDown").addClass("fadeOutUp");
+                                element.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
+                                    element.remove();
+                                });
+                            }, 2200);
+
+                        }
+                    });
+                }
             }
-        }
-    });
+        });
+    }
+
 }
