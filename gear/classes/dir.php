@@ -60,7 +60,7 @@ class dir {
         return self::base('tmp'.DIRECTORY_SEPARATOR.$file);
     }
 
-    public static function plugins($file = '', $plugin = false) {
+    public static function plugins($plugin = false, $file = '') {
         if($plugin) {
             return self::gear('plugins'.DIRECTORY_SEPARATOR.$plugin.DIRECTORY_SEPARATOR.$file);
         } else {
