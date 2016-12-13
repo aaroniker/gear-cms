@@ -50,8 +50,33 @@ class theme {
 
     }
 
+    public static function getIncludes() {
+
+        $active = option::get('theme');
+        $theme = new self($active);
+
+        if($theme->get('include') && is_array($theme->get('include'))) {
+            foreach($theme->get('include') as $file) {
+                if(file_exists(dir::themes($active, $file))) {
+                    include(dir::themes($active, $file));
+                }
+            }
+        }
+
+    }
+
     public function getConfig() {
         return $this->config;
+    }
+
+    public function get($key, $default = null) {
+
+        if(isset($this->config[$key])) {
+            return $this->config[$key];
+        }
+
+        return $default;
+
     }
 
     public static function addCSS($css_file) {

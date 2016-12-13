@@ -21,6 +21,8 @@ class application {
             exit();
         }
 
+        $this->bootstrap();
+
         if($env == 'admin') {
 
             $this->admin = true;
@@ -41,6 +43,11 @@ class application {
 
         }
 
+    }
+
+    private function bootstrap() {
+        plugin::getIncludes();
+        theme::getIncludes();
     }
 
     private function install() {

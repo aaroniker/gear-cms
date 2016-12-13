@@ -7,7 +7,7 @@ class plugin {
 
     public function __construct($name) {
 
-        $file = dir::plugins('plugin.json', $name);
+        $file = dir::plugins($name, 'plugin.json');
 
         if(file_exists($file)) {
             $this->config = json_decode(file_get_contents($file), true);
@@ -52,6 +52,23 @@ class plugin {
         }
 
         return self::$allPlugins;
+
+    }
+
+    public static function getIncludes() {
+
+        $active = unserialize(option::get('plugins'));
+        $active = (!is_array($active)) ? [] : $active;
+        foreach($active as $dir) {
+            $plugin = new self($dir);
+            if($plugin->get('include') && is_array($plugin->get('include'))) {
+                foreach($plugin->get('include') as $file) {
+                    if(file_exists(dir::plugins($dir, $file))) {
+                        include(dir::plugins($dir, $file));
+                    }
+                }
+            }
+        }
 
     }
 
