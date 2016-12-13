@@ -100,6 +100,23 @@
             .blocks {
                 &.move {
                     li {
+                        .icon.delBlock {
+                            &:before {
+                                line-height: 36px;
+                                display: block;
+                            }
+                            font-size: 18px;
+                            width: 36px;
+                            top: 0;
+                            right: 0;
+                            left: auto;
+                            text-align: center;
+                            display: block;
+                            position: absolute;
+                            color: #fff;
+                            cursor: pointer;
+                            z-index: 1;
+                        }
                         cursor: move;
                         -webkit-user-select: none !important;
                         -moz-user-select: none !important;
@@ -108,6 +125,10 @@
                     }
                 }
                 li {
+                    .icon.delBlock {
+                        display: none;
+                    }
+                    position: relative;
                     list-style: none;
                     display: block;
                     margin: 5px 0;

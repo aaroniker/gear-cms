@@ -102,7 +102,10 @@
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
                                 <ul class="blocks" :data-row="row" :data-column="key">
-                                    <li v-for="(block, key) in column.blocks" class="button">{{ block.name }}</li>
+                                    <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button">
+                                        {{ block.name }}
+                                        <a @click="deleteBlock(row, key, blockKey)" class="icon icon-ios-trash-outline delBlock"></a>
+                                    </li>
                                 </ul>
                                 <div class="edit">
                                     <i v-if="column.size < maxSize" @click="size(row, key, 1)" class="plus icon icon-android-add-circle"></i>
@@ -126,7 +129,7 @@
                     if(count(block::getInstalled())) {
                         echo '<ul class="clear unstyled">';
                         foreach(block::getInstalled() as $block) {
-                            echo '<li class="button" data-id="'.$block['id'].'">'.$block['name'].'</li>';
+                            echo '<li class="button" data-id="'.$block['id'].'" data-name="'.$block['name'].'">'.$block['name'].'</li>';
                         }
                         echo '</ul>';
                     } else {
@@ -197,7 +200,7 @@ theme::addJSCode('
                 this.pageParent = data.id;
                 this.pageParentName = data.name;
             },
-            save: function(grid) {
+            save: function(grid, callback) {
 
                 var vue = this;
 
@@ -210,7 +213,9 @@ theme::addJSCode('
                     dataType: "json",
                     success: function(data) {
                         vue.grid = data;
-                        vue.setDrag();
+                        if(typeof callback === "function") {
+                            callback();
+                        }
                     }
                 });
 
@@ -265,21 +270,40 @@ theme::addJSCode('
                 });
 
                 this.drakeBlocks.on("drop", function(element, target, source, sibling) {
+
                     var id = $(element).data("id");
-                    var row = $(target).data("row");
-                    var column = $(target).data("column");
-                    var index = $(element).index();
-                    if(typeof vue.grid[row][column].blocks === "undefined") {
+                    var name = $(element).data("name");
+
+                    $(".blocks").each(function(i) {
+
+                        var row = $(this).data("row");
+                        var column = $(this).data("column");
+
                         vue.grid[row][column].blocks = new Array();
-                    }
-                    vue.grid[row][column].blocks.splice(index, 0, {
-                        name: id
+
+                        $(this).children("li").each(function(index) {
+                            var id = $(this).data("id");
+                            var name = $(this).data("name");
+                            vue.grid[row][column].blocks.splice(index, 0, {
+                                id: id,
+                                name: name
+                            });
+                        });
+
                     });
-                    vue.save(vue.grid);
+
+                    vue.save(vue.grid, function() {
+                        if(!$(source).hasClass("blocks")) {
+                            $(element).remove();
+                        }
+                    });
+
                 });
 
             },
             size: function(row, key, num) {
+
+                var vue = this;
 
                 var size = parseInt(this.grid[row][key].size);
                 var newSize = size + parseInt(num);
@@ -288,7 +312,9 @@ theme::addJSCode('
                     this.grid[row][key].size = newSize;
                 }
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
 
             },
             addRow: function() {
@@ -302,16 +328,22 @@ theme::addJSCode('
             },
             removeRow: function(row) {
 
+                var vue = this;
+
                 var entry = this.grid[row];
 
                 this.grid = _.filter(this.grid, function(obj) {
                     return entry !== obj;
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
 
             },
             addColumn: function() {
+
+                var vue = this;
 
                 this.addColumnModal = false;
 
@@ -319,14 +351,33 @@ theme::addJSCode('
                     size: this.addColumnSize
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
 
             },
             removeColumn: function(row, key) {
 
+                var vue = this;
+
                 var entry = this.grid[row][key];
 
                 this.grid[row] = _.filter(this.grid[row], function(obj) {
+                    return entry !== obj;
+                });
+
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
+
+            },
+            deleteBlock: function(row, key, block) {
+
+                var vue = this;
+
+                var entry = this.grid[row][key].blocks[block];
+
+                this.grid[row][key].blocks = _.filter(this.grid[row][key].blocks, function(obj) {
                     return entry !== obj;
                 });
 
