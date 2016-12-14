@@ -148,17 +148,64 @@ a.delete {
 }
 
 #themes {
-    .screenshot {
-        background: @light;
-        width: 100%;
-        padding-bottom: 75%;
-        margin: 0 0 15px 0;
-        background-size: cover;
-        background-position: center center;
-        .round();
-    }
-    .button.active {
-        cursor: auto;
+    .box {
+        h3 {
+            float: left;
+        }
+        .info {
+            &:hover,
+            &.active {
+                color: @text;
+            }
+            &:before {
+                line-height: 36px;
+                display: block;
+            }
+            display: block;
+            font-size: 18px;
+            cursor: pointer;
+            float: right;
+            color: @text-light;
+        }
+        .screenshot {
+            div {
+                span {
+                    display: block;
+                    position: absolute;
+                    left: 15px;
+                    bottom: 15px;
+                    .opacity(0.6);
+                }
+                a {
+                    color: #fff;
+                    display:  block;
+                    position: absolute;
+                    right: 15px;
+                    bottom: 15px;
+                }
+                background: fade(@dark, 75%);
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                color: #fff;
+                padding: 15px;
+                .transition();
+                .round();
+            }
+            background: @light;
+            width: 100%;
+            padding-bottom: 75%;
+            margin: 0 0 15px 0;
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+            .round();
+        }
+        .button.active {
+            cursor: auto;
+        }
     }
 }
 
