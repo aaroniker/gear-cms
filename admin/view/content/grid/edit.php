@@ -32,7 +32,7 @@
                 <div class="columns">
                     <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                         <div class="box">
-                            <ul class="blocks move" :data-row="row" :data-column="key">
+                            <ul class="blocks" :data-row="row" :data-column="key">
                                 <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button">
                                     {{ block.name }}
                                     <a @click="deleteBlock(row, key, blockKey)" class="icon icon-ios-trash-outline delBlock"></a>
@@ -54,7 +54,20 @@
         <div @click="addRow" class="row new">
             <?=lang::get('new_row'); ?>
         </div>
-        <div class="installedBlocks">
+        <hr>
+        <div class="options clear">
+            <div class="switch">
+                <input v-model="isEdit" id="isEdit" value="1" type="checkbox">
+                <label for="isEdit"></label>
+                <div><?=lang::get('grid'); ?></div>
+            </div>
+            <div class="switch">
+                <input v-model="showBlocks" id="showBlocks" value="1" type="checkbox">
+                <label for="showBlocks"></label>
+                <div><?=lang::get('blocks'); ?></div>
+            </div>
+        </div>
+        <div v-show="showBlocks" class="installedBlocks">
             <h3><?=lang::get('blocks'); ?></h3>
             <?php
                 if(count(block::getInstalled())) {
@@ -78,7 +91,8 @@ theme::addJSCode('
         el: "#app",
         data: {
             headline: "'.$this->model->name.'",
-            isEdit: true,
+            isEdit: false,
+            showBlocks: false,
             breakpoint: "md",
             minSize: 2,
             maxSize: 12,
@@ -91,12 +105,9 @@ theme::addJSCode('
             drakeBlocks: null
         },
         mounted: function() {
-            var vue = this;
-            vue.fetch();
-            setTimeout(function() {
-                vue.setDrag();
-                vue.setDragBlocks();
-            }, 100);
+
+            this.fetch();
+
         },
         methods: {
             fetch: function() {
@@ -110,7 +121,6 @@ theme::addJSCode('
                     success: function(data) {
                         vue.grid = data;
                         vue.setDrag();
-                        vue.setDragBlocks();
                     }
                 });
 
@@ -131,8 +141,6 @@ theme::addJSCode('
                         if(typeof callback === "function") {
                             callback();
                         }
-                        vue.setDrag();
-                        vue.setDragBlocks();
                     }
                 });
 
@@ -226,7 +234,9 @@ theme::addJSCode('
                     this.grid[row][key].size = newSize;
                 }
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
 
             },
             addRow: function() {
@@ -248,7 +258,9 @@ theme::addJSCode('
                     return entry !== obj;
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                });
 
             },
             addColumn: function() {
@@ -261,7 +273,12 @@ theme::addJSCode('
                     size: this.addColumnSize
                 });
 
-                this.save(this.grid);
+                this.save(this.grid, function() {
+                    vue.setDrag();
+                    if(vue.showBlocks) {
+                        vue.setDragBlocks();
+                    }
+                });
 
             },
             removeColumn: function(row, key) {
@@ -288,6 +305,30 @@ theme::addJSCode('
                 });
 
                 this.save(this.grid);
+
+            }
+        },
+        watch: {
+            showBlocks: function() {
+
+                if(this.showBlocks) {
+                    this.isEdit = false;
+                    this.setDragBlocks();
+                    $(".blocks").addClass("move");
+                } else {
+                    this.drakeBlocks.destroy();
+                    $(".blocks").removeClass("move");
+                }
+
+            },
+            isEdit: function() {
+
+                if(this.isEdit) {
+                    this.showBlocks = false;
+                    this.setDrag();
+                } else {
+                    this.drakeGrid.destroy();
+                }
 
             }
         }

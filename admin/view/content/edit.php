@@ -391,6 +391,7 @@ theme::addJSCode('
             showBlocks: function() {
 
                 if(this.showBlocks) {
+                    this.isEdit = false;
                     this.setDragBlocks();
                     $(".blocks").addClass("move");
                 } else {
@@ -402,6 +403,7 @@ theme::addJSCode('
             isEdit: function() {
 
                 if(this.isEdit) {
+                    this.showBlocks = false;
                     this.setDrag();
                 } else {
                     this.drakeGrid.destroy();
