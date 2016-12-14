@@ -3,6 +3,7 @@
         <div v-for="(entry, key) in themes" class="md-4 sm-6">
             <div class="box">
                 <h3>{{ entry.name }}</h3>
+                <div class="screenshot" :style="'background-image: url(<?=config::get('url').'themes/'; ?>' + key + '/screenshot.png);'"></div>
                 <div v-if="entry.active" class="button active"><?=lang::get('active'); ?></div>
                 <a v-else class="button border" @click="setActive(key)"><?=lang::get('activate'); ?></a>
             </div>
