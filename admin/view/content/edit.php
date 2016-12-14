@@ -23,6 +23,13 @@
     ');
     $field->fieldName(lang::get('page_parent'));
 
+    $field = $form->addSelectField('template', $this->model->template);
+    $field->fieldName(lang::get('template'));
+    $field->add(false, '-');
+    foreach(theme::getTemplates() as $file => $name) {
+        $field->add($file, $name);
+    }
+
     if($form->isSubmit()) {
 
         if($form->validation()) {
