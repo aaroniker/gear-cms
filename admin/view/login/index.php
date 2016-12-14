@@ -43,6 +43,8 @@
 
         </div>
 
+        <a href="<?=url::base(); ?>"><?=lang::get('go_to_website'); ?></a>
+
     </div>
 
 </section>

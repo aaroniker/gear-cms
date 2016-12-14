@@ -3,12 +3,12 @@
         .logo {
             img {
                 display: block;
-                width: 130px;
+                height: 90px;
                 -webkit-filter: drop-shadow(0 4px 11px fade(@dark, 6%));
                 filter: drop-shadow(0 4px 11px fade(@dark, 6%));
             }
             display: table;
-            margin: 0 auto 50px auto;
+            margin: 0 auto 30px auto;
         }
         .content {
             #messages {
@@ -36,9 +36,15 @@
                 color: @text-light;
             }
         }
+        & > a {
+            color: @text-light;
+            display: table;
+            margin: 0 auto;
+        }
+        padding: 0 10px;
     }
-    max-width: 310px;
+    max-width: 320px;
     width: 100%;
-    margin: 10% auto 0 auto;
+    margin: 15% auto 0 auto;
     display: table;
 }
