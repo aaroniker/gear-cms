@@ -192,7 +192,7 @@ class model {
 
         foreach($this->metaData as $meta_key => $meta_value) {
 
-            if(is_null($meta_value)) {
+            if(is_null($meta_value) || $meta_value == '') {
 
                 $where = [
                     $this->model.'_id' => $this->id,
