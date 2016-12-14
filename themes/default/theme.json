@@ -5,8 +5,8 @@
     "author": "Aaron Iker",
     "url": "http://aaroniker.me",
     "templates": {
-        "blog": "templates/blog.php",
-        "page": "page.php"
+        "templates/blog.php": "Blog",
+        "page.php": "Seite"
     },
     "positions": [
         "main-menu",
