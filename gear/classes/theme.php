@@ -50,18 +50,31 @@ class theme {
 
     }
 
-    public static function getIncludes() {
+    public static function getIncludes($dir = false) {
 
-        $active = option::get('theme');
-        $theme = new self($active);
+        $dir = ($dir) ? $dir : option::get('theme');
+        $theme = new self($dir);
 
         if($theme->get('include') && is_array($theme->get('include'))) {
             foreach($theme->get('include') as $file) {
-                if(file_exists(dir::themes($active, $file))) {
-                    include(dir::themes($active, $file));
+                if(file_exists(dir::themes($dir, $file))) {
+                    include(dir::themes($dir, $file));
                 }
             }
         }
+
+    }
+
+    public static function getTemplates($dir = false) {
+
+        $dir = ($dir) ? $dir : option::get('theme');
+        $theme = new self($dir);
+
+        if($theme->get('templates') && is_array($theme->get('templates'))) {
+            return $theme->get('templates');
+        }
+
+        return [];
 
     }
 
