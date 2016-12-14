@@ -71,7 +71,13 @@ class application {
             'cache' => $cache
         ]);
 
-        $template = $twig->load('index.php');
+        $templateFile = 'index.php';
+
+        if($page->template && file_exists(dir::themes(option::get('theme'), $page->template))) {
+            $templateFile = $page->template;
+        }
+
+        $template = $twig->load($templateFile);
 
         if(!$page) {
             echo '<h1>404</h1>';
