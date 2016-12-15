@@ -245,8 +245,6 @@
 
         </div>
 
-        <a href="http://gearcms.org/dokumentation" target="_blank"><?=lang::get('documentation'); ?></a>
-
     </div>
 
 </section>
