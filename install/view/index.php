@@ -118,12 +118,14 @@
                                     PRIMARY KEY (`visit_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
                                 ");
-
-                                config::add('host', $array['host'], true);
-                                config::add('user', $array['user'], true);
-                                config::add('password', $array['password'], true);
-                                config::add('database', $array['database'], true);
-                                config::add('prefix', $array['prefix'], true);
+                                
+                                config::add('DB', [
+                                    'host' => $array['host'],
+                                    'user' => $array['user'],
+                                    'password' => $array['password'],
+                                    'database' => $array['database'],
+                                    'prefix' => $array['prefix']
+                                ], true);
                                 config::save();
 
                                 header('Location: ?step=informations');
