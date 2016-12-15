@@ -46,7 +46,7 @@ abstract class formField extends form {
         self::addRule($this->name, $rule);
 
         if(strpos($rule, 'required') !== false) {
-            $this->fieldName($this->fieldName.' *');
+            $this->fieldName($this->fieldName.'*');
         }
 
         return $this;
