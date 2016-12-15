@@ -139,7 +139,9 @@
                     $field->fieldName(lang::get('sitename'));
                     $field->fieldValidate();
 
-                    $field = $form->addTextField('siteurl', '');
+                    $protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+
+                    $field = $form->addTextField('siteurl', $protocol.$_SERVER['HTTP_HOST'].'/');
                     $field->fieldName(lang::get('siteurl'));
                     $field->fieldValidate();
 
