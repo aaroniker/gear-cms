@@ -4,7 +4,7 @@ class option {
 
     public static function has($name) {
 
-        $option = db()->from('options')->where('option_key', $name)->fetch();
+        $option = sql::run()->from('options')->where('option_key', $name)->fetch();
 
         if($option && !is_null($option->option_value)) {
             return true;
@@ -16,7 +16,7 @@ class option {
 
     public static function get($name, $default = null) {
 
-        $option = db()->from('options')->where('option_key', $name)->fetch();
+        $option = sql::run()->from('options')->where('option_key', $name)->fetch();
 
         if($option && $option->option_value) {
             return $option->option_value;
@@ -38,7 +38,7 @@ class option {
                 'option_value' => $value
             ];
 
-            return db()->update('options')->set($values)->where('option_key', $name)->execute();
+            return sql::run()->update('options')->set($values)->where('option_key', $name)->execute();
 
         } else {
 
@@ -47,7 +47,7 @@ class option {
                 'option_value' => $value
             ];
 
-            return db()->insertInto('options')->values($values)->execute();
+            return sql::run()->insertInto('options')->values($values)->execute();
 
         }
 
@@ -56,7 +56,7 @@ class option {
     public static function del($name) {
 
         if(self::has($name)) {
-            return db()->deleteFrom('options')->where('option_key', $name)->execute();
+            return sql::run()->deleteFrom('options')->where('option_key', $name)->execute();
         }
 
         return false;

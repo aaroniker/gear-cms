@@ -6,8 +6,6 @@ class controller {
 
     function __construct() {
 
-        #$this->loadModel();
-
     }
 
     private function __loadModel() {

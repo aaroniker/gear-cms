@@ -2,7 +2,38 @@
 
 class sql extends FluentPDO {
 
+    protected static $sqlObj;
+    protected static $pdoObj;
+
     protected $prefix = '';
+
+    public static function connect($host, $user, $password, $database, $prefix) {
+
+        $return = true;
+
+        try {
+            self::$pdoObj = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $user, $password, [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+            ]);
+        } catch (exception $e) {
+            echo message::getMessage($e->getMessage(), 'error');
+            $return = false;
+        }
+
+        self::$sqlObj = new sql(self::$pdoObj);
+        self::$sqlObj->setPrefix($prefix);
+
+        return $return;
+
+    }
+
+    public static function run($pdo = false) {
+        if($pdo) {
+            return self::$pdoObj;
+        }
+        return self::$sqlObj;
+    }
 
     public function from($table, $primaryKey = null) {
         return parent::from($this->prefix.$table, $primaryKey);

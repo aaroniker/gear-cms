@@ -91,7 +91,7 @@ class contentController extends controller {
                         'meta_key' => 'parentID',
                         'meta_value' => $id
                     ];
-                    if(db()->from('entry')->leftJoin('entry_meta ON id = entry_id')->where($where)->fetch()) {
+                    if(sql::run()->from('entry')->leftJoin('entry_meta ON id = entry_id')->where($where)->fetch()) {
                         message::error(lang::get('page_is_parent'));
                         return false;
                     }
@@ -227,8 +227,6 @@ class contentController extends controller {
                 }
 
             } elseif($action == 'edit') {
-
-                //edit
 
             } elseif($action == 'move') {
 

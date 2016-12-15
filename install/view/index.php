@@ -53,21 +53,9 @@
 
                             $array = $form->getAll();
 
-                            $error = false;
+                            if(sql::connect($array['host'], $array['user'], $array['password'], $array['database'], $array['prefix'])) {
 
-                            try {
-                                $pdo = new PDO('mysql:host=' . $array['host'] . ';dbname=' . $array['database'] . ';charset=utf8', $array['user'], $array['password'], [
-                                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                                    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-                                ]);
-                            } catch (exception $e) {
-                                message::error($e->getMessage());
-                                $error = true;
-                            }
-
-                            if(!$error) {
-
-                                $pdo->query("
+                                sql::run(true)->query("
                                     CREATE TABLE IF NOT EXISTS `entry` (
                                         `id` int(20) NOT NULL AUTO_INCREMENT,
                                         `type` varchar(255) NOT NULL,
@@ -118,7 +106,7 @@
                                     PRIMARY KEY (`visit_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
                                 ");
-                                
+
                                 config::add('DB', [
                                     'host' => $array['host'],
                                     'user' => $array['user'],
@@ -179,24 +167,7 @@
 
                             $DB = config::get('DB');
 
-                            $pdo = new PDO('mysql:host=' . $DB['host'] . ';dbname=' . $DB['database'] . ';charset=utf8', $DB['user'], $DB['password'], [
-                                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                                PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-                            ]);
-
-                            $db = new sql($pdo);
-
-                            $db->setPrefix($DB['prefix']);
-
-                            function db($pdoReturn = false) {
-                                global $db, $pdo;
-                                if($pdoReturn) {
-                                    return $pdo;
-                                }
-                                return $db;
-                            }
-
-                            unset($DB);
+                            sql::connect($DB['host'], $DB['user'], $DB['password'], $DB['database'], $DB['prefix']);
 
                             config::add('url', $array['siteurl'], true);
                             config::add('timezone', $array['timezone'], true);

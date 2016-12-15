@@ -25,7 +25,7 @@ class PermissionModel extends model {
     }
 
     public function countUser() {
-        return count(db()->from('user_meta')->where([
+        return count(sql::run()->from('user_meta')->where([
             'meta_key' => 'permissionID',
             'meta_value' => $this->id
         ])->fetchAll());

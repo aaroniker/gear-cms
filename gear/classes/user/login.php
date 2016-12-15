@@ -41,7 +41,7 @@ class userLogin extends user {
 
         if($is_valid[0]) {
 
-            $query = db()->from('user')->where('email', type::post('email'))->fetch();
+            $query = sql::run()->from('user')->where('email', type::post('email'))->fetch();
 
             if(!$query) {
                 message::error(lang::get('email_not_found'));

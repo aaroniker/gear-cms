@@ -36,24 +36,7 @@
 
         $DB = config::get('DB');
 
-        $pdo = new PDO('mysql:host=' . $DB['host'] . ';dbname=' . $DB['database'] . ';charset=utf8', $DB['user'], $DB['password'], [
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
-        ]);
-
-        $db = new sql($pdo);
-
-        $db->setPrefix($DB['prefix']);
-
-        function db($pdoReturn = false) {
-            global $db, $pdo;
-            if($pdoReturn) {
-                return $pdo;
-            }
-            return $db;
-        }
-
-        unset($DB);
+        sql::connect($DB['host'], $DB['user'], $DB['password'], $DB['database'], $DB['prefix']);
 
         cache::setCache(config::get('cache'));
 

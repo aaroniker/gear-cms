@@ -28,9 +28,9 @@ class model {
         $class = new $class;
 
         if($class->type) {
-            return db()->from($class->model)->where('type', $class->type)->fetchAll();
+            return sql::run()->from($class->model)->where('type', $class->type)->fetchAll();
         } else {
-            return db()->from($class->model)->fetchAll();
+            return sql::run()->from($class->model)->fetchAll();
         }
 
     }
@@ -78,14 +78,14 @@ class model {
     public function getById($id = 0) {
 
         if($id > 0) {
-            return db()->from($this->model)->where('id', $id)->fetch();
+            return sql::run()->from($this->model)->where('id', $id)->fetch();
         }
 
     }
 
     public function getByWhere($where = []) {
 
-        return db()->from($this->model)->where($where)->fetch();
+        return sql::run()->from($this->model)->where($where)->fetch();
 
     }
 
@@ -115,7 +115,7 @@ class model {
 
         if(is_array($save)) {
 
-            $this->id = db()->insertInto($this->model, $save)->execute();
+            $this->id = sql::run()->insertInto($this->model, $save)->execute();
 
             $this->setData($meta)->saveMeta();
 
@@ -176,14 +176,14 @@ class model {
 
     private function loadMeta() {
 
-        $data = db()->from($this->model.'_meta')->where($this->model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
+        $data = sql::run()->from($this->model.'_meta')->where($this->model.'_id', $this->id)->fetchPairs('meta_key', 'meta_value');
 
         return array_merge($this->metaData, $data);
 
     }
 
     private function saveData() {
-        return db()->update($this->model)->set($this->getDBVariables())->where('id', $this->id)->execute();
+        return sql::run()->update($this->model)->set($this->getDBVariables())->where('id', $this->id)->execute();
     }
 
     private function saveMeta() {
@@ -199,7 +199,7 @@ class model {
                     'meta_key' => $meta_key
                 ];
 
-                $return = db()->deleteFrom($this->model.'_meta')->where($where)->execute();
+                $return = sql::run()->deleteFrom($this->model.'_meta')->where($where)->execute();
 
             } else {
 
@@ -208,7 +208,7 @@ class model {
                     'meta_key' => $meta_key
                 ];
 
-                $data = db()->from($this->model.'_meta')->where($where)->fetchAll();
+                $data = sql::run()->from($this->model.'_meta')->where($where)->fetchAll();
 
                 if(!count($data)) {
 
@@ -218,7 +218,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    $return = db()->insertInto($this->model.'_meta')->values($values)->execute();
+                    $return = sql::run()->insertInto($this->model.'_meta')->values($values)->execute();
 
                 } else {
 
@@ -227,7 +227,7 @@ class model {
                         $this->model.'_id' => $this->id
                     ];
 
-                    $return = db()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
+                    $return = sql::run()->update($this->model.'_meta')->set('meta_value', $meta_value)->where($where)->execute();
 
                 }
 
@@ -241,9 +241,9 @@ class model {
 
     public function count() {
         if($this->type) {
-            return db()->from($this->model)->where('type', $this->type)->count();
+            return sql::run()->from($this->model)->where('type', $this->type)->count();
         } else {
-            return db()->from($this->model)->count();
+            return sql::run()->from($this->model)->count();
         }
     }
 
@@ -263,8 +263,8 @@ class model {
 
                     log::del($this->type, $id);
 
-                    db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
-                    db()->deleteFrom($this->model)->where('id', $id)->execute();
+                    sql::run()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
+                    sql::run()->deleteFrom($this->model)->where('id', $id)->execute();
 
                 }
 
@@ -278,8 +278,8 @@ class model {
 
                 log::del($this->type, $id);
 
-                db()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
-                db()->deleteFrom($this->model)->where('id', $id)->execute();
+                sql::run()->deleteFrom($this->model.'_meta')->where($this->model.'_id', $id)->execute();
+                sql::run()->deleteFrom($this->model)->where('id', $id)->execute();
 
                 return true;
 

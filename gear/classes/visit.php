@@ -15,7 +15,7 @@ class visit {
                 'visit_date' => $now->format('Y-m-d')
             ];
 
-            $entry = db()->from('visits')->where($where)->fetch();
+            $entry = sql::run()->from('visits')->where($where)->fetch();
 
             if($entry) {
 
@@ -23,7 +23,7 @@ class visit {
                     'visit_hits' => $entry->visit_hits + 1
                 ];
 
-                return db()->update('visits')->set($set)->where('visit_id',  $entry->visit_id)->execute();
+                return sql::run()->update('visits')->set($set)->where('visit_id',  $entry->visit_id)->execute();
 
             }
 
@@ -33,7 +33,7 @@ class visit {
                 'visit_date' => $now->format('Y-m-d')
             ];
 
-            return db()->insertInto('visits')->values($values)->execute();
+            return sql::run()->insertInto('visits')->values($values)->execute();
 
         }
 
@@ -72,7 +72,7 @@ class visit {
                 'visit_date' => $date->format('Y-m-d')
             ];
 
-            $entry = db()->from('visits')->where($where)->fetchAll();
+            $entry = sql::run()->from('visits')->where($where)->fetchAll();
 
             if($entry) {
                 foreach($entry as $val) {
@@ -101,7 +101,7 @@ class visit {
             'visit_date' => $now->format('Y-m-d')
         ];
 
-        $entry = db()->from('visits')->where($where)->fetchAll();
+        $entry = sql::run()->from('visits')->where($where)->fetchAll();
 
         if($entry) {
             foreach($entry as $val) {

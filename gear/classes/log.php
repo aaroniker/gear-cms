@@ -14,7 +14,7 @@ class log {
             'log_datetime' => $now->format('Y-m-d H:i:s')
         ];
 
-        return db()->insertInto('logs')->values($values)->execute();
+        return sql::run()->insertInto('logs')->values($values)->execute();
 
     }
 
@@ -27,7 +27,7 @@ class log {
                 'log_entry_id' => $entry_id
             ];
 
-            return db()->deleteFrom('logs')->where($where)->execute();
+            return sql::run()->deleteFrom('logs')->where($where)->execute();
 
         }
 
@@ -38,9 +38,9 @@ class log {
     public static function getAll($limit = 10, $action = false) {
 
         if(!$action) {
-            return db()->from('logs')->orderBy('log_id DESC')->limit($limit)->fetchAll();
+            return sql::run()->from('logs')->orderBy('log_id DESC')->limit($limit)->fetchAll();
         } else {
-            return db()->from('logs')->where('log_action', $action)->orderBy('log_id DESC')->limit($limit)->fetchAll();
+            return sql::run()->from('logs')->where('log_action', $action)->orderBy('log_id DESC')->limit($limit)->fetchAll();
         }
 
     }
