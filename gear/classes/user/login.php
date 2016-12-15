@@ -5,9 +5,9 @@ class userLogin extends user {
     public function __construct() {
 
         if(!userSession::loggedIn()) {
-            userSession::destroy();
-        } elseif(!userSession::exists()) {
-            self::logout();
+        #    userSession::destroy();
+        #} elseif(!userSession::exists()) {
+        #    self::logout();
         } else {
             parent::setUser(type::session('userID'));
         }
