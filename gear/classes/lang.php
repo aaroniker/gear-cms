@@ -6,7 +6,7 @@ class lang {
     static $langArray = [];
     static $allLangs = [];
 
-    static public function setLang($lang = 'de') {
+    static public function setLang($lang) {
 
         if(file_exists(dir::language($lang.'.json'))) {
 
