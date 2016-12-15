@@ -38,8 +38,6 @@ class message {
 
     static public function addMessage($message, $class) {
 
-        userSession::init();
-
         $index = count(type::session('messages', 'array', [])) + 1;
 
         $_SESSION['messages'][$index] = [

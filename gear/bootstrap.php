@@ -1,5 +1,9 @@
 <?php
 
+    if(session_id() == '') {
+        session_start();
+    }
+
     if(version_compare($version = PHP_VERSION, $required = '5.4', '<')) {
         exit(sprintf('You are running PHP %s, but Gear needs at least <strong>PHP %s</strong>.', $version, $required));
     }
@@ -22,13 +26,13 @@
     include(dir::functions('html.php'));
     include(dir::functions('validate.php'));
 
+    new config();
+
+    lang::setLang(config::get('lang', 'de'));
+
     if(!defined('INSTALL')) {
 
-        new config();
-
         url::$base = config::get('url');
-
-        userSession::init();
 
         $DB = config::get('DB');
 
@@ -51,15 +55,13 @@
 
         unset($DB);
 
-        lang::setLang(config::get('lang'));
-
         cache::setCache(config::get('cache'));
+
+        new userLogin();
 
     }
 
     date_default_timezone_set(config::get('timezone', 'Europe/Berlin'));
-
-    new userLogin();
 
     $system = ob_get_contents();
 
