@@ -1,6 +1,6 @@
 {
     "version": 0.1,
-    "setup": true,
+    "install": true,
     "cache": false,
     "debug": false,
     "dev": false,
