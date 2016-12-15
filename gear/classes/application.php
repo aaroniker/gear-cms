@@ -16,7 +16,7 @@ class application {
 
         $this->splitUrl();
 
-        if(!file_exists(dir::gear('config.json')) && $env != 'install') {
+        if(config::get('install', false) && $env != 'install') {
             header('location: '.url::base(['install']));
             exit();
         }
@@ -52,7 +52,16 @@ class application {
 
     private function install() {
 
-        echo 'install';
+        $steps = [
+            'language',
+            'database',
+            'informations',
+            'finished'
+        ];
+
+        $step = type::super('step', 'string', 'language');
+
+        include(dir::install('view/index.php'));
 
     }
 
