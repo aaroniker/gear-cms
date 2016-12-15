@@ -5,6 +5,8 @@
 
     include($base.'gear/bootstrap.php');
 
+    url::$base = '../';
+
     theme::addCSS('https://cdn.jsdelivr.net/animatecss/3.5.2/animate.min.css');
     theme::addCSS('https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.structure.min.css');
     theme::addCSS(url::assets('css/style.css'));
@@ -40,6 +42,10 @@
 
     }
 
+    include(dir::install('view/head.php'));
+
     echo config::get('content');
+
+    include(dir::install('view/footer.php'));
 
 ?>
