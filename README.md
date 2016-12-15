@@ -19,11 +19,11 @@ Ich arbeite fast täglich am CMS, die Webseite ist auch in Arbeit!
 ## Screenshots
 
 ### Inhalt (Seiten)
-![Content Animation](https://raw.githubusercontent.com/aaroniker/gear-cms/master/media/content.gif "Media Animation")
+![Content Animation](http://gearcms.org/img/gif/content.gif "Media Animation")
 ### Inhalt (Medien)
-![Media Animation](https://raw.githubusercontent.com/aaroniker/gear-cms/master/media/media.gif "Media Animation")
+![Media Animation](http://gearcms.org/img/gif/media.gif "Media Animation")
 ### Benutzer (Berechtigungen)
-![Permission Animation](https://raw.githubusercontent.com/aaroniker/gear-cms/master/media/permission.gif "Permission Animation")
+![Permission Animation](http://gearcms.org/img/gif/permission.gif "Permission Animation")
 
 ## Systemvorraussetzungen
 
