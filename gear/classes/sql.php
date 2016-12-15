@@ -12,17 +12,19 @@ class sql extends FluentPDO {
         $return = true;
 
         try {
+
             self::$pdoObj = new PDO('mysql:host=' . $host . ';dbname=' . $database . ';charset=utf8', $user, $password, [
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
             ]);
-        } catch (exception $e) {
+
+            self::$sqlObj = new sql(self::$pdoObj);
+            self::$sqlObj->setPrefix($prefix);
+
+        } catch(exception $e) {
             echo message::getMessage($e->getMessage(), 'error');
             $return = false;
         }
-
-        self::$sqlObj = new sql(self::$pdoObj);
-        self::$sqlObj->setPrefix($prefix);
 
         return $return;
 
