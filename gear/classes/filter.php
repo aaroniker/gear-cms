@@ -30,6 +30,20 @@ class filter {
 
     }
 
+    public static function prefix($string) {
+
+        $string = str_replace(self::$umlauts, self::$umlautsReplace, $string);
+        $string = strtr($string, self::$accents);
+        $string = strtolower($string);
+        $string = preg_replace('/[^a-zA-Z0-9\s]/', '_', $string);
+        $string = preg_replace('{ +}', ' ', $string);
+        $string = trim($string);
+        $string = str_replace(' ', '_', $string);
+
+        return $string;
+
+    }
+
     public static function file($string) {
 
         $string = str_replace(self::$umlauts, self::$umlautsReplace, $string);
