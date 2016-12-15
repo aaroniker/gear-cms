@@ -1,8 +1,5 @@
 <?php
-
-    if(session_id() == '') {
-        session_start();
-    }
+    session_start();
 
     if(version_compare($version = PHP_VERSION, $required = '5.4', '<')) {
         exit(sprintf('You are running PHP %s, but Gear needs at least <strong>PHP %s</strong>.', $version, $required));

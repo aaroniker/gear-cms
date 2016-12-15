@@ -24,8 +24,6 @@ class userLogin extends user {
 
     protected static function setSession($userID, $remember) {
 
-        session_regenerate_id(true);
-
         type::addSession('userID', $userID);
         type::addSession('user_logged_in', true);
 
