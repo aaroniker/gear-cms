@@ -1,0 +1,69 @@
+#install {
+    .form {
+        .logo {
+            img {
+                display: block;
+                height: 90px;
+                -webkit-filter: drop-shadow(0 4px 11px fade(@dark, 6%));
+                filter: drop-shadow(0 4px 11px fade(@dark, 6%));
+            }
+            display: table;
+            margin: 0 auto 50px auto;
+        }
+        .content {
+            nav {
+                ul {
+                    li {
+                        &.active {
+                            border-color: #fff;
+                            background: rgba(255, 255, 255, 0.05);
+                            .opacity(1);
+                        }
+                        color: #fff;
+                        padding: 11px 0 11px 22px;
+                        position: relative;
+                        border-left: 3px solid transparent;
+                        .opacity(0.4);
+                    }
+                }
+                padding: 30px 0;
+                width: 160px;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                position: absolute;
+                background: rgb(193,193,224);
+                background: -moz-linear-gradient(42deg, rgba(193,193,224,1) 0%, rgba(136,179,224,1) 12%, rgba(97,158,223,1) 38%, rgba(33,106,208,1) 81%, rgba(29,85,193,1) 100%);
+                background: -webkit-linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
+                background: linear-gradient(42deg, rgba(193,193,224,1) 0%,rgba(136,179,224,1) 12%,rgba(97,158,223,1) 38%,rgba(33,106,208,1) 81%,rgba(29,85,193,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1c1e0', endColorstr='#1d55c1',GradientType=1);
+                .round-only-left();
+            }
+            #messages {
+                top: auto;
+                right: auto;
+                bottom: 100%;
+                left: 50%;
+                margin-left: 0;
+                position: absolute;
+                .translate(-50%, 0);
+            }
+            min-height: 240px;
+            padding: 30px 30px 30px 190px;
+            position: relative;
+            @media(max-width: @screen-sm-min * 1px) {
+                padding: 20px;
+            }
+        }
+        & > a {
+            color: @text-light;
+            display: table;
+            margin: 0 auto;
+        }
+        padding: 0 10px;
+    }
+    max-width: 700px;
+    width: 100%;
+    margin: 10% auto 0 auto;
+    display: table;
+}
