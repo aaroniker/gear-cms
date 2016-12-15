@@ -34,6 +34,10 @@ class application {
 
         } elseif($env == 'install') {
 
+            if(!file_exists(dir::css('style.css'))) {
+                admin::generateLess();
+            }
+
             $this->install();
 
         } else {
