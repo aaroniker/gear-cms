@@ -171,6 +171,7 @@
 
                             config::add('url', $array['siteurl'], true);
                             config::add('timezone', $array['timezone'], true);
+                            config::add('install', false, true);
                             config::save();
 
                             option::set('sitename', $array['sitename']);
@@ -180,7 +181,8 @@
                             $model->insert([
                                 'username' => $array['username'],
                                 'email' => $array['email'],
-                                'password' => password_hash($array['password'], PASSWORD_DEFAULT)
+                                'password' => password_hash($array['password'], PASSWORD_DEFAULT),
+                                'status' => 1
                             ], true);
 
                             header('Location: ?step=finished');
