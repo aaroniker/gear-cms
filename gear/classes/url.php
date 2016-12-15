@@ -2,9 +2,11 @@
 
 class url {
 
+    public static $base;
+
     public static function base($params = []) {
 
-        $return = rtrim(config::get('url'), '/');
+        $return = rtrim(self::$base, '/');
 
         if(count($params)) {
             $return .= implode('/', $params);
@@ -16,7 +18,7 @@ class url {
 
     public static function admin($page = '', $params = []) {
 
-        $return = config::get('url').'admin';
+        $return = self::$base.'admin';
 
         if($page != '') {
             $return .= '/'.$page;
@@ -43,7 +45,7 @@ class url {
     public static function media($file = '') {
 
         if($file) {
-            return config::get('url').'media'.$file;
+            return self::$base.'media'.$file;
         }
 
         return false;
@@ -52,7 +54,7 @@ class url {
 
     public static function refresh($admin = true) {
 
-        $url = config::get('url');
+        $url = self::$base;
         $url .= ($admin) ? 'admin/' : '';
         $url .= type::get('url', 'string', '');
 

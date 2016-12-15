@@ -26,6 +26,8 @@
 
         new config();
 
+        url::$base = config::get('url');
+
         userSession::init();
 
         $DB = config::get('DB');
