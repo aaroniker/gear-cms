@@ -30,7 +30,7 @@
 
     lang::setLang(config::get('lang', 'de'));
 
-    if(!defined('INSTALL')) {
+    if(!config::get('install', false)) {
 
         url::$base = config::get('url');
 

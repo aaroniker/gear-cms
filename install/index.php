@@ -1,5 +1,4 @@
 <?php
-    define('INSTALL', true);
 
     $base = '../';
 
