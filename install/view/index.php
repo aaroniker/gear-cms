@@ -53,23 +53,25 @@
 
                             $array = $form->getAll();
 
-                            if(sql::connect($array['host'], $array['user'], $array['password'], $array['database'], $array['prefix'])) {
+                            $prefix = filter::prefix($array['prefix']);
+
+                            if(sql::connect($array['host'], $array['user'], $array['password'], $array['database'], $prefix)) {
 
                                 sql::run(true)->query("
-                                    CREATE TABLE IF NOT EXISTS `entry` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."entry` (
                                         `id` int(20) NOT NULL AUTO_INCREMENT,
                                         `type` varchar(255) NOT NULL,
                                         `name` varchar(255) NOT NULL,
                                     PRIMARY KEY (`id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `entry_meta` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."entry_meta` (
                                         `meta_id` int(20) NOT NULL AUTO_INCREMENT,
                                         `entry_id` int(20) NOT NULL,
                                         `meta_key` varchar(255) NOT NULL,
                                         `meta_value` longtext NOT NULL,
                                     PRIMARY KEY (`meta_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `logs` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."logs` (
                                         `log_id` int(20) NOT NULL AUTO_INCREMENT,
                                         `log_entry_type` varchar(255) NOT NULL,
                                         `log_entry_id` int(20) NOT NULL,
@@ -78,27 +80,27 @@
                                         `log_datetime` datetime NOT NULL,
                                     PRIMARY KEY (`log_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `options` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."options` (
                                         `option_id` int(20) NOT NULL AUTO_INCREMENT,
                                         `option_key` varchar(255) NOT NULL,
                                         `option_value` longtext NOT NULL,
                                     PRIMARY KEY (`option_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `user` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."user` (
                                         `id` int(20) NOT NULL AUTO_INCREMENT,
                                         `email` varchar(255) NOT NULL,
                                         `password` varchar(255) NOT NULL,
                                         `status` int(11) NOT NULL DEFAULT '0',
                                     PRIMARY KEY (`id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `user_meta` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."user_meta` (
                                         `meta_id` int(20) NOT NULL AUTO_INCREMENT,
                                         `user_id` int(20) NOT NULL,
                                         `meta_key` varchar(255) NOT NULL,
                                         `meta_value` longtext NOT NULL,
                                     PRIMARY KEY (`meta_id`)
                                     ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=latin1;
-                                    CREATE TABLE IF NOT EXISTS `visits` (
+                                    CREATE TABLE IF NOT EXISTS `".$prefix."visits` (
                                         `visit_id` int(20) NOT NULL AUTO_INCREMENT,
                                         `visit_ip` varchar(39) NOT NULL,
                                         `visit_hits` int(20) NOT NULL,
@@ -112,7 +114,7 @@
                                     'user' => $array['user'],
                                     'password' => $array['password'],
                                     'database' => $array['database'],
-                                    'prefix' => $array['prefix']
+                                    'prefix' => $prefix
                                 ], true);
                                 config::save();
 
