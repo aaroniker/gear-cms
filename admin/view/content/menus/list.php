@@ -1,4 +1,9 @@
 <?php
+    admin::addButton('
+        <button class="button" @click="addMenuModal = true">
+            '.lang::get('add').'
+        </button>
+    ');
 
     admin::addComponent('
     <template id="item-template">
@@ -56,8 +61,6 @@
                     </li>
                 </ul>
             </nav>
-
-            <button class="button border" @click="addMenuModal = true"><?=lang::get('add'); ?></button>
 
         </aside>
 
