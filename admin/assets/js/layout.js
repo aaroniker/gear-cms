@@ -203,7 +203,7 @@ function setMessage(message, type) {
 
 function getMessages(url, focus) {
 
-    if(focus) {
+    if(focus && document.hasFocus()) {
         $.ajax({
             type: "POST",
             url: url + "admin/",
