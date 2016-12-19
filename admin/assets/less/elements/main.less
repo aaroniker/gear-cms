@@ -239,25 +239,31 @@ a.delete {
 
 .pagination {
     a {
+        &:hover {
+            color: @text;
+        }
         &:before {
             display: block;
-            line-height: 25px;
-            vertical-align: top;
+            line-height: 23px;
             font-size: 14px;
         }
         float: left;
         display: block;
         width: 25px;
+        color: @text-light;
         text-align: center;
         cursor: pointer;
-        color: #fff;
-        background: @primary;
+        border: 1px solid @border;
         .round(3px);
     }
     div {
         padding: 0 12px;
         float: left;
         line-height: 25px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
     margin: 15px 0 0 0;
 }

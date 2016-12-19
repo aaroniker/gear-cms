@@ -41,7 +41,7 @@
         <div class="toolbar clear">
             <div v-if="filtered.length > rowsPerPage" class="pagination clear">
                 <a @click="movePages(-1)" class="back icon icon-chevron-left"></a>
-                <div>{{ startRow / rowsPerPage + 1 }} / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
+                <div><strong>{{ startRow / rowsPerPage + 1 }}</strong> / {{ Math.ceil(filtered.length / rowsPerPage) }}</div>
                 <a @click="movePages(1)" class="next icon icon-chevron-right"></a>
             </div>
         </div>
