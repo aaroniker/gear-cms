@@ -24,7 +24,7 @@ theme::addJSCode('
                 author: {
                     title: lang["author"],
                     content: function(entry) {
-                        return "<a href=\'" + entry.url + "\' target=\'_blank\'>" + entry.author + "</a>";
+                        return "<a class=\'text-dark\' href=\'" + entry.url + "\' target=\'_blank\'>" + entry.author + "</a>";
                     }
                 },
                 action: {
