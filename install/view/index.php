@@ -249,6 +249,8 @@
 
         </div>
 
+        <span><?=sprintf(lang::get('version'), config::get('version')); ?></span>
+
     </div>
 
 </section>
