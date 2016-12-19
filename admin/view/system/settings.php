@@ -37,7 +37,9 @@
             $cache = ($array['cache']) ? true : false;
             $debug = ($array['debug']) ? true : false;
 
-            config::add('url', $array['siteurl'], true);
+            $siteurl = (substr($array['siteurl'], -1) == '/') ? $array['siteurl'] : $array['siteurl'].'/';
+
+            config::add('url', $siteurl, true);
             config::add('lang', $array['lang'], true);
             config::add('cache', $cache, true);
             config::add('debug', $debug, true);

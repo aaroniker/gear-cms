@@ -173,7 +173,9 @@
 
                             sql::connect($DB['host'], $DB['user'], $DB['password'], $DB['database'], $DB['prefix']);
 
-                            config::add('url', $array['siteurl'], true);
+                            $siteurl = (substr($array['siteurl'], -1) == '/') ? $array['siteurl'] : $array['siteurl'].'/';
+
+                            config::add('url', $siteurl, true);
                             config::add('timezone', $array['timezone'], true);
                             config::add('install', false, true);
                             config::save();
