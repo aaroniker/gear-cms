@@ -1,4 +1,9 @@
 <?php
+    admin::addButton('
+        <button class="button" @click="addGroupModal = true">
+            '.lang::get('add').'
+        </button>
+    ');
 
     $form = new form();
     $form->setHorizontal(false);
@@ -39,8 +44,6 @@
                     </li>
                 </ul>
             </nav>
-
-            <button class="button border" @click="addGroupModal = true"><?=lang::get('add'); ?></button>
 
         </aside>
 
