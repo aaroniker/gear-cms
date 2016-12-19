@@ -13,10 +13,19 @@ theme::addJSCode('
             tableData: '.json_encode(plugin::getAll()).',
             columns: {
                 name: {
-                    title: lang["name"]
+                    title: lang["name"],
+                    content: function(entry) {
+                        return entry.name + " <small class=\'text-light\'>" + entry.version + "</small>";
+                    }
                 },
                 description: {
                     title: lang["description"]
+                },
+                author: {
+                    title: lang["author"],
+                    content: function(entry) {
+                        return "<a href=\'" + entry.url + "\' target=\'_blank\'>" + entry.author + "</a>";
+                    }
                 },
                 action: {
                     title: "",
