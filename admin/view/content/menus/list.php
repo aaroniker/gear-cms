@@ -7,7 +7,7 @@
 
     admin::addComponent('
     <template id="item-template">
-        <li :id="\'item_\' + model.id">
+        <li :data-id="model.id">
             <div class="entry clear">
                 <div class="info">
                     <span>{{ model.name }}</span>
@@ -15,8 +15,8 @@
                 </div>
                 <a :href="\''.url::admin('content', ['menus', 'delItem']).'/\' + model.id + \'/\' + model.children.length" class="icon delete ajax icon-ios-trash-outline"></a>
             </div>
-            <ul v-if="model.children">
-                <item v-for="model in model.children" :model="model"></item>
+            <ul>
+                <item v-if="model.children" v-for="model in model.children" :model="model"></item>
             </ul>
         </li>
     </template>
@@ -128,24 +128,6 @@ theme::addJSCode('
             model: Object
         }
     });
-    var options = {
-        insertZone: 50,
-        placeholderClass: "placeholder",
-        hintClass: "hint",
-        baseClass: "",
-        complete: function(el) {
-            var array = $("#menuList > ul").sortableListsToArray();
-            $.ajax({
-                method: "POST",
-                url: "'.url::admin('content', ['menus', 'move']).'",
-                dataType: "json",
-                data: {
-                    array: array
-                }
-            });
-        },
-        ignoreClass: "icon"
-    };
     new Vue({
         el: "#app",
         data: {
@@ -205,12 +187,28 @@ theme::addJSCode('
                     },
                     success: function(data) {
                         vue.items = data;
-                        if(!$("#menuList").hasClass("loaded")) {
-                            $("#menuList").addClass("loaded");
-                            $("#menuList > ul").sortableLists(options);
-                        }
+                        vue.$nextTick(function() {
+                            vue.setDrag();
+                        });
                         setTabs();
                     }
+                });
+
+            },
+            setDrag: function() {
+
+                var drake = dragula($("#menuList ul").toArray(), {
+                    mirrorContainer: $("#menuList")[0]
+                });
+
+                drake.on("drop", function(el, target, source, sibling) {
+                    $.ajax({
+                        method: "POST",
+                        url: "'.url::admin('content', ['menus', 'move']).'",
+                        data: {
+                            array: getChildren("#menuList")
+                        }
+                    });
                 });
 
             },

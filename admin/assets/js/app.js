@@ -12,6 +12,28 @@ function randomPassword(length) {
 
 }
 
+function getChildren(elem) {
+
+    var parent = [];
+
+    $(elem).children('ul').children('li').each(function() {
+        var children = {};
+        if($(this).children('ul').children('li').length) {
+            children = getChildren(this);
+        }
+        var elem = {
+            'id': $(this).data('id'),
+            'children': children
+        };
+        if($(this).data('id')) {
+            parent.push(elem);
+        }
+    });
+
+    return parent;
+
+}
+
 var eventHub = new Vue();
 
 Vue.filter("lang", function(value) {
@@ -409,7 +431,7 @@ Vue.component("searchbox", {
             return self.list.filter(function(entry) {
                 if(self.except) {
                     if(entry[self.val] != self.except) {
-                        return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;    
+                        return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;
                     }
                 } else {
                     return entry[self.val].toLowerCase().indexOf(self.searchBox.toLowerCase()) !== -1;

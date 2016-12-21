@@ -230,24 +230,24 @@ class contentController extends controller {
 
             } elseif($action == 'move') {
 
-                $array = type::post('array', 'array', []);
-
-                foreach($array as $key => $val) {
-
-                    $id = str_replace('item_', '', $val['id']);
-
-                    $itemModel = new MenuItemModel($id);
-
-                    $parentID = ($val['parentId']) ? str_replace('item_', '', $val['parentId']) : 0;
-
-                    $values = [
-                        'parentID' => $parentID,
-                        'order' => $val['order']
-                    ];
-
-                    $itemModel->save($values);
-
+                function saveNested($array, $i, $parent = 0) {
+                    if($array && is_array($array)) {
+                        foreach($array as $val) {
+                            if(isset($val['id'])) {
+                                $itemModel = new MenuItemModel($val['id']);
+                                $values = [
+                                    'parentID' => $parent,
+                                    'order' => $i
+                                ];
+                                $itemModel->save($values);
+                                $i++;
+                                saveNested($val['children'], 1, $val['id']);
+                            }
+                        }
+                    }
                 }
+
+                saveNested(type::post('array', 'array', []), 1, 0);
 
                 message::success(lang::get('menu_item_moved'));
 

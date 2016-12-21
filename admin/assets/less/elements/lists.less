@@ -1,59 +1,8 @@
 #menuList {
-    ul {
-        .hint {
-            border: 2px dashed @border;
-        }
-        li {
-            .entry {
-                .info {
-                    span {
-                        display: block;
-                    }
-                    small {
-                        display: block;
-                        color: @text-light;
-                    }
-                    float: left;
-                }
-                .delete {
-                    &:hover {
-                        color: @error;
-                    }
-                    display: block;
-                    position: absolute;
-                    right: 15px;
-                    top: 50%;
-                    color: @text-light;
-                    font-size: 21px;
-                    .translate(0, -50%);
-                }
-                position: relative;
-                padding: 10px 15px;
-                background: #fff;
-                .round();
-                .box-shadow(0, 3px, 9px, fade(@dark, 10%));
-            }
-            cursor: move;
-            margin: 8px 0;
-        }
-        ul {
-            padding: 0 0 0 10px;
-        }
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    & > ul {
-        & > li {
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-    }
-}
-
-#sortableListsBase {
     li {
+        &:first-child {
+            padding-top: 10px;
+        }
         .entry {
             .info {
                 span {
@@ -83,12 +32,21 @@
             .round();
             .box-shadow(0, 3px, 9px, fade(@dark, 10%));
         }
-        margin: 8px 0;
+        cursor: move;
         list-style: none;
     }
     ul {
+        min-height: 10px;
+        padding: 0 0 0 20px;
         margin: 0;
-        padding: 0 0 0 10px;
+    }
+    & > ul {
+        & > li {
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+        padding-left: 0;
     }
 }
 
