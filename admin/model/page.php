@@ -15,6 +15,7 @@ class PageModel extends model {
 
         $this->metaData = [
             'parentID',
+            'order',
             'siteURL',
             'content',
             'template'
@@ -102,6 +103,7 @@ class PageModel extends model {
                     $siteURL = ($home) ? '/' : self::getFullURL($page->id);
                     $return[$page->id] = [
                         'id' => $page->id,
+                        'order' => $page->order,
                         'name' => $page->name,
                         'siteURL' => $siteURL,
                         'home' => $home,
@@ -110,6 +112,10 @@ class PageModel extends model {
                 }
             }
         }
+
+        usort($return, function($a, $b) {
+            return $a['order'] - $b['order'];
+        });
 
         return $return;
 
