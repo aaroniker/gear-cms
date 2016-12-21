@@ -50,7 +50,7 @@
             <nav v-if="menuID">
                 <ul>
                     <li v-for="menu in menus" :class="menu.id == menuID ? 'active' : ''">
-                        <a @click.prevent="setActive(menu.id)">
+                        <a @click.prevent="setMenu(menu.id)">
                             {{ menu.name }}
                         </a>
                         <div class="action">
@@ -122,12 +122,14 @@
 <?php
 theme::addJSCode('
     window.addEventListener("touchmove", function() {});
+
     Vue.component("item", {
         template: "#item-template",
         props: {
             model: Object
         }
     });
+
     new Vue({
         el: "#app",
         data: {
@@ -153,7 +155,7 @@ theme::addJSCode('
                 vue.fetchItems();
             });
 
-            eventHub.$on("setSearchbox", vue.setMenuItemPage);
+            eventHub.$on("setSearchbox", this.setMenuItemPage);
 
         },
         methods: {
@@ -168,7 +170,7 @@ theme::addJSCode('
                     success: function(data) {
                         vue.menus = data;
                         if(data.length) {
-                            vue.setActive(data[0].id);
+                            vue.setMenu(data[0].id);
                         }
                     }
                 });
@@ -259,7 +261,7 @@ theme::addJSCode('
                 });
 
             },
-            setActive: function(id) {
+            setMenu: function(id) {
                 this.menuID = id;
                 this.fetchItems();
             }
