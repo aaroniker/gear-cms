@@ -86,7 +86,7 @@ class application {
 
         $templateFile = 'index.php';
 
-        if($page->template && file_exists(dir::themes(option::get('theme'), $page->template))) {
+        if($page && $page->template && file_exists(dir::themes(option::get('theme'), $page->template))) {
             $templateFile = $page->template;
         }
 
@@ -148,7 +148,6 @@ class application {
                     if(strlen($this->action) == 0) {
 
                         header('location: '.url::admin($this->controller, ['index']));
-
                         exit();
 
                     } else {
