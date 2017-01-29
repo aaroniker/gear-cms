@@ -1,10 +1,4 @@
-Options -MultiViews
-
 RewriteEngine On
-
-<IfModule mod_autoindex.c>
-	Options -Indexes
-</IfModule>
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -4,19 +4,12 @@
 		Deny from all
 		Satisfy All
 	</IfModule>
-	
 	<IfModule mod_authz_core.c>
 		Require all denied
 	</IfModule>
 </FilesMatch>
 
-Options -MultiViews
-
 RewriteEngine On
-
-<IfModule mod_autoindex.c>
-	Options -Indexes
-</IfModule>
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
