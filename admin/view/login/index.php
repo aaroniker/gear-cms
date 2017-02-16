@@ -22,20 +22,11 @@
                     <input type="password" name="password" id="password" value="<?=type::super('password'); ?>" placeholder="<?=lang::get('password'); ?>" class="form-field">
                 </div>
 
-                <div class="action">
+                <div class="action clear">
 
                     <button type="submit" name="login" value="1" class="button">
                         <?=lang::get('login'); ?>
                     </button>
-
-                    <div class="remember">
-                        <div class="checkbox">
-                            <input type="checkbox" name="remember" id="remember" value="1">
-                            <label for="remember"><?=lang::get('remember'); ?></label>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
 
                 </div>
 

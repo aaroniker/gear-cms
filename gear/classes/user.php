@@ -48,6 +48,10 @@ class user {
 
     }
 
+    public static function loggedIn() {
+        return type::session('user_logged_in', 'bool', false);
+    }
+
 }
 
 ?>

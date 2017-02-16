@@ -47,7 +47,7 @@
 
     }
 
-    if(userSession::loggedIn()) {
+    if(user::loggedIn()) {
 
         admin::addMenu(lang::get('dashboard'), 'dashboard', 'stats-bars');
         admin::addSubmenu(lang::get('overview'), 'index', 'dashboard');

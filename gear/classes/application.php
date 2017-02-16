@@ -109,7 +109,7 @@ class application {
     }
 
     private function admin() {
-        if(userSession::loggedIn()) {
+        if(user::loggedIn()) {
 
             $controller = $this->controller;
 

@@ -4,11 +4,7 @@ class userLogin extends user {
 
     public function __construct() {
 
-        if(!userSession::loggedIn()) {
-        #    userSession::destroy();
-        #} elseif(!userSession::exists()) {
-        #    self::logout();
-        } else {
+        if(parent::loggedIn()) {
             parent::setUser(type::session('userID'));
         }
 
@@ -22,18 +18,14 @@ class userLogin extends user {
 
     }
 
-    protected static function setSession($userID, $remember) {
+    protected static function setSession($userID) {
 
         type::addSession('userID', $userID);
         type::addSession('user_logged_in', true);
 
-        userSession::update($userID, session_id(), $remember);
-
     }
 
     protected static function loginPost() {
-
-        $remember = type::post('remember', 'int', 0);
 
         $is_valid = validate($_POST);
 
@@ -58,7 +50,7 @@ class userLogin extends user {
 
             parent::setUser($query->id);
 
-            self::setSession($query->id, $remember);
+            self::setSession($query->id);
 
         } else {
 
@@ -70,12 +62,8 @@ class userLogin extends user {
 
     public static function logout() {
 
-        $userID = type::session('userID');
-
-        type::deleteCookie('session_id');
-
-        userSession::delete($userID, session_id());
-        userSession::destroy();
+        type::deleteSession('userID');
+        type::deleteSession('user_logged_in');
 
         header('location: '.url::admin());
 
