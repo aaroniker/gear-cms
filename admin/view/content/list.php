@@ -52,7 +52,6 @@
         $field->add($val['id'], $val['name']);
     }
 
-
 ?>
 
 <modal v-if="addPageModal" @close="addPageModal = false">
@@ -174,10 +173,7 @@ theme::addJSCode('
                         vue.addPageModal = false;
                         vue.pageName = "";
                         vue.pageGrid = 0;
-                        vue.setParent({
-                            id: 0,
-                            name: ""
-                        });
+                        eventHub.$emit("setSearchboxEmpty");
                     }
                 });
 

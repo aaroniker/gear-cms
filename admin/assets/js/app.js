@@ -407,6 +407,7 @@ Vue.component("searchbox", {
             this.active = this.current;
             this.activeID = this.currentid;
         }
+        eventHub.$on("setSearchboxEmpty", this.setEmpty);
     },
     methods: {
         toggleSearchBox: function() {
@@ -423,6 +424,10 @@ Vue.component("searchbox", {
             });
 
             this.searchBoxShow = false;
+        },
+        setEmpty: function() {
+            this.active = "";
+            this.activeID = 0;
         }
     },
     computed: {

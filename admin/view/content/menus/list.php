@@ -145,7 +145,7 @@ theme::addJSCode('
             menuItemPageID: 0,
             menuItemLink: ""
         },
-        created: function() {
+        mounted: function() {
 
             var vue = this;
 
@@ -253,10 +253,7 @@ theme::addJSCode('
                         vue.fetchItems();
                         vue.menuItemName = "";
                         vue.menuItemLink = "";
-                        vue.setMenuItemPage({
-                            id: 0,
-                            name: ""
-                        });
+                        eventHub.$emit("setSearchboxEmpty");
                     }
                 });
 
