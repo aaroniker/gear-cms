@@ -13,7 +13,7 @@
 
     admin::addComponent('
     <template id="item-template">
-        <li>
+        <li :data-id="model.id">
             <div class="entry clear">
                 <div class="info" :data-id="model.id">
                     <span>{{ model.name }}</span>
@@ -111,7 +111,7 @@ theme::addJSCode('
             eventHub.$on("setHome", this.setHome);
             eventHub.$on("setSearchbox", this.setParent);
 
-            vue.dragdrop();
+            vue.setDrag();
 
         },
         methods: {
@@ -126,27 +126,23 @@ theme::addJSCode('
                     success: function(data) {
                         vue.pageAll = data.all;
                         vue.pageTree = data.tree;
-                        vue.dragdrop();
+                        vue.setDrag();
                     }
                 });
 
             },
-            dragdrop: function() {
+            setDrag: function() {
 
-                var vue = this;
+                var drake = dragula($("#pageList ul").toArray(), {
+                    mirrorContainer: $("#pageList")[0]
+                });
 
-                $(document).ready(function() {
-                    $("#pageList .entry > .info").draggable({
-                        revert: "invalid",
-                        helper: "clone",
-                        containment: $("#pageList")
-                    });
-                    $("#pageList .entry > .info, #pageList > h3").droppable({
-                        hoverClass: "dropActive",
-                        drop: function(e, ui) {
-                            var drag = $(ui.draggable);
-                            var drop = $(this);
-                            vue.move(drop.data("id"), drag.data("id"));
+                drake.on("drop", function(el, target, source, sibling) {
+                    $.ajax({
+                        method: "POST",
+                        url: "'.url::admin('content', ['index', 'move']).'",
+                        data: {
+                            array: getChildren("#pageList")
                         }
                     });
                 });
@@ -174,23 +170,6 @@ theme::addJSCode('
                         vue.pageName = "";
                         vue.pageGrid = 0;
                         eventHub.$emit("setSearchboxEmpty");
-                    }
-                });
-
-            },
-            move: function(parentID, id) {
-
-                var vue = this;
-
-                $.ajax({
-                    method: "POST",
-                    url: "'.url::admin('content', ['index', 'move']).'",
-                    data: {
-                        parent: parentID,
-                        id: id
-                    },
-                    success: function() {
-                        vue.fetch();
                     }
                 });
 

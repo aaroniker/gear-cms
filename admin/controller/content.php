@@ -26,19 +26,26 @@ class contentController extends controller {
 
             } elseif($action == 'move') {
 
-                if($id != $parentID) {
-
-                    $this->model->load($id);
-
-                    $save = [
-                        'parentID' => $parentID
-                    ];
-
-                    if($this->model->save($save)) {
-                        message::success(lang::get('page_moved'));
+                function saveNested($array, $i, $parent = 0) {
+                    if($array && is_array($array)) {
+                        foreach($array as $val) {
+                            if(isset($val['id'])) {
+                                $itemModel = new PageModel($val['id']);
+                                $values = [
+                                    'parentID' => $parent,
+                                    'order' => $i
+                                ];
+                                $itemModel->save($values);
+                                $i++;
+                                saveNested($val['children'], 1, $val['id']);
+                            }
+                        }
                     }
-
                 }
+
+                saveNested(type::post('array', 'array', []), 1, 0);
+
+                message::success(lang::get('page_moved'));
 
             } elseif($action == 'setHome') {
 
