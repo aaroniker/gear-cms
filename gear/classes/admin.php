@@ -105,6 +105,12 @@ class admin {
 
     }
 
+    public static function getTitle() {
+
+        return (self::$subpage) ? self::$subpage.' - '.self::$page : self::$page;
+
+    }
+
     public static function generateLess() {
 
         $less = new lessc;
