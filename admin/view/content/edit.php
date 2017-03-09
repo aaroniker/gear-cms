@@ -73,6 +73,13 @@
     </div>
 </modal>
 
+<modal v-if="editContentModal" @close="editContentModal = false">
+    <h3 slot="header"><?=lang::get('edit'); ?></h3>
+    <div slot="content" class="clear">
+        content
+    </div>
+</modal>
+
 <div class="tabs box">
     <nav>
         <ul class="clear">
@@ -96,8 +103,8 @@
                     <div class="columns">
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
-                                <ul class="blocks" :data-row="row" :data-column="key">
-                                    <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button">
+                                <ul class="blocks content" :data-row="row" :data-column="key">
+                                    <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button" @click="editContent(row, key, blockKey)">
                                         {{ block.name }}
                                         <a @click="deleteBlock(row, key, blockKey)" class="icon icon-ios-trash-outline delBlock"></a>
                                     </li>
@@ -173,7 +180,8 @@ theme::addJSCode('
             pageParent: '.$parent->id.',
             pageParentName: "'.$parent->name.'",
             drakeGrid: null,
-            drakeBlocks: null
+            drakeBlocks: null,
+            editContentModal: false
         },
         mounted: function() {
 
@@ -385,6 +393,17 @@ theme::addJSCode('
 
                 this.save(this.grid);
 
+            },
+            editContent: function(row, key, block) {
+
+                var vue = this;
+
+                if(!this.isEdit && !this.showBlocks) {
+
+                    vue.editContentModal = true;
+
+                }
+
             }
         },
         watch: {
@@ -393,10 +412,10 @@ theme::addJSCode('
                 if(this.showBlocks) {
                     this.isEdit = false;
                     this.setDragBlocks();
-                    $(".blocks").addClass("move");
+                    $(".blocks").addClass("move").removeClass("content");
                 } else {
                     this.drakeBlocks.destroy();
-                    $(".blocks").removeClass("move");
+                    $(".blocks").removeClass("move").addClass("content");
                 }
 
             },
@@ -405,8 +424,10 @@ theme::addJSCode('
                 if(this.isEdit) {
                     this.showBlocks = false;
                     this.setDrag();
+                    $(".blocks").removeClass("content");
                 } else {
                     this.drakeGrid.destroy();
+                    $(".blocks").addClass("content");
                 }
 
             }
