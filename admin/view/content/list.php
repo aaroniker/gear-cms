@@ -133,8 +133,15 @@ theme::addJSCode('
             },
             setDrag: function() {
 
+                function contains(a, b) {
+                    return a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16);
+                }
+
                 var drake = dragula($("#pageList ul").toArray(), {
-                    mirrorContainer: $("#pageList")[0]
+                    mirrorContainer: $("#pageList")[0],
+                    accepts: function (el, target, source, sibling) {
+                        return !contains(el, target);
+                    }
                 });
 
                 drake.on("drop", function(el, target, source, sibling) {
