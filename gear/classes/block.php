@@ -122,6 +122,14 @@ class block {
 
     }
 
+    public function getVars() {
+
+        $info = $this->getInfo();
+
+        return $info['content'];
+
+    }
+
     public function getContent() {
         return $this->filterFile('[content]', '[/content]');
     }
@@ -144,6 +152,10 @@ class block {
 
         return substr($string, $ini, $len);
 
+    }
+
+    public function getForm() {
+        return;
     }
 
 }

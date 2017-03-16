@@ -34,20 +34,20 @@
 
         if($form->validation()) {
 
-		    extension::add('model_beforeSave', function($data) {
+            extension::add('model_beforeSave', function($data) {
                 $data['siteURL'] = filter::url($data['name']);
-    		    return $data;
-		    });
+                return $data;
+            });
 
-			$this->model->save($form->getAll(), true);
+            $this->model->save($form->getAll(), true);
 
             message::success(lang::get('page_edited'));
 
-		} else {
-		    $form->getErrors();
-	    }
+        } else {
+            $form->getErrors();
+        }
 
-	}
+    }
 
     $parent = new stdClass();
     $parent->name = '';
@@ -75,9 +75,7 @@
 
 <modal v-if="editContentModal" @close="editContentModal = false">
     <h3 slot="header"><?=lang::get('edit'); ?></h3>
-    <div slot="content" class="clear">
-        content
-    </div>
+    <div slot="content" class="clear" v-html="editContentHtml"></div>
 </modal>
 
 <div class="tabs box">
@@ -104,7 +102,7 @@
                         <div v-for="(column, key) in columns" :class="breakpoint + '-' + column.size">
                             <div class="box">
                                 <ul class="blocks content" :data-row="row" :data-column="key">
-                                    <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button" @click="editContent(row, key, blockKey)">
+                                    <li v-for="(block, blockKey) in column.blocks" :data-id="block.id" :data-name="block.name" class="button" @click="editContent(row, key, blockKey, block.id)">
                                         {{ block.name }}
                                         <a @click="deleteBlock(row, key, blockKey)" class="icon icon-ios-trash-outline delBlock"></a>
                                     </li>
@@ -181,7 +179,8 @@ theme::addJSCode('
             pageParentName: "'.$parent->name.'",
             drakeGrid: null,
             drakeBlocks: null,
-            editContentModal: false
+            editContentModal: false,
+            editContentHtml: ""
         },
         mounted: function() {
 
@@ -394,13 +393,30 @@ theme::addJSCode('
                 this.save(this.grid);
 
             },
-            editContent: function(row, key, block) {
+            getForm: function(type) {
+
+                var vue = this;
+
+                $.ajax({
+                    method: "POST",
+                    url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'getForm']).'",
+                    data: {
+                        type: type
+                    },
+                    success: function(html) {
+                        vue.editContentHtml = html;
+                    }
+                });
+
+            },
+            editContent: function(row, key, block, type) {
 
                 var vue = this;
 
                 if(!this.isEdit && !this.showBlocks) {
 
                     vue.editContentModal = true;
+                    vue.getForm(type);
 
                 }
 

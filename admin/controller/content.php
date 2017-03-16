@@ -117,6 +117,37 @@ class contentController extends controller {
 
             $this->model->load($id);
 
+            if(ajax::is()) {
+
+                if($method == 'getForm') {
+
+                    $type = type::post('type', 'string', '');
+
+                    $block = new block($type.'.block');
+                    $vars = $block->getVars();
+
+                    $form = new form();
+
+                    foreach($vars as $var) {
+
+                        switch($var['type']) {
+                            case 'text':
+                                $field = $form->addTextField($var['name'], '');
+                            break;
+                            case 'textarea':
+                                $field = $form->addTextareaField($var['name'], '');
+                            break;
+                        }
+                        $field->fieldName($var['name']);
+
+                    }
+
+                    ajax::addReturn($form->show());
+
+                }
+
+            }
+
             $this->gridAjax($id, $method);
 
             include(dir::view('content/edit.php'));
