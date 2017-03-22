@@ -7,7 +7,7 @@
     theme::addCSS('https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.structure.min.css');
     theme::addCSS(url::assets('css/style.css'));
 
-    theme::addJS('https://cdn.jsdelivr.net/jquery/3.1.1/jquery.min.js');
+    theme::addJS('https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js');
     theme::addJS('https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js');
     theme::addJS('https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js');
     theme::addJS('https://cdn.jsdelivr.net/vue/2.2.4/vue.min.js');
