@@ -25,11 +25,11 @@ class form {
 
     protected static $count = 1;
 
-    public function __construct($action = '', $method = 'post') {
+    public function __construct($action = '', $method = 'post', $name = '') {
 
         $this->method = $method;
         $this->action = $action;
-        $this->name = 'form'.self::$count;
+        $this->name = ($name) ? $name : 'form'.self::$count;
 
         self::$count++;
 
@@ -232,6 +232,10 @@ class form {
         $this->showSubmit = $bool;
     }
 
+    public function setName($name) {
+        $this->name = $name;
+    }
+
     public function addTab($name) {
 
         $this->tabs[$name] = [];
@@ -276,7 +280,7 @@ class form {
         $return = [];
         $hidden = [];
 
-        $return[] = '<form'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
+        $return[] = '<form name="'.$this->name.'"'.html_convertAttribute($this->formAttributes).'>'.PHP_EOL;
 
         $return = $this->loopFields($this->return, $return);
 
