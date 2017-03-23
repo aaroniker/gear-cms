@@ -11,7 +11,9 @@
 
 <body>
 
+<pre>
 {{ content|raw }}
+</pre>
 
 </body>
 </html>
