@@ -188,6 +188,33 @@ theme::addJSCode('
 
             eventHub.$on("setSearchbox", this.setParent);
 
+            $(document).ready(function() {
+                $(document).on("click", ".saveContent", function(e) {
+
+                    e.preventDefault();
+
+                    var data = JSON.stringify($("form[name=\'editContent\']").serializeArray()),
+                    row = $(this).data("row"),
+                    key = $(this).data("key"),
+                    block = $(this).data("block");
+
+                    $.ajax({
+                        method: "POST",
+                        url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'saveForm']).'",
+                        data: {
+                            data: data,
+                            row: row,
+                            key: key,
+                            block: block
+                        },
+                        success: function() {
+                            alert("row["+row+"] key["+key+"] block["+block+"] data["+data+"]");
+                        }
+                    });
+
+                });
+            });
+
         },
         methods: {
             fetch: function() {
@@ -393,7 +420,7 @@ theme::addJSCode('
                 this.save(this.grid);
 
             },
-            getForm: function(type) {
+            getForm: function(type, row, key, block) {
 
                 var vue = this;
 
@@ -401,7 +428,10 @@ theme::addJSCode('
                     method: "POST",
                     url: "'.url::admin('content', ['index', 'edit', $this->model->id, 'getForm']).'",
                     data: {
-                        type: type
+                        type: type,
+                        row: row,
+                        key: key,
+                        block: block
                     },
                     success: function(html) {
                         vue.editContentHtml = html;
@@ -416,7 +446,7 @@ theme::addJSCode('
                 if(!this.isEdit && !this.showBlocks) {
 
                     vue.editContentModal = true;
-                    vue.getForm(type);
+                    vue.getForm(type, row, key, block);
 
                 }
 

@@ -122,11 +122,16 @@ class contentController extends controller {
                 if($method == 'getForm') {
 
                     $type = type::post('type', 'string', '');
+                    $row = type::post('row', 'int', 0);
+                    $key = type::post('key', 'int', 0);
+                    $blockId = type::post('block', 'int', 0);
 
                     $block = new block($type.'.block');
                     $vars = $block->getVars();
 
                     $form = new form();
+                    $form->setShowSubmit(false);
+                    $form->setName('editContent');
 
                     foreach($vars as $var) {
 
@@ -141,6 +146,8 @@ class contentController extends controller {
                         $field->fieldName($var['name']);
 
                     }
+
+                    $form->addRawField('<a data-row="'.$row.'" data-key="'.$key.'" data-block="'.$blockId.'" class="button block saveContent">saveContent</a>');
 
                     ajax::addReturn($form->show());
 
