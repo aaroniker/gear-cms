@@ -184,7 +184,9 @@ theme::addJSCode('
         },
         mounted: function() {
 
-            this.fetch();
+            var vue = this;
+
+            vue.fetch();
 
             eventHub.$on("setSearchbox", this.setParent);
 
@@ -207,8 +209,9 @@ theme::addJSCode('
                             key: key,
                             block: block
                         },
-                        success: function() {
-                            alert("row["+row+"] key["+key+"] block["+block+"] data["+data+"]");
+                        success: function(back) {
+                            vue.editContentModal = false;
+                            vue.editContentHtml = "";
                         }
                     });
 

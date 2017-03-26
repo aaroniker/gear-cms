@@ -119,12 +119,16 @@ class contentController extends controller {
 
             if(ajax::is()) {
 
+                $row = type::post('row', 'int', 0);
+                $key = type::post('key', 'int', 0);
+                $blockId = type::post('block', 'int', 0);
+
                 if($method == 'getForm') {
 
+                    $content = json_decode($this->model->content);
+                    $content = $content[$row][$key]->blocks[$blockId]->content;
+
                     $type = type::post('type', 'string', '');
-                    $row = type::post('row', 'int', 0);
-                    $key = type::post('key', 'int', 0);
-                    $blockId = type::post('block', 'int', 0);
 
                     $block = new block($type.'.block');
                     $vars = $block->getVars();
@@ -135,21 +139,46 @@ class contentController extends controller {
 
                     foreach($vars as $var) {
 
+                        $val = '';
+
+                        if($content = json_decode($content, true)) {
+                            $val = (isset($content[$var['name']])) ? $content[$var['name']] : '';
+                        }
+
                         switch($var['type']) {
                             case 'text':
-                                $field = $form->addTextField($var['name'], '');
+                                $field = $form->addTextField($var['name'], $val);
                             break;
                             case 'textarea':
-                                $field = $form->addTextareaField($var['name'], '');
+                                $field = $form->addTextareaField($var['name'], $val);
                             break;
                         }
                         $field->fieldName($var['name']);
 
                     }
 
-                    $form->addRawField('<a data-row="'.$row.'" data-key="'.$key.'" data-block="'.$blockId.'" class="button block saveContent">saveContent</a>');
+                    $form->addRawField('<a data-row="'.$row.'" data-key="'.$key.'" data-block="'.$blockId.'" class="button block saveContent">'.lang::get('save').'</a>');
 
                     ajax::addReturn($form->show());
+
+                } elseif($method == 'saveForm') {
+
+                    $save = [];
+
+                    $data = json_decode(type::post('data', 'string', '{}'));
+                    if(is_array($data) && count($data)) {
+                        foreach($data as $arr) {
+                            $save[$arr->name] = $arr->value;
+                        }
+                    }
+
+                    $content = json_decode($this->model->content);
+
+                    $content[$row][$key]->blocks[$blockId]->content = json_encode($save);
+
+                    if($this->model->save(['content' => json_encode($content)])) {
+                        message::success(lang::get('content_saved'));
+                    }
 
                 }
 

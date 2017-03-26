@@ -96,7 +96,7 @@ class application {
             echo '<h1>404</h1>';
         } else {
             echo '<h1>'.$page->name.'</h1>';
-            var_dump($page);
+            var_dump(json_decode($page->content));
         }
 
         $content = ob_get_contents();
