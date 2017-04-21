@@ -4,20 +4,72 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "44f8455540df0cba4702f3f0c45f756f",
+    "content-hash": "9d4bdf8494252aeab08726acdc17ccd4",
     "packages": [
+        {
+            "name": "leafo/scssphp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/scssphp.git",
+                "reference": "53e86eae35448fbcce8f682ffcb9fa224cd40cc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/53e86eae35448fbcce8f682ffcb9fa224cd40cc3",
+                "reference": "53e86eae35448fbcce8f682ffcb9fa224cd40cc3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.6",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Leafo\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://leafo.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "time": "2017-03-14 14:58:24"
+        },
         {
             "name": "lichtner/fluentpdo",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/envms/fluentpdo.git",
-                "reference": "c50768561a9470f8c840cdaf409bac9d5c5d054d"
+                "reference": "8f0b9356dcb1060742b7951c2d9bf6a6d111e1af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/envms/fluentpdo/zipball/c50768561a9470f8c840cdaf409bac9d5c5d054d",
-                "reference": "c50768561a9470f8c840cdaf409bac9d5c5d054d",
+                "url": "https://api.github.com/repos/envms/fluentpdo/zipball/8f0b9356dcb1060742b7951c2d9bf6a6d111e1af",
+                "reference": "8f0b9356dcb1060742b7951c2d9bf6a6d111e1af",
                 "shasum": ""
             },
             "type": "library",
@@ -44,33 +96,34 @@
                 "dbal",
                 "pdo"
             ],
-            "time": "2016-10-06 11:45:37"
+            "time": "2017-02-08 21:00:41"
         },
         {
             "name": "twig/twig",
-            "version": "v1.27.0",
+            "version": "v1.33.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97"
+                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/dd6ca96227917e1e85b41c7c3cc6507b411e0927",
+                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.7"
             },
             "require-dev": {
+                "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~2.7"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.27-dev"
+                    "dev-master": "1.33-dev"
                 }
             },
             "autoload": {
@@ -105,7 +158,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-25T19:17:17+00:00"
+            "time": "2017-04-20T17:39:48+00:00"
         },
         {
             "name": "wixel/gump",
@@ -113,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Wixel/GUMP.git",
-                "reference": "6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08"
+                "reference": "4e3257c7785634f40b162f043e9415cf23847697"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08",
-                "reference": "6092cd0fffb4f1d7907dd9e1dde63a1d332e7b08",
+                "url": "https://api.github.com/repos/Wixel/GUMP/zipball/4e3257c7785634f40b162f043e9415cf23847697",
+                "reference": "4e3257c7785634f40b162f043e9415cf23847697",
                 "shasum": ""
             },
             "type": "library",
@@ -159,11 +212,15 @@
                 {
                     "name": "Sean Nieuwoudt",
                     "homepage": "https://wixelhq.com"
+                },
+                {
+                    "name": "Filis Futsarov",
+                    "homepage": "http://filis.me"
                 }
             ],
             "description": "A fast, extensible & stand-alone PHP input validation class that allows you to validate any data",
             "homepage": "https://wixelhq.com/",
-            "time": "2016-08-30 16:12:49"
+            "time": "2017-04-18 14:11:17"
         }
     ],
     "packages-dev": [],
@@ -171,7 +228,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "lichtner/fluentpdo": 20,
-        "wixel/gump": 20
+        "wixel/gump": 20,
+        "leafo/scssphp": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

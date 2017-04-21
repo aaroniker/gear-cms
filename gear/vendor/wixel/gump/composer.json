@@ -29,6 +29,10 @@
         {
             "name": "Inge Brattaas",
             "homepage": "http://res.no/"
+        },
+        {
+            "name": "Filis Futsarov",
+            "homepage": "http://filis.me"
         }
     ],
     "license": "MIT",

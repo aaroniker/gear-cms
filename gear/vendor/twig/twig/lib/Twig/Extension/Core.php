@@ -8,10 +8,14 @@ if (!defined('ENT_SUBSTITUTE')) {
 /*
  * This file is part of Twig.
  *
- * (c) 2009 Fabien Potencier
+ * (c) Fabien Potencier
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ */
+
+/**
+ * @final
  */
 class Twig_Extension_Core extends Twig_Extension
 {
@@ -95,9 +99,9 @@ class Twig_Extension_Core extends Twig_Extension
     /**
      * Sets the default format to be used by the number_format filter.
      *
-     * @param int    $decimal      The number of decimal places to use.
-     * @param string $decimalPoint The character(s) to use for the decimal point.
-     * @param string $thousandSep  The character(s) to use for the thousands separator.
+     * @param int    $decimal      the number of decimal places to use
+     * @param string $decimalPoint the character(s) to use for the decimal point
+     * @param string $thousandSep  the character(s) to use for the thousands separator
      */
     public function setNumberFormat($decimal, $decimalPoint, $thousandSep)
     {
@@ -159,7 +163,7 @@ class Twig_Extension_Core extends Twig_Extension
             new Twig_SimpleFilter('upper', 'strtoupper'),
             new Twig_SimpleFilter('lower', 'strtolower'),
             new Twig_SimpleFilter('striptags', 'strip_tags'),
-            new Twig_SimpleFilter('trim', 'trim'),
+            new Twig_SimpleFilter('trim', 'twig_trim_filter'),
             new Twig_SimpleFilter('nl2br', 'nl2br', array('pre_escape' => 'html', 'is_safe' => array('html'))),
 
             // array helpers
@@ -299,7 +303,7 @@ function twig_cycle($values, $position)
  * @param Twig_Environment                   $env
  * @param Traversable|array|int|float|string $values The values to pick a random item from
  *
- * @throws Twig_Error_Runtime When $values is an empty array (does not apply to an empty string which is returned as is).
+ * @throws Twig_Error_Runtime when $values is an empty array (does not apply to an empty string which is returned as is)
  *
  * @return mixed A random value from the given sequence
  */
@@ -514,9 +518,9 @@ function twig_round($value, $precision = 0, $method = 'common')
  *
  * @param Twig_Environment $env
  * @param mixed            $number       A float/int/string of the number to format
- * @param int              $decimal      The number of decimal points to display.
- * @param string           $decimalPoint The character(s) to use for the decimal point.
- * @param string           $thousandSep  The character(s) to use for the thousands separator.
+ * @param int              $decimal      the number of decimal points to display
+ * @param string           $decimalPoint the character(s) to use for the decimal point
+ * @param string           $thousandSep  the character(s) to use for the thousands separator
  *
  * @return string The formatted number
  */
@@ -562,7 +566,7 @@ if (PHP_VERSION_ID < 50300) {
     /**
      * JSON encodes a variable.
      *
-     * @param mixed $value   The value to encode.
+     * @param mixed $value   the value to encode
      * @param int   $options Not used on PHP 5.2.x
      *
      * @return mixed The JSON encoded value
@@ -581,7 +585,7 @@ if (PHP_VERSION_ID < 50300) {
     /**
      * JSON encodes a variable.
      *
-     * @param mixed $value   The value to encode.
+     * @param mixed $value   the value to encode
      * @param int   $options Bitmask consisting of JSON_HEX_QUOT, JSON_HEX_TAG, JSON_HEX_AMP, JSON_HEX_APOS, JSON_NUMERIC_CHECK, JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES, JSON_FORCE_OBJECT
      *
      * @return mixed The JSON encoded value
@@ -652,7 +656,7 @@ function twig_array_merge($arr1, $arr2)
 function twig_slice(Twig_Environment $env, $item, $start, $length = null, $preserveKeys = false)
 {
     if ($item instanceof Traversable) {
-        if ($item instanceof IteratorAggregate) {
+        while ($item instanceof IteratorAggregate) {
             $item = $item->getIterator();
         }
 
@@ -821,7 +825,27 @@ function _twig_default_filter($value, $default = '')
 function twig_get_array_keys_filter($array)
 {
     if ($array instanceof Traversable) {
-        return array_keys(iterator_to_array($array));
+        while ($array instanceof IteratorAggregate) {
+            $array = $array->getIterator();
+        }
+
+        if ($array instanceof Iterator) {
+            $keys = array();
+            $array->rewind();
+            while ($array->valid()) {
+                $keys[] = $array->key();
+                $array->next();
+            }
+
+            return $keys;
+        }
+
+        $keys = array();
+        foreach ($array as $key => $item) {
+            $keys[] = $key;
+        }
+
+        return $keys;
     }
 
     if (!is_array($array)) {
@@ -901,10 +925,49 @@ function twig_in_filter($value, $compare)
     } elseif (is_string($compare) && (is_string($value) || is_int($value) || is_float($value))) {
         return '' === $value || false !== strpos($compare, (string) $value);
     } elseif ($compare instanceof Traversable) {
-        return in_array($value, iterator_to_array($compare, false), is_object($value) || is_resource($value));
+        if (is_object($value) || is_resource($value)) {
+            foreach ($compare as $item) {
+                if ($item === $value) {
+                    return true;
+                }
+            }
+        } else {
+            foreach ($compare as $item) {
+                if ($item == $value) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     return false;
+}
+
+/**
+ * Returns a trimmed string.
+ *
+ * @return string
+ *
+ * @throws Twig_Error_Runtime When an invalid trimming side is used (not a string or not 'left', 'right', or 'both')
+ */
+function twig_trim_filter($string, $characterMask = null, $side = 'both')
+{
+    if (null === $characterMask) {
+        $characterMask = " \t\n\r\0\x0B";
+    }
+
+    switch ($side) {
+        case 'both':
+            return trim($string, $characterMask);
+        case 'left':
+            return ltrim($string, $characterMask);
+        case 'right':
+            return rtrim($string, $characterMask);
+        default:
+            throw new Twig_Error_Runtime('Trimming side must be "left", "right" or "both".');
+    }
 }
 
 /**
@@ -1105,8 +1168,13 @@ function _twig_escape_js_callback($matches)
 
     // \uHHHH
     $char = twig_convert_encoding($char, 'UTF-16BE', 'UTF-8');
+    $char = strtoupper(bin2hex($char));
 
-    return '\\u'.strtoupper(substr('0000'.bin2hex($char), -4));
+    if (4 >= strlen($char)) {
+        return sprintf('\u%04s', $char);
+    }
+
+    return sprintf('\u%04s\u%04s', substr($char, 0, -4), substr($char, -4));
 }
 
 function _twig_escape_css_callback($matches)
@@ -1196,7 +1264,15 @@ if (function_exists('mb_get_info')) {
      */
     function twig_length_filter(Twig_Environment $env, $thing)
     {
-        return is_scalar($thing) ? mb_strlen($thing, $env->getCharset()) : count($thing);
+        if (is_scalar($thing)) {
+            return mb_strlen($thing, $env->getCharset());
+        }
+
+        if (is_object($thing) && method_exists($thing, '__toString') && !$thing instanceof \Countable) {
+            return mb_strlen((string) $thing, $env->getCharset());
+        }
+
+        return count($thing);
     }
 
     /**
@@ -1279,7 +1355,15 @@ else {
      */
     function twig_length_filter(Twig_Environment $env, $thing)
     {
-        return is_scalar($thing) ? strlen($thing) : count($thing);
+        if (is_scalar($thing)) {
+            return strlen($thing);
+        }
+
+        if (is_object($thing) && method_exists($thing, '__toString') && !$thing instanceof \Countable) {
+            return strlen((string) $thing);
+        }
+
+        return count($thing);
     }
 
     /**
@@ -1339,6 +1423,10 @@ function twig_test_empty($value)
 {
     if ($value instanceof Countable) {
         return 0 == count($value);
+    }
+
+    if (is_object($value) && method_exists($value, '__toString')) {
+        return '' === (string) $value;
     }
 
     return '' === $value || false === $value || null === $value || array() === $value;
@@ -1402,6 +1490,18 @@ function twig_include(Twig_Environment $env, $context, $template, $variables = a
 
             throw $e;
         }
+    } catch (Throwable $e) {
+        if ($isSandboxed && !$alreadySandboxed) {
+            $sandbox->disableSandbox();
+        }
+
+        throw $e;
+    } catch (Exception $e) {
+        if ($isSandboxed && !$alreadySandboxed) {
+            $sandbox->disableSandbox();
+        }
+
+        throw $e;
     }
 
     if ($isSandboxed && !$alreadySandboxed) {
