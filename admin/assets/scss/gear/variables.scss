@@ -1,0 +1,59 @@
+
+//Colors
+
+$primary: #5293F8;
+$primary-light: #83B8FF;
+
+$dark: #202532;
+$darkBlue: adjust-color($dark, $blue: 10);
+$dark90: mix(#fff, $darkBlue, 10%);
+$dark80: mix(#fff, $darkBlue, 20%);
+$dark60: mix(#fff, $darkBlue, 40%);
+$dark40: mix(#fff, $darkBlue, 60%);
+$dark25: mix(#fff, $darkBlue, 75%);
+
+$border: #D1D7E4;
+$line: #E8EBF4;
+$light: #F5F6FA;
+
+$shadow: adjust-color($dark, $blue: 55);
+
+$success: #69DD95;
+$error: #F26175;
+$info: $primary;
+
+// Spacing
+
+$space-lg-h: 34px;
+$space-lg-v: 16px;
+
+$space-h: 30px;
+$space-v: 12px;
+
+$space-sm-h: 20px;
+$space-sm-v: 6px;
+
+// Typography
+
+$font-path: '../font';
+$font-family: 'Roboto';
+$font-size: 16px;
+$line-height: 22px;
+
+// Grid
+
+$gap-width: 34;
+
+$screen-xs-min: 480;
+$screen-sm-min: 768;
+$screen-md-min: 992;
+$screen-lg-min: 1180;
+
+$container-sm: 730;
+$container-md: 960;
+$container-lg: 1150;
+
+// Elements
+
+$sidebarWidth: 280px;
+$sidebarWidthSmall: 100px;

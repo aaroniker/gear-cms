@@ -111,24 +111,14 @@ class admin {
 
     }
 
-    public static function generateLess() {
+    public static function generateStyle() {
 
-        $less = new lessc;
-        $less->setFormatter('compressed');
+        $scss = new scssc();
+        $scss->setImportPaths(dir::scss());
 
-        try {
-
-            $newCSS = $less->compileFile(dir::less('style.less'));
-
-            $fp = fopen(dir::css('style.css'),"wb");
-            fwrite($fp, $newCSS);
-            fclose($fp);
-
-        } catch (exception $e) {
-
-            echo message::getMessage($e->getMessage(), 'error');
-
-        }
+        $fp = fopen(dir::css('style.css'), "wb");
+        fwrite($fp, $scss->compile('@import "style.scss"'));
+        fclose($fp);
 
     }
 

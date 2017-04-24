@@ -1,0 +1,86 @@
+.pagination {
+    .prev,
+    .next {
+        float: left;
+        display: block;
+        cursor: pointer;
+        font-size: 18px;
+        border: 1px solid $border;
+        color: $dark40;
+        padding: $space-sm-v ($space-sm-v + 2);
+        &:before {
+            font-family: 'dripicons-v2';
+            display: block;
+        }
+        &:hover {
+            color: $dark60;
+        }
+    }
+    .prev {
+        @include round(4px 0 0 4px);
+        &:before {
+            content: 'U';
+        }
+    }
+    .next {
+        @include round(0 4px 4px 0);
+        &:before {
+            content: 'V';
+        }
+    }
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    div {
+        float: left;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        padding: $space-sm-v ($space-sm-v + 8);
+        color: $dark40;
+        strong {
+            color: $primary;
+        }
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        float: left;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        li {
+            float: left;
+            list-style: none;
+            position: relative;
+            border-right: 1px solid $border;
+            padding: $space-sm-v ($space-sm-v + 4);
+            color: $dark40;
+            &:last-child {
+                border-right: 0;
+            }
+            &.active {
+                color: #fff;
+                position: relative;
+                z-index: 1;
+                background: $primary;
+                &:before {
+                    content: '';
+                    display: block;
+                    z-index: -1;
+                    left: -1px;
+                    top: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                    position: absolute;
+                    background: $primary;
+                }
+            }
+        }
+    }
+}

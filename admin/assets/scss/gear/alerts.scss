@@ -1,0 +1,61 @@
+.alert {
+    border: 1px solid transparent;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+    font-weight: 500;
+    text-shadow: 0 0 1px rgba(#000, 0.2);
+    margin: 0 0 $space-v;
+    padding: $space-v ($space-v + 4) $space-v ($space-v + 34);
+    @include round(4px);
+    &:before {
+        content: '';
+        font-family: 'dripicons-v2';
+        display: block;
+        position: absolute;
+        left: $space-v + 4;
+        top: $space-v;
+    }
+    &.success {
+        border-color: $success;
+        background: fade-out($success, .2);
+        &:before {
+            content: 'S';
+        }
+    }
+    &.error {
+        border-color: $error;
+        background: fade-out($error, .2);
+        &:before {
+            content: '\e063';
+        }
+    }
+    &.info {
+        border-color: $info;
+        background: fade-out($info, .2);
+        &:before {
+            content: '\e009';
+        }
+    }
+    &.light {
+        background: none;
+        text-shadow: none;
+        font-weight: normal;
+        color: $dark40;
+        &.success {
+            &:before {
+                color: $success;
+            }
+        }
+        &.error {
+            &:before {
+                color: $error;
+            }
+        }
+        &.info {
+            &:before {
+                color: $info;
+            }
+        }
+    }
+}

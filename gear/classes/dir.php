@@ -28,8 +28,8 @@ class dir {
         return self::admin('assets'.DIRECTORY_SEPARATOR.$file);
     }
 
-    public static function less($file = '') {
-        return self::assets('less'.DIRECTORY_SEPARATOR.$file);
+    public static function scss($file = '') {
+        return self::assets('scss'.DIRECTORY_SEPARATOR.$file);
     }
 
     public static function css($file = '') {

@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    src: local('Roboto Regular'), local('Roboto-Regular'), url('../font/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: italic;
+    src: local('Roboto Italic'), local('Roboto-Italic'), url('../font/Roboto-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-style: normal;
+    src: local('Roboto Medium'), local('Roboto-Medium'), url('../font/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: normal;
+    src: local('Roboto Bold'), local('Roboto-Bold'), url('../font/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'dripicons-v2';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../font/dripicons-v2.eot');
+    src: url('../font/dripicons-v2.eot?#iefix') format('embedded-opentype'),
+    url('../font/dripicons-v2.woff') format('woff'),
+    url('../font/dripicons-v2.ttf') format('truetype'),
+    url('../font/dripicons-v2.svg#dripicons-v2') format('svg');
+}

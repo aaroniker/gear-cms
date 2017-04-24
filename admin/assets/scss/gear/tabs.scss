@@ -1,0 +1,85 @@
+.tabs-line {
+    position: relative;
+    padding-bottom: 12px;
+    .line {
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        margin: 9px 0 0 0;
+        background: $primary;
+        @include round(2px);
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        &:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+        li {
+            float: left;
+            margin: 0 34px 0 0;
+            @include transition();
+            &.active {
+                a {
+                    color: $dark60;
+                }
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            a {
+                text-decoration: none;
+                display: block;
+                color: $dark40;
+                @include transition();
+                &:hover {
+                    color: $dark60;
+                }
+            }
+        }
+    }
+    &.border {
+        background: #fff;
+        padding: 12px 0;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            display: block;
+            border: 1px solid $border;
+            @include round(4px);
+        }
+        ul {
+            position: relative;
+            padding-left: 12px;
+            li {
+                margin: 0 12px 0 0;
+                a {
+                    padding: 0 8px;
+                }
+            }
+        }
+    }
+    &.background {
+        background: #fff;
+        padding: 12px 0;
+        @include shadow('sm');
+        @include round(4px);
+        ul {
+            position: relative;
+            padding-left: 12px;
+            li {
+                margin: 0 12px 0 0;
+                a {
+                    padding: 0 8px;
+                }
+            }
+        }
+    }
+}

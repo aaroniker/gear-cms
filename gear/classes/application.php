@@ -26,7 +26,7 @@ class application {
             $this->admin = true;
 
             if(config::get('dev') && !ajax::is()) {
-                admin::generateLess();
+                admin::generateStyle();
             }
 
             $this->bootstrap();
@@ -35,7 +35,7 @@ class application {
         } elseif($env == 'install') {
 
             if(!file_exists(dir::css('style.css'))) {
-                admin::generateLess();
+                admin::generateStyle();
             }
 
             $this->install();
