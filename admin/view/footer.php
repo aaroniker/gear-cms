@@ -1,4 +1,6 @@
-</main>
+</div>
+
+</div>
 
 <div id="overlay"></div>
 

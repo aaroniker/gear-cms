@@ -14,6 +14,7 @@
     theme::addJS('https://cdn.jsdelivr.net/vue/2.2.6/vue.min.js');
     theme::addJS('https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js');
     theme::addJS(url::assets('js/form.js'));
+    theme::addJS(url::assets('js/gear.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/layout.js'));
     theme::addJS(url::assets('js/app.js'));
@@ -50,25 +51,25 @@
 
     if(user::loggedIn()) {
 
-        admin::addMenu(lang::get('dashboard'), 'dashboard', 'stats-bars');
+        admin::addMenu(lang::get('dashboard'), 'dashboard', 'graph-pie');
         admin::addSubmenu(lang::get('overview'), 'index', 'dashboard');
         admin::addSubmenu(lang::get('logs'), 'logs', 'dashboard');
 
-        admin::addMenu(lang::get('content'), 'content', 'images');
+        admin::addMenu(lang::get('content'), 'content', 'copy');
         admin::addSubmenu(lang::get('pages'), 'index', 'content');
         admin::addSubmenu(lang::get('grid_templates'), 'grid', 'content', false);
         admin::addSubmenu(lang::get('menus'), 'menus', 'content');
         admin::addSubmenu(lang::get('media'), 'media', 'content');
 
-        admin::addMenu(lang::get('user'), 'user', 'person');
+        admin::addMenu(lang::get('user'), 'user', 'user-group');
         admin::addSubmenu(lang::get('list'), 'index', 'user');
         admin::addSubmenu(lang::get('user_groups'), 'groups', 'user');
 
-        admin::addMenu(lang::get('extensions'), 'extensions', 'fork-repo');
+        admin::addMenu(lang::get('extensions'), 'extensions', 'network-3');
         admin::addSubmenu(lang::get('plugins'), 'index', 'extensions');
         admin::addSubmenu(lang::get('blocks'), 'blocks', 'extensions');
 
-        admin::addMenu(lang::get('system'), 'system', 'settings');
+        admin::addMenu(lang::get('system'), 'system', 'toggles');
         admin::addSubmenu(lang::get('settings'), 'index', 'system');
         admin::addSubmenu(lang::get('theme'), 'theme', 'system');
 

@@ -16,6 +16,7 @@
     theme::addJS('https://cdn.jsdelivr.net/vue/2.2.6/vue.min.js');
     theme::addJS('https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js');
     theme::addJS(url::assets('js/form.js'));
+    theme::addJS(url::assets('js/gear.js'));
     theme::addJS(url::assets('js/session.js'));
     theme::addJS(url::assets('js/layout.js'));
     theme::addJS(url::assets('js/app.js'));

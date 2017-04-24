@@ -1,18 +1,11 @@
 jQuery(document).ready(function($) {
 
-    $(document).on("click", "#expand", function(e) {
-        $("#overlay").fadeToggle(400, function() {
-            $("#left").toggleClass("active");
-            $("#expand").toggleClass("active");
-        });
-    });
-
-    $(document).on("click", "#switch", function(e) {
+    $(document).on('click', '#head .switch', function(e) {
 
         var _this = $(this);
         var _active = 1;
 
-        if(_this.hasClass("small")) {
+        if(_this.hasClass('small')) {
             _active = 0;
         }
 
@@ -25,15 +18,17 @@ jQuery(document).ready(function($) {
             },
             success: function() {
 
-                _this.toggleClass("small");
-                $("#left").toggleClass("small");
-                $("#head").toggleClass("small");
-                $("main").toggleClass("small");
+                _this.toggleClass('small');
+                $('#sidebar').toggleClass('small');
+                $('#head').toggleClass('small');
+                $('#content').toggleClass('small');
 
-                if(!_this.hasClass("small")) {
-                    $("#left .drop ul").slideDown(300);
+                if(!_this.hasClass('small')) {
+                    setTimeout(function() {
+                        $('#sidebar .drop ul').slideDown(200);
+                    }, 400);
                 } else {
-                    $("#left .drop ul").hide();
+                    $('#sidebar .drop ul').slideUp(50);
                 }
 
                 setTimeout(function() {
@@ -45,20 +40,43 @@ jQuery(document).ready(function($) {
 
     });
 
-    $(document).on("click", "#nav > ul > li > .arrow", function(e) {
+    $(document).on('click', '#head .menu', function(e) {
+        e.preventDefault();
+        $('#overlay').fadeToggle(200, function() {
+            $('#sidebar').toggleClass('open');
+        });
+    });
+
+    $(document).on('click', '#head .message', function(e) {
+        e.preventDefault();
+        $(this).children('a').children('div').fadeToggle(200);
+    });
+
+    $(document).on('click', function(e) {
+        if($(e.target).closest('#head .message').length === 0) {
+            $('#head .message').children('a').children('div').fadeOut(200);
+        }
+    });
+
+    $(document).on('click touchstart', '#overlay', function(e) {
+        $('#sidebar').removeClass('open');
+        setTimeout(function() {
+            $('#overlay').fadeOut(200);
+        }, 300);
+    });
+
+    $(document).on('click', '#sidebar nav > ul > li > span', function(e) {
 
         var _this = $(this).parent();
         var _url = $(this).data("id");
         var _active = 0;
 
-        if(!_this.children("ul").is(":visible")) {
+        if(!_this.children('ul').is(':visible')) {
             _active = 1;
         }
 
-        _this.toggleClass("drop");
-
         _this.children("ul").slideToggle(150, function() {
-            _this.toggleClass("dropFade");
+            _this.toggleClass('drop');
             $.ajax({
                 method: "POST",
                 url: url + "admin/",
@@ -69,6 +87,7 @@ jQuery(document).ready(function($) {
                 }
             });
         });
+
     });
 
     $(document).on("click", "a.ajaxCall", function(e) {

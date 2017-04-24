@@ -1,48 +1,30 @@
 <?php
-    $smallClass = (user::current()->smallMenu) ? 'class="small"' : '';
+    $smallClass = (user::current()->smallMenu) ? 'small' : '';
 ?>
 
-<div id="left" <?=$smallClass; ?>>
+<div id="sidebar" class="<?=$smallClass; ?>">
     <div class="inner">
         <div class="wrap">
-
-            <div class="top clear">
-                <a class="logo" href="<?=url::admin('dashboard'); ?>">
-                    <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear Logo">
+            <div class="logo">
+                <a href="<?=url::admin('dashboard'); ?>">
+                    <svg viewBox="135 135 250 250">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(135.000000, 135.000000)">
+                            <circle class="primary" opacity="0.699999988" cx="125" cy="125" r="125"></circle>
+                            <path class="path1 primary" d="M125.703125,208 C192.883387,208 250,166.5 250,124.297807 C250,82.0956132 192.883387,42 125.703125,42 C58.5228629,42 3.89177568e-15,82.0956132 0,124.297807 C0,166.5 58.5228629,208 125.703125,208 Z" opacity="0.800000012"></path>
+                            <path class="path2 primary" d="M42,125.703125 C42,192.883387 83.5,250 125.702193,250 C167.904387,250 208,192.883387 208,125.703125 C208,58.5228629 167.904387,1.30763663e-15 125.702193,0 C83.5,2.58413905e-15 42,58.5228629 42,125.703125 Z" opacity="0.800000012"></path>
+                            <path class="path3 primary" d="M65.8129527,66.8073216 C18.3093338,114.310941 7.26672093,184.043416 37.108178,213.884873 C66.9496352,243.72633 135.689059,231.690666 183.192678,184.187047 C230.696297,136.683428 243.72633,66.9496352 213.884873,37.108178 C184.043416,7.26672093 113.316572,19.3037027 65.8129527,66.8073216 Z" opacity="0.699999988"></path>
+                            <path class="path4 primary" d="M183.883202,66.1158821 C136.379583,18.6122631 66.6471072,7.56965028 36.80565,37.4111074 C6.96419292,67.2525645 18.9998572,135.991989 66.5034761,183.495608 C114.007095,230.999227 183.740888,244.02926 213.582345,214.187803 C243.423802,184.346346 231.386821,113.619501 183.883202,66.1158821 Z" opacity="0.699999988"></path>
+                            <path class="gear" d="M83.086513,181.067129 C78.5629332,182.253317 74.2383273,183.17715 70.1595902,183.829621 C58.2347914,172.874234 49.622517,158.361649 46.0000021,141.971211 C48.6066604,138.755824 51.5721701,135.462607 54.8651395,132.127897 C54.5944892,129.622467 54.4556229,127.077471 54.4556229,124.5 C54.4556229,121.922529 54.5944892,119.377533 54.8651395,116.872103 C51.5721701,113.537393 48.6066604,110.244176 46,107.028786 C49.622517,90.6383511 58.2347914,76.1257657 70.1595902,65.1703794 C74.2383273,65.8228499 78.5629332,66.7466832 83.086513,67.9328711 C87.1710331,64.9299432 91.5927296,62.3598442 96.2841765,60.2900849 C97.5215069,55.7708038 98.8865027,51.5558846 100.363461,47.6906281 C107.982469,45.2927603 116.090454,44 124.5,44 C132.909546,44 141.017531,45.2927603 148.636539,47.6906281 C150.113497,51.5558846 151.478493,55.7708038 152.715824,60.2900849 C157.40727,62.3598442 161.828967,64.9299432 165.913487,67.9328711 C170.437067,66.7466832 174.761673,65.8228499 178.84041,65.1703794 C190.765209,76.1257657 199.377483,90.6383511 202.999998,107.028789 C200.39334,110.244176 197.42783,113.537393 194.134861,116.872103 C194.405511,119.377533 194.544377,121.922529 194.544377,124.5 C194.544377,127.077471 194.405511,129.622467 194.134861,132.127897 C197.42783,135.462607 200.39334,138.755824 203,141.971214 C199.377483,158.361649 190.765209,172.874234 178.84041,183.829621 C174.761673,183.17715 170.437067,182.253317 165.913487,181.067129 C161.828967,184.070057 157.40727,186.640156 152.715824,188.709915 C151.478493,193.229196 150.113497,197.444115 148.636539,201.309372 C141.017531,203.70724 132.909546,205 124.5,205 C116.090454,205 107.982469,203.70724 100.363461,201.309372 C98.8865027,197.444115 97.5215069,193.229196 96.2841765,188.709915 C91.5927296,186.640156 87.1710331,184.070057 83.086513,181.067129 L83.086513,181.067129 Z"></path>
+                            <circle class="primary" cx="125" cy="125" r="29"></circle>
+                        </g>
+                    </svg>
                 </a>
             </div>
-
-            <div class="user">
-                <div class="inner clear">
-                    <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="profile">
-                        <?php
-
-                            if(user::current()->avatar && file_exists(dir::media(user::current()->avatar))) {
-                                echo '<div class="img" style="background-image: url('.url::media(user::current()->avatar).');"></div>';
-                            } else {
-                                echo user::getAvatar(36, true);
-                            }
-
-                        ?>
-                        <span><?=user::current()->username; ?></span>
-                    </a>
-                    <nav>
-                        <ul class="clear">
-                            <li>
-                                <a href="?logout=1" data-tooltip="<?=lang::get('logout'); ?>">
-                                    <i class="icon icon-log-out"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
             <?php
                 $menu = admin::getMenu();
                 if($menu):
             ?>
-            <nav id="nav">
+            <nav>
                 <ul>
                 <?php
                     foreach($menu as $url => $array):
@@ -54,10 +36,10 @@
                         $open = (isset($openArr[$url])) ? true : false;
 
                         $class = ($array['class']) ? $array['class'] : '';
-                        $class = ($open) ? $class.' drop dropFade' : $class;
+                        $class = ($open) ? $class.' drop' : $class;
 
                         $sub = admin::getSubmenu($url);
-                        $drop = ($sub && count($sub) > 1) ? '<span class="arrow" data-id="'.$url.'"></span>' : '';
+                        $drop = ($sub && count($sub) > 1) ? '<span data-id="'.$url.'"></span>' : '';
 
                         echo '
                         <li class="'.$class.'">
@@ -96,43 +78,27 @@
             <?php
                 endif;
             ?>
-
-            <div class="info clear">
-                <div class="version">
-                    <?=sprintf(lang::get('version'), config::get('version')); ?>
-                </div>
-                <nav>
-                    <ul class="clear">
-                        <li>
-                            <a href="http://gearcms.org" data-tooltip="<?=lang::get('website'); ?>" target="_blank">
-                                <i class="icon icon-earth"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
+            <a href="http://gearcms.org" target="_blank" class="version">
+                <?=sprintf(lang::get('version'), config::get('version')); ?>
+            </a>
         </div>
     </div>
 </div>
 
-<div id="switch" <?=$smallClass; ?>>
-    <i class="icon icon-chevron-left"></i>
-</div>
-
-<div id="expand">
-    <span></span>
-</div>
-
-<a id="logo" href="<?=url::admin('dashboard'); ?>">
-    <img src="<?=url::assets('img/logo.svg'); ?>" alt="Gear Logo">
-</a>
-
-<div id="messages"></div>
-
-<header id="head" <?=$smallClass; ?>>
-
-    <nav>
+<header id="head" class="<?=$smallClass; ?>">
+    <svg viewBox="135 135 250 250">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(135.000000, 135.000000)">
+            <circle class="primary" opacity="0.699999988" cx="125" cy="125" r="125"></circle>
+            <path class="path1 primary" d="M125.703125,208 C192.883387,208 250,166.5 250,124.297807 C250,82.0956132 192.883387,42 125.703125,42 C58.5228629,42 3.89177568e-15,82.0956132 0,124.297807 C0,166.5 58.5228629,208 125.703125,208 Z" opacity="0.800000012"></path>
+            <path class="path2 primary" d="M42,125.703125 C42,192.883387 83.5,250 125.702193,250 C167.904387,250 208,192.883387 208,125.703125 C208,58.5228629 167.904387,1.30763663e-15 125.702193,0 C83.5,2.58413905e-15 42,58.5228629 42,125.703125 Z" opacity="0.800000012"></path>
+            <path class="path3 primary" d="M65.8129527,66.8073216 C18.3093338,114.310941 7.26672093,184.043416 37.108178,213.884873 C66.9496352,243.72633 135.689059,231.690666 183.192678,184.187047 C230.696297,136.683428 243.72633,66.9496352 213.884873,37.108178 C184.043416,7.26672093 113.316572,19.3037027 65.8129527,66.8073216 Z" opacity="0.699999988"></path>
+            <path class="path4 primary" d="M183.883202,66.1158821 C136.379583,18.6122631 66.6471072,7.56965028 36.80565,37.4111074 C6.96419292,67.2525645 18.9998572,135.991989 66.5034761,183.495608 C114.007095,230.999227 183.740888,244.02926 213.582345,214.187803 C243.423802,184.346346 231.386821,113.619501 183.883202,66.1158821 Z" opacity="0.699999988"></path>
+            <path class="gear" d="M83.086513,181.067129 C78.5629332,182.253317 74.2383273,183.17715 70.1595902,183.829621 C58.2347914,172.874234 49.622517,158.361649 46.0000021,141.971211 C48.6066604,138.755824 51.5721701,135.462607 54.8651395,132.127897 C54.5944892,129.622467 54.4556229,127.077471 54.4556229,124.5 C54.4556229,121.922529 54.5944892,119.377533 54.8651395,116.872103 C51.5721701,113.537393 48.6066604,110.244176 46,107.028786 C49.622517,90.6383511 58.2347914,76.1257657 70.1595902,65.1703794 C74.2383273,65.8228499 78.5629332,66.7466832 83.086513,67.9328711 C87.1710331,64.9299432 91.5927296,62.3598442 96.2841765,60.2900849 C97.5215069,55.7708038 98.8865027,51.5558846 100.363461,47.6906281 C107.982469,45.2927603 116.090454,44 124.5,44 C132.909546,44 141.017531,45.2927603 148.636539,47.6906281 C150.113497,51.5558846 151.478493,55.7708038 152.715824,60.2900849 C157.40727,62.3598442 161.828967,64.9299432 165.913487,67.9328711 C170.437067,66.7466832 174.761673,65.8228499 178.84041,65.1703794 C190.765209,76.1257657 199.377483,90.6383511 202.999998,107.028789 C200.39334,110.244176 197.42783,113.537393 194.134861,116.872103 C194.405511,119.377533 194.544377,121.922529 194.544377,124.5 C194.544377,127.077471 194.405511,129.622467 194.134861,132.127897 C197.42783,135.462607 200.39334,138.755824 203,141.971214 C199.377483,158.361649 190.765209,172.874234 178.84041,183.829621 C174.761673,183.17715 170.437067,182.253317 165.913487,181.067129 C161.828967,184.070057 157.40727,186.640156 152.715824,188.709915 C151.478493,193.229196 150.113497,197.444115 148.636539,201.309372 C141.017531,203.70724 132.909546,205 124.5,205 C116.090454,205 107.982469,203.70724 100.363461,201.309372 C98.8865027,197.444115 97.5215069,193.229196 96.2841765,188.709915 C91.5927296,186.640156 87.1710331,184.070057 83.086513,181.067129 L83.086513,181.067129 Z"></path>
+            <circle class="primary" cx="125" cy="125" r="29"></circle>
+        </g>
+    </svg>
+    <div class="switch <?=$smallClass; ?>"></div>
+    <nav class="sub">
         <ul>
             <?php
                 $sub = admin::getSubmenu(admin::$url);
@@ -150,33 +116,63 @@
                     endforeach;
                 endif;
             ?>
-            <li class="tool">
-                <a href="<?=url::base(); ?>" target="_blank" class="icon icon-android-desktop"></a>
-            </li>
         </ul>
     </nav>
+    <div class="user">
+        <a href="<?=url::admin('user', ['index', 'edit']); ?>" class="avatar"></a>
+        <?php /*
+        if(user::current()->avatar && file_exists(dir::media(user::current()->avatar))) {
+            echo '<div class="img" style="background-image: url('.url::media(user::current()->avatar).');"></div>';
+        } else {
+            echo user::getAvatar(36, true);
+        }
+        */ ?>
+        <span><?=user::current()->username; ?></span>
+        <a href="?logout=1" data-tooltip="<?=lang::get('logout'); ?>" class="logout"></a>
+    </div>
+    <nav class="toolbar">
+        <ul>
+            <li class="menu"><a href="<?=url::base(); ?>" target="_blank" class="icon icon-checklist"></a></li>
+            <li class="message">
+                <a href="" class="icon icon-bell">
+                    <div>
+                        <span>Keine Nachrichten vorhanden</span>
+                    </div>
+                </a>
+            </li>
+            <li><a href="" class="icon icon-device-desktop"></a></li>
+        </ul>
+    </nav>
+    <div id="messages"></div>
+</header>
 
-    <div class="content clear">
-
-        <?php if(admin::$subpage): ?>
-        <h2>
-            <a href="<?=url::admin(admin::$url); ?>">
-                <?=admin::$page; ?>
-            </a>
-        </h2>
-        <h1 v-html="headline"><?=admin::$subpage; ?></h1>
-        <?php else: ?>
-        <h1><?=admin::$page; ?></h1>
-        <?php endif; ?>
-
+<div id="content" class="<?=$smallClass; ?>">
+    <header>
+        <ul>
+            <?php if(admin::$subpage): ?>
+            <li>
+                <h2>
+                    <a href="<?=url::admin(admin::$url); ?>">
+                        <?=admin::$page; ?>
+                    </a>
+                </h2>
+            </li>
+            <li>
+                <h1 v-html="headline"><?=admin::$subpage; ?></h1>
+            </li>
+            <?php else: ?>
+            <li>
+                <h1><?=admin::$page; ?></h1>
+            </li>
+            <?php endif; ?>
+        </ul>
         <?php if(admin::$search): ?>
         <div v-if="showSearch" class="search">
             <input type="text" v-model="search">
         </div>
         <?php endif; ?>
-
         <nav>
-            <ul class="clear">
+            <ul>
                 <?php
                     if(count(admin::getButtons())):
                         foreach(admin::getButtons() as $button) {
@@ -188,25 +184,8 @@
                 ?>
             </ul>
         </nav>
+    </header>
 
-    </div>
+    <div>
 
-</header>
-
-<main <?=$smallClass; ?>>
-
-    <div class="buttons clear">
-        <?php
-            if(count(admin::getButtons())):
-                echo '<nav><ul class="clear">';
-                foreach(admin::getButtons() as $button) {
-                    echo '<li>';
-                    echo $button;
-                    echo '</li>';
-                }
-                echo '</ul></nav>';
-            endif;
-        ?>
-    </div>
-
-    <?=config::get('system'); ?>
+        <?=config::get('system'); ?>
