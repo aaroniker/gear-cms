@@ -11,20 +11,6 @@ class ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614
         '2371fe58591751a9b725c6706865644e' => __DIR__ . '/..' . '/lichtner/fluentpdo/FluentPDO/FluentPDO.php',
     );
 
-    public static $prefixLengthsPsr4 = array (
-        'L' => 
-        array (
-            'Leafo\\ScssPhp\\' => 14,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'Leafo\\ScssPhp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/leafo/scssphp/src',
-        ),
-    );
-
     public static $prefixesPsr0 = array (
         'T' => 
         array (
@@ -35,12 +21,20 @@ class ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614
         ),
     );
 
+    public static $classMap = array (
+        'scss_formatter' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+        'scss_formatter_compressed' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+        'scss_formatter_nested' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+        'scss_parser' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+        'scss_server' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+        'scssc' => __DIR__ . '/..' . '/leafo/scssphp/scss.inc.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitd1f7b0c0beebb5218c0dc221ad682614::$classMap;
 
         }, null, ClassLoader::class);
     }

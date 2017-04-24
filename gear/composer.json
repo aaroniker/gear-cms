@@ -3,6 +3,6 @@
         "lichtner/fluentpdo": "dev-master",
         "wixel/gump": "dev-master",
         "twig/twig": "~1.0",
-        "leafo/scssphp": "dev-master"
+        "leafo/scssphp": "*"
     }
 }

@@ -1,18 +1,7 @@
 language: php
-sudo: false
-
+script: phpunit tests
 php:
+  - 5.3
   - 5.4
   - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - nightly
-
-script:
-  - composer install
-  - vendor/bin/phpunit tests
-
-branches:
-  only:
-    - master
+  - hhvm

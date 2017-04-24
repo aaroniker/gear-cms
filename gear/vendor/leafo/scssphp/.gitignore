@@ -1,10 +1,5 @@
-.sass-cache
-scss_cache
-composer.lock
-/*.css
 /*.scss
-/_site/
+/*.css
+.sass-cache
 /sass/
 /compass/
-/vendor/
-/frameworks/
