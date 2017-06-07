@@ -155,7 +155,7 @@ form {
     }
     100% {
         opacity: 0;
-        transform: scale(1);
+        @include transform(scale(1));
     }
 }
 
@@ -194,12 +194,12 @@ form {
                     width: 3px;
                     height: 3px;
                     position: absolute;
-                    transform: scale(0);
                     top: 8px;
                     left: 8px;
                     opacity: 0;
                     box-shadow: 0 18px 0 $primary, 0 -18px 0 $primary, -18px 0 0 $primary, 18px 0 0 $primary, 12px 12px 0 $primary, -12px 12px 0 $primary, 12px -12px 0 $primary, -12px -12px 0 $primary;
                     @include round();
+                    @include transform(scale(0));
                 }
             }
             &:checked + div {
@@ -288,7 +288,7 @@ form {
                 height: 11px;
                 opacity: 0;
                 background: #fff;
-                transform: scale(0);
+                @include transform(scale(0));
                 @include transition();
                 @include round();
             }
@@ -298,7 +298,7 @@ form {
             border-color: $primary;
             &:before {
                 opacity: 1;
-                transform: scale(1);
+                @include transform(scale(1));
             }
         }
         &:disabled + div {
