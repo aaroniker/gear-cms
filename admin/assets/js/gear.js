@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 
     $('.form-select > div > span').on('click', function(e) {
         var div = $(this).parent().parent();
-        div.next('select').val($(this).data('value'));
+        div.next('select').val($(this).data('value')).trigger('change');
         $(this).parent().children('span').removeClass('active');
         $(this).addClass('active');
         div.removeClass('open').children('span').text($(this).text());
