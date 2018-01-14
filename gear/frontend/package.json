@@ -5,8 +5,8 @@
     "author": "Aaron Iker <mail@aaroniker.me>",
     "private": true,
     "scripts": {
-        "icons": "icon-font-generator gear/frontend/assets/icons/*.svg -o gear/frontend/assets/fonts -j false --html false --name icons -p icon",
-        "css": "node-sass --include-path gear/frontend/assets/scss gear/frontend/assets/scss/style.scss gear/frontend/assets/css/style.css",
+        "icons": "icon-font-generator assets/icons/*.svg -o assets/fonts -j false --html false --name icons -p icon",
+        "css": "node-sass --include-path assets/scss assets/scss/gear.scss assets/css/gear.css",
         "watch-css": "nodemon -e scss -x \"npm run css\"",
         "server": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
         "dev": "npm-run-all --parallel icons server watch-css",

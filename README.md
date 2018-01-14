@@ -10,5 +10,6 @@ Currently heavily WIP.
 
 * [Framy CSS](http://www.framycss.org/)
 * [Vue.js](http://vuejs.org/)
+* [Slim](https://www.slimframework.com)
 * [Twig](http://twig.sensiolabs.org/)
 * ...

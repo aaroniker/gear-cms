@@ -1,1 +1,11 @@
+gear/frontend/node_modules/
+gear/frontend/assets/css/gear.css
+gear/frontend/assets/js/gear.js
 
+gear/frontend/npm-debug.log
+gear/frontend/package-lock.json
+gear/frontend/yarn-error.log
+
+gear/backend/core/composer/
+
+gear/backend/composer.lock
