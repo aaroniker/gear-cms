@@ -1,0 +1,78 @@
+.pagination {
+    @include clear-after;
+    .prev,
+    .next {
+        float: left;
+        display: block;
+        cursor: pointer;
+        font-size: 18px;
+        border: 1px solid $paginationBorder;
+        color: $paginationColor;
+        padding: $paginationPadding ($paginationPadding + 2);
+        &:before {
+            font-family: 'icons';
+            display: block;
+        }
+        &:hover {
+            color: $paginationColorHover;
+        }
+    }
+    .prev {
+        border-radius: $paginationRadius 0 0 $paginationRadius;
+        &:before {
+            content: '\f10a';
+        }
+    }
+    .next {
+        border-radius: 0 $paginationRadius $paginationRadius 0;
+        &:before {
+            content: '\f10b';
+        }
+    }
+    div {
+        float: left;
+        border-top: 1px solid $paginationBorder;
+        border-bottom: 1px solid $paginationBorder;
+        padding: $paginationPadding ($paginationPadding + 8);
+        color: $paginationColor;
+        strong {
+            color: $paginationActive;
+        }
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        float: left;
+        border-top: 1px solid $paginationBorder;
+        border-bottom: 1px solid $paginationBorder;
+        @include clear-after;
+        li {
+            float: left;
+            list-style: none;
+            position: relative;
+            border-right: 1px solid $paginationBorder;
+            padding: $paginationPadding ($paginationPadding + 4);
+            color: $paginationColor;
+            &:last-child {
+                border-right: 0;
+            }
+            &.active {
+                color: $paginationActiveColor;
+                position: relative;
+                z-index: 1;
+                background: $paginationActive;
+                &:before {
+                    content: '';
+                    display: block;
+                    z-index: -1;
+                    left: -1px;
+                    top: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                    position: absolute;
+                    background: $paginationActive;
+                }
+            }
+        }
+    }
+}

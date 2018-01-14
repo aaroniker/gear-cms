@@ -1,0 +1,203 @@
+
+// Colors
+
+$primary: #1a74d4;
+$secondary: #4ba7e2;
+
+$dark: #161b21;
+$darkBlue: adjust-color($dark, $blue: 8);
+
+$dark90: mix(#fff, $darkBlue, 10%);
+$dark80: mix(#fff, $darkBlue, 20%);
+$dark60: mix(#fff, $darkBlue, 40%);
+$dark40: mix(#fff, $darkBlue, 60%);
+$dark25: mix(#fff, $darkBlue, 75%);
+
+$shadow: adjust-color($dark, $blue: 20);
+
+$border: #D1D7E4;
+$line: #E8EBF4;
+$light: #F5F6FA;
+
+$success: #69DD95;
+$error: #F26175;
+$warning: #F8C93F;
+$info: $secondary;
+
+// Base
+
+$iconFontImport: true;
+$iconFontUrl: '../fonts/icons.css';
+
+$fontImport: true;
+$fontUrl: 'https://rsms.me/inter/inter-ui.css';
+$fontFamily: 'Inter UI', sans-serif;
+
+$fontSize: 16px;
+$lineHeight: 26px;
+$textColor: $dark60;
+
+$linkColor: $primary;
+$linkDecoration: none;
+$linkHoverColor: $primary;
+$linkHoverDecoration: none;
+
+$borderRadius: 4px;
+$borderSmRadius: 3px;
+$borderLgRadius: 5px;
+
+$marginBottom: 20px;
+
+// Typography
+
+$headingsFontFamily: inherit;
+$headingsLineHeight: 1.2;
+
+$headingsH1Color: $dark80;
+$headingsH2Color: $dark80;
+$headingsH3Color: $dark80;
+$headingsH4Color: $dark80;
+
+$headingsH1Weight: normal;
+$headingsH2Weight: normal;
+$headingsH3Weight: bold;
+$headingsH4Weight: bold;
+
+$headingsH1Size: 36px;
+$headingsH2Size: 32px;
+$headingsH3Size: 24px;
+$headingsH4Size: 21px;
+
+// Grid
+
+$columns: 12;
+$gapWidth: 30px;
+
+$breakpointXs: 480px;
+$breakpointSm: 768px;
+$breakpointMd: 992px;
+$breakpointLg: 1180px;
+
+$containerSm: 730px;
+$containerMd: 960px;
+$containerLg: 1160px;
+
+// Buttons
+
+$buttonLgRadius: $borderLgRadius;
+$buttonRadius: $borderRadius;
+$buttonSmRadius: $borderSmRadius;
+
+$buttonHoverTransform: none;
+$buttonClickTransform: scale(.99);
+
+$buttonFontWeight: 500;
+
+$buttonPaddingV: 10px;
+$buttonPaddingH: 25px;
+$buttonPaddingSmV: 5px;
+$buttonPaddingSmH: 20px;
+$buttonPaddingLgV: 15px;
+$buttonPaddingLgH: 30px;
+
+// Alerts
+
+$alertPadding: 10px;
+$alertRadius: $borderRadius;
+$alertFontWeight: 500;
+
+// Forms
+
+$labelColor: $dark80;
+$labelWeight: normal;
+$labelBottom: 5px;
+
+$formDisabled: $light;
+$formBorder: $border;
+$formBorderFocus: $primary;
+$formFocus: mix(#fff, $primary, 40%);
+$formFocusColor: #fff;
+$formElementBottom: $marginBottom;
+
+$inputText: $dark60;
+$inputBackground: #fff;
+$inputRadius: $borderRadius;
+
+$inputFileColor: $dark25;
+$inputFileColorActive: $dark60;
+$inputFileButtonBackground: $border;
+$inputFileButtonColor: #fff;
+
+$inputPaddingV: 10px;
+$inputPaddingH: 15px;
+
+$switchSize: 22px;
+$switchBorder: $formBorder;
+$switchBorderActive: $primary;
+$switchActive: mix(#fff, $primary, 40%);
+$switchBackground: $switchBorder;
+$switchDot: #fff;
+$switchDisabled: $formDisabled;
+$switchRadius: $switchSize / 2;
+
+$checkboxSize: 22px;
+$checkboxBorder: $formBorder;
+$checkboxBorderActive: $primary;
+$checkboxActive: mix(#fff, $primary, 40%);
+$checkboxBackground: $inputBackground;
+$checkboxArrow: #fff;
+$checkboxDisabled: $formDisabled;
+$checkboxRadius: $inputRadius;
+
+$radioSize: 22px;
+$radioBorder: $formBorder;
+$radioBorderActive: $primary;
+$radioActive: mix(#fff, $primary, 40%);
+$radioBackground: $inputBackground;
+$radioDot: #fff;
+$radioDisabled: $formDisabled;
+$radioRadius: 50%;
+
+// Selects
+
+$selectRadius: $inputRadius;
+$selectActive: $secondary;
+$selectBorder: $formBorder;
+$selectBorderFocus: $formBorderFocus;
+$selectBackground: $inputBackground;
+$selectDisabled: $formDisabled;
+$selectHover: $light;
+$selectPaddingV: $inputPaddingV;
+$selectPaddingH: $inputPaddingH;
+
+// Paginations
+
+$paginationPadding: 6px;
+$paginationRadius: $inputRadius;
+$paginationBorder: $formBorder;
+$paginationActive: $primary;
+$paginationColor: $dark40;
+$paginationColorHover: $dark60;
+$paginationActiveColor: #fff;
+
+// Tables
+
+$tableBottom: $marginBottom;
+$tableThText: $dark80;
+$tableThWeight: normal;
+$tableBorder: $border;
+$tablePaddingV: $inputPaddingV;
+$tablePaddingH: $inputPaddingH;
+$tableLineHeight: $lineHeight;
+$tableHover: $light;
+$tableThBackground: none;
+$tableTdBackground: none;
+$tableStripeBackground: rgba($light, .6);
+
+// Helper
+
+$spaces: (5, 10, 15, 20, 25, 30, 35);
+
+$wrapLinesBorder: $border;
+$wrapLinesGutter: 30px;
+$wrapLinesMinWidth: 80px;

@@ -1,0 +1,91 @@
+@mixin min($breakpoint) {
+    @if $breakpoint == xs {
+        @media(min-width: $breakpointXs + 1) {
+            @content;
+        }
+    }
+    @else if $breakpoint == sm {
+        @media(min-width: $breakpointSm + 1) {
+            @content;
+        }
+    }
+    @else if $breakpoint == md {
+        @media(min-width: $breakpointMd + 1) {
+            @content;
+        }
+    }
+    @else if $breakpoint == lg {
+        @media(min-width: $breakpointLg + 1) {
+            @content;
+        }
+    }
+    @else {
+        @media(min-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
+@mixin max($breakpoint) {
+    @if $breakpoint == xs {
+        @media(max-width: $breakpointXs) {
+            @content;
+        }
+    }
+    @else if $breakpoint == sm {
+        @media(max-width: $breakpointSm) {
+            @content;
+        }
+    }
+    @else if $breakpoint == md {
+        @media(max-width: $breakpointMd) {
+            @content;
+        }
+    }
+    @else if $breakpoint == lg {
+        @media(max-width: $breakpointLg) {
+            @content;
+        }
+    }
+    @else {
+        @media(max-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
+@mixin responsive-resize($properties, $min-vw, $max-vw, $min-value, $max-value) {
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+    @media(min-width: $min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+    }
+    @media(min-width: $max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+@mixin responsive-size($min-value, $max-value, $properties: font-size) {
+    $min-vw: $breakpointXs;
+    $max-vw: $breakpointLg;
+    @if (type-of($min-value) == "string") {
+        @if (str-index($min-value, '@')) {
+            $min-value-list : split-str($min-value, '@');
+            $min-value: to-number(unquote(nth($min-value-list, 1)));
+            $min-vw: to-number(unquote(nth($min-value-list, 2)));
+        }
+    }
+    @if (type-of($max-value) == "string") {
+        @if (str-index($max-value, '@')) {
+            $max-value-list : split-str($max-value, '@');
+            $max-value: to-number(unquote(nth($max-value-list, 1)));
+            $max-vw: to-number(unquote(nth($max-value-list, 2)));
+        }
+    }
+    @include responsive-resize($properties, $min-vw, $max-vw, $min-value, $max-value);
+}

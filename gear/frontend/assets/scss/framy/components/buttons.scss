@@ -1,0 +1,268 @@
+.btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    position: relative;
+    white-space: nowrap;
+    border: none;
+    color: #fff;
+    line-height: $lineHeight;
+    padding: $buttonPaddingV $buttonPaddingH;
+    font-size: $fontSize;
+    font-weight: $buttonFontWeight;
+    background: $primary;
+    border-radius: $buttonRadius;
+    @include transition;
+    &:link,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #fff;
+    }
+    [class*='icon-'] {
+        position: relative;
+        left: -5px;
+        font-size: 18px;
+        display: inline-block;
+        vertical-align: top;
+        font-weight: normal;
+        &:before {
+            display: inline-block;
+            vertical-align: top;
+            line-height: $lineHeight;
+        }
+        &.right {
+            left: auto;
+            right: -5px;
+        }
+    }
+    &.icon {
+        padding: $buttonPaddingV;
+        [class*='icon-'] {
+            left: auto;
+            right: auto;
+            display: block;
+            min-width: $lineHeight;
+        }
+    }
+    &.sm {
+        font-size: 14px;
+        border-radius: $buttonSmRadius;
+        padding: $buttonPaddingSmV $buttonPaddingSmH;
+        &.icon {
+            padding: $buttonPaddingSmV;
+        }
+        [class*='icon-'] {
+            font-size: 16px;
+        }
+        &.border {
+            &:before {
+                border-radius: $buttonSmRadius;
+            }
+        }
+    }
+    &.lg {
+        font-size: 18px;
+        border-radius: $buttonLgRadius;
+        padding: $buttonPaddingLgV $buttonPaddingLgH;
+        &.icon {
+            padding: $buttonPaddingLgV;
+        }
+        [class*='icon-'] {
+            font-size: 20px;
+        }
+        &.border {
+            &:before {
+                border-radius: $buttonLgRadius;
+            }
+        }
+    }
+    &:hover {
+        color: #fff;
+        background: darken($primary, 6%);
+    }
+    &.border {
+        background: #fff;
+        color: $dark60;
+        &:link,
+        &:active,
+        &:visited,
+        &:focus {
+            color: $dark60;
+        }
+        &:before {
+            content: '';
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: 0;
+            border: 1px solid $border;
+            border-radius: $buttonRadius;
+        }
+        &:hover {
+            background: $light;
+        }
+    }
+    &.gradient {
+        position: relative;
+        background: none;
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: block;
+            z-index: -1;
+            border-radius: inherit;
+            @include linear-gradient(135deg, $primary, $secondary);
+            @include transition;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: block;
+            z-index: -2;
+            border-radius: inherit;
+            @include linear-gradient(135deg, darken($primary, 6%), darken($secondary, 6%));
+        }
+        &:hover {
+            &:after {
+                opacity: 0;
+            }
+        }
+    }
+    &.success {
+        background: $success;
+        &:hover {
+            background: darken($success, 6%);
+        }
+    }
+    &.error {
+        background: $error;
+        &:hover {
+            background: darken($error, 6%);
+        }
+    }
+    &.warning {
+        background: $warning;
+        &:hover {
+            background: darken($warning, 6%);
+        }
+    }
+    &.info {
+        background: $info;
+        &:hover {
+            background: darken($info, 6%);
+        }
+    }
+    &.none {
+        background: none;
+        color: $textColor;
+        &:hover {
+            background: none;
+        }
+    }
+    &.center {
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &.block {
+        display: block;
+    }
+    &:hover {
+        @include transform($buttonHoverTransform);
+    }
+    &:active {
+        @include transform($buttonClickTransform);
+    }
+}
+
+.btn-group {
+    .btn + .btn,
+    .btn + .btn-group,
+    .btn-group + .btn,
+    .btn-group + .btn-group {
+        margin-left: -1px;
+    }
+    .btn {
+        &:hover,
+        &:focus,
+        &:active {
+            z-index: 2;
+        }
+        &:not(:first-child):not(:last-child) {
+            &:before {
+                border-radius: 0;
+            }
+            border-radius: 0;
+        }
+        &:last-child:not(:first-child) {
+            &:before,
+            &:after {
+                border-radius: 0 $buttonRadius $buttonRadius 0;
+            }
+            border-radius: 0 $buttonRadius $buttonRadius 0;
+        }
+        &:first-child:not(:last-child) {
+            &:before,
+            &:after {
+                border-radius: $buttonRadius 0 0 $buttonRadius;
+            }
+            border-radius: $buttonRadius 0 0 $buttonRadius;
+        }
+        &.sm {
+            &:last-child:not(:first-child) {
+                &:before,
+                &:after {
+                    border-radius: 0 $buttonSmRadius $buttonSmRadius 0;
+                }
+                border-radius: 0 $buttonSmRadius $buttonSmRadius 0;
+            }
+            &:first-child:not(:last-child) {
+                &:before,
+                &:after {
+                    border-radius: $buttonSmRadius 0 0 $buttonSmRadius;
+                }
+                border-radius: $buttonSmRadius 0 0 $buttonSmRadius;
+            }
+        }
+        &.lg {
+            &:last-child:not(:first-child) {
+                &:before,
+                &:after {
+                    border-radius: 0 $buttonLgRadius $buttonLgRadius 0;
+                }
+                border-radius: 0 $buttonLgRadius $buttonLgRadius 0;
+            }
+            &:first-child:not(:last-child) {
+                &:before,
+                &:after {
+                    border-radius: $buttonLgRadius 0 0 $buttonLgRadius;
+                }
+                border-radius: $buttonLgRadius 0 0 $buttonLgRadius;
+            }
+        }
+        &:first-child {
+            margin-left: 0;
+        }
+        &:hover,
+        &:active {
+            @include transform(none);
+        }
+        float: left;
+    }
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    @include clear-after;
+}

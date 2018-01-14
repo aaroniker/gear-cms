@@ -1,0 +1,75 @@
+.alert {
+    border: 1px solid transparent;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 0 1px 1px rgba(#000, .4);
+    border-radius: $alertRadius;
+    font-weight: $alertFontWeight;
+    margin: 0 0 $marginBottom 0;
+    padding: $alertPadding ($alertPadding + 4) $alertPadding ($alertPadding + 34);
+    &:before {
+        content: '';
+        font-family: 'icons';
+        font-weight: normal;
+        display: block;
+        vertical-align: top;
+        position: absolute;
+        left: $alertPadding + 4;
+        top: $alertPadding;
+    }
+    &.success {
+        border-color: $success;
+        background: fade-out($success, .2);
+        &:before {
+            content: '\f145';
+        }
+    }
+    &.error {
+        border-color: $error;
+        background: fade-out($error, .2);
+        &:before {
+            content: '\f144';
+        }
+    }
+    &.warning {
+        border-color: $warning;
+        background: fade-out($warning, .2);
+        &:before {
+            content: '\f226';
+        }
+    }
+    &.info {
+        border-color: $info;
+        background: fade-out($info, .2);
+        &:before {
+            content: '\f14a';
+        }
+    }
+    &.light {
+        background: none;
+        text-shadow: none;
+        font-weight: normal;
+        color: $dark40;
+        text-shadow: none;
+        &.success {
+            &:before {
+                color: $success;
+            }
+        }
+        &.error {
+            &:before {
+                color: $error;
+            }
+        }
+        &.warning {
+            &:before {
+                color: $warning;
+            }
+        }
+        &.info {
+            &:before {
+                color: $info;
+            }
+        }
+    }
+}
