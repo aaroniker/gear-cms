@@ -4,4 +4,8 @@
         exit(sprintf('Gear CMS needs at least <strong>PHP %s</strong> (Current: <strong>PHP %s</strong>).', $required, $version));
     }
 
+    $env = 'system';
+
+    require_once 'gear/'.$env.'/boot.php';
+
 ?>
