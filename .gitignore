@@ -2,6 +2,8 @@
 /gear/vendor/*
 /gear/assets/*
 !/gear/assets/.gitkeep
+/tmp/cache/*
+!/tmp/cache/.gitkeep
 node_modules
 .DS_Store
 package-lock.json
