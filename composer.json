@@ -1,0 +1,21 @@
+{
+    "name": "gear-cms",
+    "type": "project",
+    "description": "Simple, Fast, Minimal, Free CMS.",
+    "keywords": ["cms", "gear", "modular", "fast"],
+    "homepage": "http://gearcms.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Iker",
+            "email": "mail@aaroniker.me"
+       }
+   ],
+    "require": {
+        "slim/slim": "^3.0",
+        "twig/twig": "^2.0"
+    },
+    "config": {
+        "vendor-dir": "gear/vendor"
+    }
+}
