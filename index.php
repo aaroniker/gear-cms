@@ -4,8 +4,24 @@
         exit(sprintf('Gear CMS needs at least <strong>PHP %s</strong> (Current: <strong>PHP %s</strong>).', $required, $version));
     }
 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
+    $path = __DIR__;
+
     $env = 'system';
 
-    require_once 'gear/'.$env.'/boot.php';
+    if(!$configFile = realpath($path.'/gear/config.json')) {
+        $env = 'installer';
+    }
+
+    include($path.'/gear/classes/dir.php');
+    new dir();
+
+    include(dir::classes('autoload.php'));
+
+    autoload::register();
+
+    require_once($path.'/gear/'.$env.'/boot.php');
 
 ?>
