@@ -4,6 +4,7 @@ class moduleManager {
 
     protected $modules = [];
     protected $registered = [];
+    protected $requiredError = [];
 
     protected $defaults = [
         'main' => null,
@@ -60,8 +61,11 @@ class moduleManager {
         }
 
         foreach((array)$modules as $name) {
-            // check and sort out here - ex. for required modules
-            $checked[$name] = $this->registered[$name];
+            if($this->checkRequired($this->registered[$name])) {
+                $checked[$name] = $this->registered[$name];
+            } else {
+                $this->requiredError[$name] = $this->registered[$name];
+            }
         }
 
         $this->modules = $checked;
@@ -79,6 +83,20 @@ class moduleManager {
         }
 
         return $path;
+
+    }
+
+    protected function checkRequired($module) {
+
+        if(isset($module['required'])) {
+            foreach((array)$module['required'] as $required) {
+                if(!isset($this->registered[$required])) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
 
     }
 
