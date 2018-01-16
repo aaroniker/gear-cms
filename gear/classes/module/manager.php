@@ -33,17 +33,22 @@ class moduleManager {
         foreach($paths as $path) {
             $files = glob($this->checkPath($path, $basePath), GLOB_NOSORT) ?: [];
             foreach($files as $file) {
+
                 if(!is_array($module = include $file) || !isset($module['name'])) {
                     continue;
                 }
+
                 $module = array_replace($this->defaults, $module);
                 $module['path'] = strtr(dirname($file), '\\', '/');
+
                 if(isset($module['register'])) {
                     foreach((array)$module['register'] as $register) {
                         $subRegister[] = $this->checkPath($register, $module['path']);
                     }
                 }
+
                 $this->registered[$module['name']] = $module;
+
             }
         }
 
@@ -55,12 +60,14 @@ class moduleManager {
 
     }
 
-    public function load($modules) {
+    public function load($modules = null) {
 
         $checked = [];
 
         if(is_string($modules)) {
             $modules = (array)$modules;
+        } elseif(is_null($modules)) {
+            $modules = array_keys($this->registered);
         }
 
         foreach((array)$modules as $name) {

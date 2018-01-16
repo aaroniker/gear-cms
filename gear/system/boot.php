@@ -8,7 +8,7 @@
 
     $db = $config->get('database');
 
-    sql::connect($db['host'], $db['port'], $db['user'], $db['password'], $db['database'], $db['prefix']);
+    $app->sql = sql::connect($db['host'], $db['port'], $db['user'], $db['password'], $db['database'], $db['prefix']);
 
     $app->modules->register([
         'extensions/*/*/index.php',
@@ -17,12 +17,8 @@
         'gear/system/index.php'
     ], $path);
 
-    $app->modules->load('system');
+    $app->modules->load();
 
     $app->start();
-
-    echo '<pre>';
-    var_dump($app);
-    echo '</pre>';
 
 ?>

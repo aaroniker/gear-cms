@@ -24,7 +24,7 @@ class sql extends FluentPDO {
             return;
         }
 
-        return true;
+        return self::run();
 
     }
 
