@@ -12,12 +12,6 @@ return [
         'modules/*/index.php'
     ],
 
-    'routes' => [
-        '/' => [
-            'include' => 'controller/dashboard'
-        ]
-    ],
-
     'required' => [
         'route'
     ],

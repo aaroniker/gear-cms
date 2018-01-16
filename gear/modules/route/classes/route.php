@@ -32,7 +32,7 @@ class route {
 
             ob_end_clean();
 
-            echo $content;
+            $this->app->content = $content;
 
         } else {
 
@@ -78,16 +78,16 @@ class route {
         foreach($this->getAllRoutes() as $path => $route) {
 
             if(is_array($route) && count($route)) {
-                foreach($route as $url => $controller) {
+                foreach($route as $url => $file) {
                     if($url == '/'.$this->controller) {
 
-                        if(!file_exists($path.'/'.$controller['include'].'.php')) {
+                        if(!file_exists($path.'/'.$file['include'].'.php')) {
                             continue;
                         }
 
-                        include($path.'/'.$controller['include'].'.php');
+                        include($path.'/'.$file['include'].'.php');
 
-                        $this->class = basename($controller['include']).'Controller';
+                        $this->class = basename($file['include']).'Controller';
                         $this->class = new $this->class();
 
                         if(method_exists($this->class, $this->method)) {

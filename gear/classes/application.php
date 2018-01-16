@@ -15,6 +15,8 @@ class application {
 
         hook::run('boot', $this);
 
+        echo $this->content;
+
     }
 
 }

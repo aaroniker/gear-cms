@@ -8,6 +8,10 @@ class dashboardController {
 
     }
 
+    public function test() {
+        echo 'test';
+    }
+
 }
 
 ?>
