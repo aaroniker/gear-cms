@@ -11,14 +11,14 @@
     $app->sql = sql::connect($db['host'], $db['port'], $db['user'], $db['password'], $db['database'], $db['prefix']);
 
     $app->modules->register([
-        'extensions/*/*/index.php',
-        'gear/modules/*/index.php',
         'gear/installer/index.php',
-        'gear/system/index.php'
+        'gear/system/index.php',
+        'extensions/*/*/index.php',
+        'gear/modules/*/index.php'
     ], $path);
 
     $app->modules->load();
 
-    $app->start();
+    $app->boot();
 
 ?>

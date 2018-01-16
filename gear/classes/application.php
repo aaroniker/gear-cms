@@ -11,7 +11,9 @@ class application {
 
     }
 
-    public function start() {
+    public function boot() {
+
+        hook::run('boot', $this);
 
     }
 
