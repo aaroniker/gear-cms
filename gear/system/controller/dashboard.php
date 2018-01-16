@@ -2,9 +2,9 @@
 
 class dashboardController {
 
-    public function index($action = '', $id = 0, $method = '') {
+    public function index() {
 
-        echo '123';
+        echo 'dashboard';
 
     }
 

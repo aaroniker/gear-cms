@@ -6,7 +6,7 @@ class module {
     public $path;
 
     protected $config = [];
-    protected $options = [];
+    public $options = [];
 
     public function __construct($args = []) {
 

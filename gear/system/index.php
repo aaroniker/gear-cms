@@ -14,10 +14,7 @@ return [
 
     'routes' => [
         '/' => [
-            'include' => 'dashboard'
-        ],
-        '/test' => [
-            'include' => 'test'
+            'include' => 'controller/dashboard'
         ]
     ],
 
