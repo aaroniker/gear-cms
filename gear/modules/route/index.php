@@ -6,7 +6,7 @@ return [
 
     'main' => function($app) {
 
-        hook::bind('boot', function($app) {
+        $app->hook::bind('boot', function($app) {
             $app->route = new route($app);
         });
 

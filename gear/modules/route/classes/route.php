@@ -36,7 +36,7 @@ class route {
 
         } else {
 
-            echo 'frontend';
+            $this->app->content = 'frontend';
 
         }
 

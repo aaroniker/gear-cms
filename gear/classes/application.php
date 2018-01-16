@@ -4,8 +4,7 @@ class application {
 
     public function __construct($config) {
 
-        //$this->hook for events
-
+        $this->hook = new hook();
         $this->config = $config;
         $this->modules = new moduleManager($this);
 
@@ -13,7 +12,7 @@ class application {
 
     public function boot() {
 
-        hook::run('boot', $this);
+        $this->hook::run('boot', $this);
 
         echo $this->content;
 
