@@ -5,7 +5,7 @@ return [
     'name' => 'system',
 
     'main' => function($app) {
-        echo 'mainfunc';
+
     },
 
     'register' => [
@@ -22,9 +22,13 @@ return [
     ],
 
     'required' => [
+        'route'
     ],
 
     'hooks' => [
+    ],
+
+    'autoload' => [
     ]
 
 ];
