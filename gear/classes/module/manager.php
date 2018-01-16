@@ -2,6 +2,8 @@
 
 class moduleManager {
 
+    protected $app;
+
     protected $modules = [];
     protected $registered = [];
     protected $requiredError = [];
@@ -13,6 +15,7 @@ class moduleManager {
     ];
 
     public function __construct($app) {
+        $this->app = $app;
     }
 
     public function get($name) {
@@ -62,7 +65,12 @@ class moduleManager {
 
         foreach((array)$modules as $name) {
             if($this->checkRequired($this->registered[$name])) {
+
                 $checked[$name] = $this->registered[$name];
+
+                $module = new module($this->registered[$name]);
+                $module->main($this->app);
+
             } else {
                 $this->requiredError[$name] = $this->registered[$name];
             }

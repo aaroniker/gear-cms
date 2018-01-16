@@ -4,6 +4,10 @@ return [
 
     'name' => 'system',
 
+    'main' => function($app) {
+        echo 'mainfunc';
+    },
+
     'register' => [
         'modules/*/index.php'
     ],
@@ -18,6 +22,9 @@ return [
     ],
 
     'required' => [
+    ],
+
+    'hooks' => [
     ]
 
 ];
