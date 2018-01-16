@@ -6,22 +6,29 @@ class route {
     public $action = false;
     public $params = [];
 
+    public $admin = false;
+
     public function __construct() {
 
         $this->splitUrl();
 
+        if($this->controller == 'admin') {
+            $this->splitUrl(1);
+            $this->admin = true;
+        }
+
     }
 
-    public function splitUrl() {
+    public function splitUrl($offset = 0) {
 
         if(type::get('url', 'string', false)) {
 
             $url = self::getUrl();
 
-            $this->controller = isset($url[0]) ? $url[0] : '';
-            $this->action = isset($url[1]) ? $url[1] : '';
+            $this->controller = isset($url[0 + $offset]) ? $url[0 + $offset] : '';
+            $this->action = isset($url[1 + $offset]) ? $url[1 + $offset] : '';
 
-            unset($url[0], $url[1]);
+            unset($url[0 + $offset], $url[1 + $offset]);
 
             $this->params = (is_array($url)) ? array_values($url) : false;
 
