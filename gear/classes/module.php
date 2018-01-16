@@ -28,6 +28,19 @@ class module {
 
     }
 
+    public function autoload() {
+
+        if(isset($this->options['autoload'])) {
+            if(is_string($this->options['autoload'])) {
+                $this->options['autoload'] = (array)$this->options['autoload'];
+            }
+            foreach((array)$this->options['autoload'] as $dir) {
+                autoload::addDir($this->path.'/'.$dir);
+            }
+        }
+
+    }
+
 }
 
 ?>

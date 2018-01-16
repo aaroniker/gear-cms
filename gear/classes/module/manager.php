@@ -76,6 +76,7 @@ class moduleManager {
                 $checked[$name] = $this->registered[$name];
 
                 $module = new module($this->registered[$name]);
+                $module->autoload();
                 $module->main($this->app);
 
             } else {
