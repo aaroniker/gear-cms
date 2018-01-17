@@ -14,12 +14,6 @@ return [
 
     'required' => [
         'route'
-    ],
-
-    'hooks' => [
-    ],
-
-    'autoload' => [
     ]
 
 ];

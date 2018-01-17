@@ -41,6 +41,19 @@ class module {
 
     }
 
+    public function hooks($app) {
+
+        if(isset($this->options['hooks'])) {
+            if(is_string($this->options['hooks'])) {
+                $this->options['hooks'] = (array)$this->options['hooks'];
+            }
+            foreach((array)$this->options['hooks'] as $hook => $callback) {
+                $app->hook::bind($hook, $callback);
+            }
+        }
+
+    }
+
 }
 
 ?>
