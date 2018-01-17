@@ -9,7 +9,7 @@ class moduleManager {
     protected $requiredError = [];
 
     protected $defaults = [
-        'main' => null,
+        'run' => null,
         'config' => [],
         'options' => []
     ];
@@ -75,7 +75,7 @@ class moduleManager {
 
                 $module = new module($this->registered[$name]);
                 $module->autoload();
-                $module->main($this->app);
+                $module->run($this->app);
 
                 $checked[$name] = $module;
 

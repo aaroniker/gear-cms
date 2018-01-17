@@ -18,12 +18,12 @@ class module {
 
     }
 
-    public function main($app) {
+    public function run($app) {
 
-        $main = $this->options['main'];
+        $run = $this->options['run'];
 
-        if(is_callable($main)) {
-            return call_user_func($main, $app);
+        if(is_callable($run)) {
+            return call_user_func($run, $app);
         }
 
     }

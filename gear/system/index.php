@@ -4,7 +4,7 @@ return [
 
     'name' => 'system',
 
-    'main' => function($app) {
+    'run' => function($app) {
 
     },
 

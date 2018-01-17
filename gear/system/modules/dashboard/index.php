@@ -4,7 +4,7 @@ return [
 
     'name' => 'dashboard',
 
-    'main' => function($app) {
+    'run' => function($app) {
 
     },
 

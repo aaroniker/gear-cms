@@ -4,7 +4,7 @@ return [
 
     'name' => 'route',
 
-    'main' => function($app) {
+    'run' => function($app) {
 
         $app->hook::bind('boot', function($app) {
             $app->route = new route($app);
