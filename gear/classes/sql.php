@@ -39,11 +39,11 @@ class sql extends FluentPDO {
         return parent::from($this->prefix.$table, $primaryKey);
     }
 
-    public function insertInto($table, $values = array()) {
+    public function insertInto($table, $values = []) {
         return parent::insertInto($this->prefix.$table, $values);
     }
 
-    public function update($table, $set = array(), $primaryKey = null) {
+    public function update($table, $set = [], $primaryKey = null) {
         return parent::update($this->prefix.$table, $set, $primaryKey);
     }
 
