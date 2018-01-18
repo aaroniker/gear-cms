@@ -8,7 +8,7 @@ class filter {
 
     public static function xss($string) {
 
-        if (is_string($string)) {
+        if(is_string($string)) {
             $string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
         }
 

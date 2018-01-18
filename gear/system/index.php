@@ -13,7 +13,8 @@ return [
     ],
 
     'required' => [
-        'route'
+        'route',
+        'auth'
     ]
 
 ];
