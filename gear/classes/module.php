@@ -22,6 +22,10 @@ class module {
 
         $run = $this->options['run'];
 
+        if($run instanceof \Closure) {
+            $run = $run->bindTo($this, $this);
+        }
+
         if(is_callable($run)) {
             return call_user_func($run, $app);
         }
@@ -38,6 +42,19 @@ class module {
                 autoload::addDir($this->path.'/'.$dir);
             }
         }
+
+    }
+
+    public function config($key = null) {
+
+        if($key) {
+            if(isset($this->config[$key])) {
+                return $this->config[$key];
+            }
+            return false;
+        }
+
+        return $this->config;
 
     }
 
