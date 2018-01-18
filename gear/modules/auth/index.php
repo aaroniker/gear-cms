@@ -5,7 +5,7 @@ return [
     'name' => 'auth',
 
     'run' => function($app) {
-        $app->auth = new auth($this);
+        $app->auth = new auth($app, $this);
     },
 
     'autoload' => [

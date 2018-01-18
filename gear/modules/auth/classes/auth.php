@@ -2,12 +2,14 @@
 
 class auth {
 
+    protected $app;
     protected $module;
 
     protected $isLogged = false;
     protected $user = null;
 
-    public function __construct($module) {
+    public function __construct($app, $module) {
+        $this->app = $app;
         $this->module = $module;
     }
 
@@ -45,6 +47,8 @@ class auth {
         }
 
         $session = $this->addSession($user['id'], $remember);
+
+        $this->app->hook::run('login', $this->app, $this);
 
         $return['error'] = false;
 
@@ -277,15 +281,6 @@ class auth {
             sql::run()->update($this->module->config('table'))->set('password', $hash)->where('id', $id)->execute();
         }
         return true;
-    }
-
-    public function getRandomKey($length = 20) {
-        $chars = 'A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6';
-        $key = '';
-        for($i = 0; $i < $length; $i++) {
-            $key .= $chars{mt_rand(0, strlen($chars) - 1)};
-        }
-        return $key;
     }
 
 }
