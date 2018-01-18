@@ -4,9 +4,6 @@
         exit(sprintf('Gear CMS needs at least <strong>PHP %s</strong> (Current: <strong>PHP %s</strong>).', $required, $version));
     }
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-
     $path = __DIR__;
 
     $env = 'system';
