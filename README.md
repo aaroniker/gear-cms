@@ -14,3 +14,5 @@ Currently heavily WIP.
 * [Slim](https://www.slimframework.com)
 * [Twig](http://twig.sensiolabs.org/)
 * ...
+
+_Structure is inspired by [Pagekit](http://pagekit.com/)_
