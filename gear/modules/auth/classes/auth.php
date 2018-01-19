@@ -5,12 +5,18 @@ class auth {
     protected $app;
     protected $module;
 
+    protected $attempt;
+
     protected $isLogged = false;
     protected $user = null;
 
     public function __construct($app, $module) {
+
         $this->app = $app;
         $this->module = $module;
+
+        $this->attempt = new authAttempt($app, $module);
+
     }
 
     public function login($email, $password, $remember = 0) {
@@ -25,7 +31,7 @@ class auth {
         $validateEmail = $this->validateEmail($email);
 
         if($validateEmail['error']) {
-            $this->addAttempt();
+            $this->attempt->add();
             $return['message'] = $validateEmail['message'];
             return $return;
         }
@@ -33,7 +39,7 @@ class auth {
         $userID = $this->getID(strtolower($email));
 
         if(!$userID) {
-            $this->addAttempt();
+            $this->attempt->add();
             $return['message'] = 'email not found';
             return $return;
         }
@@ -41,7 +47,7 @@ class auth {
         $user = $this->getBaseUser($userID);
 
         if(!$this->passwordRehash($password, $user['password'], $userID)) {
-            $this->addAttempt();
+            $this->attempt->add();
             $return['message'] = 'incorrect password';
             return $return;
         }
@@ -87,7 +93,7 @@ class auth {
             'userID' => $userID,
             'hash' => $data['hash'],
             'expire' => date("Y-m-d H:i:s", $data['expire']),
-            'ip' => $this->getIP(),
+            'ip' => self::getIP(),
             'agent' => $agent,
             'cookie' => $data['cookie']
         ])->execute();
@@ -130,7 +136,7 @@ class auth {
             $this->deleteExistingSessions($userID);
             return false;
         }
-        if($this->getIP() != $session['ip']) {
+        if(self::getIP() != $session['ip']) {
             return false;
         }
         if($session['cookie'] == sha1($hash.$this->module->config('session')['key'])) {
@@ -189,7 +195,7 @@ class auth {
         return $this->isLogged;
     }
 
-    protected function getIP() {
+    protected static function getIP() {
         if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
            return $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
@@ -198,8 +204,8 @@ class auth {
     }
 
     public function isBlocked() {
-        $ip = $this->getIP();
-        $this->deleteAttempts($ip, false);
+        $ip = self::getIP();
+        $this->attempt->delete($ip, false);
         $attempts = sql::run()->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
         if(count($attempts) < intval($this->module->config('attempts')['count'])) {
             return false;
@@ -215,29 +221,6 @@ class auth {
         }
         $return['error'] = false;
         return $return;
-    }
-
-    protected function addAttempt() {
-        $ip = $this->getIP();
-        $expire = date("Y-m-d H:i:s", strtotime($this->module->config('attempts')['ban']));
-        return sql::run()->insertInto($this->module->config('attempts')['table'])->values([
-            'ip' => $ip,
-            'expire' => $expire
-        ])->execute();
-    }
-
-    protected function deleteAttempts($ip, $all = false) {
-        if($all) {
-            return sql::run()->deleteFrom($this->module->config('attempts')['table'])->where('ip', $ip)->execute();
-        }
-        $attempts = sql::run()->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
-        foreach($attempts as $attempt) {
-            $expiredate = strtotime($attempt['expire']);
-            $currentdate = strtotime(date("Y-m-d H:i:s"));
-            if($currentdate > $expiredate) {
-                sql::run()->deleteFrom($this->module->config('attempts')['table'])->where('id', $attempt['id'])->execute();
-            }
-        }
     }
 
     public function getSessionHash(){
