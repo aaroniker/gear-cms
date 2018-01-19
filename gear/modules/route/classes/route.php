@@ -24,15 +24,7 @@ class route {
             $this->splitUrl(1);
             $this->admin = true;
 
-            ob_start();
-
-            $this->includeController();
-
-            $content = ob_get_contents();
-
-            ob_end_clean();
-
-            $this->app->content = $content;
+            $this->app->content = $this->includeController();
 
         } else {
 
@@ -74,6 +66,7 @@ class route {
     public function includeController() {
 
         $loaded = false;
+        $return = '';
 
         foreach($this->getAllRoutes() as $path => $route) {
 
@@ -92,12 +85,12 @@ class route {
 
                         if(method_exists($this->class, $this->method)) {
                             if(is_array($this->params) && count($this->params)) {
-                                call_user_func_array([$this->class, $this->method], $this->params);
+                                $return .= call_user_func_array([$this->class, $this->method], $this->params);
                             } else {
-                                $this->class->{$this->method}();
+                                $return .= $this->class->{$this->method}();
                             }
                         } else {
-                            $this->class->index();
+                            $return .= $this->class->index();
                         }
 
                         $loaded = true;
@@ -110,6 +103,8 @@ class route {
         if(!$loaded) {
             $this->error404();
         }
+
+        return $return;
 
     }
 

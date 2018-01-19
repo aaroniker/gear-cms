@@ -4,12 +4,8 @@ class dashboardController {
 
     public function index() {
 
-        echo 'dashboard';
+        return 'dashboard';
 
-    }
-
-    public function test() {
-        echo 'test';
     }
 
 }
