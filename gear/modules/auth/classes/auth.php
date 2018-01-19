@@ -63,7 +63,7 @@ class auth {
     }
 
     public function getID($email) {
-        $user = sql::run()->from($this->module->config('table'))->where('email', $email)->fetch();
+        $user = $this->app->db->from($this->module->config('table'))->where('email', $email)->fetch();
         if(!$user) {
             return false;
         }
@@ -89,7 +89,7 @@ class auth {
 
         $data['cookie'] = sha1($data['hash'].$this->module->config('session')['key']);
 
-        $session = sql::run()->insertInto($this->module->config('session')['table'])->values([
+        $session = $this->app->db->insertInto($this->module->config('session')['table'])->values([
             'userID' => $userID,
             'hash' => $data['hash'],
             'expire' => date("Y-m-d H:i:s", $data['expire']),
@@ -109,11 +109,11 @@ class auth {
     }
 
     protected function deleteExistingSessions($userID) {
-        return sql::run()->deleteFrom($this->module->config('session')['table'])->where('userID', $userID)->execute();
+        return $this->app->db->deleteFrom($this->module->config('session')['table'])->where('userID', $userID)->execute();
     }
 
     protected function deleteSession($hash) {
-        return sql::run()->deleteFrom($this->module->config('session')['table'])->where('hash', $hash)->execute();
+        return $this->app->db->deleteFrom($this->module->config('session')['table'])->where('hash', $hash)->execute();
     }
 
     public function checkSession($hash) {
@@ -124,7 +124,7 @@ class auth {
         if(strlen($hash) != 40) {
             return false;
         }
-        $session = sql::run()->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
+        $session = $this->app->db->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
         if(!$session) {
             return false;
         }
@@ -146,7 +146,7 @@ class auth {
     }
 
     public function getSessionID($hash) {
-        $session = sql::run()->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
+        $session = $this->app->db->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
         if(!$session) {
             return false;
         }
@@ -154,7 +154,7 @@ class auth {
     }
 
     public function getUser($id) {
-        $user = sql::run()->from($this->module->config('table'))->where('id', $id)->fetch();
+        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
         if(!$user) {
             return false;
         }
@@ -173,7 +173,7 @@ class auth {
 
         $return['error'] = false;
 
-        return sql::run()->insertInto($this->module->config('table'))->values([
+        return $this->app->db->insertInto($this->module->config('table'))->values([
             'email' => $email,
             'password' => $password
         ])->execute();
@@ -181,7 +181,7 @@ class auth {
     }
 
     protected function getProtectedUser($id) {
-        $user = sql::run()->from($this->module->config('table'))->where('id', $id)->fetch();
+        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
         if(!$user) {
             return false;
         }
@@ -206,7 +206,7 @@ class auth {
     public function isBlocked() {
         $ip = self::getIP();
         $this->attempt->delete($ip, false);
-        $attempts = sql::run()->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
+        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
         if(count($attempts) < intval($this->module->config('attempts')['count'])) {
             return false;
         }
@@ -248,7 +248,7 @@ class auth {
     }
 
     public function comparePassword($id, $password) {
-        $user = sql::run()->from($this->module->config('table'))->where('id', $id)->fetch();
+        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
         if(!$user) {
             return false;
         }
@@ -261,7 +261,7 @@ class auth {
         }
         if(password_needs_rehash($hash, PASSWORD_DEFAULT, ['cost' => 10])) {
             $hash = $this->getHash($password);
-            sql::run()->update($this->module->config('table'))->set('password', $hash)->where('id', $id)->execute();
+            $this->app->db->update($this->module->config('table'))->set('password', $hash)->where('id', $id)->execute();
         }
         return true;
     }

@@ -26,6 +26,10 @@ return [
             'count' => 5,
             'ban' => '+5 minutes'
         ]
+    ],
+
+    'required' => [
+        'database'
     ]
 
 ];

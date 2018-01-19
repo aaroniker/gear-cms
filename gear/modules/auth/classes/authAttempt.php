@@ -13,7 +13,7 @@ class authAttempt extends auth {
     protected function add() {
         $ip = parent::getIP();
         $expire = date("Y-m-d H:i:s", strtotime($this->module->config('attempts')['ban']));
-        return sql::run()->insertInto($this->module->config('attempts')['table'])->values([
+        return $this->app->db->insertInto($this->module->config('attempts')['table'])->values([
             'ip' => $ip,
             'expire' => $expire
         ])->execute();
@@ -21,9 +21,9 @@ class authAttempt extends auth {
 
     protected function delete($ip, $all = false) {
         if($all) {
-            return sql::run()->deleteFrom($this->module->config('attempts')['table'])->where('ip', $ip)->execute();
+            return $this->app->db->deleteFrom($this->module->config('attempts')['table'])->where('ip', $ip)->execute();
         }
-        $attempts = sql::run()->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
+        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
         foreach($attempts as $attempt) {
             $expiredate = strtotime($attempt['expire']);
             $currentdate = strtotime(date("Y-m-d H:i:s"));

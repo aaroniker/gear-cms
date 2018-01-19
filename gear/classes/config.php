@@ -56,14 +56,6 @@ class config {
 
     }
 
-    public static function getMySQLVersion() {
-        return sql::run(true)->query('select version()')->fetchColumn();
-    }
-
-    public static function getPHPVersion() {
-        return PHP_VERSION;
-    }
-
 }
 
 ?>

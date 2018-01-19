@@ -6,10 +6,6 @@
 
     date_default_timezone_set($config->get('timezone', 'Europe/Berlin'));
 
-    $db = $config->get('database');
-
-    $app->sql = sql::connect($db['host'], $db['port'], $db['user'], $db['password'], $db['database'], $db['prefix']);
-
     $app->modules->register([
         'gear/installer/index.php',
         'gear/system/index.php',

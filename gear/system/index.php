@@ -14,7 +14,8 @@ return [
 
     'required' => [
         'route',
-        'auth'
+        'auth',
+        'database'
     ]
 
 ];
