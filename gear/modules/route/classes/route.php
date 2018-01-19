@@ -81,13 +81,13 @@ class route {
                 foreach($route as $url => $file) {
                     if($url == '/'.$this->controller) {
 
-                        if(!file_exists($path.'/'.$file['include'].'.php')) {
+                        if(!file_exists($path.'/'.$file['controller'].'.php')) {
                             continue;
                         }
 
-                        include($path.'/'.$file['include'].'.php');
+                        include($path.'/'.$file['controller'].'.php');
 
-                        $this->class = basename($file['include']).'Controller';
+                        $this->class = basename($file['controller']).'Controller';
                         $this->class = new $this->class();
 
                         if(method_exists($this->class, $this->method)) {
