@@ -73,10 +73,11 @@ class moduleManager {
         foreach((array)$modules as $name) {
             if($this->checkRequired($this->registered[$name])) {
 
-                $module = new module($this->registered[$name]);
+                $module = new module($this->app, $this->registered[$name]);
                 $module->autoload();
-                $module->hooks($this->app);
-                $module->run($this->app);
+                $module->hooks();
+                $module->filter();
+                $module->run();
 
                 $checked[$name] = $module;
 

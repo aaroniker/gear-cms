@@ -2,13 +2,17 @@
 
 class module {
 
+    protected $app;
+
     public $name;
     public $path;
 
     protected $config = [];
     public $options = [];
 
-    public function __construct($args = []) {
+    public function __construct($app, $args = []) {
+
+        $this->app = $app;
 
         $this->name = $args['name'];
         $this->path = $args['path'];
@@ -18,7 +22,7 @@ class module {
 
     }
 
-    public function run($app) {
+    public function run() {
 
         $run = $this->options['run'];
 
@@ -27,7 +31,7 @@ class module {
         }
 
         if(is_callable($run)) {
-            return call_user_func($run, $app);
+            return call_user_func($run, $this->app);
         }
 
     }
@@ -58,14 +62,27 @@ class module {
 
     }
 
-    public function hooks($app) {
+    public function hooks() {
 
         if(isset($this->options['hooks'])) {
             if(is_string($this->options['hooks'])) {
                 $this->options['hooks'] = (array)$this->options['hooks'];
             }
             foreach((array)$this->options['hooks'] as $hook => $callback) {
-                $app->hook::bind($hook, $callback);
+                $this->app->hook::bind($hook, $callback);
+            }
+        }
+
+    }
+
+    public function filter() {
+
+        if(isset($this->options['filter'])) {
+            if(is_string($this->options['filter'])) {
+                $this->options['filter'] = (array)$this->options['filter'];
+            }
+            foreach((array)$this->options['filter'] as $hook => $callback) {
+                $this->app->hook::bind($hook, $callback);
             }
         }
 

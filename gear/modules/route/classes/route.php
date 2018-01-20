@@ -24,6 +24,8 @@ class route {
             $this->splitUrl(1);
             $this->admin = true;
 
+            $this->controller = $this->app->hook::filter('route.controller.setURL', $this->app, $this->controller);
+
             $this->app->content = $this->includeController();
 
         } else {
