@@ -10,8 +10,13 @@ return [
 
     'hooks' => [
         'boot' => function($app) {
-            $app->route = new route($app);
+            $app->route = new route($app, $this);
         }
+    ],
+
+    'config' => [
+        'url' => $this->app->config->get('system')['url'],
+        'adminURL' => 'admin'
     ]
 
 ];

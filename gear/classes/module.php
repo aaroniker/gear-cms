@@ -69,6 +69,9 @@ class module {
                 $this->options['hooks'] = (array)$this->options['hooks'];
             }
             foreach((array)$this->options['hooks'] as $hook => $callback) {
+                if($callback instanceof \Closure) {
+                    $callback = $callback->bindTo($this, $this);
+                }
                 $this->app->hook::bind($hook, $callback);
             }
         }
@@ -82,6 +85,9 @@ class module {
                 $this->options['filter'] = (array)$this->options['filter'];
             }
             foreach((array)$this->options['filter'] as $hook => $callback) {
+                if($callback instanceof \Closure) {
+                    $callback = $callback->bindTo($this, $this);
+                }
                 $this->app->hook::bind($hook, $callback);
             }
         }

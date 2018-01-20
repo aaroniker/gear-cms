@@ -3,6 +3,7 @@
 class route {
 
     protected $app;
+    protected $module;
 
     public $controller = false;
     public $method = false;
@@ -12,14 +13,15 @@ class route {
 
     public $url;
 
-    public function __construct($app) {
+    public function __construct($app, $module) {
 
         $this->app = $app;
-        $this->url = $url = $this->app->config->get('system')['url'];
+        $this->module = $module;
+        $this->url = $url = $this->module->config('url');
 
         $this->splitUrl();
 
-        if($this->controller == $this->app->config->get('system')['adminURL']) {
+        if($this->controller == $this->module->config('adminURL')) {
 
             $this->splitUrl(1);
             $this->admin = true;
@@ -122,7 +124,7 @@ class route {
 
     public function error404() {
 
-        $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+        $url = ($this->admin) ? $this->url.'/'.$this->module->config('adminURL') : $this->url;
 
         header('location: '.$url);
         exit();
