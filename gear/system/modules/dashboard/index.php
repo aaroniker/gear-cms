@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'dashboard',
+    'name' => 'system/dashboard',
 
     'run' => function($app) {
 
