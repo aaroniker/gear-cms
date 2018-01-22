@@ -5,6 +5,8 @@ class route {
     protected $app;
     protected $module;
 
+    protected $routes = [];
+
     public $controller = false;
     public $method = false;
     public $params = [];
@@ -26,7 +28,7 @@ class route {
             $this->splitUrl(1);
             $this->admin = true;
 
-            $this->controller = $this->app->hook::filter('route.controller.setURL', $this->app, $this->controller);
+            $this->controller = $this->app->hook->filter('route.controller.setURL', $this->app, $this->controller);
 
             $this->app->content = $this->includeController();
 
@@ -75,16 +77,17 @@ class route {
         foreach($this->getAllRoutes() as $path => $route) {
 
             if(is_array($route) && count($route)) {
-                foreach($route as $url => $file) {
+                foreach($route as $url => $array) {
+                    $this->routes[$array['name']] = $url;
                     if($url == '/'.$this->controller) {
 
-                        if(!file_exists($path.'/'.$file['controller'].'.php')) {
+                        if(!file_exists($path.'/'.$array['controller'].'.php')) {
                             continue;
                         }
 
-                        include($path.'/'.$file['controller'].'.php');
+                        include($path.'/'.$array['controller'].'.php');
 
-                        $this->class = basename($file['controller']).'Controller';
+                        $this->class = basename($array['controller']).'Controller';
                         $this->class = new $this->class();
 
                         if(method_exists($this->class, $this->method)) {
@@ -120,6 +123,14 @@ class route {
             }
         }
         return $routes;
+    }
+
+    public function redirect($name) {
+        var_dump($this->routes[$name]);
+        if($this->routes[$name]) {
+            #header('location: '.$this->url.'/'.$this->routes[$name]);
+            #exit();
+        }
     }
 
     public function error404() {

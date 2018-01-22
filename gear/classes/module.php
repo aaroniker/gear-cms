@@ -72,7 +72,7 @@ class module {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook::bind($hook, $callback);
+                $this->app->hook->bind($hook, $callback);
             }
         }
 
@@ -88,7 +88,7 @@ class module {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook::bind($hook, $callback);
+                $this->app->hook->bind($hook, $callback);
             }
         }
 

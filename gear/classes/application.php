@@ -18,7 +18,7 @@ class application {
 
     public function boot() {
 
-        $this->hook::run('boot', $this);
+        $this->hook->run('boot', $this);
 
         echo $this->content;
 
