@@ -126,10 +126,10 @@ class route {
     }
 
     public function redirect($name) {
-        var_dump($this->routes[$name]);
-        if($this->routes[$name]) {
-            #header('location: '.$this->url.'/'.$this->routes[$name]);
-            #exit();
+        if(isset($this->routes[$name])) {
+            $url = ($this->admin) ? $this->url.'/'.$this->module->config('adminURL') : $this->url;
+            header('location: '.$url.'/'.$this->routes[$name]);
+            exit();
         }
     }
 
