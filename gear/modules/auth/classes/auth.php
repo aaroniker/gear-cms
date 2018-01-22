@@ -54,7 +54,7 @@ class auth {
 
         $session = $this->addSession($user['id'], $remember);
 
-        $this->app->hook::run('auth.login', $this->app, $this);
+        $this->app->hook->do_action('auth.login', $this->app, $this);
 
         $return['error'] = false;
 

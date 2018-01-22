@@ -3,7 +3,6 @@
 class route {
 
     protected $app;
-    protected $module;
 
     protected $routes = [];
 
@@ -15,28 +14,25 @@ class route {
 
     public $url;
 
-    public function __construct($app, $module) {
+    public function __construct($app) {
 
         $this->app = $app;
-        $this->module = $module;
-        $this->url = $url = $this->module->config('url');
+        $this->url = $this->app->config->get('system')['url'];
 
         $this->splitUrl();
 
-        if($this->controller == $this->module->config('adminURL')) {
+        if($this->controller == $this->app->config->get('system')['adminURL']) {
 
             $this->splitUrl(1);
             $this->admin = true;
 
-            $this->controller = $this->app->hook->filter('route.controller.setURL', $this->app, $this->controller);
-
-            $this->app->content = $this->includeController();
-
         } else {
 
-            $this->app->content = 'frontend';
+            echo 'frontend';
 
         }
+
+        $this->app->admin = $this->admin;
 
     }
 
@@ -120,22 +116,26 @@ class route {
         foreach($this->app->modules->all() as $module) {
             if(isset($module->options['routes']) && is_array($module->options['routes']) && count($module->options['routes'])) {
                 $routes[$module->path] = $module->options['routes'];
+                foreach($module->options['routes'] as $url => $array) {
+                    $this->routes[$array['name']] = $url;
+                }
             }
         }
         return $routes;
     }
 
     public function redirect($name) {
+        $this->getAllRoutes();
         if(isset($this->routes[$name])) {
-            $url = ($this->admin) ? $this->url.'/'.$this->module->config('adminURL') : $this->url;
-            header('location: '.$url.'/'.$this->routes[$name]);
+            $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+            header('location: '.$url.$this->routes[$name]);
             exit();
         }
     }
 
     public function error404() {
 
-        $url = ($this->admin) ? $this->url.'/'.$this->module->config('adminURL') : $this->url;
+        $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
 
         header('location: '.$url);
         exit();

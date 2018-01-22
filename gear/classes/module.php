@@ -62,17 +62,17 @@ class module {
 
     }
 
-    public function hooks() {
+    public function action() {
 
-        if(isset($this->options['hooks'])) {
-            if(is_string($this->options['hooks'])) {
-                $this->options['hooks'] = (array)$this->options['hooks'];
+        if(isset($this->options['action'])) {
+            if(is_string($this->options['action'])) {
+                $this->options['action'] = (array)$this->options['action'];
             }
-            foreach((array)$this->options['hooks'] as $hook => $callback) {
+            foreach((array)$this->options['action'] as $hook => $callback) {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook->bind($hook, $callback);
+                $this->app->hook->add_action($hook, $callback);
             }
         }
 
@@ -88,7 +88,7 @@ class module {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook->bind($hook, $callback);
+                $this->app->hook->add_filter($hook, $callback);
             }
         }
 

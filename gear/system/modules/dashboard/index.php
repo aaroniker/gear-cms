@@ -15,12 +15,11 @@ return [
         ]
     ],
 
-    'filter' => [
-        'route.controller.setURL' => function($app, $controller) {
-            if(!$controller) {
-                return 'dashboard';
+    'action' => [
+        'boot' => function($app) {
+            if(!$app->route->controller) {
+                $app->route->redirect('dashboard');
             }
-            return $controller;
         }
     ]
 

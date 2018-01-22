@@ -4,9 +4,7 @@ return [
 
     'name' => 'system',
 
-    'run' => function($app) {
-
-    },
+    'admin' => true,
 
     'register' => [
         'modules/*/index.php'

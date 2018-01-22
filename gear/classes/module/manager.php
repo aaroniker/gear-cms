@@ -38,16 +38,22 @@ class moduleManager {
                     continue;
                 }
 
-                $module = array_replace($this->defaults, $module);
-                $module['path'] = strtr(dirname($file), '\\', '/');
+                if(isset($module['admin']) && $module['admin'] && !$this->app->admin) {
 
-                if(isset($module['register'])) {
-                    foreach((array)$module['register'] as $register) {
-                        $subRegister[] = $this->checkPath($register, $module['path']);
+                } else {
+
+                    $module = array_replace($this->defaults, $module);
+                    $module['path'] = strtr(dirname($file), '\\', '/');
+
+                    if(isset($module['register'])) {
+                        foreach((array)$module['register'] as $register) {
+                            $subRegister[] = $this->checkPath($register, $module['path']);
+                        }
                     }
-                }
 
-                $this->registered[$module['name']] = $module;
+                    $this->registered[$module['name']] = $module;
+
+                }
 
             }
         }
@@ -75,7 +81,7 @@ class moduleManager {
 
                 $module = new module($this->app, $this->registered[$name]);
                 $module->autoload();
-                $module->hooks();
+                $module->action();
                 $module->filter();
                 $module->run();
 
