@@ -68,7 +68,7 @@ class route {
     public function includeController() {
 
         $loaded = false;
-        $return = '';
+        $return = [];
 
         foreach($this->getAllRoutes() as $path => $route) {
 
@@ -88,12 +88,12 @@ class route {
 
                         if(method_exists($this->class, $this->method)) {
                             if(is_array($this->params) && count($this->params)) {
-                                $return .= call_user_func_array([$this->class, $this->method], $this->params);
+                                $return[] = call_user_func_array([$this->class, $this->method], $this->params);
                             } else {
-                                $return .= $this->class->{$this->method}();
+                                $return[] = $this->class->{$this->method}();
                             }
                         } else {
-                            $return .= $this->class->index();
+                            $return[] = $this->class->index();
                         }
 
                         $loaded = true;
