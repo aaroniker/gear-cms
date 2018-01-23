@@ -72,7 +72,8 @@ class module {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook->add_action($hook, $callback);
+                $hook = $this->getNamePriority($hook);
+                $this->app->hook->add_action($hook['name'], $callback, $hook['priority']);
             }
         }
 
@@ -88,10 +89,27 @@ class module {
                 if($callback instanceof \Closure) {
                     $callback = $callback->bindTo($this, $this);
                 }
-                $this->app->hook->add_filter($hook, $callback);
+                $hook = $this->getNamePriority($hook);
+                $this->app->hook->add_filter($hook['name'], $callback, $hook['priority']);
             }
         }
 
+    }
+
+    protected function getNamePriority($name) {
+        if(strpos($name, '-') !== false) {
+            $name = explode('-', $name);
+            $priority = (is_int($name[1])) ? $name[1] : 10;
+            return [
+                'name' => $name[0],
+                'priority' => $priority
+            ];
+        } else {
+            return [
+                'name' => $name,
+                'priority' => 10
+            ];
+        }
     }
 
 }
