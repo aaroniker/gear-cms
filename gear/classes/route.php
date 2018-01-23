@@ -126,7 +126,7 @@ class route {
 
     public function redirect($name) {
         $this->getAllRoutes();
-        if(isset($this->routes[$name])) {
+        if(isset($this->routes[$name]) && '/'.$this->controller != $this->routes[$name]) {
             $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
             header('location: '.$url.$this->routes[$name]);
             exit();
