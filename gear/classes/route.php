@@ -87,12 +87,21 @@ class route {
 
                         if(method_exists($this->class, $this->method)) {
                             if(is_array($this->params) && count($this->params)) {
-                                return call_user_func_array([$this->class, $this->method], $this->params);
+                                return [
+                                    'return' => call_user_func_array([$this->class, $this->method], $this->params),
+                                    'modulePath' => $path
+                                ];
                             } else {
-                                return $this->class->{$this->method}();
+                                return [
+                                    'return' => $this->class->{$this->method}(),
+                                    'modulePath' => $path
+                                ];
                             }
                         } else {
-                            return $this->class->index();
+                            return [
+                                'return' => $this->class->index(),
+                                'modulePath' => $path
+                            ];
                         }
 
                         $loaded = true;
@@ -102,7 +111,7 @@ class route {
 
         }
 
-        if(!$loaded) {
+        if(!$loaded && $this->app->admin) {
             $this->error404();
         }
 

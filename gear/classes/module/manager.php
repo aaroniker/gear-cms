@@ -34,7 +34,7 @@ class moduleManager {
             $files = glob($this->checkPath($path, $basePath), GLOB_NOSORT) ?: [];
             foreach($files as $file) {
 
-                if(!is_array($module = include $file) || !isset($module['name'])) {
+                if(!is_array($module = include($file)) || !isset($module['name'])) {
                     continue;
                 }
 

@@ -4,7 +4,12 @@ class dashboardController {
 
     public function index() {
 
-        return 'dashboard';
+        return [
+            'view' => [
+                'title' => 'Dashboard',
+                'file' => 'views/dashboard'
+            ]
+        ];
 
     }
 

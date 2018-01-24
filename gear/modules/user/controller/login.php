@@ -4,7 +4,12 @@ class loginController {
 
     public function index() {
 
-        return 'login';
+        return [
+            'view' => [
+                'title' => 'Login',
+                'file' => 'views/login'
+            ]
+        ];
 
     }
 

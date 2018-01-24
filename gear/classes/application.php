@@ -8,8 +8,6 @@ class application {
 
         $this->config = $config;
 
-        ob_start();
-
         if($this->config->get('system')['debug']) {
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
@@ -17,21 +15,24 @@ class application {
 
         $this->hook = new hook();
         $this->route = new route($this);
+        $this->view = new view($this);
         $this->modules = new moduleManager($this);
-
-        $this->content = ob_get_contents();
-
-        ob_end_clean();
 
     }
 
     public function boot() {
 
+        ob_start();
+
         $this->hook->do_action('boot', $this);
 
-        if($this->admin) {
-            echo $this->route->includeController();
-        }
+        $controller = $this->route->includeController();
+
+        echo $this->view->render($controller);
+
+        $this->content = ob_get_contents();
+
+        ob_end_clean();
 
         echo $this->content;
 
