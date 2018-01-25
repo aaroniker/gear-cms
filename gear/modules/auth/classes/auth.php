@@ -28,8 +28,8 @@ class auth {
 
         $return['error'] = true;
 
-        if($this->attempt->isBlocked()) {
-            $return['message'] = 'user blocked for '.$this->module->config('attempts')['ban'];
+        if($block = $this->attempt->isBlocked()) {
+            $return['message'] = 'user blocked for '.$block['minutes'].'min and '.$block['seconds'].'sec';
             return $return;
         }
 

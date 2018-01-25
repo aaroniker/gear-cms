@@ -40,11 +40,26 @@ class authAttempt extends auth {
     public function isBlocked() {
         $ip = parent::getIP();
         $this->delete($ip, false);
-        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
+        $currentdate = strtotime(date("Y-m-d H:i:s"));
+        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->orderBy('expire DESC')->fetchAll();
         if(count($attempts) < intval($this->module->config('attempts')['count'])) {
             return false;
         }
-        return true;
+        return $this->getRemainBlock($attempts[0]->expire);
+    }
+
+    public function getRemainBlock($expireLast) {
+
+        $currentdate = new DateTime('now');
+        $expireLast = new DateTime($expireLast);
+
+        $diff = $currentdate->diff($expireLast);
+
+        return [
+            'minutes' => $diff->format("%I"),
+            'seconds' => $diff->format("%S")
+        ];
+
     }
 
 }
