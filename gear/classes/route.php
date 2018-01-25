@@ -134,7 +134,8 @@ class route {
 
     public function redirect($name, $array = []) {
         $this->getAllRoutes();
-        if(isset($this->routes[$name]) && '/'.$this->controller != $this->routes[$name]) {
+        $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        if(isset($this->routes[$name]) && $actual_link != $this->getLink($name, $array)) {
             header('location: '.$this->getLink($name, $array));
             exit();
         }
