@@ -16,10 +16,19 @@ class view {
 
             $viewPath = $controller['modulePath'].'/'.$controller['return']['view']['file'].'.php';
 
+            ob_start();
+
             $view = $this;
             $app = $this->app;
+            $route = $this->app->route;
 
             include($viewPath);
+
+            $content = ob_get_contents();
+
+            ob_end_clean();
+
+            return $content;
 
         }
 
