@@ -6,9 +6,11 @@ class auth {
     protected $module;
 
     protected $attempt;
+    protected $user;
+
+    protected $userObj;
 
     protected $isLogged = false;
-    protected $user = null;
 
     public function __construct($app, $module) {
 
@@ -16,6 +18,9 @@ class auth {
         $this->module = $module;
 
         $this->attempt = new authAttempt($app, $module);
+        $this->user = new user($app, $module);
+
+        return $this;
 
     }
 
@@ -23,7 +28,7 @@ class auth {
 
         $return['error'] = true;
 
-        if($this->isBlocked()) {
+        if($this->attempt->isBlocked()) {
             $return['message'] = 'user blocked for '.$this->module->config('attempts')['ban'];
             return $return;
         }
@@ -36,7 +41,7 @@ class auth {
             return $return;
         }
 
-        $userID = $this->getID(strtolower($email));
+        $userID = $this->user->getID(strtolower($email));
 
         if(!$userID) {
             $this->attempt->add();
@@ -44,15 +49,15 @@ class auth {
             return $return;
         }
 
-        $user = $this->getBaseUser($userID);
+        $user = $this->user->getUser($userID);
 
-        if(!$this->passwordRehash($password, $user['password'], $userID)) {
+        if(!$this->passwordRehash($password, $user->password, $userID)) {
             $this->attempt->add();
             $return['message'] = 'incorrect password';
             return $return;
         }
 
-        $session = $this->addSession($user['id'], $remember);
+        $session = $this->addSession($user->id, $remember);
 
         $this->app->hook->do_action('auth.login', $this->app, $this);
 
@@ -62,17 +67,17 @@ class auth {
 
     }
 
-    public function getID($email) {
-        $user = $this->app->db->from($this->module->config('table'))->where('email', $email)->fetch();
-        if(!$user) {
+    public function logout() {
+        $hash = $this->getSessionHash();
+        if(strlen($hash) != 40) {
             return false;
         }
-        return $user['id'];
+        return $this->deleteSession($hash);
     }
 
     protected function addSession($userID, $remember) {
 
-        $user = $this->getBaseUser($userID);
+        $user = $this->user->getUser($userID);
         if(!$user) {
             return false;
         }
@@ -117,7 +122,7 @@ class auth {
     }
 
     public function checkSession($hash) {
-        if($this->isBlocked()) {
+        if($this->attempt->isBlocked()) {
             $return['message'] = 'user blocked for '.$this->module->config('attempts')['ban'];
             return false;
         }
@@ -128,18 +133,18 @@ class auth {
         if(!$session) {
             return false;
         }
-        $sessionID = $session['id'];
-        $userID = $session['userID'];
-        $expire = strtotime($session['expire']);
+        $sessionID = $session->id;
+        $userID = $session->userID;
+        $expire = strtotime($session->expire);
         $current = strtotime(date("Y-m-d H:i:s"));
         if($current > $expire) {
             $this->deleteExistingSessions($userID);
             return false;
         }
-        if(self::getIP() != $session['ip']) {
+        if(self::getIP() != $session->ip) {
             return false;
         }
-        if($session['cookie'] == sha1($hash.$this->module->config('session')['key'])) {
+        if($session->cookie == sha1($hash.$this->module->config('session')['key'])) {
             return true;
         }
         return false;
@@ -150,42 +155,7 @@ class auth {
         if(!$session) {
             return false;
         }
-        return $session['userID'];
-    }
-
-    public function getUser($id) {
-        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
-        if(!$user) {
-            return false;
-        }
-        unset($user['password']);
-        return $user;
-    }
-
-    public function addUser($email, $password) {
-
-        $return['error'] = true;
-
-        $email = htmlentities(strtolower($email));
-        $password = $this->getHash($password);
-
-        //check some things
-
-        $return['error'] = false;
-
-        return $this->app->db->insertInto($this->module->config('table'))->values([
-            'email' => $email,
-            'password' => $password
-        ])->execute();
-
-    }
-
-    protected function getProtectedUser($id) {
-        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
-        if(!$user) {
-            return false;
-        }
-        return $user;
+        return $session->userID;
     }
 
     public function isLogged() {
@@ -196,21 +166,13 @@ class auth {
     }
 
     protected static function getIP() {
-        if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
-           return $_SERVER['HTTP_X_FORWARDED_FOR'];
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
-           return $_SERVER['REMOTE_ADDR'];
+            return $_SERVER['REMOTE_ADDR'];
         }
-    }
-
-    public function isBlocked() {
-        $ip = self::getIP();
-        $this->attempt->delete($ip, false);
-        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
-        if(count($attempts) < intval($this->module->config('attempts')['count'])) {
-            return false;
-        }
-        return true;
     }
 
     protected function validateEmail($email) {
@@ -229,7 +191,7 @@ class auth {
     }
 
     public function getCurrentUser() {
-        if(is_null($this->user)) {
+        if(is_null($this->userObj)) {
             $hash = $this->getSessionHash();
             if($hash === false) {
                 return false;
@@ -238,9 +200,9 @@ class auth {
             if($id === false) {
                 return false;
             }
-            $this->user = $this->getUser($id);
+            $this->userObj = $this->user->getUser($id);
         }
-        return $this->user;
+        return $this->userObj;
     }
 
     public function getHash($password) {

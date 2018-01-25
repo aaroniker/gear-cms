@@ -4,10 +4,6 @@ return [
 
     'name' => 'auth',
 
-    'run' => function($app) {
-        $app->auth = new auth($app, $this);
-    },
-
     'autoload' => [
         'classes'
     ],
@@ -26,6 +22,18 @@ return [
             'count' => 5,
             'ban' => '+5 minutes'
         ]
+    ],
+
+    'action' => [
+        'boot-5' => function($app) {
+
+            $app->auth = new auth($app, $this);
+
+            if(!$app->auth->isLogged() && $app->admin) {
+                $app->route->redirect('login');
+            }
+
+        }
     ],
 
     'required' => [

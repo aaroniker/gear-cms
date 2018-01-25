@@ -6,8 +6,12 @@ class authAttempt extends auth {
     protected $module;
 
     public function __construct($app, $module) {
+
         $this->app = $app;
         $this->module = $module;
+
+        return $this;
+
     }
 
     protected function add() {
@@ -25,12 +29,22 @@ class authAttempt extends auth {
         }
         $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
         foreach($attempts as $attempt) {
-            $expiredate = strtotime($attempt['expire']);
+            $expiredate = strtotime($attempt->expire);
             $currentdate = strtotime(date("Y-m-d H:i:s"));
             if($currentdate > $expiredate) {
-                sql::run()->deleteFrom($this->module->config('attempts')['table'])->where('id', $attempt['id'])->execute();
+                $this->app->db->deleteFrom($this->module->config('attempts')['table'])->where('id', $attempt->id)->execute();
             }
         }
+    }
+
+    public function isBlocked() {
+        $ip = parent::getIP();
+        $this->delete($ip, false);
+        $attempts = $this->app->db->from($this->module->config('attempts')['table'])->where('ip', $ip)->fetchAll();
+        if(count($attempts) < intval($this->module->config('attempts')['count'])) {
+            return false;
+        }
+        return true;
     }
 
 }

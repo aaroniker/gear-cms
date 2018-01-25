@@ -6,6 +6,8 @@ return [
 
     'run' => function($app) {
 
+        $app->user = new user($app, $this);
+
     },
 
     'routes' => [
@@ -24,10 +26,21 @@ return [
     ],
 
     'action' => [
-        'boot-5' => function($app) {
+        'boot-6' => function($app) {
+
+            if(type::post('action') == 'login') {
+                $return = $app->auth->login(type::post('email'), type::post('password'), type::post('remember'));
+                if(!$return['error']) {
+                    $app->route->redirect('dashboard');
+                } else {
+                    echo $return['message'];
+                }
+            }
+
             if(!$app->auth->isLogged() && $app->admin) {
                 $app->route->redirect('login');
             }
+
         }
     ],
 
