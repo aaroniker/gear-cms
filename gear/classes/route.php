@@ -83,7 +83,7 @@ class route {
                         include($path.'/'.$array['controller'].'.php');
 
                         $this->class = basename($array['controller']).'Controller';
-                        $this->class = new $this->class();
+                        $this->class = new $this->class($this->app);
 
                         if(method_exists($this->class, $this->method)) {
                             if(is_array($this->params) && count($this->params)) {
@@ -132,13 +132,26 @@ class route {
         return $routes;
     }
 
-    public function redirect($name) {
+    public function redirect($name, $array = []) {
         $this->getAllRoutes();
         if(isset($this->routes[$name]) && '/'.$this->controller != $this->routes[$name]) {
-            $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
-            header('location: '.$url.$this->routes[$name]);
+            header('location: '.$this->getLink($name, $array));
             exit();
         }
+    }
+
+    public function getLink($name, $array = []) {
+
+        $this->getAllRoutes();
+        $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+
+        if(isset($this->routes[$name])) {
+            $params = (is_array($array) && count($array)) ? '/'.implode('/', $array) : '';
+            return $url.$this->routes[$name].$params;
+        }
+
+        return $url;
+
     }
 
     public function error404() {
