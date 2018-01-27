@@ -15,7 +15,7 @@ class application {
 
         $this->hook = new hook();
         $this->route = new route($this);
-        $this->view = new view($this);
+        $this->view = new viewManager($this);
         $this->controller = new controller($this);
         $this->modules = new moduleManager($this);
 
@@ -23,19 +23,11 @@ class application {
 
     public function boot() {
 
-        ob_start();
-
         $this->hook->do_action('boot', $this);
 
-        $controller = $this->route->includeController();
+        $this->view->register($this->route->includeController(), 'content');
 
-        echo $this->view->render($controller);
-
-        $this->content = ob_get_contents();
-
-        ob_end_clean();
-
-        echo $this->content;
+        echo $this->view->get('content');
 
     }
 

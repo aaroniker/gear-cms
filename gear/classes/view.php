@@ -2,27 +2,29 @@
 
 class view {
 
-    protected $app;
+    protected $file;
+    protected $data;
 
-    public function __construct($app) {
+    public function __construct($file = false, $data = []) {
 
-        $this->app = $app;
+        $this->data = $data;
+        $this->file = $file;
+
+        $this->data['view'] = $this;
 
     }
 
-    public function render($controller) {
+    public function render($file = null) {
 
-        if(isset($controller['return']['view']['file'])) {
+        $file = ($file) ? $file : $this->file;
 
-            $viewPath = $controller['modulePath'].'/'.$controller['return']['view']['file'].'.php';
+        if($file) {
 
             ob_start();
 
-            $view = $this;
-            $app = $this->app;
-            $route = $this->app->route;
+            extract($this->data);
 
-            include($viewPath);
+            include($this->file);
 
             $content = ob_get_contents();
 
@@ -32,18 +34,20 @@ class view {
 
         }
 
-    }
-
-    public function show($id) {
+        return false;
 
     }
 
-    public function style($file) {
-
+    public function setFile($file) {
+        $this->file = $file;
     }
 
-    public function script($file) {
+    public function set($key, $value) {
+        $this->data[$key] = $value;
+    }
 
+    public function get($key, $default = null) {
+        return (isset($this->data[$key])) ? $this->data[$key] : $default;
     }
 
 }
