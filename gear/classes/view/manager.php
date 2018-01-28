@@ -63,7 +63,7 @@ class viewManager {
                 $this->placeholder[$placeholder] = $content;
             }
         } else {
-            echo $content;
+            return $content;
         }
 
     }
