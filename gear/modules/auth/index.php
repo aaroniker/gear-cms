@@ -25,7 +25,7 @@ return [
     ],
 
     'action' => [
-        'boot-5' => function($app) {
+        'application.boot-5' => function($app) {
 
             $app->auth = new auth($app, $this);
 

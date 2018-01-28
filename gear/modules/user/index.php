@@ -26,7 +26,7 @@ return [
     ],
 
     'action' => [
-        'boot-6' => function($app) {
+        'application.boot-6' => function($app) {
 
             if(type::post('action') == 'login') {
                 $return = $app->auth->login(type::post('email'), type::post('password'), type::post('remember'));

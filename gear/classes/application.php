@@ -23,11 +23,11 @@ class application {
 
     public function boot() {
 
-        $this->hook->do_action('boot', $this);
+        $this->hook->do_action('application.boot', $this);
 
         $this->view->register($this->route->includeController(), 'content');
 
-        echo $this->view->get('content');
+        echo $this->hook->apply_filters('application.show', $this->view->get('content'));
 
     }
 

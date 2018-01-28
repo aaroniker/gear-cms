@@ -16,7 +16,7 @@ return [
     ],
 
     'action' => [
-        'boot' => function($app) {
+        'application.boot' => function($app) {
             if(!$app->route->controller) {
                 $app->route->redirect('dashboard');
             }
