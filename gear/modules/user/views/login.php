@@ -10,4 +10,3 @@
     </label>
     <input type="hidden" name="action" value="login">
 </form>
-<?= $app->view->global('title'); ?>

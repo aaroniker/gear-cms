@@ -6,15 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <?= $view->style('theme.css') ?>
-    <?= $view->script('theme.js') ?>
-
-    <?= $view->show('head') ?>
+    <title><?= $app->view->global('title'); ?></title>
 
 </head>
 <body>
 
-    <?= $view->show('content') ?>
+    <?= $app->view->get('content') ?>
 
 </body>
 </html>
