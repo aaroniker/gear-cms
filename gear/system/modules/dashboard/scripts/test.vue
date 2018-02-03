@@ -14,6 +14,7 @@ module.exports = {
     methods: {
         check() {
             this.test = 'Test';
+            console.log(this.$http);
         }
     }
 }

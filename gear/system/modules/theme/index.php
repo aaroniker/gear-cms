@@ -6,6 +6,7 @@ return [
 
     'run' => function($app) {
         $app->assets->addJS('/gear/assets/vue/dist/vue.js');
+        $app->assets->addCSS('~/styles/dist/style.css');
     },
 
     'filter' => [
