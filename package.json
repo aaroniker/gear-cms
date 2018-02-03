@@ -2,15 +2,15 @@
     "name": "gear-cms",
     "private": true,
     "scripts": {
-        "install": "bower install && webpack && gulp"
+        "install": "bower install && webpack --progress --hide-modules && gulp",
+        "build": "webpack --progress --hide-modules"
     },
     "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-plugin-transform-runtime": "^6.23.0",
-        "babel-preset-env": "^1.6.1",
-        "babel-runtime": "^6.26.0",
+        "babel-core": "^6.0.0",
+        "babel-loader": "^6.0.0",
+        "babel-preset-env": "^1.5.1",
         "bower": "^1.7.6",
+        "cross-env": "^3.0.0",
         "glob": "^7.1.2",
         "gulp": "^3.9.0",
         "gulp-plumber": "^1.0.1",

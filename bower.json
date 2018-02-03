@@ -3,7 +3,8 @@
     "private": true,
     "dependencies": {
         "vue": "~2.5.13",
+        "vue-resource": "0.7.4",
         "lodash": "~4.17.4",
-        "axios": "~0.17.1"
+        "jquery": "~3.3.1"
     }
 }

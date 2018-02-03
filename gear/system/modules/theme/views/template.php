@@ -8,10 +8,22 @@
 
     <title><?= $app->view->global('title'); ?></title>
 
+    <script>
+        var $gear = <?= json_encode((array)$app->config->get('system')); ?>;
+    </script>
+
+    <?= $app->assets->getCSS(); ?>
+
 </head>
 <body>
 
-    <?= $app->view->get('content') ?>
+    <div id="gear">
+        <?= $app->view->get('content') ?>
+    </div>
+
+    <?= $app->assets->getJS(); ?>
+    <?= $app->assets->getJS('vue'); ?>
+    <?= $app->assets->getJS('afterVue'); ?>
 
 </body>
 </html>

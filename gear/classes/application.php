@@ -15,6 +15,7 @@ class application {
 
         $this->hook = new hook();
         $this->route = new route($this);
+        $this->assets = new assets($this);
         $this->view = new viewManager($this);
         $this->controller = new controller($this);
         $this->modules = new moduleManager($this);
