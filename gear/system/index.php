@@ -4,6 +4,10 @@ return [
 
     'name' => 'system',
 
+    'run' => function($app) {
+        $app->assets->addJS('~/scripts/dist/system.js', 'afterVue');
+    },
+
     'admin' => true,
 
     'register' => [
@@ -11,7 +15,6 @@ return [
     ],
 
     'required' => [
-        'route',
         'auth',
         'database'
     ]

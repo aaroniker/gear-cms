@@ -19,13 +19,13 @@ class assets {
 
     public function addCSS($file) {
         $this->css[] = [
-            'file' => $this->base.$file
+            'file' => $this->getPath($file)
         ];
     }
 
     public function addJS($file, $position = 'normal') {
         $this->js[$position][] = [
-            'file' => $this->base.$file
+            'file' => $this->getPath($file)
         ];
     }
 
@@ -53,6 +53,13 @@ class assets {
 
         return $return;
 
+    }
+
+    protected function getPath($path) {
+        if(strpos($path, '~') !== false && isset($this->app->currentModule->path)) {
+            return $this->base.str_replace('~', strstr($this->app->currentModule->path, '/gear/'), $path);
+        }
+        return $this->base.$path;
     }
 
 }

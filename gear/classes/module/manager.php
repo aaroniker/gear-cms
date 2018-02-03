@@ -80,10 +80,15 @@ class moduleManager {
             if($this->checkRequired($this->registered[$name])) {
 
                 $module = new module($this->app, $this->registered[$name]);
+
+                $this->app->currentModule = $module;
+
                 $module->autoload();
                 $module->action();
                 $module->filter();
                 $module->run();
+
+                $this->app->currentModule = null;
 
                 $checked[$name] = $module;
 
