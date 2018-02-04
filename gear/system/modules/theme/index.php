@@ -11,7 +11,8 @@ return [
 
     'filter' => [
         'application.show' => function($content) {
-            $view = new view($this->path.'/views/template.php', [
+            $file = ($this->app->auth->isLogged()) ? 'template.php' : 'login.php';
+            $view = new view($this->path.'/views/'.$file, [
                 'app' => $this->app
             ]);
             return $view->render();
