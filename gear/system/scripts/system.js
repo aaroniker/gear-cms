@@ -1,13 +1,31 @@
 function install(Vue) {
 
-    var config = window.$gear;
+    var gear = window.$gear;
+    var lang = window.$lang;
 
-    Vue.config.debug = false;
+    Vue.config.debug = gear.debug;
 
-    require('vue-resource');
+    var VueResource = require('vue-resource');
 
-    Vue.http.options.root = config.url;
+    Vue.use(VueResource);
+
+    Vue.http.options.root = gear.url;
     Vue.http.options.emulateHTTP = true;
+
+    function getLang(name) {
+        if(name in lang) {
+            return lang[name];
+        }
+        return name;
+    }
+
+    Vue.filter('lang', function(name) {
+        return getLang(name);
+    });
+
+    Vue.prototype.$lang = function(name) {
+        return getLang(name);
+    };
 
     new Vue({
         el: '#gear'

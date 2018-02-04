@@ -10,6 +10,7 @@
 
     <script>
         var $gear = <?= json_encode((array)$app->config->get('system')); ?>;
+        var $lang = <?= json_encode((array)$app->lang->getArray()); ?>;
     </script>
 
     <?= $app->assets->getCSS(); ?>

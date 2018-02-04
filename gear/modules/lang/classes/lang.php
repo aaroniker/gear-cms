@@ -37,6 +37,10 @@ class lang {
 
     }
 
+    public function getArray() {
+        return $this->langArray;
+    }
+
     public function loadLang($file) {
 
         $file = file_get_contents($file);

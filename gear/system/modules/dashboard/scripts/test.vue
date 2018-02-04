@@ -1,6 +1,6 @@
 <template>
     <div class="test" @click="check">
-        {{ test }}
+        {{ test | lang }}
     </div>
 </template>
 
@@ -13,7 +13,7 @@ module.exports = {
     },
     methods: {
         check() {
-            this.test = 'Test';
+            this.test = 'Logout';
             console.log(this.$http);
         }
     }
