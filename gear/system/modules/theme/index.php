@@ -13,7 +13,10 @@ return [
         'application.show' => function($content) {
             $file = ($this->app->auth->isLogged()) ? 'template.php' : 'login.php';
             $view = new view($this->path.'/views/'.$file, [
-                'app' => $this->app
+                'app' => $this->app,
+                'route' => $this->app->route,
+                'module' => $this,
+                'assets' => $this->app->assets
             ]);
             return $view->render();
         }

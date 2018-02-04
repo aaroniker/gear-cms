@@ -18,10 +18,12 @@
 </head>
 <body>
 
-    login
-
     <div id="gear">
+
+        <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+
         <?= $app->view->get('content') ?>
+
     </div>
 
     <?= $app->assets->getJS(); ?>

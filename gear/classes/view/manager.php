@@ -45,11 +45,15 @@ class viewManager {
 
         if(isset($controller['return']['view']['file'])) {
 
-            $viewPath = $controller['modulePath'].'/'.$controller['return']['view']['file'].'.php';
+            $module = $controller['module'];
+
+            $viewPath = $module->path.'/'.$controller['return']['view']['file'].'.php';
 
             $view = new view($viewPath, [
                 'app' => $this->app,
-                'route' => $this->app->route
+                'route' => $this->app->route,
+                'module' => $module,
+                'assets' => $this->app->assets
             ]);
 
             $content = $view->render();

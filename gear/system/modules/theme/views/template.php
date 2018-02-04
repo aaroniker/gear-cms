@@ -13,18 +13,22 @@
         var $lang = <?= json_encode((array)$app->lang->getArray()); ?>;
     </script>
 
-    <?= $app->assets->getCSS(); ?>
+    <?= $assets->getCSS(); ?>
 
 </head>
 <body>
 
     <div id="gear">
+
+        <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+
         <?= $app->view->get('content') ?>
+
     </div>
 
-    <?= $app->assets->getJS(); ?>
-    <?= $app->assets->getJS('vue'); ?>
-    <?= $app->assets->getJS('afterVue'); ?>
+    <?= $assets->getJS(); ?>
+    <?= $assets->getJS('vue'); ?>
+    <?= $assets->getJS('afterVue'); ?>
 
 </body>
 </html>

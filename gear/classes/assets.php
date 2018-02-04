@@ -32,9 +32,14 @@ class assets {
     public function getCSS() {
 
         $return = '';
+        $version = '';
+
+        if($this->app->config->get('system')['debug']) {
+            $version = '?v'.time();
+        }
 
         foreach($this->css as $css) {
-            $return .= '<link rel="stylesheet" href="'.$css['file'].'">'.PHP_EOL;
+            $return .= '<link rel="stylesheet" href="'.$css['file'].$version.'">'.PHP_EOL;
         }
 
         return $return;
@@ -44,10 +49,15 @@ class assets {
     public function getJS($position = 'normal') {
 
         $return = '';
+        $version = '';
+
+        if($this->app->config->get('system')['debug']) {
+            $version = '?v'.time();
+        }
 
         if(isset($this->js[$position])) {
             foreach($this->js[$position] as $js) {
-                $return .= '<script src="'.$js['file'].'"></script>'.PHP_EOL;
+                $return .= '<script src="'.$js['file'].$version.'"></script>'.PHP_EOL;
             }
         }
 
@@ -55,11 +65,20 @@ class assets {
 
     }
 
-    protected function getPath($path) {
-        if(strpos($path, '~') !== false && isset($this->app->currentModule->path)) {
-            return $this->base.str_replace('~', strstr($this->app->currentModule->path, '/gear/'), $path);
+    protected function getPath($path, $module = null) {
+
+        $module = ($module) ? $module : $this->app->currentModule;
+
+        if(strpos($path, '~') !== false && isset($module->path)) {
+            return $this->base.str_replace('~', strstr($module->path, '/gear/'), $path);
         }
+
         return $this->base.$path;
+
+    }
+
+    public function get($path, $module = null) {
+        return $this->getPath($path, $module);
     }
 
 }

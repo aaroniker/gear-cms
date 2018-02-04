@@ -69,10 +69,10 @@ class route {
 
         $loaded = false;
 
-        foreach($this->getAllRoutes() as $path => $route) {
+        foreach($this->getAllRoutes() as $path => $module) {
 
-            if(is_array($route) && count($route)) {
-                foreach($route as $url => $array) {
+            if(is_array($module->options['routes']) && count($module->options['routes'])) {
+                foreach($module->options['routes'] as $url => $array) {
                     $this->routes[$array['name']] = $url;
                     if($url == '/'.$this->controller) {
 
@@ -89,18 +89,18 @@ class route {
                             if(is_array($this->params) && count($this->params)) {
                                 return [
                                     'return' => call_user_func_array([$this->class, $this->method], $this->params),
-                                    'modulePath' => $path
+                                    'module' => $module
                                 ];
                             } else {
                                 return [
                                     'return' => $this->class->{$this->method}(),
-                                    'modulePath' => $path
+                                    'module' => $module
                                 ];
                             }
                         } else {
                             return [
                                 'return' => $this->class->index(),
-                                'modulePath' => $path
+                                'module' => $module
                             ];
                         }
 
@@ -123,7 +123,7 @@ class route {
         $routes = [];
         foreach($this->app->modules->all() as $module) {
             if(isset($module->options['routes']) && is_array($module->options['routes']) && count($module->options['routes'])) {
-                $routes[$module->path] = $module->options['routes'];
+                $routes[$module->path] = $module;
                 foreach($module->options['routes'] as $url => $array) {
                     $this->routes[$array['name']] = $url;
                 }
