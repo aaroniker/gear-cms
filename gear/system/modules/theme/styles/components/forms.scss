@@ -9,6 +9,7 @@
     color: $inputText;
     border-radius: $inputRadius;
     @include transition;
+    @include placeholder($inputTextPlaceholder);
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
@@ -35,9 +36,10 @@
             background: none;
         }
     }
-    &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0 1000px white inset !important;
-    }
+}
+
+input::placeholder {
+    color: $inputTextPlaceholder;
 }
 
 .form-file-field {
@@ -234,7 +236,6 @@ form {
     & > span {
         margin: 0 0 0 6px;
         vertical-align: top;
-        color: $dark60;
     }
     input {
         display: none;

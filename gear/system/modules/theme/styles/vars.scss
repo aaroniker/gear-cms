@@ -1,8 +1,8 @@
 
 // Colors
 
-$primary: #1a74d4;
-$secondary: #4ba7e2;
+$primary: #5D9BFB;
+$secondary: #4081E4;
 
 $dark: #171E2A;
 $darker: #131A24;
@@ -36,7 +36,7 @@ $fontFamily: 'Inter UI', sans-serif;
 
 $fontSize: 16px;
 $lineHeight: 26px;
-$textColor: $dark60;
+$textColor: #616F86;
 
 $linkColor: $primary;
 $linkDecoration: none;
@@ -109,19 +109,20 @@ $alertFontWeight: 500;
 
 // Forms
 
-$labelColor: $dark80;
+$labelColor: $textColor;
 $labelWeight: normal;
 $labelBottom: 5px;
 
 $formDisabled: $light;
-$formBorder: $border;
-$formBorderFocus: $primary;
-$formFocus: mix(#fff, $primary, 40%);
+$formBorder: #253042;
+$formBorderFocus: #374966;
+$formFocus: $secondary;
 $formFocusColor: #fff;
 $formElementBottom: $marginBottom;
 
-$inputText: $dark60;
-$inputBackground: #fff;
+$inputText: $textColor;
+$inputTextPlaceholder: #3B4658;
+$inputBackground: #1A222F;
 $inputRadius: $borderRadius;
 
 $inputFileColor: $dark25;
@@ -135,7 +136,7 @@ $inputPaddingH: 15px;
 $switchSize: 22px;
 $switchBorder: $formBorder;
 $switchBorderActive: $primary;
-$switchActive: mix(#fff, $primary, 40%);
+$switchActive: $secondary;
 $switchBackground: $switchBorder;
 $switchDot: #fff;
 $switchDisabled: $formDisabled;
@@ -144,7 +145,7 @@ $switchRadius: $switchSize / 2;
 $checkboxSize: 22px;
 $checkboxBorder: $formBorder;
 $checkboxBorderActive: $primary;
-$checkboxActive: mix(#fff, $primary, 40%);
+$checkboxActive: $secondary;
 $checkboxBackground: $inputBackground;
 $checkboxArrow: #fff;
 $checkboxDisabled: $formDisabled;
@@ -153,7 +154,7 @@ $checkboxRadius: $inputRadius;
 $radioSize: 22px;
 $radioBorder: $formBorder;
 $radioBorderActive: $primary;
-$radioActive: mix(#fff, $primary, 40%);
+$radioActive: $secondary;
 $radioBackground: $inputBackground;
 $radioDot: #fff;
 $radioDisabled: $formDisabled;

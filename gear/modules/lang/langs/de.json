@@ -1,5 +1,7 @@
 {
     "Login": "Anmelden",
     "Logout": "Abmelden",
-    "Stay logged in": "Angemeldet bleiben"
+    "Stay logged in": "Angemeldet bleiben",
+    "Email": "E-Mail",
+    "Password": "Passwort"
 }

@@ -22,7 +22,9 @@
 
         <div class="login">
 
-            <img class="logo" src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+            <a class="logo" href="http://gearcms.org" target="_blank">
+                <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+            </a>
 
             <?= $app->view->get('content') ?>
 

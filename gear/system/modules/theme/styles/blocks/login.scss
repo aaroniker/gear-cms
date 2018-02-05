@@ -2,15 +2,29 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 100%;
+    width: 90%;
     max-width: 360px;
     background: $dark;
+    padding: 36px 28px 28px 28px;
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(#0B1016, .3);
     @include translate(-50%, -50%);
     .logo {
         display: table;
-        margin: 0 auto;
-        width: 64px;
+        margin: 0 auto 36px auto;
+        img {
+            display: block;
+            width: 64px;
+        }
+    }
+    .form-field {
+        margin: 0 0 20px 0;
+    }
+    button {
+        width: 100%;
+    }
+    .remember {
+        display: table;
+        margin: 20px auto 0 auto;
     }
 }
