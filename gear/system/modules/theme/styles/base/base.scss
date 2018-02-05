@@ -1,0 +1,85 @@
+@if $fontImport == true {
+    @import url($fontUrl);
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    color: $textColor;
+}
+
+a {
+    text-decoration: $linkDecoration;
+    color: $linkColor;
+    &:hover,
+    &:focus {
+        text-decoration: $linkHoverDecoration;
+        color: $linkHoverColor;
+    }
+}
+
+input,
+button,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid $border;
+    margin-top: $marginBottom;
+    margin-bottom: $marginBottom;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: $marginBottom;
+    ul,
+    ol {
+        margin-bottom: 0;
+    }
+    &.unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+    &.inline {
+        padding-left: 0;
+        list-style: none;
+        margin-left: -5px;
+        & > li {
+            display: inline-block;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+}
+
+p {
+    margin: 0 0 $marginBottom 0;
+    &.light {
+        color: $dark40;
+    }
+}
+
+nav {
+    ul {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+}

@@ -20,9 +20,13 @@
 
     <div id="gear">
 
-        <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+        <div class="login">
 
-        <?= $app->view->get('content') ?>
+            <img class="logo" src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+
+            <?= $app->view->get('content') ?>
+
+        </div>
 
     </div>
 

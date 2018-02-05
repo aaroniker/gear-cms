@@ -1,0 +1,16 @@
+.login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    max-width: 360px;
+    background: $dark;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(#0B1016, .3);
+    @include translate(-50%, -50%);
+    .logo {
+        display: table;
+        margin: 0 auto;
+        width: 64px;
+    }
+}

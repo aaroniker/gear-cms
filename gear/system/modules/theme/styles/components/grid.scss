@@ -1,0 +1,184 @@
+$breakpoints:
+    sm $breakpointSm $containerSm,
+    md $breakpointMd $containerMd,
+    lg $breakpointLg $containerLg;
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: $containerLg;
+    padding-left: $gapWidth * .5;
+    padding-right: $gapWidth * .5;
+    @include clear-after;
+    @include min(sm) {
+        width: $containerSm;
+    }
+    @include min(md) {
+        width: $containerMd;
+    }
+    @include min(lg) {
+        width: $containerLg;
+    }
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: $gapWidth * .5;
+    padding-right: $gapWidth * .5;
+    @include clear-after;
+}
+
+.columns,
+form.horizontal .form-element {
+    margin-right: $gapWidth * .5 * -1;
+    margin-left: $gapWidth * .5 * -1;
+    @include flexbox;
+    @include flex(0, 1, auto);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include clear-after;
+    &.reverse {
+        @include flex-direction(row-reverse);
+    }
+    &.center {
+        align-items: center;
+        justify-content: center;
+    }
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        [class^='#{$name}'],
+        [class*=' #{$name}'] {
+            max-width: 100%;
+            padding-right: $gapWidth * .5;
+            padding-left: $gapWidth * .5;
+            @include flex-basis(100%);
+        }
+    }
+    $name: xs;
+    .#{$name} {
+        @include grid-col-common;
+        @include flex-basis(auto);
+    }
+    @for $i from 1 through $columns {
+        .#{$name}-#{$i} {
+            max-width: 100% / $columns * $i;
+            @include grid-col-common;
+            @include flex-basis(100% / $columns * $i);
+        }
+    }
+    @for $i from 0 through $columns {
+        .#{$name}-offset-#{$i} {
+            @include grid-col-common;
+            @if $i == 0 {
+                margin-left: 0;
+            } @else {
+                margin-left: 100% / $columns * $i;
+            }
+        }
+    }
+    .#{$name} {
+        max-width: 100%;
+        @include flex-grow(1);
+        @include flex-basis(0);
+    }
+    .start-#{$name} {
+        text-align: left;
+        @include justify-content(flex-start);
+    }
+    .center-#{$name} {
+        text-align: center;
+        @include justify-content(center);
+    }
+    .end-#{$name} {
+        text-align: right;
+        @include justify-content(flex-end);
+    }
+    .top-#{$name} {
+        @include align-items(flex-start);
+    }
+    .middle-#{$name} {
+        @include align-items(center);
+    }
+    .bottom-#{$name} {
+        @include align-items(flex-end);
+    }
+    .around-#{$name} {
+        @include justify-content(space-around);
+    }
+    .between-#{$name} {
+        @include justify-content(space-between);
+    }
+    .first-#{$name} {
+        order: -1;
+    }
+    .last-#{$name} {
+        order: 1;
+    }
+    @each $breakpoint in $breakpoints {
+        $name: nth($breakpoint, 1);
+        $size: nth($breakpoint, 2);
+        $container: nth($breakpoint, 3);
+        @media only screen and (min-width: $size) {
+            .#{$name} {
+                @include grid-col-common;
+                @include flex-basis(auto);
+            }
+            @for $i from 1 through $columns {
+                .#{$name}-#{$i} {
+                    max-width: 100% / $columns * $i;
+                    @include grid-col-common;
+                    @include flex-basis(100% / $columns * $i);
+                }
+            }
+            @for $i from 0 through $columns {
+                .#{$name}-offset-#{$i} {
+                    @include grid-col-common;
+                    @if $i == 0 {
+                        margin-left: 0;
+                    } @else {
+                        margin-left: 100% / $columns * $i;
+                    }
+                }
+            }
+            .#{$name} {
+                max-width: 100%;
+                @include flex-grow(1);
+                @include flex-basis(0);
+            }
+            .start-#{$name} {
+                @include justify-content(flex-start);
+                text-align: left;
+            }
+            .center-#{$name} {
+                text-align: center;
+                @include justify-content(center);
+            }
+            .end-#{$name} {
+                text-align: right;
+                @include justify-content(flex-end);
+            }
+            .top-#{$name} {
+                @include align-items(flex-start);
+            }
+            .middle-#{$name} {
+                @include align-items(center);
+            }
+            .bottom-#{$name} {
+                @include align-items(flex-end);
+            }
+            .around-#{$name} {
+                @include justify-content(space-around);
+            }
+            .between-#{$name} {
+                @include justify-content(space-between);
+            }
+            .first-#{$name} {
+                order: -1;
+            }
+            .last-#{$name} {
+                order: 1;
+            }
+        }
+    }
+}
