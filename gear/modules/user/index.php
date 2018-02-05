@@ -8,6 +8,8 @@ return [
 
         $app->user = new user($app, $this);
 
+        $app->assets->addCSS('~/styles/dist/style.css');
+
     },
 
     'routes' => [

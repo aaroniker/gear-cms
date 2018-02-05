@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" type="image/png" href="<?= $assets->get('~/img/favicon-32x32.png', $module); ?>">
+    <!--[if IE]>
+        <link rel="shortcut icon" href="<?= $assets->get('~/img/favicon.ico', $module); ?>">
+    <![endif]-->
+
     <title><?= $app->view->global('title'); ?></title>
 
     <script>

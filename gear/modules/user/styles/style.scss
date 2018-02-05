@@ -1,3 +1,15 @@
+
+// Variables
+
+@import '../../../system/modules/theme/styles/vars';
+
+// Mixins
+
+@import '../../../system/modules/theme/styles/mixins/color';
+@import '../../../system/modules/theme/styles/mixins/grid';
+@import '../../../system/modules/theme/styles/mixins/responsive';
+@import '../../../system/modules/theme/styles/mixins/utils';
+
 .login {
     position: absolute;
     left: 50%;
