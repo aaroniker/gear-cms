@@ -13,6 +13,7 @@ class application {
             error_reporting(E_ALL);
         }
 
+        $this->message = new message();
         $this->hook = new hook();
         $this->route = new route($this);
         $this->assets = new assets($this);
@@ -27,6 +28,11 @@ class application {
         $this->hook->do_action('application.boot', $this);
 
         $this->view->register($this->route->includeController(), 'content');
+
+        if(ajax::is()) {
+            echo ajax::getReturn();
+            exit();
+        }
 
         echo $this->hook->apply_filters('application.show', $this->view->get('content'));
 

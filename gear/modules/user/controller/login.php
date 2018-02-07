@@ -21,6 +21,7 @@ class loginController extends controller {
 
     public function logout() {
 
+        $this->app->message->add('logged out');
         $this->app->auth->logout();
         $this->app->route->redirect('login');
 

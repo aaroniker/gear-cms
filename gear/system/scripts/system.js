@@ -5,18 +5,38 @@ function install(Vue) {
 
     Vue.config.debug = gear.debug;
 
-    var VueResource = require('vue-resource');
+    var axios = require('axios');
+    var $ = require('jquery');
 
-    Vue.use(VueResource);
-
-    Vue.http.options.root = gear.url;
-    Vue.http.options.emulateHTTP = true;
+    Vue.prototype.$api = axios.create({
+        baseURL: gear.url + '/' + gear.adminURL + '/',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    });
 
     function getLang(name) {
         if(name in lang) {
             return lang[name];
         }
         return name;
+    }
+
+    function displayMessages(handle) {
+        handle.$api.post('index.php', {
+            'method': 'getMessages'
+        }).then(function(response) {
+            var messages = response.data;
+            Object.keys(messages).forEach(function(index) {
+                var div = $("<div />").addClass([
+                    'message',
+                    messages[index].class
+                ]).text(messages[index].message);
+                div.appendTo($('#gear'));
+            });
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
 
     Vue.filter('lang', function(name) {
@@ -28,7 +48,10 @@ function install(Vue) {
     };
 
     new Vue({
-        el: '#gear'
+        el: '#gear',
+        created() {
+            displayMessages(this);
+        }
     });
 
 }

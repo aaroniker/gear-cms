@@ -10,7 +10,8 @@ module.exports = [
         },
         resolve: {
             alias: {
-                "vue-resource$": assets + "/vue-resource/dist/vue-resource.common.js",
+                "axios$": assets + "/axios/dist/axios.min.js",
+                "jquery$": assets + "/jquery/dist/jquery.min.js"
             }
         },
         module: {

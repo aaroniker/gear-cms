@@ -135,7 +135,7 @@ class route {
     public function redirect($name, $array = []) {
         $this->getAllRoutes();
         $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        if(isset($this->routes[$name]) && $actual_link != $this->getLink($name, $array)) {
+        if(isset($this->routes[$name]) && $actual_link != $this->getLink($name, $array) && !ajax::is()) {
             header('location: '.$this->getLink($name, $array));
             exit();
         }
@@ -158,9 +158,10 @@ class route {
     public function error404() {
 
         $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
-
-        header('location: '.$url);
-        exit();
+        if(!ajax::is()) {
+            header('location: '.$url);
+            exit();
+        }
 
     }
 
