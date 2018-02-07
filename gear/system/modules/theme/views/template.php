@@ -27,6 +27,8 @@
 
         <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
 
+        {{ messages }}
+
         <?= $app->view->get('content') ?>
 
     </div>

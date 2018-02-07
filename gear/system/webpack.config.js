@@ -11,7 +11,8 @@ module.exports = [
         resolve: {
             alias: {
                 "axios$": assets + "/axios/dist/axios.min.js",
-                "jquery$": assets + "/jquery/dist/jquery.min.js"
+                "jquery$": assets + "/jquery/dist/jquery.min.js",
+                "visibilityjs$": assets + "/visibilityjs/lib/visibility.timers.js"
             }
         },
         module: {

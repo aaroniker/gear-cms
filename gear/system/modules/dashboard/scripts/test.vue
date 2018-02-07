@@ -14,7 +14,7 @@ module.exports = {
     methods: {
         check() {
             this.test = 'Logout';
-            console.log(this.$http);
+            this.$message('test', 'error', false);
         }
     }
 }

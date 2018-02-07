@@ -7,6 +7,7 @@ function install(Vue) {
 
     var axios = require('axios');
     var $ = require('jquery');
+    var Visibility = require('visibilityjs');
 
     Vue.prototype.$api = axios.create({
         baseURL: gear.url + '/' + gear.adminURL + '/',
@@ -22,22 +23,27 @@ function install(Vue) {
         return name;
     }
 
-    function displayMessages(handle) {
-        handle.$api.post('index.php', {
+    Vue.prototype.$message = function(message, type, stay) {
+        return this.$api.post('index.php', {
+            'method': 'setMessage',
+            'message': {
+                'message': message,
+                'type': type,
+                'stay': stay
+            }
+        });
+    };
+
+    Vue.prototype.$displayMessages = function() {
+        var self = this;
+        self.$api.post('index.php', {
             'method': 'getMessages'
         }).then(function(response) {
-            var messages = response.data;
-            Object.keys(messages).forEach(function(index) {
-                var div = $("<div />").addClass([
-                    'message',
-                    messages[index].class
-                ]).text(messages[index].message);
-                div.appendTo($('#gear'));
-            });
+            self.messages = response.data;
         }).catch(function(error) {
-            console.log(error);
+            self.messages = error;
         });
-    }
+    };
 
     Vue.filter('lang', function(name) {
         return getLang(name);
@@ -49,8 +55,17 @@ function install(Vue) {
 
     new Vue({
         el: '#gear',
+        data() {
+            return {
+                messages: []
+            }
+        },
         created() {
-            displayMessages(this);
+            var self = this;
+            self.$displayMessages();
+            Visibility.every(1000, function() {
+                self.$displayMessages();
+            });
         }
     });
 

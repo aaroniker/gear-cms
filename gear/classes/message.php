@@ -13,12 +13,12 @@ class message {
             }
 
             if(ajax::get('method') == 'setMessage') {
-                $array = type::post('message', 'string', '');
-                $this->add($array['message'], $array['class'], $array['stay']);
+                $array = ajax::get('message');
+                $this->add($array['message'], $array['type'], $array['stay']);
             }
 
             if(ajax::get('method') == 'deleteMessage') {
-                $index = type::post('index', 'int', 0);
+                $index = ajax::get('index');
                 $this->delete($index);
             }
 
@@ -26,10 +26,10 @@ class message {
 
     }
 
-    public function add($message, $class = 'success', $stay = false) {
+    public function add($message, $type = 'success', $stay = false) {
         $_SESSION[$this->sessionName][$this->getIndex()] = [
             'message' => $message,
-            'class' => $class,
+            'type' => $type,
             'stay' => $stay
         ];
     }
@@ -43,7 +43,7 @@ class message {
             foreach($messages as $index => $val) {
                 $return[] = [
                     'message' => $val['message'],
-                    'class' => $val['class'],
+                    'type' => $val['type'],
                     'stay' => $val['stay'],
                     'index' => $index
                 ];
