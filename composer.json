@@ -10,9 +10,8 @@
             "name": "Aaron Iker",
             "email": "mail@aaroniker.me"
        }
-   ],
+    ],
     "require": {
-        "slim/slim": "^3.0",
         "twig/twig": "^2.0",
         "envms/fluentpdo": "1.1.*"
     },
