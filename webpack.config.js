@@ -2,6 +2,7 @@ var _ = require('lodash');
 var webpack = require('webpack');
 var path = require('path');
 var glob = require('glob');
+var MinifyPlugin = require("babel-minify-webpack-plugin");
 var exports = [];
 
 glob.sync('{gear/modules/**,gear/installer/**,gear/system/**,extensions/**,themes/**}/webpack.config.js', {
@@ -20,12 +21,7 @@ glob.sync('{gear/modules/**,gear/installer/**,gear/system/**,extensions/**,theme
                         NODE_ENV: '"production"'
                     }
                 }),
-                new webpack.optimize.UglifyJsPlugin({
-                    sourceMap: true,
-                    compress: {
-                        warnings: false
-                    }
-                }),
+                new MinifyPlugin(),
                 new webpack.LoaderOptionsPlugin({
                     minimize: true
                 })
