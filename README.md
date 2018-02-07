@@ -11,7 +11,6 @@ Currently heavily WIP.
 * [Framy CSS](http://www.framycss.org/)
 * [Vue.js](http://vuejs.org/)
 * [axios](https://github.com/axios/axios)
-* [Slim](https://www.slimframework.com)
 * [Twig](http://twig.sensiolabs.org/)
 * ...
 
