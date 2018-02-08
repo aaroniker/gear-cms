@@ -25,6 +25,95 @@
         }
         nav {
             padding: 0 30px;
+            h5 {
+                font-size: 11px;
+                text-transform: uppercase;
+                color: $textColorDark;
+                font-weight: bold;
+                margin: 0 0 20px 0;
+            }
+            & > ul {
+                & > li {
+                    margin: 0 0 16px 0;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    a {
+                        display: block;
+                        position: relative;
+                        padding: 0 0 0 36px;
+                    }
+                    & > a {
+                        font-size: 18px;
+                        line-height: 28px;
+                        color: $textColor;
+                        .icon {
+                            position: absolute;
+                            left: 0;
+                            top: 2px;
+                            width: 24px;
+                            height: 24px;
+                            img,
+                            svg {
+                                display: block;
+                                max-width: 20px;
+                                max-height: 20px;
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                stroke: $textColorDark;
+                                @include translate(-50%, -50%);
+                                * {
+                                    stroke: $textColorDark;
+                                }
+                            }
+                        }
+                    }
+                    &.active {
+                        & > a {
+                            color: #fff;
+                            .icon {
+                                svg {
+                                    stroke: $primary;
+                                    * {
+                                        stroke: $primary;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ul {
+                        padding: 8px 0 4px 0;
+                        li {
+                            margin: 12px 0 0 0;
+                            a {
+                                line-height: 20px;
+                                font-size: 16px;
+                                color: $textColorDark;
+                                &:before {
+                                    content: '';
+                                    width: 8px;
+                                    height: 8px;
+                                    position: absolute;
+                                    border-radius: 50%;
+                                    top: 6px;
+                                    left: 8px;
+                                    display: block;
+                                    background: $textColorDark;
+                                }
+                            }
+                            &.active {
+                                a {
+                                    color: $textColorLight;
+                                    &:before {
+                                        background: $primary;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

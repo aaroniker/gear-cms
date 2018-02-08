@@ -35,7 +35,7 @@
                     <ul>
                     <?php
                         foreach($app->admin->getMenus('main') as $name => $item) {
-                            $active = (strpos($route->fullURL(), $route->getURL($item['url'])) !== false) ? ' class="active"' : '';
+                            $active = ($route->fullURL() == $route->getURL($item['url'])) ? ' class="active"' : '';
                             echo '
                             <li'.$active.'>
                                 <a href="'.$route->getURL($item['url']).'">
@@ -48,7 +48,7 @@
                             if(isset($item['sub'])) {
                                 echo '<ul>';
                                 foreach($item['sub'] as $sub) {
-                                    $activeSub = (strpos($route->fullURL(), $route->getURL($sub['url'])) !== false) ? ' class="active"' : '';
+                                    $activeSub = ($route->fullURL() == $route->getURL($sub['url'])) ? ' class="active"' : '';
                                     echo '
                                     <li'.$activeSub.'>
                                         <a href="'.$route->getURL($sub['url']).'">

@@ -35,10 +35,15 @@ return [
             'url' => 'dashboard',
             'parent' => 'dashboard'
         ],
+        'test2' => [
+            'name' => 'Test2',
+            'url' => 'dashboard/test',
+            'parent' => 'dashboard'
+        ],
         'dashboard2' => [
             'icon' => '~/img/dashboard.svg',
             'name' => 'Dashboard',
-            'url' => 'dashboard',
+            'url' => 'dashboard/1',
             'order' => 2
         ]
     ]
