@@ -14,6 +14,7 @@ class application {
         }
 
         $this->message = new message();
+        $this->admin = new admin($this);
         $this->hook = new hook();
         $this->route = new route($this);
         $this->assets = new assets($this);

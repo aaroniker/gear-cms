@@ -36,7 +36,7 @@ return [
                 }
             }
 
-            if(!$app->auth->isLogged() && $app->admin) {
+            if(!$app->auth->isLogged() && $app->isAdmin) {
                 $app->route->redirect('login');
             }
 

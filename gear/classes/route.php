@@ -32,7 +32,7 @@ class route {
 
         }
 
-        $this->app->admin = $this->admin;
+        $this->app->isAdmin = $this->admin;
 
     }
 
@@ -40,7 +40,7 @@ class route {
 
         if(type::get('url', 'string', false)) {
 
-            $url = self::getUrl();
+            $url = self::getUrlStatic();
 
             $this->controller = isset($url[0 + $offset]) ? $url[0 + $offset] : '';
             $this->method = isset($url[1 + $offset]) ? $url[1 + $offset] : '';
@@ -53,7 +53,7 @@ class route {
 
     }
 
-    public static function getUrl() {
+    public static function getUrlStatic() {
 
         if(type::get('url', 'string', false)) {
             $url = trim(type::get('url'), '/');
@@ -111,7 +111,7 @@ class route {
 
         }
 
-        if(!$loaded && $this->app->admin) {
+        if(!$loaded && $this->app->isAdmin) {
             $this->error404();
         }
 
@@ -134,11 +134,14 @@ class route {
 
     public function redirect($name, $array = []) {
         $this->getAllRoutes();
-        $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        if(isset($this->routes[$name]) && $actual_link != $this->getLink($name, $array) && !ajax::is()) {
+        if(isset($this->routes[$name]) && $this->fullURL() != $this->getLink($name, $array) && !ajax::is()) {
             header('location: '.$this->getLink($name, $array));
             exit();
         }
+    }
+
+    public function fullURL() {
+        return (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
     public function getLink($name, $array = []) {
@@ -152,6 +155,14 @@ class route {
         }
 
         return $url;
+
+    }
+
+    public function getURL($url) {
+
+        $base = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+
+        return $base.'/'.$url;
 
     }
 
