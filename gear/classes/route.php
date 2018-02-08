@@ -13,6 +13,7 @@ class route {
     public $admin = false;
 
     public $url;
+    public $route;
 
     public function __construct($app) {
 
@@ -38,7 +39,7 @@ class route {
 
     public function splitUrl($offset = 0) {
 
-        if(type::get('url', 'string', false)) {
+        if($getUrl = type::get('url', 'string', false)) {
 
             $url = self::getUrlStatic();
 
@@ -48,6 +49,8 @@ class route {
             unset($url[0 + $offset], $url[1 + $offset]);
 
             $this->params = (is_array($url)) ? array_values($url) : false;
+
+            $this->route = str_replace($this->app->config->get('system')['adminURL'].'/', '', $getUrl);
 
         }
 

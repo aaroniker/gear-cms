@@ -13,6 +13,7 @@ class admin {
     public function addMenuItem($menu, $name, $item = []) {
 
         $item['order'] = (isset($item['order'])) ? $item['order'] : $this->order;
+        $item['active'] = (isset($item['active'])) ? $item['active'] : $item['url'];
 
         if(isset($item['parent'])) {
             $this->menus[$menu][$item['parent']]['sub'][$name] = $item;
