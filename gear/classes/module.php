@@ -62,6 +62,19 @@ class module {
 
     }
 
+    public function menu() {
+        if(isset($this->options['menu']) && is_array($this->options['menu'])) {
+            foreach($this->options['menu'] as $name => $item) {
+                if(isset($item['icon'])) {
+                    $item['icon'] = $this->app->assets->getIcon($item['icon']);
+                } else {
+                    $item['icon'] = '';
+                }
+                $this->app->admin->addMenuItem('main', $name, $item);
+            }
+        }
+    }
+
     public function action() {
 
         if(isset($this->options['action'])) {

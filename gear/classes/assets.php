@@ -65,11 +65,21 @@ class assets {
 
     }
 
-    protected function getPath($path, $module = null) {
+    public function getIcon($path) {
+        if(file_exists($this->getPath($path, null, true))) {
+            return file_get_contents($this->getPath($path, null, true));
+        }
+        return '';
+    }
+
+    protected function getPath($path, $module = null, $include = false) {
 
         $module = ($module) ? $module : $this->app->currentModule;
 
         if(strpos($path, '~') !== false && isset($module->path)) {
+            if($include) {
+                return str_replace('~', $module->path, $path);
+            }
             return $this->base.str_replace('~', strstr($module->path, '/gear/'), $path);
         }
 

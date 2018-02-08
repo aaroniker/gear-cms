@@ -25,7 +25,49 @@
 
     <div id="gear">
 
-        <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+        <section id="sidebar">
+            <div class="inner">
+                <a class="logo" href="<?= $app->config->get('system')['url'].'/'.$app->config->get('system')['adminURL']; ?>">
+                    <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+                </a>
+                <nav>
+                    <h5>Menu</h5>
+                    <ul>
+                    <?php
+                        foreach($app->admin->getMenus('main') as $name => $item) {
+                            $active = (strpos($route->fullURL(), $route->getURL($item['url'])) !== false) ? ' class="active"' : '';
+                            echo '
+                            <li'.$active.'>
+                                <a href="'.$route->getURL($item['url']).'">
+                                    <div class="icon">
+                                        '.$item['icon'].'
+                                    </div>
+                                    '.__($item['name']).'
+                                </a>
+                            ';
+                            if(isset($item['sub'])) {
+                                echo '<ul>';
+                                foreach($item['sub'] as $sub) {
+                                    $activeSub = (strpos($route->fullURL(), $route->getURL($sub['url'])) !== false) ? ' class="active"' : '';
+                                    echo '
+                                    <li'.$activeSub.'>
+                                        <a href="'.$route->getURL($sub['url']).'">
+                                            '.__($sub['name']).'
+                                        </a>
+                                    </li>
+                                    ';
+                                }
+                                echo '</ul>';
+                            }
+                            echo '
+                            </li>
+                            ';
+                        }
+                    ?>
+                    </ul>
+                </nav>
+            </div>
+        </section>
 
         {{ messages }}
 
