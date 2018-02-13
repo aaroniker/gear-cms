@@ -1,6 +1,8 @@
 <template>
     <div>
-        {{ test | lang }}
+        <a href="">
+            <vector src="../img/bell.svg"></vector>
+        </a>
     </div>
 </template>
 
@@ -8,7 +10,6 @@
 module.exports = {
     data() {
         return {
-            test: 'messages'
         }
     },
     methods: {

@@ -73,6 +73,9 @@
                                 a {
                                     svg {
                                         opacity: 1;
+                                        width: 20px;
+                                        height: 20px;
+                                        display: block;
                                     }
                                     &:before {
                                         content: '';

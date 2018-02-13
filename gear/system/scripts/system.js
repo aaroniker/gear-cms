@@ -1,9 +1,12 @@
+import vector from './vector.vue'
+
 function install(Vue) {
 
     var gear = window.$gear;
     var lang = window.$lang;
 
     Vue.config.debug = gear.debug;
+    Vue.config.productionTip = gear.debug;
 
     var axios = require('axios');
     var $ = require('jquery');
@@ -52,6 +55,8 @@ function install(Vue) {
     Vue.prototype.$lang = function(name) {
         return getLang(name);
     };
+
+    Vue.component('vector', vector);
 
     new Vue({
         el: '#gear',

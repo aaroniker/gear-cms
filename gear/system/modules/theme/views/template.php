@@ -79,7 +79,6 @@
                         <ul>
                             <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
                             <li v-bind:class="{ bell: true, active: messages.length }">
-                                <a href=""><?= $assets->getIcon('~/img/bell.svg', $module); ?></a>
                                 <messages></messages>
                             </li>
                             <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
