@@ -29,7 +29,7 @@ return [
 
             $app->auth = new auth($app, $this);
 
-            if(!$app->auth->isLogged() && $app->admin) {
+            if(!$app->auth->isLogged() && $app->isAdmin) {
                 $app->route->redirect('login');
             }
 

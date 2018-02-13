@@ -38,7 +38,7 @@ class moduleManager {
                     continue;
                 }
 
-                if(isset($module['admin']) && $module['admin'] && !$this->app->admin) {
+                if(isset($module['admin']) && $module['admin'] && !$this->app->isAdmin) {
 
                 } else {
 
