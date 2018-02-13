@@ -7,11 +7,6 @@ module.exports = [
         },
         output: {
             filename: "./scripts/dist/[name].js"
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue-loader" }
-            ]
         }
     }
 ];

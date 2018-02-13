@@ -25,7 +25,26 @@ glob.sync('{gear/modules/**,gear/installer/**,gear/system/**,extensions/**,theme
                 new webpack.LoaderOptionsPlugin({
                     minimize: true
                 })
-            ]
+            ],
+            module: {
+                loaders: [
+                    {
+                        test: /\.vue$/,
+                        loader: 'vue-loader',
+                        options: {
+                            transformToRequire: {
+                                vector: 'src',
+                                img: 'src',
+                                image: 'xlink:href'
+                            }
+                        }
+                    },
+                    {
+                        test: /\.svg$/,
+                        loader: 'svg-inline-loader'
+                    }
+                ]
+            }
         }, config);
     }));
 });

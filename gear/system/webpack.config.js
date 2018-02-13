@@ -14,11 +14,6 @@ module.exports = [
                 "jquery$": assets + "/jquery/dist/jquery.min.js",
                 "visibilityjs$": assets + "/visibilityjs/lib/visibility.timers.js"
             }
-        },
-        module: {
-            loaders: [
-                { test: /\.vue$/, loader: "vue-loader" }
-            ]
         }
     }
 ];
