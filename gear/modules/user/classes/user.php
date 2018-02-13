@@ -30,7 +30,7 @@ class user {
         return $user;
     }
 
-    public function addUser($email, $hash) {
+    public function addUser($username, $email, $hash) {
 
         $return['error'] = true;
 
@@ -42,6 +42,7 @@ class user {
 
         return $this->app->db->insertInto($this->module->config('table'))->values([
             'email' => $email,
+            'username' => $username,
             'password' => $hash
         ])->execute();
 

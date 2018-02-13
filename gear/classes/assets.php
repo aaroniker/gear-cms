@@ -65,9 +65,9 @@ class assets {
 
     }
 
-    public function getIcon($path) {
-        if(file_exists($this->getPath($path, null, true))) {
-            return file_get_contents($this->getPath($path, null, true));
+    public function getIcon($path, $module = null) {
+        if(file_exists($this->getPath($path, $module, true))) {
+            return file_get_contents($this->getPath($path, $module, true));
         }
         return '';
     }
