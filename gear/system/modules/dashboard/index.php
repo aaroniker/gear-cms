@@ -5,7 +5,6 @@ return [
     'name' => 'system/dashboard',
 
     'run' => function($app) {
-        $app->assets->addJS('~/scripts/dist/test.js', 'vue');
     },
 
     'routes' => [

@@ -5,8 +5,9 @@ return [
     'name' => 'system/theme',
 
     'run' => function($app) {
-        $app->assets->addJS('/gear/assets/vue/dist/vue.js');
         $app->assets->addCSS('~/styles/dist/style.css');
+        $app->assets->addJS('/gear/assets/vue/dist/vue.js');
+        $app->assets->addJS('~/scripts/dist/messages.js', 'afterVue');
     },
 
     'filter' => [

@@ -11,7 +11,7 @@
         <link rel="shortcut icon" href="<?= $assets->get('~/img/favicon.ico', $module); ?>">
     <![endif]-->
 
-    <title><?= $app->view->global('title'); ?></title>
+    <title><?= __($app->view->global('title')); ?></title>
 
     <script>
         var $gear = <?= json_encode((array)$app->config->get('system')); ?>;
@@ -31,13 +31,12 @@
                     <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
                 </a>
                 <nav>
-                    <h5>Menu</h5>
+                    <h5><?= __('Menu'); ?></h5>
                     <ul>
                     <?php
                         foreach($app->admin->getMenus('main') as $name => $item) {
-                            $active = ((bool)preg_match('#^'.str_replace('*', '.*', $item['active']).'$#', $app->route->route)) ? ' class="active"' : '';
                             echo '
-                            <li'.$active.'>
+                            <li'.$item['activeClass'].'>
                                 <a href="'.$route->getURL($item['url']).'">
                                     <div class="icon">
                                         '.$item['icon'].'
@@ -48,9 +47,8 @@
                             if(isset($item['sub'])) {
                                 echo '<ul>';
                                 foreach($item['sub'] as $sub) {
-                                    $activeSub = ((bool)preg_match('#^'.str_replace('*', '.*', $sub['active']).'$#', $app->route->route)) ? ' class="active"' : '';
                                     echo '
-                                    <li'.$activeSub.'>
+                                    <li'.$sub['activeClass'].'>
                                         <a href="'.$route->getURL($sub['url']).'">
                                             '.__($sub['name']).'
                                         </a>
@@ -69,9 +67,35 @@
             </div>
         </section>
 
-        {{ messages }}
+        <section id="content">
 
-        <?= $app->view->get('content') ?>
+            <div class="header">
+                <a href="<?= $app->config->get('system')['url']; ?>" class="link">
+                    <?= $assets->getIcon('~/img/link.svg', $module); ?>
+                    <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
+                </a>
+                <div class="user">
+                    <nav>
+                        <ul>
+                            <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
+                            <li v-bind:class="{ bell: true, active: messages.length }">
+                                <a href=""><?= $assets->getIcon('~/img/bell.svg', $module); ?></a>
+                                <messages></messages>
+                            </li>
+                            <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
+                        </ul>
+                    </nav>
+                    <div class="panel">
+                        <div class="avatar"><?= $app->auth->getCurrentUser()->username[0]; ?></div>
+                    </div>
+                </div>
+            </div>
+
+            {{ messages }}
+
+            <?= $app->view->get('content') ?>
+
+        </section>
 
     </div>
 

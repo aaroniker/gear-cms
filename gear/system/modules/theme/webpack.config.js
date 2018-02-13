@@ -1,7 +1,9 @@
+var assets = __dirname + "/../../../assets";
+
 module.exports = [
     {
         entry: {
-            "test": "./scripts/test.vue"
+            "messages": "./scripts/messages.vue"
         },
         output: {
             filename: "./scripts/dist/[name].js"

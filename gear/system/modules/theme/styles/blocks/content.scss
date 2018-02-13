@@ -1,0 +1,121 @@
+#content {
+    .header {
+        padding: 20px 30px;
+        @include clear-after;
+        .link {
+            margin: 10px 0;
+            display: block;
+            float: left;
+            line-height: 20px;
+            opacity: .7;
+            color: $textColor;
+            @include transition;
+            svg {
+                margin: 0 8px 0 0;
+                max-width: 20px;
+                max-height: 20px;
+                display: inline-block;
+                vertical-align: top;
+                opacity: .4;
+                @include transition;
+                * {
+                    stroke: $textColorLight;
+                }
+                &.fill {
+                    stroke: none;
+                    fill: $textColorLight;
+                }
+            }
+            &:hover {
+                opacity: 1;
+                svg {
+                    opacity: 1;
+                }
+            }
+        }
+        .user {
+            float: right;
+            nav {
+                float: left;
+                margin: 10px 0;
+                ul {
+                    @include clear-after;
+                    li {
+                        float: left;
+                        margin: 0 20px 0 0;
+                        a {
+                            display: block;
+                            position: relative;
+                            svg {
+                                max-width: 20px;
+                                max-height: 20px;
+                                display: block;
+                                opacity: .4;
+                                @include transition;
+                                * {
+                                    stroke: $textColorLight;
+                                }
+                                &.fill {
+                                    stroke: none;
+                                    fill: $textColorLight;
+                                }
+                            }
+                        }
+                        &:hover {
+                            a {
+                                svg {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                        &.bell {
+                            &.active {
+                                a {
+                                    svg {
+                                        opacity: 1;
+                                    }
+                                    &:before {
+                                        content: '';
+                                        z-index: 1;
+                                        width: 8px;
+                                        height: 8px;
+                                        border-radius: 50%;
+                                        background: $error;
+                                        position: absolute;
+                                        top: -2px;
+                                        right: 0;
+                                        border: 1px solid $darker;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .panel {
+                float: right;
+                .avatar {
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    white-space: nowrap;
+                    text-align: center;
+                    color: $textColorDark;
+                    position: relative;
+                    text-transform: uppercase;
+                    &:before {
+                        content: '';
+                        border-radius: 50%;
+                        border: 1px solid $textColorDark;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

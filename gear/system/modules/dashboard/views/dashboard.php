@@ -1,3 +1,3 @@
-dashboard <a href="<?= $route->getLink('login', ['logout']); ?>"><?= __('Logout'); ?></a>
+dashboard
 
 <test-comp></test-comp>
