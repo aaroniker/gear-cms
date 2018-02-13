@@ -78,9 +78,7 @@
                     <nav>
                         <ul>
                             <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
-                            <li v-bind:class="{ bell: true, active: messages.length }">
-                                <messages></messages>
-                            </li>
+                            <messages></messages>
                             <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
                         </ul>
                     </nav>
@@ -89,8 +87,6 @@
                     </div>
                 </div>
             </div>
-
-            {{ messages }}
 
             <?= $app->view->get('content') ?>
 

@@ -10,7 +10,6 @@ function install(Vue) {
 
     var axios = require('axios');
     var $ = require('jquery');
-    var Visibility = require('visibilityjs');
 
     Vue.prototype.$api = axios.create({
         baseURL: gear.url + '/' + gear.adminURL + '/',
@@ -37,17 +36,6 @@ function install(Vue) {
         });
     };
 
-    Vue.prototype.$displayMessages = function() {
-        var self = this;
-        self.$api.post('index.php', {
-            'method': 'getMessages'
-        }).then(function(response) {
-            self.messages = response.data;
-        }).catch(function(error) {
-            self.messages = error;
-        });
-    };
-
     Vue.filter('lang', function(name) {
         return getLang(name);
     });
@@ -56,22 +44,12 @@ function install(Vue) {
         return getLang(name);
     };
 
+    Vue.prototype.$visibility = require('visibilityjs');
+
     Vue.component('vector', vector);
 
     new Vue({
-        el: '#gear',
-        data() {
-            return {
-                messages: []
-            }
-        },
-        created() {
-            var self = this;
-            self.$displayMessages();
-            Visibility.every(1000, function() {
-                self.$displayMessages();
-            });
-        }
+        el: '#gear'
     });
 
 }
