@@ -3,6 +3,11 @@
         <a href="">
             <vector src="../img/bell.svg"></vector>
         </a>
+        <ul class="list">
+            <li v-for="(item, index) in listMessages">
+                {{ item.message }}
+            </li>
+        </ul>
     </li>
 </template>
 
@@ -30,6 +35,11 @@ module.exports = {
             }).catch(function(error) {
                 self.messages = error;
             });
+        }
+    },
+    computed: {
+        listMessages() {
+            return this.messages.slice().reverse();
         }
     }
 }

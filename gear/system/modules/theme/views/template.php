@@ -77,8 +77,8 @@
                 <div class="user">
                     <nav>
                         <ul>
-                            <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
                             <messages></messages>
+                            <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
                             <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
                         </ul>
                     </nav>

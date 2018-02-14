@@ -1,6 +1,6 @@
 #content {
     .header {
-        padding: 20px 30px;
+        padding: 24px 32px;
         @include clear-after;
         .link {
             margin: 10px 0;
@@ -38,10 +38,11 @@
             nav {
                 float: left;
                 margin: 10px 0;
-                ul {
+                & > ul {
                     @include clear-after;
-                    li {
+                    & > li {
                         float: left;
+                        position: relative;
                         margin: 0 20px 0 0;
                         a {
                             display: block;
@@ -90,6 +91,17 @@
                                         border: 1px solid $darker;
                                     }
                                 }
+                            }
+                            .list {
+                                position: absolute;
+                                top: 100%;
+                                right: -40px;
+                                z-index: 2;
+                                width: 340px;
+                                background: $dark;
+                                border-radius: 4px;
+                                box-shadow: 0 4px 12px rgba(#0B1016, .3);
+                                @include translate(0, 20px);
                             }
                         }
                     }
