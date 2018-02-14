@@ -55,7 +55,9 @@ class message {
     }
 
     public function delete($index) {
-        if(isset($_SESSION[$this->sessionName][$index])) {
+        if($index == -1) {
+            unset($_SESSION[$this->sessionName]);
+        } elseif(isset($_SESSION[$this->sessionName][$index])) {
             unset($_SESSION[$this->sessionName][$index]);
         }
     }
