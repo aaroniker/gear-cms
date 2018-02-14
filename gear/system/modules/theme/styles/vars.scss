@@ -105,12 +105,6 @@ $buttonPaddingSmH: 20px;
 $buttonPaddingLgV: 15px;
 $buttonPaddingLgH: 30px;
 
-// Alerts
-
-$alertPadding: 10px;
-$alertRadius: $borderRadius;
-$alertFontWeight: 500;
-
 // Forms
 
 $labelColor: $textColor;
@@ -185,20 +179,6 @@ $paginationActive: $primary;
 $paginationColor: $dark40;
 $paginationColorHover: $dark60;
 $paginationActiveColor: #fff;
-
-// Tables
-
-$tableBottom: $marginBottom;
-$tableThText: $dark80;
-$tableThWeight: normal;
-$tableBorder: $border;
-$tablePaddingV: $inputPaddingV;
-$tablePaddingH: $inputPaddingH;
-$tableLineHeight: $lineHeight;
-$tableHover: $light;
-$tableThBackground: none;
-$tableTdBackground: none;
-$tableStripeBackground: rgba($light, .6);
 
 // Helper
 
