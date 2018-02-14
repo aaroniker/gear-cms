@@ -71,7 +71,7 @@
                         }
                         &.bell {
                             &.active {
-                                a {
+                                & > a {
                                     svg {
                                         opacity: 1;
                                         width: 20px;

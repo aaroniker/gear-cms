@@ -6,6 +6,7 @@
         <ul class="list">
             <li v-for="(item, index) in listMessages">
                 {{ item.message }}
+                <a @click.prevent="remove(item.index)" href="">Remove</a>
             </li>
         </ul>
     </li>
@@ -34,6 +35,13 @@ module.exports = {
                 self.messages = response.data;
             }).catch(function(error) {
                 self.messages = error;
+            });
+        },
+        remove(index) {
+            var self = this;
+            self.$api.post('index.php', {
+                'method': 'deleteMessage',
+                'index': index
             });
         }
     },
