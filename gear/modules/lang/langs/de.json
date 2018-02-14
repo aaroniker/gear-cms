@@ -2,5 +2,10 @@
     "Login": "Anmelden",
     "Stay logged in": "Angemeldet bleiben",
     "Email": "E-Mail",
-    "Password": "Passwort"
+    "Password": "Passwort",
+    "Messages": "Nachrichten",
+    "Incorrect password": "Ungültiges Passwort",
+    "Email not found": "E-Mail Adresse nicht gefunden",
+    "Invalid email": "Ungültige E-Mail Adresse",
+    "No messages": "Keine Nachrichten"
 }
