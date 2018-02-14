@@ -27,7 +27,7 @@ class auth {
     public function login($email, $password, $remember = 0) {
 
         if($block = $this->attempt->isBlocked()) {
-            $this->app->message->add('user blocked for '.$block['minutes'].'min and '.$block['seconds'].'sec', 'error');
+            $this->app->message->add('User blocked for '.$block['minutes'].'m and '.$block['seconds'].'s', 'error');
             return false;
         }
 
@@ -43,16 +43,16 @@ class auth {
 
         if(!$userID) {
             $this->attempt->add();
-            $this->app->message->add('email not found', 'error');
-            return $return;
+            $this->app->message->add('Email not found', 'error');
+            return false;
         }
 
         $user = $this->user->getUser($userID);
 
         if(!$this->passwordRehash($password, $user->password, $userID)) {
             $this->attempt->add();
-            $this->app->message->add('incorrect password', 'error');
-            return $return;
+            $this->app->message->add('Incorrect password', 'error');
+            return false;
         }
 
         $session = $this->addSession($user->id, $remember);
@@ -174,7 +174,7 @@ class auth {
     protected function validateEmail($email) {
         $return['error'] = true;
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $return['message'] = 'invalid email';
+            $return['message'] = 'Invalid email';
             return $return;
         }
         $return['error'] = false;
