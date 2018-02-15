@@ -7,8 +7,7 @@
             display: block;
             float: left;
             line-height: 20px;
-            opacity: .7;
-            color: $textColor;
+            color: $textColorDark;
             @include transition;
             svg {
                 margin: 0 8px 0 0;
@@ -16,18 +15,18 @@
                 max-height: 20px;
                 display: inline-block;
                 vertical-align: top;
-                opacity: .4;
+                opacity: .5;
                 @include transition;
                 * {
-                    stroke: $textColorLight;
+                    stroke: $textColor;
                 }
                 &.fill {
                     stroke: none;
-                    fill: $textColorLight;
+                    fill: $textColor;
                 }
             }
             &:hover {
-                opacity: 1;
+                color: $textColor;
                 svg {
                     opacity: 1;
                 }
@@ -51,14 +50,14 @@
                                 max-width: 20px;
                                 max-height: 20px;
                                 display: block;
-                                opacity: .4;
+                                opacity: .5;
                                 @include transition;
                                 * {
-                                    stroke: $textColorLight;
+                                    stroke: $textColor;
                                 }
                                 &.fill {
                                     stroke: none;
-                                    fill: $textColorLight;
+                                    fill: $textColor;
                                 }
                             }
                         }

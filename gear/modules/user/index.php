@@ -45,6 +45,16 @@ return [
 
     'required' => [
         'auth'
+    ],
+
+    'menu' => [
+        'users' => [
+            'icon' => '~/img/users.svg',
+            'name' => 'Users',
+            'url' => 'users',
+            'active' => 'users(/*)?',
+            'order' => 15
+        ]
     ]
 
 ];
