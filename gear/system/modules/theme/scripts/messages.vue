@@ -59,8 +59,12 @@ module.exports = {
             self.$api.post('index.php', {
                 'method': 'getMessages'
             }).then(function(response) {
+                if(response.data.length > self.messages.length) {
+                    self.open = true;
+                }
                 self.messages = response.data;
             }).catch(function(error) {
+                self.open = true;
                 self.messages = error;
             });
         },

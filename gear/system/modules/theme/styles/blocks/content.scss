@@ -135,6 +135,9 @@
                                             color: #fff;
                                             font-size: 14px;
                                             text-shadow: 0 1px 1px rgba(#000, .12);
+                                            &:last-child {
+                                                margin-bottom: 0;
+                                            }
                                             .icon {
                                                 position: absolute;
                                                 left: 12px;
