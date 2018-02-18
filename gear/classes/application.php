@@ -13,6 +13,15 @@ class application {
             error_reporting(E_ALL);
         }
 
+        $this->lang = new lang($this);
+
+        $app = $this;
+
+        function __($name) {
+            global $app;
+            return $app->lang->get($name);
+        }
+
         $this->message = new message();
         $this->admin = new admin($this);
         $this->hook = new hook();
@@ -21,6 +30,7 @@ class application {
         $this->view = new viewManager($this);
         $this->controller = new controller($this);
         $this->modules = new moduleManager($this);
+
 
     }
 

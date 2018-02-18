@@ -16,6 +16,10 @@ class dir {
         return self::base('gear'.DIRECTORY_SEPARATOR.$file);
     }
 
+    public static function language($file = '') {
+        return self::gear('language'.DIRECTORY_SEPARATOR.$file);
+    }
+
     public static function classes($file = '') {
         return self::gear('classes'.DIRECTORY_SEPARATOR.$file);
     }

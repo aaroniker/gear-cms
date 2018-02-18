@@ -3,27 +3,25 @@
 class lang {
 
     protected $app;
-    protected $module;
 
     protected $lang;
     protected $langArray = [];
     protected $allLangs = [];
 
-    public function __construct($app, $module) {
+    public function __construct($app) {
 
         $this->app = $app;
-        $this->module = $module;
 
-        $this->setLang($this->module->config('default'));
+        $this->setLang($this->app->config->get('system')['lang']);
 
         return $this;
 
     }
 
     public function setLang($lang) {
-        if(file_exists($this->module->path.'/'.$this->module->config('dir').'/'.$lang.'.json')) {
+        if(file_exists(dir::language($lang.'.json'))) {
             $this->lang = $lang;
-            $this->loadLang($this->module->path.'/'.$this->module->config('dir').'/'.$lang.'.json');
+            $this->loadLang(dir::language($lang.'.json'));
         }
     }
 
@@ -58,13 +56,13 @@ class lang {
 
         if(!count($this->allLangs)) {
 
-            $langs = array_diff(scandir($this->module->path.'/'.$this->module->config('dir')), ['.', '..']);
+            $langs = array_diff(scandir(dir::language()), ['.', '..']);
 
             foreach($langs as $lang) {
 
                 $lang = str_replace('.json', '', $lang);
 
-                $file = file_get_contents($this->module->path.'/'.$this->module->config('dir').'/'.$lang.'.json');
+                $file = file_get_contents(dir::language($lang.'.json'));
                 $file = preg_replace("/#\s*([a-zA-Z ]*)/", "", $file);
                 $array = json_decode($file, true);
 
