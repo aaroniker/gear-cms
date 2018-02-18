@@ -83,10 +83,15 @@ class moduleManager {
 
                 $this->app->currentModule = $module;
 
+                $this->hook->do_action('moduleManager.beforeAutoload', $module);
                 $module->autoload();
+                $this->hook->do_action('moduleManager.beforeAction', $module);
                 $module->action();
+                $this->hook->do_action('moduleManager.beforeFilter', $module);
                 $module->filter();
+                $this->hook->do_action('moduleManager.beforeMenu', $module);
                 $module->menu();
+                $this->hook->do_action('moduleManager.beforeRun', $module);
                 $module->run();
 
                 $this->app->currentModule = null;
