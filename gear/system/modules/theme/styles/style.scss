@@ -30,10 +30,13 @@
 @import 'blocks/sidebar';
 @import 'blocks/content';
 
+body {
+    background: $darker;
+}
+
 #gear {
     width: 100%;
     min-height: 100vh;
-    background: $darker;
     position: relative;
     padding: 0 0 0 300px;
 }
