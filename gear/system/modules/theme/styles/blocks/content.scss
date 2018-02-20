@@ -117,8 +117,12 @@
                             fill: $textColor;
                         }
                     }
+                    &:hover {
+                        svg {
+                            opacity: 1;
+                        }
+                    }
                 }
-                &:hover,
                 &.open {
                     & > a {
                         svg {
