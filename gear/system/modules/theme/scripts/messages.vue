@@ -1,5 +1,5 @@
 <template>
-    <li v-bind:class="{ bell: true, active: messages.length, open: open }" ref="messageList">
+    <div v-bind:class="{ messages: true, active: messages.length, open: open }" ref="messageList">
         <a @click.prevent="toggle()" href="">
             <vector src="../img/bell.svg"></vector>
         </a>
@@ -24,7 +24,7 @@
                 {{ 'No messages' | lang }}
             </div>
         </div>
-    </li>
+    </div>
 </template>
 
 <script>

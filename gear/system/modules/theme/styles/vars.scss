@@ -18,7 +18,7 @@ $dark25: mix(#fff, $darkBlue, 75%);
 
 $shadow: adjust-color($dark, $blue: 20);
 
-$border: #D1D7E4;
+$border: #2A3649;
 $line: #E8EBF4;
 $light: #F5F6FA;
 
@@ -112,7 +112,7 @@ $labelWeight: normal;
 $labelBottom: 5px;
 
 $formDisabled: $light;
-$formBorder: #253042;
+$formBorder: $border;
 $formBorderFocus: #374966;
 $formFocus: $secondary;
 $formFocusColor: #fff;

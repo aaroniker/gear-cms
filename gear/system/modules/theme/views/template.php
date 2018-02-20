@@ -77,7 +77,6 @@
                 <div class="user">
                     <nav>
                         <ul>
-                            <messages></messages>
                             <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
                             <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
                         </ul>
@@ -85,6 +84,7 @@
                     <div class="panel">
                         <div class="avatar"><?= $app->auth->getCurrentUser()->username[0]; ?></div>
                     </div>
+                    <messages></messages>
                 </div>
             </div>
 
