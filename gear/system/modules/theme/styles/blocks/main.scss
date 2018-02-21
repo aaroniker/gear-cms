@@ -1,7 +1,17 @@
 #main {
     .header {
-        padding: 24px 40px;
+        padding: 20px 40px;
+        position: relative;
         @include clear-after;
+        &:before {
+            content: '';
+            border-bottom: 1px solid $borderDark;
+            bottom: 0;
+            left: 40px;
+            right: 40px;
+            position: absolute;
+            display: block;
+        }
         .link {
             margin: 10px 0;
             display: block;
@@ -98,19 +108,9 @@
         }
     }
     .toolbar {
-        position: relative;
         padding: 24px 40px 0 40px;
         @include flexbox;
         @include align-items(center);
-        &:before {
-            content: '';
-            border-top: 1px solid $borderDark;
-            top: 0;
-            left: 40px;
-            right: 40px;
-            position: absolute;
-            display: block;
-        }
         .headline {
             float: left;
             h1 {

@@ -109,6 +109,16 @@ class module {
 
     }
 
+    public function lang() {
+
+        $currentFile = $this->path.'/language/'.$this->app->lang->current().'.json';
+
+        if(file_exists($currentFile)) {
+            $this->app->lang->loadLang($currentFile);
+        }
+
+    }
+
     protected function getNamePriority($name) {
         if(strpos($name, '-') !== false) {
             $name = explode('-', $name);

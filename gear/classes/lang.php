@@ -25,6 +25,10 @@ class lang {
         }
     }
 
+    public function current() {
+        return $this->lang;
+    }
+
     public function get($name) {
 
         if(isset($this->langArray[$name])) {
@@ -46,9 +50,7 @@ class lang {
         $file = preg_replace("/#\s*([a-zA-Z ]*)/", "", $file);
         $array = json_decode($file, true);
 
-        $this->langArray = array_merge((array)$array, $this->langArray);
-
-        return $this->langArray = $array;
+        return $this->langArray = array_merge((array)$array, $this->langArray);
 
     }
 

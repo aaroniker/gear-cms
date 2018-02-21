@@ -84,6 +84,7 @@ class moduleManager {
                 $this->app->currentModule = $module;
 
                 $module->autoload();
+                $module->lang();
                 $module->action();
                 $module->filter();
                 $module->menu();
