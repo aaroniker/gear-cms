@@ -36,6 +36,21 @@ glob.sync('{gear/modules/**,gear/installer/**,gear/system/**,extensions/**,theme
                                 vector: 'src',
                                 img: 'src',
                                 image: 'xlink:href'
+                            },
+                            loaders: {
+                                scss: [
+                                    'vue-style-loader',
+                                    'css-loader',
+                                    'sass-loader',
+                                    {
+                                        loader: 'sass-resources-loader',
+                                        options: {
+                                            resources: [
+                                                path.resolve(__dirname, 'gear/system/modules/theme/styles/preload.scss'),
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         }
                     },
