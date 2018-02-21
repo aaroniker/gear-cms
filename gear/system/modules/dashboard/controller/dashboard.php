@@ -7,7 +7,8 @@ class dashboardController {
         return [
             'view' => [
                 'set' => [
-                    'title' => 'Dashboard'
+                    'title' => 'Dashboard',
+                    'description' => 'A simple description'
                 ],
                 'file' => 'views/dashboard'
             ]

@@ -67,7 +67,7 @@
             </div>
         </section>
 
-        <section id="content">
+        <section id="main">
 
             <div class="header">
                 <a href="<?= $app->config->get('system')['url']; ?>" class="link">
@@ -88,7 +88,20 @@
                 </div>
             </div>
 
-            <?= $app->view->get('content') ?>
+            <div class="toolbar">
+                <div class="headline">
+                    <h1><?= __($app->view->global('title')); ?></h1>
+                    <?= ($app->view->global('description')) ? ('<h5>'.__($app->view->global('description')).'</h5>') : ''; ?>
+                </div>
+                <div class="filler"></div>
+                <div class="text2">
+                    Btn's
+                </div>
+            </div>
+
+            <div class="content">
+                <?= $app->view->get('content') ?>
+            </div>
 
         </section>
 

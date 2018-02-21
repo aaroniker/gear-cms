@@ -40,7 +40,8 @@ $fontSize: 16px;
 $lineHeight: 26px;
 $textColor: #64738D;
 $textColorDark: #3B4658;
-$textColorLight: #C6D2E5;
+$textColorLight: #AABAD2;
+$textColorLighter: #E1E9F4;
 
 $linkColor: $primary;
 $linkDecoration: none;
@@ -58,7 +59,7 @@ $marginBottom: 20px;
 $headingsFontFamily: inherit;
 $headingsLineHeight: 1.2;
 
-$headingsH1Color: $dark80;
+$headingsH1Color: $textColorLight;
 $headingsH2Color: $dark80;
 $headingsH3Color: $dark80;
 $headingsH4Color: $dark80;
@@ -68,8 +69,8 @@ $headingsH2Weight: normal;
 $headingsH3Weight: bold;
 $headingsH4Weight: bold;
 
-$headingsH1Size: 36px;
-$headingsH2Size: 32px;
+$headingsH1Size: 28px;
+$headingsH2Size: 28px;
 $headingsH3Size: 24px;
 $headingsH4Size: 21px;
 
