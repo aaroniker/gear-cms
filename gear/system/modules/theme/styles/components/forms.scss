@@ -8,8 +8,9 @@
     padding: $inputPaddingV $inputPaddingH;
     color: $inputText;
     border-radius: $inputRadius;
-    @include transition;
+    @include transition(border .3s ease, color .3s ease);
     @include placeholder($inputTextPlaceholder);
+    position: relative;
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
@@ -36,10 +37,12 @@
             background: none;
         }
     }
-}
-
-input::placeholder {
-    color: $inputTextPlaceholder;
+    @if $formOverrideAutofillWebkit == true {
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px $inputBackground inset !important;
+            -webkit-text-fill-color: $inputText !important;
+        }
+    }
 }
 
 .form-file-field {
