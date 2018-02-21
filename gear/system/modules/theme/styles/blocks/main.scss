@@ -1,6 +1,6 @@
 #main {
     .header {
-        padding: 24px 32px;
+        padding: 24px 40px;
         @include clear-after;
         .link {
             margin: 10px 0;
@@ -98,17 +98,25 @@
         }
     }
     .toolbar {
-        padding: 0 32px 24px 32px;
+        position: relative;
+        padding: 24px 40px 0 40px;
         @include flexbox;
         @include align-items(center);
+        &:before {
+            content: '';
+            border-top: 1px solid $borderDark;
+            top: 0;
+            left: 40px;
+            right: 40px;
+            position: absolute;
+            display: block;
+        }
         .headline {
             float: left;
             h1 {
                 margin: 0;
-                line-height: 36px;
             }
             h5 {
-                line-height: 20px;
                 font-size: $fontSize;
                 color: $textColorDark;
                 font-weight: 500;
@@ -123,6 +131,6 @@
         }
     }
     .content {
-        padding: 0 32px 24px 32px;
+        padding: 24px 40px;
     }
 }

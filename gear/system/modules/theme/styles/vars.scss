@@ -7,7 +7,7 @@ $secondary: #64A7FF;
 $darkLighter: #29354A;
 $darkLight: #1C2433;
 $dark: #171E2A;
-$darker: #131A24;
+$darker: #111821;
 $darkBlue: adjust-color($dark, $blue: 8);
 
 $dark90: mix(#fff, $darkBlue, 10%);
@@ -19,6 +19,7 @@ $dark25: mix(#fff, $darkBlue, 75%);
 $shadow: adjust-color($dark, $blue: 20);
 
 $border: #2A3649;
+$borderDark: #1B2432;
 $line: #E8EBF4;
 $light: #F5F6FA;
 
@@ -33,15 +34,14 @@ $iconFontImport: true;
 $iconFontUrl: '../fonts/icons.css';
 
 $fontImport: true;
-$fontUrl: 'https://rsms.me/inter/inter-ui.css';
-$fontFamily: 'Inter UI', sans-serif;
+$fontUrl: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700';
+$fontFamily: 'Source Sans Pro', sans-serif;
 
 $fontSize: 16px;
 $lineHeight: 26px;
 $textColor: #64738D;
 $textColorDark: #3B4658;
-$textColorLight: #AABAD2;
-$textColorLighter: #E1E9F4;
+$textColorLight: #E1E9F4;
 
 $linkColor: $primary;
 $linkDecoration: none;
@@ -57,21 +57,21 @@ $marginBottom: 20px;
 // Typography
 
 $headingsFontFamily: inherit;
-$headingsLineHeight: 1.2;
+$headingsLineHeight: 1.28;
 
 $headingsH1Color: $textColorLight;
 $headingsH2Color: $dark80;
 $headingsH3Color: $dark80;
 $headingsH4Color: $dark80;
 
-$headingsH1Weight: normal;
+$headingsH1Weight: 400;
 $headingsH2Weight: normal;
 $headingsH3Weight: bold;
 $headingsH4Weight: bold;
 
-$headingsH1Size: 28px;
-$headingsH2Size: 28px;
-$headingsH3Size: 24px;
+$headingsH1Size: 24px;
+$headingsH2Size: 24px;
+$headingsH3Size: 21px;
 $headingsH4Size: 21px;
 
 // Grid

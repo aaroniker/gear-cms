@@ -77,7 +77,6 @@
                 <div class="user">
                     <nav>
                         <ul>
-                            <li><a href=""><?= $assets->getIcon('~/img/settings.svg', $module); ?></a></li>
                             <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
                         </ul>
                     </nav>
@@ -95,7 +94,7 @@
                 </div>
                 <div class="filler"></div>
                 <div class="text2">
-                    Btn's
+                    <a href="" class="btn sm">Button</a>
                 </div>
             </div>
 

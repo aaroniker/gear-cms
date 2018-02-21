@@ -4,7 +4,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 300px;
+    width: 280px;
     background: $dark;
     box-shadow: 0 4px 12px rgba(#0B1016, .3);
     .inner {
@@ -70,7 +70,7 @@
                     }
                     &.active {
                         & > a {
-                            color: $textColorLighter;
+                            color: $textColorLight;
                             .icon {
                                 svg {
                                     stroke: $primary;
@@ -103,7 +103,7 @@
                             }
                             &.active {
                                 a {
-                                    color: $textColorLighter;
+                                    color: $textColorLight;
                                     &:before {
                                         background: $primary;
                                     }
