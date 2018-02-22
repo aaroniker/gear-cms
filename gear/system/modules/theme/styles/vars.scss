@@ -77,7 +77,7 @@ $headingsH4Size: 21px;
 // Grid
 
 $columns: 12;
-$gapWidth: 30px;
+$gapWidth: 32px;
 
 $breakpointXs: 480px;
 $breakpointSm: 768px;
@@ -99,18 +99,18 @@ $buttonClickTransform: scale(.99);
 
 $buttonFontWeight: 500;
 
-$buttonPaddingV: 10px;
-$buttonPaddingH: 25px;
-$buttonPaddingSmV: 5px;
+$buttonPaddingV: 8px;
+$buttonPaddingH: 24px;
+$buttonPaddingSmV: 4px;
 $buttonPaddingSmH: 20px;
-$buttonPaddingLgV: 15px;
-$buttonPaddingLgH: 30px;
+$buttonPaddingLgV: 12px;
+$buttonPaddingLgH: 28px;
 
 // Forms
 
 $labelColor: $textColor;
 $labelWeight: normal;
-$labelBottom: 5px;
+$labelBottom: 4px;
 
 $formDisabled: $light;
 $formBorder: $border;
@@ -130,10 +130,10 @@ $inputFileColorActive: $dark60;
 $inputFileButtonBackground: $border;
 $inputFileButtonColor: #fff;
 
-$inputPaddingV: 10px;
-$inputPaddingH: 15px;
+$inputPaddingV: 8px;
+$inputPaddingH: 12px;
 
-$switchSize: 22px;
+$switchSize: 20px;
 $switchBorder: $formBorder;
 $switchBorderActive: $primary;
 $switchActive: $secondary;
@@ -142,7 +142,7 @@ $switchDot: #fff;
 $switchDisabled: $formDisabled;
 $switchRadius: $switchSize / 2;
 
-$checkboxSize: 22px;
+$checkboxSize: 20px;
 $checkboxBorder: $formBorder;
 $checkboxBorderActive: $primary;
 $checkboxActive: $secondary;
@@ -151,7 +151,7 @@ $checkboxArrow: #fff;
 $checkboxDisabled: $formDisabled;
 $checkboxRadius: $inputRadius;
 
-$radioSize: 22px;
+$radioSize: 20px;
 $radioBorder: $formBorder;
 $radioBorderActive: $primary;
 $radioActive: $secondary;
@@ -184,8 +184,8 @@ $paginationActiveColor: #fff;
 
 // Helper
 
-$spaces: (5, 10, 15, 20, 25, 30, 35);
+$spaces: (4, 8, 12, 16, 20, 24, 28, 32);
 
 $wrapLinesBorder: $border;
-$wrapLinesGutter: 30px;
+$wrapLinesGutter: 28px;
 $wrapLinesMinWidth: 80px;
