@@ -8,9 +8,8 @@
     padding: $inputPaddingV $inputPaddingH;
     color: $inputText;
     border-radius: $inputRadius;
-    @include transition(border .3s ease, color .3s ease);
+    @include transition;
     @include placeholder($inputTextPlaceholder);
-    position: relative;
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
