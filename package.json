@@ -2,17 +2,17 @@
     "name": "gear-cms",
     "private": true,
     "scripts": {
-        "install": "bower install && webpack --progress --hide-modules && gulp",
-        "build": "webpack --progress --hide-modules"
+        "install": "bower install && webpack --mode production && gulp",
+        "dev": "webpack --mode development --watch",
+        "build": "webpack --mode production"
     },
     "devDependencies": {
-        "babel-core": "^6.0.0",
-        "babel-loader": "^6.0.0",
-        "babel-minify-webpack-plugin": "^0.2.0",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.5.1",
         "bower": "^1.7.6",
         "cross-env": "^3.0.0",
-        "css-loader": "^0.28.8",
+        "css-loader": "^0.28.11",
         "file-loader": "^1.1.6",
         "glob": "^7.1.2",
         "gulp": "^3.9.0",
@@ -25,9 +25,10 @@
         "sass-resources-loader": "^1.3.1",
         "svg-inline-loader": "^0.8.0",
         "vue-html-loader": "^1.2.4",
-        "vue-loader": "^13.7.0",
+        "vue-loader": "^14.2.2",
         "vue-style-loader": "^3.0.3",
-        "vue-template-compiler": "^2.0.0",
-        "webpack": "^3.10.0"
+        "vue-template-compiler": "^2.5.16",
+        "webpack": "^4.2.0",
+        "webpack-cli": "^2.0.13"
     }
 }
