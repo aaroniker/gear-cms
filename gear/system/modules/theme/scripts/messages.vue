@@ -142,10 +142,10 @@ Vue.component('messages', function(resolve) {
         right: -10px;
         z-index: 2;
         width: 360px;
-        background: $darkLight;
+        background: #fff;
         border-radius: 4px;
         padding: 12px;
-        box-shadow: 0 4px 12px rgba(#0B1016, .3);
+        box-shadow: 0 4px 12px rgba($dark, .08);
         opacity: 0;
         visibility: hidden;
         @include translate(0, 4px);
@@ -157,7 +157,7 @@ Vue.component('messages', function(resolve) {
         }
         .noMessages {
             text-align: center;
-            color: $textColorDark;
+            color: $textColorLight;
         }
         ul {
             margin: 0;
@@ -244,7 +244,7 @@ Vue.component('messages', function(resolve) {
                     width: 50%;
                     text-align: center;
                     cursor: pointer;
-                    color: $textColorDark;
+                    color: $textColorLight;
                     @include transition;
                     &:hover {
                         color: $textColor;
@@ -260,8 +260,8 @@ Vue.component('messages', function(resolve) {
                         border-radius: 10px;
                         padding: 0 8px;
                         margin: 3px 4px 3px 0;
-                        background: $darkLighter;
-                        color: $textColorLight;
+                        background: $gray;
+                        color: $textColor;
                     }
                 }
                 .remove {
@@ -285,7 +285,7 @@ Vue.component('messages', function(resolve) {
                 position: absolute;
                 top: -2px;
                 right: 0;
-                border: 1px solid $darker;
+                border: 1px solid $gray;
             }
         }
     }

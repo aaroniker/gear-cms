@@ -5,8 +5,7 @@
     top: 0;
     bottom: 0;
     width: 280px;
-    background: $dark;
-    box-shadow: 0 4px 12px rgba(#0B1016, .3);
+    @include linear-gradient(180deg, $light, $snow);
     .inner {
         position: absolute;
         top: 0;
@@ -17,21 +16,14 @@
         overflow: auto;
         .logo {
             display: table;
-            margin: 40px auto;
+            margin: 52px auto;
             img {
                 display: block;
-                width: 56px;
+                width: 60px;
             }
         }
         nav {
-            padding: 0 30px;
-            h5 {
-                font-size: 11px;
-                text-transform: uppercase;
-                color: $textColorDark;
-                font-weight: bold;
-                margin: 0 0 20px 0;
-            }
+            padding: 0 40px;
             & > ul {
                 & > li {
                     margin: 0 0 20px 0;
@@ -46,7 +38,7 @@
                     & > a {
                         font-size: 18px;
                         line-height: 28px;
-                        color: $textColor;
+                        color: $textColorLight;
                         .icon {
                             position: absolute;
                             left: 0;
@@ -55,27 +47,29 @@
                             height: 24px;
                             svg {
                                 display: block;
-                                max-width: 22px;
-                                max-height: 22px;
+                                max-width: 20px;
+                                max-height: 20px;
                                 position: absolute;
                                 left: 50%;
                                 top: 50%;
-                                stroke: $textColorDark;
+                                opacity: .8;
+                                stroke: $textColorLight;
                                 @include translate(-50%, -50%);
                                 * {
-                                    stroke: $textColorDark;
+                                    stroke: $textColorLight;
                                 }
                             }
                         }
                     }
                     &.active {
                         & > a {
-                            color: $textColorLight;
+                            color: $dark;
                             .icon {
                                 svg {
-                                    stroke: $primary;
+                                    stroke: $dark;
+                                    opacity: 1;
                                     * {
-                                        stroke: $primary;
+                                        stroke: $dark;
                                     }
                                 }
                             }
@@ -88,7 +82,7 @@
                             a {
                                 line-height: 20px;
                                 font-size: 16px;
-                                color: $textColorDark;
+                                color: $textColor;
                                 &:before {
                                     content: '';
                                     width: 8px;
@@ -98,12 +92,12 @@
                                     top: 6px;
                                     left: 8px;
                                     display: block;
-                                    background: $textColorDark;
+                                    background: $textColor;
                                 }
                             }
                             &.active {
                                 a {
-                                    color: $textColorLight;
+                                    color: $textColor;
                                     &:before {
                                         background: $primary;
                                     }

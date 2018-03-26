@@ -31,7 +31,6 @@
                     <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
                 </a>
                 <nav>
-                    <h5><?= __('Menu'); ?></h5>
                     <ul>
                     <?php
                         foreach($app->admin->getMenus('main') as $name => $item) {
@@ -74,6 +73,7 @@
                     <?= $assets->getIcon('~/img/link.svg', $module); ?>
                     <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
                 </a>
+                <messages></messages>
                 <div class="user">
                     <nav>
                         <ul>
@@ -83,15 +83,11 @@
                     <div class="panel">
                         <div class="avatar"><?= $app->auth->getCurrentUser()->username[0]; ?></div>
                     </div>
-                    <messages></messages>
                 </div>
             </div>
 
             <div class="toolbar">
-                <div class="headline">
-                    <h1><?= __($app->view->global('title')); ?></h1>
-                    <?= ($app->view->global('description')) ? ('<h5>'.__($app->view->global('description')).'</h5>') : ''; ?>
-                </div>
+                <h1><?= __($app->view->global('title')); ?></h1>
                 <div class="filler"></div>
                 <div class="text2">
                     <a href="" class="btn">Button</a>

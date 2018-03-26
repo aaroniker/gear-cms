@@ -5,7 +5,7 @@
         @include clear-after;
         &:before {
             content: '';
-            border-bottom: 1px solid $borderDark;
+            border-bottom: 1px solid $border;
             bottom: 0;
             left: 40px;
             right: 40px;
@@ -17,7 +17,7 @@
             display: block;
             float: left;
             line-height: 20px;
-            color: $textColorDark;
+            color: $textColor;
             @include transition;
             svg {
                 margin: 0 8px 0 0;
@@ -89,7 +89,7 @@
                     line-height: 40px;
                     white-space: nowrap;
                     text-align: center;
-                    color: $textColorDark;
+                    color: $textColor;
                     position: relative;
                     text-transform: uppercase;
                     &:before {
@@ -118,7 +118,7 @@
             }
             h5 {
                 font-size: $fontSize;
-                color: $textColorDark;
+                color: $textColor;
                 font-weight: 500;
                 margin: 4px 0 0 0;
             }
