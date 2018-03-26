@@ -102,39 +102,31 @@ Vue.component('messages', function(resolve) {
 
 <style lang="scss">
 .messages {
-    float: left;
-    margin: 10px 0 10px 20px;
-    padding-left: 20px;
-    border-left: 1px solid $border;
-    position: relative;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    @include translate(-50%, -50%);
     & > a {
         display: block;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: $light;
         svg {
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             display: block;
-            opacity: .5;
+            position: absolute;
+            left: 50%;
+            top: 50%;
             @include transition;
-            * {
-                stroke: $textColor;
-            }
-            &.fill {
-                stroke: none;
+            @include translate(-50%, -50%);
+            .fill {
                 fill: $textColor;
-            }
-        }
-        &:hover {
-            svg {
-                opacity: 1;
             }
         }
     }
     &.open {
-        & > a {
-            svg {
-                opacity: 1;
-            }
-        }
     }
     .list {
         position: absolute;
@@ -145,9 +137,9 @@ Vue.component('messages', function(resolve) {
         background: #fff;
         border-radius: 4px;
         padding: 12px;
-        box-shadow: 0 4px 12px rgba($dark, .08);
         opacity: 0;
         visibility: hidden;
+        box-shadow: 0 4px 12px -4px rgba($dark, .1);
         @include translate(0, 4px);
         @include transition;
         &.open {
@@ -260,7 +252,7 @@ Vue.component('messages', function(resolve) {
                         border-radius: 10px;
                         padding: 0 8px;
                         margin: 3px 4px 3px 0;
-                        background: $gray;
+                        background: $light;
                         color: $textColor;
                     }
                 }
@@ -278,14 +270,14 @@ Vue.component('messages', function(resolve) {
             &:before {
                 content: '';
                 z-index: 1;
-                width: 8px;
-                height: 8px;
+                width: 12px;
+                height: 12px;
                 border-radius: 50%;
-                background: $primary;
+                background: $error;
                 position: absolute;
-                top: -2px;
+                top: 0;
                 right: 0;
-                border: 1px solid $gray;
+                border: 2px solid $snow;
             }
         }
     }

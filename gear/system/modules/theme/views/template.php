@@ -70,7 +70,7 @@
 
             <div class="header">
                 <a href="<?= $app->config->get('system')['url']; ?>" class="link">
-                    <?= $assets->getIcon('~/img/link.svg', $module); ?>
+                    <div><?= $assets->getIcon('~/img/link.svg', $module); ?></div>
                     <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
                 </a>
                 <messages></messages>

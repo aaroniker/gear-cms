@@ -1,80 +1,69 @@
 #main {
+    padding: 0 32px;
     .header {
-        padding: 20px 40px;
+        padding: 20px 0;
         position: relative;
         @include clear-after;
-        &:before {
-            content: '';
-            border-bottom: 1px solid $border;
-            bottom: 0;
-            left: 40px;
-            right: 40px;
-            position: absolute;
-            display: block;
-        }
         .link {
-            margin: 10px 0;
             display: block;
             float: left;
-            line-height: 20px;
-            color: $textColor;
+            color: $textColorLight;
             @include transition;
-            svg {
-                margin: 0 8px 0 0;
-                max-width: 20px;
-                max-height: 20px;
-                display: inline-block;
-                vertical-align: top;
-                opacity: .5;
-                @include transition;
-                * {
-                    stroke: $textColor;
-                }
-                &.fill {
-                    stroke: none;
-                    fill: $textColor;
+            @include flexbox;
+            div {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: $light;
+                position: relative;
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    @include transition;
+                    @include translate(-50%, -50%);
+                    .fill {
+                        fill: $textColor;
+                    }
                 }
             }
-            &:hover {
-                color: $textColor;
-                svg {
-                    opacity: 1;
-                }
+            span {
+                display: block;
+                line-height: 20px;
+                margin: 12px 0 12px 12px;
             }
         }
         .user {
             float: right;
             nav {
                 float: left;
-                margin: 10px 0;
                 & > ul {
                     @include clear-after;
                     & > li {
                         float: left;
                         position: relative;
-                        margin: 0 20px 0 0;
+                        margin: 0 12px 0 0;
                         & > a {
                             display: block;
+                            width: 44px;
+                            height: 44px;
+                            border-radius: 50%;
+                            background: $light;
                             position: relative;
                             svg {
-                                max-width: 20px;
-                                max-height: 20px;
+                                width: 14px;
+                                height: 14px;
                                 display: block;
-                                opacity: .5;
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
                                 @include transition;
-                                * {
-                                    stroke: $textColor;
-                                }
-                                &.fill {
-                                    stroke: none;
+                                @include translate(-50%, -50%);
+                                .fill {
                                     fill: $textColor;
-                                }
-                            }
-                        }
-                        &:hover {
-                            & > a {
-                                svg {
-                                    opacity: 1;
                                 }
                             }
                         }
@@ -84,44 +73,30 @@
             .panel {
                 float: left;
                 .avatar {
-                    width: 40px;
-                    height: 40px;
-                    line-height: 40px;
+                    width: 44px;
+                    height: 44px;
+                    line-height: 44px;
                     white-space: nowrap;
                     text-align: center;
                     color: $textColor;
-                    position: relative;
+                    font-weight: bold;
+                    font-size: 14px;
                     text-transform: uppercase;
-                    &:before {
-                        content: '';
-                        border-radius: 50%;
-                        border: 1px solid $border;
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        display: block;
-                    }
+                    border-radius: 50%;
+                    background: $light;
                 }
             }
         }
     }
     .toolbar {
-        padding: 24px 40px 0 40px;
+        padding: 16px 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px -4px rgba($dark, .1);
         @include flexbox;
         @include align-items(center);
-        .headline {
-            float: left;
-            h1 {
-                margin: 0;
-            }
-            h5 {
-                font-size: $fontSize;
-                color: $textColor;
-                font-weight: 500;
-                margin: 4px 0 0 0;
-            }
+        h1 {
+            margin: 0;
         }
         .text {
             justify-content: flex-end;
@@ -131,6 +106,6 @@
         }
     }
     .content {
-        padding: 24px 40px;
+        padding: 24px 0;
     }
 }
