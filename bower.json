@@ -2,10 +2,10 @@
     "name": "gear-cms",
     "private": true,
     "dependencies": {
-        "vue": "~2.5.13",
+        "vue": "~2.5.16",
         "axios": "~0.17.1",
-        "lodash": "~4.17.4",
-        "visibilityjs": "~1.2.6",
+        "lodash": "~4.17.5",
+        "visibilityjs": "~1.2.7",
         "jquery": "~3.3.1"
     }
 }
