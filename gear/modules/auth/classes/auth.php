@@ -49,13 +49,13 @@ class auth {
 
         $user = $this->user->getUser($userID);
 
-        if(!$this->passwordRehash($password, $user->password, $userID)) {
+        if(!$this->passwordRehash($password, $user['password'], $userID)) {
             $this->attempt->add();
             $this->app->message->add('Incorrect password', 'error');
             return false;
         }
 
-        $session = $this->addSession($user->id, $remember);
+        $session = $this->addSession($user['id'], $remember);
 
         $this->app->hook->do_action('auth.login', $this->app, $this);
 
@@ -90,14 +90,14 @@ class auth {
 
         $data['cookie'] = sha1($data['hash'].$this->module->config('session')['key']);
 
-        $session = $this->app->db->insertInto($this->module->config('session')['table'])->values([
+        $session = $this->app->db->insert($this->module->config('session')['table'], [
             'userID' => $userID,
             'hash' => $data['hash'],
             'expire' => date("Y-m-d H:i:s", $data['expire']),
             'ip' => self::getIP(),
             'agent' => $agent,
             'cookie' => $data['cookie']
-        ])->execute();
+        ]);
 
         if(!$session) {
             return false;
@@ -110,11 +110,19 @@ class auth {
     }
 
     protected function deleteExistingSessions($userID) {
-        return $this->app->db->deleteFrom($this->module->config('session')['table'])->where('userID', $userID)->execute();
+        return $this->app->db->delete($this->module->config('session')['table'], [
+            "AND" => [
+                'userID' => $userID
+            ]
+        ]);
     }
 
     protected function deleteSession($hash) {
-        return $this->app->db->deleteFrom($this->module->config('session')['table'])->where('hash', $hash)->execute();
+        return $this->app->db->delete($this->module->config('session')['table'], [
+            "AND" => [
+                'hash' => $hash
+            ]
+        ]);
     }
 
     public function checkSession($hash) {
@@ -125,33 +133,43 @@ class auth {
         if(strlen($hash) != 40) {
             return false;
         }
-        $session = $this->app->db->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
+        $session = $this->app->db->get($this->module->config('session')['table'], [
+            'id',
+            'userID',
+            'expire',
+            'ip',
+            'cookie'
+        ], [
+            'hash' => $hash
+        ]);
         if(!$session) {
             return false;
         }
-        $sessionID = $session->id;
-        $userID = $session->userID;
-        $expire = strtotime($session->expire);
+        $sessionID = $session['id'];
+        $userID = $session['userID'];
+        $expire = strtotime($session['expire']);
         $current = strtotime(date("Y-m-d H:i:s"));
         if($current > $expire) {
             $this->deleteExistingSessions($userID);
             return false;
         }
-        if(self::getIP() != $session->ip) {
+        if(self::getIP() != $session['ip']) {
             return false;
         }
-        if($session->cookie == sha1($hash.$this->module->config('session')['key'])) {
+        if($session['cookie'] == sha1($hash.$this->module->config('session')['key'])) {
             return true;
         }
         return false;
     }
 
     public function getSessionID($hash) {
-        $session = $this->app->db->from($this->module->config('session')['table'])->where('hash', $hash)->fetch();
-        if(!$session) {
+        $userID = $this->app->db->get($this->module->config('session')['table'], 'userID', [
+            'hash' => $hash
+        ]);
+        if(!$userID) {
             return false;
         }
-        return $session->userID;
+        return $userID;
     }
 
     public function isLogged() {
@@ -206,11 +224,13 @@ class auth {
     }
 
     public function comparePassword($id, $password) {
-        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
-        if(!$user) {
+        $passwordDB = $this->app->db->get($this->module->config('table'), 'password', [
+            'id' => $id
+        ]);
+        if(!$passwordDB) {
             return false;
         }
-        return password_verify($password, $user['password']);
+        return password_verify($password, $passwordDB);
     }
 
     public function passwordRehash($password, $hash, $id) {
@@ -218,8 +238,11 @@ class auth {
             return false;
         }
         if(password_needs_rehash($hash, PASSWORD_DEFAULT, ['cost' => 10])) {
-            $hash = $this->getHash($password);
-            $this->app->db->update($this->module->config('table'))->set('password', $hash)->where('id', $id)->execute();
+            $this->app->db->update($this->module->config('table'), [
+                'password' => $this->getHash($password)
+            ], [
+                'id' => $id
+            ]);
         }
         return true;
     }

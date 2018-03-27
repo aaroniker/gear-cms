@@ -15,15 +15,19 @@ class user {
     }
 
     public function getID($email) {
-        $user = $this->app->db->from($this->module->config('table'))->where('email', $email)->fetch();
-        if(!$user) {
+        $userID = $this->app->db->get($this->module->config('table'), 'id', [
+            'email' => $email
+        ]);
+        if(!$userID) {
             return false;
         }
-        return $user->id;
+        return $userID;
     }
 
     public function getUser($id) {
-        $user = $this->app->db->from($this->module->config('table'))->where('id', $id)->fetch();
+        $user = $this->app->db->get($this->module->config('table'), '*', [
+            'id' => $id
+        ]);
         if(!$user) {
             return false;
         }
@@ -40,11 +44,11 @@ class user {
 
         $return['error'] = false;
 
-        return $this->app->db->insertInto($this->module->config('table'))->values([
+        return $this->app->db->insert($this->module->config('table'), [
             'email' => $email,
             'username' => $username,
             'password' => $hash
-        ])->execute();
+        ]);
 
     }
 

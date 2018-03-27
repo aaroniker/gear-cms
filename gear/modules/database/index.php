@@ -1,27 +1,22 @@
 <?php
 
+use Medoo\Medoo;
+
 return [
 
     'name' => 'database',
 
     'run' => function($app) {
-        $app->db = new sql($app, $this);
-    },
-
-    'autoload' => [
-        'classes'
-    ],
-
-    'config' => [
-        'database' => [
-            'host' => $this->app->config->get('database')['host'],
-            'port' => $this->app->config->get('database')['port'],
-            'user' => $this->app->config->get('database')['user'],
-            'password' => $this->app->config->get('database')['password'],
-            'name' => $this->app->config->get('database')['name'],
-            'prefix' => $this->app->config->get('database')['prefix']
-        ]
-    ]
+        $app->db = new Medoo([
+            'database_type' => 'mysql',
+            'database_name' => $app->config->get('database')['name'],
+            'server' => $app->config->get('database')['host'],
+            'username' => $app->config->get('database')['user'],
+            'password' => $app->config->get('database')['password'],
+            'prefix' => $app->config->get('database')['prefix'],
+            'port' => $this->app->config->get('database')['port']
+        ]);
+    }
 
 ];
 
