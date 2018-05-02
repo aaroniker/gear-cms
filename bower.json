@@ -3,7 +3,7 @@
     "private": true,
     "dependencies": {
         "vue": "~2.5.16",
-        "axios": "~0.17.1",
+        "axios": "~0.18.0",
         "lodash": "~4.17.5",
         "visibilityjs": "~1.2.7",
         "jquery": "~3.3.1"
