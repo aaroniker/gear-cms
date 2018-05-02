@@ -8,7 +8,7 @@
     padding: $inputPaddingV $inputPaddingH;
     color: $inputText;
     border-radius: $inputRadius;
-    @include transition;
+    @include transition(border .3s ease);
     @include placeholder($inputTextPlaceholder);
     &[disabled],
     &[readonly],

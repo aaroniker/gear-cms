@@ -81,7 +81,7 @@
                         </ul>
                     </nav>
                     <div class="panel">
-                        <div class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></div>
+                        <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
                     </div>
                 </div>
             </div>

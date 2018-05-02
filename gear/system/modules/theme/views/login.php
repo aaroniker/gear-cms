@@ -27,6 +27,8 @@
 
         <div class="login">
 
+            <messages></messages>
+
             <a class="logo" href="http://gearcms.org" target="_blank">
                 <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
             </a>

@@ -104,15 +104,15 @@ $labelBottom: 4px;
 
 $formDisabled: $light;
 $formBorder: $border;
-$formBorderFocus: #374966;
+$formBorderFocus: darken($border, 12%);
 $formFocus: $secondary;
 $formFocusColor: #fff;
 $formElementBottom: $marginBottom;
 $formOverrideAutofillWebkit: true;
 
 $inputText: $textColor;
-$inputTextPlaceholder: #3B4658;
-$inputBackground: #1A222F;
+$inputTextPlaceholder: $textColor;
+$inputBackground: #fff;
 $inputRadius: $borderRadius;
 
 $inputFileColor: $gray;

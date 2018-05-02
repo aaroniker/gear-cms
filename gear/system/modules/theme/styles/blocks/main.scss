@@ -13,9 +13,9 @@
             div {
                 width: 44px;
                 height: 44px;
-                border-radius: 50%;
-                background: $light;
+                border-radius: 6px;
                 position: relative;
+                @include transition;
                 svg {
                     width: 14px;
                     height: 14px;
@@ -35,6 +35,11 @@
                 line-height: 20px;
                 margin: 12px 0 12px 12px;
             }
+            &:hover {
+                div {
+                    background: $light;
+                }
+            }
         }
         .user {
             float: right;
@@ -50,9 +55,12 @@
                             display: block;
                             width: 44px;
                             height: 44px;
-                            border-radius: 50%;
-                            background: $light;
+                            border-radius: 6px;
                             position: relative;
+                            @include transition;
+                            &:hover {
+                                background: $light;
+                            }
                             svg {
                                 width: 14px;
                                 height: 14px;
@@ -76,14 +84,19 @@
                     width: 44px;
                     height: 44px;
                     line-height: 44px;
+                    display: block;
                     white-space: nowrap;
                     text-align: center;
                     color: $textColor;
                     font-weight: bold;
                     font-size: 14px;
                     text-transform: uppercase;
-                    border-radius: 50%;
+                    border-radius: 6px;
                     background: $light;
+                    @include transition;
+                    &:hover {
+                        background: darken($light, 3%);
+                    }
                 }
             }
         }
@@ -92,14 +105,15 @@
         padding: 16px 20px;
         background: #fff;
         border-radius: 8px;
-        box-shadow: 0 4px 12px -4px rgba($dark, .1);
+        box-shadow: 0 4px 12px -6px rgba($dark, .1);
+        border: 1px solid $border;
         @include flexbox;
         @include align-items(center);
         h1 {
             margin: 0;
         }
         .text {
-            justify-content: flex-end;
+            @include justify-content(flex-end);
         }
         .filler {
             @include flex-grow(1);

@@ -1,26 +1,26 @@
 <template>
-    <div v-bind:class="{ messages: true, active: messages.length, open: open }" ref="messageList">
+    <div v-bind:class="{ messages: true, active: messages.length, multiple: messages.length > 1, open: open }" ref="messageList">
         <a @click.prevent="toggle()" href="">
             <vector src="../img/bell.svg"></vector>
         </a>
-        <div v-bind:class="{ list: true, open: open }">
+        <div v-bind:class="{ list: true, open: open, showAll: showAll }">
             <ul v-if="messages.length">
                 <li v-for="(item, index) in listMessages" :class="item.type">
                     <div class="icon" v-html="icons[item.type]"></div>
                     {{ item.message | lang }}
                     <a @click.prevent="remove(item.index)" href="" v-html="icons['close']"></a>
                 </li>
-                <li v-if="messages.length > 1">
-                    <div class="toggleMore" @click="showAll = !showAll">
-                        <span v-if="!showAll" v-text="messages.length"></span>
-                        {{ (showAll ? 'Show less' : 'Show all') | lang }}
-                    </div>
-                    <div class="remove" @click="remove(-1)">
-                        {{ 'Remove all' | lang }}
-                    </div>
-                </li>
             </ul>
-            <div v-else class="noMessages">
+            <div v-bind:class="{ controls: true, show: messages.length > 1 }">
+                <label class="switch inline">
+                    <input type="checkbox" v-model="showAll">
+                    <div></div>
+                </label>
+                <div class="remove" @click="remove(-1)">
+                    <vector src="../img/trash.svg"></vector>
+                </div>
+            </div>
+            <div v-if="messages.length < 1" class="noMessages">
                 {{ 'No messages' | lang }}
             </div>
         </div>
@@ -105,13 +105,17 @@ Vue.component('messages', function(resolve) {
     left: 50%;
     top: 50%;
     position: absolute;
+    height: 44px;
+    @include flexbox;
     @include translate(-50%, -50%);
+    @include transition;
     & > a {
         display: block;
         width: 44px;
+        position: relative;
         height: 44px;
-        border-radius: 50%;
-        background: $light;
+        border-radius: 6px;
+        @include transition;
         svg {
             width: 14px;
             height: 14px;
@@ -125,38 +129,143 @@ Vue.component('messages', function(resolve) {
                 fill: $textColor;
             }
         }
+        &:hover {
+            background: $light;
+        }
     }
-    &.open {
+    &.multiple {
+        margin-left: -41px;
     }
     .list {
-        position: absolute;
-        top: 100%;
-        right: -10px;
-        z-index: 2;
-        width: 360px;
-        background: #fff;
-        border-radius: 4px;
-        padding: 12px;
+        width: 0;
         opacity: 0;
         visibility: hidden;
-        box-shadow: 0 4px 12px -4px rgba($dark, .1);
-        @include translate(0, 4px);
-        @include transition;
+        position: relative;
+        @include transition(opacity .2s ease 0s, visibility 0s ease .8s, width .5s ease .1s);
         &.open {
+            width: 160px;
             opacity: 1;
             visibility: visible;
-            @include translate(0, 20px);
+            @include transition(opacity .5s ease .3s, visibility 0s ease 0s, width .5s ease 0s);
         }
         .noMessages {
+            line-height: 44px;
             text-align: center;
             color: $textColorLight;
+        }
+        .controls {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            height: 44px;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+            @include flexbox;
+            @include align-items(center);
+            .switch {
+                display: block;
+                margin: 0 8px 0 12px;
+                height: 20px;
+            }
+            .remove {
+                display: block;
+                width: 22px;
+                cursor: pointer;
+                height: 22px;
+                position: relative;
+                opacity: .4;
+                @include transition;
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    @include translate(-50%, -50%);
+                    .fill {
+                        fill: $textColor;
+                    }
+                }
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            &.show {
+                opacity: 1;
+                visibility: visible;
+            }
         }
         ul {
             margin: 0;
             padding: 0;
             list-style: none;
+            position: absolute;
+            top: -1px;
+            left: 8px;
+            right: 0;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            @include transition;
             li {
-                @include clear-after;
+                position: relative;
+                margin: 0 0 8px 0;
+                padding: 9px 32px 9px 40px;
+                border-radius: 6px;
+                color: #fff;
+                font-size: 14px;
+                text-shadow: 0 1px 1px rgba(#000, .12);
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                .icon {
+                    position: absolute;
+                    left: 12px;
+                    top: 50%;
+                    @include translate(0, -50%);
+                }
+                a {
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    right: 8px;
+                    top: 50%;
+                    opacity: .7;
+                    @include transition;
+                    @include translate(0, -50%);
+                    &:hover {
+                        opacity: 1;
+                    }
+                    svg {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        width: 20px;
+                        height: 20px;
+                        @include translate(-50%, -50%);
+                        * {
+                            stroke: #fff;
+                        }
+                        &.fill {
+                            stroke: none;
+                            fill: #fff;
+                        }
+                    }
+                }
+                svg {
+                    width: 16px;
+                    height: 16px;
+                    display: block;
+                    * {
+                        stroke: #fff;
+                    }
+                    &.fill {
+                        stroke: none;
+                        fill: #fff;
+                    }
+                }
                 &.success {
                     border-color: $success;
                     background: fade-out($success, .2);
@@ -169,96 +278,13 @@ Vue.component('messages', function(resolve) {
                     border-color: $warning;
                     background: fade-out($warning, .2);
                 }
-                &.success,
-                &.error,
-                &.warning {
-                    position: relative;
-                    margin: 0 0 8px 0;
-                    padding: 8px 32px 8px 40px;
-                    border-radius: 4px;
-                    color: #fff;
-                    font-size: 14px;
-                    text-shadow: 0 1px 1px rgba(#000, .12);
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                    .icon {
-                        position: absolute;
-                        left: 12px;
-                        top: 50%;
-                        @include translate(0, -50%);
-                    }
-                    a {
-                        display: block;
-                        width: 20px;
-                        height: 20px;
-                        position: absolute;
-                        right: 8px;
-                        top: 50%;
-                        opacity: .7;
-                        @include transition;
-                        @include translate(0, -50%);
-                        &:hover {
-                            opacity: 1;
-                        }
-                        svg {
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            width: 20px;
-                            height: 20px;
-                            @include translate(-50%, -50%);
-                            * {
-                                stroke: #fff;
-                            }
-                            &.fill {
-                                stroke: none;
-                                fill: #fff;
-                            }
-                        }
-                    }
-                    svg {
-                        width: 16px;
-                        height: 16px;
-                        display: block;
-                        * {
-                            stroke: #fff;
-                        }
-                        &.fill {
-                            stroke: none;
-                            fill: #fff;
-                        }
-                    }
-                }
-                .toggleMore,
-                .remove {
-                    padding: 4px 0;
-                    width: 50%;
-                    text-align: center;
-                    cursor: pointer;
-                    color: $textColorLight;
-                    @include transition;
-                    &:hover {
-                        color: $textColor;
-                    }
-                }
-                .toggleMore {
-                    float: left;
-                    span {
-                        display: inline-block;
-                        line-height: 20px;
-                        vertical-align: top;
-                        font-size: 10px;
-                        border-radius: 10px;
-                        padding: 0 8px;
-                        margin: 3px 4px 3px 0;
-                        background: $light;
-                        color: $textColor;
-                    }
-                }
-                .remove {
-                    float: right;
-                }
+            }
+        }
+        &.showAll {
+            ul {
+                background: #fff;
+                padding: 12px;
+                border-color: $border;
             }
         }
     }
@@ -275,9 +301,14 @@ Vue.component('messages', function(resolve) {
                 border-radius: 50%;
                 background: $error;
                 position: absolute;
-                top: 0;
-                right: 0;
+                top: -2px;
+                right: -2px;
                 border: 2px solid $snow;
+            }
+        }
+        .list {
+            &.open {
+                width: 320px;
             }
         }
     }

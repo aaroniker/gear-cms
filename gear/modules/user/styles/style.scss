@@ -15,12 +15,25 @@
     left: 50%;
     top: 50%;
     width: 90%;
-    max-width: 360px;
-    background: $dark;
+    max-width: 340px;
     padding: 36px 28px 28px 28px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(#0B1016, .3);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px -6px rgba($dark, .1);
+    border: 1px solid $border;
     @include translate(-50%, -50%);
+    & > .messages {
+        top: auto;
+        bottom: 100%;
+        opacity: 0;
+        visibility: hidden;
+        @include translate(-50%, -12px);
+        @include transition;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
     .logo {
         display: table;
         margin: 0 auto 36px auto;
