@@ -1,8 +1,6 @@
 <template>
     <div v-bind:class="{ messages: true, active: messages.length, multiple: messages.length > 1, open: open }" ref="messageList">
-        <a @click.prevent="toggle()" href="">
-            <vector src="../img/bell.svg"></vector>
-        </a>
+        <a @click.prevent="toggle()" href="" v-html="bell"></a>
         <div v-bind:class="{ list: true, open: open, showAll: showAll }">
             <ul v-if="messages.length">
                 <li v-for="(item, index) in listMessages" :class="item.type">
@@ -16,9 +14,7 @@
                     <input type="checkbox" v-model="showAll">
                     <div></div>
                 </label>
-                <div class="remove" @click="remove(-1)">
-                    <vector src="../img/trash.svg"></vector>
-                </div>
+                <div class="remove" @click="remove(-1)" v-html="trash"></div>
             </div>
             <div v-if="messages.length < 1" class="noMessages">
                 {{ 'No messages' | lang }}
@@ -39,6 +35,8 @@ module.exports = {
                 warning: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper fill" transform="translate(0.5, 0.5)"><circle fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" cx="12" cy="12" r="11" stroke-linejoin="miter"></circle><line data-color="color-2" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="12" y1="7" x2="12" y2="13" stroke-linejoin="miter"></line><circle data-color="color-2" class="fill" data-stroke="none" cx="12" cy="17" r="1" stroke-linejoin="miter" stroke-linecap="square"></circle></g></svg>',
                 close: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="fill" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper"><path class="fill" d="M16.7,7.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L8.7,7.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l3.3,3.3l-3.3,3.3 c-0.4,0.4-0.4,1,0,1.4C7.5,16.9,7.7,17,8,17s0.5-0.1,0.7-0.3l3.3-3.3l3.3,3.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l3.3-3.3C17.1,8.3,17.1,7.7,16.7,7.3z"></path></g></svg>'
             },
+            trash: require('../img/trash.svg'),
+            bell: require('../img/bell.svg'),
             showAll: false
         }
     },

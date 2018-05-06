@@ -1,5 +1,3 @@
-import vector from './vector.vue'
-
 function install(Vue) {
 
     var gear = window.$gear;
@@ -45,8 +43,6 @@ function install(Vue) {
     };
 
     Vue.prototype.$visibility = require('visibilityjs');
-
-    Vue.component('vector', vector);
 
     new Vue({
         el: '#gear'

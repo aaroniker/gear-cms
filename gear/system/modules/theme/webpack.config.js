@@ -1,5 +1,3 @@
-var assets = __dirname + "/../../../assets";
-
 module.exports = [
     {
         entry: {
