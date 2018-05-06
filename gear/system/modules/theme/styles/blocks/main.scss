@@ -105,8 +105,7 @@
         padding: 16px 20px;
         background: #fff;
         border-radius: 8px;
-        box-shadow: 0 4px 12px -6px rgba($dark, .1);
-        border: 1px solid $border;
+        box-shadow: 0 4px 16px -3px rgba($dark, .1);
         @include flexbox;
         @include align-items(center);
         h1 {
