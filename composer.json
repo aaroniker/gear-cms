@@ -13,7 +13,8 @@
     ],
     "require": {
         "twig/twig": "^2.0",
-        "catfan/medoo": "^1.5"
+        "catfan/medoo": "^1.5",
+        "voku/arrayy": "5.*"
     },
     "config": {
         "vendor-dir": "gear/vendor"
