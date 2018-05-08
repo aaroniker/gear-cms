@@ -1,0 +1,7 @@
+{
+    "Incorrect password": "Ungültiges Passwort",
+    "Email not found": "E-Mail Adresse nicht gefunden",
+    "Invalid email": "Ungültige E-Mail Adresse",
+    "Login blocked for %s min %s sec": "Login blockiert für %s min. %s sek.",
+    "Login blocked": "Login blockiert"
+}

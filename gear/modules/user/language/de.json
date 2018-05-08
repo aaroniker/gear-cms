@@ -1,3 +1,7 @@
 {
-    "Users": "Benutzer"
+    "Users": "Benutzer",
+    "Login": "Anmelden",
+    "Stay logged in": "Angemeldet bleiben",
+    "Email": "E-Mail",
+    "Password": "Passwort"
 }

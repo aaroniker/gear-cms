@@ -29,10 +29,14 @@ class lang {
         return $this->lang;
     }
 
-    public function get($name) {
+    public function get($name, $values = []) {
 
         if(isset($this->langArray[$name])) {
-            return $this->langArray[$name];
+            if(isset($values) && count($values)) {
+                return vsprintf($this->langArray[$name], $values);
+            } else {
+                return $this->langArray[$name];
+            }
         }
 
         return $name;

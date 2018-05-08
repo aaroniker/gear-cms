@@ -1,13 +1,6 @@
 {
-    "Login": "Anmelden",
-    "Stay logged in": "Angemeldet bleiben",
-    "Email": "E-Mail",
-    "Password": "Passwort",
     "Show all": "Alle anzeigen",
     "Show less": "Weniger anzeigen",
     "Remove all": "Alle löschen",
-    "Incorrect password": "Ungültiges Passwort",
-    "Email not found": "E-Mail Adresse nicht gefunden",
-    "Invalid email": "Ungültige E-Mail Adresse",
     "No messages": "Keine Nachrichten"
 }

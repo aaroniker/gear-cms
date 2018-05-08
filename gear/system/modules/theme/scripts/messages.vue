@@ -104,6 +104,7 @@ Vue.component('messages', function(resolve) {
     top: 50%;
     position: absolute;
     height: 44px;
+    z-index: 9999;
     @include flexbox;
     @include translate(-50%, -50%);
     @include transition;
@@ -209,10 +210,11 @@ Vue.component('messages', function(resolve) {
             li {
                 position: relative;
                 margin: 0 0 8px 0;
-                padding: 9px 32px 9px 40px;
+                padding: 11px 32px 11px 40px;
                 border-radius: 6px;
                 color: #fff;
                 font-size: 14px;
+                line-height: 20px;
                 text-shadow: 0 1px 1px rgba(#000, .12);
                 &:last-child {
                     margin-bottom: 0;
@@ -281,7 +283,7 @@ Vue.component('messages', function(resolve) {
         &.showAll {
             ul {
                 background: #fff;
-                padding: 12px;
+                padding: 8px;
                 border-color: $border;
             }
         }

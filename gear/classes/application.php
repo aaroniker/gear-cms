@@ -17,9 +17,9 @@ class application {
 
         $app = $this;
 
-        function __($name) {
+        function __($name, $values = []) {
             global $app;
-            return $app->lang->get($name);
+            return $app->lang->get($name, $values);
         }
 
         $this->message = new message();

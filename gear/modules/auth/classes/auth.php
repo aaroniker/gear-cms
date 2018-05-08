@@ -27,7 +27,7 @@ class auth {
     public function login($email, $password, $remember = 0) {
 
         if($block = $this->attempt->isBlocked()) {
-            $this->app->message->add('User blocked for '.$block['minutes'].'m and '.$block['seconds'].'s', 'error');
+            $this->app->message->add(__('Login blocked for %s min %s sec', [$block['minutes'], $block['seconds']]), 'error');
             return false;
         }
 
@@ -127,7 +127,7 @@ class auth {
 
     public function checkSession($hash) {
         if($this->attempt->isBlocked()) {
-            $return['message'] = 'user blocked for '.$this->module->config('attempts')['ban'];
+            $return['message'] = 'Login blocked';
             return false;
         }
         if(strlen($hash) != 40) {
