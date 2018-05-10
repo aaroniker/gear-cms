@@ -61,6 +61,15 @@ module.exports = {
                     self.open = true;
                 }
                 self.messages = response.data;
+                if(self.messages.length) {
+                    self.messages.map(function(item) {
+                        setTimeout(function() {
+                            if(!item.stay) {
+                                self.remove(item.index);
+                            }
+                        }, window.$gear.messagesTimeout);
+                    });
+                }
             }).catch(function(error) {
                 self.open = true;
                 self.messages = error;
