@@ -4,13 +4,16 @@
         position: fixed;
         top: 0;
         right: 0;
+        z-index: 10;
         left: var(--sidebar-width);
         padding: 0 32px;
-        background: $snow;
+        @include transition(box-shadow .3s ease, top .2s ease);
         .header {
             position: relative;
             padding: 20px 0;
+            background: $snow;
             @include clear-after;
+            @include transition(padding .3s ease, margin .3s ease);
             .link {
                 display: block;
                 float: left;
@@ -115,6 +118,7 @@
             box-shadow: 0 4px 16px -3px rgba($dark, .1);
             @include flexbox;
             @include align-items(center);
+            @include transition(padding .3s ease, margin .3s ease, box-shadow .4s ease .1s);
             h1 {
                 margin: 0;
             }
@@ -124,6 +128,25 @@
             .filler {
                 @include flex-grow(1);
             }
+        }
+        &.scroll {
+            box-shadow: 0 4px 16px -3px rgba($dark, .1);
+            .header {
+                margin: 0 -32px;
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+            .toolbar {
+                margin: 0 -32px;
+                padding-left: 32px;
+                padding-right: 32px;
+                box-shadow: none;
+                border-radius: 0;
+                @include transition(padding .3s ease, margin .3s ease, box-shadow .4s ease 0s);
+            }
+        }
+        &.nav-up {
+            top: -84px;
         }
     }
     .content {
