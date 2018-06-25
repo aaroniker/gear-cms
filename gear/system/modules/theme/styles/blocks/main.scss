@@ -117,16 +117,12 @@
             border-radius: 8px;
             box-shadow: 0 4px 16px -3px rgba($dark, .1);
             @include flexbox;
+            @include justify-content(space-between);
             @include align-items(center);
             @include transition(padding .3s ease, margin .3s ease, box-shadow .4s ease .1s);
             h1 {
-                margin: 0;
-            }
-            .text {
-                @include justify-content(flex-end);
-            }
-            .filler {
-                @include flex-grow(1);
+                margin: 5px 0;
+                line-height: 32px;
             }
         }
         &.scroll {

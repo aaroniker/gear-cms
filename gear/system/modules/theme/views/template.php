@@ -90,10 +90,6 @@
 
                 <div class="toolbar">
                     <h1><?= __($app->view->global('title')); ?></h1>
-                    <div class="filler"></div>
-                    <div class="text2">
-                        <a href="" class="btn">Button</a>
-                    </div>
                 </div>
 
             </div>
