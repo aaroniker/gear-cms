@@ -4,13 +4,25 @@ class viewManager {
 
     protected $app;
 
+    protected $loader;
+    protected $twig;
     protected $views;
     protected $placeholder;
 
     protected $global;
 
     public function __construct($app) {
+
         $this->app = $app;
+
+        $this->loader = new Twig_Loader_Filesystem();
+        $this->twig = new Twig_Environment($this->loader, [
+            'cache' => (($this->app->config->get('system')['cache']) ? dir::cache() : false),
+            'debug' => $this->app->config->get('system')['debug']
+        ]);
+
+        return $this;
+
     }
 
     public function get($key, $default = null) {
