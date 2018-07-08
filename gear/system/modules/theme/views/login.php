@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <div id="gear">
+    <div id="gear" class="center">
 
         <div class="login">
 

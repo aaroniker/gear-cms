@@ -11,16 +11,12 @@
 @import '../../../system/modules/theme/styles/mixins/utils';
 
 .login {
-    position: absolute;
-    left: 50%;
-    top: 50%;
     width: 90%;
     max-width: 340px;
     padding: 36px 28px 28px 28px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 16px -3px rgba($dark, .1);
-    @include translate(-50%, -50%);
     & > .messages {
         top: auto;
         bottom: 100%;

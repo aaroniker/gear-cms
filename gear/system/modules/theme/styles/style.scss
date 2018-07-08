@@ -38,5 +38,12 @@ body {
     width: 100%;
     min-height: 100vh;
     position: relative;
-    padding: 0 0 0 var(--sidebar-width);
+    &.interface {
+        padding: 0 0 0 var(--sidebar-width);
+    }
+    &.center {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
+    }
 }

@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <div id="gear">
+    <div id="gear" class="interface">
 
         <section id="sidebar">
             <div class="inner">
