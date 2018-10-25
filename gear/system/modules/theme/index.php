@@ -7,7 +7,7 @@ return [
     'run' => function($app) {
         $app->assets->addCSS('~/styles/dist/style.css');
         $vue = ($app->config->get('system')['debug']) ? 'vue.js' : 'vue.min.js';
-        $app->assets->addJS('/gear/assets/vue/dist/'.$vue);
+        $app->assets->addJS('/gear/assets/node_modules/vue/dist/'.$vue);
         $app->assets->addJS('~/scripts/dist/messages.js', 'vue');
         $app->assets->addJS('~/scripts/dist/theme.js');
     },

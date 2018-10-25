@@ -1,4 +1,4 @@
-var assets = __dirname + "/../../../assets";
+var assets = __dirname + "/../../../assets/node_modules";
 
 module.exports = [
     {
