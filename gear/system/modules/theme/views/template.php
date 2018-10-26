@@ -68,31 +68,25 @@
 
         <section id="main">
 
-            <div class="top">
+            <a href="<?= $app->config->get('system')['url']; ?>" class="link">
+                <div><?= $assets->getIcon('~/img/link.svg', $module); ?></div>
+                <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
+            </a>
 
-                <div class="header">
-                    <a href="<?= $app->config->get('system')['url']; ?>" class="link">
-                        <div><?= $assets->getIcon('~/img/link.svg', $module); ?></div>
-                        <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
-                    </a>
-                    <messages></messages>
-                    <div class="user">
-                        <nav>
-                            <ul>
-                                <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
-                            </ul>
-                        </nav>
-                        <div class="panel">
-                            <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
-                        </div>
-                    </div>
+            <messages></messages>
+
+            <div class="user">
+                <nav>
+                    <ul>
+                        <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
+                    </ul>
+                </nav>
+                <div class="panel">
+                    <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
                 </div>
-
-                <div class="toolbar">
-                    <h1><?= __($app->view->global('title')); ?></h1>
-                </div>
-
             </div>
+
+            <h1><?= __($app->view->global('title')); ?></h1>
 
             <div class="content">
                 <?= $app->view->get('content') ?>

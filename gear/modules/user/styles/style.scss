@@ -22,8 +22,8 @@
         bottom: 100%;
         opacity: 0;
         visibility: hidden;
-        @include translate(-50%, -12px);
-        @include transition;
+        transform: translate(-50%, -12px);
+        transition: all .3s ease;
         &.active {
             opacity: 1;
             visibility: visible;

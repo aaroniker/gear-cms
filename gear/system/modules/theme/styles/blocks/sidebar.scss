@@ -6,7 +6,6 @@
     bottom: 0;
     z-index: 11;
     width: var(--sidebar-width);
-    @include linear-gradient(180deg, $light, $snow);
     .inner {
         position: absolute;
         top: 0;
@@ -17,10 +16,10 @@
         overflow: auto;
         .logo {
             display: table;
-            margin: 52px auto;
+            margin: 48px auto;
             img {
                 display: block;
-                width: 60px;
+                width: 42px;
             }
         }
         nav {
@@ -55,7 +54,7 @@
                                 top: 50%;
                                 opacity: .8;
                                 stroke: $textColorLight;
-                                @include translate(-50%, -50%);
+                                transform: translate(-50%, -50%);
                                 * {
                                     stroke: $textColorLight;
                                 }

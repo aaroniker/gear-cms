@@ -5,20 +5,12 @@
 
 @mixin shadow($size: 'md') {
     @if $size == 'sm' {
-        box-shadow: 0 1px 4px 1px rgba($shadow, .14);
+        box-shadow: 0 1px 4px -1px rgba($shadow, .8);
     } @else if $size == 'lg' {
-        box-shadow: 0 4px 11px 1px rgba($shadow, .16);
+        box-shadow: 0 8px 20px -1px rgba($shadow, .84);
     } @else {
-        box-shadow: 0 3px 7px 1px rgba($shadow, .10);
+        box-shadow: 0 4px 8px -1px rgba($shadow, .8);
     }
-}
-
-@mixin transition($args...) {
-    @if length($args) == 0 {
-        $args: all .3s ease 0s;
-    }
-    -webkit-transition: $args;
-    transition: $args;
 }
 
 @mixin user-select($value: none) {
@@ -26,16 +18,6 @@
     -moz-user-select: $value;
     -ms-user-select: $value;
     user-select: $value;
-}
-
-@mixin transform($args) {
-    -webkit-transform: $args;
-    -ms-transform: $args;
-    transform: $args;
-}
-
-@mixin translate($x: 0, $y: 0) {
-    @include transform(translate($x, $y));
 }
 
 @mixin placeholder($color: #000) {

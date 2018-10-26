@@ -8,7 +8,7 @@
     padding: $inputPaddingV $inputPaddingH;
     color: $inputText;
     border-radius: $inputRadius;
-    @include transition(border .3s ease);
+    transition: border .3s ease;
     @include placeholder($inputTextPlaceholder);
     &[disabled],
     &[readonly],
@@ -56,7 +56,7 @@
     border-radius: $inputRadius;
     white-space: nowrap;
     overflow: hidden;
-    @include transition;
+    transition: all .3s ease;
     @include clear-after;
     &.focus {
         border-color: $formBorderFocus;
@@ -152,7 +152,7 @@ textarea {
         border: 1px solid $formBorder;
         padding: $inputPaddingV;
         background: $light;
-        @include transition;
+        transition: all .3s ease;
     }
     &.focus {
         & > span {
@@ -194,14 +194,14 @@ form {
     &.horizontal {
         .form-element {
             & > label {
-                @media(min-width: $breakpointSm) {
+                @include min($breakpointSm) {
                     margin-bottom: 0;
                     padding: $inputPaddingV 0;
                 }
             }
             .static {
                 margin-bottom: 0;
-                @media(min-width: $breakpointSm) {
+                @include min($breakpointSm) {
                     padding: $inputPaddingV 0;
                 }
             }
@@ -223,7 +223,7 @@ form {
     }
     100% {
         opacity: 0;
-        @include transform(scale(1) translate(-50%, -50%));
+        transform: scale(1) translate(-50%, -50%);
     }
 }
 
@@ -246,8 +246,8 @@ form {
             vertical-align: top;
             position: relative;
             display: inline-block;
+            transition: all .3s ease;
             @include user-select;
-            @include transition;
             &:before {
                 content: '';
             }
@@ -265,7 +265,7 @@ form {
                     left: 50%;
                     opacity: 0;
                     border-radius: 50%;
-                    @include transform(scale(0) translate(-50%, -50%));
+                    transform: scale(0) translate(-50%, -50%);
                 }
             }
             &:checked + div {
@@ -298,8 +298,8 @@ form {
                 opacity: 0;
                 border-right: 2px solid $checkboxArrow;
                 border-bottom: 2px solid $checkboxArrow;
-                @include transform(rotate(0deg) scale(0));
-                @include transition(all .3s ease .15s);
+                transform: rotate(0deg) scale(0);
+                transition: all .3s ease .15s;
             }
         }
         &:checked + div {
@@ -307,8 +307,8 @@ form {
             border-color: $checkboxBorderActive;
             &:before {
                 opacity: 1;
-                @include transform(rotate(42deg) scale(1));
-                @include transition(all .15s cubic-bezier(.17,.67,.82,1.25) .1s);
+                transform: rotate(42deg) scale(1);
+                transition: all .15s cubic-bezier(.17,.67,.82,1.25) .1s;
             }
         }
         &:disabled + div {
@@ -372,8 +372,8 @@ form {
                 opacity: 0;
                 background: $radioDot;
                 border-radius: inherit;
-                @include transform(scale(0));
-                @include transition;
+                transform: scale(0);
+                transition: all .3s ease;
             }
         }
         &:checked + div {
@@ -381,7 +381,7 @@ form {
             border-color: $radioBorderActive;
             &:before {
                 opacity: 1;
-                @include transform(scale(1));
+                transform: scale(1);
             }
         }
         &:disabled + div {
@@ -443,14 +443,14 @@ form {
                 margin-top: 2px;
                 margin-left: 2px;
                 border-radius: inherit;
-                @include transition(all .25s cubic-bezier(.54,1.85,.5,1));
+                transition: all .25s cubic-bezier(.54, 1.85, .5, 1);
             }
         }
         &:checked + div {
             background: $switchActive;
             border: 1px solid $switchBorderActive;
             &:before {
-                @include translate($switchSize, 0)
+                transform: translateX($switchSize);
             }
         }
         &:disabled + div {

@@ -26,7 +26,7 @@ select.form-select {
         border-radius: $selectRadius;
         line-height: $lineHeight;
         padding: $selectPaddingV ($selectPaddingH + 20) $selectPaddingV $selectPaddingH;
-        @include transition;
+        transition: all .3s ease;
         @include user-select;
         &:after {
             content: '';
@@ -56,7 +56,7 @@ select.form-select {
         & > span {
             border-color: $selectBorderFocus;
             &:after {
-                @include transform(rotate(180deg));
+                transform: rotate(180deg);
             }
         }
         & > div {
@@ -86,7 +86,7 @@ select.form-select {
             font-size: 14px;
             cursor: pointer;
             color: $textColor;
-            @include transition;
+            transition: all .3s ease;
             &:hover {
                 background: $selectHover;
             }

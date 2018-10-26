@@ -114,16 +114,16 @@ Vue.component('messages', function(resolve) {
     position: absolute;
     height: 44px;
     z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease;
     @include flexbox;
-    @include translate(-50%, -50%);
-    @include transition;
     & > a {
         display: block;
         width: 44px;
         position: relative;
         height: 44px;
         border-radius: 6px;
-        @include transition;
+        transition: all .3s ease;
         svg {
             width: 14px;
             height: 14px;
@@ -131,8 +131,8 @@ Vue.component('messages', function(resolve) {
             position: absolute;
             left: 50%;
             top: 50%;
-            @include transition;
-            @include translate(-50%, -50%);
+            transition: all .3s ease;
+            transform: translate(-50%, -50%);
             .fill {
                 fill: $textColor;
             }
@@ -149,12 +149,12 @@ Vue.component('messages', function(resolve) {
         opacity: 0;
         visibility: hidden;
         position: relative;
-        @include transition(opacity .2s ease 0s, visibility 0s ease .8s, width .5s ease .1s);
+        transition: opacity .2s ease 0s, visibility 0s ease .8s, width .5s ease .1s;
         &.open {
             width: 160px;
             opacity: 1;
             visibility: visible;
-            @include transition(opacity .5s ease .3s, visibility 0s ease 0s, width .5s ease 0s);
+            transition: opacity .5s ease .3s, visibility 0s ease 0s, width .5s ease 0s;
         }
         .noMessages {
             line-height: 44px;
@@ -168,7 +168,7 @@ Vue.component('messages', function(resolve) {
             height: 44px;
             opacity: 0;
             visibility: hidden;
-            @include transition;
+            transition: all .3s ease;
             @include flexbox;
             @include align-items(center);
             .switch {
@@ -183,7 +183,7 @@ Vue.component('messages', function(resolve) {
                 height: 22px;
                 position: relative;
                 opacity: .4;
-                @include transition;
+                transition: all .3s ease;
                 svg {
                     width: 14px;
                     height: 14px;
@@ -191,7 +191,7 @@ Vue.component('messages', function(resolve) {
                     position: absolute;
                     left: 50%;
                     top: 50%;
-                    @include translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
                     .fill {
                         fill: $textColor;
                     }
@@ -215,7 +215,7 @@ Vue.component('messages', function(resolve) {
             right: 0;
             border-radius: 6px;
             border: 1px solid transparent;
-            @include transition;
+            transition: all .3s ease;
             li {
                 position: relative;
                 margin: 0 0 8px 0;
@@ -232,7 +232,7 @@ Vue.component('messages', function(resolve) {
                     position: absolute;
                     left: 12px;
                     top: 50%;
-                    @include translate(0, -50%);
+                    transform: translate(0, -50%);
                 }
                 a {
                     display: block;
@@ -242,8 +242,8 @@ Vue.component('messages', function(resolve) {
                     right: 8px;
                     top: 50%;
                     opacity: .7;
-                    @include transition;
-                    @include translate(0, -50%);
+                    transition: all .3s ease;
+                    transform: translate(0, -50%);
                     &:hover {
                         opacity: 1;
                     }
@@ -253,7 +253,7 @@ Vue.component('messages', function(resolve) {
                         top: 50%;
                         width: 20px;
                         height: 20px;
-                        @include translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
                         * {
                             stroke: #fff;
                         }

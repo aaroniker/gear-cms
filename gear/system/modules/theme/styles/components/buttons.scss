@@ -13,7 +13,7 @@
     font-weight: $buttonFontWeight;
     background: $primary;
     border-radius: $buttonRadius;
-    @include transition;
+    transition: all .3s ease;
     &:link,
     &:active,
     &:visited,
@@ -109,8 +109,8 @@
             display: block;
             z-index: -1;
             border-radius: inherit;
+            transition: all .3s ease;
             @include linear-gradient(135deg, $primary, $secondary);
-            @include transition;
         }
         &:before {
             content: '';
@@ -170,10 +170,10 @@
         display: block;
     }
     &:hover {
-        @include transform($buttonHoverTransform);
+        transform: $buttonHoverTransform;
     }
     &:active {
-        @include transform($buttonClickTransform);
+        transform: $buttonClickTransform;
     }
 }
 
@@ -231,7 +231,7 @@
         }
         &:hover,
         &:active {
-            @include transform(none);
+            transform: none;
         }
         float: left;
     }
