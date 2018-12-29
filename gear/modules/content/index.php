@@ -6,7 +6,7 @@ return [
 
     'menu' => [
         'content' => [
-            'icon' => '~/img/content.svg',
+            'icon' => 'content2Icon',
             'name' => 'Content',
             'url' => 'content',
             'active' => 'content(/*)?',

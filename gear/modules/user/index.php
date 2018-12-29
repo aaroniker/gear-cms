@@ -49,7 +49,7 @@ return [
 
     'menu' => [
         'users' => [
-            'icon' => '~/img/users.svg',
+            'icon' => 'usersIcon',
             'name' => 'Users',
             'url' => 'users',
             'active' => 'users(/*)?',

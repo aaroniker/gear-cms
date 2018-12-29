@@ -24,7 +24,7 @@ return [
 
     'menu' => [
         'dashboard' => [
-            'icon' => '~/img/dashboard.svg',
+            'icon' => 'chartIcon',
             'name' => 'Dashboard',
             'url' => 'dashboard',
             'order' => 0

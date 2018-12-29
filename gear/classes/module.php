@@ -66,7 +66,7 @@ class module {
         if(isset($this->options['menu']) && is_array($this->options['menu'])) {
             foreach($this->options['menu'] as $name => $item) {
                 if(isset($item['icon'])) {
-                    $item['icon'] = $this->app->assets->getIcon($item['icon']);
+                    $item['icon'] = '<svg><use xlink:href="#'.$item['icon'].'"/></svg>';
                 } else {
                     $item['icon'] = '';
                 }

@@ -30,7 +30,9 @@
             <messages></messages>
 
             <a class="logo" href="http://gearcms.org" target="_blank">
-                <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+                <svg>
+                    <use xlink:href="#logo" />
+                </svg>
             </a>
 
             <?= $app->view->get('content') ?>
@@ -42,6 +44,8 @@
     <?= $app->assets->getJS(); ?>
     <?= $app->assets->getJS('vue'); ?>
     <?= $app->assets->getJS('afterVue'); ?>
+
+    <?php include('svg.php'); ?>
 
 </body>
 </html>

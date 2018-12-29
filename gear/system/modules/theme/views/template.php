@@ -28,7 +28,9 @@
         <section id="sidebar">
             <div class="inner">
                 <a class="logo" href="<?= $app->config->get('system')['url'].'/'.$app->config->get('system')['adminURL']; ?>">
-                    <img src="<?= $assets->get('~/img/logo.svg', $module); ?>">
+                    <svg>
+                        <use xlink:href="#logo" />
+                    </svg>
                 </a>
                 <nav>
                     <ul>
@@ -37,9 +39,7 @@
                             echo '
                             <li'.$item['activeClass'].'>
                                 <a href="'.$route->getURL($item['url']).'">
-                                    <div class="icon">
-                                        '.$item['icon'].'
-                                    </div>
+                                    '.$item['icon'].'
                                     '.__($item['name']).'
                                 </a>
                             ';
@@ -69,7 +69,11 @@
         <section id="main">
 
             <a href="<?= $app->config->get('system')['url']; ?>" class="link">
-                <div><?= $assets->getIcon('~/img/link.svg', $module); ?></div>
+                <div>
+                    <svg>
+                        <use xlink:href="#linkUI" />
+                    </svg>
+                </div>
                 <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
             </a>
 
@@ -78,7 +82,13 @@
             <div class="user">
                 <nav>
                     <ul>
-                        <li><a href="<?= $route->getLink('login', ['logout']); ?>"><?= $assets->getIcon('~/img/logout.svg', $module); ?></a></li>
+                        <li>
+                            <a href="<?= $route->getLink('login', ['logout']); ?>">
+                                <svg>
+                                    <use xlink:href="#outUI" />
+                                </svg>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <div class="panel">
@@ -99,6 +109,8 @@
     <?= $assets->getJS(); ?>
     <?= $assets->getJS('vue'); ?>
     <?= $assets->getJS('afterVue'); ?>
+
+    <?php include('svg.php'); ?>
 
 </body>
 </html>

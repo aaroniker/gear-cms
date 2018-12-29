@@ -6,7 +6,7 @@ return [
 
     'menu' => [
         'extensions' => [
-            'icon' => '~/img/extensions.svg',
+            'icon' => 'extendIcon',
             'name' => 'Extend',
             'url' => 'extensions',
             'active' => 'extensions(/*)?',

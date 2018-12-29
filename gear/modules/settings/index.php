@@ -6,7 +6,7 @@ return [
 
     'menu' => [
         'settings' => [
-            'icon' => '~/img/settings.svg',
+            'icon' => 'controlsIcon',
             'name' => 'Settings',
             'url' => 'settings',
             'active' => 'settings(/*)?',
