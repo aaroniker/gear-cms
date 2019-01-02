@@ -1,28 +1,14 @@
 
-// Variables
-
-@import '../../../system/modules/theme/styles/vars';
-
 // Mixins
 
-@import '../../../system/modules/theme/styles/mixins/color';
-@import '../../../system/modules/theme/styles/mixins/grid';
 @import '../../../system/modules/theme/styles/mixins/responsive';
 @import '../../../system/modules/theme/styles/mixins/utils';
 
 .login {
-    width: 90%;
-    max-width: 340px;
-    padding: 36px 28px 28px 28px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px -3px rgba($dark, .1);
+    width: 240px;
     & > .messages {
-        top: auto;
-        bottom: 100%;
         opacity: 0;
         visibility: hidden;
-        transform: translate(-50%, -12px);
         transition: all .3s ease;
         &.active {
             opacity: 1;
@@ -32,9 +18,11 @@
     .logo {
         display: table;
         margin: 0 auto 36px auto;
-        img {
+        svg {
             display: block;
-            width: 64px;
+            width: 44px;
+            height: 44px;
+            fill: url(#primaryGradient);
         }
     }
     .form-field {
@@ -45,6 +33,6 @@
     }
     .remember {
         display: table;
-        margin: 20px auto 0 auto;
+        margin: 0 0 20px 0;
     }
 }

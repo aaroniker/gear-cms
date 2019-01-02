@@ -4,49 +4,55 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $headingsFontFamily;
-    line-height: $headingsLineHeight;
+    font-family: inherit;
+    line-height: 1.32;
+    margin: 0;
 }
 
 h1 {
-    color: $headingsH1Color;
-    font-weight: $headingsH1Weight;
-    font-size: $headingsH1Size;
-    margin: 0 0 $marginBottom 0;
-    @include responsive-size(floor($headingsH1Size * .8), $headingsH1Size);
+    color: var(--light-5);
+    font-weight: 700;
+    @include responsive-size(floor(36px * .8), 36px);
+    &.hero {
+        @include responsive-size(floor(28px * .8), 28px);
+    }
 }
 
 h2 {
-    color: $headingsH2Color;
-    font-weight: $headingsH2Weight;
-    font-size: $headingsH2Size;
-    margin: 0 0 $marginBottom 0;
-    @include responsive-size(floor($headingsH2Size * .8), $headingsH2Size);
+    color: var(--light-5);
+    font-weight: 600;
+    @include responsive-size(floor(24px * .8), 24px);
 }
 
 h3 {
-    color: $headingsH3Color;
-    font-weight: $headingsH3Weight;
-    font-size: $headingsH3Size;
-    margin: $marginBottom 0;
-    @include responsive-size(floor($headingsH3Size * .8), $headingsH3Size);
+    color: var(--light-5);
+    font-weight: 700;
+    @include responsive-size(floor(20px * .8), 20px);
 }
 
 h4 {
-    color: $headingsH4Color;
-    font-weight: $headingsH4Weight;
-    font-size: $headingsH4Size;
-    margin: $marginBottom 0;
-    @include responsive-size(floor($headingsH4Size * .8), $headingsH4Size);
+    color: var(--light-5);
+    font-weight: 600;
+    @include responsive-size(floor(18px * .8), 18px);
 }
 
 label {
-    color: $labelColor;
-    font-weight: $labelWeight;
+    color: var(--light-5);
+    font-weight: 500;
     display: block;
 }
 
+.caption {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: 1.6;
+}
+
 small {
-    font-size: floor($fontSize * .9);
-    line-height: 1;
+    font-size: 14px;
+    line-height: 1.42;
+    &.smaller {
+        font-size: 11px;
+    }
 }

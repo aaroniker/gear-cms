@@ -1,6 +1,4 @@
-@if $fontImport == true {
-    @import url($fontUrl);
-}
+@import url('https://fonts.googleapis.com/css?family=Mukta+Malar:400,600,700,800');
 
 html {
     -ms-text-size-adjust: 100%;
@@ -12,19 +10,19 @@ html {
 
 body {
     margin: 0;
-    font-family: $fontFamily;
-    font-size: $fontSize;
-    line-height: $lineHeight;
-    color: $textColor;
+    font-family: 'Mukta Malar', sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--text);
 }
 
 a {
-    text-decoration: $linkDecoration;
-    color: $linkColor;
+    text-decoration: none;
+    color: var(--primary);
     &:hover,
     &:focus {
-        text-decoration: $linkHoverDecoration;
-        color: $linkHoverColor;
+        text-decoration: none;
+        color: var(--primary);
     }
 }
 
@@ -41,15 +39,15 @@ textarea {
 hr {
     height: 0;
     border: 0;
-    border-top: 1px solid $border;
-    margin-top: $marginBottom;
-    margin-bottom: $marginBottom;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 ul,
 ol {
     margin-top: 0;
-    margin-bottom: $marginBottom;
+    margin-bottom: 24px;
     ul,
     ol {
         margin-bottom: 0;
@@ -71,7 +69,7 @@ ol {
 }
 
 p {
-    margin: 0 0 $marginBottom 0;
+    margin: 0 0 24px 0;
 }
 
 nav {

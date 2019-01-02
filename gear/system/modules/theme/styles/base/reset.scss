@@ -93,6 +93,7 @@ select,
 textarea {
     margin: 0;
     text-transform: none;
+    font-family: inherit;
     &:focus {
         outline: none;
     }

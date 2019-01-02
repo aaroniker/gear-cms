@@ -1,5 +1,7 @@
+$spaces: (4, 8, 12, 16, 20, 24, 28, 32);
+
 .clear {
-    @include clear-after();
+    @include clear;
 }
 
 .f-l {
@@ -8,30 +10,6 @@
 
 .f-r {
     float: right !important;
-}
-
-.wrap-lines {
-    align-items: center;
-    text-align: center;
-    @include flexbox;
-    @include justify-content(center);
-    &:before,
-    &:after {
-        content: '';
-        flex-grow: 1;
-        height: 1px;
-        background: #ccc;
-        min-width: $wrapLinesMinWidth;
-        display: inline-block;
-        vertical-align: middle;
-        @include flex-grow(1);
-    }
-    &:before {
-        margin-right: $wrapLinesGutter;
-    }
-    &:after {
-        margin-left: $wrapLinesGutter;
-    }
 }
 
 @each $space in $spaces {

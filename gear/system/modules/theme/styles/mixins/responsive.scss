@@ -1,3 +1,15 @@
+$columns: 12;
+$gapWidth: 32px;
+
+$breakpointXs: 480px;
+$breakpointSm: 768px;
+$breakpointMd: 992px;
+$breakpointLg: 1180px;
+
+$containerSm: 730px;
+$containerMd: 960px;
+$containerLg: 1160px;
+
 @mixin min($breakpoint) {
     @if $breakpoint == xs {
         @media(min-width: $breakpointXs + 1) {

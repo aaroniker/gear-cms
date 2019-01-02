@@ -1,3 +1,7 @@
+:root {
+    --sidebar-width: 260px;
+}
+
 #sidebar {
     overflow: hidden;
     position: fixed;
@@ -6,6 +10,7 @@
     bottom: 0;
     z-index: 11;
     width: var(--sidebar-width);
+    background: linear-gradient(var(--dark-1), var(--dark-3));
     .inner {
         position: absolute;
         top: 0;
@@ -17,9 +22,11 @@
         .logo {
             display: table;
             margin: 48px auto;
-            img {
+            svg {
+                width: 44px;
+                height: 44px;
                 display: block;
-                width: 42px;
+                fill: url(#primaryGradient);
             }
         }
         nav {
@@ -33,45 +40,30 @@
                     a {
                         display: block;
                         position: relative;
-                        padding: 0 0 0 40px;
+                        font-weight: 500;
+                        padding-left: 40px;
                     }
                     & > a {
-                        font-size: 18px;
-                        line-height: 28px;
-                        color: $textColorLight;
-                        .icon {
+                        font-size: 16px;
+                        line-height: 29px;
+                        color: var(--light-2);
+                        svg {
                             position: absolute;
                             left: 0;
                             top: 2px;
                             width: 24px;
                             height: 24px;
-                            svg {
-                                display: block;
-                                max-width: 20px;
-                                max-height: 20px;
-                                position: absolute;
-                                left: 50%;
-                                top: 50%;
-                                opacity: .8;
-                                stroke: $textColorLight;
-                                transform: translate(-50%, -50%);
-                                * {
-                                    stroke: $textColorLight;
-                                }
-                            }
+                            display: block;
+                            fill: var(--dark-6);
+                            color: var(--dark-5);
                         }
                     }
                     &.active {
                         & > a {
-                            color: $dark;
-                            .icon {
-                                svg {
-                                    stroke: $dark;
-                                    opacity: 1;
-                                    * {
-                                        stroke: $dark;
-                                    }
-                                }
+                            color: var(--light-5);
+                            svg {
+                                fill: url(#primaryGradient);
+                                color: var(--secondary);
                             }
                         }
                     }
@@ -81,25 +73,25 @@
                             margin: 12px 0 0 0;
                             a {
                                 line-height: 20px;
-                                font-size: 16px;
-                                color: $textColor;
+                                font-size: 14px;
+                                color: var(--light-1);
                                 &:before {
                                     content: '';
-                                    width: 8px;
-                                    height: 8px;
+                                    width: 6px;
+                                    height: 6px;
                                     position: absolute;
                                     border-radius: 50%;
-                                    top: 6px;
-                                    left: 8px;
+                                    top: 7px;
+                                    left: 9px;
                                     display: block;
-                                    background: $textColor;
+                                    background: none;
                                 }
                             }
                             &.active {
                                 a {
-                                    color: $textColor;
+                                    color: var(--light-5);
                                     &:before {
-                                        background: $primary;
+                                        background: var(--secondary);
                                     }
                                 }
                             }

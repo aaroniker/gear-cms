@@ -1,12 +1,10 @@
 
 // Variables
 
-@import 'vars';
+@import 'colors';
 
 // Mixins
 
-@import 'mixins/color';
-@import 'mixins/grid';
 @import 'mixins/responsive';
 @import 'mixins/utils';
 
@@ -20,9 +18,7 @@
 @import 'components/typography';
 @import 'components/grid';
 @import 'components/forms';
-@import 'components/selects';
-@import 'components/paginations';
-@import 'components/buttons';
+//@import 'components/buttons';
 @import 'components/helper';
 
 // Blocks
@@ -31,7 +27,7 @@
 @import 'blocks/main';
 
 body {
-    background: $snow;
+    background: var(--dark-3);
 }
 
 #gear {
@@ -39,11 +35,11 @@ body {
     min-height: 100vh;
     position: relative;
     &.interface {
-        padding: 0 0 0 var(--sidebar-width);
+        padding-left: var(--sidebar-width);
     }
     &.center {
-        @include flexbox;
-        @include justify-content(center);
-        @include align-items(center);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
