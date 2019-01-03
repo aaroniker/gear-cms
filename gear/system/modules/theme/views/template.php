@@ -32,6 +32,27 @@
                         <use xlink:href="#logo" />
                     </svg>
                 </a>
+                <div class="user">
+                    <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <svg>
+                                        <use xlink:href="#cogUI" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $route->getLink('login', ['logout']); ?>">
+                                    <svg>
+                                        <use xlink:href="#outUI" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
                 <nav>
                     <ul>
                     <?php
@@ -70,6 +91,17 @@
 
             <div class="toolbar">
                 <div>
+                    <a class="logo" href="<?= $app->config->get('system')['url'].'/'.$app->config->get('system')['adminURL']; ?>">
+                        <svg>
+                            <use xlink:href="#logo" />
+                        </svg>
+                    </a>
+                    <label class="menu">
+                        <input type="checkbox">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </label>
                     <h1><?= __($app->view->global('title')); ?></h1>
                     <nav>
                         <ul>

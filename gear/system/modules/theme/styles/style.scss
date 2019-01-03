@@ -26,6 +26,15 @@
 @import 'blocks/sidebar';
 @import 'blocks/main';
 
+html,
+body {
+    @include max(md) {
+        &.openSide {
+            overflow: hidden;
+        }
+    }
+}
+
 body {
     background: var(--dark-3);
 }
@@ -36,6 +45,10 @@ body {
     position: relative;
     &.interface {
         padding-left: var(--sidebar-width);
+        transition: padding .3s ease;
+        @include max(md) {
+            padding-left: 0;
+        }
     }
     &.center {
         display: flex;

@@ -2,6 +2,12 @@
     --sidebar-width: 260px;
 }
 
+@include max(sm) {
+    :root {
+        --sidebar-width: 240px;
+    }
+}
+
 #sidebar {
     overflow: hidden;
     position: fixed;
@@ -11,6 +17,13 @@
     z-index: 11;
     width: var(--sidebar-width);
     background: linear-gradient(var(--dark-1), var(--dark-3));
+    transition: transform .3s ease;
+    @include max(md) {
+        transform: translateX(-100%);
+        &.openSide {
+            transform: translateX(0);
+        }
+    }
     .inner {
         position: absolute;
         top: 0;
@@ -19,9 +32,18 @@
         right: -20px;
         padding: 0 20px 32px 0;
         overflow: auto;
+        @include max(md) {
+            padding-top: 42px;
+        }
+        @include max(sm) {
+            padding-top: 34px;
+        }
         .logo {
             display: table;
             margin: 48px auto;
+            @include max(md) {
+                display: none;
+            }
             svg {
                 width: 44px;
                 height: 44px;
@@ -29,8 +51,71 @@
                 fill: url(#primaryGradient);
             }
         }
-        nav {
+        .user {
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 32px;
+            margin: 0 0 24px 0;
+            @include max(sm) {
+                display: flex;
+            }
+            @include max(xs) {
+                padding: 0 24px;
+            }
+            nav {
+                & > ul {
+                    display: flex;
+                    & > li {
+                        margin: 0 16px 0 0;
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                        & > a {
+                            display: table;
+                            padding: 4px;
+                            & > svg {
+                                color: var(--text-muted);
+                                width: 16px;
+                                height: 16px;
+                                display: block;
+                                transition: color .3s ease;
+                            }
+                            &:hover {
+                                & > svg {
+                                    color: var(--text);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .avatar {
+                display: block;
+                width: 36px;
+                height: 36px;
+                text-align: center;
+                line-height: 36px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                text-transform: uppercase;
+                background: var(--dark-4);
+                color: var(--text);
+                transition: background .3s ease;
+                &:hover {
+                    background: var(--dark-5);
+                }
+            }
+        }
+        & > nav {
             padding: 0 40px;
+            @include max(sm) {
+                padding: 0 32px;
+            }
+            @include max(xs) {
+                padding: 0 24px;
+            }
             & > ul {
                 & > li {
                     margin: 0 0 24px 0;
