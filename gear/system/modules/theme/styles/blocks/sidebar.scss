@@ -1,5 +1,11 @@
 :root {
     --sidebar-width: 260px;
+    --active-nav: var(--light-5);
+    --active-nav-sub: var(--light-5);
+    --inactive-nav: var(--light-2);
+    --inactive-nav-hover: var(--light-3);
+    --inactive-nav-sub: var(--light-1);
+    --inactive-nav-sub-hover: var(--light-2);
 }
 
 @include max(sm) {
@@ -128,11 +134,12 @@
                         position: relative;
                         font-weight: 500;
                         padding-left: 40px;
+                        transition: color .3s ease;
                     }
                     & > a {
                         font-size: 16px;
                         line-height: 29px;
-                        color: var(--light-2);
+                        color: var(--inactive-nav);
                         svg {
                             position: absolute;
                             left: 0;
@@ -142,6 +149,9 @@
                             display: block;
                             fill: var(--dark-6);
                             color: var(--dark-5);
+                        }
+                        &:hover {
+                            color: var(--inactive-nav-hover);
                         }
                     }
                     & > span {
@@ -159,7 +169,7 @@
                             width: 2px;
                             height: 8px;
                             border-radius: 1px;
-                            background: var(--text-muted);
+                            background: var(--inactive-nav);
                             position: absolute;
                             right: 8px;
                             top: 7px;
@@ -173,10 +183,16 @@
                         &:after {
                             transform: scale(.92, .8) rotate(50deg);
                         }
+                        &:hover {
+                            &:before,
+                            &:after {
+                                background: var(--inactive-nav-hover);
+                            }
+                        }
                     }
                     &.active {
                         & > a {
-                            color: var(--light-5);
+                            color: var(--active-nav);
                             svg {
                                 fill: url(#primaryGradient);
                                 color: var(--secondary);
@@ -187,7 +203,7 @@
                         & > span {
                             &:before,
                             &:after {
-                                background: var(--light-5);
+                                background: var(--active-nav);
                             }
                             &:before {
                                 margin-right: 5px;
@@ -209,7 +225,7 @@
                             a {
                                 line-height: 20px;
                                 font-size: 14px;
-                                color: var(--light-1);
+                                color: var(--inactive-nav-sub);
                                 &:before {
                                     content: '';
                                     width: 6px;
@@ -221,10 +237,13 @@
                                     display: block;
                                     background: none;
                                 }
+                                &:hover {
+                                    color: var(--inactive-nav-sub-hover);
+                                }
                             }
                             &.active {
                                 a {
-                                    color: var(--light-5);
+                                    color: var(--active-nav-sub);
                                     &:before {
                                         background: var(--secondary);
                                     }
