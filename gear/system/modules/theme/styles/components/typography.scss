@@ -12,9 +12,9 @@ h6 {
 h1 {
     color: var(--light-5);
     font-weight: 700;
-    @include responsive-size(floor(36px * .8), 36px);
+    @include responsive-size(floor(28px * .8), 28px);
     &.hero {
-        @include responsive-size(floor(28px * .8), 28px);
+        @include responsive-size(floor(36px * .8), 36px);
     }
 }
 

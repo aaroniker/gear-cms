@@ -5,7 +5,7 @@
 @import '../../../system/modules/theme/styles/mixins/utils';
 
 .login {
-    width: 240px;
+    width: 260px;
     & > .messages {
         opacity: 0;
         visibility: hidden;
@@ -32,7 +32,8 @@
         width: 100%;
     }
     .remember {
-        display: table;
-        margin: 0 0 20px 0;
+        .checkbox {
+            margin-bottom: 20px;
+        }
     }
 }

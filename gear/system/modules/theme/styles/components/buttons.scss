@@ -1,3 +1,7 @@
+:root {
+    --button-border: var(--light-1);
+}
+
 .btn {
     display: inline-block;
     text-align: center;
@@ -7,12 +11,12 @@
     white-space: nowrap;
     border: none;
     color: #fff;
-    line-height: $lineHeight;
-    padding: $buttonPaddingV $buttonPaddingH;
-    font-size: $fontSize;
-    font-weight: $buttonFontWeight;
-    background: $primary;
-    border-radius: $buttonRadius;
+    padding: 10px 28px;
+    font-size: 16px;
+    line-height: 23px;
+    font-weight: 600;
+    background: var(--primary);
+    border-radius: 6px;
     transition: all .3s ease;
     &:link,
     &:active,
@@ -20,66 +24,57 @@
     &:focus {
         color: #fff;
     }
-    [class*='icon-'] {
+    svg {
         position: relative;
-        left: -5px;
-        font-size: 18px;
+        left: -4px;
+        width: 16px;
+        height: 16px;
         display: inline-block;
         vertical-align: top;
         font-weight: normal;
-        &:before {
-            display: inline-block;
-            vertical-align: top;
-            line-height: $lineHeight;
-        }
+        margin: 3px 0;
         &.right {
             left: auto;
-            right: -5px;
+            right: -4px;
         }
     }
     &.icon {
-        padding: $buttonPaddingV;
-        [class*='icon-'] {
+        padding: 10px;
+        svg {
             left: auto;
             right: auto;
             display: block;
-            min-width: $lineHeight;
+            margin: 3px;
         }
     }
     &.sm {
         font-size: 14px;
-        border-radius: $buttonSmRadius;
-        padding: $buttonPaddingSmV $buttonPaddingSmH;
+        border-radius: 6px;
+        padding: 6px 20px;
         &.icon {
-            padding: $buttonPaddingSmV;
+            padding: 6px;
+            svg {
+                margin: 4px;
+            }
         }
-        [class*='icon-'] {
-            font-size: 16px;
-        }
-    }
-    &.lg {
-        font-size: 18px;
-        border-radius: $buttonLgRadius;
-        padding: $buttonPaddingLgV $buttonPaddingLgH;
-        &.icon {
-            padding: $buttonPaddingLgV;
-        }
-        [class*='icon-'] {
-            font-size: 20px;
+        svg {
+            width: 14px;
+            height: 14px;
+            margin: 4px 0;
         }
     }
     &:hover {
         color: #fff;
-        background: darken($primary, 6%);
+        background: var(--primary-hover);
     }
     &.border {
-        background: #fff;
-        color: $textColor;
+        background: none;
+        color: var(--text);
         &:link,
         &:active,
         &:visited,
         &:focus {
-            color: $textColor;
+            color: var(--text);
         }
         &:before {
             content: '';
@@ -90,73 +85,33 @@
             position: absolute;
             z-index: 0;
             border-radius: inherit;
-            border: 1px solid $border;
+            transition: border-color .3s ease;
+            border: 1px solid var(--button-border);
         }
         &:hover {
-            background: $light;
-        }
-    }
-    &.gradient {
-        position: relative;
-        background: none;
-        &:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            display: block;
-            z-index: -1;
-            border-radius: inherit;
-            transition: all .3s ease;
-            @include linear-gradient(135deg, $primary, $secondary);
-        }
-        &:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            display: block;
-            z-index: -2;
-            border-radius: inherit;
-            @include linear-gradient(135deg, darken($primary, 6%), darken($secondary, 6%));
-        }
-        &:hover {
-            &:after {
-                opacity: 0;
+            &:before {
+                border-color: var(--secondary);
             }
         }
     }
-    &.success {
-        background: $success;
+    &.secondary {
+        background: var(--secondary);
         &:hover {
-            background: darken($success, 6%);
+            background: var(--secondary-hover);
         }
+    }
+    &.success {
+        background: var(--success);
     }
     &.error {
-        background: $error;
-        &:hover {
-            background: darken($error, 6%);
-        }
+        background: var(--error);
     }
     &.warning {
-        background: $warning;
-        &:hover {
-            background: darken($warning, 6%);
-        }
-    }
-    &.info {
-        background: $info;
-        &:hover {
-            background: darken($info, 6%);
-        }
+        background: var(--warning);
     }
     &.none {
         background: none;
-        color: $textColor;
+        color: var(--text);
         &:hover {
             background: none;
         }
@@ -168,12 +123,6 @@
     }
     &.block {
         display: block;
-    }
-    &:hover {
-        transform: $buttonHoverTransform;
-    }
-    &:active {
-        transform: $buttonClickTransform;
     }
 }
 
@@ -201,30 +150,14 @@
             &:after {
                 border-radius: inherit;
             }
-            border-radius: 0 $buttonRadius $buttonRadius 0;
+            border-radius: 0 6px 6px 0;
         }
         &:first-child:not(:last-child) {
             &:before,
             &:after {
                 border-radius: inherit;
             }
-            border-radius: $buttonRadius 0 0 $buttonRadius;
-        }
-        &.sm {
-            &:last-child:not(:first-child) {
-                border-radius: 0 $buttonSmRadius $buttonSmRadius 0;
-            }
-            &:first-child:not(:last-child) {
-                border-radius: $buttonSmRadius 0 0 $buttonSmRadius;
-            }
-        }
-        &.lg {
-            &:last-child:not(:first-child) {
-                border-radius: 0 $buttonLgRadius $buttonLgRadius 0;
-            }
-            &:first-child:not(:last-child) {
-                border-radius: $buttonLgRadius 0 0 $buttonLgRadius;
-            }
+            border-radius: 6px 0 0 6px;
         }
         &:first-child {
             margin-left: 0;
@@ -238,5 +171,5 @@
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    @include clear-after;
+    @include clear;
 }

@@ -11,6 +11,7 @@
     background: var(--input-background);
     border: 1px solid var(--border);
     padding: 10px 16px;
+    line-height: 21px;
     color: var(--text);
     border-radius: 6px;
     transition: border .3s ease;
@@ -82,6 +83,7 @@ form {
         .radio.inline,
         .switch:first-child,
         .switch.inline {
+            margin-top: 11px;
         }
     }
 }
@@ -89,15 +91,156 @@ form {
 .checkbox,
 .radio,
 .switch {
-    margin: 0;
+    margin: 0 0 12px 0;
+    display: table;
     &.inline {
         margin: 0 12px 0 0;
         display: inline-block;
     }
-    & > span {
-        margin: 0 0 0 6px;
-        vertical-align: top;
-    }
     input {
+        display: none;
+        & + span {
+            color: var(--text);
+            height: 21px;
+            line-height: 21px;
+            position: relative;
+            display: block;
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                left: 0;
+                top: 0;
+                position: absolute;
+            }
+            &:before {
+                height: 21px;
+                border: 1px solid var(--border);
+                background: var(--input-background);
+                transition: background .3s ease, border-color .3s ease;
+            }
+            &:after {
+                transition: transform .3s ease, opacity .2s ease;
+            }
+        }
+        &:checked + span {
+            &:before {
+                background: var(--primary);
+                border-color: var(--primary);
+            }
+            &:after {
+                transition: opacity .3s ease, transform .6s cubic-bezier(.175, .88, .32, 1.2);
+            }
+        }
+    }
+    &:hover {
+        input {
+            &:not(:checked) + span {
+                &:before {
+                    border-color: var(--secondary);
+                }
+            }
+        }
+    }
+}
+
+.checkbox,
+.radio {
+    input {
+        & + span {
+            padding-left: 21px;
+            &:not(:empty) {
+                padding-left: 29px;
+            }
+            &:before {
+                width: 21px;
+            }
+            &:after {
+                opacity: 0;
+            }
+        }
+        &:checked + span {
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.checkbox {
+    input {
+        & + span {
+            &:before {
+                border-radius: 6px;
+            }
+            &:after {
+                width: 5px;
+                height: 9px;
+                border: 2px solid #fff;
+                border-top: 0;
+                border-left: 0;
+                left: 8px;
+                top: 5px;
+                transform: rotate(20deg);
+            }
+        }
+        &:checked + span {
+            &:after {
+                transform: rotate(43deg);
+            }
+        }
+    }
+}
+
+.radio {
+    input {
+        & + span {
+            &:before,
+            &:after {
+                border-radius: 50%;
+            }
+            &:after {
+                width: 21px;
+                height: 21px;
+                background: #fff;
+                opacity: 0;
+                transform: scale(.6);
+            }
+        }
+        &:checked + span {
+            &:after {
+                background: #fff;
+                transform: scale(.4);
+            }
+        }
+    }
+}
+
+.switch {
+    input {
+        & + span {
+            padding-left: 38px;
+            &:not(:empty) {
+                padding-left: 46px;
+            }
+            &:before {
+                width: 38px;
+                border-radius: 11px;
+            }
+            &:after {
+                left: 3px;
+                top: 3px;
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+                background: var(--border);
+            }
+        }
+        &:checked + span {
+            &:after {
+                background: #fff;
+                transform: translateX(18px) scale(.8);
+            }
+        }
     }
 }

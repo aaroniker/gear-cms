@@ -68,35 +68,46 @@
 
         <section id="main">
 
-            <a href="<?= $app->config->get('system')['url']; ?>" class="link">
+            <div class="toolbar">
                 <div>
-                    <svg>
-                        <use xlink:href="#linkUI" />
-                    </svg>
+                    <h1><?= __($app->view->global('title')); ?></h1>
+                    <nav>
+                        <ul>
+                            <li>
+                                <messages></messages>
+                            </li>
+                            <li>
+                                <a href="<?= $app->config->get('system')['url']; ?>">
+                                    <svg>
+                                        <use xlink:href="#linkUI" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <span><?= str_replace(['http://', 'https://'], '', $app->config->get('system')['url']); ?></span>
-            </a>
-
-            <messages></messages>
-
-            <div class="user">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="<?= $route->getLink('login', ['logout']); ?>">
-                                <svg>
-                                    <use xlink:href="#outUI" />
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="panel">
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <svg>
+                                        <use xlink:href="#cogUI" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= $route->getLink('login', ['logout']); ?>">
+                                    <svg>
+                                        <use xlink:href="#outUI" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                     <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
                 </div>
             </div>
-
-            <h1><?= __($app->view->global('title')); ?></h1>
 
             <div class="content">
                 <?= $app->view->get('content') ?>

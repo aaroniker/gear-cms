@@ -20,7 +20,7 @@
     --light-6: #F5F9FF;
     --light-7: #ffffff;
 
-    --success: #3FDC75;
+    --success: #3DD170;
     --warning: #F6D87C;
     --error: #D93757;
 
@@ -30,6 +30,9 @@
     --border: var(--dark-6);
     --border-focus: var(--secondary);
     --border-disabled: var(--dark-5);
+
+    --primary-hover: #4F29D0;
+    --secondary-hover: #1BB6E9;
 
     --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
 

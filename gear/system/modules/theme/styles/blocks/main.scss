@@ -1,3 +1,73 @@
 #main {
-
+    .toolbar {
+        display: flex;
+        & > div {
+            & > nav {
+                 & > ul {
+                    display: flex;
+                    & > li {
+                        margin: 8px 24px 8px 0;
+                        & > a {
+                            display: table;
+                            padding: 4px;
+                            & > svg {
+                                color: var(--text-muted);
+                                width: 16px;
+                                height: 16px;
+                                display: block;
+                                transition: color .3s ease;
+                            }
+                            &:hover {
+                                & > svg {
+                                    color: var(--text);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &:first-child {
+                padding: 0 52px 0 48px;
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h1 {
+                    line-height: 40px;
+                }
+                & > nav {
+                    & > ul {
+                        & > li {
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            &:last-child {
+                display: flex;
+                padding: 48px 60px 48px 52px;
+                background: linear-gradient(var(--dark-1), var(--dark-3));
+                .avatar {
+                    display: block;
+                    width: 36px;
+                    height: 36px;
+                    text-align: center;
+                    line-height: 36px;
+                    border-radius: 6px;
+                    text-transform: uppercase;
+                    background: var(--dark-4);
+                    color: var(--text);
+                    transition: background .3s ease;
+                    &:hover {
+                        background: var(--dark-5);
+                    }
+                }
+            }
+        }
+    }
+    .content {
+        padding: 0 60px 0 48px;
+    }
 }
