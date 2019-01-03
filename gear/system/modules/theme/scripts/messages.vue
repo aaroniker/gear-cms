@@ -268,7 +268,13 @@ Vue.component('messages', function(resolve) {
         }
     }
     &.minimal {
-        margin-bottom: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .3s ease;
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
         & > a {
             display: none;
         }
@@ -278,10 +284,7 @@ Vue.component('messages', function(resolve) {
             }
             ul {
                 li {
-                    margin: 0 0 12px 0;
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
+                    margin: 0 0 20px 0;
                 }
             }
             .noMessages {

@@ -6,15 +6,6 @@
 
 .login {
     width: 260px;
-    & > .messages {
-        opacity: 0;
-        visibility: hidden;
-        transition: all .3s ease;
-        &.active {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
     .logo {
         display: table;
         margin: 0 auto 36px auto;

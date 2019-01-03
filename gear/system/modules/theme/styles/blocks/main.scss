@@ -32,6 +32,11 @@
                                 }
                             }
                         }
+                        &.notification {
+                            @include max(sm) {
+                                display: none;
+                            }
+                        }
                     }
                 }
             }
@@ -183,6 +188,12 @@
         }
         @include max(xs) {
             padding: 0 20px;
+        }
+        & > .notification {
+            display: none;
+            @include max(sm) {
+                display: block;
+            }
         }
     }
 }

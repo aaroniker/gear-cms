@@ -105,7 +105,7 @@
                     <h1><?= __($app->view->global('title')); ?></h1>
                     <nav>
                         <ul>
-                            <li>
+                            <li class="notification">
                                 <messages></messages>
                             </li>
                             <li>
@@ -142,6 +142,9 @@
             </div>
 
             <div class="content">
+                <div class="notification">
+                    <messages :minimal="true"></messages>
+                </div>
                 <?= $app->view->get('content') ?>
             </div>
 
