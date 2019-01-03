@@ -57,18 +57,21 @@
                     <ul>
                     <?php
                         foreach($app->admin->getMenus('main') as $name => $item) {
+                            $span = (isset($item['sub'])) ? '<span></span>' : '';
+                            $openClass = ($item['activeClass']) ? ' opened' : '';
                             echo '
-                            <li'.$item['activeClass'].'>
+                            <li class="'.$item['activeClass'].$openClass.'">
                                 <a href="'.$route->getURL($item['url']).'">
                                     '.$item['icon'].'
                                     '.__($item['name']).'
                                 </a>
+                                '.$span.'
                             ';
                             if(isset($item['sub'])) {
                                 echo '<ul>';
                                 foreach($item['sub'] as $sub) {
                                     echo '
-                                    <li'.$sub['activeClass'].'>
+                                    <li class="'.$sub['activeClass'].'">
                                         <a href="'.$route->getURL($sub['url']).'">
                                             '.__($sub['name']).'
                                         </a>

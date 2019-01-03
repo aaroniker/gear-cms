@@ -118,6 +118,7 @@
             }
             & > ul {
                 & > li {
+                    position: relative;
                     margin: 0 0 24px 0;
                     &:last-child {
                         margin-bottom: 0;
@@ -143,6 +144,36 @@
                             color: var(--dark-5);
                         }
                     }
+                    & > span {
+                        width: 24px;
+                        height: 24px;
+                        display: block;
+                        position: absolute;
+                        z-index: 1;
+                        top: 3px;
+                        right: -6px;
+                        cursor: pointer;
+                        &:before,
+                        &:after {
+                            content: '';
+                            width: 2px;
+                            height: 8px;
+                            border-radius: 1px;
+                            background: var(--text-muted);
+                            position: absolute;
+                            right: 8px;
+                            top: 7px;
+                            transform-origin: 50% 50%;
+                            transition: transform .3s ease, background .3s ease;
+                        }
+                        &:before {
+                            margin-right: 5px;
+                            transform: scale(.92, .8) rotate(-50deg);
+                        }
+                        &:after {
+                            transform: scale(.92, .8) rotate(50deg);
+                        }
+                    }
                     &.active {
                         & > a {
                             color: var(--light-5);
@@ -152,8 +183,27 @@
                             }
                         }
                     }
+                    &.opened {
+                        & > span {
+                            &:before,
+                            &:after {
+                                background: var(--light-5);
+                            }
+                            &:before {
+                                margin-right: 5px;
+                                transform: scale(.92, .8) rotate(-130deg);
+                            }
+                            &:after {
+                                transform: scale(.92, .8) rotate(130deg);
+                            }
+                        }
+                        ul {
+                            display: block;
+                        }
+                    }
                     ul {
                         padding: 8px 0 4px 0;
+                        display: none;
                         li {
                             margin: 12px 0 0 0;
                             a {

@@ -13,7 +13,7 @@ class admin {
     public function addMenuItem($menu, $name, $item = []) {
 
         $item['order'] = (isset($item['order'])) ? $item['order'] : $this->order;
-        $item['activeClass'] = ((bool)preg_match('#^'.str_replace('*', '.*', (isset($item['active'])) ? $item['active'] : $item['url']).'$#', $this->app->route->route)) ? ' class="active"' : '';
+        $item['activeClass'] = ((bool)preg_match('#^'.str_replace('*', '.*', (isset($item['active'])) ? $item['active'] : $item['url']).'$#', $this->app->route->route)) ? 'active' : '';
 
         if(isset($item['parent'])) {
             $this->menus[$menu][$item['parent']]['sub'][$name] = $item;
