@@ -1,21 +1,31 @@
 <template>
-    <div v-bind:class="{ messages: true, active: messages.length, multiple: messages.length > 1, open: open }" ref="messageList">
-        <a @click.prevent="toggle()" href="" v-html="bell"></a>
-        <div v-bind:class="{ list: true, open: open, showAll: showAll }">
+    <div v-bind:class="{ messages: true, active: messages.length, minimal: minimal, open: open }" ref="messageList">
+        <a @click.prevent="toggle()" href="">
+            <svg>
+                <use xlink:href="#bellUI" />
+            </svg>
+        </a>
+        <div v-bind:class="{ list: true, open: open, showAll: (showAll && (messages.length > 1)) }">
+            <a v-bind:class="{ expanded: showAll, show: messages.length > 1 }" @click.prevent="showAll = !showAll" href="">
+                <svg>
+                    <use xlink:href="#expandUI" />
+                </svg>
+            </a>
+            <a v-bind:class="{ show: messages.length > 1 }" @click.prevent="remove(-1)" href="">
+                <svg>
+                    <use xlink:href="#trashUI" />
+                </svg>
+            </a>
             <ul v-if="messages.length">
                 <li v-for="(item, index) in listMessages" :class="item.type">
-                    <div class="icon" v-html="icons[item.type]"></div>
                     {{ item.message | lang }}
-                    <a @click.prevent="remove(item.index)" href="" v-html="icons['close']"></a>
+                    <a @click.prevent="remove(item.index)" href="">
+                        <svg>
+                            <use xlink:href="#crossUI" />
+                        </svg>
+                    </a>
                 </li>
             </ul>
-            <div v-bind:class="{ controls: true, show: messages.length > 1 }">
-                <label class="switch inline">
-                    <input type="checkbox" v-model="showAll">
-                    <div></div>
-                </label>
-                <div class="remove" @click="remove(-1)" v-html="trash"></div>
-            </div>
             <div v-if="messages.length < 1" class="noMessages">
                 {{ 'No messages' | lang }}
             </div>
@@ -25,18 +35,16 @@
 
 <script>
 module.exports = {
+    props: {
+        minimal: {
+          type: Boolean,
+          default: false
+        }
+    },
     data() {
         return {
             messages: [],
             open: false,
-            icons: {
-                success: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper fill" transform="translate(0.5, 0.5)"><polyline data-color="color-2" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points=" 6,12 10,16 18,8 " stroke-linejoin="miter"></polyline> <circle fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" cx="12" cy="12" r="11" stroke-linejoin="miter"></circle></g></svg>',
-                error: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper fill" transform="translate(0.5, 0.5)"><line data-color="color-2" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="16" y1="8" x2="8" y2="16" stroke-linejoin="miter"></line> <line data-color="color-2" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="16" y1="16" x2="8" y2="8" stroke-linejoin="miter"></line> <circle fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" cx="12" cy="12" r="11" stroke-linejoin="miter"></circle></g></svg>',
-                warning: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper fill" transform="translate(0.5, 0.5)"><circle fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" cx="12" cy="12" r="11" stroke-linejoin="miter"></circle><line data-color="color-2" fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="12" y1="7" x2="12" y2="13" stroke-linejoin="miter"></line><circle data-color="color-2" class="fill" data-stroke="none" cx="12" cy="17" r="1" stroke-linejoin="miter" stroke-linecap="square"></circle></g></svg>',
-                close: '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="fill" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper"><path class="fill" d="M16.7,7.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L8.7,7.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l3.3,3.3l-3.3,3.3 c-0.4,0.4-0.4,1,0,1.4C7.5,16.9,7.7,17,8,17s0.5-0.1,0.7-0.3l3.3-3.3l3.3,3.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l3.3-3.3C17.1,8.3,17.1,7.7,16.7,7.3z"></path></g></svg>'
-            },
-            trash: require('../img/trash.svg'),
-            bell: require('../img/bell.svg'),
             showAll: false
         }
     },
@@ -95,7 +103,7 @@ module.exports = {
     },
     computed: {
         listMessages() {
-            if(!this.showAll) {
+            if(!this.showAll && !this.minimal) {
                 return this.messages.slice().reverse().slice(0, 1);
             }
             return this.messages.slice().reverse();
@@ -109,95 +117,74 @@ Vue.component('messages', function(resolve) {
 
 <style lang="scss">
 .messages {
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    height: 44px;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: all .3s ease;
-    @include flexbox;
-    & > a {
-        display: block;
-        width: 44px;
+    &:not(.minimal) {
+        z-index: 9999;
         position: relative;
-        height: 44px;
-        border-radius: 6px;
-        transition: all .3s ease;
-        svg {
-            width: 14px;
-            height: 14px;
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transition: all .3s ease;
-            transform: translate(-50%, -50%);
-            .fill {
-                fill: $textColor;
-            }
-        }
-        &:hover {
-            background: $light;
-        }
-    }
-    &.multiple {
-        margin-left: -41px;
-    }
-    .list {
-        width: 0;
-        opacity: 0;
-        visibility: hidden;
-        position: relative;
-        transition: opacity .2s ease 0s, visibility 0s ease .8s, width .5s ease .1s;
-        &.open {
-            width: 160px;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity .5s ease .3s, visibility 0s ease 0s, width .5s ease 0s;
-        }
-        .noMessages {
-            line-height: 44px;
-            text-align: center;
-            color: $textColorLight;
-        }
-        .controls {
-            position: absolute;
-            left: 100%;
-            top: 0;
-            height: 44px;
+        display: flex;
+        .list {
             opacity: 0;
             visibility: hidden;
-            transition: all .3s ease;
-            @include flexbox;
-            @include align-items(center);
-            .switch {
-                display: block;
-                margin: 0 8px 0 12px;
-                height: 20px;
+            position: absolute;
+            display: flex;
+            top: -6px;
+            right: 36px;
+            transition: opacity .3s ease, visibility .3s ease;
+            &.open {
+                opacity: 1;
+                visibility: visible;
             }
-            .remove {
-                display: block;
-                width: 22px;
-                cursor: pointer;
-                height: 22px;
-                position: relative;
-                opacity: .4;
-                transition: all .3s ease;
-                svg {
-                    width: 14px;
-                    height: 14px;
-                    display: block;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    .fill {
-                        fill: $textColor;
-                    }
+            ul {
+                li {
+                    white-space: nowrap;
                 }
-                &:hover {
-                    opacity: 1;
+            }
+        }
+    }
+    & > a {
+        display: table;
+        position: relative;
+        padding: 4px;
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+            transition: color .3s ease;
+            color: var(--text-muted);
+        }
+        &:hover {
+            svg {
+                color: var(--text);
+            }
+        }
+    }
+    .list {
+        .noMessages {
+            line-height: 36px;
+            white-space: nowrap;
+            color: var(--text-muted);
+        }
+        & > a {
+            display: table;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s ease, visibility .3s ease;
+            padding: 4px;
+            margin: 6px 8px 6px 0;
+            svg {
+                color: var(--text-muted);
+                width: 16px;
+                height: 16px;
+                display: block;
+                transition: color .3s ease;
+            }
+            &:hover {
+                svg {
+                    color: var(--text);
+                }
+            }
+            &.expanded {
+                svg {
+                    color: var(--light-5);
                 }
             }
             &.show {
@@ -209,115 +196,96 @@ Vue.component('messages', function(resolve) {
             margin: 0;
             padding: 0;
             list-style: none;
-            position: absolute;
-            top: -1px;
-            left: 8px;
-            right: 0;
             border-radius: 6px;
-            border: 1px solid transparent;
             transition: all .3s ease;
             li {
                 position: relative;
                 margin: 0 0 8px 0;
-                padding: 11px 32px 11px 40px;
+                padding: 8px 36px 8px 12px;
                 border-radius: 6px;
                 color: #fff;
                 font-size: 14px;
                 line-height: 20px;
-                text-shadow: 0 1px 1px rgba(#000, .12);
+                font-weight: 500;
+                text-shadow: 0 0 1px rgba(#000, .2);
                 &:last-child {
                     margin-bottom: 0;
                 }
-                .icon {
-                    position: absolute;
-                    left: 12px;
-                    top: 50%;
-                    transform: translate(0, -50%);
-                }
                 a {
                     display: block;
-                    width: 20px;
-                    height: 20px;
                     position: absolute;
                     right: 8px;
-                    top: 50%;
-                    opacity: .7;
-                    transition: all .3s ease;
-                    transform: translate(0, -50%);
+                    top: 8px;
+                    padding: 2px;
+                    opacity: .75;
+                    transition: opacity .3s ease;
+                    svg {
+                        color: #fff;
+                        width: 16px;
+                        height: 16px;
+                        display: block;
+                    }
                     &:hover {
                         opacity: 1;
                     }
-                    svg {
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        width: 20px;
-                        height: 20px;
-                        transform: translate(-50%, -50%);
-                        * {
-                            stroke: #fff;
-                        }
-                        &.fill {
-                            stroke: none;
-                            fill: #fff;
-                        }
-                    }
-                }
-                svg {
-                    width: 16px;
-                    height: 16px;
-                    display: block;
-                    * {
-                        stroke: #fff;
-                    }
-                    &.fill {
-                        stroke: none;
-                        fill: #fff;
-                    }
                 }
                 &.success {
-                    border-color: $success;
-                    background: fade-out($success, .2);
+                    background: var(--success);
                 }
                 &.error {
-                    border-color: $error;
-                    background: fade-out($error, .2);
+                    background: var(--error);
                 }
                 &.warning {
-                    border-color: $warning;
-                    background: fade-out($warning, .2);
+                    background: var(--warning);
                 }
             }
         }
         &.showAll {
             ul {
-                background: #fff;
+                background: var(--dark-5);
+                box-shadow: 0 4px 8px -1px var(--dark-3);
                 padding: 8px;
-                border-color: $border;
             }
         }
     }
     &.active {
         & > a {
-            svg {
-                opacity: 1;
-            }
             &:before {
                 content: '';
                 z-index: 1;
-                width: 12px;
-                height: 12px;
+                width: 7px;
+                height: 7px;
                 border-radius: 50%;
-                background: $error;
+                background: var(--secondary);
                 position: absolute;
-                top: -2px;
-                right: -2px;
-                border: 2px solid $snow;
+                top: 4px;
+                right: 5px;
+                border: 1px solid var(--dark-3);
+            }
+            svg {
+                color: var(--light-5);
             }
         }
+    }
+    &.minimal {
+        margin-bottom: 20px;
+        & > a {
+            display: none;
+        }
         .list {
-            &.open {
-                width: 320px;
+            & > a {
+                display: none;
+            }
+            ul {
+                li {
+                    margin: 0 0 12px 0;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            .noMessages {
+                display: none;
             }
         }
     }

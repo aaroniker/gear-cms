@@ -27,13 +27,13 @@
 
         <div class="login">
 
-            <messages></messages>
-
             <a class="logo" href="http://gearcms.org" target="_blank">
                 <svg>
                     <use xlink:href="#logo" />
                 </svg>
             </a>
+
+            <messages :minimal="true"></messages>
 
             <?= $app->view->get('content') ?>
 
