@@ -20,12 +20,13 @@ class route {
         $this->app = $app;
         $this->url = $this->app->config->get('system')['url'];
 
-        $this->splitUrl();
+        $url = self::getUrlStatic();
 
-        if($this->controller == $this->app->config->get('system')['adminURL']) {
+        if(is_array($url) && $url[0] == $this->app->config->get('system')['adminURL']) {
 
-            $this->splitUrl(1);
             $this->admin = true;
+            unset($url[0]);
+            $this->route = implode('/', $url);
 
         } else {
 
@@ -37,6 +38,7 @@ class route {
 
     }
 
+    /*
     public function splitUrl($offset = 0) {
 
         if($getUrl = type::get('url', 'string', false)) {
@@ -50,23 +52,14 @@ class route {
 
             $this->params = (is_array($url)) ? array_values($url) : false;
 
+            var_dump($this->params);
+
             $this->route = str_replace($this->app->config->get('system')['adminURL'].'/', '', $getUrl);
 
         }
 
     }
-
-    public static function getUrlStatic() {
-
-        if(type::get('url', 'string', false)) {
-            $url = trim(type::get('url'), '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            return explode('/', $url);
-        }
-
-        return false;
-
-    }
+    */
 
     public function includeController() {
 
@@ -76,11 +69,24 @@ class route {
 
             if(is_array($module->options['routes']) && count($module->options['routes'])) {
                 foreach($module->options['routes'] as $url => $array) {
-                    $this->routes[$array['name']] = $url;
-                    if($url == '/'.$this->controller) {
+                    //if(basename($array['controller']) == $this->controller && (bool)preg_match('#^'.str_replace('*', '.*', $url).'$#', $this->route)) {
+                    if((bool)preg_match('#^'.str_replace('*', '.*', $url).'$#', $this->route)) {
+
+                        $this->controller = $array['controller'];
 
                         if(!file_exists($path.'/'.$array['controller'].'.php')) {
                             continue;
+                        }
+
+                        $urlArr = [];
+                        $name = str_replace(['(/*)?', '/*'], '', $url).'/';
+                        if(substr($this->route, 0, strlen($name)) == $name) {
+                            $urlArr = explode('/', substr($this->route, strlen($name)));
+                            if(isset($urlArr[0])) {
+                                $this->method = $urlArr[0];
+                                unset($urlArr[0]);
+                            }
+                            $this->params = $urlArr;
                         }
 
                         include($path.'/'.$array['controller'].'.php');
@@ -128,17 +134,17 @@ class route {
             if(isset($module->options['routes']) && is_array($module->options['routes']) && count($module->options['routes'])) {
                 $routes[$module->path] = $module;
                 foreach($module->options['routes'] as $url => $array) {
-                    $this->routes[$array['name']] = $url;
+                    $this->routes[$url] = $array;
                 }
             }
         }
         return $routes;
     }
 
-    public function redirect($name, $array = []) {
+    public function redirect($url, $array = []) {
         $this->getAllRoutes();
-        if(isset($this->routes[$name]) && $this->fullURL() != $this->getLink($name, $array) && !ajax::is()) {
-            header('location: '.$this->getLink($name, $array));
+        if(isset($this->routes[$url]) && $this->fullURL() != $this->getLink($url, $array) && !ajax::is()) {
+            header('location: '.$this->getLink($url, $array));
             exit();
         }
     }
@@ -147,17 +153,17 @@ class route {
         return (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
-    public function getLink($name, $array = []) {
+    public function getLink($url, $array = []) {
 
         $this->getAllRoutes();
-        $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+        $base = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
 
-        if(isset($this->routes[$name])) {
+        if(isset($this->routes[$url])) {
             $params = (is_array($array) && count($array)) ? '/'.implode('/', $array) : '';
-            return $url.$this->routes[$name].$params;
+            return $base.'/'.$url.$params;
         }
 
-        return $url;
+        return $base;
 
     }
 
@@ -176,6 +182,18 @@ class route {
             header('location: '.$url);
             exit();
         }
+
+    }
+
+    public static function getUrlStatic() {
+
+        if(type::get('url', 'string', false)) {
+            $url = trim(type::get('url'), '/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            return explode('/', $url);
+        }
+
+        return false;
 
     }
 
