@@ -38,87 +38,61 @@ class route {
 
     }
 
-    /*
-    public function splitUrl($offset = 0) {
-
-        if($getUrl = type::get('url', 'string', false)) {
-
-            $url = self::getUrlStatic();
-
-            $this->controller = isset($url[0 + $offset]) ? $url[0 + $offset] : '';
-            $this->method = isset($url[1 + $offset]) ? $url[1 + $offset] : '';
-
-            unset($url[0 + $offset], $url[1 + $offset]);
-
-            $this->params = (is_array($url)) ? array_values($url) : false;
-
-            var_dump($this->params);
-
-            $this->route = str_replace($this->app->config->get('system')['adminURL'].'/', '', $getUrl);
-
-        }
-
-    }
-    */
-
     public function includeController() {
 
         $loaded = false;
 
-        foreach($this->getAllRoutes() as $path => $module) {
+        $this->getAllRoutes();
 
-            if(is_array($module->options['routes']) && count($module->options['routes'])) {
-                foreach($module->options['routes'] as $url => $array) {
-                    //if(basename($array['controller']) == $this->controller && (bool)preg_match('#^'.str_replace('*', '.*', $url).'$#', $this->route)) {
-                    if((bool)preg_match('#^'.str_replace('*', '.*', $url).'$#', $this->route)) {
+        foreach($this->routes as $key => $array) {
 
-                        $this->controller = $array['controller'];
+            if((bool)preg_match('#^'.str_replace('*', '.*', $array['url']).'$#', $this->route)) {
 
-                        if(!file_exists($path.'/'.$array['controller'].'.php')) {
-                            continue;
-                        }
+                $this->controller = $array['controller'];
 
-                        $urlArr = [];
-                        $name = str_replace(['(/*)?', '/*'], '', $url).'/';
-                        if(substr($this->route, 0, strlen($name)) == $name) {
-                            $urlArr = explode('/', substr($this->route, strlen($name)));
-                            if(isset($urlArr[0])) {
-                                $this->method = $urlArr[0];
-                                unset($urlArr[0]);
-                            }
-                            $this->params = $urlArr;
-                        }
-
-                        include($path.'/'.$array['controller'].'.php');
-
-                        $this->class = basename($array['controller']).'Controller';
-                        $this->class = new $this->class($this->app);
-
-                        if(method_exists($this->class, $this->method)) {
-                            if(is_array($this->params) && count($this->params)) {
-                                return [
-                                    'return' => call_user_func_array([$this->class, $this->method], $this->params),
-                                    'module' => $module
-                                ];
-                            } else {
-                                return [
-                                    'return' => $this->class->{$this->method}(),
-                                    'module' => $module
-                                ];
-                            }
-                        } else {
-                            return [
-                                'return' => $this->class->index(),
-                                'module' => $module
-                            ];
-                        }
-
-                        $loaded = true;
-                    }
+                if(!file_exists($array['module']->path.'/'.$array['controller'].'.php')) {
+                    continue;
                 }
-            }
 
+                $urlArr = [];
+                $key = $key.'/';
+                if(substr($this->route, 0, strlen($key)) == $key) {
+                    $urlArr = explode('/', substr($this->route, strlen($key)));
+                    if(isset($urlArr[0])) {
+                        $this->method = $urlArr[0];
+                        unset($urlArr[0]);
+                    }
+                    $this->params = $urlArr;
+                }
+
+                include($array['module']->path.'/'.$array['controller'].'.php');
+
+                $this->class = basename($array['controller']).'Controller';
+                $this->class = new $this->class($this->app);
+
+                if(method_exists($this->class, $this->method)) {
+                    if(is_array($this->params) && count($this->params)) {
+                        return [
+                            'return' => call_user_func_array([$this->class, $this->method], $this->params),
+                            'module' => $array['module']
+                        ];
+                    } else {
+                        return [
+                            'return' => $this->class->{$this->method}(),
+                            'module' => $array['module']
+                        ];
+                    }
+                } else {
+                    return [
+                        'return' => $this->class->index(),
+                        'module' => $array['module']
+                    ];
+                }
+
+                $loaded = true;
+            }
         }
+
 
         if(!$loaded && $this->app->isAdmin) {
             $this->error404();
@@ -134,7 +108,11 @@ class route {
             if(isset($module->options['routes']) && is_array($module->options['routes']) && count($module->options['routes'])) {
                 $routes[$module->path] = $module;
                 foreach($module->options['routes'] as $url => $array) {
-                    $this->routes[$url] = $array;
+                    $key = str_replace(['(/*)?', '/*'], '', $url);
+                    $this->routes[$key] = array_merge($array, [
+                        'url' => $url,
+                        'module' => $module
+                    ]);
                 }
             }
         }

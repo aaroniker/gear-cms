@@ -13,7 +13,7 @@ return [
     },
 
     'routes' => [
-        'login' => [
+        'login(/*)?' => [
             'controller' => 'controller/login'
         ]
     ],
