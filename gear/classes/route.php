@@ -6,6 +6,17 @@ class route {
 
     protected $routes = [];
 
+    protected $patterns = [
+        '{a}' => '([^/]+)',
+        '{d}' => '([0-9]+)',
+        '{i}' => '([0-9]+)',
+        '{s}' => '([a-zA-Z]+)',
+        '{w}' => '([a-zA-Z0-9_]+)',
+        '{u}' => '([a-zA-Z0-9_-]+)',
+        '{*}' => '(.*)',
+        '{/*}' => '(/*)?'
+    ];
+
     public $controller = false;
     public $method = false;
     public $params = [];
@@ -46,7 +57,11 @@ class route {
 
         foreach($this->routes as $key => $array) {
 
-            if((bool)preg_match('#^'.str_replace('*', '.*', $array['url']).'$#', $this->route)) {
+            if(strpos($array['url'], '{') !== false) {
+                $array['url'] = str_replace(array_keys($this->patterns), array_values($this->patterns), $array['url']);
+            }
+
+            if((bool)preg_match('#^'.$array['url'].'$#', $this->route)) {
 
                 $this->controller = $array['controller'];
 
@@ -108,7 +123,7 @@ class route {
             if(isset($module->options['routes']) && is_array($module->options['routes']) && count($module->options['routes'])) {
                 $routes[$module->path] = $module;
                 foreach($module->options['routes'] as $url => $array) {
-                    $key = str_replace(['(/*)?', '/*'], '', $url);
+                    $key = str_replace(array_keys($this->patterns), '', $url);
                     $this->routes[$key] = array_merge($array, [
                         'url' => $url,
                         'module' => $module

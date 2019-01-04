@@ -34,6 +34,10 @@ class user {
         return $user;
     }
 
+    public function getUsers() {
+        return $this->app->db->get($this->module->config('table'), '*');
+    }
+
     public function addUser($username, $email, $hash) {
 
         $return['error'] = true;

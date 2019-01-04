@@ -5,7 +5,7 @@ return [
     'name' => 'content',
 
     'routes' => [
-        'content/entries(/*)?' => [
+        'content/entries{*}' => [
             'controller' => 'controller/content'
         ]
     ],
@@ -15,14 +15,14 @@ return [
             'icon' => 'content2Icon',
             'name' => 'Content',
             'url' => 'content/entries',
-            'active' => 'content(/*)?',
+            'active' => 'content{*}',
             'order' => 10
         ],
         'content/entries' => [
             'parent' => 'content',
             'name' => 'Entries',
             'url' => 'content/entries',
-            'active' => 'content/entries(/*)?'
+            'active' => 'content/entries{*}'
         ]
     ]
 

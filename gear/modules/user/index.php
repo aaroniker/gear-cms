@@ -13,10 +13,10 @@ return [
     },
 
     'routes' => [
-        'login(/*)?' => [
+        'login{*}' => [
             'controller' => 'controller/login'
         ],
-        'users(/*)?' => [
+        'users{*}' => [
             'controller' => 'controller/users'
         ]
     ],
@@ -54,7 +54,7 @@ return [
             'icon' => 'usersIcon',
             'name' => 'Users',
             'url' => 'users',
-            'active' => 'users(/*)?',
+            'active' => 'users{*}',
             'order' => 15
         ]
     ]

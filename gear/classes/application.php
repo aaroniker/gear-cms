@@ -22,7 +22,7 @@ class application {
             return $app->lang->get($name, $values);
         }
 
-        $this->message = new message();
+        $this->message = new message($this);
         $this->admin = new admin($this);
         $this->hook = new hook();
         $this->route = new route($this);

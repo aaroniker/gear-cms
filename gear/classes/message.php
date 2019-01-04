@@ -2,9 +2,13 @@
 
 class message {
 
+    protected $app;
+
     protected $sessionName = 'messages';
 
-    function __construct() {
+    function __construct($app) {
+
+        $this->app = $app;
 
         if(ajax::is()) {
 
