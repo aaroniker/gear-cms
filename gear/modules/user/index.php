@@ -15,6 +15,9 @@ return [
     'routes' => [
         'login(/*)?' => [
             'controller' => 'controller/login'
+        ],
+        'users(/*)?' => [
+            'controller' => 'controller/users'
         ]
     ],
 
