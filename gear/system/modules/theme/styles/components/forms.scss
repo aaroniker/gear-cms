@@ -189,6 +189,29 @@ form {
                 transform: rotate(43deg);
             }
         }
+        &:indeterminate + span {
+            &:before {
+                background: var(--primary);
+                border-color: var(--primary);
+            }
+            &:after {
+                width: 11px;
+                left: 5px;
+                height: 3px;
+                border-radius: 2px;
+                top: 9px;
+                background: #fff;
+                border: 0;
+                opacity: 1;
+                transform: rotate(0deg) scaleY(.7);
+                transition: opacity .3s ease;
+            }
+            &:hover {
+                &:before {
+                    border-color: var(--primary);
+                }
+            }
+        }
     }
 }
 
