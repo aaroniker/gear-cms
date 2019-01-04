@@ -161,6 +161,8 @@ Vue.component('messages', function(resolve) {
         .noMessages {
             line-height: 36px;
             white-space: nowrap;
+            font-weight: 500;
+            font-size: 14px;
             color: var(--text-muted);
         }
         & > a {
