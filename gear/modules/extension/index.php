@@ -8,8 +8,8 @@ return [
         'extensions' => [
             'icon' => 'extendIcon',
             'name' => 'Extend',
-            'url' => 'extensions',
-            'active' => 'extensions(/*)?',
+            'url' => '/extensions',
+            'active' => '/extensions',
             'order' => 20
         ]
     ]

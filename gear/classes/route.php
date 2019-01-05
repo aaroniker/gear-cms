@@ -14,7 +14,7 @@ class route {
         '{w}' => '([a-zA-Z0-9_]+)',
         '{u}' => '([a-zA-Z0-9_-]+)',
         '{*}' => '(.*)',
-        '{/*}' => '(/*)?'
+        '{/*}' => '(/.*)?'
     ];
 
     public $controller = false;
@@ -32,16 +32,17 @@ class route {
         $this->url = $this->app->config->get('system')['url'];
 
         $url = self::getUrlStatic();
+        $this->route = (is_array($url)) ? '/'.implode('/', $url) : '/';
 
         if(is_array($url) && $url[0] == $this->app->config->get('system')['adminURL']) {
 
             $this->admin = true;
             unset($url[0]);
-            $this->route = implode('/', $url);
+            $this->route = '/'.implode('/', $url);
 
         } else {
 
-            echo 'frontend';
+            //frontend
 
         }
 
@@ -136,7 +137,7 @@ class route {
 
     public function redirect($url, $array = []) {
         $this->getAllRoutes();
-        if(isset($this->routes[$url]) && $this->fullURL() != $this->getLink($url, $array) && !ajax::is()) {
+        if(isset($this->routes[$url]) && $this->fullURL() != $this->getLink($url, $array)) {
             header('location: '.$this->getLink($url, $array));
             exit();
         }
@@ -153,7 +154,7 @@ class route {
 
         if(isset($this->routes[$url])) {
             $params = (is_array($array) && count($array)) ? '/'.implode('/', $array) : '';
-            return $base.'/'.$url.$params;
+            return $base.$url.$params;
         }
 
         return $base;
@@ -164,17 +165,16 @@ class route {
 
         $base = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
 
-        return $base.'/'.$url;
+        return $base.$url;
 
     }
 
     public function error404() {
 
         $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
-        if(!ajax::is()) {
-            header('location: '.$url);
-            exit();
-        }
+
+        header('location: '.$url);
+        exit();
 
     }
 

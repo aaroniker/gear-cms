@@ -62,9 +62,7 @@ module.exports = {
     methods: {
         display() {
             var self = this;
-            self.$api.post('index.php', {
-                'method': 'getMessages'
-            }).then(function(response) {
+            self.$api.get('/messages').then(function(response) {
                 if(response.data.length > self.messages.length) {
                     self.open = true;
                 }
@@ -85,10 +83,7 @@ module.exports = {
         },
         remove(index) {
             var self = this;
-            self.$api.post('index.php', {
-                'method': 'deleteMessage',
-                'index': index
-            });
+            self.$api.delete('/message/' + index);
         },
         toggle() {
             this.open = !this.open;

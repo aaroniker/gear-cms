@@ -13,10 +13,10 @@ return [
     },
 
     'routes' => [
-        'login{*}' => [
+        '/login{/*}' => [
             'controller' => 'controller/login'
         ],
-        'users{*}' => [
+        '/users{/*}' => [
             'controller' => 'controller/users'
         ]
     ],
@@ -34,12 +34,12 @@ return [
 
             if(type::post('action') == 'login') {
                 if($app->auth->login(type::post('email'), type::post('password'), type::post('remember'))) {
-                    $app->route->redirect('dashboard');
+                    $app->route->redirect('/dashboard');
                 }
             }
 
             if(!$app->auth->isLogged() && $app->isAdmin) {
-                $app->route->redirect('login');
+                $app->route->redirect('/login');
             }
 
         }
@@ -53,8 +53,8 @@ return [
         'users' => [
             'icon' => 'usersIcon',
             'name' => 'Users',
-            'url' => 'users',
-            'active' => 'users{*}',
+            'url' => '/users',
+            'active' => '/users{/*}',
             'order' => 15
         ]
     ]

@@ -10,7 +10,7 @@ function install(Vue) {
     var $ = require('jquery');
 
     Vue.prototype.$api = axios.create({
-        baseURL: gear.url + '/' + gear.adminURL + '/',
+        baseURL: gear.url + '/api',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }
@@ -24,12 +24,11 @@ function install(Vue) {
     }
 
     Vue.prototype.$message = function(message, type, stay) {
-        return this.$api.post('index.php', {
-            'method': 'setMessage',
-            'message': {
-                'message': message,
-                'type': type,
-                'stay': stay
+        return this.$api.post('/addMessage', {
+            message: {
+                message: message,
+                type: type,
+                stay: stay
             }
         });
     };

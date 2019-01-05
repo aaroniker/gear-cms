@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= $route->getLink('login', ['logout']); ?>">
+                                <a href="<?= $route->getLink('/login', ['logout']); ?>">
                                     <svg>
                                         <use xlink:href="#outUI" />
                                     </svg>
@@ -132,7 +132,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= $route->getLink('login', ['logout']); ?>">
+                                <a href="<?= $route->getLink('/login', ['logout']); ?>">
                                     <svg>
                                         <use xlink:href="#outUI" />
                                     </svg>

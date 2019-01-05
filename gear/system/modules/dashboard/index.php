@@ -8,15 +8,15 @@ return [
     },
 
     'routes' => [
-        'dashboard' => [
+        '/dashboard' => [
             'controller' => 'controller/dashboard'
         ]
     ],
 
     'action' => [
         'application.boot' => function($app) {
-            if(!$app->route->route) {
-                $app->route->redirect('dashboard');
+            if(!$app->route->route || $app->route->route == '/') {
+                $app->route->redirect('/dashboard');
             }
         }
     ],
@@ -25,7 +25,7 @@ return [
         'dashboard' => [
             'icon' => 'chartIcon',
             'name' => 'Dashboard',
-            'url' => 'dashboard',
+            'url' => '/dashboard',
             'order' => 0
         ]
     ]

@@ -5,7 +5,7 @@ class loginController extends controller {
     public function index() {
 
         if($this->app->auth->isLogged()) {
-            $this->app->route->redirect('dashboard');
+            $this->app->route->redirect('/dashboard');
         }
 
         return [
@@ -22,7 +22,7 @@ class loginController extends controller {
     public function logout() {
 
         $this->app->auth->logout();
-        $this->app->route->redirect('login');
+        $this->app->route->redirect('/login');
 
     }
 

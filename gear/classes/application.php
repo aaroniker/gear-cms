@@ -22,6 +22,7 @@ class application {
             return $app->lang->get($name, $values);
         }
 
+        $this->router = new router($this);
         $this->message = new message($this);
         $this->admin = new admin($this);
         $this->hook = new hook();
@@ -31,21 +32,24 @@ class application {
         $this->controller = new controller($this);
         $this->modules = new moduleManager($this);
 
-
     }
 
     public function boot() {
 
         $this->hook->do_action('application.boot', $this);
 
-        $this->view->register($this->route->includeController(), 'content');
+        if(route::getUrlStatic()[0] == 'api') {
 
-        if(ajax::is()) {
-            echo ajax::getReturn();
+            $this->router->run();
             exit();
-        }
 
-        echo $this->hook->apply_filters('application.show', $this->view->get('content'));
+        } else {
+
+            $this->view->register($this->route->includeController(), 'content');
+
+            echo $this->hook->apply_filters('application.show', $this->view->get('content'));
+
+        }
 
     }
 

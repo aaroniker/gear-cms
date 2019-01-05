@@ -10,23 +10,18 @@ class message {
 
         $this->app = $app;
 
-        if(ajax::is()) {
+        $this->app->router->get('/messages', function() {
+            return json_encode($this->getAll());
+        });
 
-            if(ajax::get('method') == 'getMessages') {
-                ajax::addReturn(json_encode($this->getAll()));
-            }
+        $this->app->router->post('/addMessage', function() {
+            $array = router::getPost('message');
+            $this->add($array['message'], $array['type'], $array['stay']);
+        });
 
-            if(ajax::get('method') == 'setMessage') {
-                $array = ajax::get('message');
-                $this->add($array['message'], $array['type'], $array['stay']);
-            }
-
-            if(ajax::get('method') == 'deleteMessage') {
-                $index = ajax::get('index');
-                $this->delete($index);
-            }
-
-        }
+        $this->app->router->delete('/message/{i}', function($index) {
+            $this->delete($index);
+        });
 
     }
 

@@ -8,8 +8,8 @@ return [
         'settings' => [
             'icon' => 'controlsIcon',
             'name' => 'Settings',
-            'url' => 'settings',
-            'active' => 'settings(/*)?',
+            'url' => '/settings',
+            'active' => '/settings',
             'order' => 25
         ]
     ]
