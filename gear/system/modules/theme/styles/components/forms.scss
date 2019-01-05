@@ -1,6 +1,35 @@
 :root {
+    --input-color: var(--text);
     --input-background: var(--dark-2);
     --input-background-disabled: var(--dark-3);
+    --input-placeholder: var(--text-muted);
+    --input-disabled: var(--text-muted);
+    --input-border: var(--border);
+    --input-border-focus: var(--secondary);
+    --input-border-disabled: var(--border-muted);
+    --input-border-success: var(--success);
+    --input-border-error: var(--error);
+
+    --toggle-active: var(--primary);
+    --toggle-active-element: var(--button-color-hover);
+    --toggle-text: var(--text);
+    --toggle-border: var(--input-border);
+    --toggle-border-hover: var(--secondary);
+    --toggle-background: var(--input-background);
+}
+
+.light {
+    --input-color: var(--light-2);
+    --input-background: var(--light-7);
+    --input-background-disabled: var(--light-7);
+    --input-placeholder: var(--light-3);
+    --input-disabled: var(--light-3);
+    --input-border: var(--light-4);
+    --input-border-disabled: var(--light-5);
+
+    --toggle-text: var(--light-2);
+    --toggle-border: var(--input-border);
+    --toggle-background: var(--input-background);
 }
 
 .form-field {
@@ -9,43 +38,44 @@
     width: 100%;
     -webkit-appearance: none;
     background: var(--input-background);
-    border: 1px solid var(--border);
+    border: 1px solid var(--input-border);
     padding: 10px 16px;
     line-height: 21px;
     font-size: 14px;
-    color: var(--text);
+    font-weight: 500;
+    color: var(--input-color);
     border-radius: 6px;
     transition: border .3s ease;
     &::placeholder {
-        color: var(--text-muted);
+        color: var(--input-placeholder);
     }
     &:-webkit-autofill {
         //hacky, thanks chrome devs ...
         -webkit-transition-delay: 99999s;
         -webkit-box-shadow: 0 0 0 100px var(--input-background) inset;
-        -webkit-text-fill-color: var(--text) !important;
+        -webkit-text-fill-color: var(--input-color) !important;
     }
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
         opacity: 1;
-        color: var(--text-muted);
+        color: var(--input-disabled);
         background: var(--input-background-disabled);
-        border-color: var(--border-disabled);
+        border-color: var(--input-border-disabled);
     }
     &[disabled],
     fieldset[disabled] & {
         cursor: not-allowed;
     }
     &.success {
-        border-color: var(--success);
+        border-color: var(--input-border-success);
     }
     &.error {
-        border-color: var(--error);
+        border-color: var(--input-border-error);
     }
     &:focus {
         outline: none;
-        border-color: var(--border-focus);
+        border-color: var(--input-border-focus);
     }
 }
 
@@ -101,9 +131,11 @@ form {
     input {
         display: none;
         & + span {
-            color: var(--text);
+            color: var(--toggle-text);
             height: 21px;
             line-height: 21px;
+            font-size: 14px;
+            font-weight: 500;
             position: relative;
             display: block;
             &:before,
@@ -116,8 +148,8 @@ form {
             }
             &:before {
                 height: 21px;
-                border: 1px solid var(--border);
-                background: var(--input-background);
+                border: 1px solid var(--toggle-border);
+                background: var(--toggle-background);
                 transition: background .3s ease, border-color .3s ease;
             }
             &:after {
@@ -126,8 +158,8 @@ form {
         }
         &:checked + span {
             &:before {
-                background: var(--primary);
-                border-color: var(--primary);
+                background: var(--toggle-active);
+                border-color: var(--toggle-active);
             }
             &:after {
                 transition: opacity .3s ease, transform .6s cubic-bezier(.175, .88, .32, 1.2);
@@ -138,7 +170,7 @@ form {
         input {
             &:not(:checked) + span {
                 &:before {
-                    border-color: var(--secondary);
+                    border-color: var(--toggle-border-hover);
                 }
             }
         }
@@ -177,7 +209,7 @@ form {
             &:after {
                 width: 5px;
                 height: 9px;
-                border: 2px solid #fff;
+                border: 2px solid var(--toggle-active-element);
                 border-top: 0;
                 border-left: 0;
                 left: 8px;
@@ -192,8 +224,8 @@ form {
         }
         &:indeterminate + span {
             &:before {
-                background: var(--primary);
-                border-color: var(--primary);
+                background: var(--toggle-active);
+                border-color: var(--toggle-active);
             }
             &:after {
                 width: 11px;
@@ -201,7 +233,7 @@ form {
                 height: 3px;
                 border-radius: 2px;
                 top: 9px;
-                background: #fff;
+                background: var(--toggle-active-element);
                 border: 0;
                 opacity: 1;
                 transform: rotate(0deg) scaleY(.7);
@@ -209,7 +241,7 @@ form {
             }
             &:hover {
                 &:before {
-                    border-color: var(--primary);
+                    border-color: var(--toggle-active);
                 }
             }
         }
@@ -226,14 +258,14 @@ form {
             &:after {
                 width: 21px;
                 height: 21px;
-                background: #fff;
+                background: var(--toggle-active-element);
                 opacity: 0;
                 transform: scale(.6);
             }
         }
         &:checked + span {
             &:after {
-                background: #fff;
+                background: var(--toggle-active-element);
                 transform: scale(.4);
             }
         }
@@ -257,12 +289,12 @@ form {
                 border-radius: 50%;
                 width: 15px;
                 height: 15px;
-                background: var(--border);
+                background: var(--toggle-border);
             }
         }
         &:checked + span {
             &:after {
-                background: #fff;
+                background: var(--toggle-active-element);
                 transform: translateX(18px) scale(.8);
             }
         }

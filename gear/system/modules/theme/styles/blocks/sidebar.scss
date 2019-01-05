@@ -1,11 +1,17 @@
 :root {
     --sidebar-width: 260px;
-    --active-nav: var(--light-5);
-    --active-nav-sub: var(--light-5);
-    --inactive-nav: var(--light-2);
-    --inactive-nav-hover: var(--light-3);
-    --inactive-nav-sub: var(--light-1);
-    --inactive-nav-sub-hover: var(--light-2);
+    --sidebar-gradient: var(--background-gradient);
+
+    --nav-icon-inactive: var(--dark-5);
+    --nav-icon-inactive-2: var(--dark-6);
+    --nav-active: var(--light-5);
+    --nav-inactive: var(--light-2);
+    --nav-inactive-hover: var(--light-3);
+
+    --nav-sub-active: var(--light-5);
+    --nav-sub-active-before: var(--secondary);
+    --nav-sub-inactive: var(--light-1);
+    --nav-sub-inactive-hover: var(--light-2);
 }
 
 @include max(sm) {
@@ -22,7 +28,7 @@
     bottom: 0;
     z-index: 11;
     width: var(--sidebar-width);
-    background: linear-gradient(var(--dark-1), var(--dark-3));
+    background: var(--sidebar-gradient);
     transition: transform .3s ease;
     @include max(md) {
         transform: translateX(-100%);
@@ -81,7 +87,7 @@
                             display: table;
                             padding: 4px;
                             & > svg {
-                                color: var(--text-muted);
+                                color: var(--toolbar-icon);
                                 width: 16px;
                                 height: 16px;
                                 display: block;
@@ -89,7 +95,7 @@
                             }
                             &:hover {
                                 & > svg {
-                                    color: var(--text);
+                                    color: var(--toolbar-icon-hover);
                                 }
                             }
                         }
@@ -106,11 +112,11 @@
                 font-size: 14px;
                 font-weight: 500;
                 text-transform: uppercase;
-                background: var(--dark-4);
-                color: var(--text);
+                background: var(--user-avatar);
+                color: var(--user-avatar-color);
                 transition: background .3s ease;
                 &:hover {
-                    background: var(--dark-5);
+                    background: var(--user-avatar-hover);
                 }
             }
         }
@@ -139,7 +145,7 @@
                     & > a {
                         font-size: 16px;
                         line-height: 29px;
-                        color: var(--inactive-nav);
+                        color: var(--nav-inactive);
                         svg {
                             position: absolute;
                             left: 0;
@@ -147,11 +153,11 @@
                             width: 24px;
                             height: 24px;
                             display: block;
-                            fill: var(--dark-6);
-                            color: var(--dark-5);
+                            color: var(--nav-icon-inactive);
+                            fill: var(--nav-icon-inactive-2);
                         }
                         &:hover {
-                            color: var(--inactive-nav-hover);
+                            color: var(--nav-inactive-hover);
                         }
                     }
                     & > span {
@@ -169,7 +175,7 @@
                             width: 2px;
                             height: 8px;
                             border-radius: 1px;
-                            background: var(--inactive-nav);
+                            background: var(--nav-inactive);
                             position: absolute;
                             right: 8px;
                             top: 7px;
@@ -186,13 +192,13 @@
                         &:hover {
                             &:before,
                             &:after {
-                                background: var(--inactive-nav-hover);
+                                background: var(--nav-inactive-hover);
                             }
                         }
                     }
                     &.active {
                         & > a {
-                            color: var(--active-nav);
+                            color: var(--nav-active);
                             svg {
                                 fill: url(#primaryGradient);
                                 color: var(--secondary);
@@ -203,7 +209,7 @@
                         & > span {
                             &:before,
                             &:after {
-                                background: var(--active-nav);
+                                background: var(--nav-active);
                             }
                             &:before {
                                 margin-right: 5px;
@@ -225,7 +231,7 @@
                             a {
                                 line-height: 20px;
                                 font-size: 14px;
-                                color: var(--inactive-nav-sub);
+                                color: var(--nav-sub-inactive);
                                 &:before {
                                     content: '';
                                     width: 6px;
@@ -238,14 +244,14 @@
                                     background: none;
                                 }
                                 &:hover {
-                                    color: var(--inactive-nav-sub-hover);
+                                    color: var(--nav-sub-inactive-hover);
                                 }
                             }
                             &.active {
                                 a {
-                                    color: var(--active-nav-sub);
+                                    color: var(--nav-sub-active);
                                     &:before {
-                                        background: var(--secondary);
+                                        background: var(--nav-sub-active-before);
                                     }
                                 }
                             }

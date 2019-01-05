@@ -144,11 +144,11 @@ Vue.component('messages', function(resolve) {
             height: 16px;
             display: block;
             transition: color .3s ease;
-            color: var(--text-muted);
+            color: var(--toolbar-icon);
         }
         &:hover {
             svg {
-                color: var(--text);
+                color: var(--toolbar-icon-hover);
             }
         }
     }
@@ -158,7 +158,7 @@ Vue.component('messages', function(resolve) {
             white-space: nowrap;
             font-weight: 500;
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--toolbar-dropdown-empty);
         }
         & > a {
             display: table;
@@ -168,7 +168,7 @@ Vue.component('messages', function(resolve) {
             padding: 4px;
             margin: 6px 8px 6px 0;
             svg {
-                color: var(--text-muted);
+                color: var(--toolbar-icon);
                 width: 16px;
                 height: 16px;
                 display: block;
@@ -176,12 +176,12 @@ Vue.component('messages', function(resolve) {
             }
             &:hover {
                 svg {
-                    color: var(--text);
+                    color: var(--toolbar-icon-hover);
                 }
             }
             &.expanded {
                 svg {
-                    color: var(--light-5);
+                    color: var(--toolbar-icon-active);
                 }
             }
             &.show {
@@ -239,8 +239,8 @@ Vue.component('messages', function(resolve) {
         }
         &.showAll {
             ul {
-                background: var(--dark-5);
-                box-shadow: 0 4px 8px -1px var(--dark-3);
+                background: var(--toolbar-dropdown-background);
+                box-shadow: 0 4px 8px -1px var(--toolbar-dropdown-shadow);
                 padding: 8px;
             }
         }
@@ -253,14 +253,14 @@ Vue.component('messages', function(resolve) {
                 width: 7px;
                 height: 7px;
                 border-radius: 50%;
-                background: var(--secondary);
+                background: var(--toolbar-icon-dot);
                 position: absolute;
                 top: 4px;
                 right: 5px;
-                border: 1px solid var(--dark-3);
+                border: 1px solid var(--body-background);
             }
             svg {
-                color: var(--light-5);
+                color: var(--toolbar-icon-active);
             }
         }
     }

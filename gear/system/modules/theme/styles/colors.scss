@@ -2,8 +2,10 @@
 :root {
 
     --primary: #5628EE;
+    --primary-hover: #4F29D0;
     --primary-light: #8C6FF0;
     --secondary: #23C4F8;
+    --secondary-hover: #1BB6E9;
 
     --dark-1: #121621;
     --dark-2: #151924;
@@ -24,16 +26,14 @@
     --warning: #F6D87C;
     --error: #D93757;
 
+    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+
     --text: var(--light-3);
     --text-muted: var(--light-1);
 
     --border: var(--dark-6);
-    --border-focus: var(--secondary);
-    --border-disabled: var(--dark-5);
+    --border-muted: var(--dark-5);
 
-    --primary-hover: #4F29D0;
-    --secondary-hover: #1BB6E9;
-
-    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    --background-gradient: linear-gradient(var(--dark-1), var(--dark-3));
 
 }

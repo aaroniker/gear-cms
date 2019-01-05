@@ -26,19 +26,6 @@
 @import 'blocks/sidebar';
 @import 'blocks/main';
 
-html,
-body {
-    @include max(md) {
-        &.openSide {
-            overflow: hidden;
-        }
-    }
-}
-
-body {
-    background: var(--dark-3);
-}
-
 #gear {
     width: 100%;
     min-height: 100vh;

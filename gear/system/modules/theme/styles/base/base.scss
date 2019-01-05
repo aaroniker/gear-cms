@@ -1,4 +1,29 @@
+:root {
+    --body-text: var(--text);
+    --body-background: var(--dark-3);
+
+    --link: var(--primary);
+    --link-hover: var(--primary-hover);
+
+    --hr-border: var(--border);
+}
+
+.light {
+    --body-text: var(--light-2);
+
+    --hr-border: var(--light-4);
+}
+
 @import url('https://fonts.googleapis.com/css?family=Encode+Sans:400,500,600,700');
+
+html,
+body {
+    @include max(md) {
+        &.openSide {
+            overflow: hidden;
+        }
+    }
+}
 
 html {
     -ms-text-size-adjust: 100%;
@@ -13,16 +38,17 @@ body {
     font-family: 'Encode Sans', sans-serif;
     font-size: 16px;
     line-height: 23px;
-    color: var(--text);
+    color: var(--body-text);
+    background: var(--body-background);
 }
 
 a {
     text-decoration: none;
-    color: var(--primary);
+    color: var(--link);
     &:hover,
     &:focus {
         text-decoration: none;
-        color: var(--primary);
+        color: var(--link-hover);
     }
 }
 
@@ -39,7 +65,7 @@ textarea {
 hr {
     height: 0;
     border: 0;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--hr-border);
     margin-top: 24px;
     margin-bottom: 24px;
 }

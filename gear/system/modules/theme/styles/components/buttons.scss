@@ -1,5 +1,27 @@
 :root {
+    --button: var(--primary);
+    --button-hover: var(--primary-hover);
+    --button-color: var(--light-7);
+    --button-color-hover: var(--light-7);
+
     --button-border: var(--light-1);
+    --button-border-hover: var(--secondary);
+    --button-border-color: var(--text);
+
+    --button-secondary: var(--secondary);
+    --button-secondary-hover: var(--secondary-hover);
+
+    --button-success: var(--success);
+    --button-error: var(--error);
+    --button-warning: var(--warning);
+
+    --button-none-color: var(--primary);
+    --button-none-hover-color: var(--primary-hover);
+}
+
+.light {
+    --button-border: var(--light-4);
+    --button-border-color: var(--light-2);
 }
 
 .btn {
@@ -10,19 +32,19 @@
     position: relative;
     white-space: nowrap;
     border: none;
-    color: #fff;
+    color: var(--button-color);
     padding: 10px 28px;
     font-size: 16px;
     line-height: 23px;
-    font-weight: 600;
-    background: var(--primary);
+    font-weight: 500;
+    background: var(--button);
     border-radius: 6px;
     transition: all .3s ease;
     &:link,
     &:active,
     &:visited,
     &:focus {
-        color: #fff;
+        color: var(--button-color);
     }
     svg {
         position: relative;
@@ -64,17 +86,17 @@
         }
     }
     &:hover {
-        color: #fff;
-        background: var(--primary-hover);
+        color: var(--button-color-hover);
+        background: var(--button-hover);
     }
     &.border {
         background: none;
-        color: var(--text);
+        color: var(--button-border-color);
         &:link,
         &:active,
         &:visited,
         &:focus {
-            color: var(--text);
+            color: var(--button-border-color);
         }
         &:before {
             content: '';
@@ -90,30 +112,31 @@
         }
         &:hover {
             &:before {
-                border-color: var(--secondary);
+                border-color: var(--button-border-hover);
             }
         }
     }
     &.secondary {
-        background: var(--secondary);
+        background: var(--button-secondary);
         &:hover {
-            background: var(--secondary-hover);
+            background: var(--button-secondary-hover);
         }
     }
     &.success {
-        background: var(--success);
+        background: var(--button-success);
     }
     &.error {
-        background: var(--error);
+        background: var(--button-error);
     }
     &.warning {
-        background: var(--warning);
+        background: var(--button-warning);
     }
     &.none {
         background: none;
-        color: var(--text);
+        color: var(--button-none-color);
         &:hover {
             background: none;
+            color: var(--button-none-hover-color);
         }
     }
     &.center {

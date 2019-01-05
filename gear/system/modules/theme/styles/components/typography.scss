@@ -1,3 +1,20 @@
+:root {
+    --h1: var(--light-5);
+    --h2: var(--light-5);
+    --h3: var(--light-5);
+    --h4: var(--light-5);
+    --label: var(--light-5);
+    --caption: var(--text-muted);
+}
+
+.light {
+    --h1: var(--light-1);
+    --h2: var(--light-1);
+    --h3: var(--light-1);
+    --h4: var(--light-1);
+    --label: var(--light-1);
+}
+
 h1,
 h2,
 h3,
@@ -10,7 +27,7 @@ h6 {
 }
 
 h1 {
-    color: var(--light-5);
+    color: var(--h1);
     font-weight: 700;
     @include responsive-size(floor(28px * .8), 28px);
     &.hero {
@@ -19,31 +36,31 @@ h1 {
 }
 
 h2 {
-    color: var(--light-5);
+    color: var(--h2);
     font-weight: 600;
     @include responsive-size(floor(24px * .8), 24px);
 }
 
 h3 {
-    color: var(--light-5);
+    color: var(--h3);
     font-weight: 700;
     @include responsive-size(floor(20px * .8), 20px);
 }
 
 h4 {
-    color: var(--light-5);
+    color: var(--h4);
     font-weight: 600;
     @include responsive-size(floor(18px * .8), 18px);
 }
 
 label {
-    color: var(--light-5);
+    color: var(--label);
     font-weight: 500;
     display: block;
 }
 
 .caption {
-    color: var(--text-muted);
+    color: var(--caption);
     font-size: 11px;
     text-transform: uppercase;
     line-height: 1.6;

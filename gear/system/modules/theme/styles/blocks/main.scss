@@ -1,3 +1,22 @@
+:root {
+    --toolbar-icon: var(--text-muted);
+    --toolbar-icon-hover: var(--text);
+    --toolbar-icon-active: var(--light-5);
+    --toolbar-icon-dot: var(--secondary);
+
+    --toolbar-dropdown-empty: var(--text-muted);
+    --toolbar-dropdown-background: var(--dark-5);
+    --toolbar-dropdown-shadow: var(--dark-3);
+
+    --menu-icon: var(--light-2);
+    --menu-icon-active: var(--light-5);
+
+    --user-gradient: var(--background-gradient);
+    --user-avatar: var(--dark-4);
+    --user-avatar-hover: var(--dark-5);
+    --user-avatar-color: var(--text);
+}
+
 #main {
     @include max(md) {
         transition: transform .3s ease;
@@ -20,7 +39,7 @@
                             display: table;
                             padding: 4px;
                             & > svg {
-                                color: var(--text-muted);
+                                color: var(--toolbar-icon);
                                 width: 16px;
                                 height: 16px;
                                 display: block;
@@ -28,7 +47,7 @@
                             }
                             &:hover {
                                 & > svg {
-                                    color: var(--text);
+                                    color: var(--toolbar-icon-hover);
                                 }
                             }
                         }
@@ -84,13 +103,8 @@
                         position: absolute;
                         height: 2px;
                         border-radius: 1px;
-                        background: var(--light-2);
+                        background: var(--menu-icon);
                         transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6), width .2s ease .2s, background .3s ease;
-                    }
-                    &:hover {
-                        div {
-                            background: var(--light-3);
-                        }
                     }
                     input {
                         display: none;
@@ -115,16 +129,16 @@
                             }
                         }
                         &:checked + div {
-                            background: var(--light-5);
+                            background: var(--menu-icon-active);
                             transform: rotate(-45deg);
                             transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, background .3s ease;
                             & + div {
-                                background: var(--light-5);
+                                background: var(--menu-icon-active);
                                 width: 12px;
                                 transform: translate(3px, 0) rotate(45deg);
                                 transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
                                 & + div {
-                                    background: var(--light-5);
+                                    background: var(--menu-icon-active);
                                     width: 12px;
                                     transform: translate(-4px, 1px) rotate(45deg);
                                     transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
@@ -151,7 +165,7 @@
                 display: flex;
                 align-items: center;
                 padding: 48px 60px;
-                background: linear-gradient(var(--dark-1), var(--dark-3));
+                background: var(--user-gradient);
                 @include max(md) {
                     padding: 36px 44px;
                 }
@@ -168,11 +182,11 @@
                     font-size: 14px;
                     font-weight: 500;
                     text-transform: uppercase;
-                    background: var(--dark-4);
-                    color: var(--text);
+                    background: var(--user-avatar);
+                    color: var(--user-avatar-color);
                     transition: background .3s ease;
                     &:hover {
-                        background: var(--dark-5);
+                        background: var(--user-avatar-hover);
                     }
                 }
             }
@@ -193,6 +207,15 @@
             display: none;
             @include max(sm) {
                 display: block;
+            }
+        }
+        .lightBox {
+            color: var(--body-text);
+            background: var(--light-6);
+            border-radius: 6px;
+            padding: 32px;
+            @include max(sm) {
+                padding: 24px;
             }
         }
     }
