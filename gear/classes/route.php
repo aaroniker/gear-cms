@@ -34,7 +34,7 @@ class route {
         $url = self::getUrlStatic();
         $this->route = (is_array($url)) ? '/'.implode('/', $url) : '/';
 
-        if(is_array($url) && $url[0] == $this->app->config->get('system')['adminURL']) {
+        if(is_array($url) && '/'.$url[0] == $this->app->config->get('system')['adminURL']) {
 
             $this->admin = true;
             unset($url[0]);
@@ -150,7 +150,7 @@ class route {
     public function getLink($url, $array = []) {
 
         $this->getAllRoutes();
-        $base = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+        $base = ($this->admin) ? $this->url.$this->app->config->get('system')['adminURL'] : $this->url;
 
         if(isset($this->routes[$url])) {
             $params = (is_array($array) && count($array)) ? '/'.implode('/', $array) : '';
@@ -163,7 +163,7 @@ class route {
 
     public function getURL($url) {
 
-        $base = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+        $base = ($this->admin) ? $this->url.$this->app->config->get('system')['adminURL'] : $this->url;
 
         return $base.$url;
 
@@ -171,7 +171,7 @@ class route {
 
     public function error404() {
 
-        $url = ($this->admin) ? $this->url.'/'.$this->app->config->get('system')['adminURL'] : $this->url;
+        $url = ($this->admin) ? $this->url.$this->app->config->get('system')['adminURL'] : $this->url;
 
         header('location: '.$url);
         exit();

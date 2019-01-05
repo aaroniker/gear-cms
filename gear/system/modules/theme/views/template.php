@@ -27,7 +27,7 @@
 
         <section id="sidebar">
             <div class="inner">
-                <a class="logo" href="<?= $app->config->get('system')['url'].'/'.$app->config->get('system')['adminURL']; ?>">
+                <a class="logo" href="<?= $app->config->get('system')['url'].$app->config->get('system')['adminURL']; ?>">
                     <svg>
                         <use xlink:href="#logo" />
                     </svg>
@@ -94,7 +94,7 @@
 
             <div class="toolbar">
                 <div>
-                    <a class="logo" href="<?= $app->config->get('system')['url'].'/'.$app->config->get('system')['adminURL']; ?>">
+                    <a class="logo" href="<?= $app->config->get('system')['url'].$app->config->get('system')['adminURL']; ?>">
                         <svg>
                             <use xlink:href="#logo" />
                         </svg>

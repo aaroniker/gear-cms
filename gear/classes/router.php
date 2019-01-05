@@ -4,7 +4,7 @@ class router {
 
     protected $app;
 
-    protected $base = '/api';
+    protected $base;
 
     protected $routes = [];
 
@@ -34,15 +34,13 @@ class router {
 
         $this->app = $app;
 
+        $this->base = $this->app->config->get('system')['apiURL'];
+
     }
 
     public function __call($method, $params) {
 
-        if(is_null($params)) {
-            return;
-        }
-
-        if(!in_array(strtoupper($method), self::$methods)) {
+        if(is_null($params) || !in_array(strtoupper($method), self::$methods)) {
             return;
         }
 
@@ -93,12 +91,15 @@ class router {
             foreach($this->routes as $data) {
                 if(self::validMethod($data['method'], $method) && ($data['route'] === $this->app->route->route)) {
                     $foundRoute = true;
+                    if($data['errorCallback'] && is_callable($data['errorCallback'])) {
+                        $this->errorCallback = $data['errorCallback'];
+                    }
                     $this->runCallback($data['callback']);
                     break;
                 }
             }
         } else {
-            foreach ($this->routes as $data) {
+            foreach($this->routes as $data) {
                 $route = $data['route'];
                 if(strpos($route, '{') !== false) {
                     $route = str_replace(array_keys($this->patterns), array_values($this->patterns), $route);
@@ -118,6 +119,9 @@ class router {
                             }
                         }
                         $matched = $newMatched;
+                        if($data['errorCallback'] && is_callable($data['errorCallback'])) {
+                            $this->errorCallback = $data['errorCallback'];
+                        }
                         $this->runCallback($data['callback'], $matched);
                         break;
                     }
