@@ -35,7 +35,7 @@ class user {
     }
 
     public function getUsers() {
-        return $this->app->db->get($this->module->config('table'), '*');
+        return array_intersect_key($this->app->db->get($this->module->config('table'), '*'), array_flip(['id', 'username', 'email']));
     }
 
     public function addUser($username, $email, $hash) {
