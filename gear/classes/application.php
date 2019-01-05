@@ -38,7 +38,7 @@ class application {
 
         $this->hook->do_action('application.boot', $this);
 
-        if(route::getUrlStatic()[0] == 'api') {
+        if('/'.route::getUrlStatic()[0] == $this->config->get('system')['apiURL']) {
 
             $this->router->run();
             exit();

@@ -2,5 +2,6 @@
     "Show all": "Alle anzeigen",
     "Show less": "Weniger anzeigen",
     "Remove all": "Alle löschen",
-    "No messages": "Keine Nachrichten"
+    "No messages": "Keine Nachrichten",
+    "URL <strong>%s</strong> not found": "URL <strong>%s</strong> nicht gefunden"
 }

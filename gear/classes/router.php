@@ -133,10 +133,10 @@ class router {
             if(!$this->errorCallback) {
                 $this->errorCallback = function() {
                     header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
-                    return 'error';
+                    return __('URL <strong>%s</strong> not found', [$this->app->route->route]);
                 };
             }
-            call_user_func($this->errorCallback);
+            echo call_user_func($this->errorCallback);
         }
 
     }
