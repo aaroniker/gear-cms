@@ -3,5 +3,8 @@
     "Show less": "Weniger anzeigen",
     "Remove all": "Alle löschen",
     "No messages": "Keine Nachrichten",
-    "URL <strong>%s</strong> not found": "URL <strong>%s</strong> nicht gefunden"
+    "URL <strong>%s</strong> not found": "URL <strong>%s</strong> nicht gefunden",
+    "Showing %s of %s entries": "Zeige %s von %s Einträgen",
+    "No entries": "Keine Einträge",
+    "Search": "Suche"
 }

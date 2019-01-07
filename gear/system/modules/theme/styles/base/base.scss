@@ -45,6 +45,7 @@ body {
 a {
     text-decoration: none;
     color: var(--link);
+    transition: color .3s ease;
     &:hover,
     &:focus {
         text-decoration: none;

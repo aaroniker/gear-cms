@@ -1,3 +1,5 @@
+import { GTable, GColumn } from './table'
+
 function install(Vue) {
 
     var gear = window.$gear;
@@ -6,8 +8,9 @@ function install(Vue) {
     Vue.config.debug = gear.debug;
     Vue.config.productionTip = gear.debug;
 
-    var axios = require('axios');
-    var $ = require('jquery');
+    var axios = require('axios'),
+        $ = require('jquery'),
+        vsprintf = require('sprintf-js').vsprintf;
 
     Vue.prototype.$api = axios.create({
         baseURL: gear.url + '/api',
@@ -16,8 +19,11 @@ function install(Vue) {
         }
     });
 
-    function getLang(name) {
+    function getLang(name, array) {
         if(name in lang) {
+            if(array !== undefined) {
+                return vsprintf(lang[name], array);
+            }
             return lang[name];
         }
         return name;
@@ -33,18 +39,22 @@ function install(Vue) {
         });
     };
 
-    Vue.filter('lang', function(name) {
-        return getLang(name);
+    Vue.filter('lang', function(name, array) {
+        return getLang(name, array);
     });
 
-    Vue.prototype.$lang = function(name) {
-        return getLang(name);
+    Vue.prototype.$lang = function(name, array) {
+        return getLang(name, array);
     };
 
     Vue.prototype.$visibility = require('visibilityjs');
 
     new Vue({
-        el: '#gear'
+        el: '#gear',
+        components: {
+            GTable,
+            GColumn
+        }
     });
 
 }

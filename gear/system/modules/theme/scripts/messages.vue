@@ -88,7 +88,7 @@ module.exports = {
         toggle() {
             this.open = !this.open;
         },
-        documentClick: function(e) {
+        documentClick(e) {
             var el = this.$refs.messageList;
             var target = e.target;
             if((el !== target) && !el.contains(target)) {
