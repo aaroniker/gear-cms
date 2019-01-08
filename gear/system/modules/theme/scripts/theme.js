@@ -13,4 +13,16 @@ $(function() {
         });
     });
 
+    $('.dropdown > span, .dropdown > .btn').on('click touch', function(e) {
+        e.preventDefault();
+        $(this).parent().toggleClass('open');
+    });
+
+    $(document).on('click touch', function(e) {
+        var dropdown = $('.dropdown');
+        if(dropdown !== e.target && !dropdown.has(e.target).length) {
+            dropdown.removeClass('open');
+        }
+    });
+
 });

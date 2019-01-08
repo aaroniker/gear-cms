@@ -147,9 +147,44 @@
                         }
                     }
                 }
-                h1 {
-                    line-height: 40px;
-                    flex-grow: 1;
+                .headline {
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    display: flex;
+                    align-items: center;
+                    h1 {
+                        line-height: 40px;
+                        margin: 0 8px 0 0;
+                    }
+                    .dropdown {
+                        margin: 1px 0 0 0;
+                        .btn {
+                            padding: 10px 16px;
+                            &.border {
+                                --button-color: var(--text-muted);
+                                &:before {
+                                    display: none;
+                                }
+                            }
+                            .caret {
+                                --button-caret: var(--text-muted);
+                            }
+                        }
+                        ul {
+                            --dropdown-translate-active: 0;
+                        }
+                        &:hover,
+                        &.open {
+                            .btn {
+                                &.border {
+                                    --button-color: var(--text);
+                                }
+                                .caret {
+                                    --button-caret: var(--text);
+                                }
+                            }
+                        }
+                    }
                 }
                 & > nav {
                     & > ul {

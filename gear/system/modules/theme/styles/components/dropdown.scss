@@ -1,0 +1,169 @@
+:root {
+    --dropdown-dots: var(--light-2);
+    --dropdown-dots-hover: var(--light-4);
+    --dropdown-dots-active: var(--light-3);
+    --dropdown-background: var(--light-6);
+    --dropdown-color: var(--text);
+    --dropdown-list-color: var(--text);
+    --dropdown-list-color-hover: var(--light-2);
+    --dropdown-background-hover: var(--light-5);
+    --dropdown-button-color: var(--)
+}
+
+.dropdown {
+    position: relative;
+    z-index: 1;
+    --dropdown-translate-active: 8px;
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        position: absolute;
+        border-radius: 6px;
+        top: 100%;
+        left: 0;
+        min-width: 140px;
+        opacity: 0;
+        visibility: hidden;
+        transform: scaleY(.6) translateY(0);
+        transform-origin: 50% 0;
+        background: var(--dropdown-background);
+        transition: opacity .2s ease, visibility .2s ease, transform .3s cubic-bezier(.4, .6, .5, 1.2);
+        li {
+            opacity: 0;
+            transition: opacity .2s ease;
+            $i: 1;
+            @while $i <= 10 {
+                $delay: $i * 60;
+                &:nth-child(#{$i}) {
+                    transition-delay: #{$delay}ms;
+                }
+                $i: $i + 1;
+            }
+            a {
+                display: block;
+                white-space: nowrap;
+                padding: 10px 16px;
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--dropdown-color);
+                transition: background .3s ease, color .3s ease;
+                &:hover {
+                    background: var(--dropdown-background-hover);
+                    color: var(--dropdown-list-color-hover);
+                }
+            }
+            &:first-child {
+                a {
+                    border-radius: 6px 6px 0 0;
+                }
+            }
+            &:last-child {
+                a {
+                    border-radius: 0 0 6px 6px;
+                }
+            }
+            &.delete {
+                a {
+                    color: var(--error);
+                }
+            }
+        }
+    }
+    &.dots {
+        & > span {
+            width: 24px;
+            height: 22px;
+            position: relative;
+            cursor: pointer;
+            display: block;
+            z-index: 1;
+            transition: transform .3s ease;
+            i {
+                display: block;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin: -2px 0 0 -2px;
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: var(--dropdown-dots);
+                transition: background .3s ease;
+                &:before,
+                &:after {
+                    content: '';
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background: inherit;
+                    position: absolute;
+                    top: 0;
+                }
+                &:before {
+                    left: -6px;
+                }
+                &:after {
+                    left: 6px;
+                }
+            }
+            &:hover {
+                i {
+                    background: var(--dropdown-dots-hover);
+                }
+            }
+        }
+        ul {
+            padding: 34px 0 0 0;
+            right: -4px;
+            top: -6px;
+            left: auto;
+            min-width: 112px;
+            li {
+                &:first-child {
+                    a {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+        &.open,
+        &:hover {
+            & > span {
+                transform: rotate(90deg);
+                i {
+                    background: var(--dropdown-dots-active);
+                }
+            }
+            ul {
+                opacity: 1;
+                visibility: visible;
+                transform: scaleY(1);
+                li {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &.open {
+        .btn {
+            .caret {
+                &:before {
+                    margin-right: 5px;
+                    transform: scale(.92, .8) rotate(-130deg);
+                }
+                &:after {
+                    transform: scale(.92, .8) rotate(130deg);
+                }
+            }
+        }
+        ul {
+            opacity: 1;
+            visibility: visible;
+            transform: scaleY(1) translateY(var(--dropdown-translate-active));
+            li {
+                opacity: 1;
+            }
+        }
+    }
+}
