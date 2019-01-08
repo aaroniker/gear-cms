@@ -6,5 +6,9 @@
     "URL <strong>%s</strong> not found": "URL <strong>%s</strong> nicht gefunden",
     "Showing %s of %s entries": "Zeige %s von %s Einträgen",
     "No entries": "Keine Einträge",
-    "Search": "Suche"
+    "Search": "Suche",
+    "English": "Englisch",
+    "German": "Deutsch",
+    "Edit": "Bearbeiten",
+    "Delete": "Löschen"
 }

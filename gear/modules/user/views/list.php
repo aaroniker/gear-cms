@@ -12,8 +12,8 @@
                     <i></i>
                 </span>
                 <ul>
-                    <li><a href="">Edit</a></li>
-                    <li class="delete"><a href="">Delete</a></li>
+                    <li><a href=""><?= __('Edit'); ?></a></li>
+                    <li class="delete"><a href=""><?= __('Delete'); ?></a></li>
                 </ul>
             </div>
         </template>

@@ -108,10 +108,10 @@
                     <div class="headline">
                         <h1><?= __($app->view->global('title')); ?></h1>
                         <div class="dropdown">
-                            <a href="" class="btn border">English<span class="caret"></span></a>
+                            <a href="" class="btn border"><?= __('English'); ?><span class="caret"></span></a>
                             <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
+                                <li><a href=""><?= __('English'); ?></a></li>
+                                <li><a href=""><?= __('German'); ?></a></li>
                             </ul>
                         </div>
                     </div>

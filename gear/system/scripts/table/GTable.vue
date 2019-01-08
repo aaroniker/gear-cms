@@ -216,7 +216,7 @@ export default {
         flex-wrap: no-wrap;
         width: 100%;
         line-height: 21px;
-        padding: 16px;
+        padding: 16px 20px;
         & > div {
             margin-right: 16px;
             &:last-child {
