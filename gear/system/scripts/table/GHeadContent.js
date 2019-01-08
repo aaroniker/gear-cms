@@ -35,11 +35,27 @@ export default {
         if(props.column.sortable) {
             children.push(h('span', {
                 class: {
+                    sort: true,
                     active: props.active,
-                    sortDown: props.sortDesc,
-                    sortUp: !props.sortDesc
+                    down: props.sortDesc,
+                    up: !props.sortDesc
                 }
-            }))
+            }, [
+                h('svg', [
+                    h('use', {
+                        attrs: {
+                            'xlink:href': '#sortUpUI'
+                        }
+                    })
+                ]),
+                h('svg', [
+                    h('use', {
+                        attrs: {
+                            'xlink:href': '#sortDownUI'
+                        }
+                    })
+                ])
+            ]))
         }
         return children
     }

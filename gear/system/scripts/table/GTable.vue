@@ -195,6 +195,8 @@ export default {
 <style lang="scss">
 :root {
     --table-head: var(--light-2);
+    --table-head-sort: var(--dark-6);
+    --table-head-sort-active: var(--light-2);
     --table-row: var(--dark-4);
     --table-row-link: var(--light-4);
     --table-row-link-hover: var(--light-6);
@@ -262,8 +264,58 @@ export default {
             color: var(--table-head);
             font-size: 12px;
             font-weight: 600;
+            line-height: 17px;
             padding-top: 0;
             padding-bottom: 8px;
+            .sortable {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                span {
+                    display: block;
+                    &.sort {
+                        margin: 0 0 0 4px;
+                        width: 13px;
+                        height: 13px;
+                        position: relative;
+                        svg {
+                            color: var(--table-head-sort);
+                            width: 13px;
+                            height: 13px;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            display: block;
+                            transition: color .3s ease;
+                        }
+                        &.active {
+                            &.up {
+                                svg {
+                                    &:first-child {
+                                        color: var(--table-head-sort-active);
+                                    }
+                                }
+                            }
+                            &.down {
+                                svg {
+                                    &:last-child {
+                                        color: var(--table-head-sort-active);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &:hover {
+                    .sort {
+                        &:not(.active) {
+                            svg {
+                                color: var(--table-head-sort-active);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
