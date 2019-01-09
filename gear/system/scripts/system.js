@@ -1,4 +1,5 @@
 import { GTable, GColumn } from './table'
+import { GForm } from './form'
 
 function install(Vue) {
 
@@ -53,7 +54,8 @@ function install(Vue) {
         el: '#gear',
         components: {
             GTable,
-            GColumn
+            GColumn,
+            GForm
         }
     });
 

@@ -16,7 +16,6 @@ import GBody from './GBody.vue'
 import GHead from './GHead.vue'
 import GPagination from './GPagination.vue'
 import GFilter from './GFilter.vue'
-
 export default {
     name: 'GTable',
     components: {

@@ -1,4 +1,5 @@
-<form action="" method="post">
+<g-form>
+    <input type="hidden" name="action" value="login">
     <div class="form-element">
         <input class="form-field" type="text" name="email" placeholder="<?= __('Email'); ?>">
     </div>
@@ -17,5 +18,4 @@
         </svg>
         <?= __('Login'); ?>
     </button>
-    <input type="hidden" name="action" value="login">
-</form>
+</g-form>
