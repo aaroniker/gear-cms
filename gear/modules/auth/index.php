@@ -37,7 +37,8 @@ return [
     ],
 
     'required' => [
-        'database'
+        'database',
+        'user'
     ]
 
 ];

@@ -18,7 +18,6 @@ class auth {
         $this->module = $module;
 
         $this->attempt = new authAttempt($app, $module);
-        $this->user = new user($app, $module);
 
         return $this;
 
@@ -39,7 +38,7 @@ class auth {
             return false;
         }
 
-        $userID = $this->user->getID(strtolower($email));
+        $userID = $this->app->user->getID(strtolower($email));
 
         if(!$userID) {
             $this->attempt->add();
@@ -47,7 +46,7 @@ class auth {
             return false;
         }
 
-        $user = $this->user->getUser($userID);
+        $user = $this->app->user->getUser($userID);
 
         if(!$this->passwordRehash($password, $user['password'], $userID)) {
             $this->attempt->add();
@@ -73,7 +72,7 @@ class auth {
 
     protected function addSession($userID, $remember) {
 
-        $user = $this->user->getUser($userID);
+        $user = $this->app->user->getUser($userID);
         if(!$user) {
             return false;
         }
@@ -214,7 +213,7 @@ class auth {
             if($id === false) {
                 return false;
             }
-            $this->userObj = $this->user->getUser($id);
+            $this->userObj = $this->app->user->getUser($id);
         }
         return $this->userObj;
     }
