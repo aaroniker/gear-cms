@@ -4,6 +4,10 @@
     --toolbar-icon-active: var(--light-5);
     --toolbar-icon-dot: var(--secondary);
 
+    --toolbar-add: var(--primary);
+    --toolbar-add-hover: var(--primary-hover);
+    --toolbar-add-color: var(--light-7);
+
     --toolbar-dropdown-empty: var(--text-muted);
     --toolbar-dropdown-background: var(--dark-5);
     --toolbar-dropdown-shadow: var(--dark-3);
@@ -31,6 +35,8 @@
         }
         & > div {
             & > nav {
+                display: flex;
+                align-items: center;
                 & > ul {
                     display: flex;
                     & > li {
@@ -56,6 +62,36 @@
                                 display: none;
                             }
                         }
+                    }
+                }
+                .add {
+                    display: block;
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                    margin: 0 0 0 24px;
+                    background: var(--toolbar-add);
+                    transition: background .3s ease;
+                    &:hover {
+                        --toolbar-add: var(--toolbar-add-hover);
+                    }
+                    &:before,
+                    &:after {
+                        content: '';
+                        background: var(--toolbar-add-color);
+                        width: 2px;
+                        height: 14px;
+                        border-radius: 1px;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                    }
+                    &:before {
+                        transform: translate(-50%, -50%);
+                    }
+                    &:after {
+                        transform: translate(-50%, -50%) rotate(90deg);
                     }
                 }
             }
@@ -209,10 +245,10 @@
                 }
                 .avatar {
                     display: block;
-                    width: 36px;
-                    height: 36px;
+                    width: 40px;
+                    height: 40px;
                     text-align: center;
-                    line-height: 36px;
+                    line-height: 40px;
                     border-radius: 6px;
                     font-size: 14px;
                     font-weight: 500;

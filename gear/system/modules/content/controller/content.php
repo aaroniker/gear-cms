@@ -4,9 +4,13 @@ class contentController extends controller {
 
     public function index() {
 
-    }
-
-    public function test() {
+        return [
+            'view' => [
+                'global' => [
+                    'title' => 'Content'
+                ]
+            ]
+        ];
 
     }
 

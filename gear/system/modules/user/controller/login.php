@@ -10,7 +10,7 @@ class loginController extends controller {
 
         return [
             'view' => [
-                'set' => [
+                'global' => [
                     'title' => 'Login'
                 ],
                 'file' => 'views/login'

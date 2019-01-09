@@ -6,8 +6,9 @@ class usersController extends controller {
 
         return [
             'view' => [
-                'set' => [
-                    'title' => 'Users'
+                'global' => [
+                    'title' => 'Users',
+                    'add' => '/users/add'
                 ],
                 'file' => 'views/list'
             ]
@@ -19,7 +20,7 @@ class usersController extends controller {
 
         return [
             'view' => [
-                'set' => [
+                'global' => [
                     'title' => 'Users'
                 ],
                 'file' => 'views/add'

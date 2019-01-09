@@ -128,6 +128,7 @@
                                 </a>
                             </li>
                         </ul>
+                        <?= ($app->view->global('add')) ? '<a href="'.$route->getURL($app->view->global('add')).'" class="add"></a>' : ''; ?>
                     </nav>
                 </div>
                 <div>

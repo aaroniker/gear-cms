@@ -49,8 +49,8 @@ class viewManager {
 
         $content = '';
 
-        if(isset($controller['return']['view']['set']) && is_array($controller['return']['view']['set'])) {
-            foreach($controller['return']['view']['set'] as $key => $val) {
+        if(isset($controller['return']['view']['global']) && is_array($controller['return']['view']['global'])) {
+            foreach($controller['return']['view']['global'] as $key => $val) {
                 $this->global[$key] = $val;
             }
         }

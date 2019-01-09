@@ -136,7 +136,7 @@
         }
         &:hover {
             &:before {
-                border-color: var(--button-border-hover);
+                --button-border: var(--button-border-hover);
             }
         }
         .caret {
