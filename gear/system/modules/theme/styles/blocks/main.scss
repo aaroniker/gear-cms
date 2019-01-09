@@ -41,6 +41,9 @@
                     display: flex;
                     & > li {
                         margin: 8px 24px 8px 0;
+                        @include max(xs) {
+                            margin-right: 16px;
+                        }
                         & > a {
                             display: table;
                             padding: 4px;
@@ -73,6 +76,9 @@
                     margin: 0 0 0 24px;
                     background: var(--toolbar-add);
                     transition: background .3s ease;
+                    @include max(xs) {
+                        margin-left: 16px;
+                    }
                     &:hover {
                         --toolbar-add: var(--toolbar-add-hover);
                     }
@@ -121,6 +127,9 @@
                         @include max(md) {
                             display: block;
                         }
+                        @include max(xs) {
+                            margin-right: 16px;
+                        }
                         svg {
                             width: 40px;
                             height: 40px;
@@ -137,6 +146,9 @@
                         margin: 1px 20px 0 0;
                         @include max(md) {
                             display: block;
+                        }
+                        @include max(xs) {
+                            margin-right: 16px;
                         }
                         div {
                             position: absolute;
@@ -188,20 +200,19 @@
                     }
                     h1 {
                         line-height: 40px;
-                        margin: 0 8px 0 0;
                         position: relative;
                         top: -1px;
                     }
                     .dropdown {
-                        margin: 1px 0 0 0;
+                        margin: 1px 0 0 8px;
+                        @include max(xs) {
+                            display: none;
+                        }
                         .btn {
                             padding: 10px 16px;
-                            &.border {
-                                --button-color: var(--text-muted);
-                                &:before {
-                                    display: none;
-                                }
-                            }
+                            --button-color: var(--text-muted);
+                            --button-border: none;
+                            --button-border-hover: none;
                             .caret {
                                 --button-caret: var(--text-muted);
                             }
@@ -212,9 +223,7 @@
                         &:hover,
                         &.open {
                             .btn {
-                                &.border {
-                                    --button-color: var(--text);
-                                }
+                                --button-color: var(--text);
                                 .caret {
                                     --button-caret: var(--text);
                                 }

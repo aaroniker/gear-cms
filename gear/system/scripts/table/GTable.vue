@@ -207,9 +207,11 @@ export default {
     .filter {
         position: absolute;
         width: 100%;
-        max-width: 220px;
         top: 0;
         right: 0;
+        @include min(xs) {
+            max-width: 220px;
+        }
     }
     .row {
         display: flex;

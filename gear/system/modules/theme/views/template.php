@@ -86,6 +86,13 @@
                         }
                     ?>
                     </ul>
+                    <div class="dropdown">
+                        <a href="" class="btn border block"><?= __('English'); ?><span class="caret"></span></a>
+                        <ul>
+                            <li><a href=""><?= __('English'); ?></a></li>
+                            <li><a href=""><?= __('German'); ?></a></li>
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </section>
