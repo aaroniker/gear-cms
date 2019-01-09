@@ -15,6 +15,19 @@ class usersController extends controller {
 
     }
 
+    public function add() {
+
+        return [
+            'view' => [
+                'set' => [
+                    'title' => 'Users'
+                ],
+                'file' => 'views/add'
+            ]
+        ];
+
+    }
+
 }
 
 ?>
