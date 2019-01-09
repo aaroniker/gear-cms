@@ -1,7 +1,11 @@
 <form action="" method="post">
-    <input class="form-field" type="text" name="email" placeholder="<?= __('Email'); ?>">
-    <input class="form-field" type="password" name="password" placeholder="<?= __('Password'); ?>">
-    <div class="remember">
+    <div class="form-element">
+        <input class="form-field" type="text" name="email" placeholder="<?= __('Email'); ?>">
+    </div>
+    <div class="form-element">
+        <input class="form-field" type="password" name="password" placeholder="<?= __('Password'); ?>">
+    </div>
+    <div class="form-element">
         <label class="checkbox">
             <input type="checkbox" name="remember" value="1">
             <span><?= __('Stay logged in'); ?></span>

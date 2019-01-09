@@ -94,18 +94,18 @@
 
             <div class="toolbar">
                 <div>
-                    <a class="logo" href="<?= $app->config->get('system')['url'].$app->config->get('system')['adminURL']; ?>">
-                        <svg>
-                            <use xlink:href="#logo" />
-                        </svg>
-                    </a>
-                    <label class="menu">
-                        <input type="checkbox">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </label>
-                    <div class="headline">
+                    <div class="left">
+                        <a class="logo" href="<?= $app->config->get('system')['url'].$app->config->get('system')['adminURL']; ?>">
+                            <svg>
+                                <use xlink:href="#logo" />
+                            </svg>
+                        </a>
+                        <label class="menu">
+                            <input type="checkbox">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </label>
                         <h1><?= __($app->view->global('title')); ?></h1>
                         <div class="dropdown">
                             <a href="" class="btn border"><?= __('English'); ?><span class="caret"></span></a>

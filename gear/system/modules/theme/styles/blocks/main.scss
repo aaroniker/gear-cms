@@ -74,87 +74,87 @@
                 @include max(xs) {
                     padding: 0 20px;
                 }
-                .logo {
-                    display: none;
-                    flex-basis: 40px;
-                    margin-right: 20px;
-                    @include max(md) {
-                        display: block;
-                    }
-                    svg {
-                        width: 40px;
-                        height: 40px;
-                        display: block;
-                        fill: url(#primaryGradient);
-                    }
-                }
-                .menu {
-                    display: none;
-                    width: 24px;
-                    height: 20px;
-                    position: relative;
-                    cursor: pointer;
-                    flex-basis: 24px;
-                    margin: 1px 20px 0 0;
-                    @include max(md) {
-                        display: block;
-                    }
-                    div {
-                        position: absolute;
-                        height: 2px;
-                        border-radius: 1px;
-                        background: var(--menu-icon);
-                        transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6), width .2s ease .2s, background .3s ease;
-                    }
-                    input {
-                        display: none;
-                        & + div {
-                            top: 50%;
-                            left: 0;
-                            margin: -1px 0 0 0;
-                            width: 24px;
-                            transform-origin: 50% 50%;
-                            & + div {
-                                top: 1px;
-                                left: 0;
-                                width: 14px;
-                                transform-origin: 0 50%;
-                                & + div {
-                                    bottom: 1px;
-                                    right: 0;
-                                    width: 16px;
-                                    transform-origin: 100% 50%;
-                                    transform: translate(-8px, 0);
-                                }
-                            }
-                        }
-                        &:checked + div {
-                            background: var(--menu-icon-active);
-                            transform: rotate(-45deg);
-                            transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, background .3s ease;
-                            & + div {
-                                background: var(--menu-icon-active);
-                                width: 12px;
-                                transform: translate(3px, 0) rotate(45deg);
-                                transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
-                                & + div {
-                                    background: var(--menu-icon-active);
-                                    width: 12px;
-                                    transform: translate(-4px, 1px) rotate(45deg);
-                                    transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
-                                }
-                            }
-                        }
-                    }
-                }
-                .headline {
+                .left {
                     flex-grow: 0;
                     flex-shrink: 1;
                     display: flex;
                     align-items: center;
+                    .logo {
+                        display: none;
+                        margin-right: 20px;
+                        @include max(md) {
+                            display: block;
+                        }
+                        svg {
+                            width: 40px;
+                            height: 40px;
+                            display: block;
+                            fill: url(#primaryGradient);
+                        }
+                    }
+                    .menu {
+                        display: none;
+                        width: 24px;
+                        height: 20px;
+                        position: relative;
+                        cursor: pointer;
+                        margin: 1px 20px 0 0;
+                        @include max(md) {
+                            display: block;
+                        }
+                        div {
+                            position: absolute;
+                            height: 2px;
+                            border-radius: 1px;
+                            background: var(--menu-icon);
+                            transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6), width .2s ease .2s, background .3s ease;
+                        }
+                        input {
+                            display: none;
+                            & + div {
+                                top: 50%;
+                                left: 0;
+                                margin: -1px 0 0 0;
+                                width: 24px;
+                                transform-origin: 50% 50%;
+                                & + div {
+                                    top: 1px;
+                                    left: 0;
+                                    width: 14px;
+                                    transform-origin: 0 50%;
+                                    & + div {
+                                        bottom: 1px;
+                                        right: 0;
+                                        width: 16px;
+                                        transform-origin: 100% 50%;
+                                        transform: translate(-8px, 0);
+                                    }
+                                }
+                            }
+                            &:checked + div {
+                                background: var(--menu-icon-active);
+                                transform: rotate(-45deg);
+                                transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, background .3s ease;
+                                & + div {
+                                    background: var(--menu-icon-active);
+                                    width: 12px;
+                                    transform: translate(3px, 0) rotate(45deg);
+                                    transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
+                                    & + div {
+                                        background: var(--menu-icon-active);
+                                        width: 12px;
+                                        transform: translate(-4px, 1px) rotate(45deg);
+                                        transition: transform .45s cubic-bezier(.9, -.6, .3, 1.6) .1s, width .2s ease, background .3s ease;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     h1 {
                         line-height: 40px;
                         margin: 0 8px 0 0;
+                        position: relative;
+                        top: -1px;
                     }
                     .dropdown {
                         margin: 1px 0 0 0;
