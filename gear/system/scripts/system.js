@@ -10,7 +10,6 @@ function install(Vue) {
     Vue.config.productionTip = gear.debug;
 
     var axios = require('axios'),
-        $ = require('jquery'),
         vsprintf = require('sprintf-js').vsprintf;
 
     Vue.prototype.$api = axios.create({
@@ -22,12 +21,9 @@ function install(Vue) {
 
     function getLang(name, array) {
         if(name in lang) {
-            if(array !== undefined) {
-                return vsprintf(lang[name], array);
-            }
-            return lang[name];
+            return (array !== undefined) ? vsprintf(lang[name], array) : lang[name];
         }
-        return name;
+        return (array !== undefined) ? vsprintf(name, array) : name;
     }
 
     Vue.prototype.$message = function(message, type, stay) {
@@ -40,13 +36,9 @@ function install(Vue) {
         });
     };
 
-    Vue.filter('lang', function(name, array) {
-        return getLang(name, array);
-    });
+    Vue.filter('lang', getLang);
 
-    Vue.prototype.$lang = function(name, array) {
-        return getLang(name, array);
-    };
+    Vue.prototype.$lang = getLang;
 
     Vue.prototype.$visibility = require('visibilityjs');
 
