@@ -33,7 +33,7 @@
                     </svg>
                 </a>
                 <div class="user">
-                    <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
+                    <a href="<?= $route->getLink('/users', ['edit', $app->auth->getCurrentUser()['id']]); ?>" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
                     <nav>
                         <ul>
                             <li>
@@ -157,7 +157,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <a href="" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
+                    <a href="<?= $route->getLink('/users', ['edit', $app->auth->getCurrentUser()['id']]); ?>" class="avatar"><?= $app->auth->getCurrentUser()['username'][0]; ?></a>
                 </div>
             </div>
 

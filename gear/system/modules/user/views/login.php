@@ -1,21 +1,28 @@
-<g-form>
-    <input type="hidden" name="action" value="login">
-    <div class="form-element">
-        <input class="form-field" type="text" name="email" placeholder="<?= __('Email'); ?>">
-    </div>
-    <div class="form-element">
-        <input class="form-field" type="password" name="password" placeholder="<?= __('Password'); ?>">
-    </div>
-    <div class="form-element">
-        <label class="checkbox">
-            <input type="checkbox" name="remember" value="1">
-            <span><?= __('Stay logged in'); ?></span>
-        </label>
-    </div>
-    <button class="btn block" type="submit">
-        <svg>
-            <use xlink:href="#lockUI" />
-        </svg>
-        <?= __('Login'); ?>
-    </button>
-</g-form>
+<?php
+
+    $form = new form();
+
+    $form->addHidden('action', 'login');
+
+    $form->addText('email', null, [
+        'placeholder' => __('Email')
+    ]);
+
+    $form->addPassword('password', null, [
+        'placeholder' => __('Password')
+    ]);
+
+    $form->addCheckbox('remember')->add(1, __('Stay logged in'));
+
+    $form->addRaw('
+        <button class="btn block" type="submit">
+            <svg>
+                <use xlink:href="#lockUI" />
+            </svg>
+            '.__('Login').'
+        </button>
+    ');
+
+    echo $form->show();
+
+?>
