@@ -1,6 +1,6 @@
 <template>
     <form :action="action" :method="method">
-        <slot></slot>
+        <slot :data="data"></slot>
     </form>
 </template>
 <script>
@@ -15,7 +15,19 @@ export default {
         action: {
             type: String,
             default: ''
+        },
+        values: {
+            type: Object,
+            default: '{}'
         }
+    },
+    data() {
+        return {
+            data: {}
+        }
+    },
+    mounted() {
+        this.data = this.values;
     }
 }
 </script>
