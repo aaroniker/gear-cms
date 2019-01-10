@@ -8,7 +8,7 @@ class usersController extends controller {
             'view' => [
                 'global' => [
                     'title' => 'Users',
-                    'add' => '/users/add'
+                    'add' => '/users/edit'
                 ],
                 'file' => 'views/list'
             ]
@@ -16,14 +16,17 @@ class usersController extends controller {
 
     }
 
-    public function add() {
+    public function edit($id = 0) {
 
         return [
             'view' => [
                 'global' => [
                     'title' => 'Users'
                 ],
-                'file' => 'views/add'
+                'vars' => [
+                    'id' => $id
+                ],
+                'file' => 'views/edit'
             ]
         ];
 

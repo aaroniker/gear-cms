@@ -61,12 +61,14 @@ class viewManager {
 
             $viewPath = $module->path.'/'.$controller['return']['view']['file'].'.php';
 
+            $variables = isset($controller['return']['view']['vars']) ? $controller['return']['view']['vars'] : [];
+
             $view = new view($viewPath, [
                 'app' => $this->app,
                 'route' => $this->app->route,
                 'module' => $module,
                 'assets' => $this->app->assets
-            ]);
+            ], $variables);
 
             $content = $view->render();
 

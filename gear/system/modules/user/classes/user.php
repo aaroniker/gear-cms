@@ -40,13 +40,7 @@ class user {
 
     public function addUser($username, $email, $hash) {
 
-        $return['error'] = true;
-
         $email = htmlentities(strtolower($email));
-
-        //check some things
-
-        $return['error'] = false;
 
         return $this->app->db->insert($this->module->config('table'), [
             'email' => $email,

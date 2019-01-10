@@ -4,10 +4,12 @@ class view {
 
     protected $file;
     protected $data;
+    protected $vars = [];
 
-    public function __construct($file = false, $data = []) {
+    public function __construct($file = false, $data = [], $vars = []) {
 
         $this->data = $data;
+        $this->vars = $vars;
         $this->file = $file;
 
         $this->data['view'] = $this;
@@ -23,6 +25,7 @@ class view {
             ob_start();
 
             extract($this->data);
+            extract($this->vars);
 
             include($this->file);
 
