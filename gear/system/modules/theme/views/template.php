@@ -61,7 +61,7 @@
                             $openClass = ($item['activeClass']) ? ' opened' : '';
                             echo '
                             <li class="'.$item['activeClass'].$openClass.'">
-                                <a href="'.$route->getURL($item['url']).'">
+                                <a href="'.$route->getLink($item['url']).'">
                                     '.$item['icon'].'
                                     '.__($item['name']).'
                                 </a>
@@ -72,7 +72,7 @@
                                 foreach($item['sub'] as $sub) {
                                     echo '
                                     <li class="'.$sub['activeClass'].'">
-                                        <a href="'.$route->getURL($sub['url']).'">
+                                        <a href="'.$route->getLink($sub['url']).'">
                                             '.__($sub['name']).'
                                         </a>
                                     </li>
