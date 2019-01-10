@@ -201,7 +201,7 @@ class form {
         $return[] = '<template slot-scope="props">';
 
         foreach($this->rows as $content) {
-            $return[] = '<div class="columns">';
+            $return[] = '<div class="columns gapMd">';
             $return = $this->loopFields($content, $return);
             $return[] = '</div>';
         }

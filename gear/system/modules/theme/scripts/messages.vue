@@ -240,7 +240,7 @@ Vue.component('messages', function(resolve) {
         &.showAll {
             ul {
                 background: var(--toolbar-dropdown-background);
-                box-shadow: 0 4px 8px -1px var(--toolbar-dropdown-shadow);
+                box-shadow: 0 2px 8px -1px var(--shadow);
                 padding: 8px;
             }
         }

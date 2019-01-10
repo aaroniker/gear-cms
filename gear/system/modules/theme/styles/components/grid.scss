@@ -3,9 +3,9 @@ $breakpoints:
     md $breakpointMd $containerMd,
     lg $breakpointLg $containerLg;
 
-@mixin grid-col-common {
-    padding-right: $gapWidth * .5;
-    padding-left: $gapWidth * .5;
+@mixin grid-col-common($gap) {
+    padding-right: $gap * .5;
+    padding-left: $gap * .5;
     flex-grow: 0;
     flex-shrink: 0;
 }
@@ -65,33 +65,45 @@ form.horizontal .form-element {
             flex-basis: 100%;
         }
     }
-    &.half {
-        margin-right: $gapWidth * .25 * -1;
-        margin-left: $gapWidth * .25 * -1;
+    &.gapMd {
+        margin-right: $gapWidthMd * .5 * -1;
+        margin-left: $gapWidthMd * .5 * -1;
         @each $breakpoint in $breakpoints {
             $name: nth($breakpoint, 1);
             [class^='#{$name}'],
             [class*=' #{$name}'] {
-                padding-right: $gapWidth * .25;
-                padding-left: $gapWidth * .25;
+                padding-right: $gapWidthMd * .5;
+                padding-left: $gapWidthMd * .5;
+            }
+        }
+    }
+    &.gapSm {
+        margin-right: $gapWidthSm * .5 * -1;
+        margin-left: $gapWidthSm * .5 * -1;
+        @each $breakpoint in $breakpoints {
+            $name: nth($breakpoint, 1);
+            [class^='#{$name}'],
+            [class*=' #{$name}'] {
+                padding-right: $gapWidthSm * .5;
+                padding-left: $gapWidthSm * .5;
             }
         }
     }
     $name: xs;
     .#{$name} {
-        @include grid-col-common;
+        @include grid-col-common($gapWidth);
         flex-basis: auto;
     }
     @for $i from 1 through $columns {
         .#{$name}-#{$i} {
             max-width: 100% / $columns * $i;
-            @include grid-col-common;
+            @include grid-col-common($gapWidth);
             flex-basis: 100% / $columns * $i;
         }
     }
     @for $i from 0 through $columns {
         .#{$name}-offset-#{$i} {
-            @include grid-col-common;
+            @include grid-col-common($gapWidth);
             @if $i == 0 {
                 margin-left: 0;
             } @else {
@@ -143,19 +155,19 @@ form.horizontal .form-element {
         $container: nth($breakpoint, 3);
         @media only screen and (min-width: $size) {
             .#{$name} {
-                @include grid-col-common;
+                @include grid-col-common($gapWidth);
                 flex-basis: auto;
             }
             @for $i from 1 through $columns {
                 .#{$name}-#{$i} {
                     max-width: 100% / $columns * $i;
-                    @include grid-col-common;
+                    @include grid-col-common($gapWidth);
                     flex-basis: 100% / $columns * $i;
                 }
             }
             @for $i from 0 through $columns {
                 .#{$name}-offset-#{$i} {
-                    @include grid-col-common;
+                    @include grid-col-common($gapWidth);
                     @if $i == 0 {
                         margin-left: 0;
                     } @else {

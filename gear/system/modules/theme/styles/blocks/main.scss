@@ -10,7 +10,6 @@
 
     --toolbar-dropdown-empty: var(--text-muted);
     --toolbar-dropdown-background: var(--dark-5);
-    --toolbar-dropdown-shadow: var(--dark-3);
 
     --menu-icon: var(--light-2);
     --menu-icon-active: var(--light-5);
@@ -293,7 +292,7 @@
             color: var(--body-text);
             background: var(--light-6);
             border-radius: 6px;
-            padding: 32px;
+            padding: 32px 32px 8px 32px;
             @include max(sm) {
                 padding: 24px;
             }

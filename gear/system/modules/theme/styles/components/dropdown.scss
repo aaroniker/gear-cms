@@ -29,6 +29,7 @@
         transform: scaleY(.6) translateY(0);
         transform-origin: 50% 0;
         background: var(--dropdown-background);
+        box-shadow: 0 2px 8px -1px var(--shadow);
         transition: opacity .2s ease, visibility .2s ease, transform .3s cubic-bezier(.4, .6, .5, 1.2);
         li {
             opacity: 0;
@@ -78,7 +79,7 @@
             position: relative;
             cursor: pointer;
             display: block;
-            z-index: 1;
+            z-index: 11;
             transition: transform .3s ease;
             i {
                 display: block;
