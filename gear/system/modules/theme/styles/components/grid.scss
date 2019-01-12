@@ -65,30 +65,6 @@ form.horizontal .form-element {
             flex-basis: 100%;
         }
     }
-    &.gapMd {
-        margin-right: $gapWidthMd * .5 * -1;
-        margin-left: $gapWidthMd * .5 * -1;
-        @each $breakpoint in $breakpoints {
-            $name: nth($breakpoint, 1);
-            [class^='#{$name}'],
-            [class*=' #{$name}'] {
-                padding-right: $gapWidthMd * .5;
-                padding-left: $gapWidthMd * .5;
-            }
-        }
-    }
-    &.gapSm {
-        margin-right: $gapWidthSm * .5 * -1;
-        margin-left: $gapWidthSm * .5 * -1;
-        @each $breakpoint in $breakpoints {
-            $name: nth($breakpoint, 1);
-            [class^='#{$name}'],
-            [class*=' #{$name}'] {
-                padding-right: $gapWidthSm * .5;
-                padding-left: $gapWidthSm * .5;
-            }
-        }
-    }
     $name: xs;
     .#{$name} {
         @include grid-col-common($gapWidth);
@@ -212,6 +188,74 @@ form.horizontal .form-element {
             }
             .last-#{$name} {
                 order: 1;
+            }
+        }
+    }
+    &.gapMd {
+        margin-right: $gapWidthMd * .5 * -1;
+        margin-left: $gapWidthMd * .5 * -1;
+        @each $breakpoint in $breakpoints {
+            $name: nth($breakpoint, 1);
+            [class^='#{$name}'],
+            [class*=' #{$name}'] {
+                padding-right: $gapWidthMd * .5;
+                padding-left: $gapWidthMd * .5;
+            }
+        }
+        $name: xs;
+        .#{$name} {
+            @include grid-col-common($gapWidthMd);
+            flex-basis: auto;
+        }
+        @for $i from 1 through $columns {
+            .#{$name}-#{$i} {
+                max-width: 100% / $columns * $i;
+                @include grid-col-common($gapWidthMd);
+                flex-basis: 100% / $columns * $i;
+            }
+        }
+        @for $i from 0 through $columns {
+            .#{$name}-offset-#{$i} {
+                @include grid-col-common($gapWidthMd);
+                @if $i == 0 {
+                    margin-left: 0;
+                } @else {
+                    margin-left: 100% / $columns * $i;
+                }
+            }
+        }
+    }
+    &.gapSm {
+        margin-right: $gapWidthSm * .5 * -1;
+        margin-left: $gapWidthSm * .5 * -1;
+        @each $breakpoint in $breakpoints {
+            $name: nth($breakpoint, 1);
+            [class^='#{$name}'],
+            [class*=' #{$name}'] {
+                padding-right: $gapWidthSm * .5;
+                padding-left: $gapWidthSm * .5;
+            }
+        }
+        $name: xs;
+        .#{$name} {
+            @include grid-col-common($gapWidthSm);
+            flex-basis: auto;
+        }
+        @for $i from 1 through $columns {
+            .#{$name}-#{$i} {
+                max-width: 100% / $columns * $i;
+                @include grid-col-common($gapWidthSm);
+                flex-basis: 100% / $columns * $i;
+            }
+        }
+        @for $i from 0 through $columns {
+            .#{$name}-offset-#{$i} {
+                @include grid-col-common($gapWidthSm);
+                @if $i == 0 {
+                    margin-left: 0;
+                } @else {
+                    margin-left: 100% / $columns * $i;
+                }
             }
         }
     }

@@ -216,9 +216,6 @@
                                 --button-caret: var(--text-muted);
                             }
                         }
-                        ul {
-                            --dropdown-translate-active: 0;
-                        }
                         &:hover,
                         &.open {
                             .btn {
@@ -294,7 +291,7 @@
             border-radius: 6px;
             padding: 32px 32px 8px 32px;
             @include max(sm) {
-                padding: 24px;
+                padding: 24px 24px 0 24px;
             }
         }
     }

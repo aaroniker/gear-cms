@@ -246,11 +246,11 @@ export default {
             border-radius: 6px;
             transition: background .3s ease;
             margin: 0 0 8px 0;
+            font-size: 14px;
             &:hover {
                 background: var(--table-row-hover);
             }
             & > div {
-                font-size: 14px;
                 & > a {
                     font-size: 16px;
                     color: var(--table-row-link);
