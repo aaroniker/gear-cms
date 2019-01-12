@@ -1,5 +1,7 @@
 import { GTable, GColumn } from './table'
 import { GForm } from './form'
+import { GSelect } from './select'
+import { GDropdown } from './dropdown'
 
 function install(Vue) {
 
@@ -47,7 +49,9 @@ function install(Vue) {
         components: {
             GTable,
             GColumn,
-            GForm
+            GForm,
+            GSelect,
+            GDropdown
         }
     });
 

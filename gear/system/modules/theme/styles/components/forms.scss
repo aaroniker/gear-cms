@@ -79,6 +79,64 @@
     }
 }
 
+.form-select {
+    display: block;
+    width: 100%;
+    position: relative;
+    background: var(--input-background);
+    border: 1px solid var(--input-border);
+    padding: 10px 16px;
+    line-height: 21px;
+    min-height: 43px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--input-color);
+    border-radius: 6px;
+    transition: border .3s ease;
+    &:hover {
+        color: var(--input-color);
+    }
+    .caret {
+        width: 18px;
+        height: 22px;
+        position: absolute;
+        top: 10px;
+        right: 11px;
+        &:before,
+        &:after {
+            content: '';
+            width: 2px;
+            height: 8px;
+            border-radius: 1px;
+            background: var(--input-color);
+            position: absolute;
+            right: 8px;
+            top: 7px;
+            transform-origin: 50% 50%;
+            transition: transform .3s ease, background .3s ease;
+        }
+        &:before {
+            margin-right: 5px;
+            transform: scale(.92, .8) rotate(-50deg);
+        }
+        &:after {
+            transform: scale(.92, .8) rotate(50deg);
+        }
+    }
+    &.focus {
+        border-color: var(--input-border-focus);
+        .caret {
+            &:before {
+                margin-right: 5px;
+                transform: scale(.92, .8) rotate(-130deg);
+            }
+            &:after {
+                transform: scale(.92, .8) rotate(130deg);
+            }
+        }
+    }
+}
+
 textarea {
     &.form-field {
         resize: vertical;
