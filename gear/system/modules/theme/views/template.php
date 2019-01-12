@@ -86,13 +86,10 @@
                         }
                     ?>
                     </ul>
-                    <div class="dropdown">
-                        <a href="" class="btn border block"><?= __('English'); ?><span class="caret"></span></a>
-                        <ul>
-                            <li><a href=""><?= __('English'); ?></a></li>
-                            <li><a href=""><?= __('German'); ?></a></li>
-                        </ul>
-                    </div>
+                    <g-dropdown classes="border block" label="English" :list="[
+                        ['', 'English'],
+                        ['', 'German']
+                    ]"></g-dropdown>
                 </nav>
             </div>
         </section>
@@ -114,13 +111,10 @@
                             <div></div>
                         </label>
                         <h1><?= __($app->view->global('title')); ?></h1>
-                        <div class="dropdown">
-                            <a href="" class="btn border"><?= __('English'); ?><span class="caret"></span></a>
-                            <ul>
-                                <li><a href=""><?= __('English'); ?></a></li>
-                                <li><a href=""><?= __('German'); ?></a></li>
-                            </ul>
-                        </div>
+                        <g-dropdown classes="border" label="English" :list="[
+                            ['', 'English'],
+                            ['', 'German']
+                        ]"></g-dropdown>
                     </div>
                     <nav>
                         <ul>

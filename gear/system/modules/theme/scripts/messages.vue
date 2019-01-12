@@ -94,7 +94,7 @@ module.exports = {
             if((el !== target) && !el.contains(target)) {
                 this.open = false;
             }
-        },
+        }
     },
     computed: {
         listMessages() {

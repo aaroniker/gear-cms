@@ -1,3 +1,72 @@
+<template>
+    <div ref="dropdown" v-bind:class="{ open: open, dropdown: true, hover: hover, dots: dots }">
+        <a v-if="!dots" href="" :class="'btn ' + classes" @click.prevent="open = !open">
+            {{ translation(label) }}<span class="caret"></span>
+        </a>
+        <span v-if="dots" @click.prevent="toggle()"><i></i></span>
+        <ul>
+            <li v-for="entry in list" :class="entry[2]">
+                <a :href="entry[0]" v-text="translation(entry[1])"></a>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'GDropdown',
+    props: {
+        list: {
+            type: Array,
+            required: true
+        },
+        label: {
+            type: String,
+            required: true
+        },
+        classes: {
+            type: String,
+            default: ''
+        },
+        translate: {
+            type: Boolean,
+            default: true
+        },
+        hover: {
+            type: Boolean,
+            default: false
+        },
+        dots: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data() {
+        return {
+            open: false
+        }
+    },
+    created() {
+        document.addEventListener('click', this.documentClick);
+    },
+    destroyed () {
+        document.removeEventListener('click', this.documentClick);
+    },
+    methods: {
+        documentClick(e) {
+            var el = this.$refs.dropdown;
+            var target = e.target;
+            if((el !== target) && !el.contains(target)) {
+                this.open = false;
+            }
+        },
+        translation(key) {
+            return (this.translate) ? this.$lang(key) : key;
+        }
+    }
+}
+</script>
+<style lang="scss">
 :root {
     --dropdown-dots: var(--light-2);
     --dropdown-dots-hover: var(--light-4);
@@ -7,13 +76,21 @@
     --dropdown-list-color: var(--text);
     --dropdown-list-color-hover: var(--light-2);
     --dropdown-background-hover: var(--light-5);
-    --dropdown-button-color: var(--)
 }
-
+.light {
+    --dropdown-background: var(--light-7);
+    --dropdown-background-hover: var(--light-6);
+    .dropdown {
+        ul {
+            border: 1px solid var(--light-5);
+        }
+    }
+}
 .dropdown {
     position: relative;
     z-index: 10;
-    --dropdown-translate-active: 8px;
+    display: table;
+    --dropdown-translate-active: 4px;
     ul {
         padding: 0;
         margin: 0;
@@ -29,7 +106,7 @@
         transform: scaleY(.6) translateY(0);
         transform-origin: 50% 0;
         background: var(--dropdown-background);
-        box-shadow: 0 2px 8px -1px var(--shadow);
+        box-shadow: 0 1px 4px var(--shadow);
         transition: opacity .2s ease, visibility .2s ease, transform .3s cubic-bezier(.4, .6, .5, 1.2);
         li {
             opacity: 0;
@@ -73,6 +150,7 @@
         }
     }
     &.dots {
+        --dropdown-translate-active: 0;
         & > span {
             width: 24px;
             height: 22px;
@@ -129,25 +207,16 @@
                 }
             }
         }
-        &.open,
-        &:hover {
-            & > span {
-                transform: rotate(90deg);
-                i {
-                    background: var(--dropdown-dots-active);
-                }
-            }
-            ul {
-                opacity: 1;
-                visibility: visible;
-                transform: scaleY(1);
-                li {
-                    opacity: 1;
-                }
+    }
+    &.hover:hover,
+    &.open {
+        & > span {
+            transform: rotate(90deg);
+            &:hover i,
+            i {
+                background: var(--dropdown-dots-active);
             }
         }
-    }
-    &.open {
         .btn {
             .caret {
                 &:before {
@@ -169,3 +238,4 @@
         }
     }
 }
+</style>
