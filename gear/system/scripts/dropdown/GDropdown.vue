@@ -88,7 +88,7 @@ export default {
 }
 .dropdown {
     position: relative;
-    z-index: 10;
+    z-index: 1;
     display: table;
     --dropdown-translate-active: 4px;
     ul {
@@ -102,7 +102,6 @@ export default {
         min-width: 140px;
         opacity: 0;
         visibility: hidden;
-        z-index: 10;
         transform: scaleY(.6) translateY(0);
         transform-origin: 50% 0;
         background: var(--dropdown-background);
@@ -157,7 +156,7 @@ export default {
             position: relative;
             cursor: pointer;
             display: block;
-            z-index: 11;
+            z-index: 1;
             transition: transform .3s ease;
             i {
                 display: block;
@@ -210,6 +209,7 @@ export default {
     }
     &.hover:hover,
     &.open {
+        z-index: 2;
         & > span {
             transform: rotate(90deg);
             &:hover i,

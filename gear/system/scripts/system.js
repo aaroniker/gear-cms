@@ -15,7 +15,7 @@ function install(Vue) {
         vsprintf = require('sprintf-js').vsprintf;
 
     Vue.prototype.$api = axios.create({
-        baseURL: gear.url + '/api',
+        baseURL: gear.url + gear.adminURL + gear.apiURL,
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }

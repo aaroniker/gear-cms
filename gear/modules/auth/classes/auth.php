@@ -81,11 +81,7 @@ class auth {
         $agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
         $this->deleteExistingSessions($userID);
 
-        if($remember == true) {
-            $data['expire'] = strtotime($this->module->config('session')['remember']);
-        } else {
-            $data['expire'] = strtotime($this->module->config('session')['time']);
-        }
+        $data['expire'] = ($remember == true) ? strtotime($this->module->config('session')['remember']) : strtotime($this->module->config('session')['time']);
 
         $data['cookie'] = sha1($data['hash'].$this->module->config('session')['key']);
 

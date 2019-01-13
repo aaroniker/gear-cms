@@ -21,6 +21,25 @@ return [
         ]
     ],
 
+    'api' => [
+        '/user/add' => [
+            'method' => 'POST',
+            'callback' => function($app) {
+                $user = api::getPost('data');
+                $app->user->addUser($user['username'], $user['email'], $app->auth->getHash($user['password']));
+                $app->message->add('Benutzer hinzugefügt');
+            }
+        ],
+        '/user/edit' => [
+            'method' => 'POST',
+            'callback' => function($app) {
+                $user = api::getPost('data');
+                $app->user->editUser($user['id'], $user['username'], $user['email']);
+                $app->message->add('Benutzer bearbeitet');
+            }
+        ]
+    ],
+
     'autoload' => [
         'classes'
     ],
@@ -36,10 +55,6 @@ return [
                 if($app->auth->login(type::post('email'), type::post('password'), type::post('remember'))) {
                     $app->route->redirect('/dashboard');
                 }
-            }
-
-            if(!$app->auth->isLogged() && $app->isAdmin) {
-                $app->route->redirect('/login');
             }
 
         }

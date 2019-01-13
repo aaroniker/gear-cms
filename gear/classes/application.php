@@ -22,14 +22,14 @@ class application {
             return $app->lang->get($name, $values);
         }
 
-        $this->router = new router($this);
+        $this->api = new api($this);
         $this->message = new message($this);
         $this->admin = new admin($this);
         $this->hook = new hook();
+        $this->controller = new controller($this);
         $this->route = new route($this);
         $this->assets = new assets($this);
         $this->view = new viewManager($this);
-        $this->controller = new controller($this);
         $this->modules = new moduleManager($this);
 
     }
@@ -38,18 +38,9 @@ class application {
 
         $this->hook->do_action('application.boot', $this);
 
-        if('/'.route::getUrlStatic()[0] == $this->config->get('system')['apiURL']) {
+        $this->view->register($this->route->includeController(), 'content');
 
-            $this->router->run();
-            exit();
-
-        } else {
-
-            $this->view->register($this->route->includeController(), 'content');
-
-            echo $this->hook->apply_filters('application.show', $this->view->get('content'));
-
-        }
+        echo $this->hook->apply_filters('application.show', $this->view->get('content'));
 
     }
 

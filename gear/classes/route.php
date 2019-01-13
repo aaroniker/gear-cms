@@ -22,6 +22,7 @@ class route {
     public $params = [];
 
     public $admin = false;
+    public $api = false;
 
     public $url;
     public $route;
@@ -40,6 +41,8 @@ class route {
             unset($url[0]);
             $this->route = '/'.implode('/', $url);
 
+            $this->api = '/'.$url[1] == $this->app->config->get('system')['apiURL'];
+
         } else {
 
             //frontend
@@ -56,62 +59,71 @@ class route {
 
         $this->getAllRoutes();
 
-        foreach($this->routes as $key => $array) {
+        if('/'.self::getUrlStatic()[0].'/'.self::getUrlStatic()[1] == $this->app->config->get('system')['adminURL'].$this->app->config->get('system')['apiURL']) {
 
-            if(strpos($array['url'], '{') !== false) {
-                $array['url'] = str_replace(array_keys($this->patterns), array_values($this->patterns), $array['url']);
-            }
+            $this->app->api->run();
+            exit();
 
-            if((bool)preg_match('#^'.$array['url'].'$#', $this->route)) {
+        } else {
 
-                $this->controller = $array['controller'];
+            foreach($this->routes as $key => $array) {
 
-                if(!file_exists($array['module']->path.'/'.$array['controller'].'.php')) {
-                    continue;
+                if(strpos($array['url'], '{') !== false) {
+                    $array['url'] = str_replace(array_keys($this->patterns), array_values($this->patterns), $array['url']);
                 }
 
-                $urlArr = [];
-                $key = $key.'/';
-                if(substr($this->route, 0, strlen($key)) == $key) {
-                    $urlArr = explode('/', substr($this->route, strlen($key)));
-                    if(isset($urlArr[0])) {
-                        $this->method = $urlArr[0];
-                        unset($urlArr[0]);
+                if((bool)preg_match('#^'.$array['url'].'$#', $this->route)) {
+
+                    $this->controller = $array['controller'];
+
+                    if(!file_exists($array['module']->path.'/'.$array['controller'].'.php')) {
+                        continue;
                     }
-                    $this->params = $urlArr;
-                }
 
-                include($array['module']->path.'/'.$array['controller'].'.php');
+                    $urlArr = [];
+                    $key = $key.'/';
+                    if(substr($this->route, 0, strlen($key)) == $key) {
+                        $urlArr = explode('/', substr($this->route, strlen($key)));
+                        if(isset($urlArr[0])) {
+                            $this->method = $urlArr[0];
+                            unset($urlArr[0]);
+                        }
+                        $this->params = $urlArr;
+                    }
 
-                $this->class = basename($array['controller']).'Controller';
-                $this->class = new $this->class($this->app);
+                    include($array['module']->path.'/'.$array['controller'].'.php');
 
-                if(method_exists($this->class, $this->method)) {
-                    if(is_array($this->params) && count($this->params)) {
-                        return [
-                            'return' => call_user_func_array([$this->class, $this->method], $this->params),
-                            'module' => $array['module']
-                        ];
+                    $this->class = basename($array['controller']).'Controller';
+                    $this->class = new $this->class($this->app);
+
+                    if(method_exists($this->class, $this->method)) {
+                        if(is_array($this->params) && count($this->params)) {
+                            return [
+                                'return' => call_user_func_array([$this->class, $this->method], $this->params),
+                                'module' => $array['module']
+                            ];
+                        } else {
+                            return [
+                                'return' => $this->class->{$this->method}(),
+                                'module' => $array['module']
+                            ];
+                        }
                     } else {
                         return [
-                            'return' => $this->class->{$this->method}(),
+                            'return' => $this->class->index(),
                             'module' => $array['module']
                         ];
                     }
-                } else {
-                    return [
-                        'return' => $this->class->index(),
-                        'module' => $array['module']
-                    ];
+
+                    $loaded = true;
                 }
-
-                $loaded = true;
             }
-        }
 
 
-        if(!$loaded && $this->app->isAdmin) {
-            $this->error404();
+            if(!$loaded && $this->app->isAdmin) {
+                $this->error404();
+            }
+
         }
 
         return [];

@@ -50,6 +50,19 @@ class user {
 
     }
 
+    public function editUser($id, $username, $email) {
+
+        $email = htmlentities(strtolower($email));
+
+        return $this->app->db->update($this->module->config('table'), [
+            'username' => $username,
+            'email' => $email
+        ], [
+            'id' => $id
+        ]);
+
+    }
+
 }
 
 ?>

@@ -10,17 +10,18 @@ class message {
 
         $this->app = $app;
 
-        $this->app->router->get('/messages', function() {
+        $this->app->api->get('/messages', function() {
             return json_encode($this->getAll());
         });
 
-        $this->app->router->post('/addMessage', function() {
-            $array = router::getPost('message');
+        $this->app->api->post('/addMessage', function() {
+            $array = api::getPost('message');
             $this->add($array['message'], $array['type'], $array['stay']);
         });
 
-        $this->app->router->delete('/message/{i}', function($index) {
+        $this->app->api->delete('/message/{i}', function($app, $index) {
             $this->delete($index);
+            return json_encode($this->getAll());
         });
 
     }

@@ -1,6 +1,6 @@
 <?php
 
-class router {
+class api {
 
     protected $app;
 
@@ -69,12 +69,20 @@ class router {
 
     }
 
-    private function runCallback($function, $params = null) {
-        if(!is_null($params)) {
-            echo call_user_func_array($function, $params);
-            return;
+    private function runCallback($function, $params = []) {
+        $array[] = $this->app;
+        echo call_user_func_array($function, array_merge($array, $params));
+    }
+
+    public function getAllRoutes() {
+        foreach($this->app->modules->all() as $module) {
+            if(isset($module->options['api']) && is_array($module->options['api']) && count($module->options['api'])) {
+                foreach($module->options['api'] as $route => $array) {
+                    $errorCallback = (isset($array['errorCallback'])) ? $array['errorCallback'] : null;
+                    $this->addRoute($route, $array['method'], $array['callback'], $errorCallback);
+                }
+            }
         }
-        echo call_user_func($function);
     }
 
     public function run() {
@@ -82,6 +90,8 @@ class router {
         $method = self::getMethod();
         $foundRoute = false;
         $routes = [];
+
+        $this->getAllRoutes();
 
         foreach($this->routes as $data) {
             array_push($routes, $data['route']);

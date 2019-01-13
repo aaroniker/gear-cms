@@ -8,6 +8,10 @@
 
     $form = new form();
 
+    $route = ($app->user->getUser($id)) ? '/user/edit' : '/user/add';
+
+    $form->addProp('route', $route);
+
     $form->addText('username', $user['username'], [
         'col' => 'md-6'
     ])->fieldName('Username');
@@ -20,6 +24,8 @@
         $form->addPassword('password', null, [
             'col' => 'md-6'
         ])->fieldName('Password');
+    } else {
+        $form->addHidden('id', $id);
     }
 
     $label = (!$app->user->getUser($id)) ? __('Add') : __('Save');

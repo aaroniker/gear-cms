@@ -72,6 +72,10 @@ module.exports = {
                         setTimeout(function() {
                             if(!item.stay) {
                                 self.remove(item.index);
+                                /* close messages if none
+                                if(self.messages < 1) {
+                                    self.open = false;
+                                }*/
                             }
                         }, window.$gear.messagesTimeout);
                     });
@@ -82,8 +86,7 @@ module.exports = {
             });
         },
         remove(index) {
-            var self = this;
-            self.$api.delete('/message/' + index);
+            this.$api.delete('/message/' + index);
         },
         toggle() {
             this.open = !this.open;
