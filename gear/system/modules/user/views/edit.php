@@ -19,11 +19,17 @@
     ])->fieldName('Email');
 
     if(!$app->user->getUser($id)) {
+
         $form->addPassword('password', null, [
             'col' => 'md-6'
         ])->fieldName('Password');
+
+        $form->addProp('redirect', '/users');
+
     } else {
+
         $form->addHidden('id', $id);
+
     }
 
     $form->addRaw('<button type="submit" class="btn">'.((!$app->user->getUser($id)) ? __('Add') : __('Save')).'</button>');

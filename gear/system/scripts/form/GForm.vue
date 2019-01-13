@@ -23,6 +23,10 @@ export default {
         route: {
             type: String|Boolean,
             default: false
+        },
+        redirect: {
+            type: String,
+            default: ''
         }
     },
     data() {
@@ -42,10 +46,13 @@ export default {
                 return true;
             }
 
-            this.$api.post(self.route, {
+            self.$api.post(self.route, {
                 data: self.data
             }).then(function(response) {
-                console.log(response);
+                console.log(self.redirect);
+                if(self.redirect) {
+                    window.location.replace(self.$gear.url + self.$gear.adminURL + self.redirect);
+                }
             });
 
             e.preventDefault();

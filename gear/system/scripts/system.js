@@ -5,8 +5,8 @@ import { GDropdown } from './dropdown'
 
 function install(Vue) {
 
-    var gear = window.$gear;
-    var lang = window.$lang;
+    var gear = Vue.prototype.$gear = window.$gear;
+    var lang = Vue.prototype.$lang = window.$lang;
 
     Vue.config.debug = gear.debug;
     Vue.config.productionTip = gear.debug;

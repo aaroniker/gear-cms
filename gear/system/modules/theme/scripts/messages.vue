@@ -72,10 +72,6 @@ module.exports = {
                         setTimeout(function() {
                             if(!item.stay) {
                                 self.remove(item.index);
-                                /* close messages if none
-                                if(self.messages < 1) {
-                                    self.open = false;
-                                }*/
                             }
                         }, window.$gear.messagesTimeout);
                     });
