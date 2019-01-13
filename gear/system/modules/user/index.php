@@ -22,20 +22,17 @@ return [
     ],
 
     'api' => [
-        '/user/add' => [
-            'method' => 'POST',
-            'callback' => function($app) {
-                $user = api::getPost('data');
-                $app->user->addUser($user['username'], $user['email'], $app->auth->getHash($user['password']));
-                $app->message->add('Benutzer hinzugefügt');
-            }
-        ],
         '/user/edit' => [
             'method' => 'POST',
             'callback' => function($app) {
                 $user = api::getPost('data');
-                $app->user->editUser($user['id'], $user['username'], $user['email']);
-                $app->message->add('Benutzer bearbeitet');
+                if(isset($user['id'])) {
+                    $app->user->editUser($user['id'], $user['username'], $user['email']);
+                    $app->message->add('User edited');
+                } else {
+                    $app->user->addUser($user['username'], $user['email'], $app->auth->getHash($user['password']));
+                    $app->message->add('User added');
+                }
             }
         ]
     ],

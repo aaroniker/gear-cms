@@ -8,9 +8,7 @@
 
     $form = new form();
 
-    $route = ($app->user->getUser($id)) ? '/user/edit' : '/user/add';
-
-    $form->addProp('route', $route);
+    $form->addProp('route', '/user/edit');
 
     $form->addText('username', $user['username'], [
         'col' => 'md-6'
@@ -28,9 +26,7 @@
         $form->addHidden('id', $id);
     }
 
-    $label = (!$app->user->getUser($id)) ? __('Add') : __('Save');
-
-    $form->addRaw('<button type="submit" class="btn">'.$label.'</button>');
+    $form->addRaw('<button type="submit" class="btn">'.((!$app->user->getUser($id)) ? __('Add') : __('Save')).'</button>');
 
     echo $form->show();
 
