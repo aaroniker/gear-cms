@@ -2,7 +2,8 @@
 
     $form = new form();
 
-    $form->addHidden('action', 'login');
+    $form->addProp('route', '/auth/login');
+    $form->addProp('redirect', '/dashboard');
 
     $form->addText('email', null, [
         'placeholder' => __('Email')

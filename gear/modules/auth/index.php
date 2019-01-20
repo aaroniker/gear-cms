@@ -24,6 +24,16 @@ return [
         ]
     ],
 
+    'api' => [
+        '/auth/login' => [
+            'method' => 'POST',
+            'callback' => function($app) {
+                $user = api::getPost('data');
+                return $app->auth->login($user['email'], $user['password'], $user['remember']);
+            }
+        ]
+    ],
+
     'action' => [
         'application.boot-5' => function($app) {
 

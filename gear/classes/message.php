@@ -11,7 +11,9 @@ class message {
         $this->app = $app;
 
         $this->app->api->get('/messages', function() {
-            return json_encode($this->getAll());
+            return [
+                'data' => json_encode($this->getAll())
+            ];
         });
 
         $this->app->api->post('/addMessage', function() {
@@ -21,7 +23,9 @@ class message {
 
         $this->app->api->delete('/message/{i}', function($app, $index) {
             $this->delete($index);
-            return json_encode($this->getAll());
+            return [
+                'data' => json_encode($this->getAll())
+            ];
         });
 
     }

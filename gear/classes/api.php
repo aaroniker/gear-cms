@@ -46,21 +46,19 @@ class api {
 
         $route = $params[0];
         $callback = $params[1];
-        $errorCallback = isset($params[2]) ? $params[2] : false;
 
-        $this->addRoute($route, $method, $callback, $errorCallback);
+        $this->addRoute($route, $method, $callback);
 
         return;
 
     }
 
-    protected function addRoute($route, $method, $callback, $errorCallback) {
+    protected function addRoute($route, $method, $callback) {
 
         $data = [
             'route' => str_replace('//', '/', $this->base.$route),
             'method' => strtoupper($method),
-            'callback' => $callback,
-            'errorCallback' => $errorCallback
+            'callback' => $callback
         ];
 
         array_push($this->routes, $data);
@@ -70,16 +68,28 @@ class api {
     }
 
     private function runCallback($function, $params = []) {
+
         $array[] = $this->app;
-        echo call_user_func_array($function, array_merge($array, $params));
+
+        echo $this->response(call_user_func_array($function, array_merge($array, $params)));
+
+    }
+
+    private function response($return) {
+
+        $responseCode = (isset($return['code'])) ? $return['code'] : 200;
+
+        http_response_code($responseCode);
+
+        return $return['data'];
+
     }
 
     public function getAllRoutes() {
         foreach($this->app->modules->all() as $module) {
             if(isset($module->options['api']) && is_array($module->options['api']) && count($module->options['api'])) {
                 foreach($module->options['api'] as $route => $array) {
-                    $errorCallback = (isset($array['errorCallback'])) ? $array['errorCallback'] : null;
-                    $this->addRoute($route, $array['method'], $array['callback'], $errorCallback);
+                    $this->addRoute($route, $array['method'], $array['callback']);
                 }
             }
         }
@@ -101,9 +111,6 @@ class api {
             foreach($this->routes as $data) {
                 if(self::validMethod($data['method'], $method) && ($data['route'] === $this->app->route->route)) {
                     $foundRoute = true;
-                    if($data['errorCallback'] && is_callable($data['errorCallback'])) {
-                        $this->errorCallback = $data['errorCallback'];
-                    }
                     $this->runCallback($data['callback']);
                     break;
                 }
@@ -129,9 +136,6 @@ class api {
                             }
                         }
                         $matched = $newMatched;
-                        if($data['errorCallback'] && is_callable($data['errorCallback'])) {
-                            $this->errorCallback = $data['errorCallback'];
-                        }
                         $this->runCallback($data['callback'], $matched);
                         break;
                     }
@@ -140,13 +144,13 @@ class api {
         }
 
         if($foundRoute === false) {
-            if(!$this->errorCallback) {
-                $this->errorCallback = function() {
-                    header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
-                    return __('URL <strong>%s</strong> not found', [$this->app->route->route]);
-                };
-            }
-            echo call_user_func($this->errorCallback);
+            $this->errorCallback = function() {
+                return [
+                    'code' => 404,
+                    'data' => __('URL <strong>%s</strong> not found', [$this->app->route->route])
+                ];
+            };
+            echo $this->response(call_user_func($this->errorCallback));
         }
 
     }
@@ -154,10 +158,7 @@ class api {
     public static function getPost($key = false) {
         $json = json_decode(file_get_contents('php://input'), true);
         $data = (isset($json) && is_array($json)) ? $json : [];
-        if($key) {
-            return $data[$key];
-        }
-        return $data;
+        return ($key) ? $data[$key] : $data;
     }
 
     protected static function isAjax() {

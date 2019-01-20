@@ -49,8 +49,7 @@ export default {
             self.$api.post(self.route, {
                 data: self.data
             }).then(function(response) {
-                console.log(self.redirect);
-                if(self.redirect) {
+                if(response.status == 200 && self.redirect) {
                     window.location.replace(self.$gear.url + self.$gear.adminURL + self.redirect);
                 }
             });

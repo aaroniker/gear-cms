@@ -45,18 +45,6 @@ return [
         'table' => 'users'
     ],
 
-    'action' => [
-        'application.boot-6' => function($app) {
-
-            if(type::post('action') == 'login') {
-                if($app->auth->login(type::post('email'), type::post('password'), type::post('remember'))) {
-                    $app->route->redirect('/dashboard');
-                }
-            }
-
-        }
-    ],
-
     'required' => [
         'auth'
     ],

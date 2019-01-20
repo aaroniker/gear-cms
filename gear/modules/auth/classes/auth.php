@@ -27,7 +27,9 @@ class auth {
 
         if($block = $this->attempt->isBlocked()) {
             $this->app->message->add(__('Login blocked for %s min %s sec', [$block['minutes'], $block['seconds']]), 'error');
-            return false;
+            return [
+                'code' => 401
+            ];
         }
 
         $validateEmail = $this->validateEmail($email);
@@ -35,7 +37,9 @@ class auth {
         if($validateEmail['error']) {
             $this->attempt->add();
             $this->app->message->add($validateEmail['message'], 'error');
-            return false;
+            return [
+                'code' => 401
+            ];
         }
 
         $userID = $this->app->user->getID(strtolower($email));
@@ -43,7 +47,9 @@ class auth {
         if(!$userID) {
             $this->attempt->add();
             $this->app->message->add('Email not found', 'error');
-            return false;
+            return [
+                'code' => 401
+            ];
         }
 
         $user = $this->app->user->getUser($userID);
@@ -51,7 +57,9 @@ class auth {
         if(!$this->passwordRehash($password, $user['password'], $userID)) {
             $this->attempt->add();
             $this->app->message->add('Incorrect password', 'error');
-            return false;
+            return [
+                'code' => 401
+            ];
         }
 
         $session = $this->addSession($user['id'], $remember);
