@@ -137,7 +137,7 @@ export default {
                             display: block;
                             width: 16px;
                             height: 16px;
-                            opacity: .75;
+                            opacity: .4;
                             transition: color .3s ease, opacity .3s ease;
                         }
                         &:hover {
@@ -148,8 +148,10 @@ export default {
                     }
                     &.disabled {
                         a {
+                            cursor: not-allowed;
                             svg {
                                 color: var(--text-muted);
+                                opacity: .4;
                             }
                         }
                     }
