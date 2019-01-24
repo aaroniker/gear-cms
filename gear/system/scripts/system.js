@@ -28,15 +28,15 @@ let install = Vue => {
         return (array !== undefined) ? vsprintf(name, array) : name;
     };
 
-    Vue.prototype.$message = (message, type, stay) => {
-        return this.$api.post('/addMessage', {
+    Vue.prototype.$message = (message, type, stay) => (
+        this.$api.post('/addMessage', {
             message: {
                 message: message,
                 type: type,
                 stay: stay
             }
-        });
-    };
+        })
+    );
 
     Vue.filter('lang', getLang);
 

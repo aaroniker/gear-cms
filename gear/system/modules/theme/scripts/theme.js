@@ -6,7 +6,8 @@ $(() => {
         menuToggle = menuBtn.children('[type="checkbox"]');
 
     menuToggle.on('change', e => {
-        $('#sidebar, #main, body, html').toggleClass('openSide', $(this).is(':checked'));
+        let _this = $(e.currentTarget);
+        $('#sidebar, #main, body, html').toggleClass('openSide', _this.is(':checked'));
     }).trigger('change');
 
     $(document).on('click', e => {
@@ -17,7 +18,7 @@ $(() => {
     });
 
     $('#sidebar > .inner > nav > ul > li > span').on('click', e => {
-        let _this = $(this).parent();
+        let _this = $(e.currentTarget).parent();
         _this.children('ul').slideToggle(200, e => {
             _this.toggleClass('opened');
         });
