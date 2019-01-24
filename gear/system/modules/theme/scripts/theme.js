@@ -1,24 +1,24 @@
-var $ = require('jquery');
+let $ = require('jquery');
 
-$(function() {
+$(() => {
 
-    var menuBtn = $('#main .toolbar .menu');
-    var menuToggle = menuBtn.children('[type="checkbox"]');
+    let menuBtn = $('#main .toolbar .menu'),
+        menuToggle = menuBtn.children('[type="checkbox"]');
 
-    menuToggle.on('change', function(e) {
+    menuToggle.on('change', e => {
         $('#sidebar, #main, body, html').toggleClass('openSide', $(this).is(':checked'));
     }).trigger('change');
 
-    $(document).on('click', function(e) {
+    $(document).on('click', e => {
         if(menuToggle.is(':checked') && menuBtn !== e.target && !menuBtn.has(e.target).length && $('#sidebar') !== e.target && !$('#sidebar').has(e.target).length) {
             menuToggle.prop('checked', false);
             menuToggle.trigger('change');
         }
     });
 
-    $('#sidebar > .inner > nav > ul > li > span').on('click', function(e) {
-        var _this = $(this).parent();
-        _this.children('ul').slideToggle(200, function(e) {
+    $('#sidebar > .inner > nav > ul > li > span').on('click', e => {
+        let _this = $(this).parent();
+        _this.children('ul').slideToggle(200, e => {
             _this.toggleClass('opened');
         });
     });

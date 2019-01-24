@@ -3,15 +3,15 @@ import { GForm } from './form'
 import { GSelect } from './select'
 import { GDropdown } from './dropdown'
 
-function install(Vue) {
+let install = Vue => {
 
-    var gear = Vue.prototype.$gear = window.$gear;
-    var lang = Vue.prototype.$lang = window.$lang;
+    let gear = Vue.prototype.$gear = window.$gear,
+        lang = Vue.prototype.$lang = window.$lang;
 
     Vue.config.debug = gear.debug;
     Vue.config.productionTip = gear.debug;
 
-    var axios = require('axios'),
+    let axios = require('axios'),
         vsprintf = require('sprintf-js').vsprintf;
 
     Vue.prototype.$api = axios.create({
@@ -21,14 +21,14 @@ function install(Vue) {
         }
     });
 
-    function getLang(name, array) {
+    let getLang = (name, array) => {
         if(name in lang) {
             return (array !== undefined) ? vsprintf(lang[name], array) : lang[name];
         }
         return (array !== undefined) ? vsprintf(name, array) : name;
-    }
+    };
 
-    Vue.prototype.$message = function(message, type, stay) {
+    Vue.prototype.$message = (message, type, stay) => {
         return this.$api.post('/addMessage', {
             message: {
                 message: message,

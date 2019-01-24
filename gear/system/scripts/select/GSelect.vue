@@ -46,8 +46,8 @@ export default {
     },
     methods: {
         documentClick(e) {
-            var el = this.$refs.dropdown;
-            var target = e.target;
+            let el = this.$refs.dropdown,
+                target = e.target;
             if((el !== target) && !el.contains(target)) {
                 this.open = false;
             }
@@ -63,7 +63,7 @@ export default {
     },
     computed: {
         displayValue() {
-            var value = (this.val) ? this.val : this.value;
+            let value = (this.val) ? this.val : this.value;
             return (value) ? this.list[value] : this.placeholder;
         }
     }

@@ -40,7 +40,7 @@ export default {
     methods: {
         onSubmit(e) {
 
-            var self = this;
+            let self = this;
 
             if(!self.route) {
                 return true;
@@ -48,7 +48,7 @@ export default {
 
             self.$api.post(self.route, {
                 data: self.data
-            }).then(function(response) {
+            }).then(response => {
                 if(response.status == 200 && self.redirect) {
                     window.location.replace(self.$gear.url + self.$gear.adminURL + self.redirect);
                 }

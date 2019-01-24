@@ -49,34 +49,32 @@ module.exports = {
         }
     },
     created() {
-        var self = this;
+        let self = this;
         self.display();
-        self.$visibility.every(1000, function() {
-            self.display();
-        });
+        self.$visibility.every(1000, self.display);
         document.addEventListener('click', this.documentClick);
     },
-    destroyed () {
+    destroyed() {
         document.removeEventListener('click', this.documentClick);
     },
     methods: {
         display() {
-            var self = this;
-            self.$api.get('/messages').then(function(response) {
+            let self = this;
+            self.$api.get('/messages').then(response => {
                 if(response.data.length > self.messages.length) {
                     self.open = true;
                 }
                 self.messages = response.data;
                 if(self.messages.length) {
-                    self.messages.map(function(item) {
-                        setTimeout(function() {
+                    self.messages.map(item => {
+                        setTimeout(() => {
                             if(!item.stay) {
                                 self.remove(item.index);
                             }
                         }, window.$gear.messagesTimeout);
                     });
                 }
-            }).catch(function(error) {
+            }).catch(error => {
                 self.open = true;
                 self.messages = error;
             });
@@ -88,8 +86,8 @@ module.exports = {
             this.open = !this.open;
         },
         documentClick(e) {
-            var el = this.$refs.messageList;
-            var target = e.target;
+            let el = this.$refs.messageList,
+                target = e.target;
             if((el !== target) && !el.contains(target)) {
                 this.open = false;
             }
@@ -104,7 +102,7 @@ module.exports = {
         }
     }
 }
-Vue.component('messages', function(resolve) {
+Vue.component('messages', resolve => {
     resolve(module.exports);
 });
 </script>

@@ -54,8 +54,8 @@ export default {
     },
     methods: {
         documentClick(e) {
-            var el = this.$refs.dropdown;
-            var target = e.target;
+            let el = this.$refs.dropdown,
+                target = e.target;
             if((el !== target) && !el.contains(target)) {
                 this.open = false;
             }
