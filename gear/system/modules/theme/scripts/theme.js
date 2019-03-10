@@ -6,14 +6,12 @@ $(() => {
         menuToggle = menuBtn.children('[type="checkbox"]');
 
     menuToggle.on('change', e => {
-        let _this = $(e.currentTarget);
-        $('#sidebar, #main, body, html').toggleClass('openSide', _this.is(':checked'));
+        $('#sidebar, #main, body, html').toggleClass('openSide', $(e.currentTarget).is(':checked'));
     }).trigger('change');
 
     $(document).on('click', e => {
         if(menuToggle.is(':checked') && menuBtn !== e.target && !menuBtn.has(e.target).length && $('#sidebar') !== e.target && !$('#sidebar').has(e.target).length) {
-            menuToggle.prop('checked', false);
-            menuToggle.trigger('change');
+            menuToggle.prop('checked', false).trigger('change');
         }
     });
 
